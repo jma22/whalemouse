@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dr1nuyec1dwdo"]
+
+[ext_resource type="Script" uid="uid://dp3k8fisfw67e" path="res://player.gd" id="1_dw050"]
+[ext_resource type="Texture2D" uid="uid://d1d22jw8m26ds" path="res://spritesheet_5_3.png" id="2_b26j0"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_n7ghd"]
+[ext_resource type="Script" uid="uid://blnovigm0t222" path="res://state_machine.gd" id="4_nvl01"]
+[ext_resource type="Script" uid="uid://c3uwaiqpquxqc" path="res://idle_state.gd" id="5_ivps1"]
+[ext_resource type="Resource" uid="uid://rk6bvguvwtmf" path="res://idle.tres" id="6_urp6f"]
+[ext_resource type="Script" uid="uid://dbsylwllpd0gc" path="res://walk_state.gd" id="7_bwjto"]
+[ext_resource type="Resource" uid="uid://nix2op7fgg8i" path="res://walking.tres" id="8_606se"]
+[ext_resource type="Script" uid="uid://b0fdpwjv66gsw" path="res://hurt_box.gd" id="9_b26j0"]
+[ext_resource type="Script" uid="uid://biyu7104cljvh" path="res://health_component.gd" id="10_n7ghd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
+size = Vector3(1, 3.6142578, 1.4425049)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aqk2v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b26j0"]
+
+[node name="Node3D" type="CharacterBody3D" unique_id=1422586295]
+script = ExtResource("1_dw050")
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.25, 0)
+pixel_size = 0.001
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("2_b26j0")
+hframes = 4
+vframes = 4
+frame = 7
+script = ExtResource("3_n7ghd")
+frames_per_second = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_wse8f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=38642024]
+visible = false
+mesh = SubResource("CylinderMesh_aqk2v")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1041110873]
+script = ExtResource("4_nvl01")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=752173126]
+script = ExtResource("5_ivps1")
+animation = ExtResource("6_urp6f")
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=961808335]
+script = ExtResource("7_bwjto")
+animation = ExtResource("8_606se")
+speed = 2.0
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=1466769011]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+script = ExtResource("9_b26j0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1109000938]
+shape = SubResource("BoxShape3D_b26j0")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
+script = ExtResource("10_n7ghd")

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ccsuvtppmdmm1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xowi"]
+albedo_color = Color(0.8627451, 0.32156864, 0.32941177, 1)
+metallic_specular = 0.22
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4xowi"]
+material = SubResource("StandardMaterial3D_4xowi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5n3q"]
+
+[node name="Node3D" type="Node3D" unique_id=1577859418]
+
+[node name="walls" type="MeshInstance3D" parent="." unique_id=1350324211]
+mesh = SubResource("BoxMesh_4xowi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="walls" unique_id=1997488837]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D" unique_id=1051914567]
+shape = SubResource("BoxShape3D_a5n3q")
+
+[node name="floor?" type="MeshInstance3D" parent="." unique_id=547684679]
+mesh = SubResource("BoxMesh_4xowi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor?" unique_id=1390649330]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor?/StaticBody3D" unique_id=206604274]
+shape = SubResource("BoxShape3D_a5n3q")
