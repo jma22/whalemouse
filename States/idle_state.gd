@@ -5,8 +5,12 @@ class_name IdleState
 var idle_duration : float = 3.0
 
 func enter() -> void:
+	entity.velocity = Vector3.ZERO
 	entity.sprite_manager.play(animation)
 
+func fixed_run(delta: float) -> void:
+	entity.velocity = Vector3.ZERO
+	
 func set_idle_duration(duration: float) -> void:
 	idle_duration = duration
 

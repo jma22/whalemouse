@@ -9,6 +9,10 @@ var target_position : Vector3 = Vector3.ZERO
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
 	entity.sprite_manager.play(animation)
+	# entity.velocity = Vector3.ZERO
+
+func fixed_run(delta: float) -> void:
+	entity.velocity = Vector3.ZERO
 
 func set_idle_duration(duration: float) -> void:
 	idle_duration = duration

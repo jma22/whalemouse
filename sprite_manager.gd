@@ -44,3 +44,10 @@ func damage_flash() -> void:
 	tween.tween_property(self, "modulate", Color(1, 0, 0, 1), 0.1)
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.1)
 	tween.play()
+
+func die() -> Tween:
+	# Play death animation, then queue_free
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.5)
+	tween.play()
+	return tween	

@@ -10,6 +10,7 @@ enum HurtBoxType {
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
+	set_collisions()
 
 
 func _on_area_entered(hitbox: Area3D) -> void:
@@ -20,7 +21,7 @@ func set_collisions() -> void:
 	match hurt_box_type:
 		HurtBoxType.PLAYER:
 			# collision_layer = 1
-			collision_mask = 2
+			collision_mask = 1
 		HurtBoxType.ENEMY:
 			# collision_layer = 2
-			collision_mask = 1
+			collision_mask = 2

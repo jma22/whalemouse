@@ -80,6 +80,5 @@ hurt_box_type = 1
 
 [node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-debug_fill = false
 
 [editable path="Hitbox"]

@@ -14,7 +14,6 @@ func enter() -> void:
 
 func fixed_run(delta: float) -> void:
 	entity.velocity *= dampening
-	entity.move_and_slide()
 
 func run(delta: float) -> void:
 	if get_elapsed_time() > duration:

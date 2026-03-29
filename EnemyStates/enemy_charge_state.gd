@@ -6,16 +6,18 @@ class_name EnemyChargeState
 @export var charge_creep_speed : float = 0.5
 var pivot : Vector3
 @export var attack_state : EnemyAttackState
+var stagger_stamina : int = 1
+@export var max_stagger_stamina : int = 1
 
 func enter() -> void:
 	pivot = entity.global_transform.origin
+	stagger_stamina = max_stagger_stamina
 
 func run(_delta: float) -> void:
 	check_state()
 
 func fixed_run(_delta: float) -> void:
 	set_velocity()
-	entity.move_and_slide()
 
 
 func check_state() -> void:
@@ -29,3 +31,8 @@ func set_velocity() -> void:
 	var target_position : Vector3 = pivot + opposite_direction * charge_creep_speed * get_elapsed_time()
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
 	entity.velocity = direction * charge_creep_speed
+
+func on_hit(damage : int) -> void:
+	stagger_stamina -= damage
+	if stagger_stamina <= 0:
+		entity.on_staggered()

@@ -9,6 +9,11 @@ class_name Player extends CharacterBody3D
 @onready var walk_state : WalkState = $StateMachine/WalkState
 @onready var idle_state : IdleState = $StateMachine/IdleState
 @onready var hurt_state : HurtState = $StateMachine/HurtState
+@onready var roll_state : RollState = $StateMachine/RollState
+@onready var attack_state : AttackState = $StateMachine/AttackState
+
+var last_direction : Vector2 = Vector2.ZERO
+var invulnerable : bool = false
 
 func _ready() -> void:
 	setup_states()
@@ -26,16 +31,30 @@ func get_input() -> Vector2:
 	return input_vector
 
 func check_state() -> void:
-	if state_machine.current_state is WalkState or state_machine.current_state is IdleState:
+	if state_machine.current_state.is_complete:
+		# if state_machine.current_state is HurtState or state_machine.current_state is RollState:
 		neutral_state()
-	elif state_machine.current_state is HurtState:
-		if state_machine.current_state.is_complete:
+	else:
+		if state_machine.current_state is WalkState or state_machine.current_state is IdleState:
 			neutral_state()
 
-			
 
 func neutral_state() -> void:
 	var input_vector : Vector2 = get_input()
+	var did_dash : bool = Input.is_action_just_pressed("dash")
+	var did_attack : bool = Input.is_action_just_pressed("attack")
+	if input_vector.length() > 0:
+		last_direction = input_vector
+	if did_dash:
+		roll_state.set_direction(last_direction)
+		state_machine.set_state(roll_state)
+		return
+	
+	if did_attack:
+		attack_state.set_direction(last_direction)
+		state_machine.set_state(attack_state)
+		return
+
 	if input_vector.length() > 0:
 		state_machine.set_state(walk_state)
 	else:
@@ -43,6 +62,8 @@ func neutral_state() -> void:
 
 func _physics_process(delta: float) -> void:
 	state_machine.current_state.deep_fixed_run(delta)
+	move_and_slide()
+
 
 func setup_states() -> void:
 	for state : Node in state_machine.get_children():
@@ -50,6 +71,17 @@ func setup_states() -> void:
 			state.set_entity(self)
 
 func on_hit(damage: int) -> void:
+	if invulnerable:
+		return
 	health_component.take_damage(damage)
 	sprite_manager.damage_flash()
-	state_machine.set_state(hurt_state)
+	if health_component.is_dead():
+		on_die()
+	else:
+		state_machine.set_state(hurt_state)
+
+func set_invulnerable(value: bool) -> void:
+	invulnerable = value
+
+func on_die() -> void:
+	sprite_manager.die().finished.connect(queue_free)

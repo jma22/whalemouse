@@ -18,6 +18,5 @@ func fixed_run(delta: float) -> void:
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
 	entity.velocity.x = direction.x * speed
 	entity.velocity.z = direction.z * speed
-	entity.move_and_slide()
 	if (entity.global_transform.origin - target_position).length() < 0.1:
 		is_complete = true

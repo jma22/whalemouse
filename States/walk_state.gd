@@ -20,4 +20,3 @@ func fixed_run(delta: float) -> void:
 		entity.sprite_manager.set_flip(false)
 	entity.velocity.x = input_vector.x * speed
 	entity.velocity.z = input_vector.y * speed
-	entity.move_and_slide()

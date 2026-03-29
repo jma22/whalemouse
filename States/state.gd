@@ -38,9 +38,10 @@ func get_elapsed_time() -> float:
 
 func init() -> void:
 	start_time = Time.get_ticks_msec() / 1000.0
-	state_machine = StateMachine.new()
-	add_child(state_machine)
 	is_complete = false
+	if state_machine == null:
+		state_machine = StateMachine.new()
+		add_child(state_machine)
 
 func set_entity(e: CharacterBody3D) -> void:
 	entity = e
