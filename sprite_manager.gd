@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 
 func play(animation: AnimationClip, loop: bool = true) -> void:
-	if animation.is_empty():
+	if animation == null or animation.is_empty():
 		return
 	current_animation = animation
 	current_idx = 0
@@ -38,3 +38,9 @@ func play(animation: AnimationClip, loop: bool = true) -> void:
 	
 func set_flip(is_left: bool) -> void:
 	self.flip_h = is_left
+
+func damage_flash() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color(1, 0, 0, 1), 0.1)
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.1)
+	tween.play()

@@ -3,11 +3,12 @@ class_name Player extends CharacterBody3D
 @export var speed: float = 5.0
 # @export var gravity: float = -9.8
 
-@onready var sprite : Sprite3D = $Sprite3D
 @onready var state_machine : StateMachine = $StateMachine
 @onready var sprite_manager : SpriteManager = $SpriteManager
+@onready var health_component : HealthComponent = $HealthComponent
 @onready var walk_state : WalkState = $StateMachine/WalkState
 @onready var idle_state : IdleState = $StateMachine/IdleState
+@onready var hurt_state : HurtState = $StateMachine/HurtState
 
 func _ready() -> void:
 	setup_states()
@@ -25,12 +26,20 @@ func get_input() -> Vector2:
 	return input_vector
 
 func check_state() -> void:
+	if state_machine.current_state is WalkState or state_machine.current_state is IdleState:
+		neutral_state()
+	elif state_machine.current_state is HurtState:
+		if state_machine.current_state.is_complete:
+			neutral_state()
+
+			
+
+func neutral_state() -> void:
 	var input_vector : Vector2 = get_input()
 	if input_vector.length() > 0:
 		state_machine.set_state(walk_state)
 	else:
 		state_machine.set_state(idle_state)
-
 
 func _physics_process(delta: float) -> void:
 	state_machine.current_state.deep_fixed_run(delta)
@@ -38,7 +47,9 @@ func _physics_process(delta: float) -> void:
 func setup_states() -> void:
 	for state : Node in state_machine.get_children():
 		if state is State:
-			state.set_player(self)
+			state.set_entity(self)
 
 func on_hit(damage: int) -> void:
-	print("Player hit for %d damage!" % damage)
+	health_component.take_damage(damage)
+	sprite_manager.damage_flash()
+	state_machine.set_state(hurt_state)

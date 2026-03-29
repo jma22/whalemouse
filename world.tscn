@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://camera.gd" id="3_aqk2v"]
 [ext_resource type="Shader" uid="uid://cfm3yjjtnlyxo" path="res://cloud_visual.tres" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://gtdy4o0cq1ix" path="res://spikes.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://dh2n0t4bu1wyo" path="res://enemy.tscn" id="6_dwbse"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_036b0"]
 
@@ -17,6 +19,10 @@ render_priority = 0
 shader = ExtResource("4_aqk2v")
 shader_parameter/ColorParameter = Color(0, 0, 0, 1)
 shader_parameter/noise_img = SubResource("NoiseTexture2D_036b0")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_dwbse"]
+vertices = PackedVector3Array(-4.5950003, 0.5, -2.3000002, -4.5950003, 0.5, 3.9499998, 1.6549997, 0.5, 3.9499998, 1.6549997, 0.5, -2.3000002)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
 
@@ -34,11 +40,9 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2, 2)
 size = 23.388
 script = ExtResource("3_aqk2v")
-target = NodePath("../Node3D")
+target = NodePath("../Player")
 offset = Vector3(0, 2, 2)
 smooth_speed = 10.0
-
-[node name="Node3D" parent="." unique_id=1422586295 instance=ExtResource("2_tlwt5")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1709192304]
 transform = Transform3D(1, 0, 0, 0, 0.88174033, 0.4717353, 0, -0.4717353, 0.88174033, 0, 16.088493, 29.29091)
@@ -54,6 +58,18 @@ lod_bias = 0.001
 mesh = SubResource("PlaneMesh_036b0")
 surface_material_override/0 = SubResource("ShaderMaterial_dwbse")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1516542075]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+[node name="Spikes" parent="." unique_id=1717028750 instance=ExtResource("5_036b0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66503316, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1530057413]
+navigation_mesh = SubResource("NavigationMesh_dwbse")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1516542075]
+transform = Transform3D(3.575, 0, 0, 0, 3.575, 0, 0, 0, 3.575, -1.52, 0, 0.775)
 mesh = SubResource("PlaneMesh_aqk2v")
+
+[node name="Player" parent="." unique_id=1422586295 instance=ExtResource("2_tlwt5")]
+
+[node name="Enemy" parent="." unique_id=636688318 node_paths=PackedStringArray("map", "player") instance=ExtResource("6_dwbse")]
+map = NodePath("../NavigationRegion3D")
+player = NodePath("../Player")

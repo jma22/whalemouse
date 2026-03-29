@@ -3,22 +3,21 @@
 [ext_resource type="Script" uid="uid://dp3k8fisfw67e" path="res://player.gd" id="1_dw050"]
 [ext_resource type="Texture2D" uid="uid://d1d22jw8m26ds" path="res://spritesheet_5_3.png" id="2_b26j0"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_n7ghd"]
-[ext_resource type="Script" uid="uid://blnovigm0t222" path="res://state_machine.gd" id="4_nvl01"]
-[ext_resource type="Script" uid="uid://c3uwaiqpquxqc" path="res://idle_state.gd" id="5_ivps1"]
-[ext_resource type="Resource" uid="uid://rk6bvguvwtmf" path="res://idle.tres" id="6_urp6f"]
-[ext_resource type="Script" uid="uid://dbsylwllpd0gc" path="res://walk_state.gd" id="7_bwjto"]
-[ext_resource type="Resource" uid="uid://nix2op7fgg8i" path="res://walking.tres" id="8_606se"]
-[ext_resource type="Script" uid="uid://b0fdpwjv66gsw" path="res://hurt_box.gd" id="9_b26j0"]
+[ext_resource type="Script" uid="uid://blnovigm0t222" path="res://States/state_machine.gd" id="4_nvl01"]
+[ext_resource type="Script" uid="uid://c3uwaiqpquxqc" path="res://States/idle_state.gd" id="5_ivps1"]
+[ext_resource type="Resource" uid="uid://rk6bvguvwtmf" path="res://AnimationClips/idle.tres" id="6_urp6f"]
+[ext_resource type="Script" uid="uid://dbsylwllpd0gc" path="res://States/walk_state.gd" id="7_bwjto"]
+[ext_resource type="Resource" uid="uid://nix2op7fgg8i" path="res://AnimationClips/walking.tres" id="8_606se"]
+[ext_resource type="Script" uid="uid://6e5r8ylc2f7" path="res://States/hurt_state.gd" id="9_nvl01"]
 [ext_resource type="Script" uid="uid://biyu7104cljvh" path="res://health_component.gd" id="10_n7ghd"]
+[ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://hurt_box.tscn" id="10_nvl01"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_aqk2v"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b26j0"]
-
-[node name="Node3D" type="CharacterBody3D" unique_id=1422586295]
+[node name="Player" type="CharacterBody3D" unique_id=1422586295]
 script = ExtResource("1_dw050")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302]
@@ -43,6 +42,7 @@ mesh = SubResource("CylinderMesh_aqk2v")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1041110873]
 script = ExtResource("4_nvl01")
+debug = false
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=752173126]
 script = ExtResource("5_ivps1")
@@ -53,12 +53,12 @@ script = ExtResource("7_bwjto")
 animation = ExtResource("8_606se")
 speed = 2.0
 
-[node name="HurtBox" type="Area3D" parent="." unique_id=1466769011]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
-script = ExtResource("9_b26j0")
+[node name="HurtState" type="Node" parent="StateMachine" unique_id=1219388509]
+script = ExtResource("9_nvl01")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1109000938]
-shape = SubResource("BoxShape3D_b26j0")
+[node name="HurtBox" parent="." unique_id=1638711581 node_paths=PackedStringArray("owner_entity") instance=ExtResource("10_nvl01")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+owner_entity = NodePath("..")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("10_n7ghd")

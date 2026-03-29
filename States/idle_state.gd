@@ -5,7 +5,7 @@ class_name IdleState
 var idle_duration : float = 3.0
 
 func enter() -> void:
-	player.sprite_manager.play(animation)
+	entity.sprite_manager.play(animation)
 
 func set_idle_duration(duration: float) -> void:
 	idle_duration = duration

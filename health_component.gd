@@ -1,6 +1,6 @@
 extends Node
 class_name HealthComponent
 
-func on_hurt(damage: int) -> void:
+func take_damage(damage: int) -> void:
 	print("Ouch! Took ", damage, " damage.")
 	
