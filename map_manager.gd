@@ -1,11 +1,21 @@
 extends Node3D
+class_name MapManager
 
+const enemy_string_to_scene = {
+	"enemy1": preload("res://Enemies/enemy.tscn"),
+	"enemy2": preload("res://Enemies/enemy2.tscn"),
+}
+# @export var player_spawn_point: Node3D
+@export var enemy_spawn_points: Array[Node3D]
+@export var map : NavigationRegion3D 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func setup(player : CharacterBody3D):
+	for enemy_spawn_point in enemy_spawn_points:
+		# var enemy_type = enemy_spawn_point.get("enemy_type")
+		var enemy_type :String = "enemy1" 
+		if enemy_type in enemy_string_to_scene:
+			var enemy_scene = enemy_string_to_scene[enemy_type]
+			var enemy_instance = enemy_scene.instantiate()
+			enemy_instance.global_transform = enemy_spawn_point.global_transform
+			enemy_instance.setup(player, map)
+			add_child(enemy_instance)

@@ -1,17 +1,13 @@
 extends Node
 class_name HealthComponent
 
-@export var hp_display: HPDisplay
+var hp_display: HPDisplay
 @export var max_health: int
 var current_health: int
 
-func _ready() -> void:
-	setup()
-
-func setup() -> void:
+func setup(hud: HUD) -> void:
 	current_health = max_health
-	if hp_display:
-		hp_display.refresh_hp(current_health)
+	self.hp_display = hud.hp_display
 
 func take_damage(damage: int) -> void:
 	print("Taking damage: ", damage , " Current health: ", current_health)

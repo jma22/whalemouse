@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://dfyercokskgql"]
 
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://basic.meshlib" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://bp6kq3gv428t1" path="res://world_manager.gd" id="1_ioo17"]
 [ext_resource type="Script" uid="uid://b5tkhvunmnk7r" path="res://map_manager.gd" id="1_k3n1d"]
-[ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://player.tscn" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://camera.gd" id="3_aqk2v"]
 [ext_resource type="Shader" uid="uid://cfm3yjjtnlyxo" path="res://cloud_visual.tres" id="4_aqk2v"]
-[ext_resource type="PackedScene" uid="uid://gtdy4o0cq1ix" path="res://spikes.tscn" id="5_036b0"]
-[ext_resource type="PackedScene" uid="uid://dh2n0t4bu1wyo" path="res://enemy.tscn" id="6_dwbse"]
-[ext_resource type="PackedScene" uid="uid://ds2lm5jh002ey" path="res://time_pickup.tscn" id="7_ic0uy"]
-[ext_resource type="PackedScene" uid="uid://bj714le7nk0hg" path="res://enemy2.tscn" id="7_pkg7o"]
+[ext_resource type="Script" uid="uid://xujg62bri8lb" path="res://hud.gd" id="4_ic0uy"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://hp_display.gd" id="8_ioo17"]
+[ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="10_ic0uy"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://time_damage_manager.gd" id="10_wse8f"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_036b0"]
@@ -27,24 +26,25 @@ shader_parameter/ColorParameter = Color(0, 0, 0, 1)
 shader_parameter/noise_img = SubResource("NoiseTexture2D_036b0")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dwbse"]
-vertices = PackedVector3Array(-4.5950003, 0.5, -2.3000002, -4.5950003, 0.5, 3.9499998, 1.6549997, 0.5, 3.9499998, 1.6549997, 0.5, -2.3000002)
+vertices = PackedVector3Array(-5, 0.02, -4, -5, 0.02, 2, 5, 0.02, 2, 5, 0.02, -4)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_size = 0.01
+cell_height = 0.01
+agent_height = 1.0
+agent_radius = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
 
-[node name="World" type="Node3D" unique_id=511598235]
-script = ExtResource("1_k3n1d")
-
-[node name="GridMap" type="GridMap" parent="." unique_id=1620062449]
-mesh_library = ExtResource("1_f3sb7")
-cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(65528, 65530, 1, 65528, 65531, 1, 65528, 65532, 1, 65528, 65533, 1, 65528, 65534, 1, 65528, 65535, 1, 65528, 0, 1, 65528, 1, 1, 65529, 65528, 1, 65529, 65529, 1, 65529, 65530, 1, 65529, 65531, 1, 65529, 65532, 1, 65529, 65533, 1, 65529, 65534, 1, 65529, 65535, 1, 65529, 0, 1, 65529, 1, 1, 65530, 65528, 1, 65530, 65529, 1, 65530, 65530, 1, 65530, 65531, 1, 65530, 65532, 1, 65530, 65533, 1, 65530, 65534, 1, 65530, 65535, 1, 65530, 0, 1, 65530, 1, 1, 65530, 5, 1, 65530, 6, 1, 65530, 7, 1, 65531, 65528, 1, 65531, 65529, 1, 65531, 65530, 1, 65531, 65531, 1, 65531, 65532, 1, 65531, 5, 1, 65531, 6, 1, 65531, 7, 1, 65532, 65528, 1, 65532, 65529, 1, 65532, 65530, 1, 65532, 65531, 1, 65532, 65532, 1, 65532, 5, 1, 65532, 6, 1, 65532, 7, 1, 65533, 65528, 1, 65533, 65529, 1, 65533, 65530, 1, 65533, 65531, 1, 65533, 65532, 1, 65533, 5, 1, 65533, 6, 1, 65533, 7, 1, 65534, 65528, 1, 65534, 65529, 1, 65534, 65530, 1, 65534, 65531, 1, 65534, 65532, 1, 65534, 5, 1, 65534, 6, 1, 65534, 7, 1, 65535, 65528, 1, 65535, 65529, 1, 65535, 65530, 1, 65535, 65531, 1, 65535, 65532, 1, 65535, 5, 1, 65535, 6, 1, 65535, 7, 1, 0, 65528, 1, 0, 65529, 1, 0, 65530, 1, 0, 65531, 1, 0, 65532, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 1, 65528, 1, 1, 65529, 1, 1, 65530, 1, 1, 65531, 1, 1, 65532, 1, 1, 5, 1, 1, 6, 1, 1, 7, 1, 2, 65528, 1, 2, 65529, 1, 2, 65530, 1, 2, 65531, 1, 2, 65532, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 2, 0, 1, 2, 1, 1, 2, 2, 1, 2, 3, 1, 2, 4, 1, 2, 5, 1, 2, 6, 1, 2, 7, 1, 3, 65528, 1, 3, 65529, 1, 3, 65530, 1, 3, 65531, 1, 3, 65532, 1, 3, 65533, 1, 3, 65534, 1, 3, 65535, 1, 3, 0, 1, 3, 1, 1, 3, 2, 1, 3, 3, 1, 3, 4, 1, 4, 65528, 1, 4, 65529, 1, 4, 65530, 1, 4, 65531, 1, 4, 65532, 1, 4, 65533, 1, 4, 65534, 1, 4, 65535, 1, 4, 0, 1, 4, 1, 1, 4, 2, 1, 4, 3, 1, 4, 4, 1, 5, 65528, 1, 5, 65529, 1, 5, 65530, 1, 5, 65531, 1, 5, 65532, 1)
-}
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "player", "hud", "time_damage")]
+script = ExtResource("1_ioo17")
+map_manager = NodePath("Map")
+player = NodePath("Player")
+hud = NodePath("HUD")
+time_damage = NodePath("TimeDamageManager")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2, 2)
+fov = 60.0
 size = 23.388
 script = ExtResource("3_aqk2v")
 target = NodePath("../Player")
@@ -55,47 +55,19 @@ smooth_speed = 10.0
 transform = Transform3D(1, 0, 0, 0, 0.88174033, 0.4717353, 0, -0.4717353, 0.88174033, 0, 16.088493, 29.29091)
 shadow_enabled = true
 shadow_bias = 0.0
-shadow_opacity = 0.24
-shadow_blur = 10.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=84870389]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1.9, 0)
-visible = false
-lod_bias = 0.001
-mesh = SubResource("PlaneMesh_036b0")
-surface_material_override/0 = SubResource("ShaderMaterial_dwbse")
-
-[node name="Spikes" parent="." unique_id=1717028750 instance=ExtResource("5_036b0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66503316, 0, 0)
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1530057413]
-navigation_mesh = SubResource("NavigationMesh_dwbse")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1516542075]
-transform = Transform3D(3.575, 0, 0, 0, 3.575, 0, 0, 0, 3.575, -1.52, 0, 0.775)
-mesh = SubResource("PlaneMesh_aqk2v")
+shadow_opacity = 0.51
+shadow_blur = 1.31
 
 [node name="Player" parent="." unique_id=1422586295 instance=ExtResource("2_tlwt5")]
 
-[node name="HealthComponent" parent="Player" index="5" unique_id=1960699954 node_paths=PackedStringArray("hp_display")]
-hp_display = NodePath("../../CanvasLayer/MarginContainer/Control")
+[node name="Hitbox" parent="Player" index="1" unique_id=754444443]
+visible = false
 
-[node name="Enemy" parent="." unique_id=636688318 node_paths=PackedStringArray("map", "player") instance=ExtResource("6_dwbse")]
-map = NodePath("../NavigationRegion3D")
-player = NodePath("../Player")
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1782428381 node_paths=PackedStringArray("hp_display")]
+script = ExtResource("4_ic0uy")
+hp_display = NodePath("MarginContainer/Control")
 
-[node name="TimePickup" parent="." unique_id=393659539 node_paths=PackedStringArray("target") instance=ExtResource("7_ic0uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4900293, 0, 0)
-target = NodePath("../Player")
-
-[node name="Enemy2" parent="." unique_id=131719532 node_paths=PackedStringArray("map", "player") instance=ExtResource("7_pkg7o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7373166, 0, 0)
-map = NodePath("../NavigationRegion3D")
-player = NodePath("../Player")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1782428381]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=216430904]
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=216430904]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -104,12 +76,12 @@ grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="Control" type="Control" parent="CanvasLayer/MarginContainer" unique_id=320883952 node_paths=PackedStringArray("hp_label")]
+[node name="Control" type="Control" parent="HUD/MarginContainer" unique_id=320883952 node_paths=PackedStringArray("hp_label")]
 layout_mode = 2
 script = ExtResource("8_ioo17")
 hp_label = NodePath("RichTextLabel")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control" unique_id=2028008329]
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/MarginContainer/Control" unique_id=2028008329]
 layout_mode = 0
 offset_right = 940.0
 offset_bottom = 520.0
@@ -117,9 +89,53 @@ theme_override_fonts/normal_font = ExtResource("8_gbfbk")
 theme_override_font_sizes/normal_font_size = 30
 text = "123"
 
-[node name="Node" type="Node" parent="." unique_id=1358208601 node_paths=PackedStringArray("player_health_component")]
+[node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601 node_paths=PackedStringArray("player_health_component")]
 script = ExtResource("10_wse8f")
 player_health_component = NodePath("../Player/HealthComponent")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=84870389]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1.9, 0)
+visible = false
+lod_bias = 0.001
+mesh = SubResource("PlaneMesh_036b0")
+surface_material_override/0 = SubResource("ShaderMaterial_dwbse")
+
+[node name="Map" type="Node3D" parent="." unique_id=1696716727 node_paths=PackedStringArray("enemy_spawn_points")]
+script = ExtResource("1_k3n1d")
+enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2")]
+
+[node name="Walls" type="GridMap" parent="Map" unique_id=1620062449]
+visible = false
+mesh_library = ExtResource("1_f3sb7")
+cell_size = Vector3(1, 1, 1)
+cell_octant_size = 4
+data = {
+"cells": PackedInt32Array(65530, 65531, 2, 65530, 65532, 2, 65530, 65533, 2, 65530, 65534, 2, 65530, 65535, 2, 65530, 0, 2, 65530, 1, 2, 65530, 2, 2, 65531, 65531, 2, 65531, 2, 2, 65532, 65531, 2, 65532, 2, 2, 65533, 65531, 2, 65533, 2, 2, 65534, 65531, 2, 65534, 2, 2, 65535, 65531, 2, 65535, 2, 2, 0, 65531, 2, 0, 2, 2, 1, 65531, 2, 1, 2, 2, 2, 65531, 2, 2, 2, 2, 3, 65531, 2, 3, 2, 2, 4, 65531, 2, 4, 2, 2, 5, 65531, 2, 5, 65532, 2, 5, 65533, 2, 5, 65534, 2, 5, 65535, 2, 5, 0, 2, 5, 1, 2, 5, 2, 2)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="FloorNav" type="NavigationRegion3D" parent="Map" unique_id=1530057413]
+navigation_mesh = SubResource("NavigationMesh_dwbse")
+
+[node name="floor" type="MeshInstance3D" parent="Map/FloorNav" unique_id=1516542075]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, -1)
+mesh = SubResource("PlaneMesh_aqk2v")
+
+[node name="SpawnPoint" type="Node3D" parent="Map" unique_id=630443639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/SpawnPoint" unique_id=464040849]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+pixel_size = 0.005
+texture = ExtResource("10_ic0uy")
+
+[node name="SpawnPoint2" type="Node3D" parent="Map" unique_id=541886396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.355, 0, -3)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/SpawnPoint2" unique_id=870426560]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+pixel_size = 0.005
+texture = ExtResource("10_ic0uy")
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]

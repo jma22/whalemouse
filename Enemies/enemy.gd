@@ -19,6 +19,11 @@ class_name Enemy extends CharacterBody3D
 @onready var knockback_component : KnockbackComponent = $KnockbackComponent
 
 
+func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
+	self.player = player
+	self.map = map
+
+	
 func _ready() -> void:
 	setup_states()
 	state_machine.set_state(charge_state)

@@ -15,6 +15,10 @@ class_name Player extends CharacterBody3D
 var last_direction : Vector2 = Vector2.ZERO
 var invulnerable : bool = false
 
+func setup(hud: HUD) -> void:
+	# This is called from the main scene to set up references to other nodes
+	health_component.setup(hud)
+
 func _ready() -> void:
 	setup_states()
 	state_machine.set_state(idle_state)

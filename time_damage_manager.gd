@@ -6,6 +6,9 @@ class_name TimeDamageManager
 @export var player_health_component : HealthComponent
 var _time_accumulator : float = 0.0
 
+func setup(player : Node3D) -> void:
+	if player.has_node("HealthComponent"):
+		player_health_component = player.get_node("HealthComponent")
 func _process(delta: float) -> void:
 	_time_accumulator += delta
 	if _time_accumulator >= seconds_per_damage:

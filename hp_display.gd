@@ -4,6 +4,10 @@ class_name HPDisplay
 
 @export var hp_label : RichTextLabel
 
+
+func setup(player : Node3D) -> void:
+	refresh_hp(player.health_component.current_health)
+	
 func lose_hp(amount: int, new_hp: int) -> void:
 	refresh_hp(new_hp)
 
