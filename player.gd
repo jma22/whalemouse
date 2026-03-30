@@ -85,3 +85,8 @@ func set_invulnerable(value: bool) -> void:
 
 func on_die() -> void:
 	sprite_manager.die().finished.connect(queue_free)
+
+func on_gain_time(amount : int) -> void:
+	# handle gaining time pickup
+	health_component.gain_health(amount)
+

@@ -4,6 +4,10 @@ class_name EnemyPeacefulState
 @export var enemy_walk_state : EnemyWalkState
 @export var enemy_idle_state : EnemyIdleState
 
+@export var walk_radius : float = 1.0
+@export var idle_duration_min : float = 0.5
+@export var idle_duration_max : float = 1.5
+
 func enter() -> void:
 	enemy_idle_state.set_idle_duration(get_idle_duration())
 	state_machine.set_state(enemy_idle_state)
@@ -17,18 +21,15 @@ func check_state() -> void:
 		if enemy_idle_state.is_complete:
 			enemy_walk_state.set_target_position(get_random_walk_target_location())
 			state_machine.set_state(enemy_walk_state)
-			print("Switching from idle to walk state, target position: ", enemy_walk_state.target_position)
 	if get_child_state() == enemy_walk_state:
 		if enemy_walk_state.is_complete:
 			enemy_idle_state.set_idle_duration(get_idle_duration())
 			state_machine.set_state(enemy_idle_state)
-			print("Switching from walk to idle state")
 
 func get_idle_duration() -> float:
-	return 0.5
+	return randf_range(idle_duration_min, idle_duration_max)
 
 func get_random_walk_target_location() -> Vector3:
-	var walk_radius : float = 1.0
 	var random_offset : Vector3 = Vector3(randf_range(-walk_radius, walk_radius), 0, randf_range(-walk_radius, walk_radius))
 	## check if its in map 
 	# var map : RID = entity.get_world_3d().navigation_map

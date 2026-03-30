@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AnimationClip" format=3 uid="uid://x505vmku7x31"]
+
+[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://animation_clip.gd" id="1_icq1w"]
+
+[resource]
+script = ExtResource("1_icq1w")
+frame_numbers = Array[int]([0, 1, 2])
+name = "Dashing"
+metadata/_custom_type_script = "uid://bfemb7cym2htn"

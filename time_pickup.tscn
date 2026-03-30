@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ds2lm5jh002ey"]
+
+[ext_resource type="Script" uid="uid://cusgwa77jvb2g" path="res://time_pickup.gd" id="1_xvhxq"]
+[ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="2_kwque"]
+
+[node name="TimePickup" type="Node3D" unique_id=393659539 node_paths=PackedStringArray("target")]
+script = ExtResource("1_xvhxq")
+target = NodePath("")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1964903978]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.25, 0)
+pixel_size = 0.001
+texture = ExtResource("2_kwque")

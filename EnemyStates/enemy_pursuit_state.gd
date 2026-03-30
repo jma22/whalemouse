@@ -17,12 +17,10 @@ func check_state() -> void:
 		if enemy_idle_state.is_complete:
 			enemy_walk_state.set_target_position(get_walk_toward_player())
 			state_machine.set_state(enemy_walk_state)
-			print("Switching from idle to walk state, target position: ", enemy_walk_state.target_position)
 	if get_child_state() == enemy_walk_state:
 		if enemy_walk_state.is_complete:
 			enemy_idle_state.set_idle_duration(get_idle_duration())
 			state_machine.set_state(enemy_idle_state)
-			print("Switching from walk to idle state")
 
 func get_idle_duration() -> float:
 	return 0.2

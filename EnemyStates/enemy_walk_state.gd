@@ -18,5 +18,13 @@ func fixed_run(delta: float) -> void:
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
 	entity.velocity.x = direction.x * speed
 	entity.velocity.z = direction.z * speed
+	## add perlin noise
+	var noise = FastNoiseLite.new()
+	noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	var noise_value_x = noise.get_noise_1d(Time.get_ticks_msec() * 0.1)
+	entity.velocity.x += noise_value_x * 1.0
+	var noise_value_z = noise.get_noise_1d(Time.get_ticks_msec()  * 0.1)
+	entity.velocity.z += noise_value_z * 1.0
+
 	if (entity.global_transform.origin - target_position).length() < 0.1:
 		is_complete = true

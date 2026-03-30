@@ -1,4 +1,4 @@
-class_name Enemy extends CharacterBody3D
+class_name Enemy2 extends CharacterBody3D
 
 @export var map : NavigationRegion3D
 @export var player : CharacterBody3D
@@ -12,16 +12,15 @@ class_name Enemy extends CharacterBody3D
 @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 # @onready var hurt_state : HurtState = $StateMachine/HurtState
 # @onready var retreat_state : RetreatState = $StateMachine/RetreatState
-@onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
-@onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
+# @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
+# @onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
 @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
-@onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
+# @onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
 @onready var knockback_component : KnockbackComponent = $KnockbackComponent
-
 
 func _ready() -> void:
 	setup_states()
-	state_machine.set_state(charge_state)
+	state_machine.set_state(peaceful_state)
 
 func _process(_delta: float) -> void:
 	check_state()
@@ -29,13 +28,14 @@ func _process(_delta: float) -> void:
 	# print(state_machine.get_current_all_states())
 
 func check_state() -> void:
-	if state_machine.current_state.is_complete:
-		if state_machine.current_state == charge_state:
-			state_machine.set_state(attack_state)
-		elif state_machine.current_state == attack_state:
-			state_machine.set_state(charge_state)
-		elif state_machine.current_state == enemy_idle_state:
-			state_machine.set_state(charge_state)
+	pass
+	# if state_machine.current_state.is_complete:
+	# 	if state_machine.current_state == charge_state:
+	# 		state_machine.set_state(attack_state)
+	# 	elif state_machine.current_state == attack_state:
+	# 		state_machine.set_state(charge_state)
+	# 	elif state_machine.current_state == enemy_idle_state:
+	# 		state_machine.set_state(charge_state)
 		# elif state_machine.current_state == approach_state:
 		# 	state_machine.set_state(enemy_idle_state)
 
@@ -73,10 +73,9 @@ func on_die() -> void:
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		xp_spawner_instance.setup(4, player)
-	queue_free()
 
+	queue_free()
 
 func on_staggered() -> void:
 	enemy_idle_state.set_idle_duration(0.5)
 	state_machine.set_state(enemy_idle_state)
-

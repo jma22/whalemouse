@@ -1,17 +1,14 @@
 [gd_scene format=3 uid="uid://dfyercokskgql"]
 
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://basic.meshlib" id="1_f3sb7"]
-[ext_resource type="Script" uid="uid://b5tkhvunmnk7r" path="res://map_manager.gd" id="1_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://camera.gd" id="3_aqk2v"]
 [ext_resource type="Shader" uid="uid://cfm3yjjtnlyxo" path="res://cloud_visual.tres" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://gtdy4o0cq1ix" path="res://spikes.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://dh2n0t4bu1wyo" path="res://enemy.tscn" id="6_dwbse"]
-[ext_resource type="PackedScene" uid="uid://ds2lm5jh002ey" path="res://time_pickup.tscn" id="7_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://bj714le7nk0hg" path="res://enemy2.tscn" id="7_pkg7o"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://hp_display.gd" id="8_ioo17"]
-[ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://time_damage_manager.gd" id="10_wse8f"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_036b0"]
 
@@ -33,7 +30,6 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
 
 [node name="World" type="Node3D" unique_id=511598235]
-script = ExtResource("1_k3n1d")
 
 [node name="GridMap" type="GridMap" parent="." unique_id=1620062449]
 mesh_library = ExtResource("1_f3sb7")
@@ -77,16 +73,9 @@ mesh = SubResource("PlaneMesh_aqk2v")
 
 [node name="Player" parent="." unique_id=1422586295 instance=ExtResource("2_tlwt5")]
 
-[node name="HealthComponent" parent="Player" index="5" unique_id=1960699954 node_paths=PackedStringArray("hp_display")]
-hp_display = NodePath("../../CanvasLayer/MarginContainer/Control")
-
 [node name="Enemy" parent="." unique_id=636688318 node_paths=PackedStringArray("map", "player") instance=ExtResource("6_dwbse")]
 map = NodePath("../NavigationRegion3D")
 player = NodePath("../Player")
-
-[node name="TimePickup" parent="." unique_id=393659539 node_paths=PackedStringArray("target") instance=ExtResource("7_ic0uy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4900293, 0, 0)
-target = NodePath("../Player")
 
 [node name="Enemy2" parent="." unique_id=131719532 node_paths=PackedStringArray("map", "player") instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7373166, 0, 0)
@@ -116,10 +105,3 @@ offset_bottom = 520.0
 theme_override_fonts/normal_font = ExtResource("8_gbfbk")
 theme_override_font_sizes/normal_font_size = 30
 text = "123"
-
-[node name="Node" type="Node" parent="." unique_id=1358208601 node_paths=PackedStringArray("player_health_component")]
-script = ExtResource("10_wse8f")
-player_health_component = NodePath("../Player/HealthComponent")
-
-[editable path="Player"]
-[editable path="Player/Hitbox"]

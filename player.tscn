@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dr1nuyec1dwdo"]
 
 [ext_resource type="Script" uid="uid://dp3k8fisfw67e" path="res://player.gd" id="1_dw050"]
-[ext_resource type="Texture2D" uid="uid://d1d22jw8m26ds" path="res://spritesheet_5_3.png" id="2_b26j0"]
+[ext_resource type="Texture2D" uid="uid://bux3bhklk4dei" path="res://Sprites/sprite_sheet.png" id="2_bwjto"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_n7ghd"]
 [ext_resource type="Script" uid="uid://blnovigm0t222" path="res://States/state_machine.gd" id="4_nvl01"]
 [ext_resource type="Script" uid="uid://c3uwaiqpquxqc" path="res://States/idle_state.gd" id="5_ivps1"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://hurt_box.tscn" id="10_nvl01"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://hitbox.tscn" id="12_606se"]
 [ext_resource type="Script" uid="uid://ce3e7vd401ydb" path="res://States/attack_state.gd" id="12_bwjto"]
+[ext_resource type="Resource" uid="uid://x505vmku7x31" path="res://AnimationClips/dash.tres" id="12_u1c27"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bwjto"]
 
@@ -30,12 +31,11 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 pixel_size = 0.001
 double_sided = false
 alpha_cut = 1
-texture = ExtResource("2_b26j0")
-hframes = 4
-vframes = 4
-frame = 7
+texture = ExtResource("2_bwjto")
+hframes = 6
+vframes = 2
 script = ExtResource("3_n7ghd")
-frames_per_second = 10
+frames_per_second = 12
 
 [node name="Hitbox" parent="." unique_id=754444443 instance=ExtResource("12_606se")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0.01, 0)
@@ -67,12 +67,14 @@ animation = ExtResource("6_urp6f")
 script = ExtResource("7_bwjto")
 animation = ExtResource("8_606se")
 speed = 2.0
+fps = 3.0
 
 [node name="HurtState" type="Node" parent="StateMachine" unique_id=1219388509]
 script = ExtResource("9_nvl01")
 
 [node name="RollState" type="Node" parent="StateMachine" unique_id=2053658731]
 script = ExtResource("10_ivps1")
+animation = ExtResource("12_u1c27")
 metadata/_custom_type_script = "uid://bh7n5qul1jfn"
 
 [node name="AttackState" type="Node" parent="StateMachine" unique_id=1575047821 node_paths=PackedStringArray("hitbox")]
@@ -86,6 +88,6 @@ owner_entity = NodePath("..")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("10_n7ghd")
-max_health = 10
+max_health = 100
 
 [editable path="Hitbox"]

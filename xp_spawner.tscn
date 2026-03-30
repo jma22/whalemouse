@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bdgwc04qsydls"]
+
+[ext_resource type="Script" uid="uid://dqvexhjawy3iv" path="res://xp_spawner.gd" id="1_gu5c3"]
+[ext_resource type="PackedScene" uid="uid://ds2lm5jh002ey" path="res://time_pickup.tscn" id="2_34fco"]
+
+[node name="XpSpawner" type="Node3D" unique_id=756005090]
+script = ExtResource("1_gu5c3")
+xp_orb = ExtResource("2_34fco")
