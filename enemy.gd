@@ -15,10 +15,11 @@ class_name Enemy extends CharacterBody3D
 @onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
 @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
 @onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
-var knockback_mult : float = 15.0
-var knockback_dampening : float = 0.8
-var knockback_velocity : Vector3 = Vector3.ZERO
-var is_knockbackable : bool = true
+@onready var knockback_component : KnockbackComponent = $KnockbackComponent
+# var knockback_mult : float = 15.0
+# var knockback_dampening : float = 0.8
+# var knockback_velocity : Vector3 = Vector3.ZERO
+# var is_knockbackable : bool = true
 
 func _ready() -> void:
 	setup_states()
@@ -44,17 +45,10 @@ func check_state() -> void:
 
 func _physics_process(delta: float) -> void:
 	state_machine.current_state.deep_fixed_run(delta)
-	handle_knockback()
+	knockback_component.handle_knockback()
 	move_and_slide()
 
-func handle_knockback() -> void:
-	if not is_knockbackable:
-		return
-	if knockback_velocity.length() > 1.0:
-		knockback_velocity *= knockback_dampening
-		velocity += knockback_velocity
-	else:
-		knockback_velocity = Vector3.ZERO
+
 
 func setup_states() -> void:
 	for state : Node in state_machine.get_children():
@@ -69,7 +63,7 @@ func on_hit(damage: int) -> void:
 		state_machine.current_state.on_hit(damage)
 
 	var knockback_direction : Vector3 = (global_transform.origin - player.global_transform.origin).normalized()
-	knockback_velocity = knockback_direction * damage * knockback_mult
+	knockback_component.receive_knockback(knockback_direction, damage)
 
 	if health_component.is_dead():
 		on_die()
@@ -82,5 +76,3 @@ func on_staggered() -> void:
 	enemy_idle_state.set_idle_duration(0.5)
 	state_machine.set_state(enemy_idle_state)
 
-func set_knockbackable(value: bool) -> void:
-	is_knockbackable = value

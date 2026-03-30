@@ -10,11 +10,11 @@ func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
 	entity.hitbox.set_active(true)
 	apply_velocity()
-	entity.set_knockbackable(false)
+	entity.knockback_component.set_knockbackable(false)
 
 func exit() -> void:
 	entity.hitbox.set_active(false)
-	entity.set_knockbackable(true)
+	entity.knockback_component.set_knockbackable(true)
 
 func run(_delta: float) -> void:
 	check_state()

@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://crc7jcisgbtvc" path="res://EnemyStates/enemy_attack_state.gd" id="10_doop2"]
 [ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://hurt_box.tscn" id="10_dxifv"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://hitbox.tscn" id="11_pwjut"]
+[ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://knockback_component.gd" id="14_doop2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)
@@ -80,5 +81,9 @@ hurt_box_type = 1
 
 [node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="KnockbackComponent" type="Node3D" parent="." unique_id=1542646912 node_paths=PackedStringArray("entity")]
+script = ExtResource("14_doop2")
+entity = NodePath("..")
 
 [editable path="Hitbox"]
