@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dg8owrdf3qc4u"]
+
+[ext_resource type="Script" uid="uid://c8eq42u5mh3sy" path="res://scene_manager.gd" id="1_sk6ly"]
+
+[node name="GameRoot" type="Node3D" unique_id=831621761]
+
+[node name="SceneManager" type="Node" parent="." unique_id=1282675307]
+script = ExtResource("1_sk6ly")
+
+[node name="GameScene" type="Node3D" parent="." unique_id=1303165700]
+
+[node name="GameOverScene" type="Node3D" parent="." unique_id=986314921]
+
+[node name="Control" type="Control" parent="GameOverScene" unique_id=913388116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScene/Control" unique_id=407751741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="GameOverScene/Control/MarginContainer" unique_id=766996697]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameOverScene/Control/MarginContainer" unique_id=118965011]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 50
+text = "Game over"
+scroll_active = false
+
+[node name="GameScene" type="Node3D" parent="GameOverScene" unique_id=1452513848]
+
+[node name="MainMenuScene" type="Node3D" parent="." unique_id=979149176]
+
+[node name="Control" type="Control" parent="MainMenuScene" unique_id=1937267988]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuScene/Control" unique_id=1670225294]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="MainMenuScene/Control/MarginContainer" unique_id=1145761645]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start game"

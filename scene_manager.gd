@@ -1,5 +1,9 @@
+<<<<<<< HEAD:map_manager.gd
 extends Node3D
 class_name MapManager
+=======
+extends Node
+>>>>>>> 8e1ddb3c421010a4a25bbcf45a787f1c08073d74:scene_manager.gd
 
 const enemy_string_to_scene = {
 	"enemy1": preload("res://Enemies/enemy.tscn"),
