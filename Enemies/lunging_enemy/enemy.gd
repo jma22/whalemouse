@@ -12,7 +12,7 @@ class_name Enemy
 # @onready var walk_state : WalkState = $StateMachine/WalkState
 @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 # @onready var hurt_state : HurtState = $StateMachine/HurtState
-# @onready var retreat_state : RetreatState = $StateMachine/RetreatState
+@onready var retreat_state : EnemyRetreatState = $StateMachine/EnemyRetreatState
 @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
 @onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
 @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
@@ -49,8 +49,12 @@ func check_state() -> void:
 			state_machine.set_state(enemy_idle_state)
 		elif state_machine.current_state == enemy_idle_state:
 			check_range()
+		elif state_machine.current_state == retreat_state:
+			check_range()
+		elif state_machine.current_state == approach_state:
+			check_range()
 	else:
-		if state_machine.current_state == approach_state or state_machine.current_state == peaceful_state:	
+		if state_machine.current_state == peaceful_state:	
 			check_range()
 		# elif state_machine.current_state == approach_state:
 		# 	state_machine.set_state(enemy_idle_state)
@@ -63,8 +67,11 @@ func check_range() -> void:
 		if state_machine.current_state != attack_state:
 			state_machine.set_state(charge_state)
 	elif distance_to_player <= pursuit_range:
-		if state_machine.current_state != approach_state and state_machine.current_state != attack_state:
-			state_machine.set_state(approach_state)
+		if state_machine.current_state != attack_state:
+			if randf() < 0.75:
+				state_machine.set_state(retreat_state)
+			else:
+				state_machine.set_state(approach_state)
 	else:
 		if state_machine.current_state != enemy_idle_state and state_machine.current_state != charge_state:
 			state_machine.set_state(peaceful_state)

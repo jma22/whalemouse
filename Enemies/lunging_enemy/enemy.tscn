@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://hurt_box.tscn" id="10_dxifv"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://hitbox.tscn" id="11_pwjut"]
 [ext_resource type="Resource" uid="uid://bd28qktpwn3vs" path="res://Enemies/lunging_enemy/lunging.tres" id="13_25vuu"]
+[ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://EnemyStates/enemy_retreat_state.gd" id="14_14j78"]
 [ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://knockback_component.gd" id="14_doop2"]
 [ext_resource type="PackedScene" uid="uid://w6vcxj52h0dl" path="res://Player/spot_light_3d.tscn" id="18_25vuu"]
 
@@ -82,6 +83,11 @@ attack_state = NodePath("../EnemyAttackState")
 [node name="EnemyAttackState" type="Node" parent="StateMachine" unique_id=1238452011]
 script = ExtResource("10_doop2")
 animation_clip = ExtResource("13_25vuu")
+
+[node name="EnemyRetreatState" type="Node" parent="StateMachine" unique_id=1126249707 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
+script = ExtResource("14_14j78")
+enemy_walk_state = NodePath("../EnemyWalkState")
+enemy_idle_state = NodePath("../EnemyIdleState")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("8_dxifv")

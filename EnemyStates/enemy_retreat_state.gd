@@ -1,6 +1,6 @@
 extends State
 
-class_name EnemyPursuitState
+class_name EnemyRetreatState
 @export var enemy_walk_state : EnemyWalkState
 @export var enemy_idle_state : EnemyIdleState
 
@@ -15,7 +15,7 @@ func run(_delta: float) -> void:
 func check_state() -> void:
 	if get_child_state() == enemy_idle_state:
 		if enemy_idle_state.is_complete:
-			enemy_walk_state.set_target_position(get_walk_toward_player())
+			enemy_walk_state.set_target_position(get_walk_away_player())
 			state_machine.set_state(enemy_walk_state)
 	if get_child_state() == enemy_walk_state:
 		if enemy_walk_state.is_complete:
@@ -24,21 +24,21 @@ func check_state() -> void:
 			is_complete = true
 
 func get_idle_duration() -> float:
-	return 0.2
+	return 0.1
 
-func get_walk_toward_player() -> Vector3:
-	var direction : Vector3 = (entity.player.global_transform.origin - entity.global_transform.origin).normalized()
+func get_walk_away_player() -> Vector3:
+	var direction : Vector3 = (entity.global_transform.origin - entity.player.global_transform.origin).normalized()
 	var pick_direction : Vector3 = sample_cardinal_direction(direction)
 	var distance : float = sample_random_distance()
 	var target_point : Vector3 = entity.global_transform.origin + pick_direction * distance
 	return target_point
 
 func sample_random_distance() -> float:
-	return randf_range(0.2, 0.8)
+	return randf_range(0.5, 0.8)
 
 
 func sample_cardinal_direction(direction: Vector3) -> Vector3:
-	# 33% closest, 20% second clsest, 20% third closest, 27% random from remaining
+	# 70% closest, 20% second closest, 10% third closest, 0% random from remaining
 	var cardinal_directions : Array[Vector3] = [
 		Vector3(1, 0, 0),
 		Vector3(-1, 0, 0),
@@ -54,10 +54,10 @@ func sample_cardinal_direction(direction: Vector3) -> Vector3:
 	var pick = randf()
 	if pick < 0.5:
 		return closest_direction
-	elif pick < 0.5 + 0.2:
+	elif pick < 0.5 + 0.1:
 		var second_index = (index + 1) % cardinal_directions.size()
 		return cardinal_directions[second_index]
-	elif pick < 0.5 + 0.2 + 0.2:
+	elif pick < 0.5 + 0.1 + 0.1:
 		var third_index = (index - 1 + cardinal_directions.size()) % cardinal_directions.size()
 		return cardinal_directions[third_index]
 	else:

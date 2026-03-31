@@ -12,7 +12,7 @@ class_name Enemy2
 # @onready var walk_state : WalkState = $StateMachine/WalkState
 @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 # @onready var hurt_state : HurtState = $StateMachine/HurtState
-# @onready var retreat_state : RetreatState = $StateMachine/RetreatState
+@onready var retreat_state : EnemyRetreatState = $StateMachine/EnemyRetreatState
 # @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
 # @onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
 @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
@@ -20,7 +20,7 @@ class_name Enemy2
 @onready var knockback_component : KnockbackComponent = $KnockbackComponent
 
 var is_dead : bool = false
-
+var detection_range : float = 2.5
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	self.player = player
 	self.map = map
@@ -38,8 +38,8 @@ func _process(_delta: float) -> void:
 	# print(state_machine.get_current_all_states())
 
 func check_state() -> void:
-	pass
-	# if state_machine.current_state.is_complete:
+	if state_machine.current_state.is_complete:
+		check_range()
 	# 	if state_machine.current_state == charge_state:
 	# 		state_machine.set_state(attack_state)
 	# 	elif state_machine.current_state == attack_state:
@@ -49,6 +49,12 @@ func check_state() -> void:
 		# elif state_machine.current_state == approach_state:
 		# 	state_machine.set_state(enemy_idle_state)
 
+func check_range() -> void:
+	var distance_to_player : float = global_transform.origin.distance_to(player.global_transform.origin)
+	if distance_to_player <= detection_range:
+		state_machine.set_state(retreat_state)
+	else:
+		state_machine.set_state(peaceful_state)
 
 
 func _physics_process(delta: float) -> void:
