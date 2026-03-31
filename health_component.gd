@@ -9,6 +9,12 @@ func setup(hud: HUD) -> void:
 	current_health = max_health
 	self.hp_display = hud.hp_display
 
+func reset() -> void:
+	current_health = max_health
+	if hp_display:
+		hp_display.refresh_hp(current_health)
+
+
 func take_damage(damage: int) -> void:
 	print("Taking damage: ", damage , " Current health: ", current_health)
 	current_health -= damage

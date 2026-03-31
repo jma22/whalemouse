@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bx8nbcsdbnm4v"]
+
+[ext_resource type="Shader" uid="uid://cgvfo2hidbu55" path="res://Shaders/foreground.gdshader" id="1_chrp4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_chrp4")
+shader_parameter/radius = 0.8370000397575
+shader_parameter/softness = 0.3410000161975
+shader_parameter/center_alpha = 0.0
+shader_parameter/edge_alpha = 0.6830000324425

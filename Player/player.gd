@@ -4,8 +4,8 @@ class_name Player extends CharacterBody3D
 # @export var gravity: float = -9.8
 
 @onready var state_machine : StateMachine = $StateMachine
-@onready var sprite_manager : SpriteManager = $SpriteManager
-@onready var health_component : HealthComponent = $HealthComponent
+@export var sprite_manager : SpriteManager
+@export var health_component : HealthComponent
 @onready var walk_state : WalkState = $StateMachine/WalkState
 @onready var idle_state : IdleState = $StateMachine/IdleState
 @onready var hurt_state : HurtState = $StateMachine/HurtState
@@ -14,6 +14,11 @@ class_name Player extends CharacterBody3D
 
 var last_direction : Vector2 = Vector2.ZERO
 var invulnerable : bool = false
+
+func reset() -> void:
+	# This can be called to reset the player's state, such as when restarting the game
+	health_component.reset()
+	sprite_manager.reset()	
 
 func setup(hud: HUD) -> void:
 	# This is called from the main scene to set up references to other nodes
@@ -88,9 +93,10 @@ func set_invulnerable(value: bool) -> void:
 	invulnerable = value
 
 func on_die() -> void:
-	sprite_manager.die().finished.connect(queue_free)
+	sprite_manager.die().finished.connect(func():
+		SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
+	)
 
 func on_gain_time(amount : int) -> void:
 	# handle gaining time pickup
 	health_component.gain_health(amount)
-

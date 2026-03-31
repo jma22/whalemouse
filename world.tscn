@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://dfyercokskgql"]
 
-[ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://basic.meshlib" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bp6kq3gv428t1" path="res://world_manager.gd" id="1_ioo17"]
-[ext_resource type="Script" uid="uid://b5tkhvunmnk7r" path="res://map_manager.gd" id="1_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://camera.gd" id="3_aqk2v"]
 [ext_resource type="Shader" uid="uid://cfm3yjjtnlyxo" path="res://cloud_visual.tres" id="4_aqk2v"]
 [ext_resource type="Script" uid="uid://xujg62bri8lb" path="res://hud.gd" id="4_ic0uy"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://hp_display.gd" id="8_ioo17"]
-[ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="10_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/map.tscn" id="9_ioo17"]
+[ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
+[ext_resource type="Script" uid="uid://c1hdmghu4j63o" path="res://wave_text.gd" id="10_ic0uy"]
+[ext_resource type="Script" uid="uid://dgww6vx235lmc" path="res://wave_manager.gd" id="10_k3n1d"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://time_damage_manager.gd" id="10_wse8f"]
+[ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://whale_spawner.gd" id="12_2o6r5"]
+[ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://whale.tscn" id="12_k3n1d"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_036b0"]
 
@@ -25,43 +28,33 @@ shader = ExtResource("4_aqk2v")
 shader_parameter/ColorParameter = Color(0, 0, 0, 1)
 shader_parameter/noise_img = SubResource("NoiseTexture2D_036b0")
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_dwbse"]
-vertices = PackedVector3Array(-5, 0.02, -4, -5, 0.02, 2, 5, 0.02, 2, 5, 0.02, -4)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-cell_size = 0.01
-cell_height = 0.01
-agent_height = 1.0
-agent_radius = 0.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
-
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "player", "hud", "time_damage")]
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager")]
 script = ExtResource("1_ioo17")
 map_manager = NodePath("Map")
+shrine_map_manager = NodePath("BlessingMap")
 player = NodePath("Player")
 hud = NodePath("HUD")
 time_damage = NodePath("TimeDamageManager")
+camera = NodePath("Camera3D2")
+wave_text = NodePath("WaveText")
+wave_manager = NodePath("WaveManager")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2, 2)
-fov = 60.0
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 1.4, 0.48)
+fov = 107.0
 size = 23.388
 script = ExtResource("3_aqk2v")
 target = NodePath("../Player")
-offset = Vector3(0, 2, 2)
 smooth_speed = 10.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1709192304]
-transform = Transform3D(1, 0, 0, 0, 0.88174033, 0.4717353, 0, -0.4717353, 0.88174033, 0, 16.088493, 29.29091)
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_opacity = 0.51
-shadow_blur = 1.31
+[node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("2_tlwt5")]
 
-[node name="Player" parent="." unique_id=1422586295 instance=ExtResource("2_tlwt5")]
-
-[node name="Hitbox" parent="Player" index="1" unique_id=754444443]
+[node name="Ripple" parent="Player" index="7" unique_id=1712351807]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 visible = false
+
+[node name="SpriteManager" parent="Player/Ripple" index="0" unique_id=1925504871]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.1, 0)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1782428381 node_paths=PackedStringArray("hp_display")]
 script = ExtResource("4_ic0uy")
@@ -89,9 +82,8 @@ theme_override_fonts/normal_font = ExtResource("8_gbfbk")
 theme_override_font_sizes/normal_font_size = 30
 text = "123"
 
-[node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601 node_paths=PackedStringArray("player_health_component")]
+[node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
 script = ExtResource("10_wse8f")
-player_health_component = NodePath("../Player/HealthComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=84870389]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1.9, 0)
@@ -100,42 +92,60 @@ lod_bias = 0.001
 mesh = SubResource("PlaneMesh_036b0")
 surface_material_override/0 = SubResource("ShaderMaterial_dwbse")
 
-[node name="Map" type="Node3D" parent="." unique_id=1696716727 node_paths=PackedStringArray("enemy_spawn_points")]
-script = ExtResource("1_k3n1d")
-enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2")]
+[node name="Map" parent="." unique_id=1662652710 instance=ExtResource("9_ioo17")]
 
-[node name="Walls" type="GridMap" parent="Map" unique_id=1620062449]
+[node name="BlessingMap" parent="." unique_id=167256153 instance=ExtResource("10_70uel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="WaveManager" type="Node3D" parent="." unique_id=212606823]
+script = ExtResource("10_k3n1d")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=625136234]
+
+[node name="WaveText" type="CanvasLayer" parent="." unique_id=627079375 node_paths=PackedStringArray("text_label", "container")]
+script = ExtResource("10_ic0uy")
+text_label = NodePath("VBoxContainer/ColorRect/RichTextLabel")
+container = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WaveText" unique_id=1455568305]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="WaveText/VBoxContainer" unique_id=2016103205]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="WaveText/VBoxContainer" unique_id=2094351474]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+color = Color(0.18, 0.18, 0.18, 0.74509805)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WaveText/VBoxContainer/ColorRect" unique_id=2031658423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wave 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="WaveText/VBoxContainer" unique_id=466485775]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
+script = ExtResource("12_2o6r5")
+whale = NodePath("Whale")
+
+[node name="Whale" parent="WhaleSpawner" unique_id=1866251720 instance=ExtResource("12_k3n1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0158379)
 visible = false
-mesh_library = ExtResource("1_f3sb7")
-cell_size = Vector3(1, 1, 1)
-cell_octant_size = 4
-data = {
-"cells": PackedInt32Array(65530, 65531, 2, 65530, 65532, 2, 65530, 65533, 2, 65530, 65534, 2, 65530, 65535, 2, 65530, 0, 2, 65530, 1, 2, 65530, 2, 2, 65531, 65531, 2, 65531, 2, 2, 65532, 65531, 2, 65532, 2, 2, 65533, 65531, 2, 65533, 2, 2, 65534, 65531, 2, 65534, 2, 2, 65535, 65531, 2, 65535, 2, 2, 0, 65531, 2, 0, 2, 2, 1, 65531, 2, 1, 2, 2, 2, 65531, 2, 2, 2, 2, 3, 65531, 2, 3, 2, 2, 4, 65531, 2, 4, 2, 2, 5, 65531, 2, 5, 65532, 2, 5, 65533, 2, 5, 65534, 2, 5, 65535, 2, 5, 0, 2, 5, 1, 2, 5, 2, 2)
-}
-metadata/_editor_floor_ = Vector3(0, 0, 0)
-
-[node name="FloorNav" type="NavigationRegion3D" parent="Map" unique_id=1530057413]
-navigation_mesh = SubResource("NavigationMesh_dwbse")
-
-[node name="floor" type="MeshInstance3D" parent="Map/FloorNav" unique_id=1516542075]
-transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, -1)
-mesh = SubResource("PlaneMesh_aqk2v")
-
-[node name="SpawnPoint" type="Node3D" parent="Map" unique_id=630443639]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
-
-[node name="Sprite3D" type="Sprite3D" parent="Map/SpawnPoint" unique_id=464040849]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
-pixel_size = 0.005
-texture = ExtResource("10_ic0uy")
-
-[node name="SpawnPoint2" type="Node3D" parent="Map" unique_id=541886396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.355, 0, -3)
-
-[node name="Sprite3D" type="Sprite3D" parent="Map/SpawnPoint2" unique_id=870426560]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
-pixel_size = 0.005
-texture = ExtResource("10_ic0uy")
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]

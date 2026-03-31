@@ -8,9 +8,12 @@ class_name HurtState
 
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
+	entity.set_invulnerable(true)
 	var random_dir : Vector3 = Vector3(randf() * 2.0 - 1.0, 0, randf() * 2.0 - 1.0).normalized()
 	entity.velocity = random_dir * knockback_strength
 
+func exit() -> void:
+	entity.set_invulnerable(false)
 
 func fixed_run(delta: float) -> void:
 	entity.velocity *= dampening

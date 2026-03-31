@@ -1,4 +1,5 @@
-class_name Enemy extends CharacterBody3D
+extends CharacterBody3D
+class_name Enemy 
 
 @export var map : NavigationRegion3D
 @export var player : CharacterBody3D
@@ -18,17 +19,21 @@ class_name Enemy extends CharacterBody3D
 @onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
 @onready var knockback_component : KnockbackComponent = $KnockbackComponent
 
+var is_dead : bool = false
+
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	self.player = player
 	self.map = map
 
-	
+
 func _ready() -> void:
 	setup_states()
-	state_machine.set_state(charge_state)
+	state_machine.set_state(enemy_idle_state)
 
 func _process(_delta: float) -> void:
+	if is_dead:
+		return
 	check_state()
 	state_machine.current_state.deep_run(_delta)
 	# print(state_machine.get_current_all_states())
@@ -78,8 +83,7 @@ func on_die() -> void:
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		xp_spawner_instance.setup(4, player)
-	queue_free()
-
+	is_dead = true
 
 func on_staggered() -> void:
 	enemy_idle_state.set_idle_duration(0.5)

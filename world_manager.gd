@@ -1,19 +1,48 @@
 extends Node3D
 
+class_name WorldManager
 @export var map_manager: MapManager
+@export var shrine_map_manager: ShrineMapManager
+
 @export var player : Node3D
 @export var player_spawn_point: Node3D
 
 @export var hud : HUD
 @export var time_damage : TimeDamageManager
+@export var camera : Camera3D
+
+@export var wave_text : WaveText
+@export var wave_manager : WaveManager
 
 
-func _ready() -> void:
-	setup()
+# func _ready() -> void:
+# 	reset()
+# 	setup()
 
 func setup() -> void:
-	player.global_transform.origin = Vector3.ZERO
-	map_manager.setup(player)
+	map_manager.setup(player, camera)
 	hud.setup(player)
 	time_damage.setup(player)
 	player.setup(hud)
+	call_deferred("map_entered")
+
+func reset() -> void:
+	player.global_transform.origin = Vector3.ZERO
+	player.reset()
+	time_damage.reset()
+
+func map_entered() -> void:
+	wave_text.display_wave_info(wave_manager.get_current_wave_info())
+	if wave_manager.get_current_wave_info().room_type == "combat":
+		player.global_transform.origin = Vector3.ZERO
+		map_manager.start_room(wave_manager.get_current_wave_info())
+	else:
+		player.global_transform.origin = Vector3(8, 0, 0)
+		shrine_map_manager.start_room(wave_manager.get_current_wave_info())
+
+	# map_manager.spawn_enemies()
+	# wave_manager.start_wave()
+
+func next_wave() -> void:
+	wave_manager.current_wave += 1
+	map_entered()

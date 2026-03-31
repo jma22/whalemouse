@@ -3,6 +3,8 @@ extends Area3D
 
 @export var hit_box_type: HitBoxType = HitBoxType.HIT_PLAYER
 @onready var sprite3D : Sprite3D = $Sprite3D
+@export var damage: int = 1
+var is_active: bool = false
 
 enum HitBoxType {
 	HIT_PLAYER,
@@ -18,11 +20,14 @@ func _ready() -> void:
 func set_active(active: bool) -> void:
 	self.set_deferred("monitorable", active)
 	## show visible
-	sprite3D.visible = active
+	if sprite3D:
+		sprite3D.visible = active
+	is_active = active
+
 
 
 func get_damage() -> int:
-	return 1
+	return damage
 
 
 func set_collisions() -> void:
@@ -33,3 +38,9 @@ func set_collisions() -> void:
 		HitBoxType.HIT_ENEMY:
 			collision_layer = 2
 			# collision_mask = 2
+
+func activate_hitbox() -> void:
+	set_active(true)
+
+func deactivate_hitbox() -> void:
+	set_active(false)

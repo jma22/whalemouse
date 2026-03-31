@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d1at77lgvy4ru"]
+
+[ext_resource type="Script" uid="uid://bg0athcga67xq" path="res://MainMenu/start_game.gd" id="1_wcnyh"]
+
+[node name="MainMenuScene" type="Node3D" unique_id=1252078458]
+
+[node name="Control" type="Control" parent="." unique_id=1889841808]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=616950968]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGame" type="Button" parent="Control/MarginContainer" unique_id=1851943833]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start game"
+script = ExtResource("1_wcnyh")

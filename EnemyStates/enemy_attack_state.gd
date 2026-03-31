@@ -2,7 +2,7 @@ extends State
 
 class_name EnemyAttackState
 var target_position : Vector3
-var animation_clip : AnimationClip
+@export var animation_clip : AnimationClip
 @export var attack_speed : float = 14.0
 @export var dampening : float = 0.9
 

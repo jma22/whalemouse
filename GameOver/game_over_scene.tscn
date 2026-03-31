@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://buffg8rju24ed"]
+
+[ext_resource type="Script" uid="uid://dsd7io4ojj2ch" path="res://GameOver/retry_button.gd" id="1_qpvvx"]
+
+[node name="GameOverScene" type="Node3D" unique_id=1521685688]
+
+[node name="Control" type="Control" parent="." unique_id=473503477]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=143947762]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control/MarginContainer" unique_id=1305187883]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("1_qpvvx")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MarginContainer" unique_id=89701532]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 50
+text = "Game over"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

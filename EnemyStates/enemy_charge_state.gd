@@ -2,6 +2,7 @@ extends State
 
 class_name EnemyChargeState
 
+@export var animation : AnimationClip
 @export var charge_time : float = 1.0
 @export var charge_creep_speed : float = 0.5
 var pivot : Vector3
@@ -10,6 +11,7 @@ var stagger_stamina : int = 1
 @export var max_stagger_stamina : int = 1
 
 func enter() -> void:
+	entity.sprite_manager.play(animation)
 	pivot = entity.global_transform.origin
 	stagger_stamina = max_stagger_stamina
 

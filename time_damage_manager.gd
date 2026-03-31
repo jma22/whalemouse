@@ -3,18 +3,23 @@ class_name TimeDamageManager
 
 
 @export var seconds_per_damage : float = 1.0
-@export var player_health_component : HealthComponent
+var player : Node3D
 var _time_accumulator : float = 0.0
 
+func reset() -> void:
+	_time_accumulator = 0.0
+
 func setup(player : Node3D) -> void:
-	if player.has_node("HealthComponent"):
-		player_health_component = player.get_node("HealthComponent")
+	self.player = player
+
 func _process(delta: float) -> void:
 	_time_accumulator += delta
 	if _time_accumulator >= seconds_per_damage:
 		_time_accumulator -= seconds_per_damage
 		do_damage()
+		if player.health_component and player.health_component.is_dead():
+			player.on_die()
 
 func do_damage(damage: int = 1) -> void:
-	if player_health_component:
-		player_health_component.take_damage(damage)
+	if player.health_component:
+		player.health_component.take_damage(damage)

@@ -7,7 +7,13 @@ var current_idx : int = 0
 var time_accumulator : float = 0.0
 var looping : bool = true
 var current_animation : AnimationClip = null
-
+var is_done : bool = false
+func reset() -> void:
+	current_idx = 0
+	time_accumulator = 0.0
+	current_animation = null
+	looping = true
+	modulate = Color(1, 1, 1, 1)
 
 func _process(delta: float) -> void:
 	if current_animation == null:
@@ -23,18 +29,26 @@ func _process(delta: float) -> void:
 			else:
 				current_idx = current_animation.frame_numbers.size() - 1
 				current_animation = null
-		frame = current_animation.frame_numbers[current_idx]
+				is_done = true
+		
+		if current_animation != null:
+			frame = current_animation.frame_numbers[current_idx]
 		time_accumulator = 0.0
 
 
 func play(animation: AnimationClip, loop: bool = true) -> void:
 	if animation == null or animation.is_empty():
 		return
+	is_done = false
 	current_animation = animation
 	current_idx = 0
 	time_accumulator = 0.0
 	looping = loop
 	frame = current_animation.frame_numbers[current_idx]
+	print("Playing animation: ", animation.name)
+
+func check_is_done() -> bool:
+	return is_done
 	
 func set_flip(is_left: bool) -> void:
 	self.flip_h = is_left
