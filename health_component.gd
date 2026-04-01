@@ -5,9 +5,11 @@ var hp_display: HPDisplay
 @export var max_health: int
 var current_health: int
 
-func setup(hud: HUD) -> void:
+func setup(hud: HUD, _max_health: int) -> void:
+	self.max_health = _max_health
 	current_health = max_health
-	self.hp_display = hud.hp_display
+	if hud:
+		self.hp_display = hud.hp_display
 
 func reset() -> void:
 	current_health = max_health

@@ -18,7 +18,7 @@ operator = 2
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_or8f5"]
 parameter_name = "ColorParameter"
 default_value_enabled = true
-default_value = Color(0.08455067, 0.19676611, 0.17325202, 1)
+default_value = Color(0.5254902, 0.5137255, 0.6509804, 1)
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_or8f5"]
 
@@ -44,6 +44,7 @@ source = 5
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_v0m4b"]
 
 [resource]
+nodes/fragment/0/position = Vector2(520, 160)
 nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_or8f5")
 nodes/fragment/2/position = Vector2(32, 320)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_or8f5")

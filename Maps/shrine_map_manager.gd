@@ -17,6 +17,7 @@ var spawned_enemies : Array[Node3D] = []
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	self.player = player
 	camera.set_bounds(map.get_bounds())
+	map.setup(player, camera)
 
 func _process(delta: float) -> void:
 	if map_cleared():

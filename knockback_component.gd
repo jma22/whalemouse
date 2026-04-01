@@ -20,4 +20,5 @@ func set_knockbackable(value: bool) -> void:
 	is_knockbackable = value
 
 func receive_knockback(direction: Vector3, force: float) -> void:
+	direction.y = 0
 	knockback_velocity = direction.normalized() * force * knockback_mult

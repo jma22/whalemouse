@@ -188,8 +188,9 @@ shape = SubResource("CylinderShape3D_70uel")
 debug_color = Color(0.9873156, 0, 0.2555665, 1)
 
 [node name="Whale" type="Sprite3D" parent="." unique_id=154116921]
-transform = Transform3D(1, 0, 0, 0, 1.645, 0, 0, 0, 1, 0, 0, 0)
-alpha_cut = 3
+transform = Transform3D(1, 0, 0, 0, 0.56262314, 0.9396926, 0, -1.5457944, 0.34202015, 0, 0, 0)
+no_depth_test = true
+alpha_cut = 2
 texture = ExtResource("4_pf8in")
 
 [node name="Circle" type="Sprite3D" parent="." unique_id=141536960]
@@ -203,7 +204,7 @@ metadata/_custom_type_script = "uid://chgfscc28odqd"
 libraries/ = SubResource("AnimationLibrary_mxwv7")
 
 [node name="Splash" type="Sprite3D" parent="." unique_id=614721659]
-transform = Transform3D(0.10167671, 0, 0, 0, 6.3490646e-10, -0.10167671, 0, -0.0145249665, -4.44443e-09, 0, 0.01, 0)
+transform = Transform3D(0.10167671, -2.193209e-09, -6.710903e-16, 0, 6.3490646e-10, -0.10167671, -1.5352757e-08, -0.0145249665, -4.44443e-09, 0, 0.01, 0)
 modulate = Color(0.8123753, 0.96, 0.8861877, 0)
 texture = ExtResource("1_d3rs6")
 hframes = 4

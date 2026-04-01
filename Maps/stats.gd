@@ -73,12 +73,29 @@ func damage() -> void:
 	player.damage(amount)
 
 func get_attracted_radius() -> float:
-	return 1.0 + current_run_stats["xp_suck"] * 0.25
+	return 0.75 + current_run_stats["xp_suck"] * 0.25
 
 func get_attracted_speed() -> float:
-	return 0.5 + current_run_stats["xp_suck"] * 0.25
+	return 0.3 + current_run_stats["xp_suck"] * 0.25
 
+func get_enemy_xp_drop() -> float:
+	return 1.0 + current_run_stats["enemy_xp_drop"]
 
+func get_dash_distance() -> float:
+	return 5.0 + current_run_stats["dash_distance"] *1.5
+
+func get_seconds_per_damage() -> float:
+	## i want the damager per second to linearly increase
+	return 2.0/(1.0 + current_run_stats["time_tick_level"] * 0.25)
+
+func get_enemy_speed_multiplier() -> float:
+	return 1.0 + current_run_stats["enemy_speed"] * 0.25
+
+func get_enemy_health_multiplier() -> float:
+	return 1.0 + current_run_stats["enemy_health"] * 0.5
+
+func get_whale_size() -> float:
+	return 0.5 + current_run_stats["whale_level"] * 0.25
 
 func get_description(stat_name: String) -> String:
 	match stat_name:

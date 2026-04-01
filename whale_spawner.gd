@@ -1,13 +1,17 @@
 extends Node3D
 
-
+class_name WhaleSpawner
 @export var whale : Whale
 var cooldown : float = 1.0
 var cooldown_timer : float = 0.0
+var map_manager : MapManager
+
+func setup(map_manager_ref: MapManager) -> void:
+	map_manager = map_manager_ref
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("spawn_whale"):
-		if can_cast():
+		if can_cast():	
 			cast_whale()
 
 func _process(delta: float) -> void:
@@ -25,4 +29,6 @@ func can_cast() -> bool:
 
 func cast_whale() -> void:
 	cooldown_timer = cooldown
+	whale.global_transform.origin = map_manager.get_enemy_centroid()
+	whale.scale = Vector3.ONE * GlobalStats.get_whale_size()
 	play_whale()

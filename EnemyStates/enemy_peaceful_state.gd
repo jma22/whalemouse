@@ -4,7 +4,7 @@ class_name EnemyPeacefulState
 @export var enemy_walk_state : EnemyWalkState
 @export var enemy_idle_state : EnemyIdleState
 
-@export var walk_radius : float = 1.0
+@export var init_walk_radius : float = 1.0
 @export var idle_duration_min : float = 0.5
 @export var idle_duration_max : float = 1.5
 
@@ -14,7 +14,6 @@ func enter() -> void:
 
 func run(_delta: float) -> void:
 	check_state()
-
 
 func check_state() -> void:
 	if get_child_state() == enemy_idle_state:
@@ -27,9 +26,10 @@ func check_state() -> void:
 			state_machine.set_state(enemy_idle_state)
 
 func get_idle_duration() -> float:
-	return randf_range(idle_duration_min, idle_duration_max)
+	return randf_range(idle_duration_min, idle_duration_max) / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
 
 func get_random_walk_target_location() -> Vector3:
+	var walk_radius : float = init_walk_radius * GlobalStats.get_enemy_speed_multiplier()
 	var random_offset : Vector3 = Vector3(randf_range(-walk_radius, walk_radius), 0, randf_range(-walk_radius, walk_radius))
 	## check if its in map 
 	# var map : RID = entity.get_world_3d().navigation_map

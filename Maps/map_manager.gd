@@ -7,7 +7,7 @@ const enemy_string_to_scene = {
 }
 # @export var player_spawn_point: Node3D
 @export var enemy_spawn_points: Array[Node3D]
-@export var map : NavigationRegion3D 
+@export var floor : NavigationRegion3D 
 @export var gateway : Gateway
 
 var player : CharacterBody3D
@@ -16,7 +16,8 @@ var spawned_enemies : Array[Node3D] = []
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	clear_enemies()
 	self.player = player
-	camera.set_bounds(map.get_bounds())
+	camera.set_bounds(floor.get_bounds())
+	floor.setup(player, camera)
 
 func _process(delta: float) -> void:
 	if map_cleared():
@@ -37,8 +38,38 @@ func spawn_enemies() -> void:
 			add_child(enemy_instance)
 			enemy_instance.global_transform = enemy_spawn_point.global_transform
 			print("Spawning enemy of type: ", enemy_type , " at position: ", enemy_spawn_point.global_transform.origin)
-			enemy_instance.setup(player, map)
+			enemy_instance.setup(player, floor)
 			spawned_enemies.append(enemy_instance)
+
+func get_enemy_centroid() -> Vector3:
+	var centroid : Vector3 = Vector3.ZERO
+	var non_dead_enemies : Array[Node3D] = []
+	for enemy in spawned_enemies:
+		if not enemy.is_dead:
+			centroid = enemy.global_transform.origin
+			non_dead_enemies.append(enemy)
+	
+	if non_dead_enemies.size() == 0:
+		return player.global_transform.origin
+	
+	## choose enemy closest to player
+	var closest_enemy : Node3D = non_dead_enemies[0]
+	var closest_distance : float = player.global_transform.origin.distance_to(closest_enemy.global_transform.origin)
+	for enemy in non_dead_enemies:
+		var distance : float = player.global_transform.origin.distance_to(enemy.global_transform.origin)
+		if distance < closest_distance:
+			closest_enemy = enemy
+			closest_distance = distance
+	centroid = closest_enemy.global_transform.origin
+	# centroid = centroid / spawned_enemies.size()
+
+	var map : AABB = floor.get_bounds()
+	var radius :float = 1.5 * GlobalStats.get_whale_size()
+	centroid.x = clamp(centroid.x, map.position.x + radius, map.position.x + map.size.x - radius)
+	centroid.y = 0
+	centroid.z = clamp(centroid.z, map.position.z + radius, map.position.z + map.size.z - radius)
+
+	return centroid
 
 func clear_enemies() -> void:
 	for enemy in spawned_enemies:

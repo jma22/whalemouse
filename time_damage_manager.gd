@@ -2,7 +2,7 @@ extends Node
 class_name TimeDamageManager
 
 
-@export var seconds_per_damage : float = 1.0
+# @export var seconds_per_damage : float = 1.0
 var player : Node3D
 var _time_accumulator : float = 0.0
 
@@ -14,6 +14,7 @@ func setup(player : Node3D) -> void:
 
 func _process(delta: float) -> void:
 	_time_accumulator += delta
+	var seconds_per_damage : float = GlobalStats.get_seconds_per_damage()
 	if _time_accumulator >= seconds_per_damage:
 		_time_accumulator -= seconds_per_damage
 		do_damage()

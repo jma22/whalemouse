@@ -5,7 +5,7 @@ class_name RollState
 @export var fps: float = 4.0
 
 var roll_direction : Vector2 = Vector2.ZERO
-@export var roll_speed: float = 10.0	
+# @export var roll_speed: float = 10.0	
 @export var dampening : float = 0.9
 @export var invulnerability_time : float = 0.5
 
@@ -31,5 +31,5 @@ func set_direction(direction: Vector2) -> void:
 	roll_direction = direction
 
 func initial_velocity() -> void:
-	entity.velocity.x = roll_direction.x * roll_speed
-	entity.velocity.z = roll_direction.y * roll_speed
+	entity.velocity.x = roll_direction.x * GlobalStats.get_dash_distance()
+	entity.velocity.z = roll_direction.y * GlobalStats.get_dash_distance()

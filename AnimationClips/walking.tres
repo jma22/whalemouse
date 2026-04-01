@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_mx8cj")
-frame_numbers = Array[int]([6, 7, 8])
+frame_numbers = Array[int]([12, 13, 14])
 name = "Walking"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"

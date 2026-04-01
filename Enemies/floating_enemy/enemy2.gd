@@ -21,9 +21,12 @@ class_name Enemy2
 
 var is_dead : bool = false
 var detection_range : float = 2.5
+var initial_health : int = 2
+
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	self.player = player
 	self.map = map
+	health_component.setup(null, ceil(initial_health * GlobalStats.get_enemy_health_multiplier()))
 
 
 func _ready() -> void:
@@ -38,8 +41,8 @@ func _process(_delta: float) -> void:
 	# print(state_machine.get_current_all_states())
 
 func check_state() -> void:
-	if state_machine.current_state.is_complete:
-		check_range()
+	# if state_machine.current_state.is_complete:
+	check_range()
 	# 	if state_machine.current_state == charge_state:
 	# 		state_machine.set_state(attack_state)
 	# 	elif state_machine.current_state == attack_state:
@@ -90,7 +93,7 @@ func on_die() -> void:
 		var xp_spawner_instance = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		xp_spawner_instance.setup(4, player)
+		xp_spawner_instance.setup(GlobalStats.get_enemy_xp_drop(), player)
 
 	is_dead = true
 	process_mode = Node.PROCESS_MODE_DISABLED

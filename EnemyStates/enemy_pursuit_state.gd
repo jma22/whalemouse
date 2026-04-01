@@ -24,13 +24,20 @@ func check_state() -> void:
 			is_complete = true
 
 func get_idle_duration() -> float:
-	return 0.2
+	return 0.3 / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
 
 func get_walk_toward_player() -> Vector3:
 	var direction : Vector3 = (entity.player.global_transform.origin - entity.global_transform.origin).normalized()
 	var pick_direction : Vector3 = sample_cardinal_direction(direction)
 	var distance : float = sample_random_distance()
 	var target_point : Vector3 = entity.global_transform.origin + pick_direction * distance
+
+	var map :AABB = entity.map.get_bounds()
+	if not map.has_point(target_point):
+		target_point.x = clamp(target_point.x, map.position.x, map.position.x + map.size.x)
+		target_point.y = clamp(target_point.y, map.position.y, map.position.y + map.size.y)
+		target_point.z = clamp(target_point.z, map.position.z, map.position.z + map.size.z)
+	target_point.y = 0
 	return target_point
 
 func sample_random_distance() -> float:

@@ -3,17 +3,148 @@
 [ext_resource type="Script" uid="uid://cuo3eqo5qq7xf" path="res://Maps/map_manager.gd" id="1_e0an3"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://basic.meshlib" id="2_p5pve"]
 [ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="3_urblq"]
+[ext_resource type="Texture2D" uid="uid://bml51unoyd30v" path="res://Sprites/Untitled_Artwork-2 (1).png" id="4_ed26x"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="4_p5pve"]
-[ext_resource type="Material" uid="uid://bx8nbcsdbnm4v" path="res://foreground_material.tres" id="5_iw27f"]
+[ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/big_rock.tscn" id="4_r6dpp"]
+[ext_resource type="PackedScene" uid="uid://d4f06nj2iy67x" path="res://Maps/seaweed.tscn" id="6_ed26x"]
 [ext_resource type="Script" uid="uid://d38qiwqb6pm1s" path="res://gateway.gd" id="6_iw27f"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/floor_nav.tscn" id="7_jq5h8"]
+[ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/smoke.gdshader" id="9_tv1m2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iw27f"]
 
-[node name="Map" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawn_points", "map", "gateway")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
+render_priority = -4
+shader = ExtResource("9_tv1m2")
+shader_parameter/wave_frequency = 8.446000353685001
+shader_parameter/wave_amplitude = 0.0210000009975
+shader_parameter/scroll_speed = 0.0250000011875
+shader_parameter/blur_radius = 0.218000010355
+shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
+shader_parameter/alpha = 0.898000042655
+shader_parameter/bottom_darken = 0.0950000045125
+
+[sub_resource type="Gradient" id="Gradient_tv1m2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ed26x"]
+gradient = SubResource("Gradient_tv1m2")
+width = 360
+height = 360
+
+[sub_resource type="Shader" id="Shader_ed26x"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform float wave_frequency : hint_range(1.0, 50.0) = 10.0;
+uniform float wave_amplitude : hint_range(0.0, 0.5) = 0.1;
+uniform float scroll_speed : hint_range(0.0, 10.0) = 2.0;
+uniform float blur_radius : hint_range(0.001, 0.5) = 0.05;
+uniform vec3 color : source_color = vec3(0.0);
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+uniform float bottom_darken : hint_range(0.0, 1.0) = 0.5;
+
+float gaussian(float x, float sigma) {
+	return exp(-0.5 * (x * x) / (sigma * sigma));
+}
+
+void fragment() {
+	float sigma = blur_radius / 3.0;
+	int samples = 128;
+	float step_size = blur_radius * 2.0 / float(samples);
+
+	float total_weight = 0.0;
+	float blurred_mask = 0.0;
+
+	for (int i = 0; i < 16; i++) {
+		float offset = -blur_radius + (float(i) + 0.5) * step_size;
+		float sample_y = UV.y + offset;
+		float wave = sin((UV.x + TIME * scroll_speed) * wave_frequency * TAU) * wave_amplitude;
+		float edge = 0.5 + wave;
+		float mask = step(edge, sample_y);
+		float weight = gaussian(offset, sigma);
+		blurred_mask += mask * weight;
+		total_weight += weight;
+	}
+
+	blurred_mask /= total_weight;
+
+	float darken = mix(1.0, bottom_darken, UV.y);
+	ALBEDO = color * darken;
+	float alpha_fade = mix(alpha, 1.0, UV.y);
+	ALPHA = blurred_mask * alpha_fade;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsor4"]
+render_priority = -2
+shader = SubResource("Shader_ed26x")
+shader_parameter/wave_frequency = 8.446000353685001
+shader_parameter/wave_amplitude = 0.0210000009975
+shader_parameter/scroll_speed = 0.0250000011875
+shader_parameter/blur_radius = 0.218000010355
+shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
+shader_parameter/alpha = 0.898000042655
+shader_parameter/bottom_darken = 0.0950000045125
+
+[sub_resource type="Shader" id="Shader_gsor4"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform float wave_frequency : hint_range(1.0, 50.0) = 10.0;
+uniform float wave_amplitude : hint_range(0.0, 0.5) = 0.1;
+uniform float scroll_speed : hint_range(0.0, 10.0) = 2.0;
+uniform float blur_radius : hint_range(0.001, 0.5) = 0.05;
+uniform vec3 color : source_color = vec3(0.0);
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+uniform float bottom_darken : hint_range(0.0, 1.0) = 0.5;
+
+float gaussian(float x, float sigma) {
+	return exp(-0.5 * (x * x) / (sigma * sigma));
+}
+
+void fragment() {
+	float sigma = blur_radius / 3.0;
+	int samples = 128;
+	float step_size = blur_radius * 2.0 / float(samples);
+
+	float total_weight = 0.0;
+	float blurred_mask = 0.0;
+
+	for (int i = 0; i < 16; i++) {
+		float offset = -blur_radius + (float(i) + 0.5) * step_size;
+		float sample_y = UV.y + offset;
+		float wave = sin((UV.x + TIME * scroll_speed) * wave_frequency * TAU) * wave_amplitude;
+		float edge = 0.5 + wave;
+		float mask = step(edge, sample_y);
+		float weight = gaussian(offset, sigma);
+		blurred_mask += mask * weight;
+		total_weight += weight;
+	}
+
+	blurred_mask /= total_weight;
+
+	float darken = mix(1.0, bottom_darken, UV.y);
+	ALBEDO = color * darken;
+	float alpha_fade = mix(alpha, 1.0, UV.y);
+	ALPHA = blurred_mask * alpha_fade;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5558"]
+render_priority = 0
+shader = SubResource("Shader_gsor4")
+shader_parameter/wave_frequency = 8.446000353685001
+shader_parameter/wave_amplitude = 0.0210000009975
+shader_parameter/scroll_speed = 0.0250000011875
+shader_parameter/blur_radius = 0.06500000308750001
+shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
+shader_parameter/alpha = 1.0
+shader_parameter/bottom_darken = 0.5710000271225
+
+[node name="Map" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawn_points", "floor", "gateway")]
 script = ExtResource("1_e0an3")
-enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
-map = NodePath("FloorNav")
+enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
+floor = NodePath("FloorNav")
 gateway = NodePath("Gateway")
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
@@ -22,12 +153,12 @@ mesh_library = ExtResource("2_p5pve")
 cell_size = Vector3(1, 1, 1)
 cell_octant_size = 4
 data = {
-"cells": PackedInt32Array(65530, 65531, 2, 65530, 65532, 2, 65530, 65533, 2, 65530, 65534, 2, 65530, 65535, 2, 65530, 0, 2, 65530, 1, 2, 65530, 2, 2, 65531, 65531, 2, 65531, 2, 2, 65532, 65531, 2, 65532, 2, 2, 65533, 65531, 2, 65533, 2, 2, 65534, 65531, 2, 65534, 2, 2, 65535, 65531, 2, 65535, 2, 2, 0, 65531, 2, 0, 2, 2, 1, 65531, 2, 1, 2, 2, 2, 65531, 2, 2, 2, 2, 3, 65531, 2, 3, 2, 2, 4, 65531, 2, 4, 2, 0, 5, 65531, 2, 5, 65532, 2, 5, 65533, 2, 5, 65534, 2, 5, 65535, 2, 5, 0, 2, 5, 1, 2, 5, 2, 2, 4, 65532, 0, 4, 65533, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 65531, 65532, 0, 65531, 65533, 0, 65531, 65534, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 1, 0)
+"cells": PackedInt32Array(5, 65533, 2, 4, 65533, 0, 65531, 65533, 0, 65532, 65533, 0, 65533, 65533, 0, 65534, 65533, 0, 65535, 65533, 0, 0, 65533, 0, 1, 65533, 0, 2, 65533, 0, 3, 65533, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 65531, 65534, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 1, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 4, 2, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="SpawnPoint" type="Node3D" parent="." unique_id=946727483]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2.237645)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09, 0, -1.423)
 
 [node name="Sprite3D" type="Sprite3D" parent="SpawnPoint" unique_id=749120342]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -36,7 +167,7 @@ pixel_size = 0.005
 texture = ExtResource("3_urblq")
 
 [node name="SpawnPoint2" type="Node3D" parent="." unique_id=1160445348]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0833769, 0, -2.3831315)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.288, 0, -1.133)
 
 [node name="Sprite3D" type="Sprite3D" parent="SpawnPoint2" unique_id=1182634905]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -45,7 +176,7 @@ pixel_size = 0.005
 texture = ExtResource("3_urblq")
 
 [node name="SpawnPoint3" type="Node3D" parent="." unique_id=1384429647]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1003834, 0, -0.0024807453)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.435, 0, 0.658)
 
 [node name="Sprite3D" type="Sprite3D" parent="SpawnPoint3" unique_id=1882589051]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -53,54 +184,47 @@ visible = false
 pixel_size = 0.005
 texture = ExtResource("3_urblq")
 
-[node name="BigRock" type="Node3D" parent="." unique_id=1256755805]
-
-[node name="SpriteManager" type="Sprite3D" parent="BigRock" unique_id=1996904639]
-transform = Transform3D(1, 0, 0, 0, 0.93200487, 0.9396926, 0, -2.5606623, 0.34202015, 1.7825727, 0, -3.438824)
-texture = ExtResource("3_urblq")
-script = ExtResource("4_p5pve")
-metadata/_custom_type_script = "uid://chgfscc28odqd"
-
 [node name="Grass" type="Node3D" parent="." unique_id=891663508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.125)
+visible = false
 
 [node name="SpriteManager" type="Sprite3D" parent="Grass" unique_id=1525348269]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.27051783, 0, -0.90399146)
-texture = ExtResource("3_urblq")
+transform = Transform3D(0.2, 0, 0, 0, 0.068404034, 0.18793853, 0, -0.18793853, 0.068404034, -0.271, 0, 0)
+texture = ExtResource("4_ed26x")
 script = ExtResource("4_p5pve")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
-[node name="Seaweed" type="Node3D" parent="." unique_id=951966779]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.011656)
+[node name="Seaweeds" type="Node3D" parent="." unique_id=1508705870]
 
-[node name="SpriteManager" type="Sprite3D" parent="Seaweed" unique_id=1324082197]
-transform = Transform3D(1, 0, 0, 0, 1.0089594, 0.9396926, 0, -2.7720933, 0.34202015, -1.777696, 0, -0.90399146)
-material_override = ExtResource("5_iw27f")
-texture = ExtResource("3_urblq")
-script = ExtResource("4_p5pve")
-metadata/_custom_type_script = "uid://chgfscc28odqd"
+[node name="Seaweed4" parent="Seaweeds" unique_id=1171315565 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0899999, 0.41, 1.13)
 
-[node name="Seaweed2" type="Node3D" parent="." unique_id=1438182126]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.767705)
+[node name="Seaweed6" parent="Seaweeds" unique_id=1684150740 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.625, 0.43, 1.485)
 
-[node name="SpriteManager" type="Sprite3D" parent="Seaweed2" unique_id=514629480]
-transform = Transform3D(1, 0, 0, 0, 1.0089594, 0.9396926, 0, -2.7720933, 0.34202015, -1.777696, 0, -0.90399146)
-material_override = ExtResource("5_iw27f")
-texture = ExtResource("3_urblq")
-script = ExtResource("4_p5pve")
-metadata/_custom_type_script = "uid://chgfscc28odqd"
+[node name="Seaweed7" parent="Seaweeds" unique_id=1718051821 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14, 0.41, 1.64)
 
-[node name="Seaweed3" type="Node3D" parent="." unique_id=1244864671]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9479778, 0, 3.1677513)
+[node name="Seaweed8" parent="Seaweeds" unique_id=794785395 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.425, 0.41, 2.07)
 
-[node name="SpriteManager" type="Sprite3D" parent="Seaweed3" unique_id=443448665]
-transform = Transform3D(1, 0, 0, 0, 1.0089594, 0.9396926, 0, -2.7720933, 0.34202015, -1.777696, 0, -0.90399146)
-material_override = ExtResource("5_iw27f")
-texture = ExtResource("3_urblq")
-script = ExtResource("4_p5pve")
-metadata/_custom_type_script = "uid://chgfscc28odqd"
+[node name="Seaweed9" parent="Seaweeds" unique_id=1196146016 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.285, 0.41, 0.825)
+visible = false
+
+[node name="Seaweed5" parent="Seaweeds" unique_id=1734391510 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.495, 0.41, 0.94)
+
+[node name="Seaweed10" parent="Seaweeds" unique_id=746679041 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92, 0.41, 2.07)
+
+[node name="Seaweed11" parent="Seaweeds" unique_id=1580137180 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.03, 0.41, 1.07)
+
+[node name="Seaweed12" parent="Seaweeds" unique_id=1089157414 instance=ExtResource("6_ed26x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68, 0.41, 1.43)
 
 [node name="Gateway" type="Node3D" parent="." unique_id=1889259731 node_paths=PackedStringArray("sprite", "area")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8883581)
 script = ExtResource("6_iw27f")
 sprite = NodePath("Sprite3D")
 area = NodePath("Area3D")
@@ -116,3 +240,81 @@ shape = SubResource("CylinderShape3D_iw27f")
 debug_color = Color(1, 0, 0.1833334, 1)
 
 [node name="FloorNav" parent="." unique_id=2014240850 instance=ExtResource("7_jq5h8")]
+
+[node name="Rocks" type="Node3D" parent="." unique_id=1911806210]
+
+[node name="BigRock2" parent="Rocks" unique_id=642199375 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07, -0.095, -3.575)
+
+[node name="BigRock" parent="Rocks" unique_id=410137951 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.82, -0.695, -3.875)
+
+[node name="BigRock3" parent="Rocks" unique_id=996559684 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21, -0.1, -4.675)
+
+[node name="BigRock4" parent="Rocks" unique_id=1957550180 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, -0.255, -4.15)
+
+[node name="BigRock5" parent="Rocks" unique_id=1883686024 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.455, -0.255, -2.315)
+
+[node name="BigRock6" parent="Rocks" unique_id=1908228804 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.42, -0.255, -2.96)
+
+[node name="BigRock8" parent="Rocks" unique_id=1753391859 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, -0.245, 1.81)
+
+[node name="SpriteManager" parent="Rocks/BigRock8" index="0" unique_id=106763812]
+sorting_offset = 1.0
+render_priority = -3
+
+[node name="BigRock7" parent="Rocks" unique_id=1536080533 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.455, -0.225, -0.55)
+
+[node name="SpriteManager" parent="Rocks/BigRock7" index="0" unique_id=106763812]
+render_priority = -3
+
+[node name="BigRock9" parent="Rocks" unique_id=1882663486 instance=ExtResource("4_r6dpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86, -0.225, -0.55)
+
+[node name="SpriteManager" parent="Rocks/BigRock9" index="0" unique_id=106763812]
+render_priority = -3
+
+[node name="Node3D" type="Node3D" parent="." unique_id=159875190]
+transform = Transform3D(18.27, 0, 0, 0, 1.8092866, 0.77994484, 0, -4.970974, 0.28387672, 0, 0.30499998, -4.16)
+
+[node name="Smoke" type="Sprite3D" parent="Node3D" unique_id=1344314431]
+material_override = SubResource("ShaderMaterial_r6dpp")
+pixel_size = 0.005
+double_sided = false
+render_priority = -4
+texture = SubResource("GradientTexture2D_ed26x")
+
+[node name="Smoke2" type="Sprite3D" parent="Node3D" unique_id=1929181083]
+transform = Transform3D(1, 0, 0, 0, 1.48, 0, 0, 0, 1, 0, -0.145, 0.68)
+material_override = SubResource("ShaderMaterial_gsor4")
+pixel_size = 0.005
+double_sided = false
+render_priority = -2
+texture = SubResource("GradientTexture2D_ed26x")
+
+[node name="Smoke3" type="Sprite3D" parent="Node3D" unique_id=1734913527]
+transform = Transform3D(1, 0, 0, 0, 1.155, 0, 0, 0, 1, 0, -1.015, 2.16)
+material_override = SubResource("ShaderMaterial_d5558")
+pixel_size = 0.005
+double_sided = false
+render_priority = -2
+texture = SubResource("GradientTexture2D_ed26x")
+
+[node name="SpawnPoint4" type="Node3D" parent="." unique_id=497179343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.355, 0, 1.088)
+
+[node name="Sprite3D" type="Sprite3D" parent="SpawnPoint4" unique_id=1734452071]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_urblq")
+
+[editable path="Rocks/BigRock8"]
+[editable path="Rocks/BigRock7"]
+[editable path="Rocks/BigRock9"]

@@ -23,16 +23,17 @@ func fixed_run(_delta: float) -> void:
 
 
 func check_state() -> void:
-	if charge_time <= get_elapsed_time():
+	if charge_time <= get_elapsed_time() / GlobalStats.get_enemy_speed_multiplier():
 		entity.velocity = Vector3.ZERO
 		attack_state.set_target_position(entity.player.global_transform.origin)
 		is_complete = true
 
 func set_velocity() -> void:
 	var opposite_direction : Vector3 = (pivot - entity.player.global_transform.origin).normalized()
-	var target_position : Vector3 = pivot + opposite_direction * charge_creep_speed * get_elapsed_time()
+	var target_position : Vector3 = pivot + opposite_direction * charge_creep_speed * get_elapsed_time() * GlobalStats.get_enemy_speed_multiplier()
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
-	entity.velocity = direction * charge_creep_speed
+	direction.y = 0
+	entity.velocity = direction * charge_creep_speed * GlobalStats.get_enemy_speed_multiplier()
 
 func on_hit(damage : int) -> void:
 	stagger_stamina -= damage

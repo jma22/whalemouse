@@ -21,12 +21,13 @@ class_name Enemy
 
 var pursuit_range : float = 3.0
 var attack_range : float = 1.5
-
+var initial_health : int = 3
 var is_dead : bool = false
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	self.player = player
 	self.map = map
+	health_component.setup(null, ceil(initial_health * GlobalStats.get_enemy_health_multiplier()))
 
 
 func _ready() -> void:
@@ -109,7 +110,7 @@ func on_die() -> void:
 		var xp_spawner_instance = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		xp_spawner_instance.setup(4, player)
+		xp_spawner_instance.setup(GlobalStats.get_enemy_xp_drop(), player)
 	is_dead = true
 	process_mode = Node.PROCESS_MODE_DISABLED
 

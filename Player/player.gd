@@ -15,6 +15,8 @@ class_name Player extends CharacterBody3D
 var last_direction : Vector2 = Vector2.ZERO
 var invulnerable : bool = false
 
+var initial_health : int = 60
+
 func reset() -> void:
 	# This can be called to reset the player's state, such as when restarting the game
 	health_component.reset()
@@ -22,7 +24,7 @@ func reset() -> void:
 
 func setup(hud: HUD) -> void:
 	# This is called from the main scene to set up references to other nodes
-	health_component.setup(hud)
+	health_component.setup(hud, initial_health)
 
 func _ready() -> void:
 	setup_states()

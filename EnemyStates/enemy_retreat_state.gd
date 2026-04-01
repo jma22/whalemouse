@@ -24,17 +24,31 @@ func check_state() -> void:
 			is_complete = true
 
 func get_idle_duration() -> float:
-	return 0.1
+	return 0.2 / GlobalStats.get_enemy_speed_multiplier()
 
 func get_walk_away_player() -> Vector3:
 	var direction : Vector3 = (entity.global_transform.origin - entity.player.global_transform.origin).normalized()
 	var pick_direction : Vector3 = sample_cardinal_direction(direction)
 	var distance : float = sample_random_distance()
 	var target_point : Vector3 = entity.global_transform.origin + pick_direction * distance
+
+	var map : AABB = entity.map.get_bounds()
+	if not map.has_point(target_point):
+		print("flipping")
+		if target_point.x < map.position.x:
+			# mirror across the edge of the map to ensure it's always a valid point
+			target_point.x = map.position.x + (map.position.x - target_point.x) *2
+		elif target_point.x > map.position.x + map.size.x:
+			target_point.x = map.position.x + map.size.x - (target_point.x - (map.position.x + map.size.x)) *2
+		if target_point.z < map.position.z:
+			target_point.z = map.position.z + (map.position.z - target_point.z)*2
+		elif target_point.z > map.position.z + map.size.z:
+			target_point.z = map.position.z + map.size.z - (target_point.z - (map.position.z + map.size.z))*2
+	target_point.y = 0
 	return target_point
 
 func sample_random_distance() -> float:
-	return randf_range(0.5, 0.8)
+	return randf_range(0.5, 0.8) * GlobalStats.get_enemy_speed_multiplier()
 
 
 func sample_cardinal_direction(direction: Vector3) -> Vector3:

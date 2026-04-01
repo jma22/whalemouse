@@ -14,9 +14,9 @@ func setup(num_orbs: int, target_: Node3D) -> void:
 		orb_instance.global_transform.origin = global_transform.origin
 		var angle : float = (TAU / num_orbs) * i
 		var xz_dir : Vector2 = Vector2(cos(angle), sin(angle))
-		var scatter_speed : float = randf_range(8.0, 18.0)
+		var scatter_speed : float = randf_range(5.0, 12.0)
 		xz_dir *= scatter_speed
-		var upward_pop : float = randf_range(1.0, 3.0)
+		var upward_pop : float = randf_range(2.0, 4.0)
 		var velocity : Vector3 = Vector3(xz_dir.x , upward_pop, xz_dir.y)
 		orb_instance.setup(velocity, target_)
 

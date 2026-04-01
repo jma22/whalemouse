@@ -3,8 +3,8 @@ extends State
 class_name EnemyAttackState
 var target_position : Vector3
 @export var animation_clip : AnimationClip
-@export var attack_speed : float = 14.0
-@export var dampening : float = 0.9
+@export var attack_speed : float = 12.0
+@export var dampening : float = 0.88
 
 func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
@@ -34,5 +34,5 @@ func apply_velocity()-> void:
 	if target_position == null:
 		return
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
-	var velocity : Vector3 = direction * attack_speed
+	var velocity : Vector3 = direction * attack_speed * GlobalStats.get_enemy_speed_multiplier()
 	entity.velocity = velocity
