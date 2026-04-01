@@ -1,6 +1,9 @@
 extends Node
 
 
+var player :Node3D
+var hud : HUD
+
 var total_stats = {
 	"enemies_killed": 0,
 	"waves_completed": 0,
@@ -18,6 +21,20 @@ var current_run_stats = {
 	"heal" : 0,
 	"damage" : 0,
 }
+var ordering : Array[String] = []
+
+func setup(player_node : Node3D, hud_node : HUD) -> void:
+	player = player_node
+	hud = hud_node
+
+func get_current_stats() -> Array[Dictionary]:
+	var stats : Array[Dictionary] = []
+	for stat_name in ordering:
+		var stat_dict : Dictionary = {}
+		stat_dict[stat_name] = current_run_stats[stat_name]
+		stats.append(stat_dict)
+	return stats
+
 
 func reset_current_run_stats() -> void:
 	current_run_stats["xp_suck"] = 0
@@ -29,10 +46,44 @@ func reset_current_run_stats() -> void:
 	current_run_stats["enemy_health"] = 0
 	current_run_stats["heal"] = 0
 	current_run_stats["damage"] = 0
+	ordering = []
 
 func add_to_stat(stat_name: String) -> void:
+	if stat_name not in ordering:
+		ordering.append(stat_name)
+
 	if current_run_stats.has(stat_name):
 		current_run_stats[stat_name] += 1
+		if stat_name == "heal":
+			heal()
+		if stat_name == "damage":
+			damage()
 	else:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
+	
+	hud.blessing_bar.sync_bar()
 
+
+func heal() -> void:
+	var amount : int = current_run_stats["heal"] * 5
+	player.heal(amount)
+
+func damage() -> void:
+	var amount : int = current_run_stats["damage"] * 3
+	player.damage(amount)
+
+func get_attracted_radius() -> float:
+	return 1.0 + current_run_stats["xp_suck"] * 0.25
+
+func get_attracted_speed() -> float:
+	return 0.5 + current_run_stats["xp_suck"] * 0.25
+
+
+
+func get_description(stat_name: String) -> String:
+	match stat_name:
+		"heal":
+			return "%d more seconds." % ((1+current_run_stats["heal"]) * 5)
+		"damage":
+			return "%d less seconds." % ((1+current_run_stats["damage"]) * 3)
+	return "lmao"

@@ -5,6 +5,7 @@ class_name Shrine
 @export var floating_sprite : Sprite3D
 @export var area : Area3D
 @export var blessing_description : BlessingText
+@export var animation_player : AnimationPlayer
 
 var player_inside : bool = false
 var upgrade_name : String = ""
@@ -15,9 +16,13 @@ func _ready() -> void:
 
 
 func setup(_upgrade_name: String) -> void:
-	# sprite.texture = load("res://assets/sprites/shrine_upgrades/%s.png" % upgrade_name)
+	floating_sprite.texture = load("res://Icons/%s.png" % _upgrade_name)
 	upgrade_name = _upgrade_name
 	activated = false
+	animation_player.play("shrine_on")
+	floating_sprite.visible = true
+
+
 
 
 func _process(delta: float) -> void:
@@ -25,6 +30,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_accept"):
 			GlobalStats.add_to_stat(upgrade_name)
 			activated = true
+			floating_sprite.visible = false
 
 
 func _on_body_entered(body: Node) -> void:
@@ -50,3 +56,4 @@ func close_gateway() -> void:
 	area.set_monitorable(false)
 	area.set_monitoring(false)
 	sprite.visible = false
+	floating_sprite.visible = false

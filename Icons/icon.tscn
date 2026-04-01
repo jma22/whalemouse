@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dvb3n46jwcj8j"]
+
+[ext_resource type="Texture2D" uid="uid://ds5mwxp5jv6rg" path="res://Icons/heal.png" id="1_hqyvl"]
+[ext_resource type="Script" uid="uid://bi038ddkyb4vy" path="res://Icons/icon.gd" id="1_otv2m"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="2_otv2m"]
+
+[node name="Icon" type="Control" unique_id=289336127 node_paths=PackedStringArray("icon_texture", "text")]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 45.0
+offset_bottom = 45.0
+script = ExtResource("1_otv2m")
+icon_texture = NodePath("TextureRect")
+text = NodePath("RichTextLabel")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=406599093]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_hqyvl")
+expand_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1898886089]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -23.0
+offset_right = -1.0
+offset_bottom = 3.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_otv2m")
+theme_override_font_sizes/normal_font_size = 20
+text = "22"
+scroll_active = false
+horizontal_alignment = 2

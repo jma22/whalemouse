@@ -100,3 +100,13 @@ func on_die() -> void:
 func on_gain_time(amount : int) -> void:
 	# handle gaining time pickup
 	health_component.gain_health(amount)
+
+
+
+func heal(amount: int) -> void:
+	health_component.gain_health(amount)
+
+func damage(amount: int) -> void:
+	health_component.take_damage(amount)
+	if health_component.is_dead():
+		on_die()

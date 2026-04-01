@@ -52,6 +52,7 @@ func reset_game() -> void:
     if world_manager:
         world_manager.reset()
         world_manager.setup()
+    GlobalStats.reset_current_run_stats()
 
 func next_wave() -> void:
     var game_scene = all_scenes[SceneEnum.GAME]

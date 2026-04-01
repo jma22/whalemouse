@@ -24,6 +24,7 @@ func setup() -> void:
 	hud.setup(player)
 	time_damage.setup(player)
 	player.setup(hud)
+	GlobalStats.setup(player, hud)
 	call_deferred("map_entered")
 
 func reset() -> void:

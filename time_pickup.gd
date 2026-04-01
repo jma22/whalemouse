@@ -10,11 +10,11 @@ enum PickupState {
 
 var state : PickupState = PickupState.Idle
 @export var target : Node3D
-var attracted_radius : float = 2.0
-var pickup_radius : float = 0.75
+# var attracted_radius : float = 2.0
+var pickup_radius : float = 0.7
 var despawn_radius : float = 0.4
 
-var attracted_speed : float = 1.0
+# var attracted_speed : float = 1.0
 var pickup_speed : float = 3.0
 
 var friction : float = 0.8
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		PickupState.Attracted:
 			if target:
 				var direction = (target.global_transform.origin - global_transform.origin).normalized()
-				global_transform.origin += direction * delta * attracted_speed
+				global_transform.origin += direction * delta * GlobalStats.get_attracted_speed()
 		PickupState.Despawn:
 			if target and target.has_method("on_gain_time"):
 				target.on_gain_time(1)
@@ -75,7 +75,7 @@ func check_state() -> void:
 			state = PickupState.Despawn
 		elif distance_to_target <= pickup_radius:
 			state = PickupState.PickedUp
-		elif distance_to_target <= attracted_radius:
+		elif distance_to_target <= GlobalStats.get_attracted_radius():
 			state = PickupState.Attracted
 		else:
 			state = PickupState.Idle

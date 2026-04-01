@@ -14,6 +14,7 @@ func display_blessing_info(blessing : String) -> void:
 	if tween and tween.is_valid():
 		tween.kill()
 	text_label.text = "Blessing: " + blessing
+	text_label.text += "\n" + GlobalStats.get_description(blessing)
 	tween = create_tween()
 	tween.tween_property(container, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 

@@ -3,31 +3,19 @@
 [ext_resource type="Script" uid="uid://dl8bko3l0fhoh" path="res://Maps/shrine_map_manager.gd" id="1_20ttm"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://basic.meshlib" id="2_y0jyq"]
 [ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="3_68yjn"]
+[ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/floor_nav.tscn" id="3_yyg12"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="4_yyg12"]
 [ext_resource type="Material" uid="uid://bx8nbcsdbnm4v" path="res://foreground_material.tres" id="5_8hyfg"]
 [ext_resource type="Script" uid="uid://d38qiwqb6pm1s" path="res://gateway.gd" id="6_3w1xr"]
 [ext_resource type="PackedScene" uid="uid://bnoo4a5dj0t3w" path="res://Maps/shrine.tscn" id="7_68yjn"]
 [ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://blessing_description.gd" id="8_68yjn"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
-vertices = PackedVector3Array(-1.75, 0.2, -2.75, -1.75, 0.2, 0.75, 1.75, 0.2, 0.75, 1.75, 0.2, -2.75)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-cell_height = 0.1
-agent_radius = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urblq"]
-albedo_color = Color(0.54, 0.48618004, 0.39960003, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
-material = SubResource("StandardMaterial3D_urblq")
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iw27f"]
 radius = 0.25
 
-[node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "map", "gateway")]
+[node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "gateway")]
 script = ExtResource("1_20ttm")
 shrines = [NodePath("Shrine"), NodePath("Shrine2")]
-map = NodePath("FloorNav")
 gateway = NodePath("Gateway")
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
@@ -40,12 +28,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="FloorNav" type="NavigationRegion3D" parent="." unique_id=1355913616]
-navigation_mesh = SubResource("NavigationMesh_e0an3")
-
-[node name="floor" type="MeshInstance3D" parent="FloorNav" unique_id=1213626760]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -1)
-mesh = SubResource("PlaneMesh_aqk2v")
+[node name="FloorNav" parent="." unique_id=2014240850 instance=ExtResource("3_yyg12")]
 
 [node name="BigRock" type="Node3D" parent="." unique_id=1256755805]
 
@@ -92,30 +75,6 @@ material_override = ExtResource("5_8hyfg")
 texture = ExtResource("3_68yjn")
 script = ExtResource("4_yyg12")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643002636]
-transform = Transform3D(0.82511353, 0.26610616, -0.49837255, 0, 0.88212687, 0.47101188, 0.564967, -0.3886383, 0.72785485, -2.425, 5.186, 5.082)
-light_color = Color(0.7019608, 0.42745098, 0.42745098, 1)
-light_energy = 0.158
-light_indirect_energy = 1.95
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_normal_bias = 10.0
-shadow_blur = 0.0
-directional_shadow_mode = 0
-directional_shadow_fade_start = 1.0
-directional_shadow_max_distance = 9.9
-directional_shadow_pancake_size = 23.4
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1772236749]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.535, -0.731)
-light_color = Color(0.37210003, 0.61, 0.558455, 1)
-light_energy = 0.525
-light_volumetric_fog_energy = 0.366
-light_specular = 0.975
-light_bake_mode = 1
-omni_range = 12.369
-omni_attenuation = 0.731
 
 [node name="Gateway" type="Node3D" parent="." unique_id=1889259731 node_paths=PackedStringArray("sprite", "area")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8883581)

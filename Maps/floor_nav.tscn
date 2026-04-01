@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bepelbq3ha1h6"]
+
+[ext_resource type="Texture2D" uid="uid://cqocuxi7upj30" path="res://Maps/ground_texture.png" id="1_npb2e"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
+vertices = PackedVector3Array(-1.75, 0.2, -2.75, -1.75, 0.2, 0.75, 1.75, 0.2, 0.75, 1.75, 0.2, -2.75)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_height = 0.1
+agent_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urblq"]
+albedo_color = Color(0.54, 0.48618004, 0.39960003, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
+material = SubResource("StandardMaterial3D_urblq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr327"]
+diffuse_mode = 3
+albedo_color = Color(0.51, 0.51, 0.51, 1)
+albedo_texture = ExtResource("1_npb2e")
+metallic_specular = 0.0
+roughness = 0.0
+
+[node name="FloorNav" type="NavigationRegion3D" unique_id=2014240850]
+navigation_mesh = SubResource("NavigationMesh_e0an3")
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=343290801]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, -1)
+mesh = SubResource("PlaneMesh_aqk2v")
+surface_material_override/0 = SubResource("StandardMaterial3D_pr327")

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://camera.gd" id="3_aqk2v"]
 [ext_resource type="Shader" uid="uid://cfm3yjjtnlyxo" path="res://cloud_visual.tres" id="4_aqk2v"]
 [ext_resource type="Script" uid="uid://xujg62bri8lb" path="res://hud.gd" id="4_ic0uy"]
+[ext_resource type="Script" uid="uid://dwntwtemf07ge" path="res://blessing_bar.gd" id="7_2u3nc"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://hp_display.gd" id="8_ioo17"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/map.tscn" id="9_ioo17"]
@@ -56,9 +57,10 @@ visible = false
 [node name="SpriteManager" parent="Player/Ripple" index="0" unique_id=1925504871]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.1, 0)
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1782428381 node_paths=PackedStringArray("hp_display")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1782428381 node_paths=PackedStringArray("hp_display", "blessing_bar")]
 script = ExtResource("4_ic0uy")
 hp_display = NodePath("MarginContainer/Control")
+blessing_bar = NodePath("MarginContainer/Control/HBoxContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=216430904]
 anchors_preset = 15
@@ -68,6 +70,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="Control" type="Control" parent="HUD/MarginContainer" unique_id=320883952 node_paths=PackedStringArray("hp_label")]
 layout_mode = 2
@@ -81,6 +85,15 @@ offset_bottom = 520.0
 theme_override_fonts/normal_font = ExtResource("8_gbfbk")
 theme_override_font_sizes/normal_font_size = 30
 text = "123"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/Control" unique_id=632264239]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+alignment = 2
+script = ExtResource("7_2u3nc")
 
 [node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
 script = ExtResource("10_wse8f")
@@ -146,6 +159,30 @@ whale = NodePath("Whale")
 [node name="Whale" parent="WhaleSpawner" unique_id=1866251720 instance=ExtResource("12_k3n1d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0158379)
 visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=586166948]
+transform = Transform3D(0.82511353, 0.26610616, -0.49837255, 0, 0.88212687, 0.47101188, 0.564967, -0.3886383, 0.72785485, -2.425, 5.186, 5.082)
+light_color = Color(0.7019608, 0.42745098, 0.42745098, 1)
+light_energy = 0.158
+light_indirect_energy = 1.95
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 10.0
+shadow_blur = 0.0
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 9.9
+directional_shadow_pancake_size = 23.4
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=347799331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.782873, 5.535, -0.731)
+light_color = Color(0.98, 0.98, 0.98, 1)
+light_energy = 1.089
+light_volumetric_fog_energy = 0.366
+light_specular = 0.975
+light_bake_mode = 1
+omni_range = 33.168
+omni_attenuation = 0.378
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]
