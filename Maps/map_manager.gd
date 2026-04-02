@@ -16,6 +16,10 @@ var spawn_freq : float = 1.0
 var spawn_timer : float = 0.0
 var wave_info : WaveInfo
 
+var map_cleared_flag : bool = false
+
+
+
 
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	clear_enemies()
@@ -29,7 +33,8 @@ func _process(delta: float) -> void:
 		spawn_timer = 0.0
 		check_to_spawn_more()
 
-	if map_cleared():
+	if not map_cleared_flag and map_cleared():
+		map_cleared_flag = true
 		gateway.open_gateway()
 		
 func start_room (wave_info_ : WaveInfo) -> void:
@@ -38,6 +43,7 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	clear_enemies()
 	spawn_enemies(wave_info.enemies_to_spawn, false)
 	gateway.close_gateway()
+	map_cleared_flag = false
 
 func check_to_spawn_more() -> void:
 	if wave_info and len(spawned_enemies) < wave_info.enemies_to_spawn:
@@ -96,7 +102,6 @@ func clear_enemies() -> void:
 	spawned_enemies.clear()
 
 func map_cleared() -> bool:
-	print(str(len(spawned_enemies)) + " / " + str(wave_info.enemies_to_spawn) if wave_info else "No wave info")
 	if wave_info and len(spawned_enemies) < wave_info.enemies_to_spawn:
 		return false
 

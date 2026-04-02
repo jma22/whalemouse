@@ -8,6 +8,7 @@ var time_accumulator : float = 0.0
 var looping : bool = true
 var current_animation : AnimationClip = null
 var is_done : bool = false
+var tween : Tween = null
 func reset() -> void:
 	current_idx = 0
 	time_accumulator = 0.0
@@ -54,13 +55,17 @@ func set_flip(is_left: bool) -> void:
 	self.flip_h = is_left
 
 func damage_flash() -> void:
-	var tween = get_tree().create_tween()
+	if tween != null and tween.is_valid():
+		await tween.finished
+	tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate", Color(1, 0, 0, 1), 0.1)
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.1)
 	tween.play()
 
 func die() -> Tween:
 	# Play death animation, then queue_free
+	if tween != null and tween.is_valid():
+		await tween.finished
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.5)
 	tween.play()

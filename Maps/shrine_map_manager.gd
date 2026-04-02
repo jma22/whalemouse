@@ -13,6 +13,7 @@ class_name ShrineMapManager
 
 var player : CharacterBody3D
 var spawned_enemies : Array[Node3D] = []
+var map_cleared_flag : bool = false
 
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	self.player = player
@@ -20,7 +21,8 @@ func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	map.setup(player, camera)
 
 func _process(delta: float) -> void:
-	if map_cleared():
+	if not map_cleared_flag and map_cleared():
+		map_cleared_flag = true
 		gateway.open_gateway()
 		for shrine : Shrine in shrines:
 			shrine.close_gateway()
@@ -28,10 +30,13 @@ func _process(delta: float) -> void:
 func start_room (wave_info : WaveInfo) -> void:
 	set_shrines(wave_info.blessings)
 	gateway.close_gateway()
+	map_cleared_flag = false
 
 func set_shrines(blessings: Array[String]) -> void:
+	print("Setting up shrines with blessings: ", blessings)
 	for i in range(shrines.size()):
 		if i >= blessings.size():
+			shrines[i].setup("")	
 			shrines[i].close_gateway()
 		else:
 			shrines[i].setup(blessings[i])

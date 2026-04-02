@@ -58,7 +58,6 @@ shape = SubResource("CylinderShape3D_lfmf2")
 
 [node name="Sprite3D" parent="Hitbox" index="1" unique_id=468577178]
 transform = Transform3D(2.29, 0, 0, 0, -1.0009908e-07, -2.29, 0, 2.29, -1.0009908e-07, 0, 0.01, 0)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -95,6 +94,8 @@ script = ExtResource("12_bwjto")
 animation = ExtResource("14_lfmf2")
 attack_speed = 7.0
 dampening = 0.8
+jump_strength = 2.0
+fall_speed = -1.5
 hitbox = NodePath("../../Hitbox")
 metadata/_custom_type_script = "uid://ce3e7vd401ydb"
 
@@ -110,6 +111,7 @@ max_health = 100
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.26, 0)
 
 [node name="Ripple" type="Node3D" parent="." unique_id=1712351807 node_paths=PackedStringArray("sprite_manager")]
+visible = false
 script = ExtResource("18_o28un")
 sprite_manager = NodePath("SpriteManager")
 

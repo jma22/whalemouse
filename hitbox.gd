@@ -16,12 +16,14 @@ func _ready() -> void:
 	set_collisions()
 	# set_active(true)
 	set_active(false)
+	if sprite3D:
+		sprite3D.visible = false
 
 func set_active(active: bool) -> void:
 	self.set_deferred("monitorable", active)
 	## show visible
-	if sprite3D:
-		sprite3D.visible = active
+	# if sprite3D:
+	# 	sprite3D.visible = active
 	is_active = active
 
 

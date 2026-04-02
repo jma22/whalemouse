@@ -33,7 +33,7 @@ func exit() -> void:
 	hitbox.set_active(false)
 
 func fixed_run(_delta: float) -> void:
-	if entity.sprite_manager.current_idx == hitbox_frame -1 :
+	if entity.sprite_manager.current_idx == hitbox_frame -2 :
 		entity.velocity.y = fall_speed
 
 	if entity.sprite_manager.current_idx == hitbox_frame and not hitbox.is_active:

@@ -21,6 +21,10 @@ func run(_delta: float) -> void:
 func fixed_run(_delta: float) -> void:
 	set_velocity()
 
+func exit() -> void:
+	entity.position.y = 0
+	entity.velocity.y = 0
+
 
 func check_state() -> void:
 	if charge_time <= get_elapsed_time() / GlobalStats.get_enemy_speed_multiplier():

@@ -4,16 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://37fneuc41d61" path="res://Sprites/spritesheet_11.png" id="2_xvhxq"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_kwque"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwque"]
-emission_enabled = true
-
 [node name="TimePickup" type="Node3D" unique_id=393659539 node_paths=PackedStringArray("sprite_manager")]
 script = ExtResource("1_xvhxq")
 sprite_manager = NodePath("SpriteManager")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=2098642632]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_kwque")
 pixel_size = 0.001
 texture = ExtResource("2_xvhxq")
 hframes = 3

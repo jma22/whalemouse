@@ -5,6 +5,7 @@ class_name Gateway
 @export var area : Area3D
 
 var player_inside : bool = false
+var done : bool = false
 
 func _ready() -> void:
 	area.connect("body_entered", Callable(self, "_on_body_entered"))
@@ -12,7 +13,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if player_inside:
-		if Input.is_action_just_pressed("ui_accept"):
+		if not done and  Input.is_action_just_pressed("ui_accept"):
+			done = true
 			SceneManager.next_wave()
 
 
@@ -31,7 +33,12 @@ func open_gateway() -> void:
 	area.set_monitorable(true)
 	area.set_monitoring(true)
 	sprite.visible = true
+	done = false
+	print("Gateway opened")
+
 func close_gateway() -> void:
+	player_inside = false
 	area.set_monitorable(false)
 	area.set_monitoring(false)
 	sprite.visible = false
+

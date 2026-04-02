@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dqeqqpt3ajff7" path="res://Player/attack_animation-Sheet.png" id="1_d3rs6"]
 [ext_resource type="Script" uid="uid://bnmt7hsqf810c" path="res://whale.gd" id="1_wg7fs"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="2_pf8in"]
+[ext_resource type="Texture2D" uid="uid://b53x71wue75kv" path="res://Sprites/whale.png" id="3_mxwv7"]
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://hitbox.gd" id="3_wg7fs"]
-[ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="4_pf8in"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_70uel"]
 height = 1.0
@@ -46,10 +46,33 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Whale:render_priority")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Whale:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_wg7fs"]
 resource_name = "whale_animation"
-length = 1.9
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -69,9 +92,9 @@ tracks/1/path = NodePath("Splash:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0.10167671, -0.25, 0, 0.026848316, 1.267699, 1.479493, -0.6064849, -0.06031668, 0, 0, 0.10167671, -0.25, 0, 0.026848316, 1.267699, 0.10167671, -0.25, 0, 0.026848316, 1.267699, 1.479493, -0.6064849, -0.06031668, 0, 0, 1.479493, -0.6064849, -0.06031668, 0, 0),
-"times": PackedFloat32Array(0, 0.9, 0.9652809, 1.0333333, 1.8652809, 1.9333333)
+"handle_modes": PackedInt32Array(0, 2, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.10167671, -0.25, 0, 0.026848316, 1.267699, 0.7032392, -0.10146186, -0.15532868, 0.04853814, 0.07430738, 1.479493, -0.6064849, -0.06031668, 0, 0, 0.10167671, -0.25, 0, 0.026848316, 1.267699, 0.10167671, -0.25, 0, 0.026848316, 1.267699, 2, -0.6064849, -0.06031668, 0, 0, 1.479493, -0.6064849, -0.06031668, 0, 0),
+"times": PackedFloat32Array(0, 0.60877115, 0.9, 0.9652809, 1.1, 1.8652809, 1.9333333)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -81,8 +104,8 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.10167671, -0.25, 0, 0.026848316, 1.267699, 1.479493, -0.6064849, -0.06031668, 0, 0, -0.42345005, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(1.0333333, 1.9, 2.0333333)
+"points": PackedFloat32Array(0.10167671, -0.25, 0, 0.026848316, 1.267699, 2, -0.6064849, -0.06031668, 0, 0, -0.42345005, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.1, 1.9, 2.0333333)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -136,8 +159,8 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.0145249665, -0.25, 0, 0.026848316, 1.267699, 1.3632913, -0.6064849, -0.06031668, 0, 0, -0.53965175, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(1, 1.8666666, 2)
+"points": PackedFloat32Array(-0.0145249665, -0.25, 0, 0.026848316, 1.267699, 2, -0.6064849, -0.06031668, 0, 0, -0.53965175, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(1.1, 1.8666666, 2)
 }
 tracks/8/type = "bezier"
 tracks/8/imported = false
@@ -147,7 +170,7 @@ tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "handle_modes": PackedInt32Array(0, 0, 2, 3, 0),
-"points": PackedFloat32Array(-1.08, -0.25, 0, 0.76666665, 0.025740981, -0.025044333, 0, -1.2036612, 0.06666666, 0.84661216, 1.1369723, 0, 0, 0.05, 0, 1.120372, 0, -0.016572595, 0, 0.016572595, -1.0542591, -0.13333333, 1.5770226, 0.25, 0),
+"points": PackedFloat32Array(-1.08, -0.25, 0, 0.76666665, 0.025740981, -0.025044333, 0, -1.2036612, 0.06666666, 0.84661216, 1.1369723, 0, 0, 0.05, 0, 1.11, 0, -0.016572595, 0, 0.016572595, -1.0542591, -0.13333333, 1.5770226, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6, 0.8, 0.93333334, 1.4)
 }
 tracks/9/type = "method"
@@ -167,6 +190,62 @@ tracks/9/keys = {
 "method": &"set_active"
 }]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Whale:render_priority")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [-3, 2, -3]
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Whale:modulate:a")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(2, 3, 2, 2),
+"points": PackedFloat32Array(0.4, -0.24999757, -0.0019201479, 0.22698241, 0.0017433763, 1, -0.049999997, 0, 0.049999997, 0, 1.0071937, 0, 0, 0, 0, 0.4, -0.17301756, -0.03345722, 0, 0),
+"times": PackedFloat32Array(0.56666666, 0.76666665, 1.0333333, 1.1666666)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Whale:scale:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.44406122, -0.25, 0, 0.19151378, 0.10049757, 0.44406122, -0.25, 0, 0.19151378, 0.10049757, 0.5657162, -0.077777766, 0, 0.122222245, 0, 0.5657162, -0.077777766, 0, 0.122222245, 0, 0.44935057, -0.024999976, 0, 0.024999976, 0, 0.44935057, -0.024999976, 0, 0.024999976, 0),
+"times": PackedFloat32Array(0.56666666, 0.5666949, 0.8666667, 0.8666949, 1.1333333, 1.1333616)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Whale:scale:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.44406122, -0.25, 0, 0.19151378, 0.10049757, 0.5657162, -0.077777766, 0, 0.122222245, 0, 0.44935057, -0.024999976, 0, 0.024999976, 0),
+"times": PackedFloat32Array(0.56364465, 0.86364466, 1.1303113)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Whale:scale:z")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.44406122, -0.25, 0, 0.19151378, 0.10049757, 0.5657162, -0.077777766, 0, 0.122222245, 0, 0.44935057, -0.024999976, 0, 0.024999976, 0),
+"times": PackedFloat32Array(0.5666949, 0.8666949, 1.1333616)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxwv7"]
 _data = {
@@ -179,6 +258,7 @@ script = ExtResource("1_wg7fs")
 whale_animation_player = NodePath("AnimationPlayer")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=976800001]
+visible = false
 script = ExtResource("3_wg7fs")
 hit_box_type = 1
 metadata/_custom_type_script = "uid://dgoogb57kwni4"
@@ -188,10 +268,11 @@ shape = SubResource("CylinderShape3D_70uel")
 debug_color = Color(0.9873156, 0, 0.2555665, 1)
 
 [node name="Whale" type="Sprite3D" parent="." unique_id=154116921]
-transform = Transform3D(1, 0, 0, 0, 0.56262314, 0.9396926, 0, -1.5457944, 0.34202015, 0, 0, 0)
+transform = Transform3D(0.44406122, 0, 0, 0, 0.15187788, 0.41728106, 0, -0.41728106, 0.15187788, 0, 0, 0.04269731)
+modulate = Color(1, 1, 1, 0)
 no_depth_test = true
-alpha_cut = 2
-texture = ExtResource("4_pf8in")
+render_priority = -3
+texture = ExtResource("3_mxwv7")
 
 [node name="Circle" type="Sprite3D" parent="." unique_id=141536960]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.01, 0)
@@ -204,7 +285,7 @@ metadata/_custom_type_script = "uid://chgfscc28odqd"
 libraries/ = SubResource("AnimationLibrary_mxwv7")
 
 [node name="Splash" type="Sprite3D" parent="." unique_id=614721659]
-transform = Transform3D(0.10167671, -2.193209e-09, -6.710903e-16, 0, 6.3490646e-10, -0.10167671, -1.5352757e-08, -0.0145249665, -4.44443e-09, 0, 0.01, 0)
+transform = Transform3D(-0.10167671, -2.193209e-09, 6.710903e-16, 0, 6.3490646e-10, 0.10167671, 1.5352757e-08, -0.0145249665, 4.44443e-09, 0, 0.01, 0)
 modulate = Color(0.8123753, 0.96, 0.8861877, 0)
 texture = ExtResource("1_d3rs6")
 hframes = 4

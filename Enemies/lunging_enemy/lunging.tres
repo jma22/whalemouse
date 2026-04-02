@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_inpb8")
-frame_numbers = Array[int]([1])
+frame_numbers = Array[int]([5, 6])
 name = "enemy_lunging"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"

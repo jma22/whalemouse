@@ -53,7 +53,7 @@ func check_state() -> void:
 func neutral_state() -> void:
 	var input_vector : Vector2 = get_input()
 	var did_dash : bool = Input.is_action_just_pressed("dash")
-	var did_attack : bool = Input.is_action_just_pressed("attack")
+	var did_attack : bool = Input.is_action_just_pressed("atk")
 	if input_vector.length() > 0:
 		last_direction = input_vector
 	if did_dash:
@@ -95,7 +95,8 @@ func set_invulnerable(value: bool) -> void:
 	invulnerable = value
 
 func on_die() -> void:
-	sprite_manager.die().finished.connect(func():
+	var tween = await sprite_manager.die()
+	tween.finished.connect(func():
 		SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
 	)
 

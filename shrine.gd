@@ -16,6 +16,10 @@ func _ready() -> void:
 
 
 func setup(_upgrade_name: String) -> void:
+	if _upgrade_name == "":
+		activated = false
+		sprite.visible = false
+		return
 	floating_sprite.texture = load("res://Icons/%s.png" % _upgrade_name)
 	upgrade_name = _upgrade_name
 	activated = false

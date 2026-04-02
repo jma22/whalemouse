@@ -95,7 +95,7 @@ func get_enemy_health_multiplier() -> float:
 	return 1.0 + current_run_stats["enemy_health"] * 0.5
 
 func get_whale_size() -> float:
-	return 0.5 + current_run_stats["whale_level"] * 0.25
+	return 0.3 + current_run_stats["whale_level"] * 0.2
 
 func get_description(stat_name: String) -> String:
 	match stat_name:
@@ -121,4 +121,13 @@ func get_two_random_curses() -> Array[String]:
 		var index = randi() % curses.size()
 		selected.append(curses[index])
 		curses.remove_at(index)
+	return selected
+
+func get_two_random_blessing_no_whale() -> Array[String]:
+	var blessings : Array[String] = ["xp_suck", "enemy_xp_drop", "dash_distance","heal"]
+	var selected : Array[String] = []
+	while selected.size() < 2 and blessings.size() > 0:
+		var index = randi() % blessings.size()
+		selected.append(blessings[index])
+		blessings.remove_at(index)
 	return selected

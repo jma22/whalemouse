@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://d38qiwqb6pm1s" path="res://gateway.gd" id="6_iw27f"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/floor_nav.tscn" id="7_jq5h8"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/smoke.gdshader" id="9_tv1m2"]
+[ext_resource type="Texture2D" uid="uid://37fneuc41d61" path="res://Sprites/spritesheet_11.png" id="11_gsor4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iw27f"]
 
@@ -141,6 +142,21 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5558"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2f2x"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("11_gsor4")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_0twuy"]
+material = SubResource("StandardMaterial3D_y2f2x")
+
 [node name="Map" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawn_points", "floor", "gateway")]
 script = ExtResource("1_e0an3")
 enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
@@ -148,17 +164,19 @@ floor = NodePath("FloorNav")
 gateway = NodePath("Gateway")
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
 visible = false
 mesh_library = ExtResource("2_p5pve")
-cell_size = Vector3(1, 1, 1)
+cell_size = Vector3(0.5, 0.5, 0.5)
 cell_octant_size = 4
+cell_scale = 0.5
 data = {
-"cells": PackedInt32Array(5, 65533, 2, 4, 65533, 0, 65531, 65533, 0, 65532, 65533, 0, 65533, 65533, 0, 65534, 65533, 0, 65535, 65533, 0, 0, 65533, 0, 1, 65533, 0, 2, 65533, 0, 3, 65533, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 65531, 65534, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 1, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 4, 2, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0)
+"cells": PackedInt32Array(65562, 0, 0, 65562, 1, 0, 65562, 2, 0, 65562, 3, 0, 65562, 4, 0, 65562, 5, 0, 65562, 6, 0, 65562, 7, 0, 65562, 8, 0, 65562, 9, 0, 65545, 9, 0, 65546, 9, 0, 65547, 9, 0, 65548, 9, 0, 65549, 9, 0, 65550, 9, 0, 65551, 9, 0, 65552, 9, 0, 65553, 9, 0, 65554, 9, 0, 65555, 9, 0, 65556, 9, 0, 65557, 9, 0, 65558, 9, 0, 65559, 9, 0, 65560, 9, 0, 65561, 9, 0, 65545, 0, 0, 65545, 1, 0, 65545, 2, 0, 65545, 3, 0, 65545, 4, 0, 65545, 5, 0, 65545, 6, 0, 65545, 7, 0, 65545, 8, 0, 65545, 65535, 0, 65546, 65535, 0, 65547, 65535, 0, 65548, 65535, 0, 65549, 65535, 0, 65550, 65535, 0, 65551, 65535, 0, 65552, 65535, 0, 65553, 65535, 0, 65554, 65535, 0, 65555, 65535, 0, 65556, 65535, 0, 65557, 65535, 0, 65558, 65535, 0, 65559, 65535, 0, 65560, 65535, 0, 65561, 65535, 0, 65562, 65535, 0)
 }
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="SpawnPoint" type="Node3D" parent="." unique_id=946727483]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09, 0, -1.423)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0, -1.308)
 
 [node name="Sprite3D" type="Sprite3D" parent="SpawnPoint" unique_id=749120342]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -167,7 +185,7 @@ pixel_size = 0.005
 texture = ExtResource("3_urblq")
 
 [node name="SpawnPoint2" type="Node3D" parent="." unique_id=1160445348]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.288, 0, -1.133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.003, 0, -1.133)
 
 [node name="Sprite3D" type="Sprite3D" parent="SpawnPoint2" unique_id=1182634905]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -176,7 +194,7 @@ pixel_size = 0.005
 texture = ExtResource("3_urblq")
 
 [node name="SpawnPoint3" type="Node3D" parent="." unique_id=1384429647]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.435, 0, 0.658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.265, 0, 0.523)
 
 [node name="Sprite3D" type="Sprite3D" parent="SpawnPoint3" unique_id=1882589051]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
@@ -307,13 +325,18 @@ render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
 [node name="SpawnPoint4" type="Node3D" parent="." unique_id=497179343]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.355, 0, 1.088)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81, 0, 0.793)
 
 [node name="Sprite3D" type="Sprite3D" parent="SpawnPoint4" unique_id=1734452071]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 visible = false
 pixel_size = 0.005
 texture = ExtResource("3_urblq")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1161154652]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_d5558")
+draw_pass_1 = SubResource("QuadMesh_0twuy")
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

@@ -7,6 +7,7 @@ var idle_duration : float = 3.0
 func enter() -> void:
 	entity.velocity = Vector3.ZERO
 	entity.sprite_manager.play(animation)
+	entity.position.y = 0
 
 func fixed_run(delta: float) -> void:
 	entity.velocity = Vector3.ZERO

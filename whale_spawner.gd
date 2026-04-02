@@ -28,7 +28,7 @@ func play_whale() -> void:
 	whale.visible = false
 
 func can_cast() -> bool:
-	return cooldown_timer <= 0.0
+	return GlobalStats.get_whale_size() > 0 and cooldown_timer <= 0.0
 
 func cast_whale() -> void:
 	cooldown_timer = cooldown

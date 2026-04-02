@@ -33,6 +33,8 @@ func check_state() -> void:
 func apply_velocity()-> void:
 	if target_position == null:
 		return
-	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
+	var direction : Vector3 = (target_position - entity.global_transform.origin)
+	direction.y = 0
+	direction = direction.normalized()
 	var velocity : Vector3 = direction * attack_speed * GlobalStats.get_enemy_speed_multiplier()
 	entity.velocity = velocity

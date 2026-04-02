@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d38244762dcct" path="res://Enemies/lunging_enemy/enemy.gd" id="1_n0g06"]
 [ext_resource type="PackedScene" uid="uid://bdgwc04qsydls" path="res://xp_spawner.tscn" id="2_5hcft"]
-[ext_resource type="Texture2D" uid="uid://bjomdsi1wtbtd" path="res://Enemies/lunging_enemy/spritesheet (1).png" id="3_25vuu"]
+[ext_resource type="Texture2D" uid="uid://bhs7o5i88ge5t" path="res://Enemies/lunging_enemy/spritesheet (2).png" id="3_25vuu"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_ar8e5"]
 [ext_resource type="Script" uid="uid://blnovigm0t222" path="res://States/state_machine.gd" id="4_doop2"]
 [ext_resource type="Script" uid="uid://dasdpk8volql6" path="res://EnemyStates/enemy_walk_state.gd" id="6_dxifv"]
@@ -36,7 +36,7 @@ pixel_size = 0.001
 double_sided = false
 alpha_cut = 2
 texture = ExtResource("3_25vuu")
-hframes = 2
+hframes = 6
 script = ExtResource("3_ar8e5")
 frames_per_second = 10
 
@@ -109,7 +109,8 @@ shape = SubResource("CylinderShape3D_okpwn")
 
 [node name="KnockbackComponent" type="Node3D" parent="." unique_id=1542646912 node_paths=PackedStringArray("entity")]
 script = ExtResource("14_doop2")
-knockback_mult = 10.0
+knockback_mult = 9.0
+knockback_dampening = 0.75
 entity = NodePath("..")
 
 [editable path="HurtBox"]

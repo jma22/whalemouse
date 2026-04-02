@@ -35,6 +35,10 @@ func set_circle() -> void:
 
 func set_whale_circle() -> void:
 	if whale_spawner:
+		if GlobalStats.get_whale_size() <= 0:
+			whale_circle.visible = false
+			return
+		whale_circle.visible = true
 		var progress = whale_spawner.get_cooldown_progress()
 		whale_circle.value = progress * whale_circle.max_value
 		# make sprite grayscale

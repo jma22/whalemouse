@@ -21,7 +21,7 @@ class_name Enemy2
 
 var is_dead : bool = false
 var detection_range : float = 2.5
-var initial_health : int = 2
+var initial_health : int = 1
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	self.player = player
@@ -88,7 +88,8 @@ func on_hit(damage: int) -> void:
 func on_die() -> void:
 	if is_dead:
 		return
-	await sprite_manager.die().finished
+	var tween = await sprite_manager.die()
+	await tween.finished
 	if xp_spawner_scene:
 		var xp_spawner_instance = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)

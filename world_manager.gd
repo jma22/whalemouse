@@ -36,11 +36,13 @@ func reset() -> void:
 	player.global_transform.origin = Vector3.ZERO
 	player.reset()
 	time_damage.reset()
+	wave_manager.reset()
 
 func map_entered(first_time: bool) -> void:
 	if not first_time:
 		transition.transition_out()
 		await transition.tween.finished
+		
 	wave_text.display_wave_info(wave_manager.get_current_wave_info())
 	if wave_manager.get_current_wave_info().room_type == "combat":
 		player.global_transform.origin = Vector3.ZERO
@@ -48,6 +50,7 @@ func map_entered(first_time: bool) -> void:
 	else:
 		player.global_transform.origin = Vector3(20, 0, 0)
 		shrine_map_manager.start_room(wave_manager.get_current_wave_info())
+
 	transition.transition_in()
 	# map_manager.spawn_enemies()
 	# wave_manager.start_wave()

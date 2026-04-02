@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bghlybg55wsf5" path="res://Maps/floor_nav.gd" id="1_6n7c7"]
 [ext_resource type="Shader" uid="uid://cbc6idnqc5ica" path="res://Maps/floor.gdshader" id="1_npb2e"]
 [ext_resource type="Texture2D" uid="uid://cqocuxi7upj30" path="res://Maps/ground_texture.png" id="2_hhmhp"]
-[ext_resource type="PackedScene" uid="uid://bkqsf1b7k36k3" path="res://Player/crack.tscn" id="4_dtlwl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
 vertices = PackedVector3Array(-3.75, 0.2, -1.75, -3.75, 0.2, 1.75, 3.75, 0.2, 1.75, 3.75, 0.2, -1.75)
@@ -21,14 +20,14 @@ shader_parameter/tile_scale = Vector2(2, 1)
 shader_parameter/world_center = Vector2(50, 50)
 shader_parameter/world_origin = Vector2(0, 0)
 shader_parameter/world_size = Vector2(100, 100)
-shader_parameter/radius = 0.350000016625
+shader_parameter/radius = 0.2590000123025
 shader_parameter/pixel_size = 18.0
 shader_parameter/resolution = Vector2(400, 400)
 shader_parameter/dither_offset = Vector2(2, 0)
 shader_parameter/bayer_size = 2
 shader_parameter/interpolate = true
 shader_parameter/invert = false
-shader_parameter/falloff = 10.0
+shader_parameter/falloff = 9.20600043402512
 shader_parameter/spotlight_color = Color(1.0047442, 0.9289136, 0.77725244, 1)
 shader_parameter/shadow_color = Color(0.6, 0.6, 0.7, 1)
 
@@ -55,6 +54,7 @@ shader_parameter/shadow_color = Color(0.6, 0.6, 0.7, 1)
 size = Vector2(100, 100)
 
 [node name="FloorNav" type="NavigationRegion3D" unique_id=2014240850 node_paths=PackedStringArray("floor_material")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009457648, 0, -0.0013885498)
 navigation_mesh = SubResource("NavigationMesh_e0an3")
 script = ExtResource("1_6n7c7")
 floor_material = NodePath("floor")
@@ -66,7 +66,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_6n7c7")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=233406261]
 transform = Transform3D(6, 0, 0, 0, -1.3113416e-07, 1, 0, -3, -4.371139e-08, 0, 0, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_dtlwl")
 texture = SubResource("PlaceholderTexture2D_prfm5")
-
-[node name="Crack" parent="." unique_id=554710779 instance=ExtResource("4_dtlwl")]

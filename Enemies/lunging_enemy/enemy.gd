@@ -21,7 +21,7 @@ class_name Enemy
 
 var pursuit_range : float = 3.0
 var attack_range : float = 1.5
-var initial_health : int = 3
+var initial_health : int = 2
 var is_dead : bool = false
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
@@ -80,6 +80,10 @@ func check_range() -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.current_state.deep_fixed_run(delta)
 	knockback_component.handle_knockback()
+	if velocity.y > 0 or global_transform.origin.y > 0:
+		print("Velocity: ", velocity)
+		print("Position: ", global_transform.origin)
+		print("state: ", state_machine.current_state)
 	move_and_slide()
 
 
@@ -105,7 +109,10 @@ func on_hit(damage: int) -> void:
 		on_die()
 
 func on_die() -> void:
-	await sprite_manager.die().finished
+	if is_dead:
+		return
+	var tween = await sprite_manager.die()
+	await tween.finished
 	if xp_spawner_scene:
 		var xp_spawner_instance = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
