@@ -11,6 +11,7 @@ func enter() -> void:
 	entity.set_invulnerable(true)
 	var random_dir : Vector3 = Vector3(randf() * 2.0 - 1.0, 0, randf() * 2.0 - 1.0).normalized()
 	entity.velocity = random_dir * knockback_strength
+	entity.position.y = 0
 
 func exit() -> void:
 	entity.set_invulnerable(false)

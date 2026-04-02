@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bghlybg55wsf5" path="res://Maps/floor_nav.gd" id="1_6n7c7"]
 [ext_resource type="Shader" uid="uid://cbc6idnqc5ica" path="res://Maps/floor.gdshader" id="1_npb2e"]
 [ext_resource type="Texture2D" uid="uid://cqocuxi7upj30" path="res://Maps/ground_texture.png" id="2_hhmhp"]
+[ext_resource type="PackedScene" uid="uid://bkqsf1b7k36k3" path="res://Player/crack.tscn" id="4_dtlwl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
 vertices = PackedVector3Array(-3.75, 0.2, -1.75, -3.75, 0.2, 1.75, 3.75, 0.2, 1.75, 3.75, 0.2, -1.75)
@@ -65,6 +66,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_6n7c7")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=233406261]
 transform = Transform3D(6, 0, 0, 0, -1.3113416e-07, 1, 0, -3, -4.371139e-08, 0, 0, 0)
-visible = false
 material_override = SubResource("ShaderMaterial_dtlwl")
 texture = SubResource("PlaceholderTexture2D_prfm5")
+
+[node name="Crack" parent="." unique_id=554710779 instance=ExtResource("4_dtlwl")]

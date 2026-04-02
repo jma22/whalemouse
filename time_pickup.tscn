@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://ds2lm5jh002ey"]
 
 [ext_resource type="Script" uid="uid://cusgwa77jvb2g" path="res://time_pickup.gd" id="1_xvhxq"]
-[ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="2_kwque"]
+[ext_resource type="Texture2D" uid="uid://37fneuc41d61" path="res://Sprites/spritesheet_11.png" id="2_xvhxq"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_kwque"]
 
-[node name="TimePickup" type="Node3D" unique_id=393659539 node_paths=PackedStringArray("target")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwque"]
+emission_enabled = true
+
+[node name="TimePickup" type="Node3D" unique_id=393659539 node_paths=PackedStringArray("sprite_manager")]
 script = ExtResource("1_xvhxq")
-target = NodePath("")
+sprite_manager = NodePath("SpriteManager")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1964903978]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.25, 0)
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=2098642632]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_kwque")
 pixel_size = 0.001
-texture = ExtResource("2_kwque")
+texture = ExtResource("2_xvhxq")
+hframes = 3
+script = ExtResource("3_kwque")
+metadata/_custom_type_script = "uid://chgfscc28odqd"

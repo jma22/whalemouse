@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://xujg62bri8lb" path="res://hud.gd" id="4_ic0uy"]
 [ext_resource type="Texture2D" uid="uid://dwpx4mphhni0j" path="res://Sprites/spritesheet_all.png" id="4_ikiii"]
 [ext_resource type="Script" uid="uid://dwntwtemf07ge" path="res://blessing_bar.gd" id="7_2u3nc"]
+[ext_resource type="PackedScene" uid="uid://dac7dl6bj43cp" path="res://hud_bar.tscn" id="8_cbp6q"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
-[ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://hp_display.gd" id="8_ioo17"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
 [ext_resource type="Script" uid="uid://c1hdmghu4j63o" path="res://wave_text.gd" id="10_ic0uy"]
@@ -132,7 +132,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.1, 0)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1782428381 node_paths=PackedStringArray("hp_display", "blessing_bar")]
 script = ExtResource("4_ic0uy")
-hp_display = NodePath("MarginContainer/Control")
+hp_display = NodePath("MarginContainer/Control/Control")
 blessing_bar = NodePath("MarginContainer/Control/HBoxContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=216430904]
@@ -146,18 +146,8 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Control" type="Control" parent="HUD/MarginContainer" unique_id=320883952 node_paths=PackedStringArray("hp_label")]
+[node name="Control" type="Control" parent="HUD/MarginContainer" unique_id=320883952]
 layout_mode = 2
-script = ExtResource("8_ioo17")
-hp_label = NodePath("RichTextLabel")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD/MarginContainer/Control" unique_id=2028008329]
-layout_mode = 0
-offset_right = 940.0
-offset_bottom = 520.0
-theme_override_fonts/normal_font = ExtResource("8_gbfbk")
-theme_override_font_sizes/normal_font_size = 30
-text = "123"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/Control" unique_id=632264239]
 layout_mode = 1
@@ -167,6 +157,11 @@ offset_bottom = 20.0
 grow_horizontal = 2
 alignment = 2
 script = ExtResource("7_2u3nc")
+
+[node name="Control" parent="HUD/MarginContainer/Control" unique_id=460654951 node_paths=PackedStringArray("time_damage", "whale_spawner") instance=ExtResource("8_cbp6q")]
+layout_mode = 0
+time_damage = NodePath("../../../../TimeDamageManager")
+whale_spawner = NodePath("../../../../WhaleSpawner")
 
 [node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
 script = ExtResource("10_wse8f")
@@ -193,6 +188,7 @@ compositor = SubResource("Compositor_26xuy")
 
 [node name="WaveText" type="CanvasLayer" parent="." unique_id=627079375 node_paths=PackedStringArray("text_label", "container")]
 layer = 2
+visible = false
 script = ExtResource("10_ic0uy")
 text_label = NodePath("VBoxContainer/ColorRect/RichTextLabel")
 container = NodePath("VBoxContainer")
@@ -269,6 +265,7 @@ omni_range = 33.168
 omni_attenuation = 0.378
 
 [node name="Transition" type="CanvasLayer" parent="." unique_id=740170691 node_paths=PackedStringArray("texture")]
+visible = false
 script = ExtResource("16_udxuc")
 texture = NodePath("TextureRect")
 

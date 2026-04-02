@@ -24,3 +24,9 @@ func _process(delta: float) -> void:
 func do_damage(damage: int = 1) -> void:
 	if player.health_component:
 		player.health_component.take_damage(damage)
+
+func get_progress() -> float:
+	var seconds_per_damage : float = GlobalStats.get_seconds_per_damage()
+	if seconds_per_damage == 0:
+		return 0.0
+	return _time_accumulator / seconds_per_damage

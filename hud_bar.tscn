@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dac7dl6bj43cp"]
+
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="1_3ro01"]
+[ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://hp_display.gd" id="1_5igc2"]
+[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/shrine.png" id="2_mb7uj"]
+[ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="3_5igc2"]
+
+[node name="HudBar" type="Control" unique_id=460654951 node_paths=PackedStringArray("hp_label", "life_circle", "whale_circle")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 548.0
+offset_bottom = 208.0
+script = ExtResource("1_5igc2")
+hp_label = NodePath("LifeCircle/RichTextLabel")
+life_circle = NodePath("LifeCircle")
+whale_circle = NodePath("TextureProgressBar")
+
+[node name="LifeCircle" type="TextureProgressBar" parent="." unique_id=1128795582]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -88.0
+offset_right = 179.0
+offset_bottom = 88.0
+grow_vertical = 2
+value = 50.0
+fill_mode = 4
+texture_under = ExtResource("2_mb7uj")
+texture_progress = ExtResource("3_5igc2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LifeCircle" unique_id=564389056]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_3ro01")
+theme_override_font_sizes/normal_font_size = 50
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1976552636]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 75.0
+fill_mode = 4
+texture_progress = ExtResource("3_5igc2")

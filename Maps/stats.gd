@@ -104,3 +104,21 @@ func get_description(stat_name: String) -> String:
 		"damage":
 			return "%d less seconds." % ((1+current_run_stats["damage"]) * 3)
 	return "lmao"
+
+func get_two_random_blessing() -> Array[String]:
+	var blessings : Array[String] = ["xp_suck", "enemy_xp_drop", "whale_level", "dash_distance","heal"]
+	var selected : Array[String] = []
+	while selected.size() < 2 and blessings.size() > 0:
+		var index = randi() % blessings.size()
+		selected.append(blessings[index])
+		blessings.remove_at(index)
+	return selected
+
+func get_two_random_curses() -> Array[String]:
+	var curses : Array[String] = ["enemy_speed", "enemy_health", "damage"]
+	var selected : Array[String] = []
+	while selected.size() < 2 and curses.size() > 0:
+		var index = randi() % curses.size()
+		selected.append(curses[index])
+		curses.remove_at(index)
+	return selected

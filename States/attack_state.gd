@@ -11,7 +11,9 @@ var attack_direction : Vector2 = Vector2.ZERO
 @export var fall_speed : float = -4.0
 # @export var invulnerability_time : float = 0.5
 @export var hitbox : Hitbox
-var hitbox_frame : int = 2
+var hitbox_frame : int = 4
+
+var crack_scene : PackedScene = preload("res://Player/Crack.tscn")
 
 
 func enter() -> void:
@@ -36,6 +38,12 @@ func fixed_run(_delta: float) -> void:
 
 	if entity.sprite_manager.current_idx == hitbox_frame and not hitbox.is_active:
 		hitbox.set_active(true)
+		var crack_instance = crack_scene.instantiate() as Sprite3D
+		crack_instance.global_transform = entity.global_transform
+		entity.get_parent().add_child(crack_instance)
+		crack_instance.play()
+
+
 		
 
 	# if hitbox_frame / entity.sprite_manager.frames_per_second > get_elapsed_time():

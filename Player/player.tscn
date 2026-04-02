@@ -41,6 +41,7 @@ pixel_size = 0.001
 double_sided = false
 no_depth_test = true
 alpha_cut = 2
+render_priority = 1
 texture = ExtResource("2_bwjto")
 hframes = 6
 vframes = 2

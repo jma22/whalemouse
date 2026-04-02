@@ -12,6 +12,10 @@ const enemy_string_to_scene = {
 
 var player : CharacterBody3D
 var spawned_enemies : Array[Node3D] = []
+var spawn_freq : float = 1.0
+var spawn_timer : float = 0.0
+var wave_info : WaveInfo
+
 
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	clear_enemies()
@@ -20,24 +24,39 @@ func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	floor.setup(player, camera)
 
 func _process(delta: float) -> void:
+	spawn_timer += delta
+	if spawn_timer >= spawn_freq:
+		spawn_timer = 0.0
+		check_to_spawn_more()
+
 	if map_cleared():
 		gateway.open_gateway()
 		
-func start_room (wave_info : WaveInfo) -> void:
+func start_room (wave_info_ : WaveInfo) -> void:
+	wave_info = wave_info_
 	print("Starting room with wave info: ", wave_info)
 	clear_enemies()
-	spawn_enemies()
+	spawn_enemies(wave_info.enemies_to_spawn, false)
 	gateway.close_gateway()
 
-func spawn_enemies() -> void:
-	for enemy_spawn_point in enemy_spawn_points:
+func check_to_spawn_more() -> void:
+	if wave_info and len(spawned_enemies) < wave_info.enemies_to_spawn:
+		spawn_enemies(1, true)
+
+func spawn_enemies(enemies_to_spawn: int, random_spot : bool) -> void:
+	for i in range(enemies_to_spawn):
+		var enemy_spawn_point : Node3D
+		if random_spot:
+			enemy_spawn_point = enemy_spawn_points[randi() % enemy_spawn_points.size()]
+		else:
+			enemy_spawn_point = enemy_spawn_points[i % enemy_spawn_points.size()]
 		var enemy_type :String = "enemy2" if randf() < 0.5 else "enemy1"
 		if enemy_type in enemy_string_to_scene:
 			var enemy_scene = enemy_string_to_scene[enemy_type]
 			var enemy_instance = enemy_scene.instantiate()
 			add_child(enemy_instance)
 			enemy_instance.global_transform = enemy_spawn_point.global_transform
-			print("Spawning enemy of type: ", enemy_type , " at position: ", enemy_spawn_point.global_transform.origin)
+			# print("Spawning enemy of type: ", enemy_type , " at position: ", enemy_spawn_point.global_transform.origin)
 			enemy_instance.setup(player, floor)
 			spawned_enemies.append(enemy_instance)
 
@@ -77,7 +96,12 @@ func clear_enemies() -> void:
 	spawned_enemies.clear()
 
 func map_cleared() -> bool:
+	print(str(len(spawned_enemies)) + " / " + str(wave_info.enemies_to_spawn) if wave_info else "No wave info")
+	if wave_info and len(spawned_enemies) < wave_info.enemies_to_spawn:
+		return false
+
 	for enemy in spawned_enemies:
+		print("Checking enemy: ", enemy, " is_dead: ", enemy.is_dead)
 		if not enemy.is_dead:
 			return false
 	return true

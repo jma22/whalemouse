@@ -17,6 +17,9 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if cooldown_timer > 0.0:
 		cooldown_timer -= delta
+		if cooldown_timer < 0.0:
+			cooldown_timer = 0.0
+
 
 func play_whale() -> void:
 	whale.visible = true
@@ -32,3 +35,8 @@ func cast_whale() -> void:
 	whale.global_transform.origin = map_manager.get_enemy_centroid()
 	whale.scale = Vector3.ONE * GlobalStats.get_whale_size()
 	play_whale()
+
+func get_cooldown_progress() -> float:
+
+	return 1.0 - (cooldown_timer / cooldown)
+

@@ -31,8 +31,11 @@ func start_room (wave_info : WaveInfo) -> void:
 
 func set_shrines(blessings: Array[String]) -> void:
 	for i in range(shrines.size()):
-		shrines[i].setup(blessings[i])
-		shrines[i].open_gateway()
+		if i >= blessings.size():
+			shrines[i].close_gateway()
+		else:
+			shrines[i].setup(blessings[i])
+			shrines[i].open_gateway()
 
 
 func map_cleared() -> bool:
