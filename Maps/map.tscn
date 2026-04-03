@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://d38qiwqb6pm1s" path="res://gateway.gd" id="6_iw27f"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/floor_nav.tscn" id="7_jq5h8"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/smoke.gdshader" id="9_tv1m2"]
-[ext_resource type="Texture2D" uid="uid://37fneuc41d61" path="res://Sprites/spritesheet_11.png" id="11_gsor4"]
+[ext_resource type="PackedScene" uid="uid://bb8si1mpdb4l2" path="res://Maps/bubble_back.tscn" id="11_gsor4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iw27f"]
 
@@ -141,21 +141,6 @@ shader_parameter/blur_radius = 0.06500000308750001
 shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5558"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2f2x"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("11_gsor4")
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_0twuy"]
-material = SubResource("StandardMaterial3D_y2f2x")
 
 [node name="Map" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawn_points", "floor", "gateway")]
 script = ExtResource("1_e0an3")
@@ -313,6 +298,8 @@ transform = Transform3D(1, 0, 0, 0, 1.48, 0, 0, 0, 1, 0, -0.145, 0.68)
 material_override = SubResource("ShaderMaterial_gsor4")
 pixel_size = 0.005
 double_sided = false
+no_depth_test = true
+alpha_cut = 1
 render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
@@ -333,10 +320,7 @@ visible = false
 pixel_size = 0.005
 texture = ExtResource("3_urblq")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1161154652]
-visible = false
-process_material = SubResource("ParticleProcessMaterial_d5558")
-draw_pass_1 = SubResource("QuadMesh_0twuy")
+[node name="GPUParticles3D" parent="." unique_id=304463573 instance=ExtResource("11_gsor4")]
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

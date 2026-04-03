@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://hurt_box.tscn" id="12_rujom"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://hitbox.tscn" id="13_v6ftq"]
 [ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://knockback_component.gd" id="14_ew1hi"]
-[ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Player/hitstop.gd" id="17_tlby2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)
@@ -33,10 +32,9 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 height = 1.0
 radius = 0.25
 
-[node name="Enemy2" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("hitstop")]
+[node name="Enemy2" type="CharacterBody3D" unique_id=1422586295]
 script = ExtResource("1_k6uer")
 xp_spawner_scene = ExtResource("2_lr6v3")
-hitstop = NodePath("HitStop")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.25, 0)
@@ -99,8 +97,7 @@ visible = false
 owner_entity = NodePath("..")
 hurt_box_type = 1
 
-[node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("hitstop") instance=ExtResource("13_v6ftq")]
-hitstop = NodePath("../HitStop")
+[node name="Hitbox" parent="." unique_id=754444443 instance=ExtResource("13_v6ftq")]
 
 [node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -111,9 +108,5 @@ script = ExtResource("14_ew1hi")
 knockback_mult = 9.0
 knockback_dampening = 0.75
 entity = NodePath("..")
-
-[node name="HitStop" type="Node3D" parent="." unique_id=123495000]
-script = ExtResource("17_tlby2")
-metadata/_custom_type_script = "uid://cm1mms3c071sl"
 
 [editable path="Hitbox"]

@@ -106,7 +106,6 @@ func map_cleared() -> bool:
 		return false
 
 	for enemy in spawned_enemies:
-		print("Checking enemy: ", enemy, " is_dead: ", enemy.is_dead)
 		if not enemy.is_dead:
 			return false
 	return true

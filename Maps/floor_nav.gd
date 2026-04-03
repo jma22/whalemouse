@@ -23,5 +23,4 @@ func _process(delta: float) -> void:
 		return
 	var pos = player.global_position
 	material.set_shader_parameter("world_center", Vector2(pos.x, pos.z) + offset)
-	print("asdf: ", Vector2(pos.x, pos.z) + offset)
 	material.set_shader_parameter("shadow_center", Vector2(pos.x, pos.z) + offset/2)

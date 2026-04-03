@@ -10,12 +10,19 @@ class_name Player extends CharacterBody3D
 @onready var idle_state : IdleState = $StateMachine/IdleState
 @onready var hurt_state : HurtState = $StateMachine/HurtState
 @onready var roll_state : RollState = $StateMachine/RollState
-@onready var attack_state : AttackState = $StateMachine/AttackState
+@export var attack_state : AttackState
+
+@export var hitstop : HitStop
 
 var last_direction : Vector2 = Vector2.ZERO
 var invulnerable : bool = false
 
 var initial_health : int = 60
+
+# Input buffer — remembers the last action pressed within BUFFER_WINDOW seconds
+const BUFFER_WINDOW : float = 0.2
+var _buffered_action : StringName = &""
+var _buffer_timer : float = 0.0
 
 func reset() -> void:
 	# This can be called to reset the player's state, such as when restarting the game
@@ -31,6 +38,9 @@ func _ready() -> void:
 	state_machine.set_state(idle_state)
 
 func _process(_delta: float) -> void:
+	_tick_input_buffer(_delta)
+	if hitstop.is_in_hitstop:
+		return
 	check_state()
 	state_machine.current_state.deep_run(_delta)
 
@@ -40,6 +50,27 @@ func get_input() -> Vector2:
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
 	return input_vector
+
+func _tick_input_buffer(delta: float) -> void:
+	# Record new presses into the buffer
+	if Input.is_action_just_pressed("dash"):
+		_buffered_action = &"dash"
+		_buffer_timer = BUFFER_WINDOW
+	elif Input.is_action_just_pressed("atk"):
+		_buffered_action = &"atk"
+		_buffer_timer = BUFFER_WINDOW
+	# Count down and expire
+	if _buffer_timer > 0.0:
+		_buffer_timer -= delta
+		if _buffer_timer <= 0.0:
+			_buffered_action = &""
+
+func _consume_buffered(action: StringName) -> bool:
+	if _buffered_action == action:
+		_buffered_action = &""
+		_buffer_timer = 0.0
+		return true
+	return false
 
 func check_state() -> void:
 	if state_machine.current_state.is_complete:
@@ -52,15 +83,15 @@ func check_state() -> void:
 
 func neutral_state() -> void:
 	var input_vector : Vector2 = get_input()
-	var did_dash : bool = Input.is_action_just_pressed("dash")
-	var did_attack : bool = Input.is_action_just_pressed("atk")
+	var did_dash : bool = _consume_buffered(&"dash")
+	var did_attack : bool = _consume_buffered(&"atk")
 	if input_vector.length() > 0:
 		last_direction = input_vector
 	if did_dash:
 		roll_state.set_direction(last_direction)
 		state_machine.set_state(roll_state)
 		return
-	
+
 	if did_attack:
 		attack_state.set_direction(last_direction)
 		state_machine.set_state(attack_state)
@@ -72,6 +103,8 @@ func neutral_state() -> void:
 		state_machine.set_state(idle_state)
 
 func _physics_process(delta: float) -> void:
+	if hitstop.is_in_hitstop:
+		return
 	state_machine.current_state.deep_fixed_run(delta)
 	move_and_slide()
 
@@ -84,6 +117,8 @@ func setup_states() -> void:
 func on_hit(damage: int) -> void:
 	if invulnerable:
 		return
+
+	hitstop.start_hitstop(0.1)
 	health_component.take_damage(damage)
 	sprite_manager.damage_flash()
 	if health_component.is_dead():

@@ -2,12 +2,13 @@ extends State
 
 class_name HurtState
 @export var animation : AnimationClip
-@export var knockback_strength: float = 5.0
-@export var dampening: float = 0.9
-@export var duration: float = 0.5
+@export var knockback_strength: float = 3.0
+@export var dampening: float = 0.85
+@export var duration: float = 0.6
 
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
+	entity.sprite_manager.play(animation)
 	entity.set_invulnerable(true)
 	var random_dir : Vector3 = Vector3(randf() * 2.0 - 1.0, 0, randf() * 2.0 - 1.0).normalized()
 	entity.velocity = random_dir * knockback_strength

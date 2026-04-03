@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://camera.gd" id="3_aqk2v"]
 [ext_resource type="Shader" uid="uid://cfm3yjjtnlyxo" path="res://cloud_visual.tres" id="4_aqk2v"]
 [ext_resource type="Script" uid="uid://xujg62bri8lb" path="res://hud.gd" id="4_ic0uy"]
-[ext_resource type="Texture2D" uid="uid://dwpx4mphhni0j" path="res://Sprites/spritesheet_all.png" id="4_ikiii"]
 [ext_resource type="Script" uid="uid://dwntwtemf07ge" path="res://blessing_bar.gd" id="7_2u3nc"]
 [ext_resource type="PackedScene" uid="uid://dac7dl6bj43cp" path="res://hud_bar.tscn" id="8_cbp6q"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
@@ -119,9 +118,7 @@ smooth_speed = 10.0
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("2_tlwt5")]
 
 [node name="SpriteManager" parent="Player" index="0" unique_id=1668628302]
-texture = ExtResource("4_ikiii")
-hframes = 12
-frame = 14
+frame = 17
 
 [node name="Ripple" parent="Player" index="7" unique_id=1712351807]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -235,21 +232,20 @@ whale = NodePath("Whale")
 visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=586166948]
-transform = Transform3D(0.24361497, -0.7621807, 0.599777, 0, 0.6184084, 0.7858569, -0.969872, -0.19144653, 0.15065354, -4.7365427, 1.472, 2.8500772)
-light_color = Color(0.69, 0.46920002, 0.46920002, 1)
-light_energy = 0.403
+transform = Transform3D(0.4984877, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.86689675, -0.3068997, 0.39281368, -2.34, 2.6790254, 2.85)
+light_color = Color(0.57, 0.5858333, 0.76, 1)
+light_energy = 0.9
 light_indirect_energy = 1.828
 shadow_enabled = true
-shadow_bias = 5.19
-shadow_normal_bias = 1.184
-shadow_transmittance_bias = -5.409
-shadow_opacity = 0.91
+shadow_bias = 0.734
+shadow_normal_bias = 0.0
+shadow_opacity = 0.85
 shadow_blur = 0.0
 shadow_caster_mask = 4293918721
 directional_shadow_mode = 0
 directional_shadow_split_1 = 0.211
 directional_shadow_fade_start = 0.155
-directional_shadow_max_distance = 0.0
+directional_shadow_max_distance = 4.5
 directional_shadow_pancake_size = 0.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=347799331]
@@ -275,13 +271,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_2u3nc")
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1826523257]
-transform = Transform3D(1, 0, 0, 0, 0.6946584, 0.7193398, 0, -0.7193398, 0.6946584, 0, 2.63, 4.575308)
-visible = false
-light_energy = 6.557
-shadow_enabled = true
-shadow_blur = 1.42
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]

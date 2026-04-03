@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhs7o5i88ge5t"
-path.s3tc="res://.godot/imported/spritesheet (2).png-006ddee8d5d1da9c91640d4608204bcc.s3tc.ctex"
+uid="uid://bbp5jb16kkry4"
+path.s3tc="res://.godot/imported/spritesheet_13.png-79383bad92329aeeb3478301cc7f0e0c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Enemies/lunging_enemy/spritesheet (2).png"
-dest_files=["res://.godot/imported/spritesheet (2).png-006ddee8d5d1da9c91640d4608204bcc.s3tc.ctex"]
+source_file="res://Sprites/spritesheet_13.png"
+dest_files=["res://.godot/imported/spritesheet_13.png-79383bad92329aeeb3478301cc7f0e0c.s3tc.ctex"]
 
 [params]
 

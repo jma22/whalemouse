@@ -26,6 +26,10 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/size/initial_position_type=3
 
+[gui]
+
+common/snap_controls_to_pixels=false
+
 [input]
 
 ui_left={
@@ -89,4 +93,4 @@ spawn_whale={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0, 0.047058824, 0, 1)
+environment/defaults/default_clear_color=Color(0.42577747, 0.26614824, 0.39114207, 1)

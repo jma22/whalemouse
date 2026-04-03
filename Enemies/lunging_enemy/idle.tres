@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_sdljt")
-frame_numbers = Array[int]([1, 2])
+frame_numbers = Array[int]([4])
 name = "enemy_idle"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"

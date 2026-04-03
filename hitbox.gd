@@ -4,6 +4,7 @@ extends Area3D
 @export var hit_box_type: HitBoxType = HitBoxType.HIT_PLAYER
 @onready var sprite3D : Sprite3D = $Sprite3D
 @export var damage: int = 1
+@export var hitstop : HitStop
 var is_active: bool = false
 
 enum HitBoxType {
@@ -29,6 +30,8 @@ func set_active(active: bool) -> void:
 
 
 func get_damage() -> int:
+	if hitstop:
+		hitstop.start_hitstop(0.1)
 	return damage
 
 

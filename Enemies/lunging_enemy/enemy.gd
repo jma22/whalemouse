@@ -4,6 +4,7 @@ class_name Enemy
 @export var map : NavigationRegion3D
 @export var player : CharacterBody3D
 @export var xp_spawner_scene : PackedScene
+@export var hitstop : HitStop
 
 @onready var state_machine : StateMachine = $StateMachine
 @onready var sprite_manager : SpriteManager = $SpriteManager
@@ -11,7 +12,7 @@ class_name Enemy
 @onready var hitbox : Node = $Hitbox
 # @onready var walk_state : WalkState = $StateMachine/WalkState
 @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
-# @onready var hurt_state : HurtState = $StateMachine/HurtState
+@onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
 @onready var retreat_state : EnemyRetreatState = $StateMachine/EnemyRetreatState
 @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
 @onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
@@ -35,7 +36,7 @@ func _ready() -> void:
 	state_machine.set_state(enemy_idle_state)
 
 func _process(_delta: float) -> void:
-	if is_dead:
+	if is_dead or hitstop.is_in_hitstop:
 		return
 	check_state()
 	state_machine.current_state.deep_run(_delta)
@@ -53,6 +54,8 @@ func check_state() -> void:
 		elif state_machine.current_state == retreat_state:
 			check_range()
 		elif state_machine.current_state == approach_state:
+			check_range()
+		elif state_machine.current_state == hurt_state:
 			check_range()
 	else:
 		if state_machine.current_state == peaceful_state:	
@@ -78,12 +81,10 @@ func check_range() -> void:
 			state_machine.set_state(peaceful_state)
 
 func _physics_process(delta: float) -> void:
+	if is_dead or hitstop.is_in_hitstop:
+		return
 	state_machine.current_state.deep_fixed_run(delta)
 	knockback_component.handle_knockback()
-	if velocity.y > 0 or global_transform.origin.y > 0:
-		print("Velocity: ", velocity)
-		print("Position: ", global_transform.origin)
-		print("state: ", state_machine.current_state)
 	move_and_slide()
 
 
@@ -98,30 +99,38 @@ func on_hit(damage: int) -> void:
 		return
 	sprite_manager.damage_flash()
 	health_component.take_damage(damage)
+	on_staggered()
+	hitstop.start_hitstop(0.2)
 
-	if state_machine.current_state.has_method("on_hit"):
-		state_machine.current_state.on_hit(damage)
+	# if state_machine.current_state.has_method("on_hit"):
+	# 	state_machine.current_state.on_hit(damage)
 
-	var knockback_direction : Vector3 = (global_transform.origin - player.global_transform.origin).normalized()
-	knockback_component.receive_knockback(knockback_direction, damage)
+	
 
 	if health_component.is_dead():
 		on_die()
+		var knockback_direction : Vector3 = (global_transform.origin - player.global_transform.origin).normalized()
+		knockback_component.receive_knockback(knockback_direction, 0.4*damage)
+		return
+
+	var knockback_direction : Vector3 = (global_transform.origin - player.global_transform.origin).normalized()
+	knockback_component.receive_knockback(knockback_direction, damage)
 
 func on_die() -> void:
 	if is_dead:
 		return
 	var tween = await sprite_manager.die()
+	is_dead = true
+
 	await tween.finished
 	if xp_spawner_scene:
 		var xp_spawner_instance = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		xp_spawner_instance.setup(GlobalStats.get_enemy_xp_drop(), player)
-	is_dead = true
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func on_staggered() -> void:
-	enemy_idle_state.set_idle_duration(0.5)
-	state_machine.set_state(enemy_idle_state)
+	hurt_state.set_idle_duration(0.3)
+	state_machine.set_state(hurt_state)

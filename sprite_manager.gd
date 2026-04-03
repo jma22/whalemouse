@@ -3,12 +3,14 @@ extends Sprite3D
 class_name SpriteManager
 
 @export var frames_per_second = 4
+@export var hitstop : HitStop
 var current_idx : int = 0
 var time_accumulator : float = 0.0
 var looping : bool = true
 var current_animation : AnimationClip = null
 var is_done : bool = false
 var tween : Tween = null
+
 func reset() -> void:
 	current_idx = 0
 	time_accumulator = 0.0
@@ -18,6 +20,8 @@ func reset() -> void:
 
 func _process(delta: float) -> void:
 	if current_animation == null:
+		return
+	if hitstop and hitstop.is_in_hitstop:
 		return
 	
 	time_accumulator += delta
@@ -58,15 +62,23 @@ func damage_flash() -> void:
 	if tween != null and tween.is_valid():
 		await tween.finished
 	tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1, 0, 0, 1), 0.1)
+	tween.tween_property(self, "modulate", Color(1, 0, 0, 1), 0.2)
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.1)
 	tween.play()
+
+# func hit_stop() -> void:
+# 	if tween != null and tween.is_valid():
+# 		await tween.finished
+# 	tween = get_tree().create_tween()
+# 	tween.tween_property(self, "modulate", Color(1, 1, 1, 0.5), 0.05)
+# 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.05)
+# 	tween.play()
 
 func die() -> Tween:
 	# Play death animation, then queue_free
 	if tween != null and tween.is_valid():
 		await tween.finished
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.5)
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
 	tween.play()
 	return tween	

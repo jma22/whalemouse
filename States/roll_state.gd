@@ -8,12 +8,16 @@ var roll_direction : Vector2 = Vector2.ZERO
 # @export var roll_speed: float = 10.0	
 @export var dampening : float = 0.9
 @export var invulnerability_time : float = 0.5
+var bubbler_scene : PackedScene = preload("res://Bubbler.tscn")
 
 
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
 	entity.sprite_manager.play(animation)
 	initial_velocity()
+	var bubbler_instance = bubbler_scene.instantiate()
+	entity.add_child(bubbler_instance)
+	bubbler_instance.start()
 	entity.set_invulnerable(true)
 
 func run(delta: float) -> void:
