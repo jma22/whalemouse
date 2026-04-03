@@ -35,6 +35,14 @@ func get_current_stats() -> Array[Dictionary]:
 		stats.append(stat_dict)
 	return stats
 
+func add_kill() -> void:
+	total_stats["enemies_killed"] += 1
+
+func add_wave() -> void:
+	total_stats["waves_completed"] += 1
+
+func add_time_survived(time: float) -> void:
+	total_stats["total_time_survived"] += time
 
 func reset_current_run_stats() -> void:
 	current_run_stats["xp_suck"] = 0
@@ -46,6 +54,10 @@ func reset_current_run_stats() -> void:
 	current_run_stats["enemy_health"] = 0
 	current_run_stats["heal"] = 0
 	current_run_stats["damage"] = 0
+
+	total_stats["enemies_killed"] = 0
+	total_stats["waves_completed"] = 0
+	total_stats["total_time_survived"] = 0.0
 	ordering = []
 
 func add_to_stat(stat_name: String) -> void:

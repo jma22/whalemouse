@@ -19,7 +19,7 @@ func get_current_wave_info() -> WaveInfo:
 	
 	if wave_info.wave_number == 0:
 		wave_info.room_type = "shrine"
-		wave_info.blessings =  GlobalStats.get_two_random_blessing()
+		wave_info.blessings =  GlobalStats.get_two_random_blessing_no_whale()
 		wave_info.name = "The Beginning"
 		return wave_info
 
@@ -38,6 +38,7 @@ func get_current_wave_info() -> WaveInfo:
 			var combat_wave_number = wave_number_to_combat_wave_number(wave_info.wave_number)
 			wave_info.enemies_to_spawn = 1 + combat_wave_number
 			wave_info.name = "Wave " + str(combat_wave_number)
+			GlobalStats.add_wave()
 		else:
 			# 7, 9
 			wave_info.room_type = "shrine"
@@ -59,6 +60,7 @@ func get_current_wave_info() -> WaveInfo:
 			var combat_wave_number = wave_number_to_combat_wave_number(wave_info.wave_number)
 			wave_info.enemies_to_spawn = 1 + combat_wave_number
 			wave_info.name = "Wave " + str(combat_wave_number)
+			GlobalStats.add_wave()
 
 	return wave_info
 

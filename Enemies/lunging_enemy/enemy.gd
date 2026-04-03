@@ -24,6 +24,7 @@ var pursuit_range : float = 3.0
 var attack_range : float = 1.5
 var initial_health : int = 2
 var is_dead : bool = false
+var is_invulnerable : bool = false
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	self.player = player
@@ -95,7 +96,7 @@ func setup_states() -> void:
 			state.set_entity(self)
 
 func on_hit(damage: int) -> void:
-	if is_dead:
+	if is_dead or is_invulnerable:
 		return
 	sprite_manager.damage_flash()
 	health_component.take_damage(damage)
@@ -119,8 +120,9 @@ func on_hit(damage: int) -> void:
 func on_die() -> void:
 	if is_dead:
 		return
-	var tween = await sprite_manager.die()
 	is_dead = true
+	var tween = await sprite_manager.die()
+	GlobalStats.add_kill()
 
 	await tween.finished
 	if xp_spawner_scene:
@@ -134,3 +136,7 @@ func on_die() -> void:
 func on_staggered() -> void:
 	hurt_state.set_idle_duration(0.3)
 	state_machine.set_state(hurt_state)
+
+
+func set_invulnerable(value: bool) -> void:
+	is_invulnerable = value

@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://whale.tscn" id="12_k3n1d"]
 [ext_resource type="Shader" uid="uid://jj5u6ryttl55" path="res://transition.gdshader" id="16_2u3nc"]
 [ext_resource type="Script" uid="uid://b8kdfb86pgcyp" path="res://transition.gd" id="16_udxuc"]
+[ext_resource type="PackedScene" uid="uid://b3njbpc7i0djy" path="res://tutorial.tscn" id="18_ikiii"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_036b0"]
 
@@ -271,6 +272,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_2u3nc")
+
+[node name="Tutorial" parent="." unique_id=1256479148 instance=ExtResource("18_ikiii")]
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]

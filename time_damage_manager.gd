@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	_time_accumulator += delta
 	var seconds_per_damage : float = GlobalStats.get_seconds_per_damage()
 	if _time_accumulator >= seconds_per_damage:
+		GlobalStats.add_time_survived(seconds_per_damage)
 		_time_accumulator -= seconds_per_damage
 		do_damage()
 		if player.health_component and player.health_component.is_dead():
