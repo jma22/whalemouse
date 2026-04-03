@@ -163,3 +163,6 @@ func get_two_random_blessing_no_whale() -> Array[String]:
 
 func is_blessing(stat_name: String) -> bool:
 	return stat_name in ["xp_suck", "enemy_xp_drop", "whale_level", "dash_distance","heal"]
+
+func has_beluga() -> bool:
+	return current_run_stats["whale_level"] > 0

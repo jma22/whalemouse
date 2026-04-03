@@ -35,7 +35,7 @@ func set_circle() -> void:
 
 func set_whale_circle() -> void:
 	if whale_spawner:
-		if GlobalStats.get_whale_size() <= 0:
+		if not GlobalStats.has_beluga():
 			whale_circle.visible = false
 			return
 		whale_circle.visible = true
