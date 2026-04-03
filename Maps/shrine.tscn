@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bnoo4a5dj0t3w"]
 
 [ext_resource type="Script" uid="uid://c4tywyvljdc47" path="res://shrine.gd" id="1_osd8o"]
-[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/shrine.png" id="2_osd8o"]
+[ext_resource type="Texture2D" uid="uid://53kk28lc5bjw" path="res://Sprites/spritesheet_6.png" id="2_rt4r7"]
 [ext_resource type="Texture2D" uid="uid://umpcj5nwfqy7" path="res://Icons/pasted-image-2026-03-31T23-52-56-411Z_r1_c2_processed_by_imagy.png" id="3_6pxf5"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_rt4r7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iw27f"]
 radius = 0.25
@@ -72,9 +73,12 @@ floating_sprite = NodePath("FloatingSprite")
 area = NodePath("Area3D")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=393308710]
-transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, 1, 0, -0.5, -4.371139e-08, 0, 0.01, 0)
-texture = ExtResource("2_osd8o")
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=297931520]
+transform = Transform3D(0.185, 0, 0, 0, -8.086607e-09, 0.37, 0, -0.185, -1.6173214e-08, 0, 0.01, 0)
+texture = ExtResource("2_rt4r7")
+hframes = 3
+script = ExtResource("3_rt4r7")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=775249225]
 
@@ -83,7 +87,7 @@ shape = SubResource("CylinderShape3D_iw27f")
 debug_color = Color(1, 0, 0.1833334, 1)
 
 [node name="FloatingSprite" type="Sprite3D" parent="." unique_id=1485702688]
-transform = Transform3D(0.2, 0, 0, 0, 0.099999994, 0.17320509, 0, -0.17320509, 0.099999994, 0, 0, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.099999994, 0.17320509, 0, -0.17320509, 0.099999994, 0, 0, -0.137)
 alpha_cut = 2
 texture = ExtResource("3_6pxf5")
 

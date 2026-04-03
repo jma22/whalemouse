@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://whale.tscn" id="12_k3n1d"]
 [ext_resource type="Shader" uid="uid://jj5u6ryttl55" path="res://transition.gdshader" id="16_2u3nc"]
 [ext_resource type="Script" uid="uid://b8kdfb86pgcyp" path="res://transition.gd" id="16_udxuc"]
+[ext_resource type="Script" uid="uid://71xrymgiysoh" path="res://tutorial_manager.gd" id="18_cbp6q"]
 [ext_resource type="PackedScene" uid="uid://b3njbpc7i0djy" path="res://tutorial.tscn" id="18_ikiii"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_036b0"]
@@ -273,7 +274,29 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_2u3nc")
 
-[node name="Tutorial" parent="." unique_id=1256479148 instance=ExtResource("18_ikiii")]
+[node name="TutorialManager" type="Node" parent="." unique_id=1064560148]
+script = ExtResource("18_cbp6q")
+
+[node name="Tutorial" parent="TutorialManager" unique_id=1256479148 instance=ExtResource("18_ikiii")]
+visible = false
+
+[node name="jellyfish light" type="DirectionalLight3D" parent="." unique_id=1443013789]
+transform = Transform3D(-0.85264015, -0.3694623, 0.3694623, 0, 0.70710677, 0.70710677, -0.5224986, 0.6029076, -0.6029076, -1.75333, 2.6790254, -0.009863377)
+layers = 2
+light_color = Color(0.57, 0.5858333, 0.76, 1)
+light_energy = 0.9
+light_indirect_energy = 1.828
+shadow_enabled = true
+shadow_bias = 0.734
+shadow_normal_bias = 0.0
+shadow_opacity = 0.85
+shadow_blur = 0.0
+shadow_caster_mask = 4293918722
+directional_shadow_mode = 0
+directional_shadow_split_1 = 0.211
+directional_shadow_fade_start = 0.155
+directional_shadow_max_distance = 4.5
+directional_shadow_pancake_size = 0.0
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]

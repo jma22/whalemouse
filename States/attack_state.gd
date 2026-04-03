@@ -13,8 +13,8 @@ var attack_direction : Vector2 = Vector2.ZERO
 @export var hitbox : Hitbox
 
 var hitbox_frame : int = 4
-var bubbler_scene : PackedScene = preload("res://stomp_bubbler.tscn")
-var crack_scene : PackedScene = preload("res://Player/Crack.tscn")
+var bubbler_scene : PackedScene = load("res://stomp_bubbler.tscn")
+var crack_scene : PackedScene = load("res://Player/crack.tscn")
 
 
 func enter() -> void:
@@ -37,8 +37,8 @@ func fixed_run(_delta: float) -> void:
 	if entity.sprite_manager.current_idx == hitbox_frame -2 :
 		entity.velocity.y = fall_speed
 		var bubbler_instance = bubbler_scene.instantiate()
-		bubbler_instance.global_transform.origin = entity.global_transform.origin + Vector3(0, -0.1, 0)
 		entity.get_parent().add_child(bubbler_instance)
+		bubbler_instance.global_transform.origin = entity.global_transform.origin + Vector3(0, -0.1, 0)
 		bubbler_instance.start()
 
 	if entity.sprite_manager.current_idx == hitbox_frame and not hitbox.is_active:

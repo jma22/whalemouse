@@ -1,7 +1,7 @@
 extends Node3D
 class_name Shrine
 
-@export var sprite : Sprite3D
+@export var sprite : SpriteManager
 @export var floating_sprite : Sprite3D
 @export var area : Area3D
 @export var blessing_description : BlessingText
@@ -10,10 +10,15 @@ class_name Shrine
 var player_inside : bool = false
 var upgrade_name : String = ""
 var activated : bool = false
+
+var animation_clip : AnimationClip
+var tween : Tween = null
+
 func _ready() -> void:
 	area.connect("body_entered", Callable(self, "_on_body_entered"))
 	area.connect("body_exited", Callable(self, "_on_body_exited"))
-
+	animation_clip = AnimationClip.new()
+	animation_clip.frame_numbers = [0,1,2]
 
 func setup(_upgrade_name: String) -> void:
 	if _upgrade_name == "":
@@ -35,13 +40,23 @@ func _process(delta: float) -> void:
 			GlobalStats.add_to_stat(upgrade_name)
 			activated = true
 			floating_sprite.visible = false
+			
 
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
-		sprite.modulate = Color(1, 0, 0) # Change color to red when player enters
+		sprite.modulate = Color(0.7, 0.8, 0.8) # Change color to red when player enters
 		player_inside = true
 		blessing_description.display_blessing_info(upgrade_name)
+		sprite.frames_per_second = 5
+		if tween:
+			tween.stop()
+		tween = create_tween()
+		tween.set_parallel(true)
+		## grow a little bigger, opaque, slow rotation
+		tween.tween_property(sprite, "scale", Vector3(0.05,0.05,0.05), 0.3).as_relative().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(sprite, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.play()
 
 
 func _on_body_exited(body: Node) -> void:
@@ -49,12 +64,23 @@ func _on_body_exited(body: Node) -> void:
 		sprite.modulate = Color(1, 1, 1) # Change color back
 		player_inside = false
 		blessing_description.exit_blessing_info()
+		sprite.frames_per_second = 1.6
+		if tween:
+			tween.stop()
+		tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(sprite, "scale", Vector3(-0.05,-0.05,-0.05), 0.3).as_relative().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(sprite, "modulate:a", 0.6, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.play()
 
 
 func open_gateway() -> void:
 	area.set_monitorable(true)
 	area.set_monitoring(true)
 	sprite.visible = true
+	sprite.play(animation_clip)
+	if not player_inside:
+		sprite.modulate.a = 0.6
 
 func close_gateway() -> void:
 	area.set_monitorable(false)

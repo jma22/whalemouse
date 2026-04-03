@@ -77,7 +77,7 @@ func add_to_stat(stat_name: String) -> void:
 
 
 func heal() -> void:
-	var amount : int = current_run_stats["heal"] * 5
+	var amount : int = current_run_stats["heal"] * 6
 	player.heal(amount)
 
 func damage() -> void:
@@ -85,36 +85,53 @@ func damage() -> void:
 	player.damage(amount)
 
 func get_attracted_radius() -> float:
-	return 0.75 + current_run_stats["xp_suck"] * 0.25
+	return 0.7 + current_run_stats["xp_suck"] * 0.35
 
 func get_attracted_speed() -> float:
-	return 0.3 + current_run_stats["xp_suck"] * 0.25
+	return 0.3 + current_run_stats["xp_suck"] * 0.3
 
 func get_enemy_xp_drop() -> float:
-	return 1.0 + current_run_stats["enemy_xp_drop"]
+	return 1.0 + 2.0 * current_run_stats["enemy_xp_drop"]
 
 func get_dash_distance() -> float:
-	return 5.0 + current_run_stats["dash_distance"] *1.5
+	return 5.0 + current_run_stats["dash_distance"] *3.0
 
 func get_seconds_per_damage() -> float:
 	## i want the damager per second to linearly increase
-	return 2.0/(1.0 + current_run_stats["time_tick_level"] * 0.25)
+	return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.25)
 
 func get_enemy_speed_multiplier() -> float:
-	return 1.0 + current_run_stats["enemy_speed"] * 0.25
+	return 1.0 + current_run_stats["enemy_speed"] * 0.5
 
 func get_enemy_health_multiplier() -> float:
 	return 1.0 + current_run_stats["enemy_health"] * 0.5
 
 func get_whale_size() -> float:
-	return 0.3 + current_run_stats["whale_level"] * 0.2
+	return 0.1 + current_run_stats["whale_level"] * 0.2
 
 func get_description(stat_name: String) -> String:
 	match stat_name:
 		"heal":
-			return "%d more seconds." % ((1+current_run_stats["heal"]) * 5)
+			return "Take some time! (%d)" % ((1+current_run_stats["heal"]) * 5)
 		"damage":
-			return "%d less seconds." % ((1+current_run_stats["damage"]) * 3)
+			return "Give me your time! (%d)" % ((1+current_run_stats["damage"]) * 3)
+		"xp_suck":
+			return "Even orbs are attracted to you!"
+		"enemy_xp_drop":
+			return "Enemies are more... nutritious?"
+		"whale_level":
+			if current_run_stats["whale_level"] == 0:
+				return "Beluga is here to help!"
+			return "Beluga grows bigger!"
+		"dash_distance":
+			return "You go vroom!"
+		"time_tick_level":
+			return "Time ticks faster..."
+		"enemy_speed":
+			return "Enemies go vroom!"
+		"enemy_health":
+			return "Enemies gain weight..."	
+		
 	return "lmao"
 
 func get_two_random_blessing() -> Array[String]:
@@ -143,3 +160,6 @@ func get_two_random_blessing_no_whale() -> Array[String]:
 		selected.append(blessings[index])
 		blessings.remove_at(index)
 	return selected
+
+func is_blessing(stat_name: String) -> bool:
+	return stat_name in ["xp_suck", "enemy_xp_drop", "whale_level", "dash_distance","heal"]

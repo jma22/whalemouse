@@ -7,12 +7,12 @@ var player : CharacterBody3D
 # var discrete_time : float = 0.01
 var time_accumulator : float = 0.0
 
-var offset : Vector2 = Vector2(0,0.25)
+var offset : Vector2 = Vector2(0,0.45)
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	material = floor_material.get_surface_override_material(0) as ShaderMaterial
 	self.player = player
 	## set size of the mesh in shader parameters
-	material.set_shader_parameter("world_size", Vector2(8,4))
+	material.set_shader_parameter("world_size", Vector2(8,4.4))
 	material.set_shader_parameter("world_origin", Vector2(global_transform.origin.x, global_transform.origin.z) - Vector2(4,2))
 
 func _process(delta: float) -> void:

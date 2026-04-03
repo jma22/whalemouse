@@ -6,7 +6,7 @@ var target_position : Vector3
 @export var attack_speed : float = 12.0
 @export var dampening : float = 0.88
 
-var bubbler_scene : PackedScene = preload("res://Bubbler.tscn")
+var bubbler_scene : PackedScene = load("res://bubbler.tscn")
 func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
 	entity.hitbox.set_active(true)

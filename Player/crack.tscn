@@ -5,7 +5,7 @@
 
 [node name="Crack" type="Sprite3D" unique_id=554710779]
 transform = Transform3D(1.5, 0, 0, 0, 1.3734939, 0.60292166, 0, -0.60292166, 1.3734939, 0, 0, 0)
-modulate = Color(0.69994164, 0.5893, 0.71, 1)
+modulate = Color(0.71661663, 0.5694, 0.73, 1)
 pixel_size = 0.001
 no_depth_test = true
 alpha_cut = 1

@@ -67,7 +67,6 @@ func check_state() -> void:
 
 func check_range() -> void:
 	var distance_to_player : float = global_transform.origin.distance_to(player.global_transform.origin)
-	print("Distance to player: ", distance_to_player)
 	if distance_to_player <= attack_range:
 		if state_machine.current_state != attack_state:
 			state_machine.set_state(charge_state)

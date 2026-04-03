@@ -8,7 +8,7 @@ var roll_direction : Vector2 = Vector2.ZERO
 # @export var roll_speed: float = 10.0	
 @export var dampening : float = 0.9
 @export var invulnerability_time : float = 0.5
-var bubbler_scene : PackedScene = preload("res://Bubbler.tscn")
+var bubbler_scene : PackedScene = load("res://bubbler.tscn")
 
 
 func enter() -> void:

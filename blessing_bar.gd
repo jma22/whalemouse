@@ -2,7 +2,7 @@ extends HBoxContainer
 
 class_name BlessingBar
 
-@onready var icon_scene : PackedScene = preload("res://Icons/icon.tscn")
+@onready var icon_scene : PackedScene = load("res://Icons/icon.tscn")
 var icons : Array[Icon] = []
 
 func sync_bar() -> void:
