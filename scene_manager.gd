@@ -61,3 +61,15 @@ func next_wave() -> void:
 	var world_manager = game_scene as WorldManager
 	if world_manager:
 		world_manager.next_wave()
+
+func pause_game() -> void:
+	var game_scene = all_scenes[SceneEnum.GAME]
+	var world_manager = game_scene as WorldManager
+	if world_manager:
+		world_manager.pause_game()
+
+func resume_game() -> void:
+	var game_scene = all_scenes[SceneEnum.GAME]
+	var world_manager = game_scene as WorldManager
+	if world_manager:
+		world_manager.resume_game()

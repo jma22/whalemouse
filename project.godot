@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneManager="*uid://c8eq42u5mh3sy"
 GlobalStats="*uid://dmyu4wno1vl2a"
+TutorialManager="*uid://71xrymgiysoh"
 
 [display]
 

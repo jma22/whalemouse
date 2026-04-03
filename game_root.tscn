@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://dg8owrdf3qc4u"]
 
 [ext_resource type="Script" uid="uid://djwr6o08i0wv1" path="res://game_root.gd" id="1_xj5yv"]
+[ext_resource type="PackedScene" uid="uid://b3njbpc7i0djy" path="res://tutorial.tscn" id="2_pjpa4"]
 
 [node name="GameRoot" type="Node3D" unique_id=544021186 node_paths=PackedStringArray("scene_container")]
 script = ExtResource("1_xj5yv")
 scene_container = NodePath("SceneContainer")
 
 [node name="SceneContainer" type="Node3D" parent="." unique_id=216488540]
+
+[node name="Tutorial" parent="." unique_id=1256479148 instance=ExtResource("2_pjpa4")]

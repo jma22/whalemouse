@@ -52,9 +52,19 @@ func map_entered(first_time: bool) -> void:
 		shrine_map_manager.start_room(wave_info)
 
 	transition.transition_in()
+	await transition.tween.finished
+	await wave_text.tween.finished
+	if first_time:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.INTRO)
 	# map_manager.spawn_enemies()
 	# wave_manager.start_wave()
 
 func next_wave() -> void:
 	wave_manager.current_wave += 1
 	map_entered(false)
+
+func pause_game() -> void:
+	get_tree().paused = true
+
+func resume_game() -> void:
+	get_tree().paused = false
