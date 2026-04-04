@@ -141,7 +141,7 @@ func get_description(stat_name: String) -> String:
 		"enemy_health":
 			return "Enemies gain weight..."	
 		"enemy_damage":
-			return "Enemies hurt more..."
+			return "Enemies grow spikes..."
 
 		
 	return "lmao"
