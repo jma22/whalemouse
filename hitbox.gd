@@ -32,7 +32,11 @@ func set_active(active: bool) -> void:
 func get_damage() -> int:
 	if hitstop:
 		hitstop.start_hitstop(0.1)
-	return damage
+	if hit_box_type == HitBoxType.HIT_PLAYER:
+		return GlobalStats.get_enemy_damage()
+	else:
+		return damage
+
 
 
 func set_collisions() -> void:

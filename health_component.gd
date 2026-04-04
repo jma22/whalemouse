@@ -27,8 +27,8 @@ func take_damage(damage: int) -> void:
 
 func gain_health(amount: int) -> void:
 	current_health += amount
-	if current_health > max_health:
-		current_health = max_health
+	# if current_health > max_health:
+	# 	current_health = max_health
 	if hp_display:
 		hp_display.gain_hp(amount, current_health)
 

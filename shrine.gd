@@ -45,6 +45,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.OVERSHRINE)
 		sprite.modulate = Color(0.7, 0.8, 0.8) # Change color to red when player enters
 		player_inside = true
 		blessing_description.display_blessing_info(upgrade_name)

@@ -56,8 +56,16 @@ func map_entered(first_time: bool) -> void:
 	await wave_text.tween.finished
 	if first_time:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.INTRO)
-	# map_manager.spawn_enemies()
-	# wave_manager.start_wave()
+	if wave_manager.current_wave == 11:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.GOODLUCK)
+	if wave_manager.current_wave == 1:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRSTARRIVE)
+	if wave_manager.current_wave == 5:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_CURSE)
+	if wave_manager.current_wave == 10:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.CURSE_OF_THE_DEPTHS)
+		
+	
 
 func next_wave() -> void:
 	wave_manager.current_wave += 1

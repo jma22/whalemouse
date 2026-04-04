@@ -53,7 +53,7 @@ func get_input() -> Vector2:
 
 func _tick_input_buffer(delta: float) -> void:
 	# Record new presses into the buffer
-	if Input.is_action_just_pressed("dash"):
+	if GlobalStats.has_dash() and Input.is_action_just_pressed("dash"):
 		_buffered_action = &"dash"
 		_buffer_timer = BUFFER_WINDOW
 	elif Input.is_action_just_pressed("atk"):

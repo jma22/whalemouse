@@ -20,6 +20,7 @@ var current_run_stats = {
 	"enemy_health": 0,
 	"heal" : 0,
 	"damage" : 0,
+	"enemy_damage" : 0,
 }
 var ordering : Array[String] = []
 
@@ -52,6 +53,7 @@ func reset_current_run_stats() -> void:
 	current_run_stats["time_tick_level"] = 0
 	current_run_stats["enemy_speed"] = 0
 	current_run_stats["enemy_health"] = 0
+	current_run_stats["enemy_damage"] = 0
 	current_run_stats["heal"] = 0
 	current_run_stats["damage"] = 0
 
@@ -66,9 +68,13 @@ func add_to_stat(stat_name: String) -> void:
 
 	if current_run_stats.has(stat_name):
 		current_run_stats[stat_name] += 1
-		if stat_name == "heal":
+		if stat_name == "whale_level" and current_run_stats[stat_name] ==1:
+			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_BELUGA)
+		elif stat_name == "dash_distance" and current_run_stats[stat_name] ==1:
+			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_DASH)
+		elif stat_name == "heal":
 			heal()
-		if stat_name == "damage":
+		elif stat_name == "damage":
 			damage()
 	else:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
@@ -93,6 +99,9 @@ func get_attracted_speed() -> float:
 func get_enemy_xp_drop() -> float:
 	return 1.0 + 2.0 * current_run_stats["enemy_xp_drop"]
 
+func get_enemy_damage() -> int:
+	return 4.0 + current_run_stats["enemy_damage"] * 3.0
+
 func get_dash_distance() -> float:
 	return 5.0 + current_run_stats["dash_distance"] *3.0
 
@@ -112,9 +121,9 @@ func get_whale_size() -> float:
 func get_description(stat_name: String) -> String:
 	match stat_name:
 		"heal":
-			return "Take some time! (%d)" % ((1+current_run_stats["heal"]) * 5)
+			return "Take some time! (+%d)" % ((1+current_run_stats["heal"]) * 6)
 		"damage":
-			return "Give me your time! (%d)" % ((1+current_run_stats["damage"]) * 3)
+			return "Too much time on your hands... (-%d)" % ((1+current_run_stats["damage"]) * 3)
 		"xp_suck":
 			return "Even orbs are attracted to you!"
 		"enemy_xp_drop":
@@ -131,6 +140,9 @@ func get_description(stat_name: String) -> String:
 			return "Enemies go vroom!"
 		"enemy_health":
 			return "Enemies gain weight..."	
+		"enemy_damage":
+			return "Enemies hurt more..."
+
 		
 	return "lmao"
 
@@ -144,7 +156,7 @@ func get_two_random_blessing() -> Array[String]:
 	return selected
 
 func get_two_random_curses() -> Array[String]:
-	var curses : Array[String] = ["enemy_speed", "enemy_health", "damage"]
+	var curses : Array[String] = ["enemy_speed", "enemy_health", "damage", "enemy_damage"]
 	var selected : Array[String] = []
 	while selected.size() < 2 and curses.size() > 0:
 		var index = randi() % curses.size()
@@ -165,4 +177,8 @@ func is_blessing(stat_name: String) -> bool:
 	return stat_name in ["xp_suck", "enemy_xp_drop", "whale_level", "dash_distance","heal"]
 
 func has_beluga() -> bool:
+	# return true
 	return current_run_stats["whale_level"] > 0
+
+func has_dash() -> bool:
+	return current_run_stats["dash_distance"] > 0

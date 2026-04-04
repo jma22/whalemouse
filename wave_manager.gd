@@ -23,11 +23,11 @@ func get_current_wave_info() -> WaveInfo:
 		wave_info.name = "The Beginning"
 		return wave_info
 
-	if wave_info.wave_number % 10 == 5:
+	if wave_info.wave_number % 10 == 0:
 		wave_info.room_type = "shrine"
 		wave_info.blessings = ["time_tick_level"]
 		wave_info.name = "Curse of the Depths"
-	elif wave_info.wave_number % 10 == 0:
+	elif wave_info.wave_number % 10 == 5:
 		wave_info.room_type = "shrine"
 		wave_info.blessings = GlobalStats.get_two_random_curses()
 		wave_info.name = "Lesser Evils"
