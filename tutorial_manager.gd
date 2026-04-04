@@ -9,7 +9,8 @@ enum TutorialEnum {
 	FIRST_BELUGA,
 	FIRST_DASH,
 	CURSE_OF_THE_DEPTHS,
-	GOODLUCK
+	GOODLUCK,
+	SECOND_CHOICE,
 }
 var tutorial : Tutorial = null
 var tutorials : Dictionary= {
@@ -31,6 +32,10 @@ var tutorials : Dictionary= {
 	TutorialEnum.FIRST_CURSE: [["Why don't you let me help you out a bit?", false],
 		["You're just making this harder!", true],
 		["It's called helping him \'move on\'.", false]
+	],
+	TutorialEnum.SECOND_CHOICE: [["If you can't make up your mind, try pressing [esc]", false],
+		["I think that's cheating.", true],
+		["Oh so now you want him to have less time?", false]
 	],
 	TutorialEnum.CURSE_OF_THE_DEPTHS: [["I'll make this easier for you.", false],
 		["I think you're supposed to give him two choices", true],

@@ -64,7 +64,9 @@ func map_entered(first_time: bool) -> void:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_CURSE)
 	if wave_manager.current_wave == 10:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.CURSE_OF_THE_DEPTHS)
-		
+	if wave_manager.current_wave == 4:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.SECOND_CHOICE)
+
 	
 
 func next_wave() -> void:
