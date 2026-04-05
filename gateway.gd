@@ -11,6 +11,7 @@ var idle_animation_clip : AnimationClip
 
 var tween : Tween = null
 
+@export var audio_player : AudioStreamPlayer
 func _ready() -> void:
 	area.connect("body_entered", Callable(self, "_on_body_entered"))
 	area.connect("body_exited", Callable(self, "_on_body_exited"))
@@ -18,12 +19,15 @@ func _ready() -> void:
 	animation_clip.frame_numbers = [0,1,2]
 	idle_animation_clip = AnimationClip.new()
 	idle_animation_clip.frame_numbers = [0,1,2]
+	close_gateway()
 
 func _process(delta: float) -> void:
 	if player_inside:
 		if not done and  Input.is_action_just_pressed("ui_accept"):
 			done = true
+			audio_player.play()
 			SceneManager.next_wave()
+
 
 
 func _on_body_entered(body: Node) -> void:

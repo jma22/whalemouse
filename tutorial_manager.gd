@@ -73,4 +73,3 @@ func pause_tutorial() -> void:
 
 func resume_tutorial() -> void:
 	tutorial.process_mode = Node.PROCESS_MODE_ALWAYS
-

@@ -14,6 +14,7 @@ var activated : bool = false
 var animation_clip : AnimationClip
 var tween : Tween = null
 
+@export var audio_player : AudioStreamPlayer
 func _ready() -> void:
 	area.connect("body_entered", Callable(self, "_on_body_entered"))
 	area.connect("body_exited", Callable(self, "_on_body_exited"))
@@ -40,7 +41,7 @@ func _process(delta: float) -> void:
 			GlobalStats.add_to_stat(upgrade_name)
 			activated = true
 			floating_sprite.visible = false
-			
+			audio_player.play()
 
 
 func _on_body_entered(body: Node) -> void:

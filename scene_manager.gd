@@ -42,18 +42,20 @@ func deactivate() -> void:
 
 func activate() -> void:
 	if _current:
-		_current.visible = true
-		_current.process_mode = PROCESS_MODE_INHERIT
 		_container.add_child(_current)
+
 		if _current.has_method("setup"):
 			_current.setup()
+		_current.visible = true
+		_current.process_mode = PROCESS_MODE_INHERIT
+		
 
 func reset_game() -> void:
 	var game_scene = all_scenes[SceneEnum.GAME]
 	var world_manager = game_scene as WorldManager
 	if world_manager:
 		world_manager.reset()
-		world_manager.setup()
+		# world_manager.setup()
 	GlobalStats.reset_current_run_stats()
 
 func next_wave() -> void:

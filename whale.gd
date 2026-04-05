@@ -3,11 +3,13 @@ extends Node3D
 class_name Whale
 
 @export var whale_animation_player : AnimationPlayer
-
+@export var audio_player : AudioStreamPlayer
 
 
 
 func play() -> void:
+	audio_player.pitch_scale = 1.0
+	audio_player.play()
 	whale_animation_player.play("whale_animation")
 
 # func whale_up() -> void:

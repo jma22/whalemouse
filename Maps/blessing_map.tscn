@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://blessing_description.gd" id="8_68yjn"]
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/big_rock.tscn" id="9_327w5"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/smoke.gdshader" id="10_617kr"]
-[ext_resource type="Texture2D" uid="uid://nd16lr41d1to" path="res://UI/CurseBackground.png" id="13_617kr"]
+[ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]

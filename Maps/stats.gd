@@ -48,7 +48,7 @@ func add_time_survived(time: float) -> void:
 func reset_current_run_stats() -> void:
 	current_run_stats["xp_suck"] = 0
 	current_run_stats["enemy_xp_drop"] = 0
-	current_run_stats["whale_level"] = 0
+	current_run_stats["whale_level"] = 1
 	current_run_stats["dash_distance"] = 0
 	current_run_stats["time_tick_level"] = 0
 	current_run_stats["enemy_speed"] = 0
@@ -116,7 +116,7 @@ func get_enemy_health_multiplier() -> float:
 	return 1.0 + current_run_stats["enemy_health"] * 0.5
 
 func get_whale_size() -> float:
-	return 0.1 + current_run_stats["whale_level"] * 0.2
+	return current_run_stats["whale_level"] * 0.2
 
 func get_description(stat_name: String) -> String:
 	match stat_name:
@@ -177,8 +177,9 @@ func is_blessing(stat_name: String) -> bool:
 	return stat_name in ["xp_suck", "enemy_xp_drop", "whale_level", "dash_distance","heal"]
 
 func has_beluga() -> bool:
-	# return true
-	return current_run_stats["whale_level"] > 0
+	return true
+	# return current_run_stats["whale_level"] > 0
 
 func has_dash() -> bool:
-	return current_run_stats["dash_distance"] > 0
+	return true
+	# return current_run_stats["dash_distance"] > 0

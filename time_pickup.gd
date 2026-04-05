@@ -15,6 +15,7 @@ var pickup_radius : float = 0.7
 var despawn_radius : float = 0.4
 var animation_clip : AnimationClip
 @export var sprite_manager : SpriteManager
+@export var audio_player : AudioStreamPlayer
 # var attracted_speed : float = 1.0
 var pickup_speed : float = 3.0
 
@@ -79,9 +80,16 @@ func check_state() -> void:
 		var distance_to_target = global_transform.origin.distance_to(target.global_transform.origin)
 		if distance_to_target <= despawn_radius:
 			state = PickupState.Despawn
+			play_sound()
 		elif distance_to_target <= pickup_radius:
 			state = PickupState.PickedUp
 		elif distance_to_target <= GlobalStats.get_attracted_radius():
 			state = PickupState.Attracted
 		else:
 			state = PickupState.Idle
+
+
+func play_sound() -> void:
+	if audio_player and audio_player.stream:
+		audio_player.pitch_scale = 2.2 + 0.5 * randf()
+		audio_player.play()

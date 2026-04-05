@@ -11,6 +11,7 @@ var attack_direction : Vector2 = Vector2.ZERO
 @export var fall_speed : float = -4.0
 # @export var invulnerability_time : float = 0.5
 @export var hitbox : Hitbox
+@export var audio_player : AudioStreamPlayer
 
 var hitbox_frame : int = 4
 var bubbler_scene : PackedScene = load("res://stomp_bubbler.tscn")
@@ -21,6 +22,8 @@ func enter() -> void:
 	# entity.sprite_manager.frames_per_second = fps
 	entity.sprite_manager.play(animation, false)
 	initial_velocity()
+	audio_player.pitch_scale = 0.9 + randf() * 0.2
+	audio_player.play()
 	# entity.set_invulnerable(true)
 	# hitbox.set_active(true)
 

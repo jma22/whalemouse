@@ -17,10 +17,13 @@
 [ext_resource type="Resource" uid="uid://x505vmku7x31" path="res://AnimationClips/dash.tres" id="12_u1c27"]
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://animation_clip.gd" id="13_7emwf"]
 [ext_resource type="Resource" uid="uid://cw13rf4mx4tj6" path="res://AnimationClips/attack.tres" id="14_lfmf2"]
+[ext_resource type="AudioStream" uid="uid://dvufetk8lu5rw" path="res://SFX/dash.wav" id="17_gpjlu"]
 [ext_resource type="PackedScene" uid="uid://w6vcxj52h0dl" path="res://Player/spot_light_3d.tscn" id="17_pisgm"]
 [ext_resource type="Texture2D" uid="uid://dqeqqpt3ajff7" path="res://Player/attack_animation-Sheet.png" id="18_b1ygp"]
 [ext_resource type="Script" uid="uid://tuoak76jqbly" path="res://Player/ripple.gd" id="18_o28un"]
+[ext_resource type="AudioStream" uid="uid://bm37fematmsgb" path="res://SFX/player_hit.wav" id="19_8mwp6"]
 [ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Player/hitstop.gd" id="20_n471f"]
+[ext_resource type="AudioStream" uid="uid://cnjqg8b31hol6" path="res://SFX/attack.wav" id="22_hshwv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lfmf2"]
 height = 0.5
@@ -81,7 +84,7 @@ mesh = SubResource("CylinderMesh_aqk2v")
 [node name="StateMachine" type="Node" parent="." unique_id=1041110873]
 script = ExtResource("4_nvl01")
 
-[node name="AttackState" type="Node" parent="StateMachine" unique_id=1575047821 node_paths=PackedStringArray("hitbox")]
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=1575047821 node_paths=PackedStringArray("hitbox", "audio_player")]
 script = ExtResource("12_bwjto")
 animation = ExtResource("14_lfmf2")
 attack_speed = 7.0
@@ -89,7 +92,15 @@ dampening = 0.8
 jump_strength = 2.0
 fall_speed = -3.0
 hitbox = NodePath("../../Hitbox")
+audio_player = NodePath("Attack")
 metadata/_custom_type_script = "uid://ce3e7vd401ydb"
+
+[node name="Attack" type="AudioStreamPlayer" parent="StateMachine/AttackState" unique_id=256267168]
+stream = ExtResource("22_hshwv")
+volume_db = -8.43
+pitch_scale = 1.1
+
+[node name="HitSound" type="AudioStreamPlayer" parent="StateMachine/AttackState" unique_id=25873903]
 
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=752173126]
 script = ExtResource("5_ivps1")
@@ -107,14 +118,21 @@ animation = SubResource("Resource_hshwv")
 knockback_strength = 4.0
 duration = 0.5
 
-[node name="RollState" type="Node" parent="StateMachine" unique_id=2053658731]
+[node name="RollState" type="Node" parent="StateMachine" unique_id=2053658731 node_paths=PackedStringArray("audio_player")]
 script = ExtResource("10_ivps1")
 animation = ExtResource("12_u1c27")
+audio_player = NodePath("Roll")
 metadata/_custom_type_script = "uid://bh7n5qul1jfn"
+
+[node name="Roll" type="AudioStreamPlayer" parent="StateMachine/RollState" unique_id=1231763994]
+stream = ExtResource("17_gpjlu")
+volume_db = -10.868
+pitch_scale = 1.1
 
 [node name="HurtBox" parent="." unique_id=1638711581 node_paths=PackedStringArray("owner_entity") instance=ExtResource("10_nvl01")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 owner_entity = NodePath("..")
+hit_sound_fx = ExtResource("19_8mwp6")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("10_n7ghd")

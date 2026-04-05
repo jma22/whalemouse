@@ -94,7 +94,7 @@ shader_parameter/shape_treshold = 1.0
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2u3nc"]
 gradient = SubResource("Gradient_hiqwa")
 
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner")]
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner", "loading_screen")]
 script = ExtResource("1_ioo17")
 map_manager = NodePath("Map")
 shrine_map_manager = NodePath("BlessingMap")
@@ -106,6 +106,7 @@ wave_text = NodePath("WaveText")
 wave_manager = NodePath("WaveManager")
 transition = NodePath("Transition")
 whale_spawner = NodePath("WhaleSpawner")
+loading_screen = NodePath("Loading")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 1.4, 0.48)
@@ -116,6 +117,7 @@ target = NodePath("../Player")
 smooth_speed = 10.0
 
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("2_tlwt5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
 
 [node name="SpriteManager" parent="Player" index="0" unique_id=1668628302]
 frame = 17
@@ -158,6 +160,16 @@ script = ExtResource("7_2u3nc")
 layout_mode = 0
 time_damage = NodePath("../../../../TimeDamageManager")
 whale_spawner = NodePath("../../../../WhaleSpawner")
+
+[node name="Loading" type="CanvasLayer" parent="." unique_id=1658540834]
+
+[node name="ColorRect" type="ColorRect" parent="Loading" unique_id=1390502931]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.051522948, 0.010854677, 0.061102837, 1)
 
 [node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
 script = ExtResource("10_wse8f")

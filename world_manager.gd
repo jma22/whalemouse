@@ -18,6 +18,9 @@ class_name WorldManager
 @export var whale_spawner : WhaleSpawner
 
 
+@export var loading_screen : CanvasLayer
+
+
 # func _ready() -> void:
 # 	reset()
 # 	setup()
@@ -31,6 +34,26 @@ func setup() -> void:
 	transition.setup()
 	whale_spawner.setup(map_manager)
 	call_deferred("map_entered", true)
+	## call  fade_out_loading() when above call is done 
+	## wait tille camera velocity is 0 then call fadeoutlaoding
+	await get_tree().process_frame
+	## compare camera position each frame
+	var previous_position = camera.global_transform.origin
+	while true:
+		await get_tree().process_frame
+		var current_position = camera.global_transform.origin
+		if current_position.distance_to(previous_position) < 0.01:
+			break
+		previous_position = current_position
+	fade_out_loading()
+	
+
+func fade_out_loading() -> void:
+	var tween = create_tween()
+	tween.tween_property(loading_screen.get_child(0), "modulate:a", 0.0, 1.0)
+	tween.tween_callback(Callable(loading_screen, "hide"))
+	tween.play()
+
 
 func reset() -> void:
 	player.global_transform.origin = Vector3.ZERO
@@ -53,7 +76,7 @@ func map_entered(first_time: bool) -> void:
 
 	transition.transition_in()
 	await transition.tween.finished
-	await wave_text.tween.finished
+	# await wave_text.tween.finished
 	if first_time:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.INTRO)
 	if wave_manager.current_wave == 11:

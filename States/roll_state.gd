@@ -9,6 +9,7 @@ var roll_direction : Vector2 = Vector2.ZERO
 @export var dampening : float = 0.9
 @export var invulnerability_time : float = 0.5
 var bubbler_scene : PackedScene = load("res://bubbler.tscn")
+@export var audio_player : AudioStreamPlayer
 
 
 func enter() -> void:
@@ -19,6 +20,8 @@ func enter() -> void:
 	entity.add_child(bubbler_instance)
 	bubbler_instance.start()
 	entity.set_invulnerable(true)
+	audio_player.pitch_scale = 1.0 + randf() * 0.4
+	audio_player.play()
 
 func run(delta: float) -> void:
 	if invulnerability_time <= get_elapsed_time():

@@ -6,9 +6,12 @@ var target_position : Vector3
 @export var attack_speed : float = 12.0
 @export var dampening : float = 0.88
 
+@export var audio_player : AudioStreamPlayer
 var bubbler_scene : PackedScene = load("res://bubbler.tscn")
 func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
+	audio_player.pitch_scale = 1.5 + randf() * 0.2
+	audio_player.play()
 	entity.hitbox.set_active(true)
 	apply_velocity()
 	entity.knockback_component.set_knockbackable(false)

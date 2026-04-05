@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c4tywyvljdc47" path="res://shrine.gd" id="1_osd8o"]
 [ext_resource type="Texture2D" uid="uid://53kk28lc5bjw" path="res://Sprites/spritesheet_6.png" id="2_rt4r7"]
-[ext_resource type="Texture2D" uid="uid://umpcj5nwfqy7" path="res://Icons/pasted-image-2026-03-31T23-52-56-411Z_r1_c2_processed_by_imagy.png" id="3_6pxf5"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="3_rt4r7"]
+[ext_resource type="AudioStream" uid="uid://dy3cvw4o162wb" path="res://SFX/portal_sound.wav" id="5_ouif6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iw27f"]
 radius = 0.25
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rt4r7"]
+load_path = "res://.godot/imported/pasted-image-2026-03-31T23-52-56-411Z_r1_c2_processed_by_imagy.png-ce5be5c09abb74a274d4f68b70b59844.s3tc.ctex"
 
 [sub_resource type="Animation" id="Animation_rt4r7"]
 length = 0.001
@@ -66,12 +69,13 @@ _data = {
 &"shrine_on": SubResource("Animation_6pxf5")
 }
 
-[node name="Shrine" type="Node3D" unique_id=2005944346 node_paths=PackedStringArray("sprite", "floating_sprite", "area", "animation_player")]
+[node name="Shrine" type="Node3D" unique_id=2005944346 node_paths=PackedStringArray("sprite", "floating_sprite", "area", "animation_player", "audio_player")]
 script = ExtResource("1_osd8o")
 sprite = NodePath("Sprite3D")
 floating_sprite = NodePath("FloatingSprite")
 area = NodePath("Area3D")
 animation_player = NodePath("AnimationPlayer")
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=297931520]
 transform = Transform3D(0.185, 0, 0, 0, -8.086607e-09, 0.37, 0, -0.185, -1.6173214e-08, 0, 0.01, 0)
@@ -87,9 +91,15 @@ shape = SubResource("CylinderShape3D_iw27f")
 debug_color = Color(1, 0, 0.1833334, 1)
 
 [node name="FloatingSprite" type="Sprite3D" parent="." unique_id=1485702688]
-transform = Transform3D(0.2, 0, 0, 0, 0.099999994, 0.17320509, 0, -0.17320509, 0.099999994, 0, 0, -0.137)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, -0.137)
+pixel_size = 0.001
 alpha_cut = 2
-texture = ExtResource("3_6pxf5")
+texture = SubResource("CompressedTexture2D_rt4r7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1510893297]
 libraries/ = SubResource("AnimationLibrary_rt4r7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1239768467]
+stream = ExtResource("5_ouif6")
+volume_db = -11.375
+pitch_scale = 1.68

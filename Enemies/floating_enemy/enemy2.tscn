@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://hurt_box.tscn" id="12_rujom"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://hitbox.tscn" id="13_v6ftq"]
 [ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://knockback_component.gd" id="14_ew1hi"]
+[ext_resource type="AudioStream" uid="uid://brohwidjsyx3n" path="res://SFX/enemy_hit.wav" id="15_rlykw"]
 [ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Player/hitstop.gd" id="17_tlby2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -98,6 +99,7 @@ max_health = 3
 visible = false
 owner_entity = NodePath("..")
 hurt_box_type = 1
+hit_sound_fx = ExtResource("15_rlykw")
 
 [node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("hitstop") instance=ExtResource("13_v6ftq")]
 hitstop = NodePath("../HitStop")
