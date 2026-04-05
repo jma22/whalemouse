@@ -1,4 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-*Build*
+
+#ignore build and build.zip
+/build/
+/build.zip
+
