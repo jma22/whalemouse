@@ -28,6 +28,8 @@ func reset() -> void:
 	# This can be called to reset the player's state, such as when restarting the game
 	health_component.reset()
 	sprite_manager.reset()	
+	hitstop.reset()
+	# state_machine.set_state(idle_state)
 
 func setup(hud: HUD) -> void:
 	# This is called from the main scene to set up references to other nodes

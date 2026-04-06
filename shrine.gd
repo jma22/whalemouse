@@ -14,12 +14,16 @@ var activated : bool = false
 var animation_clip : AnimationClip
 var tween : Tween = null
 
+var original_scale : Vector3
+
 @export var audio_player : AudioStreamPlayer
 func _ready() -> void:
 	area.connect("body_entered", Callable(self, "_on_body_entered"))
 	area.connect("body_exited", Callable(self, "_on_body_exited"))
 	animation_clip = AnimationClip.new()
 	animation_clip.frame_numbers = [0,1,2]
+	original_scale = sprite.scale
+	close_gateway()
 
 func setup(_upgrade_name: String) -> void:
 	if _upgrade_name == "":
@@ -89,3 +93,6 @@ func close_gateway() -> void:
 	area.set_monitoring(false)
 	sprite.visible = false
 	floating_sprite.visible = false
+	sprite.scale = original_scale
+	sprite.modulate = Color(1, 1, 1, 1)
+

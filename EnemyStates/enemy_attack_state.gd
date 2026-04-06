@@ -30,6 +30,8 @@ func run(_delta: float) -> void:
 
 func fixed_run(_delta: float) -> void:
 	entity.velocity *= dampening
+	# if entity.velocity.length() < 0.2:
+	# 	entity.hitbox.set_active(false)
 	if entity.velocity.length() < 1.0:
 		is_complete = true
 

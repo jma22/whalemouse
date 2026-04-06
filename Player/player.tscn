@@ -83,6 +83,7 @@ mesh = SubResource("CylinderMesh_aqk2v")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1041110873]
 script = ExtResource("4_nvl01")
+debug = false
 
 [node name="AttackState" type="Node" parent="StateMachine" unique_id=1575047821 node_paths=PackedStringArray("hitbox", "audio_player")]
 script = ExtResource("12_bwjto")
@@ -136,7 +137,7 @@ hit_sound_fx = ExtResource("19_8mwp6")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("10_n7ghd")
-max_health = 100
+max_health = 70
 
 [node name="SpotLight3D" parent="." unique_id=791394117 instance=ExtResource("17_pisgm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.26, 0)

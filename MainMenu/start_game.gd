@@ -21,7 +21,7 @@ func _on_mouse_entered() -> void:
 	tween.tween_property(self,"scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.play()
 	text_label.text = "[u]"
-	text_label.text += "[shake rate=6.0 level=6 connected=1]Start[/shake]"
+	text_label.text += "[shake rate=6.0 level=6 connected=1]Click To Start[/shake]"
 	text_label.text += "[/u]"
 
 func _on_mouse_exited() -> void:
@@ -30,4 +30,4 @@ func _on_mouse_exited() -> void:
 	tween = create_tween()
 	tween.tween_property(self,"scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.play()
-	text_label.text = "[shake rate=4.0 level=4 connected=1]Start[/shake]"
+	text_label.text = "[shake rate=4.0 level=4 connected=1]Click To Start[/shake]"

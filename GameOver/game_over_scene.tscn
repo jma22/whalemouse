@@ -114,11 +114,17 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Control" type="Control" parent="Control" unique_id=335402028]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/Control" unique_id=1655636633]
+z_index = 20
 layout_mode = 0
 offset_left = 698.0
 offset_top = 223.99998
@@ -132,6 +138,7 @@ text = "[shake rate=4.0 level=4 connected=1]200 seconds[/shake]"
 scroll_active = false
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/Control" unique_id=1865800394]
+z_index = 20
 layout_mode = 0
 offset_left = 117.000015
 offset_top = 198.0
@@ -145,6 +152,7 @@ text = "[shake rate=4.0 level=4 connected=1]10 waves[/shake]"
 scroll_active = false
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="Control/Control" unique_id=1885786511]
+z_index = 20
 layout_mode = 0
 offset_left = 46.0
 offset_top = 314.0

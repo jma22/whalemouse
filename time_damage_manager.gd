@@ -5,6 +5,7 @@ class_name TimeDamageManager
 # @export var seconds_per_damage : float = 1.0
 var player : Node3D
 var _time_accumulator : float = 0.0
+@export var wave_manager : WaveManager
 
 func reset() -> void:
 	_time_accumulator = 0.0
@@ -13,6 +14,9 @@ func setup(player : Node3D) -> void:
 	self.player = player
 
 func _process(delta: float) -> void:
+	# if wave_manager.get_current_wave_info().room_type == "shrine":
+	# 	_time_accumulator += delta *0.8
+	# else:
 	_time_accumulator += delta
 	var seconds_per_damage : float = GlobalStats.get_seconds_per_damage()
 	if _time_accumulator >= seconds_per_damage:

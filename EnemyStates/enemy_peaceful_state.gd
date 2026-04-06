@@ -18,7 +18,12 @@ func run(_delta: float) -> void:
 func check_state() -> void:
 	if get_child_state() == enemy_idle_state:
 		if enemy_idle_state.is_complete:
-			enemy_walk_state.set_target_position(get_random_walk_target_location())
+			var target_position : Vector3 = get_random_walk_target_location()
+			enemy_walk_state.set_target_position(target_position)
+			if target_position.x < entity.global_transform.origin.x:
+				entity.facing_left = true
+			else:
+				entity.facing_left = false
 			state_machine.set_state(enemy_walk_state)
 	if get_child_state() == enemy_walk_state:
 		if enemy_walk_state.is_complete:

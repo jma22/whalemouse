@@ -26,18 +26,23 @@ func lose_hp(amount: int, new_hp: int) -> void:
 	var popup_number = popup_number_scene.instantiate() as RichTextLabel
 	life_circle.add_child(popup_number)
 	popup_number.set_up("-" + str(amount))
+
+	# Snapshot current values BEFORE killing the tween
+	var current_scale = life_circle.scale
+	var current_color = life_circle.self_modulate
+
 	if life_tween:
 		life_tween.kill()
+
 	life_tween = create_tween()
-	life_tween.tween_interval(0.4)
+	life_tween.tween_interval(0.1)
+	life_tween.tween_property(life_circle, "scale", Vector2(1.2, 1.2), 0.2).from(current_scale).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	life_tween.parallel()
-	life_tween.tween_property(life_circle, "scale", Vector2(0.2,0.2), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	life_tween.tween_property(life_circle, "self_modulate", Color(0.9, 1, 0.9, 1.0), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	life_tween.tween_property(life_circle, "self_modulate", Color(0.9, 1, 0.9, 1.0), 0.2).from(current_color).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	life_tween.chain()
-	life_tween.tween_property(life_circle, "scale", Vector2(-0.2,-0.2), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	life_tween.tween_property(life_circle, "scale", Vector2(1.0, 1.0), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	life_tween.parallel()
 	life_tween.tween_property(life_circle, "self_modulate", Color(1, 1, 1, 1), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-
 
 
 func gain_hp(amount: int, new_hp: int) -> void:
@@ -45,19 +50,24 @@ func gain_hp(amount: int, new_hp: int) -> void:
 	var popup_number = popup_number_scene.instantiate() as RichTextLabel
 	life_circle.add_child(popup_number)
 	popup_number.set_up("+" + str(amount))
+
+	# Snapshot current values BEFORE killing the tween
+	var current_scale = life_circle.scale
+	var current_color = life_circle.self_modulate
+
 	if life_tween:
 		life_tween.kill()
+
 	life_tween = create_tween()
-	life_tween.tween_interval(0.4)
-	life_tween.tween_property(life_circle, "scale", Vector2(1.2,1.2), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	life_tween.tween_interval(0.1)
+	# Animate FROM whatever state we're currently in
+	life_tween.tween_property(life_circle, "scale", Vector2(1.2, 1.2), 0.1).from(current_scale).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	life_tween.parallel()
-	life_tween.tween_property(life_circle, "self_modulate", Color(1, 0.9, 0.9, 1.0), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	life_tween.tween_property(life_circle, "self_modulate", Color(1, 0.9, 0.9, 1.0), 0.1).from(current_color).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	life_tween.chain()
-	life_tween.tween_property(life_circle, "scale", Vector2(1.0,1.0), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	life_tween.tween_property(life_circle, "scale", Vector2(1.0, 1.0), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	life_tween.parallel()
 	life_tween.tween_property(life_circle, "self_modulate", Color(1, 1, 1, 1), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-
-
 
 
 

@@ -4,6 +4,8 @@ class_name EnemyChargeState
 
 @export var animation : AnimationClip
 @export var charge_time : float = 1.0
+var set_target_time : float = 0.35
+var target_set : bool = false
 @export var charge_creep_speed : float = 0.5
 var pivot : Vector3
 @export var attack_state : EnemyAttackState
@@ -14,8 +16,13 @@ func enter() -> void:
 	entity.sprite_manager.play(animation)
 	pivot = entity.global_transform.origin
 	stagger_stamina = max_stagger_stamina
+	target_set = false
 
 func run(_delta: float) -> void:
+	if entity.global_transform.origin.x < entity.player.global_transform.origin.x:
+		entity.facing_left = false
+	else:
+		entity.facing_left = true
 	check_state()
 
 func fixed_run(_delta: float) -> void:
@@ -27,9 +34,12 @@ func exit() -> void:
 
 
 func check_state() -> void:
-	if charge_time <= get_elapsed_time() / GlobalStats.get_enemy_speed_multiplier():
-		entity.velocity = Vector3.ZERO
+	if set_target_time /  GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() and not target_set:
 		attack_state.set_target_position(entity.player.global_transform.origin)
+		target_set = true
+	if charge_time / GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() :
+		entity.velocity = Vector3.ZERO
+		# attack_state.set_target_position(entity.player.global_transform.origin)
 		is_complete = true
 
 func set_velocity() -> void:

@@ -77,6 +77,7 @@ mesh = SubResource("CylinderMesh_aqk2v")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1041110873]
 script = ExtResource("4_doop2")
+debug = false
 
 [node name="EnemyPeacefulState" type="Node" parent="StateMachine" unique_id=894062491 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
 script = ExtResource("10_ar8e5")

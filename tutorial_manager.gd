@@ -14,11 +14,11 @@ enum TutorialEnum {
 }
 var tutorial : Tutorial = null
 var tutorials : Dictionary= {
-	TutorialEnum.INTRO: [["You're running out of time... [Space]", true], 
+	TutorialEnum.INTRO: [["You're running out of time... [Press Space]", true], 
 		["You must go deeper and find more time.", true], 
 		[ "No he doesn't", false], 
 		["...?", true],
-		[ "To continue is just more work", false], 
+		[ "That's just more work...", false], 
 		["Don't mind him. Use [WASD] to move around", true]
 	],
 	TutorialEnum.OVERSHRINE: [["Let me help you out...", true], 
@@ -26,7 +26,8 @@ var tutorials : Dictionary= {
 		["Then why don't you just give him both?", false]
 	],
 	TutorialEnum.OVERPORTAL: [["Let's keep going, you don't have much time left!", true]],
-	TutorialEnum.FIRSTARRIVE: [["Press [Space] to step on your enemies, don't forget to pick up those orbs to get some more time!", true],
+	TutorialEnum.FIRSTARRIVE: [["Press [Space] to step on your enemies...", true],
+	["Don't forget to pick up those orbs to get some more time!", true],
 		["Why don't you try stepping on these poor guys yourself?", false]
 	],
 	TutorialEnum.FIRST_CURSE: [["Why don't you let me help you out a bit?", false],
@@ -43,7 +44,7 @@ var tutorials : Dictionary= {
 	],
 	TutorialEnum.FIRST_BELUGA: [["Let me help you.", true],
 		["Wait you can do that?", false],
-		["Press [j] to summon me.", true]
+		["Press [j/q] to summon me.", true]
 	],
 
 	TutorialEnum.FIRST_DASH: [["Press [shift] to dash - it saves some time.", true],

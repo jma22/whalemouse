@@ -2,7 +2,7 @@ extends Node3D
 
 class_name WhaleSpawner
 @export var whale : Whale
-var cooldown : float = 1.0
+var cooldown : float = 4.5
 var cooldown_timer : float = 0.0
 var map_manager : MapManager
 

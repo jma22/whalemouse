@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d1at77lgvy4ru"]
 
 [ext_resource type="Script" uid="uid://bg0athcga67xq" path="res://MainMenu/start_game.gd" id="1_wcnyh"]
+[ext_resource type="Texture2D" uid="uid://cp8dl7x0w0nlg" path="res://MainMenu/2174 Sem Título_20260405114547.png" id="3_l2rhl"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_o4qt7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2h43"]
@@ -19,16 +20,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1869693166]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_l2rhl")
+expand_mode = 5
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1930660699]
-layout_mode = 0
-offset_left = 629.0
-offset_right = 960.0
-offset_bottom = 540.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Control2" type="Control" parent="Control/VBoxContainer" unique_id=43012654]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
 
 [node name="Control" type="Control" parent="Control/VBoxContainer" unique_id=1628889669]
 layout_mode = 2
@@ -72,7 +86,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("3_o4qt7")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[shake rate=4.0 level=4 connected=1]Start[/shake]"
+text = "[shake rate=4.0 level=4 connected=1]Click To Start[/shake]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

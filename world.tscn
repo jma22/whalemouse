@@ -171,8 +171,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.051522948, 0.010854677, 0.061102837, 1)
 
-[node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
+[node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601 node_paths=PackedStringArray("wave_manager")]
 script = ExtResource("10_wse8f")
+wave_manager = NodePath("../WaveManager")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=84870389]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)

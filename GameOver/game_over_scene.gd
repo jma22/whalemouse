@@ -4,20 +4,30 @@ extends Node3D
 @export var background : TextureRect
 @export var audio_player : AudioStreamPlayer
 @export var text_labels : Array[RichTextLabel] # for blessing stats
+var label_original_positions : Array[Vector2] = []
 
 @export var button_control : Control
+var screen_height : float = 1080.0
 var tween : Tween = null
 
 func _ready() -> void:
-	setup()
+	for label in text_labels:
+		label_original_positions.append(label.position)
+# 	await get_tree().create_timer(2.0).timeout
+# 	setup()
 
 func setup() -> void:
+	screen_height = get_viewport().get_visible_rect().size.y
+
 	button_control.visible = false
+	for i :int in range(text_labels.size()):
+		text_labels[i].position = label_original_positions[i] - Vector2(0, screen_height)
+
 	if tween and tween.is_valid():
 		tween.kill()
 	tween = create_tween()
 	## drop background from above screen with rebound
-	background.position = Vector2(0, -background.texture.get_size().y)
+	background.position = Vector2(0, -screen_height)
 	tween.tween_callback(Callable(self, "play_sound").bind(0))
 	# tween.tween_interval(0.1)
 	tween.tween_property(background, "position", Vector2(0, 0), 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
@@ -49,10 +59,9 @@ func display_stats() -> void:
 			text = "fish"
 		
 		text_labels[i].text = "[shake rate=4.0 level=4 connected=1]" + str(number) + " " + text + "[/shake]\n"
-		text_labels[i].position -= Vector2(0, background.texture.get_size().y)
 		tween.tween_callback(Callable(self, "play_sound").bind(i+1))
 		# tween.tween_interval(0.1)
-		tween.tween_property(text_labels[i], "position", text_labels[i].position + Vector2(0, background.texture.get_size().y), 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(text_labels[i], "position", label_original_positions[i], 0.6).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 		tween.tween_interval(0.2)
 		i += 1
 	

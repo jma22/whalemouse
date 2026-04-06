@@ -15,6 +15,8 @@ var curse_background : Texture2D = load("res://UI/CurseBackground.png")
 @export var curse_color : Color = Color(1.0, 0.8, 0.8, 1.0)
 
 var displaying_tutorial : bool = false
+var debounce_spam_timer : float = 0.3
+var debounce_timer : float = 0.0
 var tutorial_texts : Array = []
 
 func _ready() -> void:
@@ -24,14 +26,17 @@ func _ready() -> void:
 	TutorialManager.setup(self)
 
 func _process(delta: float) -> void:
-	if displaying_tutorial and Input.is_action_just_pressed("ui_accept"):
+	if displaying_tutorial and Input.is_action_just_pressed("ui_accept") and debounce_timer <= 0.0:
 		if tutorial_texts.size() > 0:
 			var line = tutorial_texts.pop_front()
 			show_text(line[0], line[1])
 		else:
 			exit_tutorial()
-
+		debounce_timer = debounce_spam_timer
+	if debounce_timer > 0.0:
+		debounce_timer -= delta
 func take_tutorial(tutorial_lines : Array) -> void:
+	debounce_timer = debounce_spam_timer
 	tutorial_texts = tutorial_lines
 	if tutorial_texts.size() > 0:
 		var line = tutorial_texts.pop_front()

@@ -25,6 +25,7 @@ var is_dead : bool = false
 var detection_range : float = 2.5
 var initial_health : int = 1
 var is_invulnerable : bool = false
+var facing_left : bool = true
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	self.player = player
@@ -41,6 +42,10 @@ func _process(_delta: float) -> void:
 		return
 	check_state()
 	state_machine.current_state.deep_run(_delta)
+	if facing_left:
+		sprite_manager.set_flip(true)
+	else:
+		sprite_manager.set_flip(false)
 	# print(state_machine.get_current_all_states())
 
 func check_state() -> void:

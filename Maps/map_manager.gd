@@ -16,7 +16,7 @@ var spawn_freq : float = 1.0
 var spawn_timer : float = 0.0
 var wave_info : WaveInfo
 
-var map_cleared_flag : bool = false
+var map_cleared_flag : bool = true
 
 
 
