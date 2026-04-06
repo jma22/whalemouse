@@ -14,15 +14,20 @@ func setup(player : Node3D) -> void:
 	self.player = player
 
 func _process(delta: float) -> void:
-	# if wave_manager.get_current_wave_info().room_type == "shrine":
-	# 	_time_accumulator += delta *0.8
-	# else:
+	var wave_info := wave_manager.get_current_wave_info()
+	
+	# Stop timer if not in combat
+	if wave_info.room_type != "combat":
+		return
+
 	_time_accumulator += delta
+	
 	var seconds_per_damage : float = GlobalStats.get_seconds_per_damage()
 	if _time_accumulator >= seconds_per_damage:
 		GlobalStats.add_time_survived(seconds_per_damage)
 		_time_accumulator -= seconds_per_damage
 		do_damage()
+		
 		if player.health_component and player.health_component.is_dead():
 			player.on_die()
 
