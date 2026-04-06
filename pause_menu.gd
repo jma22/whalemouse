@@ -45,6 +45,9 @@ func exit_tutorial() -> void:
 	tween.tween_property(container, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	visible = false
-	SceneManager.resume_game()
 	TutorialManager.resume_tutorial()
+	
+	# Only unpauses character if not showing tutorial
+	if not TutorialManager.is_tutorial_active():
+		SceneManager.resume_game()
 	is_paused = false
