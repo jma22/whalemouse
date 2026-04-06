@@ -8,4 +8,3 @@ class_name HUD
 func setup(player : Node3D) -> void:
 	hp_display.setup(player)
 	blessing_bar.sync_bar()
-
