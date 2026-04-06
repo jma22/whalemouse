@@ -14,7 +14,8 @@ class_name Player extends CharacterBody3D
 
 @export var hitstop : HitStop
 
-var last_direction : Vector2 = Vector2.ZERO
+#by default set the dash direction to prevent no velocity dashes
+var last_direction : Vector2 = Vector2.LEFT
 var invulnerable : bool = false
 
 var initial_health : int = 60
