@@ -1,39 +1,15 @@
-extends Node3D
+extends MapManagerBase
 class_name ShrineMapManager
 
-# const enemy_string_to_scene = {
-# 	"enemy1": preload("res://Enemies/lunging_enemy/enemy.tscn"),
-# 	"enemy2": preload("res://Enemies/floating_enemy/enemy2.tscn"),
-# }
-# @export var player_spawn_point: Node3D
-# @export var enemy_spawn_points: Array[Node3D]
 @export var shrines : Array[Node3D]
-@export var map : NavigationRegion3D 
-@export var gateway : Gateway
 
-var player : CharacterBody3D
-var spawned_enemies : Array[Node3D] = []
-var map_cleared_flag : bool = false
-
-func setup(player : CharacterBody3D, camera : Camera3D) -> void:
-	self.player = player
-	camera.set_bounds(map.get_bounds())
-	map.setup(player, camera)
-
-func _process(delta: float) -> void:
-	if not map_cleared_flag and map_cleared():
-		map_cleared_flag = true
-		gateway.open_gateway()
-		for shrine : Shrine in shrines:
-			shrine.close_gateway()
 		
 func start_room (wave_info : WaveInfo) -> void:
+	super(wave_info)
 	set_shrines(wave_info.blessings)
-	gateway.close_gateway()
-	map_cleared_flag = false
+
 
 func set_shrines(blessings: Array[String]) -> void:
-	print("Setting up shrines with blessings: ", blessings)
 	for i in range(shrines.size()):
 		if i >= blessings.size():
 			shrines[i].setup("")	
@@ -48,3 +24,8 @@ func map_cleared() -> bool:
 		if shrine and shrine.activated:
 			return true
 	return false
+
+func on_map_cleared() -> void:
+	super()
+	for shrine : Shrine in shrines:
+		shrine.close_gateway()

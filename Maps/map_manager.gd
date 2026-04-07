@@ -1,49 +1,35 @@
-extends Node3D
+extends MapManagerBase
 class_name MapManager
 
 const enemy_string_to_scene = {
 	"enemy1": preload("res://Enemies/lunging_enemy/enemy.tscn"),
 	"enemy2": preload("res://Enemies/floating_enemy/enemy2.tscn"),
 }
-# @export var player_spawn_point: Node3D
 @export var enemy_spawn_points: Array[Node3D]
-@export var floor : NavigationRegion3D 
-@export var gateway : Gateway
 
-var player : CharacterBody3D
 var spawned_enemies : Array[Node3D] = []
 var spawn_freq : float = 1.0
 var spawn_timer : float = 0.0
-var wave_info : WaveInfo
-
-var map_cleared_flag : bool = true
-
 
 
 
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
+	super(player, camera)
 	clear_enemies()
-	self.player = player
-	camera.set_bounds(floor.get_bounds())
-	floor.setup(player, camera)
+
 
 func _process(delta: float) -> void:
+	super(delta)
 	spawn_timer += delta
 	if spawn_timer >= spawn_freq:
 		spawn_timer = 0.0
 		check_to_spawn_more()
 
-	if not map_cleared_flag and map_cleared():
-		map_cleared_flag = true
-		gateway.open_gateway()
-		
 func start_room (wave_info_ : WaveInfo) -> void:
-	wave_info = wave_info_
-	print("Starting room with wave info: ", wave_info)
+	super(wave_info_)
 	clear_enemies()
 	spawn_enemies(wave_info.enemies_to_spawn, false)
-	gateway.close_gateway()
-	map_cleared_flag = false
+
 
 func check_to_spawn_more() -> void:
 	if wave_info and len(spawned_enemies) < wave_info.enemies_to_spawn:
