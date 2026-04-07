@@ -20,10 +20,8 @@ func check_state() -> void:
 		if enemy_idle_state.is_complete:
 			var target_position : Vector3 = get_random_walk_target_location()
 			enemy_walk_state.set_target_position(target_position)
-			if target_position.x < entity.global_transform.origin.x:
-				entity.facing_left = true
-			else:
-				entity.facing_left = false
+			var facing_left :bool = target_position.x < entity.global_transform.origin.x
+			entity.set_sprite_flip(facing_left)
 			state_machine.set_state(enemy_walk_state)
 	if get_child_state() == enemy_walk_state:
 		if enemy_walk_state.is_complete:

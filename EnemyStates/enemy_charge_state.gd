@@ -19,10 +19,8 @@ func enter() -> void:
 	target_set = false
 
 func run(_delta: float) -> void:
-	if entity.global_transform.origin.x < entity.player.global_transform.origin.x:
-		entity.facing_left = false
-	else:
-		entity.facing_left = true
+	var facing_left : bool = entity.global_transform.origin.x > entity.player.global_transform.origin.x
+	entity.set_sprite_flip(facing_left)
 	check_state()
 
 func fixed_run(_delta: float) -> void:
