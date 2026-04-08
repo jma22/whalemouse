@@ -1,8 +1,8 @@
 extends Node3D
 
 class_name WorldManager
-@export var map_manager: MapManager
-@export var shrine_map_manager: ShrineMapManager
+@export var map_manager: MapManagerBase
+@export var shrine_map_manager: MapManagerBase
 
 @export var player : Node3D
 # @export var player_spawn_point: Node3D

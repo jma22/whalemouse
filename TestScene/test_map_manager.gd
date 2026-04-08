@@ -12,7 +12,7 @@ func map_cleared() -> bool:
 	# for shrine : Shrine in shrines:
 	# 	if shrine and shrine.activated:
 	# 		return true
-	return true
+	return false
 
 # func on_map_cleared() -> void:
 # 	super()

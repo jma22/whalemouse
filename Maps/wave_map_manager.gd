@@ -1,5 +1,5 @@
 extends MapManagerBase
-class_name MapManager
+class_name WaveMapManager
 
 const enemy_string_to_scene = {
 	"enemy1": preload("res://Enemies/lunging_enemy/enemy.tscn"),
@@ -52,35 +52,15 @@ func spawn_enemies(enemies_to_spawn: int, random_spot : bool) -> void:
 			enemy_instance.setup(player, floor)
 			spawned_enemies.append(enemy_instance)
 
-func get_enemy_centroid() -> Vector3:
-	var centroid : Vector3 = Vector3.ZERO
+
+func get_alive_enemies() -> Array[Node3D]:
 	var non_dead_enemies : Array[Node3D] = []
 	for enemy in spawned_enemies:
 		if not enemy.is_dead:
-			centroid = enemy.global_transform.origin
+			# centroid = enemy.global_transform.origin
 			non_dead_enemies.append(enemy)
-	
-	if non_dead_enemies.size() == 0:
-		return player.global_transform.origin
-	
-	## choose enemy closest to player
-	var closest_enemy : Node3D = non_dead_enemies[0]
-	var closest_distance : float = player.global_transform.origin.distance_to(closest_enemy.global_transform.origin)
-	for enemy in non_dead_enemies:
-		var distance : float = player.global_transform.origin.distance_to(enemy.global_transform.origin)
-		if distance < closest_distance:
-			closest_enemy = enemy
-			closest_distance = distance
-	centroid = closest_enemy.global_transform.origin
-	# centroid = centroid / spawned_enemies.size()
+	return non_dead_enemies
 
-	var map : AABB = floor.get_bounds()
-	var radius :float = 1.5 * GlobalStats.get_whale_size()
-	centroid.x = clamp(centroid.x, map.position.x + radius, map.position.x + map.size.x - radius)
-	centroid.y = 0
-	centroid.z = clamp(centroid.z, map.position.z + radius, map.position.z + map.size.z - radius)
-
-	return centroid
 
 func clear_enemies() -> void:
 	for enemy in spawned_enemies:

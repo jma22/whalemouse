@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dug54if5hlms1"]
 
-[ext_resource type="Script" uid="uid://cuo3eqo5qq7xf" path="res://Maps/map_manager.gd" id="1_vb07d"]
+[ext_resource type="Script" uid="uid://cuo3eqo5qq7xf" path="res://Maps/wave_map_manager.gd" id="1_vb07d"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="2_fjbty"]
 [ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="3_53d03"]
 [ext_resource type="Texture2D" uid="uid://bml51unoyd30v" path="res://Maps/Decors/Untitled_Artwork-2 (1).png" id="4_8v44s"]

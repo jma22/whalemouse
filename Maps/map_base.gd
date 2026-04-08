@@ -32,5 +32,9 @@ func start_room(wave_info_ : WaveInfo) -> void:
 @abstract
 func map_cleared() -> bool
 
+func get_alive_enemies() -> Array[Node3D]:
+	return []
+
+
 func on_map_cleared() -> void:
 	gateway.open_gateway()
