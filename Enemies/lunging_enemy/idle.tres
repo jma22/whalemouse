@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AnimationClip" format=3 uid="uid://lvy33ygurnrf"]
 
-[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://animation_clip.gd" id="1_sdljt"]
+[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="1_sdljt"]
 
 [resource]
 script = ExtResource("1_sdljt")

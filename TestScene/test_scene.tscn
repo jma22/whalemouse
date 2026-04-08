@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://djyo0vd8t781b"]
+
+[ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="2_e07wx"]
+[ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="3_ncb30"]
+[ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_88out"]
+[ext_resource type="Script" uid="uid://cvxwmfdcfu4rl" path="res://TestScene/test_scene_manager.gd" id="5_k8tjy"]
+[ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Core/time_damage_manager.gd" id="5_rge3y"]
+[ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="6_oisa6"]
+[ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_kuwgh"]
+[ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_2e4vk"]
+[ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
+[ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
+
+[node name="World" type="Node3D" unique_id=511598235]
+
+[node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 1.4, 0.48)
+fov = 107.0
+size = 23.388
+script = ExtResource("2_e07wx")
+target = NodePath("../Player")
+smooth_speed = 10.0
+
+[node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
+
+[node name="SpriteManager" parent="Player" index="0" unique_id=1668628302]
+frame = 17
+
+[node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
+time_damage_manager = NodePath("../TimeDamageManager")
+whale_spawner = NodePath("../WhaleSpawner")
+
+[node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
+script = ExtResource("5_rge3y")
+
+[node name="Map" type="Node3D" parent="." unique_id=1662652710 node_paths=PackedStringArray("gateway", "floor")]
+script = ExtResource("5_k8tjy")
+gateway = NodePath("Gateway")
+floor = NodePath("FloorNav")
+
+[node name="Walls" type="GridMap" parent="Map" unique_id=720446888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
+visible = false
+mesh_library = ExtResource("6_oisa6")
+cell_size = Vector3(0.5, 0.5, 0.5)
+cell_octant_size = 4
+cell_scale = 0.5
+data = {
+"cells": PackedInt32Array(65562, 0, 0, 65562, 1, 0, 65562, 2, 0, 65562, 3, 0, 65562, 4, 0, 65562, 5, 0, 65562, 6, 0, 65562, 7, 0, 65562, 8, 0, 65562, 9, 0, 65545, 9, 0, 65546, 9, 0, 65547, 9, 0, 65548, 9, 0, 65549, 9, 0, 65550, 9, 0, 65551, 9, 0, 65552, 9, 0, 65553, 9, 0, 65554, 9, 0, 65555, 9, 0, 65556, 9, 0, 65557, 9, 0, 65558, 9, 0, 65559, 9, 0, 65560, 9, 0, 65561, 9, 0, 65545, 0, 0, 65545, 1, 0, 65545, 2, 0, 65545, 3, 0, 65545, 4, 0, 65545, 5, 0, 65545, 6, 0, 65545, 7, 0, 65545, 8, 0, 65545, 65535, 0, 65546, 65535, 0, 65547, 65535, 0, 65548, 65535, 0, 65549, 65535, 0, 65550, 65535, 0, 65551, 65535, 0, 65552, 65535, 0, 65553, 65535, 0, 65554, 65535, 0, 65555, 65535, 0, 65556, 65535, 0, 65557, 65535, 0, 65558, 65535, 0, 65559, 65535, 0, 65560, 65535, 0, 65561, 65535, 0, 65562, 65535, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Gateway" parent="Map" unique_id=643489668 instance=ExtResource("7_kuwgh")]
+
+[node name="FloorNav" parent="Map" unique_id=2014240850 instance=ExtResource("8_2e4vk")]
+
+[node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
+script = ExtResource("11_qoroo")
+whale = NodePath("Whale")
+
+[node name="Whale" parent="WhaleSpawner" unique_id=1866251720 instance=ExtResource("12_fefcl")]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=586166948]
+transform = Transform3D(0.4984877, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.86689675, -0.3068997, 0.39281368, -2.34, 2.6790254, 2.85)
+light_color = Color(0.57, 0.5858333, 0.76, 1)
+light_energy = 0.9
+light_indirect_energy = 1.828
+shadow_enabled = true
+shadow_bias = 0.734
+shadow_normal_bias = 0.0
+shadow_opacity = 0.85
+shadow_blur = 0.0
+shadow_caster_mask = 4293918721
+directional_shadow_mode = 0
+directional_shadow_split_1 = 0.211
+directional_shadow_fade_start = 0.155
+directional_shadow_max_distance = 4.5
+directional_shadow_pancake_size = 0.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=347799331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.782873, 5.535, -0.731)
+light_color = Color(0.7150342, 0.8854288, 0.95744973, 1)
+light_energy = 2.332
+light_volumetric_fog_energy = 0.366
+light_specular = 0.975
+light_bake_mode = 1
+omni_range = 33.168
+omni_attenuation = 0.378
+
+[editable path="Player"]
+[editable path="Player/Hitbox"]

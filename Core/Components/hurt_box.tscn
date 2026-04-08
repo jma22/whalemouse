@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dg1evy6xs7qml"]
+
+[ext_resource type="Script" uid="uid://b0fdpwjv66gsw" path="res://Core/Components/hurt_box.gd" id="1_6d2hw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b26j0"]
+
+[node name="HurtBox" type="Area3D" unique_id=1638711581 node_paths=PackedStringArray("hit_sound")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_6d2hw")
+hit_sound = NodePath("AudioStreamPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1925812291]
+shape = SubResource("BoxShape3D_b26j0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1714309578]
+volume_db = -11.375
+pitch_scale = 1.45

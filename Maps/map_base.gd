@@ -4,6 +4,8 @@ class_name MapManagerBase
 
 @export var gateway : Gateway
 @export var floor : NavigationRegion3D 
+@export var player_spawn_point : Node3D
+
 
 
 var player : CharacterBody3D
@@ -22,6 +24,7 @@ func _process(delta: float) -> void:
 
 func start_room(wave_info_ : WaveInfo) -> void:
 	map_cleared_flag = false
+	player.global_transform.origin = player_spawn_point.global_transform.origin
 	gateway.close_gateway()
 	wave_info = wave_info_
 
