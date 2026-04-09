@@ -4,7 +4,7 @@ class_name EnemyBase
 
 @export var map : NavigationRegion3D
 @export var player : CharacterBody3D
-@export var xp_spawner_scene : PackedScene
+var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @export var hitstop : HitStop
 
 @onready var state_machine : StateMachine = $StateMachine
@@ -41,9 +41,9 @@ func setup(player_ : CharacterBody3D, map : NavigationRegion3D) -> void:
 func _process(_delta: float) -> void:
 	if is_dead or hitstop.is_in_hitstop:
 		return
-	# if state_machine.current_state:
-	check_state()
-	state_machine.current_state.deep_run(_delta)
+	if state_machine.current_state:
+		check_state()
+		state_machine.current_state.deep_run(_delta)
 	# if facing_left:
 	# 	sprite_manager.set_flip(true)
 	# else:
@@ -53,8 +53,8 @@ func _physics_process(delta: float) -> void:
 	if is_dead or hitstop.is_in_hitstop:
 		return
 	
-	# if state_machine.current_state:
-	state_machine.current_state.deep_fixed_run(delta)
+	if state_machine.current_state:
+		state_machine.current_state.deep_fixed_run(delta)
 	knockback_component.handle_knockback()
 	move_and_slide()
 
