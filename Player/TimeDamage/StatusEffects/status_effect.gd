@@ -13,11 +13,14 @@ static func create(name: String, duration: float) -> StatusEffect:
 
 func get_multiplier() -> float:
     match name:
-        "Freeze":
+        "freeze":
             return 0.0
-        "Slow":
+        "slow":
             return 0.5
-        "Haste":
+        "haste":
             return 1.5
         _:
             return 1.0
+
+func tick_effect(delta: float) -> void:
+    time_remaining -= delta

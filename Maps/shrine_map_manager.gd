@@ -7,6 +7,8 @@ class_name ShrineMapManager
 func start_room (wave_info : WaveInfo) -> void:
 	super(wave_info)
 	set_shrines(wave_info.blessings)
+	player.gain_status_effect(StatusEffect.create("freeze", 4.0))
+
 
 
 func set_shrines(blessings: Array[String]) -> void:

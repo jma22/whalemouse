@@ -36,7 +36,7 @@ func get_random_walk_target_location() -> Vector3:
 	var random_offset : Vector3 = Vector3(randf_range(-walk_radius, walk_radius), 0, randf_range(-walk_radius, walk_radius))
 	## check if its in map 
 	# var map : RID = entity.get_world_3d().navigation_map
-	var map :AABB = entity.map.get_bounds()
+	var map :AABB = entity.get_floor().get_bounds()
 	var target_point : Vector3 = entity.global_position + random_offset
 	if not map.has_point(target_point):
 		target_point.x = clamp(target_point.x, map.position.x, map.position.x + map.size.x)

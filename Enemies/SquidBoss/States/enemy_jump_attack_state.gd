@@ -5,15 +5,14 @@ var target_position : Vector3
 @export var animation_clip : AnimationClip
 
 
-var time : float = 0.8
-var horizontal_dist : float = 1.0
+var time : float = 1.0
 var max_height : float = 0.6
-var hang_time : float = 0.1
-var sharpness : float = 0.7
+var hang_time : float = 0.15
+var sharpness : float = 0.6
 var descent_mult : float = 0.2
 
-var max_x_distance : float = 1.0
-var hit_box_time : float = 0.1
+var max_x_distance : float = 2.0
+var hit_box_time : float = 0.05
 # var threshold : float = 0.05
 # var gravity : float = 9.8
 
@@ -22,11 +21,15 @@ var _current_arc_pos : float = 0.0
 var lateral_velocity : Vector3 = Vector3.ZERO
 var TILT_DEGREES : float = 30
 
+var cooldown_time : float = 0.4
+var cooldown_timer : float = 0.0
+var start_cooldown : bool = false
 
 
 # @export var audio_player : AudioStreamPlayer
 var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
 var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
+var impact_effect_scene : PackedScene = load("res://VFX/impact_vfx.tscn")
 func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
 	# audio_player.pitch_scale = 1.5 + randf() * 0.2
@@ -39,17 +42,24 @@ func enter() -> void:
 	bubbler_instance.start()
 	_current_arc_pos = 0.0
 	entity.hurt_box.set_active(false)
+	start_cooldown = false
+	cooldown_timer = 0.0
 
 
-func exit() -> void:
-	entity.hurt_box.set_active(true)
-	entity.hitbox.set_active(false)
-	entity.knockback_component.set_knockbackable(true)
+# func exit() -> void:
+# 	entity.hitbox.set_active(false)
+# 	entity.knockback_component.set_knockbackable(true)
 
 func run(_delta: float) -> void:
 	check_state()
+	if start_cooldown:
+		cooldown_timer += _delta
+		
 
 func fixed_run(_delta: float) -> void:
+	if start_cooldown:
+		entity.velocity = Vector3.ZERO
+		return 
 	var arc_axis := Vector3(0, cos(deg_to_rad(TILT_DEGREES)), -sin(deg_to_rad(TILT_DEGREES))).normalized()
 
 	var t = get_elapsed_time() / time
@@ -85,22 +95,35 @@ func fixed_run(_delta: float) -> void:
 	if t >= 1- hit_box_time and not entity.hitbox.is_active:
 		entity.hitbox.set_active(true)
 
-	# if _arc_velocity < 0 and abs(current_arc_pos) < 0.1:
-	if get_elapsed_time() >= time + hang_time:
+	if t >= 0.9 and entity.position.y <= 0.01:
+		entity.position.y = 0
+		entity.velocity.y = 0
+	# if get_elapsed_time() >= time + hang_time:
 		var xp_spawner_instance = xp_spawner_scene.instantiate()
+		var impact_effect_instance = impact_effect_scene.instantiate()
+		get_tree().get_root().add_child(impact_effect_instance)
+		impact_effect_instance.global_transform.origin = entity.global_transform.origin
+		impact_effect_instance.play()
+
 		get_tree().get_root().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = entity.global_transform.origin
 		xp_spawner_instance.setup_outwards(3, entity.player)
 
 		_arc_velocity = 0.0
+		lateral_velocity = Vector3.ZERO
 		entity.velocity =  Vector3.ZERO
-		is_complete = true
+		start_cooldown = true
+		entity.hurt_box.set_active(true)
+		entity.hitbox.set_active(false)
+		entity.knockback_component.set_knockbackable(true)
 
+	
 func set_target_position(position: Vector3) -> void:
 	target_position = position
 
 func check_state() -> void:
-	pass
+	if cooldown_timer >= cooldown_time:
+		is_complete = true
 
 func apply_velocity()-> void:
 	if target_position == null:

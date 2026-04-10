@@ -3,8 +3,8 @@ extends State
 class_name EnemyJumpAttackChargeState
 
 @export var animation : AnimationClip
-@export var charge_time : float = 1.0
-var set_target_time : float = 0.99
+@export var charge_time : float = 0.5
+var set_target_time : float = 0.4
 var target_set : bool = false
 @export var charge_creep_speed : float = 0.5
 var pivot : Vector3
@@ -33,7 +33,7 @@ func exit() -> void:
 
 func check_state() -> void:
 	if set_target_time /  GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() and not target_set:
-		attack_state.set_target_position(entity.player.global_transform.origin)
+		attack_state.set_target_position(sample_position_around_entity())
 		target_set = true
 	if charge_time / GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() :
 		entity.velocity = Vector3.ZERO
@@ -47,6 +47,22 @@ func check_state() -> void:
 # 	direction.y = 0
 # 	entity.velocity = direction * charge_creep_speed * GlobalStats.get_enemy_speed_multiplier()
 
+func sample_position_around_entity() -> Vector3:
+	var angle = randf() * 2.0 * PI
+	var radius = randf_range(1.0, 1.6)
+	var offset = Vector3(cos(angle), 0, sin(angle)) * radius
+	var vec = entity.global_transform.origin + offset
+	print("vector jump", vec)
+
+	var aabb = entity.get_floor().get_bounds()
+	var min_x = aabb.position.x
+	var max_x = aabb.position.x + aabb.size.x
+	var min_z = aabb.position.z
+	var max_z = aabb.position.z + aabb.size.z
+	var spawn_x = clamp(entity.global_transform.origin.x + offset.x, min_x, max_x)
+	var spawn_z = clamp(entity.global_transform.origin.z + offset.z, min_z, max_z)
+	
+	return Vector3(spawn_x, 0, spawn_z)   
 func on_hit(damage : int) -> void:
 	stagger_stamina -= damage
 	if stagger_stamina <= 0:

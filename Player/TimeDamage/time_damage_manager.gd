@@ -5,7 +5,6 @@ class_name TimeDamageManager
 # @export var seconds_per_damage : float = 1.0
 @export var player : Node3D
 var _time_accumulator : float = 0.0
-var status_effects : Array[StatusEffect] = []
 # @export var wave_manager : WaveManager
 
 func reset() -> void:
@@ -20,8 +19,14 @@ func _process(delta: float) -> void:
 	# # Stop timer if not in combat
 	# if wave_info.room_type != "combat":
 	# 	return
-
-	_time_accumulator += delta
+	var raw_delta = delta
+	for effect : StatusEffect in player.status_effects:
+		effect.tick_effect(raw_delta)
+	for effect : StatusEffect in player.status_effects:
+		delta *= effect.get_multiplier()
+	
+		
+	_time_accumulator += delta 
 	
 	var seconds_per_damage : float = GlobalStats.get_seconds_per_damage()
 	if _time_accumulator >= seconds_per_damage:
@@ -31,6 +36,9 @@ func _process(delta: float) -> void:
 		
 		if player.health_component and player.health_component.is_dead():
 			player.on_die()
+	
+	player.purge_effects()
+	
 
 func do_damage(damage: int = 1) -> void:
 	if player.health_component:
@@ -41,6 +49,3 @@ func get_progress() -> float:
 	if seconds_per_damage == 0:
 		return 0.0
 	return _time_accumulator / seconds_per_damage
-
-func add_effect(effect : StatusEffect) -> void:
-	status_effects.append(effect)

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://fqvft8uyr2ia"]
+
+[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="1_42ki7"]
+[ext_resource type="Script" uid="uid://cjxgwnhqj7blu" path="res://VFX/impact_vfx.gd" id="2_ry7qd"]
+
+[sub_resource type="Curve" id="Curve_y5riu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_64xem"]
+curve = SubResource("Curve_y5riu")
+
+[sub_resource type="Curve" id="Curve_qag4m"]
+_data = [Vector2(0.03389831, 0.033707857), 0.0, 6.8501883, 0, 0, Vector2(0.5367232, 0.9887641), 0.33954525, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pbji5"]
+curve = SubResource("Curve_qag4m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y5riu"]
+emission_shape_scale = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_pbji5")
+alpha_curve = SubResource("CurveTexture_64xem")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64xem"]
+render_priority = 1
+transparency = 4
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_42ki7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qag4m"]
+material = SubResource("StandardMaterial3D_64xem")
+
+[node name="Impact_VFX" type="GPUParticles3D" unique_id=172523241]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+emitting = false
+one_shot = true
+explosiveness = 0.74
+randomness = 0.21
+process_material = SubResource("ParticleProcessMaterial_y5riu")
+draw_pass_1 = SubResource("QuadMesh_qag4m")
+script = ExtResource("2_ry7qd")

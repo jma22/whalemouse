@@ -2,7 +2,7 @@
 extends CharacterBody3D
 class_name EnemyBase
 
-@export var map : NavigationRegion3D
+@export var floor_ : NavigationRegion3D
 @export var player : CharacterBody3D
 var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @export var hitstop : HitStop
@@ -29,9 +29,9 @@ var is_dead : bool = false
 # var facing_left : bool = false
 var is_invulnerable : bool = false
 
-func setup(player_ : CharacterBody3D, map : NavigationRegion3D) -> void:
+func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	self.player = player_
-	self.map = map
+	self.floor_ = floor_
 	health_component.setup(null, ceil(initial_health * GlobalStats.get_enemy_health_multiplier()))
 	setup_states()
 	state_machine.set_state(initial_state)
@@ -113,3 +113,6 @@ func set_invulnerable(value: bool) -> void:
 
 func set_sprite_flip(left: bool) -> void:
 	sprite_manager.set_flip(left)
+
+func get_floor() -> NavigationRegion3D:
+	return floor_

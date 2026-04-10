@@ -35,7 +35,7 @@ func get_walk_toward_player() -> Vector3:
 	var distance : float = sample_random_distance()
 	var target_point : Vector3 = entity.global_transform.origin + pick_direction * distance
 
-	var map :AABB = entity.map.get_bounds()
+	var map :AABB = entity.get_floor().get_bounds()
 	if not map.has_point(target_point):
 		target_point.x = clamp(target_point.x, map.position.x, map.position.x + map.size.x)
 		target_point.y = clamp(target_point.y, map.position.y, map.position.y + map.size.y)
