@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_qw64w"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_xm5ve"]
 [ext_resource type="PackedScene" uid="uid://bb8si1mpdb4l2" path="res://Maps/Decors/bubble_back.tscn" id="11_1qev3"]
+[ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="12_fjbty"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
 render_priority = -4
@@ -140,12 +141,8 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawn_points", "gateway", "floor", "player_spawn_point")]
+[node name="WaveMap" type="Node3D" unique_id=1662652710]
 script = ExtResource("1_vb07d")
-enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
-gateway = NodePath("Gateway")
-floor = NodePath("FloorNav")
-player_spawn_point = NodePath("PlayerSpawn")
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
@@ -310,6 +307,9 @@ texture = ExtResource("3_53d03")
 
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=1902063063]
 visible = false
+
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=1969495992]
+script = ExtResource("12_fjbty")
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

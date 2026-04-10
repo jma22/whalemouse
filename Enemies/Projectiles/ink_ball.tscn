@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://iru6l8ayin5o"]
+
+[ext_resource type="Script" uid="uid://bmxkncceeo22n" path="res://Enemies/Projectiles/physics_manager.gd" id="1_plwrt"]
+[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_5rn6a"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_5u0h0"]
+
+[node name="InkBall" type="Node3D" unique_id=442570818]
+
+[node name="PhysicsManager" type="Node3D" parent="." unique_id=419557386]
+script = ExtResource("1_plwrt")
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=696407533]
+transform = Transform3D(3, 0, 0, 0, 1.0260605, 2.819078, 0, -2.819078, 1.0260605, 0, 0.0003566742, -0.0019249916)
+pixel_size = 0.001
+texture = ExtResource("2_5rn6a")
+script = ExtResource("2_5u0h0")
+metadata/_custom_type_script = "uid://chgfscc28odqd"

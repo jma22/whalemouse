@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cvxwmfdcfu4rl" path="res://TestScene/test_map_manager.gd" id="5_k8tjy"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Core/time_damage_manager.gd" id="5_rge3y"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="6_oisa6"]
+[ext_resource type="PackedScene" uid="uid://iru6l8ayin5o" path="res://Enemies/Projectiles/ink_ball.tscn" id="7_2e4vk"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_kuwgh"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_2e4vk"]
 [ext_resource type="PackedScene" uid="uid://cdxfyr1j16urn" path="res://Enemies/SquidBoss/squid_boss.tscn" id="10_kuwgh"]
@@ -25,10 +26,10 @@ fov = 107.0
 size = 23.388
 script = ExtResource("2_e07wx")
 target = NodePath("../Player")
+distance = 1.6
 smooth_speed = 10.0
 
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
 
 [node name="SpriteManager" parent="Player" index="0" unique_id=1668628302]
 frame = 17
@@ -46,6 +47,9 @@ script = ExtResource("5_k8tjy")
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("Node3D")
+
+[node name="InkBall" parent="Map" unique_id=442570818 instance=ExtResource("7_2e4vk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7722778, 0, -0.47576904)
 
 [node name="Walls" type="GridMap" parent="Map" unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
@@ -71,6 +75,10 @@ texture = SubResource("NoiseTexture2D_oisa6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41875648)
 
 [node name="SquidBoss" parent="Map" unique_id=1249398696 instance=ExtResource("10_kuwgh")]
+initial_health = 1
+
+[node name="EnemySpawnState" parent="Map/SquidBoss/StateMachine" parent_id_path=PackedInt32Array(1249398696, 1041110873) index="10" unique_id=2040037640 node_paths=PackedStringArray("map")]
+map = NodePath("../../..")
 
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
 script = ExtResource("11_qoroo")
@@ -109,3 +117,6 @@ omni_attenuation = 0.203
 [editable path="Player"]
 [editable path="Player/Hitbox"]
 [editable path="Map/FloorNav"]
+[editable path="Map/SquidBoss"]
+[editable path="Map/SquidBoss/HurtBox"]
+[editable path="Map/SquidBoss/Hitbox"]

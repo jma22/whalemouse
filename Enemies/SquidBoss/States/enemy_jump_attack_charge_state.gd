@@ -4,7 +4,7 @@ class_name EnemyJumpAttackChargeState
 
 @export var animation : AnimationClip
 @export var charge_time : float = 1.0
-var set_target_time : float = 0.35
+var set_target_time : float = 0.99
 var target_set : bool = false
 @export var charge_creep_speed : float = 0.5
 var pivot : Vector3

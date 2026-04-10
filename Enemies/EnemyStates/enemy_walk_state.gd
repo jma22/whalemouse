@@ -18,7 +18,9 @@ func fixed_run(delta: float) -> void:
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
 	entity.velocity.x = direction.x * speed * GlobalStats.get_enemy_speed_multiplier()
 	entity.velocity.z = direction.z * speed * GlobalStats.get_enemy_speed_multiplier()
-	## add perlin noise
+	if abs(entity.velocity.x) > 0.1:
+		entity.set_sprite_flip(entity.velocity.x < 0)
+		
 	var noise = FastNoiseLite.new()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	var noise_value_x = noise.get_noise_1d(Time.get_ticks_msec() * 0.1)
@@ -26,5 +28,5 @@ func fixed_run(delta: float) -> void:
 	var noise_value_z = noise.get_noise_1d(Time.get_ticks_msec()  * 0.1)
 	entity.velocity.z += noise_value_z * 1.5
 
-	if (entity.global_transform.origin - target_position).length() < 0.1:
+	if (entity.global_transform.origin - target_position).length() < 0.01:
 		is_complete = true

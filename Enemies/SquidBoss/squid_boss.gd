@@ -13,14 +13,16 @@ class_name SquidBoss
 
 @onready var enemy_jump_attack_state : EnemyJumpAttackState = $StateMachine/EnemyJumpAttackState
 @onready var enemy_jump_attack_charge_state : EnemyJumpAttackChargeState = $StateMachine/EnemyJumpAttackChargeState
+
+@onready var enemy_spawn_state : EnemySpawnState = $StateMachine/EnemySpawnState
 var pursuit_range : float = 3.0
 var attack_range : float = 1.5
 
 
 
-func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
+func setup(player : CharacterBody3D, maxp : NavigationRegion3D) -> void:
 	initial_health = 2
-	initial_state = enemy_idle_state
+	initial_state = enemy_spawn_state
 	super.setup(player, map)
 
 
@@ -34,6 +36,8 @@ func check_state() -> void:
 			state_machine.set_state(enemy_idle_state)
 		else: 
 			state_machine.set_state(enemy_jump_attack_charge_state)
+
+
 	# 	if state_machine.current_state == charge_state:
 	# 		state_machine.set_state(attack_state)
 	# 	elif state_machine.current_state == attack_state:
