@@ -30,6 +30,7 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	super(wave_info_)
 	clear_enemies()
 	spawn_enemies(wave_info.enemies_to_spawn, false)
+	player.clear_effects()
 
 
 func check_to_spawn_more() -> void:

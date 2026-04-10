@@ -163,3 +163,6 @@ func purge_effects() -> void:
 		if effect.time_remaining < 0:
 			status_effects.erase(effect)
 			return
+	
+func clear_effects() -> void:
+	status_effects.clear()	

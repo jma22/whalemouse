@@ -4,11 +4,14 @@ class_name StatusEffect
 
 var name = ""
 var time_remaining : float = 0.0
+var duration : float = 0.0
+
 
 static func create(name: String, duration: float) -> StatusEffect:
     var effect = StatusEffect.new()
     effect.name = name
     effect.time_remaining = duration
+    effect.duration = duration
     return effect
 
 func get_multiplier() -> float:

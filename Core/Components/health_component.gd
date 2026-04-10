@@ -10,10 +10,12 @@ func setup(hud: HUD, _max_health: int) -> void:
 	current_health = max_health
 	if hud:
 		self.hp_display = hud.hp_display
+		self.hp_display.refresh_hp(current_health)
+
 
 func reset() -> void:
 	current_health = max_health
-	if hp_display:
+	if hp_display:  
 		hp_display.refresh_hp(current_health)
 
 
