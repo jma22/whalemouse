@@ -5,12 +5,12 @@ var target_position : Vector3
 
 
 
-var time : float = 0.8
+var time : float = 1.5
 var horizontal_dist : float = 1.0
-var max_height : float = 0.6
+var max_height : float = 0.7
 var hang_time : float = 0.1
-var sharpness : float = 0.7
-var descent_mult : float = 0.2
+var sharpness : float = 1.2
+var descent_mult : float = 1.0
 
 var max_x_distance : float = 4.0
 # var threshold : float = 0.05
@@ -25,28 +25,28 @@ var velocity : Vector3 = Vector3.ZERO
 
 var elapsed_time : float = 0
 @onready var parent = get_parent() as Node3D
+@export var root : Node3D
 
 
 # @export var audio_player : AudioStreamPlayer
 var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
-func _ready() -> void:
-	# entity.sprite_manager.play(animation_clip)
-	# audio_player.pitch_scale = 1.5 + randf() * 0.2
-	# audio_player.play()
-	# set_lateral_velocity()
-	# entity.knockback_component.set_knockbackable(false)
-	# var bubbler_instance = bubbler_scene.instantiate()
-	# bubbler_instance.global_transform.origin = entity.global_transform.origin
-	# entity.add_child(bubbler_instance)
-	# bubbler_instance.start()
-	setup(Vector3.ZERO)
+# func _ready() -> void:
+# 	# entity.sprite_manager.play(animation_clip)
+# 	# audio_player.pitch_scale = 1.5 + randf() * 0.2
+# 	# audio_player.play()
+# 	# set_lateral_velocity()
+# 	# entity.knockback_component.set_knockbackable(false)
+# 	# var bubbler_instance = bubbler_scene.instantiate()
+# 	# bubbler_instance.global_transform.origin = entity.global_transform.origin
+# 	# entity.add_child(bubbler_instance)
+# 	# bubbler_instance.start()
+# 	setup(Vector3.ZERO)
 
 func setup(target_position: Vector3) -> void:
 	self.target_position = target_position
 	set_lateral_velocity()
 	_current_arc_pos = 0.0
 	elapsed_time = 0.0
-	print("setup")
 
 
 # func exit() -> void:
@@ -61,7 +61,6 @@ func _physics_process(delta: float) -> void:
 		return
 	set_velocity(delta)
 	parent.global_position += velocity * delta
-	print("velocity: ", velocity, " position: ", global_position)
 	elapsed_time += delta
 	if elapsed_time >= time + hang_time:
 		_arc_velocity = 0.0
@@ -101,6 +100,12 @@ func set_velocity(_delta: float)-> void:
 
 	_current_arc_pos += _arc_velocity * _delta
 	velocity = arc_axis * _arc_velocity + lateral_velocity
+
+	if elapsed_time >= time:
+		_arc_velocity = 0.0
+		lateral_velocity = Vector3.ZERO
+		velocity =  Vector3.ZERO
+		root.on_contact_floor()
 
 func set_target_position(position: Vector3) -> void:
 	target_position = position

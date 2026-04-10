@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://dg1evy6xs7qml"]
 
 [ext_resource type="Script" uid="uid://b0fdpwjv66gsw" path="res://Core/Components/hurt_box.gd" id="1_6d2hw"]
+[ext_resource type="Script" uid="uid://dw5nygrghfrw1" path="res://Core/Components/time_on_hit.gd" id="2_73lob"]
+[ext_resource type="PackedScene" uid="uid://bdgwc04qsydls" path="res://Collectibles/xp_spawner.tscn" id="3_watil"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b26j0"]
 
-[node name="HurtBox" type="Area3D" unique_id=1638711581 node_paths=PackedStringArray("hit_sound")]
+[node name="HurtBox" type="Area3D" unique_id=1638711581 node_paths=PackedStringArray("hit_sound", "time_on_hit")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_6d2hw")
 hit_sound = NodePath("AudioStreamPlayer")
+time_on_hit = NodePath("TimeOnHit")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1925812291]
 shape = SubResource("BoxShape3D_b26j0")
@@ -17,3 +20,7 @@ shape = SubResource("BoxShape3D_b26j0")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1714309578]
 volume_db = -11.375
 pitch_scale = 1.45
+
+[node name="TimeOnHit" type="Node3D" parent="." unique_id=1991961499]
+script = ExtResource("2_73lob")
+xp_spawner_scene = ExtResource("3_watil")

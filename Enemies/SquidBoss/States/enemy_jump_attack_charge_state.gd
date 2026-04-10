@@ -23,8 +23,8 @@ func run(_delta: float) -> void:
 	entity.set_sprite_flip(facing_left)
 	check_state()
 
-# func fixed_run(_delta: float) -> void:
-	# set_velocity()
+func fixed_run(delta: float) -> void:
+	entity.velocity = Vector3.ZERO
 
 func exit() -> void:
 	entity.position.y = 0

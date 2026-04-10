@@ -13,6 +13,7 @@ var sharpness : float = 0.7
 var descent_mult : float = 0.2
 
 var max_x_distance : float = 1.0
+var hit_box_time : float = 0.1
 # var threshold : float = 0.05
 # var gravity : float = 9.8
 
@@ -22,8 +23,10 @@ var lateral_velocity : Vector3 = Vector3.ZERO
 var TILT_DEGREES : float = 30
 
 
+
 # @export var audio_player : AudioStreamPlayer
 var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
+var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
 	# audio_player.pitch_scale = 1.5 + randf() * 0.2
@@ -35,9 +38,11 @@ func enter() -> void:
 	entity.add_child(bubbler_instance)
 	bubbler_instance.start()
 	_current_arc_pos = 0.0
+	entity.hurt_box.set_active(false)
 
 
 func exit() -> void:
+	entity.hurt_box.set_active(true)
 	entity.hitbox.set_active(false)
 	entity.knockback_component.set_knockbackable(true)
 
@@ -72,14 +77,21 @@ func fixed_run(_delta: float) -> void:
 			shaped_t = 0.5 + pow((arc_t - 0.5) * 2.0, sharpness / descent_mult) * 0.5
 
 		var target_arc_pos  := 4.0 * max_height * shaped_t * (1.0 - shaped_t)
-
 		_arc_velocity = (target_arc_pos - _current_arc_pos) / _delta 
-
+	
 	_current_arc_pos += _arc_velocity * _delta
 	entity.velocity = arc_axis * _arc_velocity + lateral_velocity
 
+	if t >= 1- hit_box_time and not entity.hitbox.is_active:
+		entity.hitbox.set_active(true)
+
 	# if _arc_velocity < 0 and abs(current_arc_pos) < 0.1:
 	if get_elapsed_time() >= time + hang_time:
+		var xp_spawner_instance = xp_spawner_scene.instantiate()
+		get_tree().get_root().add_child(xp_spawner_instance)
+		xp_spawner_instance.global_transform.origin = entity.global_transform.origin
+		xp_spawner_instance.setup_outwards(3, entity.player)
+
 		_arc_velocity = 0.0
 		entity.velocity =  Vector3.ZERO
 		is_complete = true
@@ -104,4 +116,7 @@ func apply_velocity()-> void:
 	direction = direction.normalized()
 	# direction.y = gravity / time 
 	lateral_velocity = direction * magnitude / (time + hang_time)
+	print("lateral" , lateral_velocity)
+	print("magnitude", magnitude)
+
 	

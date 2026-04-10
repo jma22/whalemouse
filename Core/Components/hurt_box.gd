@@ -4,6 +4,11 @@ class_name HurtBox extends Area3D
 @export var hurt_box_type: HurtBoxType = HurtBoxType.PLAYER
 @export var hit_sound_fx : AudioStream
 @export var hit_sound : AudioStreamPlayer
+@export var time_on_hit : Node3D
+
+@export var orbs_on_hit : int = 0
+
+var is_active : bool = true
 
 enum HurtBoxType {
 	PLAYER,
@@ -18,8 +23,12 @@ func _ready() -> void:
 
 
 func _on_area_entered(hitbox: Area3D) -> void:
+	if not is_active:
+		return
 	if hitbox.has_method("get_damage"):
 		owner_entity.on_hit(hitbox.get_damage())
+		if orbs_on_hit > 0:
+			time_on_hit.spawn_time(orbs_on_hit)
 		if hit_sound:
 			hit_sound.pitch_scale = 0.75 + randf() * 0.5
 			hit_sound.play()
@@ -33,3 +42,17 @@ func set_collisions() -> void:
 		HurtBoxType.ENEMY:
 			# collision_layer = 2
 			collision_mask = 2
+			
+
+func set_active(active: bool) -> void:
+	self.set_deferred("monitoring", active)
+	## show visible
+	# if sprite3D:
+	# 	sprite3D.visible = active
+	is_active = active
+
+func activate_hitbox() -> void:
+	set_active(true)
+
+func deactivate_hitbox() -> void:
+	set_active(false)

@@ -2,7 +2,7 @@ extends Node
 class_name HealthComponent
 
 var hp_display: HPDisplay
-@export var max_health: int
+var max_health: int
 var current_health: int
 
 func setup(hud: HUD, _max_health: int) -> void:

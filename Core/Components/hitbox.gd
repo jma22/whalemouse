@@ -23,8 +23,8 @@ func _ready() -> void:
 func set_active(active: bool) -> void:
 	self.set_deferred("monitorable", active)
 	## show visible
-	# if sprite3D:
-	# 	sprite3D.visible = active
+	if sprite3D:
+		sprite3D.visible = active
 	is_active = active
 
 

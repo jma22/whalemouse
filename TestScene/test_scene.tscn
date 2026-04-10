@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="3_ncb30"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_88out"]
 [ext_resource type="Script" uid="uid://cvxwmfdcfu4rl" path="res://TestScene/test_map_manager.gd" id="5_k8tjy"]
-[ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Core/time_damage_manager.gd" id="5_rge3y"]
+[ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="5_rge3y"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="6_oisa6"]
 [ext_resource type="PackedScene" uid="uid://iru6l8ayin5o" path="res://Enemies/Projectiles/ink_ball.tscn" id="7_2e4vk"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_kuwgh"]
@@ -49,7 +49,7 @@ floor = NodePath("FloorNav")
 player_spawn_point = NodePath("Node3D")
 
 [node name="InkBall" parent="Map" unique_id=442570818 instance=ExtResource("7_2e4vk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7722778, 0, -0.47576904)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0045557, 0, -0.47576904)
 
 [node name="Walls" type="GridMap" parent="Map" unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
@@ -75,7 +75,6 @@ texture = SubResource("NoiseTexture2D_oisa6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41875648)
 
 [node name="SquidBoss" parent="Map" unique_id=1249398696 instance=ExtResource("10_kuwgh")]
-initial_health = 1
 
 [node name="EnemySpawnState" parent="Map/SquidBoss/StateMachine" parent_id_path=PackedInt32Array(1249398696, 1041110873) index="10" unique_id=2040037640 node_paths=PackedStringArray("map")]
 map = NodePath("../../..")

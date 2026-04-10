@@ -5,6 +5,7 @@ class_name TimeDamageManager
 # @export var seconds_per_damage : float = 1.0
 @export var player : Node3D
 var _time_accumulator : float = 0.0
+var status_effects : Array[StatusEffect] = []
 # @export var wave_manager : WaveManager
 
 func reset() -> void:
@@ -40,3 +41,6 @@ func get_progress() -> float:
 	if seconds_per_damage == 0:
 		return 0.0
 	return _time_accumulator / seconds_per_damage
+
+func add_effect(effect : StatusEffect) -> void:
+	status_effects.append(effect)

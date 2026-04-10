@@ -35,8 +35,9 @@ func spawn_enemy() -> void:
 	var spawn_position = sample_position_around_player(0.6)
 	map.spawn_enemy("SquidMinion", spawn_position)
 	spawned_count += 1
-# func fixed_run(_delta: float) -> void:
-	# set_velocity()
+
+func fixed_run(delta: float) -> void:
+	entity.velocity = Vector3.ZERO
 
 func exit() -> void:
 	entity.position.y = 0

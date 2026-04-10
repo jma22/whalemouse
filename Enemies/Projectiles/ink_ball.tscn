@@ -1,17 +1,48 @@
 [gd_scene format=3 uid="uid://iru6l8ayin5o"]
 
 [ext_resource type="Script" uid="uid://bmxkncceeo22n" path="res://Enemies/Projectiles/physics_manager.gd" id="1_plwrt"]
+[ext_resource type="Script" uid="uid://hpr1ljl6r1qy" path="res://Enemies/Projectiles/ink_ball.gd" id="1_ywkbn"]
 [ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_5rn6a"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_5u0h0"]
+[ext_resource type="Texture2D" uid="uid://c8tucba4rdxb1" path="res://Player/Abilities/Whale/Whale (1).png" id="4_5rn6a"]
+[ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="6_2sd3b"]
 
-[node name="InkBall" type="Node3D" unique_id=442570818]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2sd3b"]
+height = 1.0
 
-[node name="PhysicsManager" type="Node3D" parent="." unique_id=419557386]
+[node name="Node3D" type="Node3D" unique_id=1520190988 node_paths=PackedStringArray("ink_ball", "indicator", "hitbox")]
+script = ExtResource("1_ywkbn")
+ink_ball = NodePath("InkBall")
+indicator = NodePath("Indicator")
+hitbox = NodePath("Indicator/Hitbox")
+
+[node name="InkBall" type="Node3D" parent="." unique_id=442570818]
+
+[node name="PhysicsManager" type="Node3D" parent="InkBall" unique_id=419557386 node_paths=PackedStringArray("root")]
 script = ExtResource("1_plwrt")
+root = NodePath("../..")
 
-[node name="SpriteManager" type="Sprite3D" parent="." unique_id=696407533]
+[node name="SpriteManager" type="Sprite3D" parent="InkBall" unique_id=696407533]
 transform = Transform3D(3, 0, 0, 0, 1.0260605, 2.819078, 0, -2.819078, 1.0260605, 0, 0.0003566742, -0.0019249916)
 pixel_size = 0.001
+render_priority = 1
 texture = ExtResource("2_5rn6a")
 script = ExtResource("2_5u0h0")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="Indicator" type="Node3D" parent="." unique_id=1202412485]
+
+[node name="SpriteManager" type="Sprite3D" parent="Indicator" unique_id=1471458098]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0)
+pixel_size = 0.001
+texture = ExtResource("4_5rn6a")
+hframes = 7
+script = ExtResource("2_5u0h0")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="Hitbox" parent="Indicator" unique_id=754444443 instance=ExtResource("6_2sd3b")]
+
+[node name="CollisionShape3D" parent="Indicator/Hitbox" index="0" unique_id=1405177479]
+shape = SubResource("CylinderShape3D_2sd3b")
+
+[editable path="Indicator/Hitbox"]

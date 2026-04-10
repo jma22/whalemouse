@@ -21,8 +21,8 @@ var attack_range : float = 1.5
 
 
 func setup(player : CharacterBody3D, maxp : NavigationRegion3D) -> void:
-	initial_health = 2
-	initial_state = enemy_spawn_state
+	# initial_health = 2
+	initial_state = enemy_idle_state
 	super.setup(player, map)
 
 
@@ -73,6 +73,7 @@ func check_range() -> void:
 		if state_machine.current_state != enemy_idle_state and state_machine.current_state != charge_state:
 			state_machine.set_state(peaceful_state)
 
-func on_staggered() -> void:
-	hurt_state.set_idle_duration(0.3)
-	state_machine.set_state(hurt_state)
+# func on_staggered() -> void:
+	# pass
+	# hurt_state.set_idle_duration(0.3)
+	# state_machine.set_state(hurt_state)

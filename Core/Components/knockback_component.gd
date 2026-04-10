@@ -11,6 +11,7 @@ func handle_knockback() -> void:
 	if not is_knockbackable:
 		return
 	if knockback_velocity.length() > 1.0:
+		print("knokcing", knockback_velocity)
 		knockback_velocity *= knockback_dampening
 		entity.velocity += knockback_velocity
 	else:

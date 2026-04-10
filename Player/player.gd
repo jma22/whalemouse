@@ -151,3 +151,4 @@ func damage(amount: int) -> void:
 	health_component.take_damage(amount)
 	if health_component.is_dead():
 		on_die()
+

@@ -55,7 +55,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 [node name="SquidBoss" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("hitstop", "initial_state")]
 script = ExtResource("1_1spon")
 hitstop = NodePath("Hitstop")
-initial_health = null
+initial_health = 5
 initial_state = NodePath("StateMachine/EnemyIdleState")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302 node_paths=PackedStringArray("hitstop")]
@@ -80,7 +80,6 @@ mesh = SubResource("CylinderMesh_aqk2v")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1041110873]
 script = ExtResource("5_yjlnx")
-debug = false
 
 [node name="EnemyPeacefulState" type="Node" parent="StateMachine" unique_id=894062491 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
 script = ExtResource("6_7pqr1")
@@ -136,12 +135,12 @@ script = ExtResource("19_rt7ug")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("18_o0swr")
-max_health = 3
 
 [node name="HurtBox" parent="." unique_id=1638711581 node_paths=PackedStringArray("owner_entity") instance=ExtResource("19_5dl1d")]
 owner_entity = NodePath("..")
 hurt_box_type = 1
 hit_sound_fx = ExtResource("20_dhd03")
+orbs_on_hit = 2
 
 [node name="CollisionShape3D" parent="HurtBox" index="0" unique_id=1925812291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.116778135)
@@ -160,9 +159,12 @@ hitstop = NodePath("../Hitstop")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_okpwn")
 
+[node name="Sprite3D" parent="Hitbox" index="1" unique_id=468577178]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -5, 0, 5, -2.1855695e-07, 0, 0, 0)
+
 [node name="KnockbackComponent" type="Node3D" parent="." unique_id=1542646912 node_paths=PackedStringArray("entity")]
 script = ExtResource("22_ytd2j")
-knockback_mult = 9.0
+knockback_mult = 7.0
 knockback_dampening = 0.75
 entity = NodePath("..")
 

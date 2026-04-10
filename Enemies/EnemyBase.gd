@@ -11,6 +11,7 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @onready var sprite_manager : SpriteManager = $SpriteManager
 @onready var health_component : HealthComponent = $HealthComponent
 @onready var hitbox : Node = $Hitbox
+@onready var hurt_box : Node = $HurtBox
 # @onready var walk_state : WalkState = $StateMachine/WalkState
 # @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 # @onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
@@ -68,6 +69,7 @@ func setup_states() -> void:
 			state.set_entity(self)
 
 func on_hit(damage: int) -> void:
+	print("got hit in state:" + str(state_machine.current_state))
 	if is_dead or is_invulnerable:
 		return
 	sprite_manager.damage_flash()
@@ -100,7 +102,7 @@ func on_die() -> void:
 		var xp_spawner_instance = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		xp_spawner_instance.setup(GlobalStats.get_enemy_xp_drop(), player)
+		xp_spawner_instance.setup_outwards(GlobalStats.get_enemy_xp_drop(), player)
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 func on_staggered() -> void:
