@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*uid://c8eq42u5mh3sy"
 TutorialManager="*uid://71xrymgiysoh"
 GlobalStats="*uid://dmyu4wno1vl2a"
+Config="*uid://bpssjmt3bcd4l"
 
 [display]
 

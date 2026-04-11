@@ -4,7 +4,8 @@ class_name WaveManager
 var current_wave : int = 0
 
 func reset() -> void:
-	current_wave = 0
+	var starting_wave = Config.get_override("starting_wave", 0)
+	current_wave = starting_wave	
 
 func get_current_wave_info() -> WaveInfo:
 	var wave_info : WaveInfo = WaveInfo.new()

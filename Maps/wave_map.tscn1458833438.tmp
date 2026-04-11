@@ -141,9 +141,9 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
+[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawn_points", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("1_vb07d")
-enemy_spawner = NodePath("EnemySpawner")
+enemy_spawn_points = [NodePath("EnemySpawner/SpawnPoint"), NodePath("EnemySpawner/SpawnPoint2"), NodePath("EnemySpawner/SpawnPoint3"), NodePath("EnemySpawner/SpawnPoint4")]
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
@@ -276,9 +276,8 @@ texture = SubResource("GradientTexture2D_ed26x")
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=1902063063]
 visible = false
 
-[node name="EnemySpawner" type="Node3D" parent="." unique_id=1969495992 node_paths=PackedStringArray("enemy_spawn_points")]
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=1969495992]
 script = ExtResource("12_fjbty")
-enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
 
 [node name="SpawnPoint" type="Node3D" parent="EnemySpawner" unique_id=946727483]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0, -1.308)

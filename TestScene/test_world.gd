@@ -19,9 +19,10 @@ func _ready() -> void:
 	enemy.setup(player, map.floor)
 	whale_spawner.setup(map)
 	map.start_room(null)
-	TutorialManager.enable_tutorials = false
 
 	GlobalStats.add_to_stat("dash_distance")
 	GlobalStats.add_to_stat("whale_level")
+	# for i in range(5):
+	# 	GlobalStats.add_to_stat("player_attack_speed")
 
 	

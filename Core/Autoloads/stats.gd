@@ -21,6 +21,7 @@ var current_run_stats = {
 	"heal" : 0,
 	"damage" : 0,
 	"enemy_damage" : 0,
+	"player_attack_speed" : 0,
 }
 var ordering : Array[String] = []
 
@@ -46,16 +47,8 @@ func add_time_survived(time: float) -> void:
 	total_stats["total_time_survived"] += time
 
 func reset_current_run_stats() -> void:
-	current_run_stats["xp_suck"] = 0
-	current_run_stats["enemy_xp_drop"] = 0
-	current_run_stats["whale_level"] = 0
-	current_run_stats["dash_distance"] = 0
-	current_run_stats["time_tick_level"] = 0
-	current_run_stats["enemy_speed"] = 0
-	current_run_stats["enemy_health"] = 0
-	current_run_stats["enemy_damage"] = 0
-	current_run_stats["heal"] = 0
-	current_run_stats["damage"] = 0
+	for k in current_run_stats.keys():
+		current_run_stats[k] = 0
 
 	total_stats["enemies_killed"] = 0
 	total_stats["waves_completed"] = 0
@@ -119,6 +112,9 @@ func get_enemy_health_multiplier() -> float:
 
 func get_whale_size() -> float:
 	return current_run_stats["whale_level"] * 0.14
+
+func get_attack_speed_multiplier() -> float:
+	return 1.0 + current_run_stats["player_attack_speed"] * 0.2
 
 func get_description(stat_name: String) -> String:
 	match stat_name:

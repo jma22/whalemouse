@@ -54,14 +54,13 @@ var tutorials : Dictionary= {
 		["Got more time to lose", false]]
 }
 
-var enable_tutorials : bool = true
 
 func setup(tutorial : Tutorial) -> void:
 	self.tutorial = tutorial
 	process_mode = PROCESS_MODE_ALWAYS
 
 func show_tutorial(tutorial_enum : TutorialEnum) -> void:
-	if tutorial_enum not in tutorials or not enable_tutorials:
+	if tutorial_enum not in tutorials or not Config.is_enabled("tutorial_enabled"):
 		return
 	var tutorial_lines : Array = tutorials.get(tutorial_enum)
 	tutorial.take_tutorial(tutorial_lines)
