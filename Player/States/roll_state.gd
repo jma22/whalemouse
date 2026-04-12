@@ -23,7 +23,7 @@ func enter() -> void:
 	audio_player.pitch_scale = 1.0 + randf() * 0.4
 	audio_player.play()
 
-func run(delta: float) -> void:
+func run(_delta: float) -> void:
 	if invulnerability_time <= get_elapsed_time():
 		entity.set_invulnerable(false)
 func exit() -> void:

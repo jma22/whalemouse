@@ -1,6 +1,5 @@
 extends Node
 
-
 var player :Node3D
 var hud : HUD
 
@@ -140,16 +139,26 @@ func get_description(stat_name: String) -> String:
 			return "Enemies gain weight..."	
 		"enemy_damage":
 			return "Enemies grow spikes..."
+
 	return "lmao"
 
-func get_two_random_blessing() -> Array[String]:
-	var blessings : Array[String] = ["xp_suck", "enemy_xp_drop", "whale_level", "dash_distance","heal"]
-	var selected : Array[String] = []
-	while selected.size() < 2 and blessings.size() > 0:
-		var index = randi() % blessings.size()
-		selected.append(blessings[index])
-		blessings.remove_at(index)
-	return selected
+func get_two_random_blessings() -> Array[UpgradeData]:
+	var blessings: Array[UpgradeData] = []
+
+	# Collect only blessings
+	for key in Upgrades.list:
+		var upgrade: UpgradeData = Upgrades.list[key]
+		if upgrade.isBlessing:
+			blessings.append(upgrade)
+
+	# Safety check
+	if blessings.size() < 2:
+		return blessings
+
+	# Shuffle and take first 2
+	blessings.shuffle()
+	return blessings.slice(0, 2)
+
 
 func get_two_random_curses() -> Array[String]:
 	var curses : Array[String] = ["enemy_speed", "enemy_health", "damage", "enemy_damage"]

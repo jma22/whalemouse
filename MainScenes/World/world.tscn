@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="10_wse8f"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_k3n1d"]
-[ext_resource type="Shader" uid="uid://jj5u6ryttl55" path="res://UI/transition.gdshader" id="16_2u3nc"]
-[ext_resource type="Script" uid="uid://b8kdfb86pgcyp" path="res://UI/transition.gd" id="16_udxuc"]
+[ext_resource type="Shader" uid="uid://jj5u6ryttl55" path="res://transition.gdshader" id="16_2u3nc"]
+[ext_resource type="Script" path="res://UI/transition.gd" id="16_udxuc"]
 
 [sub_resource type="Environment" id="Environment_ikiii"]
 background_mode = 2

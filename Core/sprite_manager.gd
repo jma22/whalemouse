@@ -75,10 +75,10 @@ func damage_flash() -> void:
 # 	tween.play()
 
 func die() -> Tween:
-	# Play death animation, then queue_free
 	if tween != null and tween.is_valid():
 		await tween.finished
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
-	tween.play()
-	return tween	
+
+	var death_tween = get_tree().create_tween()
+	death_tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
+	death_tween.play()
+	return death_tween

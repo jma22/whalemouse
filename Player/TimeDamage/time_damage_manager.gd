@@ -15,6 +15,8 @@ func setup(player : Node3D) -> void:
 
 func _process(delta: float) -> void:
 	# var wave_info := wave_manager.get_current_wave_info()
+	if not player:
+		return
 	
 	# # Stop timer if not in combat
 	# if wave_info.room_type != "combat":

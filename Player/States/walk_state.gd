@@ -9,7 +9,7 @@ func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
 	entity.sprite_manager.play(animation)
 
-func fixed_run(delta: float) -> void:
+func fixed_run(_delta: float) -> void:
 	var input_vector : Vector2 = entity.get_input()
 	if input_vector.length() == 0:
 		is_complete = true

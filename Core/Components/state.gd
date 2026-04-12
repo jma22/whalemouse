@@ -29,10 +29,10 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-func run(delta: float) -> void:
+func run(_delta: float) -> void:
 	pass
 
-func fixed_run(delta: float) -> void:
+func fixed_run(_delta: float) -> void:
 	pass
 
 func get_elapsed_time() -> float:
