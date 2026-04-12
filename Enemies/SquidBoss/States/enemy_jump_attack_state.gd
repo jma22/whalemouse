@@ -5,10 +5,10 @@ var target_position : Vector3
 @export var animation_clip : AnimationClip
 
 
-var time : float = 1.0
-var max_height : float = 0.6
-var hang_time : float = 0.15
-var sharpness : float = 0.6
+var time : float = 0.8
+var max_height : float = 0.5
+var hang_time : float = 0.1
+var sharpness : float = 0.7
 var descent_mult : float = 0.2
 
 var max_x_distance : float = 2.0

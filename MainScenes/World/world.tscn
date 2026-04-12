@@ -8,13 +8,13 @@
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/wave_map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
-[ext_resource type="Script" uid="uid://c1hdmghu4j63o" path="res://UI/wave_text.gd" id="10_ic0uy"]
+[ext_resource type="Script" path="res://UI/wave_text.gd" id="10_ic0uy"]
 [ext_resource type="Script" uid="uid://dgww6vx235lmc" path="res://MainScenes/World/wave_manager.gd" id="10_k3n1d"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="10_wse8f"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_k3n1d"]
-[ext_resource type="Shader" uid="uid://jj5u6ryttl55" path="res://UI/transition.gdshader" id="16_2u3nc"]
-[ext_resource type="Script" uid="uid://b8kdfb86pgcyp" path="res://UI/transition.gd" id="16_udxuc"]
+[ext_resource type="Shader" path="res://UI/transition.gdshader" id="16_2u3nc"]
+[ext_resource type="Script" path="res://UI/transition.gd" id="16_udxuc"]
 
 [sub_resource type="Environment" id="Environment_ikiii"]
 background_mode = 2
@@ -96,11 +96,11 @@ loading_screen = NodePath("Loading")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
-fov = 95.0
+fov = 85.0
 size = 23.388
 script = ExtResource("3_aqk2v")
 target = NodePath("../Player")
-distance = 1.8
+distance = 1.9
 smooth_speed = 10.0
 
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("2_tlwt5")]

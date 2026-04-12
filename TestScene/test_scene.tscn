@@ -20,8 +20,8 @@ script = ExtResource("1_oisa6")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
-fov = 95.0
-size = 23.388
+fov = 85.0
+size = 12.645
 script = ExtResource("2_e07wx")
 target = NodePath("../Player")
 distance = 1.8
