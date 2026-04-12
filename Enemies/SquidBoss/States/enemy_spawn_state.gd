@@ -3,7 +3,6 @@ extends State
 class_name EnemySpawnState
 
 @export var animation : AnimationClip
-@export var map : MapManagerBase
 # @export var charge_time : float = 1.0
 # var set_target_time : float = 0.99
 # var target_set : bool = false
@@ -16,6 +15,11 @@ var spawn_time : float = 1.0
 var spawn_amount : int = 1
 var spawn_timer : float = 0.0
 var spawned_count : int = 0
+var enemy_spawner : EnemySpawner
+
+
+func link_spawner(enemy_spawner_ : EnemySpawner) -> void:
+	enemy_spawner = enemy_spawner_
 
 func enter() -> void:
 	entity.sprite_manager.play(animation)
@@ -33,7 +37,7 @@ func run(_delta: float) -> void:
 
 func spawn_enemy() -> void:
 	var spawn_position = sample_position_around_player(0.6)
-	map.spawn_enemy("SquidMinion", spawn_position)
+	enemy_spawner.spawn_enemy("SquidMinion", spawn_position)
 	spawned_count += 1
 
 func fixed_run(delta: float) -> void:

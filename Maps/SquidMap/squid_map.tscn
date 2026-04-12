@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0yjpdk334va6"]
 
-[ext_resource type="Script" uid="uid://bu84jhkfswbg2" path="res://Maps/SquidMap/squid_map.gd" id="1_5mdwo"]
+[ext_resource type="Script" uid="uid://dg2dmidv2g43e" path="res://Maps/SquidMap/boss_map_manager.gd" id="1_pf42a"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="2_uxjpn"]
 [ext_resource type="PackedScene" uid="uid://d4f06nj2iy67x" path="res://Maps/Decors/seaweed.tscn" id="6_iy2c3"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_j5ys2"]
@@ -138,8 +138,12 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="SquidMap" type="Node3D" unique_id=1662652710]
-script = ExtResource("1_5mdwo")
+[node name="SquidMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
+script = ExtResource("1_pf42a")
+enemy_spawner = NodePath("EnemySpawner")
+gateway = NodePath("Gateway")
+floor = NodePath("FloorNav")
+player_spawn_point = NodePath("PlayerSpawn")
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)

@@ -4,16 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="3_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_fth4m"]
+[ext_resource type="PackedScene" uid="uid://0yjpdk334va6" path="res://Maps/SquidMap/squid_map.tscn" id="8_b85it"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/wave_map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
-[ext_resource type="Script" path="res://UI/wave_text.gd" id="10_ic0uy"]
+[ext_resource type="Script" uid="uid://c1hdmghu4j63o" path="res://UI/wave_text.gd" id="10_ic0uy"]
 [ext_resource type="Script" uid="uid://dgww6vx235lmc" path="res://MainScenes/World/wave_manager.gd" id="10_k3n1d"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="10_wse8f"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_k3n1d"]
-[ext_resource type="Shader" path="res://UI/transition.gdshader" id="16_2u3nc"]
-[ext_resource type="Script" path="res://UI/transition.gd" id="16_udxuc"]
+[ext_resource type="Shader" uid="uid://jj5u6ryttl55" path="res://UI/transition.gdshader" id="16_2u3nc"]
+[ext_resource type="Script" uid="uid://b8kdfb86pgcyp" path="res://UI/transition.gd" id="16_udxuc"]
 
 [sub_resource type="Environment" id="Environment_ikiii"]
 background_mode = 2
@@ -78,10 +79,11 @@ shader_parameter/shape_treshold = 1.0
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2u3nc"]
 gradient = SubResource("Gradient_hiqwa")
 
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner", "loading_screen")]
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "boss_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner", "loading_screen")]
 script = ExtResource("1_ioo17")
 map_manager = NodePath("Map")
 shrine_map_manager = NodePath("BlessingMap")
+boss_map_manager = NodePath("SquidMap")
 player = NodePath("Player")
 hud = NodePath("HUD")
 time_damage = NodePath("TimeDamageManager")
@@ -128,6 +130,8 @@ script = ExtResource("10_wse8f")
 
 [node name="BlessingMap" parent="." unique_id=167256153 instance=ExtResource("10_70uel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="SquidMap" parent="." unique_id=1918867340 instance=ExtResource("8_b85it")]
 
 [node name="WaveManager" type="Node3D" parent="." unique_id=212606823]
 script = ExtResource("10_k3n1d")

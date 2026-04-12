@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cdxfyr1j16urn" path="res://Enemies/SquidBoss/squid_boss.tscn" id="10_kuwgh"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
-[ext_resource type="Script" uid="uid://bgwhqji05twiu" path="res://Enemies/SquidBoss/States/enemy_ink_attack.gd" id="12_ptfuc"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oisa6"]
 
@@ -73,12 +72,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41875648)
 
 [node name="SquidBoss" parent="Map" unique_id=1249398696 instance=ExtResource("10_kuwgh")]
 
-[node name="EnemySpawnState" parent="Map/SquidBoss/StateMachine" parent_id_path=PackedInt32Array(1249398696, 1041110873) index="10" unique_id=2040037640 node_paths=PackedStringArray("map")]
-map = NodePath("../../..")
-
-[node name="EnemyInkAttackState" type="Node" parent="Map/SquidBoss/StateMachine" parent_id_path=PackedInt32Array(1249398696, 1041110873) index="11" unique_id=1681307738]
-script = ExtResource("12_ptfuc")
-
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
 script = ExtResource("11_qoroo")
 whale = NodePath("Whale")
@@ -116,6 +109,3 @@ omni_attenuation = 0.203
 [editable path="Player"]
 [editable path="Player/Hitbox"]
 [editable path="Map/FloorNav"]
-[editable path="Map/SquidBoss"]
-[editable path="Map/SquidBoss/HurtBox"]
-[editable path="Map/SquidBoss/Hitbox"]

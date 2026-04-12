@@ -105,9 +105,9 @@ func fixed_run(_delta: float) -> void:
 		impact_effect_instance.global_transform.origin = entity.global_transform.origin
 		impact_effect_instance.play()
 
-		get_tree().get_root().add_child(xp_spawner_instance)
-		xp_spawner_instance.global_transform.origin = entity.global_transform.origin
-		xp_spawner_instance.setup_outwards(3, entity.player)
+		# get_tree().get_root().add_child(xp_spawner_instance)
+		# xp_spawner_instance.global_transform.origin = entity.global_transform.origin
+		# xp_spawner_instance.setup_outwards(3, entity.player)
 
 		_arc_velocity = 0.0
 		lateral_velocity = Vector3.ZERO

@@ -17,11 +17,13 @@ var num_enemies_to_spawn : int = 0
 var player : CharacterBody3D
 var floor : NavigationRegion3D
 
+var boss_health : BossHealth
 
 
-func setup(player : CharacterBody3D, floor : NavigationRegion3D) -> void:
+func setup(player : CharacterBody3D, floor : NavigationRegion3D, boss_health : BossHealth) -> void:
 	self.player = player
 	self.floor = floor
+	self.boss_health = boss_health
 	clear_enemies()
 	
 
@@ -89,4 +91,15 @@ func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> void:
 		add_child(enemy_instance)
 		enemy_instance.global_transform.origin = spawn_point
 		enemy_instance.setup(player, floor)
+		spawned_enemies.append(enemy_instance)
+
+func spawn_boss(enemy_type: String, spawn_point : Vector3) -> void:
+	if enemy_type in enemy_string_to_scene:
+		var enemy_scene = enemy_string_to_scene[enemy_type]
+		var enemy_instance = enemy_scene.instantiate()
+		add_child(enemy_instance)
+		enemy_instance.global_transform.origin = spawn_point
+		enemy_instance.setup(player, floor)
+		enemy_instance.link_boss_health(boss_health)
+		enemy_instance.link_spawner(self)
 		spawned_enemies.append(enemy_instance)

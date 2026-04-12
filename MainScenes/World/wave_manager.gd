@@ -12,6 +12,14 @@ func get_current_wave_info() -> WaveInfo:
 	wave_info.wave_number = current_wave
 	# every 2 and 4 waves are shrine waves
 	# every 5 is a curse
+
+	if wave_info.wave_number == 69:
+		wave_info.enemies_to_spawn = 1
+		wave_info.room_type = "boss"
+		wave_info.boss_name = "SquidBoss"
+		wave_info.name = "The Final Showdown"
+		return wave_info
+
 	if wave_info.wave_number == 7:
 		wave_info.room_type = "shrine"
 		wave_info.blessings = ["whale_level"]

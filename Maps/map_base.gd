@@ -12,28 +12,33 @@ var player : CharacterBody3D
 var map_cleared_flag : bool = false
 var wave_info : WaveInfo
 
-func setup(player : CharacterBody3D, camera : Camera3D) -> void:
+var room_active : bool = false
+
+func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 	self.player = player
 	camera.set_bounds(floor.get_bounds())
 	floor.setup(player, camera)
+	room_active = false
+
 
 func _process(delta: float) -> void:
+	if not room_active:
+		return
 	if not map_cleared_flag and map_cleared():
 		map_cleared_flag = true
 		on_map_cleared()
 
 func start_room(wave_info_ : WaveInfo) -> void:
+	player.clear_effects()
 	map_cleared_flag = false
 	player.global_transform.origin = player_spawn_point.global_transform.origin
 	gateway.close_gateway()
 	wave_info = wave_info_
+	room_active = true
 
 
 @abstract
 func map_cleared() -> bool
-
-func get_alive_enemies() -> Array[Node3D]:
-	return []
 
 
 func on_map_cleared() -> void:

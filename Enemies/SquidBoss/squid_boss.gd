@@ -20,6 +20,7 @@ class_name SquidBoss
 var pursuit_range : float = 3.0
 var attack_range : float = 1.5
 
+var boss_health : BossHealth
 
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
@@ -27,6 +28,12 @@ func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	initial_state = enemy_ink_attack_state
 	super.setup(player, map)
 
+func link_boss_health(boss_health : BossHealth) -> void:
+	self.boss_health = boss_health
+	boss_health.setup("Schkwid", initial_health)
+
+func link_spawner(enemy_spawner : EnemySpawner) -> void:
+	enemy_spawn_state.link_spawner(enemy_spawner)
 
 func check_state() -> void:
 	# pass
@@ -66,6 +73,13 @@ func check_range() -> void:
 		if state_machine.current_state != enemy_idle_state and state_machine.current_state != charge_state:
 			state_machine.set_state(peaceful_state)
 
+func on_hit(damage: int) -> void:
+	super(damage)
+	boss_health.update_health(health_component.current_health)
+
+func on_die() -> void:
+	super.on_die()
+	boss_health.hide()
 # func on_staggered() -> void:
 	# pass
 	# hurt_state.set_idle_duration(0.3)

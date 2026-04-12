@@ -3,6 +3,7 @@ extends Node3D
 class_name WorldManager
 @export var map_manager: MapManagerBase
 @export var shrine_map_manager: MapManagerBase
+@export var boss_map_manager: MapManagerBase
 
 @export var player : Node3D
 # @export var player_spawn_point: Node3D
@@ -26,8 +27,9 @@ class_name WorldManager
 # 	setup()
 
 func setup() -> void:
-	shrine_map_manager.setup(player, camera)
-	map_manager.setup(player, camera)
+	shrine_map_manager.setup(player, camera, hud)
+	map_manager.setup(player, camera, hud)
+	boss_map_manager.setup(player, camera, hud)
 	hud.setup(player)
 	time_damage.setup(player)
 	player.setup(hud)
@@ -71,9 +73,13 @@ func map_entered(first_time: bool) -> void:
 	if wave_info.room_type == "combat":
 		# player.global_transform.origin = Vector3.ZERO
 		map_manager.start_room(wave_info)
-	else:
+	elif wave_info.room_type == "shrine":
 		# player.global_transform.origin = Vector3(20, 0, 0)
 		shrine_map_manager.start_room(wave_info)
+	elif wave_info.room_type == "boss":
+		# player.global_transform.origin = Vector3(20, 0, 0)
+		boss_map_manager.start_room(wave_info)
+
 
 	transition.transition_in()
 	await transition.tween.finished
@@ -95,6 +101,9 @@ func map_entered(first_time: bool) -> void:
 
 func next_wave() -> void:
 	wave_manager.current_wave += 1
+	map_manager.room_active = false
+	shrine_map_manager.room_active = false
+	boss_map_manager.room_active = false
 	map_entered(false)
 
 func pause_game() -> void:

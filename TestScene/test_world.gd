@@ -15,7 +15,7 @@ func _ready() -> void:
 	player.setup(hud)
 	GlobalStats.setup(player, hud)
 	hud.setup(player)
-	map.setup(player,camera)
+	map.setup(player,camera, hud)
 	enemy.setup(player, map.floor)
 	whale_spawner.setup(map)
 	map.start_room(null)
