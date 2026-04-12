@@ -44,7 +44,7 @@ func setup(upgrade_name: String) -> void:
 func _process(_delta: float) -> void:
 	if player_inside:
 		if Input.is_action_just_pressed("interact"):
-			GlobalStats.add_to_stat(upgrade_data.resource_name)
+			upgrade_data.apply()
 			activated = true
 			floating_sprite.visible = false
 			audio_player.play()

@@ -64,19 +64,20 @@ func add_to_stat(stat_name: String) -> void:
 			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_BELUGA)
 		elif stat_name == "dash_distance" and current_run_stats[stat_name] ==1:
 			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_DASH)
-		elif stat_name == "heal":
-			heal()
-		elif stat_name == "damage":
-			damage()
+
 	else:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
 	
 	hud.blessing_bar.sync_bar()
 
 
-func heal() -> void:
-	var amount : int = current_run_stats["heal"] * 7
-	player.heal(amount)
+# func heal() -> void:
+# 	var amount : int = current_run_stats["heal"] * 7
+# 	player.heal(amount)
+
+func get_heal_amount() -> int:
+	return current_run_stats["heal"] * 7
+
 
 func damage() -> void:
 	var amount : int = current_run_stats["damage"] * 5

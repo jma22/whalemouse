@@ -12,11 +12,7 @@ config_version=5
 
 config/name="Beluga's Blessing"
 config/version="1.0"
-<<<<<<< HEAD
-run/main_scene="uid://djyo0vd8t781b"
-=======
 run/main_scene="uid://dg8owrdf3qc4u"
->>>>>>> master
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://csjxsvdl4q0sd"
 
