@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 			hitbox.set_active(false)
 			despawn()
 
-func on_contact_floor():
+func on_contact_floor() -> void:
 	indicator.visible = false
 	ink_ball.visible = false
 	hitbox.set_active(true)

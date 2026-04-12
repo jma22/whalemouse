@@ -17,7 +17,7 @@ func enter() -> void:
 	entity.hitbox.set_active(true)
 	apply_velocity()
 	# entity.knockback_component.set_knockbackable(false)
-	var bubbler_instance = bubbler_scene.instantiate()
+	var bubbler_instance : Node = bubbler_scene.instantiate()
 	# bubbler_instance.global_transform.origin = entity.global_transform.origin
 	entity.add_child(bubbler_instance)
 	bubbler_instance.start()

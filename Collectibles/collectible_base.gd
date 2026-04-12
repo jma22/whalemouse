@@ -52,17 +52,16 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity += gravity * delta
 			velocity *= friction
-			print("Launching velocity: ", velocity.length())
 			if velocity.length() < 1.0:
 				state = PickupState.Idle	
 				velocity = Vector3.ZERO
 		PickupState.PickedUp:
 			if target: 
-				var direction = (target.global_transform.origin - global_transform.origin).normalized()
+				var direction : Vector3 = (target.global_transform.origin - global_transform.origin).normalized()
 				global_transform.origin += direction * delta * pickup_speed
 		PickupState.Attracted:
 			if target:
-				var direction = (target.global_transform.origin - global_transform.origin).normalized()
+				var direction : Vector3 = (target.global_transform.origin - global_transform.origin).normalized()
 				global_transform.origin += direction * delta * GlobalStats.get_attracted_speed()
 		PickupState.Despawn:
 			visible = false
@@ -75,7 +74,7 @@ func check_state() -> void:
 		return
 
 	if target:
-		var distance_to_target = global_transform.origin.distance_to(target.global_transform.origin)
+		var distance_to_target : float = global_transform.origin.distance_to(target.global_transform.origin)
 		if distance_to_target <= despawn_radius:
 			state = PickupState.Despawn
 			play_sound()

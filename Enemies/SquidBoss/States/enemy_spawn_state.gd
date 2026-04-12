@@ -36,7 +36,7 @@ func run(_delta: float) -> void:
 		spawn_enemy()
 
 func spawn_enemy() -> void:
-	var spawn_position = sample_position_around_player(0.6)
+	var spawn_position : Vector3 = sample_position_around_player(0.6)
 	enemy_spawner.spawn_enemy("SquidMinion", spawn_position)
 	spawned_count += 1
 
@@ -53,8 +53,8 @@ func check_state() -> void:
 		is_complete = true
 
 func sample_position_around_player(radius : float) -> Vector3:
-	var angle = randf() * 2.0 * PI
-	var offset = Vector3(cos(angle), 0, sin(angle)) * radius
+	var angle : float = randf() * 2.0 * PI
+	var offset : Vector3 = Vector3(cos(angle), 0, sin(angle)) * radius
 	return entity.player.global_transform.origin + offset
 
 # func on_hit(damage : int) -> void:

@@ -34,8 +34,8 @@ func run(_delta: float) -> void:
 		spawn_ink()
 
 func spawn_ink() -> void:
-	var spawn_position = sample_position_around_entity()
-	var ink_instance = ink_projectile_scene.instantiate()
+	var spawn_position : Vector3= sample_position_around_entity()
+	var ink_instance : Node = ink_projectile_scene.instantiate()
 	ink_instance.global_transform.origin = entity.global_transform.origin
 	get_tree().get_root().add_child(ink_instance)
 	ink_instance.setup(spawn_position)
@@ -54,17 +54,17 @@ func check_state() -> void:
 		is_complete = true
 
 func sample_position_around_entity() -> Vector3:
-	var radius = randf_range(1.0, 1.6)
-	var angle = randf() * 2.0 * PI
-	var offset = Vector3(cos(angle), 0, sin(angle)) * radius
+	var radius : float = randf_range(1.0, 1.6)
+	var angle : float = randf() * 2.0 * PI
+	var offset : Vector3 = Vector3(cos(angle), 0, sin(angle)) * radius
 
-	var aabb = entity.get_floor().get_bounds()
-	var min_x = aabb.position.x
-	var max_x = aabb.position.x + aabb.size.x
-	var min_z = aabb.position.z
-	var max_z = aabb.position.z + aabb.size.z
-	var spawn_x = clamp(entity.global_transform.origin.x + offset.x, min_x, max_x)
-	var spawn_z = clamp(entity.global_transform.origin.z + offset.z, min_z, max_z)
+	var aabb : AABB = entity.get_floor().get_bounds()
+	var min_x : float = aabb.position.x
+	var max_x : float = aabb.position.x + aabb.size.x
+	var min_z : float = aabb.position.z
+	var max_z : float = aabb.position.z + aabb.size.z
+	var spawn_x : float = clamp(entity.global_transform.origin.x + offset.x, min_x, max_x)
+	var spawn_z : float = clamp(entity.global_transform.origin.z + offset.z, min_z, max_z)
 	
 	return Vector3(spawn_x, entity.global_transform.origin.y, spawn_z)   
 

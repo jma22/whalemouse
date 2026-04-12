@@ -50,7 +50,7 @@ func check_state() -> void:
 
 
 func sample_next_state() -> State:
-	var rand = randf()
+	var rand : float = randf()
 	if rand < 0.5:
 		return enemy_jump_attack_charge_state
 	elif rand < 0.8:

@@ -86,8 +86,8 @@ func all_dead() -> bool:
 
 func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> void:
 	if enemy_type in enemy_string_to_scene:
-		var enemy_scene = enemy_string_to_scene[enemy_type]
-		var enemy_instance = enemy_scene.instantiate()
+		var enemy_scene : PackedScene = enemy_string_to_scene[enemy_type]
+		var enemy_instance : Node = enemy_scene.instantiate()
 		add_child(enemy_instance)
 		enemy_instance.global_transform.origin = spawn_point
 		enemy_instance.setup(player, floor)
@@ -95,8 +95,8 @@ func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> void:
 
 func spawn_boss(enemy_type: String, spawn_point : Vector3) -> void:
 	if enemy_type in enemy_string_to_scene:
-		var enemy_scene = enemy_string_to_scene[enemy_type]
-		var enemy_instance = enemy_scene.instantiate()
+		var enemy_scene : PackedScene = enemy_string_to_scene[enemy_type]
+		var enemy_instance : Node = enemy_scene.instantiate()
 		add_child(enemy_instance)
 		enemy_instance.global_transform.origin = spawn_point
 		enemy_instance.setup(player, floor)

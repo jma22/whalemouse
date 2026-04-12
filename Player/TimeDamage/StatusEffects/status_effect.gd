@@ -2,13 +2,13 @@ extends RefCounted
 
 class_name StatusEffect
 
-var name = ""
+var name : String = ""
 var time_remaining : float = 0.0
 var duration : float = 0.0
 
 
 static func create(name: String, duration: float) -> StatusEffect:
-	var effect = StatusEffect.new()
+	var effect : StatusEffect = StatusEffect.new()
 	effect.name = name
 	effect.time_remaining = duration
 	effect.duration = duration

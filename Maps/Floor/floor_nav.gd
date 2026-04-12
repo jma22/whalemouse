@@ -21,6 +21,6 @@ func _process(delta: float) -> void:
 	# 	time_accumulator -= discrete_time
 	if not player:
 		return
-	var pos = player.global_position
+	var pos : Vector3 = player.global_position
 	material.set_shader_parameter("world_center", Vector2(pos.x, pos.z) + offset)
 	material.set_shader_parameter("shadow_center", Vector2(pos.x, pos.z) + offset/2)

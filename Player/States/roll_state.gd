@@ -16,7 +16,7 @@ func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
 	entity.sprite_manager.play(animation)
 	initial_velocity()
-	var bubbler_instance = bubbler_scene.instantiate()
+	var bubbler_instance : Node = bubbler_scene.instantiate()
 	entity.add_child(bubbler_instance)
 	bubbler_instance.start()
 	entity.set_invulnerable(true)

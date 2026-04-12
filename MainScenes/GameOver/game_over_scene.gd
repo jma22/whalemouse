@@ -48,7 +48,7 @@ func play_sound(i : int) -> void:
 func display_stats() -> void:
 	var stats : Dictionary = GlobalStats.total_stats
 	var i : int = 0
-	for stat_name in stats.keys():
+	for stat_name : String in stats.keys():
 		var number : int = int(stats[stat_name])
 		var text : String = ""
 		if stat_name == "total_time_survived":

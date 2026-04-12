@@ -135,8 +135,8 @@ func set_invulnerable(value: bool) -> void:
 	invulnerable = value
 
 func on_die() -> void:
-	var tween = await sprite_manager.die()
-	tween.finished.connect(func():
+	var tween : Tween = await sprite_manager.die()
+	tween.finished.connect(func() -> void:
 		SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
 	)
 

@@ -21,11 +21,11 @@ func fixed_run(delta: float) -> void:
 	if abs(entity.velocity.x) > 0.1:
 		entity.set_sprite_flip(entity.velocity.x < 0)
 		
-	var noise = FastNoiseLite.new()
+	var noise : FastNoiseLite = FastNoiseLite.new()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	var noise_value_x = noise.get_noise_1d(Time.get_ticks_msec() * 0.1)
+	var noise_value_x : float = noise.get_noise_1d(Time.get_ticks_msec() * 0.1)
 	entity.velocity.x += noise_value_x * 1.5
-	var noise_value_z = noise.get_noise_1d(Time.get_ticks_msec()  * 0.1)
+	var noise_value_z : float = noise.get_noise_1d(Time.get_ticks_msec()  * 0.1)
 	entity.velocity.z += noise_value_z * 1.5
 
 	if (entity.global_transform.origin - target_position).length() < 0.01:

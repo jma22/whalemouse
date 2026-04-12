@@ -6,11 +6,10 @@ class_name Shrine
 @export var area : Area3D
 @export var blessing_description : BlessingText
 @export var animation_player : AnimationPlayer
-@export var forceActive = false
 
 var upgrade_data : UpgradeData
-var player_inside = false
-var activated = false
+var player_inside : bool = false
+var activated : bool = false
 
 var animation_clip : AnimationClip
 var tween : Tween = null
@@ -24,18 +23,16 @@ func _ready() -> void:
 	animation_clip = AnimationClip.new()
 	animation_clip.frame_numbers = [0,1,2]
 	original_scale = sprite.scale
-	if not forceActive: close_gateway()
 
-func setup(upgrade_name: String) -> void:
-	if upgrade_name == "":
+func setup(upgrade_data_: UpgradeData) -> void:
+	if upgrade_data_ == null:
 		activated = false
 		sprite.visible = false
 		printerr("Shrine setted up with no upgrade")
 		return
 		
-	var upgrade: UpgradeData = Upgrades.list[upgrade_name]
-	floating_sprite.texture = load("res://UI/HUD/BlessingIcons/%s.png" % upgrade)
-	upgrade_data = upgrade
+	floating_sprite.texture = load(upgrade_data_.get_icon_path())
+	upgrade_data = upgrade_data_
 	activated = false
 	animation_player.play("shrine_on")
 	floating_sprite.visible = true

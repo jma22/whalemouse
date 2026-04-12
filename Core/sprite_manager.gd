@@ -2,7 +2,7 @@ extends Sprite3D
 
 class_name SpriteManager
 
-@export var frames_per_second = 4
+@export var frames_per_second : float = 4
 @export var hitstop : HitStop
 var current_idx : int = 0
 var time_accumulator : float = 0.0
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		return
 	
 	time_accumulator += delta
-	var frame_time = 1.0 / frames_per_second
+	var frame_time : float = 1.0 / frames_per_second
 	if time_accumulator >= frame_time:
 		current_idx += 1
 		if current_idx >= current_animation.frame_numbers.size():
@@ -78,7 +78,7 @@ func die() -> Tween:
 	if tween != null and tween.is_valid():
 		await tween.finished
 
-	var death_tween = get_tree().create_tween()
+	var death_tween : Tween = get_tree().create_tween()
 	death_tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
 	death_tween.play()
 	return death_tween

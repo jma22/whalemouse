@@ -35,20 +35,19 @@ func exit_blessing_info() -> void:
 # ------------------------
 
 func _setup_visuals(upgrade: UpgradeData) -> void:
-	texture.texture = blessing_background if upgrade.isBlessing else curse_background
-	var color = blessing_color if upgrade.isBlessing else curse_color
+	texture.texture = blessing_background if upgrade.is_blessing() else curse_background
+	var color : Color = blessing_color if upgrade.is_blessing() else curse_color
 	item_description_text.add_theme_color_override("font_color", color)
 	
 	# Name
-	item_name_text.text = upgrade.name
+	item_name_text.text = upgrade.display_name
 
 	# Description with shake effect
-	var shake_tag := "[shake rate=4.0 level=4 connected=1]" if upgrade.isBlessing else "[shake rate=10.0 level=6 connected=1]"
-	var current_level = GlobalStats.current_run_stats[upgrade.resource_name]
+	var shake_tag := "[shake rate=4.0 level=4 connected=1]" if upgrade.is_blessing() else "[shake rate=10.0 level=6 connected=1]"
 	
 	item_description_text.text = (
 		shake_tag +
-		upgrade.get_description(current_level) +
+		upgrade.get_description() +
 		"[/shake]"
 	)
 

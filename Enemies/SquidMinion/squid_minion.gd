@@ -32,12 +32,12 @@ func check_state() -> void:
 		if state_machine.current_state == charge_state:
 			state_machine.set_state(attack_state)
 		elif state_machine.current_state == attack_state:
-			var cooldown_time = 1.0
+			var cooldown_time : float = 1.0
 			enemy_idle_state.set_idle_duration(cooldown_time)
 			state_machine.set_state(enemy_idle_state, true)
 		else:
 			var noise : Vector3 = Vector3(randf() - 0.5, 0, randf() - 0.5) * 0.1
-			var target_position = player.global_transform.origin + noise
+			var target_position : Vector3 = player.global_transform.origin + noise
 			enemy_walk_state.set_target_position(target_position)
 			state_machine.set_state(enemy_walk_state, true)
 	# 	if state_machine.current_state == charge_state:

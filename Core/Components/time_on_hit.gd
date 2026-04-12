@@ -6,9 +6,9 @@ extends Node3D
 
 
 
-func spawn_time(num_orbs : int):
+func spawn_time(num_orbs : int) -> void:
 	if xp_spawner_scene:
-		var xp_spawner_instance = xp_spawner_scene.instantiate()
+		var xp_spawner_instance : Node3D = xp_spawner_scene.instantiate()
 		get_tree().get_root().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		var direction : Vector3 = hurtbox.owner_entity.global_transform.origin - hurtbox.owner_entity.player.global_transform.origin 

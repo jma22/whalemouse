@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://hpr1ljl6r1qy" path="res://Enemies/Projectiles/ink_ball.gd" id="1_ywkbn"]
 [ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_5rn6a"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_5u0h0"]
+[ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="4_2sd3b"]
 [ext_resource type="Texture2D" uid="uid://c8tucba4rdxb1" path="res://Player/Abilities/Whale/Whale (1).png" id="4_5rn6a"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="6_2sd3b"]
 
@@ -18,9 +19,10 @@ hitbox = NodePath("Indicator/Hitbox")
 
 [node name="InkBall" type="Node3D" parent="." unique_id=442570818]
 
-[node name="PhysicsManager" type="Node3D" parent="InkBall" unique_id=419557386 node_paths=PackedStringArray("root")]
+[node name="PhysicsManager" type="Node3D" parent="InkBall" unique_id=419557386 node_paths=PackedStringArray("root", "arc_component")]
 script = ExtResource("1_plwrt")
 root = NodePath("../..")
+arc_component = NodePath("../ArcComponent")
 
 [node name="SpriteManager" type="Sprite3D" parent="InkBall" unique_id=696407533]
 transform = Transform3D(3, 0, 0, 0, 1.0260605, 2.819078, 0, -2.819078, 1.0260605, 0, 0.0003566742, -0.0019249916)
@@ -29,6 +31,10 @@ render_priority = 1
 texture = ExtResource("2_5rn6a")
 script = ExtResource("2_5u0h0")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="ArcComponent" type="Node3D" parent="InkBall" unique_id=455580033]
+script = ExtResource("4_2sd3b")
+metadata/_custom_type_script = "uid://ccb88yqq2eri3"
 
 [node name="Indicator" type="Node3D" parent="." unique_id=1202412485]
 

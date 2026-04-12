@@ -8,9 +8,9 @@ var icons : Array[Icon] = []
 func sync_bar() -> void:
 	reset()
 	for stat: Dictionary in GlobalStats.get_current_stats():
-		var icon = icon_scene.instantiate() as Icon
-		var stat_name = stat.keys()[0]
-		var stat_value = stat[stat_name]
+		var icon : Icon = icon_scene.instantiate() as Icon
+		var stat_name : String = stat.keys()[0]
+		var stat_value : int = stat[stat_name]
 		icon.setup(stat_name, stat_value)
 		add_child(icon)
 		icons.append(icon)

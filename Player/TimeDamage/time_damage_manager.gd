@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	# # Stop timer if not in combat
 	# if wave_info.room_type != "combat":
 	# 	return
-	var raw_delta = delta
+	var raw_delta : float = delta
 	for effect : StatusEffect in player.status_effects:
 		effect.tick_effect(raw_delta)
 	for effect : StatusEffect in player.status_effects:

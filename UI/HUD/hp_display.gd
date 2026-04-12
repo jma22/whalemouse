@@ -35,13 +35,13 @@ func _process(delta: float) -> void:
 
 func lose_hp(amount: int, new_hp: int) -> void:
 	refresh_hp(new_hp)
-	var popup_number = popup_number_scene.instantiate() as RichTextLabel
+	var popup_number : RichTextLabel = popup_number_scene.instantiate() as RichTextLabel
 	life_circle.add_child(popup_number)
 	popup_number.set_up("-" + str(amount))
 
 	# Snapshot current values BEFORE killing the tween
-	var current_scale = life_circle.scale
-	var current_color = life_circle.self_modulate
+	var current_scale : Vector2 = life_circle.scale
+	var current_color : Color = life_circle.self_modulate
 
 	if life_tween:
 		life_tween.kill()
@@ -59,13 +59,13 @@ func lose_hp(amount: int, new_hp: int) -> void:
 
 func gain_hp(amount: int, new_hp: int) -> void:
 	refresh_hp(new_hp)
-	var popup_number = popup_number_scene.instantiate() as RichTextLabel
+	var popup_number : RichTextLabel = popup_number_scene.instantiate() as RichTextLabel
 	life_circle.add_child(popup_number)
 	popup_number.set_up("+" + str(amount))
 
 	# Snapshot current values BEFORE killing the tween
-	var current_scale = life_circle.scale
-	var current_color = life_circle.self_modulate
+	var current_scale : Vector2 = life_circle.scale
+	var current_color : Color = life_circle.self_modulate
 
 	if life_tween:
 		life_tween.kill()
@@ -98,7 +98,7 @@ func set_whale_circle() -> void:
 			whale_circle.visible = false
 			return
 		whale_circle.visible = true
-		var progress = whale_spawner.get_cooldown_progress()
+		var progress : float = whale_spawner.get_cooldown_progress()
 		whale_circle.value = progress * whale_circle.max_value
 		# make sprite grayscale
 		if progress == 1.0:
@@ -117,8 +117,8 @@ func set_whale_circle() -> void:
 func set_status_effects(effects: Array[StatusEffect]) -> void:
 	for i : int in range(status_effect_icons.size()):
 		if i < len(effects):
-			var effect = effects[i]
-			var icon = status_effect_icons[i]
+			var effect : StatusEffect = effects[i]
+			var icon : StatusEffectIcon = status_effect_icons[i]
 			icon.setup(effect)
 		else:
 			status_effect_icons[i].turn_off()
