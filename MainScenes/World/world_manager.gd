@@ -106,8 +106,15 @@ func next_wave() -> void:
 	boss_map_manager.room_active = false
 	map_entered(false)
 
+
 func pause_game() -> void:
-	get_tree().paused = true
+	set_paused(true)
 
 func resume_game() -> void:
-	get_tree().paused = false
+	set_paused(false)
+	
+func set_paused(paused: bool) -> void:
+	var tree = get_tree()
+	
+	if tree:
+		tree.paused = paused

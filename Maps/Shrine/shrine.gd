@@ -37,11 +37,9 @@ func setup(_upgrade_name: String) -> void:
 	floating_sprite.visible = true
 
 
-
-
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player_inside:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("interact"):
 			GlobalStats.add_to_stat(upgrade_name)
 			activated = true
 			floating_sprite.visible = false
@@ -51,6 +49,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.OVERSHRINE)
+
 		sprite.modulate = Color(0.7, 0.8, 0.8) # Change color to red when player enters
 		player_inside = true
 		blessing_description.display_blessing_info(upgrade_name)
@@ -95,4 +94,3 @@ func close_gateway() -> void:
 	floating_sprite.visible = false
 	sprite.scale = original_scale
 	sprite.modulate = Color(1, 1, 1, 1)
-

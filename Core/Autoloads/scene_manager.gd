@@ -51,12 +51,17 @@ func activate() -> void:
 		
 
 func reset_game() -> void:
+	if not all_scenes:
+		printerr("All scenes array is empty!"); get_tree().quit()
+		return
+	
 	var game_scene = all_scenes[SceneEnum.GAME]
 	var world_manager = game_scene as WorldManager
+	
 	if world_manager:
 		world_manager.reset()
 		# world_manager.setup()
-	GlobalStats.reset_current_run_stats()
+		GlobalStats.reset_current_run_stats()
 
 func next_wave() -> void:
 	var game_scene = all_scenes[SceneEnum.GAME]
