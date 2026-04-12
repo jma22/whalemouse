@@ -17,9 +17,9 @@ func enter() -> void:
 func exit() -> void:
 	entity.set_invulnerable(false)
 
-func fixed_run(delta: float) -> void:
+func fixed_run(_delta: float) -> void:
 	entity.velocity *= dampening
 
-func run(delta: float) -> void:
+func run(_delta: float) -> void:
 	if get_elapsed_time() > duration:
 		is_complete = true

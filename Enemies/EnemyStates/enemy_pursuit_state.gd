@@ -60,22 +60,22 @@ func sample_cardinal_direction(direction: Vector3) -> Vector3:
 		Vector3(-1, 0, -1).normalized()
 	]
 	var closest_direction : Vector3 = get_closest_cardinal_direction(direction)
-	var index = cardinal_directions.find(closest_direction)
-	var pick = randf()
+	var index : int = cardinal_directions.find(closest_direction)
+	var pick : float = randf()
 	if pick < 0.5:
 		return closest_direction
 	elif pick < 0.5 + 0.2:
-		var second_index = (index + 1) % cardinal_directions.size()
+		var second_index : int = (index + 1) % cardinal_directions.size()
 		return cardinal_directions[second_index]
 	elif pick < 0.5 + 0.2 + 0.2:
-		var third_index = (index - 1 + cardinal_directions.size()) % cardinal_directions.size()
+		var third_index : int = (index - 1 + cardinal_directions.size()) % cardinal_directions.size()
 		return cardinal_directions[third_index]
 	else:
 		var remaining_indices : Array[int] = []
 		for i in range(cardinal_directions.size()):
 			if i != index and i != (index + 1) % cardinal_directions.size() and i != (index - 1 + cardinal_directions.size()) % cardinal_directions.size():
 				remaining_indices.append(i)
-		var random_index = remaining_indices[randi() % remaining_indices.size()]
+		var random_index : int = remaining_indices[randi() % remaining_indices.size()]
 		return cardinal_directions[random_index]
 
 func get_closest_cardinal_direction(direction: Vector3) -> Vector3:

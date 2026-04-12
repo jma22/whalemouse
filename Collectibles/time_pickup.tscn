@@ -5,10 +5,8 @@
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_kwque"]
 [ext_resource type="AudioStream" uid="uid://iduxoxuqogab" path="res://SFX/XP_POP.wav" id="4_hi7nu"]
 
-[node name="TimePickup" type="Node3D" unique_id=393659539 node_paths=PackedStringArray("sprite_manager", "audio_player")]
+[node name="TimePickup" type="Node3D" unique_id=393659539]
 script = ExtResource("1_xvhxq")
-sprite_manager = NodePath("SpriteManager")
-audio_player = NodePath("AudioStreamPlayer")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=2098642632]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)

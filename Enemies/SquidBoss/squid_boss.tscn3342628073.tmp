@@ -26,7 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="21_2b3js"]
 [ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://Core/Components/knockback_component.gd" id="22_ytd2j"]
 [ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Core/Components/hitstop.gd" id="23_eam4l"]
-[ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="27_yjlnx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)
@@ -129,9 +128,8 @@ enemy_idle_state = NodePath("../EnemyIdleState")
 script = ExtResource("17_rfpxa")
 animation = SubResource("Resource_fdp45")
 
-[node name="EnemyJumpAttackState" type="Node" parent="StateMachine" unique_id=703820865 node_paths=PackedStringArray("arc_component")]
+[node name="EnemyJumpAttackState" type="Node" parent="StateMachine" unique_id=703820865]
 script = ExtResource("17_iiuer")
-arc_component = NodePath("../../ArcComponent")
 
 [node name="EnemyJumpAttackChargeState" type="Node" parent="StateMachine" unique_id=2032867906 node_paths=PackedStringArray("attack_state")]
 script = ExtResource("18_rt7ug")
@@ -178,15 +176,6 @@ entity = NodePath("..")
 
 [node name="Hitstop" type="Node3D" parent="." unique_id=88493877]
 script = ExtResource("23_eam4l")
-
-[node name="ArcComponent" type="Node3D" parent="." unique_id=795841172]
-script = ExtResource("27_yjlnx")
-time = 0.8
-max_height = 0.5
-sharpness = 0.7
-descent_mult = 0.2
-max_x_distance = 2.0
-metadata/_custom_type_script = "uid://ccb88yqq2eri3"
 
 [editable path="HurtBox"]
 [editable path="Hitbox"]

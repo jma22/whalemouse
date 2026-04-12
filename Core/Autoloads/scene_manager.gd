@@ -55,8 +55,8 @@ func reset_game() -> void:
 		printerr("All scenes array is empty!"); get_tree().quit()
 		return
 	
-	var game_scene = all_scenes[SceneEnum.GAME]
-	var world_manager = game_scene as WorldManager
+	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
+	var world_manager : WorldManager = game_scene as WorldManager
 	
 	if world_manager:
 		world_manager.reset()
@@ -64,19 +64,19 @@ func reset_game() -> void:
 		GlobalStats.reset_current_run_stats()
 
 func next_wave() -> void:
-	var game_scene = all_scenes[SceneEnum.GAME]
-	var world_manager = game_scene as WorldManager
+	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
+	var world_manager : WorldManager = game_scene as WorldManager
 	if world_manager:
 		world_manager.next_wave()
 
 func pause_game() -> void:
-	var game_scene = all_scenes[SceneEnum.GAME]
-	var world_manager = game_scene as WorldManager
+	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
+	var world_manager : WorldManager = game_scene as WorldManager
 	if world_manager:
 		world_manager.pause_game()
 
 func resume_game() -> void:
-	var game_scene = all_scenes[SceneEnum.GAME]
-	var world_manager = game_scene as WorldManager
+	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
+	var world_manager : WorldManager = game_scene as WorldManager
 	if world_manager:
 		world_manager.resume_game()

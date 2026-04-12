@@ -13,7 +13,7 @@ func start() -> void:
 
 
 func play_sound() -> void:
-	var rand = randi() % 3
+	var rand : int = randi() % 3
 	match rand:
 		0:
 			if audio_1 and audio_1.stream:

@@ -26,7 +26,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if displaying_tutorial and Input.is_action_just_pressed("interact") and debounce_timer <= 0.0:
 		if tutorial_texts.size() > 0:
-			var line = tutorial_texts.pop_front()
+			var line : Array = tutorial_texts.pop_front()
 			show_text(line[0], line[1])
 		else:
 			exit_tutorial()
@@ -37,7 +37,7 @@ func take_tutorial(tutorial_lines : Array) -> void:
 	debounce_timer = debounce_spam_timer
 	tutorial_texts = tutorial_lines
 	if tutorial_texts.size() > 0:
-		var line = tutorial_texts.pop_front()
+		var line : Array = tutorial_texts.pop_front()
 		fade_in()
 		show_text(line[0], line[1])
 

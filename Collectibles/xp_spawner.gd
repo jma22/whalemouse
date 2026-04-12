@@ -8,7 +8,7 @@ var spawn_timer: float = 0.0
 
 func setup_outwards(num_orbs: int, target_: Node3D) -> void:
 	for i in range(num_orbs):
-		var orb_instance = xp_orb.instantiate()
+		var orb_instance : Node3D = xp_orb.instantiate()
 		add_child(orb_instance)
 		spawned_orbs.append(orb_instance)
 		orb_instance.global_transform.origin = global_transform.origin
@@ -20,11 +20,10 @@ func setup_outwards(num_orbs: int, target_: Node3D) -> void:
 		var velocity : Vector3 = Vector3(xz_dir.x , upward_pop, xz_dir.y)
 		orb_instance.setup(velocity, target_)
 
-func setup_directional(num_orbs, target_: Node3D, direction : Vector3) -> void:
-	print("spawning")
+func setup_directional(num_orbs: int, target_: Node3D, direction : Vector3) -> void:
 
-	for i in range(num_orbs):
-		var orb_instance = xp_orb.instantiate()
+	for i : int in range(num_orbs):
+		var orb_instance : Node3D = xp_orb.instantiate()
 		add_child(orb_instance)
 		spawned_orbs.append(orb_instance)
 		orb_instance.global_transform.origin = global_transform.origin

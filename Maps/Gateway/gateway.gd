@@ -24,7 +24,7 @@ func _ready() -> void:
 	original_scale = sprite.scale
 	close_gateway()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player_inside:
 		if not done and  Input.is_action_just_pressed("interact"):
 			done = true

@@ -94,12 +94,12 @@ func on_die() -> void:
 	if is_dead:
 		return
 	is_dead = true
-	var tween = await sprite_manager.die()
+	var tween : Tween = await sprite_manager.die()
 	GlobalStats.add_kill()
 
 	await tween.finished
 	if xp_spawner_scene:
-		var xp_spawner_instance = xp_spawner_scene.instantiate()
+		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		xp_spawner_instance.setup_outwards(GlobalStats.get_enemy_xp_drop(), player)

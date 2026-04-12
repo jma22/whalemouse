@@ -31,8 +31,8 @@ func enter() -> void:
 	# arc_component.time = 1.5 / spd_mult
 	arc_component.setup(target)
 
-func adjust_speed():
-	var mult := GlobalStats.get_attack_speed_multiplier()
+func adjust_speed() -> void:
+	var mult : float = GlobalStats.get_attack_speed_multiplier()
 	arc_component.time = 0.5 / mult
 	arc_component.max_height = 0.4 / mult
 	entity.sprite_manager.frames_per_second = 12 * mult

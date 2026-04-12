@@ -3,6 +3,7 @@ extends Node3D
 class_name MapManagerBase
 
 @export var gateway : Gateway
+@warning_ignore("shadowed_global_identifier")
 @export var floor : NavigationRegion3D 
 @export var player_spawn_point : Node3D
 

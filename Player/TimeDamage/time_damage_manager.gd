@@ -15,11 +15,13 @@ func setup(player : Node3D) -> void:
 
 func _process(delta: float) -> void:
 	# var wave_info := wave_manager.get_current_wave_info()
+	if not player:
+		return
 	
 	# # Stop timer if not in combat
 	# if wave_info.room_type != "combat":
 	# 	return
-	var raw_delta = delta
+	var raw_delta : float = delta
 	for effect : StatusEffect in player.status_effects:
 		effect.tick_effect(raw_delta)
 	for effect : StatusEffect in player.status_effects:

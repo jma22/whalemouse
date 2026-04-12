@@ -7,8 +7,8 @@ class_name Shrine
 @export var blessing_description : BlessingText
 @export var animation_player : AnimationPlayer
 
+var upgrade_data : UpgradeData
 var player_inside : bool = false
-var upgrade_name : String = ""
 var activated : bool = false
 
 var animation_clip : AnimationClip
@@ -23,15 +23,16 @@ func _ready() -> void:
 	animation_clip = AnimationClip.new()
 	animation_clip.frame_numbers = [0,1,2]
 	original_scale = sprite.scale
-	close_gateway()
 
-func setup(_upgrade_name: String) -> void:
-	if _upgrade_name == "":
+func setup(upgrade_data_: UpgradeData) -> void:
+	if upgrade_data_ == null:
 		activated = false
 		sprite.visible = false
+		printerr("Shrine setted up with no upgrade")
 		return
-	floating_sprite.texture = load("res://UI/HUD/BlessingIcons/%s.png" % _upgrade_name)
-	upgrade_name = _upgrade_name
+		
+	floating_sprite.texture = load(upgrade_data_.get_icon_path())
+	upgrade_data = upgrade_data_
 	activated = false
 	animation_player.play("shrine_on")
 	floating_sprite.visible = true
@@ -40,7 +41,7 @@ func setup(_upgrade_name: String) -> void:
 func _process(_delta: float) -> void:
 	if player_inside:
 		if Input.is_action_just_pressed("interact"):
-			GlobalStats.add_to_stat(upgrade_name)
+			upgrade_data.apply()
 			activated = true
 			floating_sprite.visible = false
 			audio_player.play()
@@ -52,7 +53,7 @@ func _on_body_entered(body: Node) -> void:
 
 		sprite.modulate = Color(0.7, 0.8, 0.8) # Change color to red when player enters
 		player_inside = true
-		blessing_description.display_blessing_info(upgrade_name)
+		blessing_description.display_blessing_info(upgrade_data)
 		sprite.frames_per_second = 5
 		if tween:
 			tween.stop()

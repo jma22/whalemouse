@@ -1,53 +1,118 @@
 extends Node
 class_name Upgrades
 
-var DATA := {
-	"heal": UpgradeData.new("Time on a Jar", "blessing", _heal_desc),
-	"xp_suck": UpgradeData.new("Orb Catcher", "blessing", _xp_suck_desc),
-	"enemy_xp_drop": UpgradeData.new("Feast Totem", "blessing", _enemy_xp_drop_desc),
-	"whale_level": UpgradeData.new("Beluga Plushie", "blessing", _whale_desc),
-	"dash_distance": UpgradeData.new("VROOM!!", "blessing", _dash_desc),
-	"time_tick_level": UpgradeData.new("Dark Algae", "curse", _time_tick_desc),
-	"damage": UpgradeData.new("Little Bite", "curse", _damage_desc),
-	"enemy_speed": UpgradeData.new("Flying Shell", "curse", _enemy_speed_desc),
-	"enemy_health": UpgradeData.new("Bulk Up", "curse", _enemy_health_desc),
-	"enemy_damage": UpgradeData.new("Poseidon's Fury", "curse", _enemy_damage_desc),
+static var list := {
 }
 
-func _heal_desc(level):
-	return "Take some time! (+%d)" % ((1 + level) * 7)
 
-func _damage_desc(level):
-	return "Too much time on your hands, take some damage! (-%d)" % ((1 + level) * 5)
+static func _static_init() -> void:
+	_add_generic_blessing("heal","Time on a Jar", _heal_desc, [_scaled_heal_effect, _increase_stats_effect.bind("heal")])
+	_add_generic_blessing("xp_suck", "Orb Catcher", _xp_suck_desc, [_increase_stats_effect.bind("xp_suck")])
+	_add_generic_blessing("enemy_xp_drop", "Feast Totem", _enemy_xp_drop_desc, [_increase_stats_effect.bind("enemy_xp_drop")])
+	_add_whale_blessing("whale_level", "Beluga Plushie", _whale_desc, [_increase_stats_effect.bind("whale_level")])
+	_add_generic_blessing("dash_distance", "VROOM!!", _dash_desc, [_increase_stats_effect.bind("dash_distance")])
+	_add_big_curse("time_tick_level", "Dark Algae", _time_tick_desc, [_increase_stats_effect.bind("time_tick_level")])
+	_add_curse("damage", "Little Bite", _damage_desc, [_scaled_damage_effect, _increase_stats_effect.bind("damage")])
+	_add_curse("enemy_speed", "Flying Shell", _enemy_speed_desc, [_increase_stats_effect.bind("enemy_speed")])
+	_add_curse("enemy_health", "Bulk Up", _enemy_health_desc, [_increase_stats_effect.bind("enemy_health")])
+	_add_curse("enemy_damage", "Poseidon's Fury", _enemy_damage_desc, [_increase_stats_effect.bind("enemy_damage")])
 
-func _xp_suck_desc(_level):
+
+
+
+# --- public methods ---
+static func get_upgrade(internal_name: String) -> UpgradeData:
+	return list.get(internal_name, null)
+
+static func get_randomized_upgrades(type: Array[String], amount: int) -> Array[UpgradeData]:
+	var randomized: Array[UpgradeData] = []
+
+	# Collect only blessings or curses
+	for upgrade : UpgradeData in list.values():
+		if upgrade.blessing_type in type:
+			randomized.append(upgrade)
+
+	if randomized.size() < amount:
+		return randomized
+
+	randomized.shuffle()
+	return randomized.slice(0, amount)
+
+# --- constructors ---
+static func _add_generic_blessing(internal_name: String, display_name: String, description_func: Callable, effects: Array[Callable] = []) -> void:
+	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "blessing", description_func, effects)
+	list[internal_name] = upgrade
+
+static func _add_whale_blessing(internal_name: String, display_name: String, description_func: Callable, effects: Array[Callable] = []) -> void:
+	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "whale_blessing", description_func, effects)
+	list[internal_name] = upgrade
+
+static func _add_curse(internal_name: String, display_name: String, description_func: Callable, effects: Array[Callable] = []) -> void:
+	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "curse", description_func, effects)
+	list[internal_name] = upgrade	
+
+static func _add_big_curse(internal_name: String, display_name: String, description_func: Callable, effects: Array[Callable] = []) -> void:
+	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "big_curse", description_func, effects)
+	list[internal_name] = upgrade
+
+
+# ---- effects ----
+static func _flat_heal_effect(amount : int) -> void:
+	GlobalStats.player.heal(amount)
+
+static func _scaled_heal_effect() -> void:
+	var amount : int = GlobalStats.get_heal_amount()
+	GlobalStats.player.heal(amount)
+
+static func _flat_damage_effect(amount : int) -> void:
+	GlobalStats.player.damage(amount)
+
+static func _scaled_damage_effect() -> void:
+	var amount : int = GlobalStats.get_damage_amount()
+	GlobalStats.player.damage(amount)
+
+static func _increase_stats_effect(stat_name: String) -> void:
+	GlobalStats.add_to_stat(stat_name)
+
+
+
+
+
+# ------- DESCRIPTION FUNCTIONS -------
+static func _heal_desc() -> String:
+	return "Take some time! (+%d)" % (GlobalStats.get_heal_amount())
+
+static func _damage_desc() -> String:
+	return "Too much time on your hands, take some damage! (-%d)" % (GlobalStats.get_damage_amount())
+
+static func _xp_suck_desc() -> String:
 	return "Orbs are more attracted to you!"
 
-func _enemy_xp_drop_desc(level):
-	if level == 0:
+static func _enemy_xp_drop_desc() -> String:
+	if GlobalStats.current_run_stats["enemy_xp_drop"] == 0:
 		return "Enemies are more... nutritious?"
 	else:
 		return "Enemies give even more time!"
 
-func _whale_desc(level):
-	if level == 0:
+static func _whale_desc() -> String:
+	if GlobalStats.current_run_stats["whale_level"] == 0:
 		return "Beluga is here to help!"
 	else:
 		return "Beluga grows bigger!"
 
-func _dash_desc(level):
-	if level == 0:
+static func _dash_desc() -> String:
+	if GlobalStats.current_run_stats["dash_distance"] == 0:
 		return "You can now dash!"
 	return "Even more dashing!"
 
-func _time_tick_desc(_level):
+static func _time_tick_desc() -> String:
 	return "Time ticks faster..."
 
-func _enemy_speed_desc(_level):
+static func _enemy_speed_desc() -> String:
 	return "Enemies are faster!"
 
-func _enemy_health_desc(_level):
+static func _enemy_health_desc() -> String:
 	return "Enemies are harder to kill!"
 
-func _enemy_damage_desc(_level):
+static func _enemy_damage_desc() -> String:
 	return "Enemies deal more damage!"

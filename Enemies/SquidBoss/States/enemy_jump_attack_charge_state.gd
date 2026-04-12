@@ -48,10 +48,10 @@ func check_state() -> void:
 # 	entity.velocity = direction * charge_creep_speed * GlobalStats.get_enemy_speed_multiplier()
 
 func sample_position_around_entity() -> Vector3:
-	var angle = randf() * 2.0 * PI
-	var radius = randf_range(1.8, 2.3)
-	var offset = Vector3(cos(angle), 0, sin(angle)) * radius
-	var target_point = entity.global_transform.origin + offset
+	var angle : float = randf() * 2.0 * PI
+	var radius : float = randf_range(1.8, 2.3)
+	var offset : Vector3 = Vector3(cos(angle), 0, sin(angle)) * radius
+	var target_point : Vector3 = entity.global_transform.origin + offset
 	# print("vector jump", vec)
 
 	# var aabb = entity.get_floor().get_bounds()

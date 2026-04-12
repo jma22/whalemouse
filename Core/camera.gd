@@ -17,7 +17,7 @@ func get_offset() -> Vector3:
 	var tilt : float = get_rotation().x * -1.0
 	var offset_y : float = distance * sin(tilt)
 	var offset_z : float = distance * cos(tilt)
-	var offset = Vector3(0, offset_y, offset_z)
+	var offset : Vector3= Vector3(0, offset_y, offset_z)
 	# offset = offset.rotated(Vector3(1, 0, 0), get_rotation().x)
 	# print("Offset after rotation: ", offset)
 	return offset
@@ -37,25 +37,25 @@ func _process(delta: float) -> void:
 
 func get_camera_world_size(distance_from_camera: float) -> Vector2:
 	# Get the viewport size (in pixels)
-	var viewport_rect = get_viewport().get_visible_rect()
-	var aspect = viewport_rect.size.x / viewport_rect.size.y
+	var viewport_rect : Rect2 = get_viewport().get_visible_rect()
+	var aspect : float = viewport_rect.size.x / viewport_rect.size.y
 	
 	# For Perspective Cameras
 	# if projection == PROJECTION_PERSPECTIVE:
-	var fov_rad = deg_to_rad(fov)
-	var height = 2 * tan(fov_rad / 2) * distance_from_camera
-	var width = height * aspect
+	var fov_rad : float = deg_to_rad(fov)
+	var height : float = 2 * tan(fov_rad / 2) * distance_from_camera
+	var width : float = height * aspect
 	
 	return Vector2(width, height)
 
 func clamp_camera() -> void:
 	if bounds == null:
 		return
-	var camera_world_size = get_camera_world_size(global_position.y*1.5)
-	var min_x = bounds.position.x + camera_world_size.x / 2 - lr_margin
-	var max_x = bounds.position.x + bounds.size.x - camera_world_size.x / 2 + lr_margin
-	var min_z = bounds.position.z + camera_world_size.y / 2 - t_margin
-	var max_z = bounds.position.z + bounds.size.z - camera_world_size.y / 2 + b_margin
+	var camera_world_size : Vector2 = get_camera_world_size(global_position.y*1.5)
+	var min_x : float = bounds.position.x + camera_world_size.x / 2 - lr_margin
+	var max_x : float = bounds.position.x + bounds.size.x - camera_world_size.x / 2 + lr_margin
+	var min_z : float = bounds.position.z + camera_world_size.y / 2 - t_margin
+	var max_z : float = bounds.position.z + bounds.size.z - camera_world_size.y / 2 + b_margin
 	
 	global_position.x = clamp(global_position.x, min_x, max_x)
 	global_position.z = clamp(global_position.z, min_z, max_z)

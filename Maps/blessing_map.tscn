@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bnoo4a5dj0t3w" path="res://Maps/Decors/shrine.tscn" id="7_68yjn"]
 [ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://UI/Textbox/blessing_description.gd" id="8_68yjn"]
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_327w5"]
-[ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_617kr"]
+[ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/smoke.gdshader" id="10_617kr"]
 [ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/Textbox/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
 
@@ -277,9 +277,10 @@ blessing_description = NodePath("../BlessingDescription")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3362546, 0, -0.8883581)
 blessing_description = NodePath("../BlessingDescription")
 
-[node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("text_label", "container", "texture")]
+[node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("item_name_text", "item_description_text", "container", "texture")]
 script = ExtResource("8_68yjn")
-text_label = NodePath("VBoxContainer/TextureRect/RichTextLabel")
+item_name_text = NodePath("VBoxContainer/TextureRect/Item Name Text")
+item_description_text = NodePath("VBoxContainer/TextureRect/Item Description Text")
 container = NodePath("VBoxContainer")
 texture = NodePath("VBoxContainer/TextureRect")
 blessing_color = Color(0.9, 0.8796, 0.594, 1)
@@ -298,20 +299,37 @@ size_flags_vertical = 3
 texture = ExtResource("13_617kr")
 expand_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/TextureRect" unique_id=888206133]
+[node name="Item Name Text" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/TextureRect" unique_id=888206133]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 4.0
-offset_bottom = 4.0
+offset_top = 49.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
 theme_override_fonts/normal_font = ExtResource("14_2ew54")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
-text = "Le Tutorial"
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item Description Text" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/TextureRect" unique_id=809381140]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 92.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
+theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Effect"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -4,10 +4,16 @@ class_name WhaleSpawner
 @export var whale : Whale
 var cooldown : float = 4.5
 var cooldown_timer : float = 0.0
-var map_manager : MapManagerBase
 
-func setup(map_manager_ref: MapManagerBase) -> void:
-	map_manager = map_manager_ref
+var player : CharacterBody3D
+var floor : FloorNav
+var enemy_spawner : EnemySpawner
+
+func setup(player_ : CharacterBody3D, floor_ : FloorNav, enemy_spawner_ : EnemySpawner) -> void:
+	self.player = player_
+	self.floor = floor_
+	self.enemy_spawner = enemy_spawner_
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("spawn_whale"):
@@ -32,7 +38,7 @@ func can_cast() -> bool:
 
 func cast_whale() -> void:
 	cooldown_timer = cooldown
-	var enemies : Array[Node3D] = map_manager.get_alive_enemies()
+	var enemies : Array[Node3D] = enemy_spawner.get_alive_enemies()
 	whale.global_transform.origin = get_spawn_location(enemies)
 	whale.scale = Vector3.ONE * GlobalStats.get_whale_size()
 	play_whale()
@@ -42,7 +48,6 @@ func get_cooldown_progress() -> float:
 
 
 func get_spawn_location(enemies : Array[Node3D]) -> Vector3:
-	var player : CharacterBody3D = map_manager.player
 	if enemies.size() == 0:
 		return player.global_transform.origin
 	
@@ -56,7 +61,7 @@ func get_spawn_location(enemies : Array[Node3D]) -> Vector3:
 			closest_distance = distance
 	var spawn_location : Vector3 = closest_enemy.global_transform.origin
 
-	var map : AABB = map_manager.floor.get_bounds()
+	var map : AABB = floor.get_bounds()
 	var radius :float = 1.5 * GlobalStats.get_whale_size()
 	spawn_location.x = clamp(spawn_location.x, map.position.x + radius, map.position.x + map.size.x - radius)
 	spawn_location.y = 0

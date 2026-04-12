@@ -9,12 +9,12 @@ func enter() -> void:
 	entity.sprite_manager.play(animation)
 	entity.position.y = 0
 
-func fixed_run(delta: float) -> void:
+func fixed_run(_delta: float) -> void:
 	entity.velocity = Vector3.ZERO
 	
 func set_idle_duration(duration: float) -> void:
 	idle_duration = duration
 
-func run(delta: float) -> void:
+func run(_delta: float) -> void:
 	if get_elapsed_time() >= idle_duration:
 		is_complete = true

@@ -35,16 +35,16 @@ func setup() -> void:
 	player.setup(hud)
 	GlobalStats.setup(player, hud)
 	transition.setup()
-	whale_spawner.setup(map_manager)
+	whale_spawner.setup(player, map_manager.floor, map_manager.enemy_spawner)
 	call_deferred("map_entered", true)
 	## call  fade_out_loading() when above call is done 
 	## wait tille camera velocity is 0 then call fadeoutlaoding
 	await get_tree().process_frame
 	## compare camera position each frame
-	var previous_position = camera.global_transform.origin
+	var previous_position : Vector3 = camera.global_transform.origin
 	while true:
 		await get_tree().process_frame
-		var current_position = camera.global_transform.origin
+		var current_position : Vector3 = camera.global_transform.origin
 		if current_position.distance_to(previous_position) < 0.01:
 			break
 		previous_position = current_position
@@ -52,7 +52,7 @@ func setup() -> void:
 	
 
 func fade_out_loading() -> void:
-	var tween = create_tween()
+	var tween : Tween = create_tween()
 	tween.tween_property(loading_screen.get_child(0), "modulate:a", 0.0, 1.0)
 	tween.tween_callback(Callable(loading_screen, "hide"))
 	tween.play()
@@ -114,7 +114,7 @@ func resume_game() -> void:
 	set_paused(false)
 	
 func set_paused(paused: bool) -> void:
-	var tree = get_tree()
+	var tree : SceneTree = get_tree()
 	
 	if tree:
 		tree.paused = paused

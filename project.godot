@@ -23,6 +23,10 @@ TutorialManager="*uid://71xrymgiysoh"
 GlobalStats="*uid://dmyu4wno1vl2a"
 Config="*uid://bpssjmt3bcd4l"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+
 [display]
 
 window/size/viewport_width=960
