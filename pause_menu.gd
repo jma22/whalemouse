@@ -13,7 +13,7 @@ func _ready() -> void:
 	visible = false
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_close_dialog"):
+	if Input.is_action_just_pressed("pause"):
 		if is_paused:
 			exit_tutorial()
 		else:

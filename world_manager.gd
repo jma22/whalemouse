@@ -96,8 +96,15 @@ func next_wave() -> void:
 	wave_manager.current_wave += 1
 	map_entered(false)
 
+
 func pause_game() -> void:
-	get_tree().paused = true
+	set_paused(true)
 
 func resume_game() -> void:
-	get_tree().paused = false
+	set_paused(false)
+	
+func set_paused(paused: bool) -> void:
+	var tree = get_tree()
+	
+	if tree:
+		tree.paused = paused

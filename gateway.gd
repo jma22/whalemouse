@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if player_inside:
-		if not done and  Input.is_action_just_pressed("ui_accept"):
+		if not done and  Input.is_action_just_pressed("interact"):
 			done = true
 			audio_player.play()
 			SceneManager.next_wave()

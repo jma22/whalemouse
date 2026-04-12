@@ -144,8 +144,6 @@ func get_description(stat_name: String) -> String:
 			return "Enemies gain weight..."	
 		"enemy_damage":
 			return "Enemies grow spikes..."
-
-		
 	return "lmao"
 
 func get_two_random_blessing() -> Array[String]:
