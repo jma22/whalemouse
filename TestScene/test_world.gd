@@ -7,7 +7,7 @@ extends Node3D
 @onready var camera : Camera3D = $Camera3D
 @onready var whale_spawner : WhaleSpawner = $WhaleSpawner
 
-@export var enemy : EnemyBase
+# @export var enemy : EnemyBase
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 	GlobalStats.setup(player, hud)
 	hud.setup(player)
 	map.setup(player,camera, hud)
-	enemy.setup(player, map.floor)
+	# enemy.setup(player, map.floor)
 	whale_spawner.setup(map)
 	map.start_room(null)
 

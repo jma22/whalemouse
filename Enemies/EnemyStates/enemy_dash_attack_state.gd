@@ -1,6 +1,6 @@
 extends State
 
-class_name EnemyAttackState
+class_name EnemyDashAttackState
 var target_position : Vector3
 @export var animation_clip : AnimationClip
 @export var attack_speed : float = 12.0
@@ -14,7 +14,7 @@ func enter() -> void:
 	audio_player.play()
 	entity.hitbox.set_active(true)
 	apply_velocity()
-	entity.knockback_component.set_knockbackable(false)
+	# entity.knockback_component.set_knockbackable(false)
 	var bubbler_instance = bubbler_scene.instantiate()
 	# bubbler_instance.global_transform.origin = entity.global_transform.origin
 	entity.add_child(bubbler_instance)
@@ -23,7 +23,7 @@ func enter() -> void:
 
 func exit() -> void:
 	entity.hitbox.set_active(false)
-	entity.knockback_component.set_knockbackable(true)
+	# entity.knockback_component.set_knockbackable(true)
 
 func run(_delta: float) -> void:
 	check_state()
