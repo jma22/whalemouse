@@ -27,7 +27,6 @@ class_name WorldManager
 # 	setup()
 
 func setup() -> void:
-	print("AAAA")
 	shrine_map_manager.setup(player, camera, hud)
 	map_manager.setup(player, camera, hud)
 	boss_map_manager.setup(player, camera, hud)
