@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c7lfuhjagfqay"]
+
+[ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="1_orx6n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwbse"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_orx6n"]
+
+[node name="Hitbox" type="Area3D" unique_id=754444443]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_orx6n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1405177479]
+shape = SubResource("BoxShape3D_dwbse")
+debug_color = Color(0.92, 0.27799332, 0.19319998, 0.7294118)
+debug_fill = false
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=468577178]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -5, 0, 5, -2.1855695e-07, 0, 0, 0)
+pixel_size = 0.1
+texture = SubResource("PlaceholderTexture2D_orx6n")

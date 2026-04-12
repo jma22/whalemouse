@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://buffg8rju24ed"]
+
+[ext_resource type="Script" uid="uid://birlwkgna56fn" path="res://MainScenes/GameOver/game_over_scene.gd" id="1_2gdd6"]
+[ext_resource type="Script" uid="uid://dsd7io4ojj2ch" path="res://MainScenes/GameOver/retry_button.gd" id="1_qpvvx"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_qxph1"]
+[ext_resource type="Texture2D" uid="uid://bujyudcxbwii8" path="res://MainScenes/GameOver/2169_Sem_Titulo_20260404180154.png" id="3_su5tw"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="5_xd6gs"]
+[ext_resource type="AudioStream" uid="uid://cpy7lxcu2085s" path="res://SFX/transition.wav" id="6_waywm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxph1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xd6gs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_waywm"]
+
+[node name="GameOverScene" type="Node3D" unique_id=1521685688 node_paths=PackedStringArray("background", "audio_player", "text_labels", "button_control")]
+script = ExtResource("1_2gdd6")
+background = NodePath("Control/TextureRect")
+audio_player = NodePath("AudioStreamPlayer")
+text_labels = [NodePath("Control/Control/RichTextLabel"), NodePath("Control/Control/RichTextLabel2"), NodePath("Control/Control/RichTextLabel3")]
+button_control = NodePath("Control/VBoxContainer/Control")
+
+[node name="Control" type="Control" parent="." unique_id=473503477]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1822904499]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.088, 0.08873333, 0.11, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1447394169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_su5tw")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1736086154]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer" unique_id=29338108]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="Control" type="Control" parent="Control/VBoxContainer" unique_id=1268228828]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/Control" unique_id=1305187883 node_paths=PackedStringArray("text_label")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qxph1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xd6gs")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_waywm")
+script = ExtResource("1_qpvvx")
+text_label = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/Control/Button" unique_id=89701532]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_qxph1")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]Try Again?[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer" unique_id=1979533319]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="Control" unique_id=335402028]
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Control" unique_id=1655636633]
+z_index = 20
+layout_mode = 0
+offset_left = 698.0
+offset_top = 223.99998
+offset_right = 979.04175
+offset_bottom = 285.0
+rotation = 0.20943952
+theme_override_fonts/normal_font = ExtResource("5_xd6gs")
+theme_override_font_sizes/normal_font_size = 37
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]200 seconds[/shake]"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/Control" unique_id=1865800394]
+z_index = 20
+layout_mode = 0
+offset_left = 117.000015
+offset_top = 198.0
+offset_right = 367.0
+offset_bottom = 259.0
+rotation = -0.12740904
+theme_override_fonts/normal_font = ExtResource("5_xd6gs")
+theme_override_font_sizes/normal_font_size = 38
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]10 waves[/shake]"
+scroll_active = false
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control/Control" unique_id=1885786511]
+z_index = 20
+layout_mode = 0
+offset_left = 46.0
+offset_top = 314.0
+offset_right = 296.0
+offset_bottom = 375.0
+rotation = -0.20245819
+theme_override_fonts/normal_font = ExtResource("5_xd6gs")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]40 fish[/shake]"
+scroll_active = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1539445550]
+stream = ExtResource("6_waywm")
+volume_db = -13.812
+pitch_scale = 0.69

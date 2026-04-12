@@ -13,7 +13,7 @@ class_name Player extends CharacterBody3D
 @export var attack_state : AttackState
 
 @export var hitstop : HitStop
-
+var time_damage_manager : TimeDamageManager
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
 var invulnerable : bool = false
@@ -24,6 +24,8 @@ var initial_health : int = 60
 const BUFFER_WINDOW : float = 0.2
 var _buffered_action : StringName = &""
 var _buffer_timer : float = 0.0
+
+var status_effects : Array[StatusEffect] = []
 
 func reset() -> void:
 	# This can be called to reset the player's state, such as when restarting the game
@@ -143,7 +145,6 @@ func on_gain_time(amount : int) -> void:
 	health_component.gain_health(amount)
 
 
-
 func heal(amount: int) -> void:
 	health_component.gain_health(amount)
 
@@ -151,3 +152,17 @@ func damage(amount: int) -> void:
 	health_component.take_damage(amount)
 	if health_component.is_dead():
 		on_die()
+
+
+
+func gain_status_effect(effect : StatusEffect) -> void:
+	status_effects.append(effect)
+
+func purge_effects() -> void:
+	for effect in status_effects:
+		if effect.time_remaining < 0:
+			status_effects.erase(effect)
+			return
+	
+func clear_effects() -> void:
+	status_effects.clear()	

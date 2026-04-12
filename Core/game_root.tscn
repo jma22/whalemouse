@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dg8owrdf3qc4u"]
+
+[ext_resource type="Script" uid="uid://djwr6o08i0wv1" path="res://Core/game_root.gd" id="1_xj5yv"]
+[ext_resource type="PackedScene" uid="uid://b3njbpc7i0djy" path="res://UI/Textbox/tutorial.tscn" id="2_pjpa4"]
+[ext_resource type="PackedScene" uid="uid://c0b8ged7b866o" path="res://UI/pause.tscn" id="3_bxsma"]
+[ext_resource type="AudioStream" uid="uid://cikbpd4iny72d" path="res://SFX/whalemouse.mp3" id="4_lkrbl"]
+
+[node name="GameRoot" type="Node3D" unique_id=544021186 node_paths=PackedStringArray("scene_container")]
+script = ExtResource("1_xj5yv")
+scene_container = NodePath("SceneContainer")
+
+[node name="SceneContainer" type="Node3D" parent="." unique_id=216488540]
+
+[node name="Tutorial" parent="." unique_id=1256479148 instance=ExtResource("2_pjpa4")]
+
+[node name="Tutorial2" parent="." unique_id=1293359771 instance=ExtResource("3_bxsma")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2082620311]
+process_mode = 3
+stream = ExtResource("4_lkrbl")
+volume_db = -16.0
+autoplay = true
+parameters/looping = true

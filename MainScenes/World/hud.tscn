@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bcykaspxa7iv6"]
+
+[ext_resource type="Script" uid="uid://xujg62bri8lb" path="res://UI/HUD/hud.gd" id="1_hyjo8"]
+[ext_resource type="Script" uid="uid://dwntwtemf07ge" path="res://UI/HUD/blessing_bar.gd" id="2_gwst3"]
+[ext_resource type="Script" uid="uid://dra8kgw44m4ep" path="res://UI/HUD/boss_health.gd" id="2_hq5uf"]
+[ext_resource type="PackedScene" uid="uid://dvb3n46jwcj8j" path="res://UI/HUD/BlessingIcons/icon.tscn" id="3_hq5uf"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_v4ort"]
+[ext_resource type="PackedScene" uid="uid://dac7dl6bj43cp" path="res://UI/HUD/hud_bar.tscn" id="4_v4ort"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ajsli"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1305888938 node_paths=PackedStringArray("hp_display", "blessing_bar", "boss_health")]
+script = ExtResource("1_hyjo8")
+hp_display = NodePath("MarginContainer/Control/Control")
+blessing_bar = NodePath("MarginContainer/Control/HBoxContainer")
+boss_health = NodePath("BossHealth")
+
+[node name="BossHealth" type="VBoxContainer" parent="." unique_id=693673062 node_paths=PackedStringArray("health_bar", "boss_name")]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_hq5uf")
+health_bar = NodePath("MarginContainer/TextureProgressBar")
+boss_name = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BossHealth" unique_id=1936732232]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_v4ort")
+theme_override_font_sizes/normal_font_size = 35
+text = "Squid"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BossHealth" unique_id=1090307557]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="BossHealth/MarginContainer" unique_id=566725051]
+layout_mode = 2
+size_flags_vertical = 3
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_ajsli")
+
+[node name="Buffer" type="Control" parent="BossHealth" unique_id=997049965]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=350125896]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=184722505]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control" unique_id=191471715]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+alignment = 2
+script = ExtResource("2_gwst3")
+icon_scene = ExtResource("3_hq5uf")
+
+[node name="Control" parent="MarginContainer/Control" unique_id=460654951 instance=ExtResource("4_v4ort")]
+layout_mode = 0

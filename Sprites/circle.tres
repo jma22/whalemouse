@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="AnimationClip" format=3 uid="uid://c45auuy4i4unt"]
-
-[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://animation_clip.gd" id="1_jbxg2"]
-
-[resource]
-script = ExtResource("1_jbxg2")
-frame_numbers = Array[int]([0, 1, 2])
-metadata/_custom_type_script = "uid://bfemb7cym2htn"

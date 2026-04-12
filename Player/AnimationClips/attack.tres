@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AnimationClip" format=3 uid="uid://cw13rf4mx4tj6"]
+
+[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="1_7hr7s"]
+
+[resource]
+script = ExtResource("1_7hr7s")
+frame_numbers = Array[int]([9, 10, 11, 12, 13, 14, 13])
+name = "Attacking"
+metadata/_custom_type_script = "uid://bfemb7cym2htn"

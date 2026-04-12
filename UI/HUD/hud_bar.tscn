@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dac7dl6bj43cp"]
+
+[ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://UI/HUD/hp_display.gd" id="1_5igc2"]
+[ext_resource type="PackedScene" uid="uid://cy2lsh2rvusbw" path="res://UI/HUD/popup_number.tscn" id="2_fpd43"]
+[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_mb7uj"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="3_an2p0"]
+[ext_resource type="Texture2D" uid="uid://b53x71wue75kv" path="res://UI/HUD/whale.png" id="5_an2p0"]
+[ext_resource type="PackedScene" uid="uid://dbhih0m50iyig" path="res://UI/HUD/status_effect_icon.tscn" id="6_tbrkv"]
+
+[node name="HudBar" type="Control" unique_id=460654951 node_paths=PackedStringArray("hp_label", "life_circle", "whale_circle", "status_effect_icons")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 622.49994
+offset_bottom = 509.99994
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_5igc2")
+hp_label = NodePath("LifeCircle/RichTextLabel")
+life_circle = NodePath("LifeCircle")
+whale_circle = NodePath("TextureProgressBar")
+status_effect_icons = [NodePath("VBoxContainer/TextureProgressBar"), NodePath("VBoxContainer/TextureProgressBar2"), NodePath("VBoxContainer/TextureProgressBar3"), NodePath("VBoxContainer/TextureProgressBar4")]
+popup_number_scene = ExtResource("2_fpd43")
+
+[node name="LifeCircle" type="TextureProgressBar" parent="." unique_id=1128795582]
+layout_mode = 1
+offset_right = 179.0
+offset_bottom = 176.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+value = 50.0
+fill_mode = 4
+texture_progress = ExtResource("2_mb7uj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LifeCircle" unique_id=564389056]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_an2p0")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "123"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1976552636]
+layout_mode = 1
+offset_left = -37.5
+offset_top = -177.5
+offset_right = 602.5
+offset_bottom = 302.5
+scale = Vector2(0.21, 0.21)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+value = 75.0
+fill_mode = 4
+texture_progress = ExtResource("5_an2p0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1818004266]
+layout_mode = 1
+offset_left = 4.9999995
+offset_top = 207.49998
+offset_right = 105.0
+offset_bottom = 539.5
+
+[node name="TextureProgressBar" parent="VBoxContainer" unique_id=1510859552 instance=ExtResource("6_tbrkv")]
+layout_mode = 2
+
+[node name="TextureProgressBar2" parent="VBoxContainer" unique_id=1974010402 instance=ExtResource("6_tbrkv")]
+layout_mode = 2
+
+[node name="TextureProgressBar3" parent="VBoxContainer" unique_id=280565358 instance=ExtResource("6_tbrkv")]
+layout_mode = 2
+
+[node name="TextureProgressBar4" parent="VBoxContainer" unique_id=1771606978 instance=ExtResource("6_tbrkv")]
+layout_mode = 2

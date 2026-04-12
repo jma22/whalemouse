@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AnimationClip" format=3 uid="uid://nix2op7fgg8i"]
+
+[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="1_mx8cj"]
+
+[resource]
+script = ExtResource("1_mx8cj")
+frame_numbers = Array[int]([18, 19, 20])
+name = "Walking"
+metadata/_custom_type_script = "uid://bfemb7cym2htn"

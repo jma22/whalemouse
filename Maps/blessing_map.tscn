@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://x7f2wmxt06cr"]
 
 [ext_resource type="Script" uid="uid://dl8bko3l0fhoh" path="res://Maps/shrine_map_manager.gd" id="1_20ttm"]
-[ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/gateway.tscn" id="2_327w5"]
-[ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://basic.meshlib" id="2_y0jyq"]
-[ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/floor_nav.tscn" id="3_yyg12"]
-[ext_resource type="Texture2D" uid="uid://bml51unoyd30v" path="res://Sprites/Untitled_Artwork-2 (1).png" id="4_3w1xr"]
-[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://sprite_manager.gd" id="4_yyg12"]
-[ext_resource type="PackedScene" uid="uid://d4f06nj2iy67x" path="res://Maps/seaweed.tscn" id="6_abc0r"]
-[ext_resource type="PackedScene" uid="uid://bnoo4a5dj0t3w" path="res://Maps/shrine.tscn" id="7_68yjn"]
-[ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://blessing_description.gd" id="8_68yjn"]
-[ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/big_rock.tscn" id="9_327w5"]
-[ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/smoke.gdshader" id="10_617kr"]
-[ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/CurseBackground.png" id="13_617kr"]
+[ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="2_327w5"]
+[ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="2_y0jyq"]
+[ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="3_yyg12"]
+[ext_resource type="Texture2D" uid="uid://bml51unoyd30v" path="res://Maps/Decors/Untitled_Artwork-2 (1).png" id="4_3w1xr"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_yyg12"]
+[ext_resource type="PackedScene" uid="uid://d4f06nj2iy67x" path="res://Maps/Decors/seaweed.tscn" id="6_abc0r"]
+[ext_resource type="PackedScene" uid="uid://bnoo4a5dj0t3w" path="res://Maps/Decors/shrine.tscn" id="7_68yjn"]
+[ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://UI/Textbox/blessing_description.gd" id="8_68yjn"]
+[ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_327w5"]
+[ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_617kr"]
+[ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/Textbox/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
@@ -142,11 +142,12 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="Map" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "map", "gateway")]
+[node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("1_20ttm")
 shrines = [NodePath("Shrine"), NodePath("Shrine2")]
-map = NodePath("FloorNav")
 gateway = NodePath("Gateway")
+floor = NodePath("FloorNav")
+player_spawn_point = NodePath("PlayerSpawn")
 
 [node name="Gateway" parent="." unique_id=643489668 instance=ExtResource("2_327w5")]
 transform = Transform3D(0.9998477, 0.017452406, 0, -0.017452406, 0.9998477, 0, 0, 0, 1, 0, 0, -1)
@@ -321,6 +322,8 @@ size_flags_vertical = 3
 [node name="Control2" type="Control" parent="BlessingDescription/VBoxContainer" unique_id=928803736]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="PlayerSpawn" type="Node3D" parent="." unique_id=1723267858]
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]
