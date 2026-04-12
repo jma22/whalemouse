@@ -9,20 +9,19 @@
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="6_oisa6"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_kuwgh"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_2e4vk"]
-[ext_resource type="PackedScene" uid="uid://cdxfyr1j16urn" path="res://Enemies/SquidBoss/squid_boss.tscn" id="10_kuwgh"]
+[ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="11_2e4vk"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oisa6"]
 
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("enemy")]
+[node name="World" type="Node3D" unique_id=511598235]
 script = ExtResource("1_oisa6")
-enemy = NodePath("Map/SquidBoss")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
-fov = 95.0
-size = 23.388
+fov = 85.0
+size = 12.645
 script = ExtResource("2_e07wx")
 target = NodePath("../Player")
 distance = 1.8
@@ -41,8 +40,9 @@ whale_spawner = NodePath("../WhaleSpawner")
 script = ExtResource("5_rge3y")
 player = NodePath("../Player")
 
-[node name="Map" type="Node3D" parent="." unique_id=1662652710 node_paths=PackedStringArray("gateway", "floor", "player_spawn_point")]
+[node name="Map" type="Node3D" parent="." unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("5_k8tjy")
+enemy_spawner = NodePath("EnemySpawner")
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("Node3D")
@@ -70,7 +70,9 @@ texture = SubResource("NoiseTexture2D_oisa6")
 [node name="Node3D" type="Node3D" parent="Map" unique_id=78799165]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41875648)
 
-[node name="SquidBoss" parent="Map" unique_id=1249398696 instance=ExtResource("10_kuwgh")]
+[node name="EnemySpawner" type="Node3D" parent="Map" unique_id=991711266]
+script = ExtResource("11_2e4vk")
+metadata/_custom_type_script = "uid://bshcea0s7twq6"
 
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
 script = ExtResource("11_qoroo")

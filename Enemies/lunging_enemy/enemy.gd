@@ -6,7 +6,7 @@ class_name Enemy
 @onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
 @onready var retreat_state : EnemyRetreatState = $StateMachine/EnemyRetreatState
 @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
-@onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
+@onready var attack_state : EnemyDashAttackState = $StateMachine/EnemyDashAttackState
 @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
 @onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
 

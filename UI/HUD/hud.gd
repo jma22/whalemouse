@@ -10,5 +10,6 @@ class_name HUD
 func setup(player : Node3D) -> void:
 	hp_display.setup(player, time_damage_manager, whale_spawner)
 	blessing_bar.sync_bar()
+	boss_health.hide()
 
 	

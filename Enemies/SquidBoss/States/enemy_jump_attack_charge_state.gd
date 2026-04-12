@@ -49,20 +49,34 @@ func check_state() -> void:
 
 func sample_position_around_entity() -> Vector3:
 	var angle = randf() * 2.0 * PI
-	var radius = randf_range(1.0, 1.6)
+	var radius = randf_range(1.8, 2.3)
 	var offset = Vector3(cos(angle), 0, sin(angle)) * radius
-	var vec = entity.global_transform.origin + offset
-	print("vector jump", vec)
+	var target_point = entity.global_transform.origin + offset
+	# print("vector jump", vec)
 
-	var aabb = entity.get_floor().get_bounds()
-	var min_x = aabb.position.x
-	var max_x = aabb.position.x + aabb.size.x
-	var min_z = aabb.position.z
-	var max_z = aabb.position.z + aabb.size.z
-	var spawn_x = clamp(entity.global_transform.origin.x + offset.x, min_x, max_x)
-	var spawn_z = clamp(entity.global_transform.origin.z + offset.z, min_z, max_z)
+	# var aabb = entity.get_floor().get_bounds()
+	# var min_x = aabb.position.x
+	# var max_x = aabb.position.x + aabb.size.x
+	# var min_z = aabb.position.z
+	# var max_z = aabb.position.z + aabb.size.z
+	# var spawn_x = clamp(entity.global_transform.origin.x + offset.x, min_x, max_x)
+	# var spawn_z = clamp(entity.global_transform.origin.z + offset.z, min_z, max_z)
+
+	var map : AABB = entity.get_floor().get_bounds()
+	if not map.has_point(target_point):
+		print("flipping")
+		if target_point.x < map.position.x:
+			# mirror across the edge of the map to ensure it's always a valid point
+			target_point.x = map.position.x + (map.position.x - target_point.x) *2
+		elif target_point.x > map.position.x + map.size.x:
+			target_point.x = map.position.x + map.size.x - (target_point.x - (map.position.x + map.size.x)) *2
+		if target_point.z < map.position.z:
+			target_point.z = map.position.z + (map.position.z - target_point.z)*2
+		elif target_point.z > map.position.z + map.size.z:
+			target_point.z = map.position.z + map.size.z - (target_point.z - (map.position.z + map.size.z))*2
+	target_point.y = 0
 	
-	return Vector3(spawn_x, 0, spawn_z)   
+	return target_point
 func on_hit(damage : int) -> void:
 	stagger_stamina -= damage
 	if stagger_stamina <= 0:

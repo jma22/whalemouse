@@ -7,7 +7,7 @@ class_name SquidBoss
 @onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
 @onready var retreat_state : EnemyRetreatState = $StateMachine/EnemyRetreatState
 @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
-@onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
+# @onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
 @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
 @onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
 
@@ -58,20 +58,20 @@ func sample_next_state() -> State:
 	else:
 		return enemy_spawn_state
 
-func check_range() -> void:
-	var distance_to_player : float = global_transform.origin.distance_to(player.global_transform.origin)
-	if distance_to_player <= attack_range:
-		if state_machine.current_state != attack_state:
-			state_machine.set_state(charge_state)
-	elif distance_to_player <= pursuit_range:
-		if state_machine.current_state != attack_state:
-			if randf() < 0.75:
-				state_machine.set_state(retreat_state)
-			else:
-				state_machine.set_state(approach_state)
-	else:
-		if state_machine.current_state != enemy_idle_state and state_machine.current_state != charge_state:
-			state_machine.set_state(peaceful_state)
+# func check_range() -> void:
+# 	var distance_to_player : float = global_transform.origin.distance_to(player.global_transform.origin)
+# 	if distance_to_player <= attack_range:
+# 		if state_machine.current_state != attack_state:
+# 			state_machine.set_state(charge_state)
+# 	elif distance_to_player <= pursuit_range:
+# 		if state_machine.current_state != attack_state:
+# 			if randf() < 0.75:
+# 				state_machine.set_state(retreat_state)
+# 			else:
+# 				state_machine.set_state(approach_state)
+# 	else:
+# 		if state_machine.current_state != enemy_idle_state and state_machine.current_state != charge_state:
+# 			state_machine.set_state(peaceful_state)
 
 func on_hit(damage: int) -> void:
 	super(damage)
