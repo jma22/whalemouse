@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bj714le7nk0hg"]
 
 [ext_resource type="Script" uid="uid://bdkr56pbfm1i3" path="res://Enemies/floating_enemy/enemy2.gd" id="1_k6uer"]
-[ext_resource type="PackedScene" uid="uid://bdgwc04qsydls" path="res://Collectibles/xp_spawner.tscn" id="2_lr6v3"]
 [ext_resource type="Texture2D" uid="uid://bd7jtanir3ccq" path="res://Enemies/floating_enemy/spritesheet (3).png" id="3_potmw"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_yqg6l"]
 [ext_resource type="Script" uid="uid://blnovigm0t222" path="res://Core/Components/state_machine.gd" id="5_rlykw"]
@@ -36,7 +35,6 @@ radius = 0.25
 
 [node name="Enemy2" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("hitstop")]
 script = ExtResource("1_k6uer")
-xp_spawner_scene = ExtResource("2_lr6v3")
 hitstop = NodePath("HitStop")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302]
@@ -93,7 +91,6 @@ animation = SubResource("Resource_tlby2")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("11_hqqrx")
-max_health = 3
 
 [node name="HurtBox" parent="." unique_id=1638711581 node_paths=PackedStringArray("owner_entity") instance=ExtResource("12_rujom")]
 visible = false
@@ -101,7 +98,8 @@ owner_entity = NodePath("..")
 hurt_box_type = 1
 hit_sound_fx = ExtResource("15_rlykw")
 
-[node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("hitstop") instance=ExtResource("13_v6ftq")]
+[node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("13_v6ftq")]
+owner_entity = NodePath("..")
 hitstop = NodePath("../HitStop")
 
 [node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]

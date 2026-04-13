@@ -136,8 +136,9 @@ stream = SubResource("AudioStream_j670t")
 volume_db = -13.0
 pitch_scale = 1.44
 
-[node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("hitstop") instance=ExtResource("11_pwjut")]
+[node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("11_pwjut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12498206)
+owner_entity = NodePath("..")
 damage = 5
 hitstop = NodePath("../Hitstop")
 
