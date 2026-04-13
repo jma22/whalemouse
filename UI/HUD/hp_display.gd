@@ -25,7 +25,7 @@ func setup(player_ : Node3D, time_damage_: TimeDamageManager, whale_spawner_: Wh
 
 
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not player:
 		return
 	set_circle()

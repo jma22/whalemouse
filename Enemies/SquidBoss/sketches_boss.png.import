@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8erf33pycggw"
-path.s3tc="res://.godot/imported/2184_Sem_Titulo_20260406210730.png-97e8a71adb4f15af45db2d8efb8dca9a.s3tc.ctex"
+path.s3tc="res://.godot/imported/sketches_boss.png-6a74098667fa82005ec0b6f27607e554.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Enemies/SquidBoss/2184_Sem_Titulo_20260406210730.png"
-dest_files=["res://.godot/imported/2184_Sem_Titulo_20260406210730.png-97e8a71adb4f15af45db2d8efb8dca9a.s3tc.ctex"]
+source_file="res://Enemies/SquidBoss/sketches_boss.png"
+dest_files=["res://.godot/imported/sketches_boss.png-6a74098667fa82005ec0b6f27607e554.s3tc.ctex"]
 
 [params]
 
