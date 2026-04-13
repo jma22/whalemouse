@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name StateMachine
 
 var current_state : State = null

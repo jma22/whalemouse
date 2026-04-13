@@ -4,7 +4,7 @@ class_name EnemyJumpAttackState
 var target_position : Vector3
 @export var animation_clip : AnimationClip
 @export var hit_box_time : float = 0.05
-
+@export var hitbox : Hitbox
 
 var cooldown_time : float = 0.4
 var cooldown_timer : float = 0.0
@@ -53,8 +53,8 @@ func fixed_run(_delta: float) -> void:
 	t = clamp(t, 0, 1)
 
 
-	if t >= 1- hit_box_time and not entity.hitbox.is_active:
-		entity.hitbox.set_active(true)
+	if t >= 1- hit_box_time and not hitbox.is_active:
+		hitbox.set_active(true)
 
 	if t >= 0.9 and entity.position.y <= 0.01:
 		entity.position.y = 0
@@ -68,7 +68,7 @@ func fixed_run(_delta: float) -> void:
 
 		start_cooldown = true
 		entity.hurt_box.set_active(true)
-		entity.hitbox.set_active(false)
+		hitbox.set_active(false)
 		entity.knockback_component.set_knockbackable(true)
 
 	
