@@ -37,7 +37,7 @@ frame_numbers = Array[int]([0])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0y1tm"]
-radius = 0.3
+radius = 0.4
 
 [node name="SquidMinion" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_5o2e5")
@@ -102,6 +102,9 @@ hitstop = NodePath("../../../CoreComponents/HitStop")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_okpwn")
 
+[node name="Sprite3D" parent="StateMachine/EnemyStaticAttackState/Hitbox" index="1" unique_id=468577178]
+visible = false
+
 [node name="EnemyRetreatState" type="Node3D" parent="StateMachine" unique_id=1321767955]
 script = ExtResource("15_jf8nf")
 
@@ -115,7 +118,11 @@ animation = SubResource("Resource_fdp45")
 
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("24_5o2e5")]
 
-[node name="CollisionShape3D" parent="CoreComponents/HurtBox" parent_id_path=PackedInt32Array(1215065551, 1638711581) index="0" unique_id=1925812291]
+[node name="HurtBox" parent="CoreComponents" index="3" unique_id=1638711581]
+visible = true
+
+[node name="CollisionShape3D" parent="CoreComponents/HurtBox" index="0" unique_id=1925812291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.32115412)
 shape = SubResource("CylinderShape3D_0y1tm")
 debug_color = Color(0, 0.5950001, 0.7, 1)
 

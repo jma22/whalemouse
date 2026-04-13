@@ -43,6 +43,10 @@ script = ExtResource("16_t4yqc")
 frame_numbers = Array[int]([0])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ma22u"]
+height = 1.0
+radius = 0.4
+
 [node name="Enemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_n0g06")
 core_components = NodePath("CoreComponents")
@@ -119,6 +123,14 @@ animation = SubResource("Resource_fdp45")
 
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("20_s8tmg")]
 
+[node name="HurtBox" parent="CoreComponents" index="3" unique_id=1638711581]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.18638453)
+visible = true
+
+[node name="CollisionShape3D" parent="CoreComponents/HurtBox" index="0" unique_id=1925812291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.016539037)
+shape = SubResource("CylinderShape3D_ma22u")
+
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.06598732, -0.2320931)
 texture = ExtResource("3_t4yqc")
@@ -127,3 +139,4 @@ layer_number = 2
 
 [editable path="StateMachine/EnemyDashAttackState/Hitbox"]
 [editable path="CoreComponents"]
+[editable path="CoreComponents/HurtBox"]
