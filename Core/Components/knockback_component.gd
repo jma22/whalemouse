@@ -5,7 +5,11 @@ class_name KnockbackComponent
 @export var knockback_dampening : float = 0.8
 @export var knockback_velocity : Vector3 = Vector3.ZERO
 @export var is_knockbackable : bool = true
-@export var entity: CharacterBody3D
+var entity: CharacterBody3D
+
+
+func setup(entity_: CharacterBody3D) -> void:
+	entity = entity_
 
 func handle_knockback() -> void:
 	if not is_knockbackable:

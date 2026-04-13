@@ -3,13 +3,20 @@ extends Sprite3D
 class_name SpriteManager
 
 @export var frames_per_second : float = 4
-@export var hitstop : HitStop
+@export var layer_number : int = 1
+var hitstop : HitStop
 var current_idx : int = 0
 var time_accumulator : float = 0.0
 var looping : bool = true
 var current_animation : AnimationClip = null
 var is_done : bool = false
 var tween : Tween = null
+
+func setup(hitstop_: HitStop) -> void:
+	hitstop = hitstop_
+	## visual instance 3d layer
+	set_layer_mask_value(layer_number, true)
+
 
 func reset() -> void:
 	current_idx = 0

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c1dd2iunsn5ls" path="res://Enemies/SquidBoss/squid_boss.gd" id="1_1spon"]
 [ext_resource type="Texture2D" uid="uid://b8erf33pycggw" path="res://Enemies/SquidBoss/2184_Sem_Titulo_20260406210730.png" id="2_1spon"]
-[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_6iqrj"]
 [ext_resource type="Script" uid="uid://blnovigm0t222" path="res://Core/Components/state_machine.gd" id="5_yjlnx"]
 [ext_resource type="Script" uid="uid://buhpc2nac6phq" path="res://Enemies/EnemyStates/enemy_peaceful_state.gd" id="6_7pqr1"]
 [ext_resource type="Script" uid="uid://dasdpk8volql6" path="res://Enemies/EnemyStates/enemy_walk_state.gd" id="7_ch3yk"]
@@ -17,15 +16,11 @@
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="16_m6y3d"]
 [ext_resource type="Script" uid="uid://g7glfe1o5h7d" path="res://Enemies/SquidBoss/States/enemy_jump_attack_state.gd" id="17_iiuer"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="17_rfpxa"]
-[ext_resource type="Script" uid="uid://biyu7104cljvh" path="res://Core/Components/health_component.gd" id="18_o0swr"]
 [ext_resource type="Script" uid="uid://cbbmsxeo8ekjx" path="res://Enemies/SquidBoss/States/enemy_jump_attack_charge_state.gd" id="18_rt7ug"]
-[ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://Core/Components/hurt_box.tscn" id="19_5dl1d"]
 [ext_resource type="Script" uid="uid://cdoiofpad2cvd" path="res://Enemies/SquidBoss/States/enemy_spawn_state.gd" id="19_rt7ug"]
 [ext_resource type="Script" uid="uid://bgwhqji05twiu" path="res://Enemies/SquidBoss/States/enemy_ink_attack.gd" id="20_6iqrj"]
-[ext_resource type="AudioStream" uid="uid://brohwidjsyx3n" path="res://SFX/enemy_hit.wav" id="20_dhd03"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="21_2b3js"]
-[ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://Core/Components/knockback_component.gd" id="22_ytd2j"]
-[ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Core/Components/hitstop.gd" id="23_eam4l"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="21_v4eda"]
 [ext_resource type="Script" path="res://Core/ArcComponent.gd" id="27_yjlnx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -50,28 +45,13 @@ script = ExtResource("8_4i25f")
 frame_numbers = Array[int]([0])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6iqrj"]
-size = Vector3(1.3432007, 1, 1.3339844)
-
-[sub_resource type="AudioStream" id="AudioStream_j670t"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_okpwn"]
 
-[node name="SquidBoss" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("hitstop", "initial_state")]
+[node name="SquidBoss" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("initial_state", "core_components")]
 script = ExtResource("1_1spon")
 initial_health = 10
-hitstop = NodePath("Hitstop")
 initial_state = NodePath("StateMachine/EnemyIdleState")
-
-[node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302 node_paths=PackedStringArray("hitstop")]
-transform = Transform3D(2, 0, 0, 0, 0.51763815, 1.9318516, 0, -1.9318516, 0.51763815, 0, 0.17977154, -0.5927601)
-pixel_size = 0.001
-double_sided = false
-alpha_cut = 2
-texture = ExtResource("2_1spon")
-script = ExtResource("4_6iqrj")
-frames_per_second = 10
-hitstop = NodePath("../Hitstop")
+core_components = NodePath("CoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -143,42 +123,15 @@ script = ExtResource("19_rt7ug")
 [node name="EnemyInkAttackState" type="Node" parent="StateMachine" unique_id=564965018]
 script = ExtResource("20_6iqrj")
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
-script = ExtResource("18_o0swr")
-
-[node name="HurtBox" parent="." unique_id=1638711581 node_paths=PackedStringArray("owner_entity") instance=ExtResource("19_5dl1d")]
-owner_entity = NodePath("..")
-hurt_box_type = 1
-hit_sound_fx = ExtResource("20_dhd03")
-orbs_on_hit = 2
-
-[node name="CollisionShape3D" parent="HurtBox" index="0" unique_id=1925812291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03237915, 0, -0.61564374)
-shape = SubResource("BoxShape3D_6iqrj")
-
-[node name="AudioStreamPlayer" parent="HurtBox" index="1" unique_id=1714309578]
-stream = SubResource("AudioStream_j670t")
-volume_db = -13.0
-pitch_scale = 1.44
-
 [node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("21_2b3js")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.042464793)
 owner_entity = NodePath("..")
 damage = 5
-hitstop = NodePath("../Hitstop")
+hitstop = NodePath("")
 
 [node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_okpwn")
-
-[node name="KnockbackComponent" type="Node3D" parent="." unique_id=1542646912 node_paths=PackedStringArray("entity")]
-script = ExtResource("22_ytd2j")
-knockback_mult = 7.0
-knockback_dampening = 0.75
-entity = NodePath("..")
-
-[node name="Hitstop" type="Node3D" parent="." unique_id=88493877]
-script = ExtResource("23_eam4l")
 
 [node name="ArcComponent" type="Node3D" parent="." unique_id=795841172]
 script = ExtResource("27_yjlnx")
@@ -188,5 +141,16 @@ sharpness = 0.7
 descent_mult = 0.2
 max_x_distance = 2.0
 
-[editable path="HurtBox"]
+[node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("21_v4eda")]
+
+[node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
+knockback_mult = 7.0
+
+[node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
+transform = Transform3D(2, 0, 0, 0, 0.51763815, 1.9318516, 0, -1.9318516, 0.51763815, 0, 0.18949693, -0.63830566)
+texture = ExtResource("2_1spon")
+hframes = 1
+
 [editable path="Hitbox"]
+[editable path="CoreComponents"]
+[editable path="CoreComponents/HurtBox"]

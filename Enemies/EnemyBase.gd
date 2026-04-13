@@ -5,13 +5,10 @@ class_name EnemyBase
 @export var floor_ : NavigationRegion3D
 @export var player : CharacterBody3D
 var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
-@export var hitstop : HitStop
 
 @onready var state_machine : StateMachine = $StateMachine
-@onready var sprite_manager : SpriteManager = $SpriteManager
-@onready var health_component : HealthComponent = $HealthComponent
+
 @onready var hitbox : Node = $Hitbox
-@onready var hurt_box : Node = $HurtBox
 # @onready var walk_state : WalkState = $StateMachine/WalkState
 # @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 # @onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
@@ -20,19 +17,24 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 # @onready var attack_state : EnemyAttackState = $StateMachine/EnemyAttackState
 # @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
 # @onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
-@onready var knockback_component : KnockbackComponent = $KnockbackComponent
 
 @export var initial_health : int = 1
 @export var initial_state : State
+@export var core_components : CoreComponents
+
+@onready var health_component : HealthComponent = core_components.health_component
+@onready var invulnerable_component : InvulnerableComponent = core_components.invulnerable_component
+@onready var knockback_component : KnockbackComponent = core_components.knockback_component
+@onready var hurt_box : HurtBox = core_components.hurt_box
+@onready var sprite_manager : SpriteManager = core_components.sprite_manager
+@onready var hitstop : HitStop = core_components.hitstop
 
 var is_dead : bool = false
 # var facing_left : bool = false
-var is_invulnerable : bool = false
-
 func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	self.player = player_
 	self.floor_ = floor_
-	health_component.setup(null, ceil(initial_health * GlobalStats.get_enemy_health_multiplier()))
+	core_components.setup(self)
 	setup_states()
 	state_machine.set_state(initial_state)
 
@@ -70,13 +72,14 @@ func setup_states() -> void:
 
 func on_hit(attacker_hitbox: Hitbox) -> void:
 	print("got hit in state:" + str(state_machine.current_state))
-	if is_dead or is_invulnerable:
+	if is_dead or invulnerable_component.is_currently_invulnerable():
 		return
 	sprite_manager.damage_flash()
 	var damage_taken : int = attacker_hitbox.get_damage()
 	if damage_taken == 0:
 		return
 	health_component.take_damage(damage_taken)
+	hurt_box.on_valid_damaging_hit()
 
 	on_staggered()
 	attacker_hitbox.hitbox_on_hit() #hitstop
@@ -117,8 +120,8 @@ func on_die() -> void:
 func on_staggered() -> void:
 	pass
 
-func set_invulnerable(value: bool) -> void:
-	is_invulnerable = value
+func set_invulnerable(value: bool, duration: float = 0.0) -> void:
+	invulnerable_component.set_invulnerable(value, duration)
 
 func set_sprite_flip(left: bool) -> void:
 	sprite_manager.set_flip(left)

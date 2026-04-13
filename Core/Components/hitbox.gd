@@ -1,7 +1,7 @@
 class_name Hitbox
 extends Area3D
 
-@export var owner_entity: CharacterBody3D
+@export var owner_entity: Node3D
 @export var hit_box_type: HitBoxType = HitBoxType.HIT_PLAYER
 @onready var sprite3D : Sprite3D = $Sprite3D
 @export var damage: int = 1

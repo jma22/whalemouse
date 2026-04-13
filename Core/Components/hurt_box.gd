@@ -1,6 +1,5 @@
 class_name HurtBox extends Area3D
 
-@export var owner_entity: CharacterBody3D
 @export var hurt_box_type: HurtBoxType = HurtBoxType.PLAYER
 @export var hit_sound_fx : AudioStream
 @export var hit_sound : AudioStreamPlayer
@@ -8,6 +7,7 @@ class_name HurtBox extends Area3D
 
 @export var orbs_on_hit : int = 0
 
+var owner_entity: CharacterBody3D
 var is_active : bool = true
 
 enum HurtBoxType {
@@ -15,6 +15,8 @@ enum HurtBoxType {
 	ENEMY
 }
 
+func setup(owner_entity_: CharacterBody3D) -> void:
+	owner_entity = owner_entity_
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -27,11 +29,14 @@ func _on_area_entered(hitbox: Area3D) -> void:
 		return
 	if hitbox.has_method("get_damage"):
 		owner_entity.on_hit(hitbox)
-		if orbs_on_hit > 0:
-			time_on_hit.spawn_time(orbs_on_hit)
-		if hit_sound:
-			hit_sound.pitch_scale = 0.75 + randf() * 0.5
-			hit_sound.play()
+
+
+func on_valid_damaging_hit() -> void:
+	if orbs_on_hit > 0:
+		time_on_hit.spawn_time(orbs_on_hit)
+	if hit_sound:
+		hit_sound.pitch_scale = 0.75 + randf() * 0.5
+		hit_sound.play()
 
 
 func set_collisions() -> void:
