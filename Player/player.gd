@@ -4,19 +4,25 @@ class_name Player extends CharacterBody3D
 # @export var gravity: float = -9.8
 
 @onready var state_machine : StateMachine = $StateMachine
-@export var sprite_manager : SpriteManager
-@export var health_component : HealthComponent
+
 @onready var walk_state : WalkState = $StateMachine/WalkState
 @onready var idle_state : IdleState = $StateMachine/IdleState
 @onready var hurt_state : HurtState = $StateMachine/HurtState
 @onready var roll_state : RollState = $StateMachine/RollState
 @export var attack_state : AttackState
 
-@export var hitstop : HitStop
+
+@export var core_components : CoreComponents
+
+@onready var health_component : HealthComponent = core_components.health_component
+@onready var invulnerable_component : InvulnerableComponent = core_components.invulnerable_component
+@onready var knockback_component : KnockbackComponent = core_components.knockback_component
+@onready var hurt_box : HurtBox = core_components.hurt_box
+@onready var sprite_manager : SpriteManager = core_components.sprite_manager
+@onready var hitstop : HitStop = core_components.hitstop
 var time_damage_manager : TimeDamageManager
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
-var invulnerable : bool = false
 
 var initial_health : int = 60
 
@@ -28,19 +34,19 @@ var _buffer_timer : float = 0.0
 var status_effects : Array[StatusEffect] = []
 
 func reset() -> void:
-	# This can be called to reset the player's state, such as when restarting the game
-	health_component.reset()
-	sprite_manager.reset()	
-	hitstop.reset()
-	# state_machine.set_state(idle_state)
+	core_components.reset()
+	status_effects.clear()
 
 func setup(hud: HUD) -> void:
 	# This is called from the main scene to set up references to other nodes
-	health_component.setup(hud, initial_health)
-
-func _ready() -> void:
+	core_components.setup(self)
+	core_components.link_hud(hud)
 	setup_states()
 	state_machine.set_state(idle_state)
+
+# func _ready() -> void:
+# 	setup_states()
+# 	state_machine.set_state(idle_state)
 
 func _process(_delta: float) -> void:
 	_tick_input_buffer(_delta)
@@ -111,6 +117,7 @@ func _physics_process(delta: float) -> void:
 	if hitstop.is_in_hitstop:
 		return
 	state_machine.current_state.deep_fixed_run(delta)
+	knockback_component.handle_knockback()
 	move_and_slide()
 
 
@@ -120,20 +127,25 @@ func setup_states() -> void:
 			state.set_entity(self)
 
 func on_hit(attacker_hitbox: Hitbox) -> void:
-	if invulnerable:
+	if invulnerable_component.is_currently_invulnerable():
 		return
-	attacker_hitbox.hitbox_on_hit()
+	attacker_hitbox.hitbox_on_hit() ##HITSTOP
 	hitstop.start_hitstop(0.1)
 	var damage_taken : int = attacker_hitbox.get_damage()
 	if damage_taken == 0:
 		return
 	health_component.take_damage(damage_taken)
 	sprite_manager.damage_flash()
+	hurt_box.on_valid_damaging_hit()
+
+	var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
 	if health_component.is_dead():
 		on_die()
+		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
+		return 
 	else:
+		knockback_component.receive_knockback(knockback_direction, damage_taken)
 		state_machine.set_state(hurt_state)
-	# var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
 
 	# if health_component.is_dead():
 	# 	on_die()
@@ -142,8 +154,8 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 
 	# knockback_component.receive_knockback(knockback_direction, damage_taken)
 
-func set_invulnerable(value: bool) -> void:
-	invulnerable = value
+func set_invulnerable(value: bool, duration: float = 0.0) -> void:
+	invulnerable_component.set_invulnerable(value, duration)
 
 func on_die() -> void:
 	var tween : Tween = await sprite_manager.die()

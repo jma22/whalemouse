@@ -10,22 +10,14 @@
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="8_4i25f"]
 [ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="9_7eupq"]
 [ext_resource type="Script" uid="uid://dwwe3udksx0qe" path="res://Enemies/EnemyStates/enemy_pursuit_state.gd" id="11_f6eji"]
-[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state.gd" id="12_d35l6"]
-[ext_resource type="Resource" uid="uid://bd28qktpwn3vs" path="res://Enemies/lunging_enemy/lunging.tres" id="13_14hny"]
-[ext_resource type="Script" uid="uid://crc7jcisgbtvc" path="res://Enemies/EnemyStates/enemy_dash_attack_state.gd" id="14_2adc8"]
-[ext_resource type="AudioStream" uid="uid://crjmhkf3glryi" path="res://SFX/enemy_dash.wav" id="15_qis70"]
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="16_m6y3d"]
 [ext_resource type="Script" uid="uid://g7glfe1o5h7d" path="res://Enemies/SquidBoss/States/enemy_jump_attack_state.gd" id="17_iiuer"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="17_rfpxa"]
-[ext_resource type="Script" uid="uid://biyu7104cljvh" path="res://Core/Components/health_component.gd" id="18_o0swr"]
 [ext_resource type="Script" uid="uid://cbbmsxeo8ekjx" path="res://Enemies/SquidBoss/States/enemy_jump_attack_charge_state.gd" id="18_rt7ug"]
-[ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://Core/Components/hurt_box.tscn" id="19_5dl1d"]
 [ext_resource type="Script" uid="uid://cdoiofpad2cvd" path="res://Enemies/SquidBoss/States/enemy_spawn_state.gd" id="19_rt7ug"]
 [ext_resource type="Script" uid="uid://bgwhqji05twiu" path="res://Enemies/SquidBoss/States/enemy_ink_attack.gd" id="20_6iqrj"]
-[ext_resource type="AudioStream" uid="uid://brohwidjsyx3n" path="res://SFX/enemy_hit.wav" id="20_dhd03"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="21_2b3js"]
-[ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://Core/Components/knockback_component.gd" id="22_ytd2j"]
-[ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Core/Components/hitstop.gd" id="23_eam4l"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="21_v4eda"]
 [ext_resource type="Script" path="res://Core/ArcComponent.gd" id="27_yjlnx"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="21_v4eda"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="27_yjlnx"]
@@ -39,12 +31,6 @@ size = Vector3(1, 3.6142578, 1.4425049)
 script = ExtResource("8_4i25f")
 frame_numbers = Array[int]([4, 5, 6])
 name = "enemy_idle"
-metadata/_custom_type_script = "uid://bfemb7cym2htn"
-
-[sub_resource type="Resource" id="Resource_vdj2e"]
-script = ExtResource("8_4i25f")
-frame_numbers = Array[int]([1, 2, 3])
-name = "enemy_lunging"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="Resource" id="Resource_fdp45"]
@@ -65,11 +51,6 @@ script = ExtResource("8_4i25f")
 frame_numbers = Array[int]([1])
 name = "Jump"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6iqrj"]
-size = Vector3(1.3432007, 1, 1.3339844)
-
-[sub_resource type="AudioStream" id="AudioStream_j670t"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_okpwn"]
 
@@ -97,18 +78,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 [node name="SquidBoss" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_1spon")
 initial_health = 10
-hitstop = NodePath("Hitstop")
-initial_state = NodePath("StateMachine/EnemyIdleState")
-
-[node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302 node_paths=PackedStringArray("hitstop")]
-transform = Transform3D(2, 0, 0, 0, 0.51763815, 1.9318516, 0, -1.9318516, 0.51763815, 0, 0.17977154, -0.5927601)
-pixel_size = 0.001
-double_sided = false
-alpha_cut = 2
-texture = ExtResource("2_1spon")
-script = ExtResource("4_6iqrj")
-frames_per_second = 10
-hitstop = NodePath("../Hitstop")
+core_components = NodePath("CoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -120,107 +90,39 @@ disabled = true
 visible = false
 mesh = SubResource("CylinderMesh_aqk2v")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1041110873]
+[node name="StateMachine" type="Node3D" parent="." unique_id=526269486]
 script = ExtResource("5_yjlnx")
 debug = false
 
-[node name="EnemyPeacefulState" type="Node" parent="StateMachine" unique_id=894062491 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
+[node name="EnemyPeacefulState" type="Node3D" parent="StateMachine" unique_id=1776131074]
 script = ExtResource("6_7pqr1")
-enemy_walk_state = NodePath("../EnemyWalkState")
-enemy_idle_state = NodePath("../EnemyIdleState")
 
-[node name="EnemyWalkState" type="Node" parent="StateMachine" unique_id=2143785709]
+[node name="EnemyWalkState" type="Node3D" parent="StateMachine" unique_id=1955607781]
 script = ExtResource("7_ch3yk")
 animation = SubResource("Resource_he8wq")
 
-[node name="EnemyIdleState" type="Node" parent="StateMachine" unique_id=1696668496]
+[node name="EnemyIdleState" type="Node3D" parent="StateMachine" unique_id=1994875307]
 script = ExtResource("9_7eupq")
 animation = SubResource("Resource_he8wq")
 
-[node name="EnemyPursuitState" type="Node" parent="StateMachine" unique_id=942197817 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
+[node name="EnemyPursuitState" type="Node3D" parent="StateMachine" unique_id=1252270945]
 script = ExtResource("11_f6eji")
-enemy_walk_state = NodePath("../EnemyWalkState")
-enemy_idle_state = NodePath("../EnemyIdleState")
 
-[node name="EnemyChargeState" type="Node" parent="StateMachine" unique_id=1096482804 node_paths=PackedStringArray("attack_state")]
-script = ExtResource("12_d35l6")
-animation = ExtResource("13_14hny")
-attack_state = NodePath("../EnemyAttackState")
-
-[node name="EnemyAttackState" type="Node" parent="StateMachine" unique_id=1238452011 node_paths=PackedStringArray("audio_player")]
-script = ExtResource("14_2adc8")
-animation_clip = SubResource("Resource_vdj2e")
-audio_player = NodePath("AudioStreamPlayer")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/EnemyAttackState" unique_id=2009876568]
-stream = ExtResource("15_qis70")
-volume_db = -10.562
-pitch_scale = 1.7
-
-[node name="EnemyRetreatState" type="Node" parent="StateMachine" unique_id=1126249707 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
+[node name="EnemyRetreatState" type="Node3D" parent="StateMachine" unique_id=774662855]
 script = ExtResource("16_m6y3d")
-enemy_walk_state = NodePath("../EnemyWalkState")
-enemy_idle_state = NodePath("../EnemyIdleState")
 
-[node name="EnemyHurtState" type="Node" parent="StateMachine" unique_id=101421191]
+[node name="EnemyHurtState" type="Node3D" parent="StateMachine" unique_id=707029297]
 script = ExtResource("17_rfpxa")
 animation = SubResource("Resource_u4k37")
 
-[node name="EnemyJumpAttackState" type="Node" parent="StateMachine" unique_id=703820865 node_paths=PackedStringArray("arc_component")]
+[node name="EnemyJumpAttackState" type="Node3D" parent="StateMachine" unique_id=1813173086 node_paths=PackedStringArray("hitbox", "arc_component")]
 script = ExtResource("17_iiuer")
 arc_component = NodePath("../../ArcComponent")
 animation_clip = SubResource("Resource_1spon")
 hitbox = NodePath("Hitbox")
 arc_component = NodePath("ArcComponent")
 
-[node name="EnemyJumpAttackChargeState" type="Node" parent="StateMachine" unique_id=2032867906 node_paths=PackedStringArray("attack_state")]
-script = ExtResource("18_rt7ug")
-attack_state = NodePath("../EnemyJumpAttackState")
-
-[node name="EnemySpawnState" type="Node" parent="StateMachine" unique_id=2040037640]
-script = ExtResource("19_rt7ug")
-
-[node name="EnemyInkAttackState" type="Node" parent="StateMachine" unique_id=564965018]
-script = ExtResource("20_6iqrj")
-
-[node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
-script = ExtResource("18_o0swr")
-
-[node name="HurtBox" parent="." unique_id=1638711581 node_paths=PackedStringArray("owner_entity") instance=ExtResource("19_5dl1d")]
-owner_entity = NodePath("..")
-hurt_box_type = 1
-hit_sound_fx = ExtResource("20_dhd03")
-orbs_on_hit = 2
-
-[node name="CollisionShape3D" parent="HurtBox" index="0" unique_id=1925812291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03237915, 0, -0.61564374)
-shape = SubResource("BoxShape3D_6iqrj")
-
-[node name="AudioStreamPlayer" parent="HurtBox" index="1" unique_id=1714309578]
-stream = SubResource("AudioStream_j670t")
-volume_db = -13.0
-pitch_scale = 1.44
-
-[node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("21_2b3js")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.042464793)
-owner_entity = NodePath("..")
-damage = 5
-hitstop = NodePath("../Hitstop")
-
-[node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
-shape = SubResource("CylinderShape3D_okpwn")
-
-[node name="KnockbackComponent" type="Node3D" parent="." unique_id=1542646912 node_paths=PackedStringArray("entity")]
-script = ExtResource("22_ytd2j")
-knockback_mult = 7.0
-knockback_dampening = 0.75
-entity = NodePath("..")
-
-[node name="Hitstop" type="Node3D" parent="." unique_id=88493877]
-script = ExtResource("23_eam4l")
-
-[node name="ArcComponent" type="Node3D" parent="." unique_id=795841172]
+[node name="ArcComponent" type="Node3D" parent="StateMachine/EnemyJumpAttackState" unique_id=795841172]
 script = ExtResource("27_yjlnx")
 time = 0.8
 max_height = 0.5
@@ -253,6 +155,9 @@ animation = SubResource("Resource_sui6n")
 script = ExtResource("20_6iqrj")
 animation = SubResource("Resource_v4eda")
 
+[node name="EnemyInkAttackState" type="Node3D" parent="StateMachine" unique_id=1193950740]
+script = ExtResource("20_6iqrj")
+
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("21_v4eda")]
 
 [node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
@@ -271,6 +176,7 @@ shape = SubResource("BoxShape3D_u4k37")
 transform = Transform3D(2, 0, 0, 0, 0.51763815, 1.9318516, 0, -1.9318516, 0.51763815, 0, 0.18949693, -0.63830566)
 texture = ExtResource("2_1spon")
 hframes = 5
+hframes = 1
 
 [editable path="StateMachine/EnemyJumpAttackState/Hitbox"]
 [editable path="CoreComponents"]

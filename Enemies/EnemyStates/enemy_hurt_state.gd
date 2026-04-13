@@ -10,6 +10,7 @@ func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
 	entity.sprite_manager.play(animation)
 	entity.set_invulnerable(true)
+	entity.position.y = 0
 	# entity.velocity = Vector3.ZERO
 
 func exit() -> void:

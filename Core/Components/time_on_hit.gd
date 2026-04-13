@@ -12,4 +12,4 @@ func spawn_time(num_orbs : int) -> void:
 		get_tree().get_root().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		var direction : Vector3 = hurtbox.owner_entity.global_transform.origin - hurtbox.owner_entity.player.global_transform.origin 
-		xp_spawner_instance.setup_directional(num_orbs, hurtbox.owner_entity.player, direction.normalized())
+		xp_spawner_instance.setup_directional(num_orbs, hurtbox.owner_entity.player, direction.normalized(), CollectibleSpawner.OrbType.TIME)

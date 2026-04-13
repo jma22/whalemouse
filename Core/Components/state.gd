@@ -1,5 +1,5 @@
 @abstract
-class_name State extends Node
+class_name State extends Node3D
 
 var start_time : float = 0.0
 var is_complete : bool = false

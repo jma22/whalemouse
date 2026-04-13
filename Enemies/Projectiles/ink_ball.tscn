@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://hpr1ljl6r1qy" path="res://Enemies/Projectiles/ink_ball.gd" id="1_ywkbn"]
 [ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_5rn6a"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_5u0h0"]
-[ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="4_2sd3b"]
+[ext_resource type="Script" path="res://Core/ArcComponent.gd" id="4_2sd3b"]
 [ext_resource type="Texture2D" uid="uid://c8tucba4rdxb1" path="res://Player/Abilities/Whale/Whale (1).png" id="4_5rn6a"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="6_2sd3b"]
 
@@ -34,7 +34,6 @@ metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="ArcComponent" type="Node3D" parent="InkBall" unique_id=455580033]
 script = ExtResource("4_2sd3b")
-metadata/_custom_type_script = "uid://ccb88yqq2eri3"
 
 [node name="Indicator" type="Node3D" parent="." unique_id=1202412485]
 
@@ -46,7 +45,8 @@ hframes = 7
 script = ExtResource("2_5u0h0")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
-[node name="Hitbox" parent="Indicator" unique_id=754444443 instance=ExtResource("6_2sd3b")]
+[node name="Hitbox" parent="Indicator" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("6_2sd3b")]
+owner_entity = NodePath("..")
 
 [node name="CollisionShape3D" parent="Indicator/Hitbox" index="0" unique_id=1405177479]
 shape = SubResource("CylinderShape3D_2sd3b")

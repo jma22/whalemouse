@@ -31,6 +31,7 @@ smooth_speed = 10.0
 
 [node name="SpriteManager" parent="Player" index="0" unique_id=1668628302]
 frame = 17
+frames_per_second = 4.0
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
 time_damage_manager = NodePath("../TimeDamageManager")
@@ -110,4 +111,5 @@ omni_attenuation = 0.203
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]
+[editable path="Player/HurtBox"]
 [editable path="Map/FloorNav"]

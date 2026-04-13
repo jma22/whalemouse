@@ -7,6 +7,7 @@ var target_position : Vector3
 @export var dampening : float = 0.88
 @export var attack_duration : float = 0.2
 @export var audio_player : AudioStreamPlayer
+@export var hitbox : Hitbox
 var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
 
 
@@ -14,7 +15,7 @@ func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
 	audio_player.pitch_scale = 1.5 + randf() * 0.2
 	audio_player.play()
-	entity.hitbox.set_active(true)
+	hitbox.set_active(true)
 	apply_velocity()
 	# entity.knockback_component.set_knockbackable(false)
 	var bubbler_instance : Node = bubbler_scene.instantiate()
@@ -24,7 +25,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	entity.hitbox.set_active(false)
+	hitbox.set_active(false)
 	# entity.knockback_component.set_knockbackable(true)
 
 func run(_delta: float) -> void:

@@ -19,15 +19,16 @@ func enter() -> void:
 	var bubbler_instance : Node = bubbler_scene.instantiate()
 	entity.add_child(bubbler_instance)
 	bubbler_instance.start()
-	entity.set_invulnerable(true)
+	entity.set_invulnerable(true, invulnerability_time)
 	audio_player.pitch_scale = 1.0 + randf() * 0.4
 	audio_player.play()
 
-func run(_delta: float) -> void:
-	if invulnerability_time <= get_elapsed_time():
-		entity.set_invulnerable(false)
-func exit() -> void:
-	entity.set_invulnerable(false)
+# func run(_delta: float) -> void:
+# 	if invulnerability_time <= get_elapsed_time():
+# 		entity.set_invulnerable(false)
+
+# func exit() -> void:
+	# entity.set_invulnerable(false)
 
 func fixed_run(_delta: float) -> void:
 	entity.velocity *= dampening

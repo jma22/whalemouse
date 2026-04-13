@@ -5,14 +5,16 @@ var hp_display: HPDisplay
 var max_health: int
 var current_health: int
 
-func setup(hud: HUD, _max_health: int) -> void:
+func setup(_max_health: int) -> void:
 	self.max_health = _max_health
 	current_health = max_health
-	if hud:
-		self.hp_display = hud.hp_display
-		self.hp_display.refresh_hp(current_health)
+	
 
+func link_player_health(hud: HUD) -> void:
+	self.hp_display = hud.hp_display
+	self.hp_display.refresh_hp(current_health)
 
+	
 func reset() -> void:
 	current_health = max_health
 	if hp_display:  
