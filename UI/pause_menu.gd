@@ -12,7 +12,9 @@ func _ready() -> void:
 	background.modulate.a = 0.0
 	visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	if not SceneManager.can_pause():
+		return
 	if Input.is_action_just_pressed("pause"):
 		if is_paused:
 			exit_tutorial()
@@ -29,7 +31,7 @@ func fade_in() -> void:
 	tween.set_parallel(true)
 	tween.tween_property(container, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tween.tween_property(background, "modulate:a", 0.8, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	SceneManager.pause_game()
+	SceneManager.set_paused(true)
 	TutorialManager.pause_tutorial()
 	is_paused = true
 
@@ -49,5 +51,5 @@ func exit_tutorial() -> void:
 	
 	# Only unpauses character if not showing tutorial
 	if not TutorialManager.is_tutorial_active():
-		SceneManager.resume_game()
+		SceneManager.set_paused(false)
 	is_paused = false

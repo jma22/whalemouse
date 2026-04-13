@@ -83,7 +83,7 @@ static func _heal_desc() -> String:
 	return "Take some time! (+%d)" % (GlobalStats.get_heal_amount())
 
 static func _damage_desc() -> String:
-	return "Too much time on your hands, take some damage! (-%d)" % (GlobalStats.get_damage_amount())
+	return "Lose some time! (-%d)" % (GlobalStats.get_damage_amount())
 
 static func _xp_suck_desc() -> String:
 	return "Orbs are more attracted to you!"
@@ -96,7 +96,7 @@ static func _enemy_xp_drop_desc() -> String:
 
 static func _whale_desc() -> String:
 	if GlobalStats.current_run_stats["whale_level"] == 0:
-		return "Beluga is here to help!"
+		return "Call Beluga to attack enemies!"
 	else:
 		return "Beluga grows bigger!"
 
