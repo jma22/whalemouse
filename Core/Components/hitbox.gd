@@ -1,6 +1,7 @@
 class_name Hitbox
 extends Area3D
 
+@export var owner_entity: CharacterBody3D
 @export var hit_box_type: HitBoxType = HitBoxType.HIT_PLAYER
 @onready var sprite3D : Sprite3D = $Sprite3D
 @export var damage: int = 1
@@ -27,11 +28,11 @@ func set_active(active: bool) -> void:
 		sprite3D.visible = active
 	is_active = active
 
-
-
-func get_damage() -> int:
+func hitbox_on_hit() -> void:
 	if hitstop:
 		hitstop.start_hitstop(0.1)
+
+func get_damage() -> int:
 	if hit_box_type == HitBoxType.HIT_PLAYER:
 		return GlobalStats.get_enemy_damage()
 	else:

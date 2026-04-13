@@ -26,7 +26,7 @@ func _on_area_entered(hitbox: Area3D) -> void:
 	if not is_active:
 		return
 	if hitbox.has_method("get_damage"):
-		owner_entity.on_hit(hitbox.get_damage())
+		owner_entity.on_hit(hitbox)
 		if orbs_on_hit > 0:
 			time_on_hit.spawn_time(orbs_on_hit)
 		if hit_sound:

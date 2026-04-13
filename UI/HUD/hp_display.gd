@@ -115,6 +115,7 @@ func set_whale_circle() -> void:
 
 
 func set_status_effects(effects: Array[StatusEffect]) -> void:
+	print(effects)
 	for i : int in range(status_effect_icons.size()):
 		if i < len(effects):
 			var effect : StatusEffect = effects[i]

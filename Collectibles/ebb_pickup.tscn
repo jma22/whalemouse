@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://5567jb22jpkh"]
+
+[ext_resource type="Script" uid="uid://cermxxl1w7o83" path="res://Collectibles/ebb_pickup.gd" id="1_yg7rn"]
+[ext_resource type="Texture2D" uid="uid://37fneuc41d61" path="res://Collectibles/spritesheet_11.png" id="2_oc6dm"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_v04my"]
+[ext_resource type="AudioStream" uid="uid://iduxoxuqogab" path="res://SFX/XP_POP.wav" id="4_30y46"]
+
+[node name="EbbPickup" type="Node3D" unique_id=393659539]
+script = ExtResource("1_yg7rn")
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=2098642632]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
+modulate = Color(0, 0.29999995, 1, 1)
+pixel_size = 0.001
+texture = ExtResource("2_oc6dm")
+hframes = 3
+script = ExtResource("3_v04my")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1305784290]
+stream = ExtResource("4_30y46")
+volume_db = -10.0
+pitch_scale = 2.37

@@ -20,7 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://dvufetk8lu5rw" path="res://SFX/dash.wav" id="17_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://bm37fematmsgb" path="res://SFX/player_hit.wav" id="19_8mwp6"]
 [ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Core/Components/hitstop.gd" id="20_n471f"]
-[ext_resource type="Script" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
+[ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://cnjqg8b31hol6" path="res://SFX/attack.wav" id="22_hshwv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lfmf2"]
@@ -37,6 +37,10 @@ script = ExtResource("13_7emwf")
 frame_numbers = Array[int]([0, 1, 2])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hshwv"]
+height = 1.0
+radius = 0.25
+
 [node name="Player" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("sprite_manager", "health_component", "attack_state", "hitstop")]
 script = ExtResource("1_dw050")
 speed = 4.0
@@ -46,7 +50,7 @@ attack_state = NodePath("StateMachine/AttackState")
 hitstop = NodePath("Hitstop")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302 node_paths=PackedStringArray("hitstop")]
-transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.93969256, 0, -0.93969256, 0.34202012, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.93969256, 0, -0.93969256, 0.34202012, 0, 0.092012204, -0.22632039)
 pixel_size = 0.001
 double_sided = false
 alpha_cut = 2
@@ -65,11 +69,11 @@ hit_box_type = 1
 hitstop = NodePath("../Hitstop")
 
 [node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]
-transform = Transform3D(0.695, 0, 0, 0, 0.695, 0, 0, 0, 0.695, 0, 0, 0)
+transform = Transform3D(0.695, 0, 0, 0, 0.695, 0, 0, 0, 0.695, 0, 0, -0.029482618)
 shape = SubResource("CylinderShape3D_lfmf2")
 
 [node name="Sprite3D" parent="Hitbox" index="1" unique_id=468577178]
-transform = Transform3D(2.29, 0, 0, 0, -1.0009908e-07, -2.29, 0, 2.29, -1.0009908e-07, 0, 0.01, 0)
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0.01, -0.012904897)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -130,6 +134,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 owner_entity = NodePath("..")
 hit_sound_fx = ExtResource("19_8mwp6")
 
+[node name="CollisionShape3D" parent="HurtBox" index="0" unique_id=1925812291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.22411093)
+shape = SubResource("CylinderShape3D_hshwv")
+
 [node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
 script = ExtResource("10_n7ghd")
 
@@ -145,3 +153,4 @@ sharpness = 0.5
 descent_mult = 10.0
 
 [editable path="Hitbox"]
+[editable path="HurtBox"]

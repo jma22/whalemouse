@@ -119,17 +119,28 @@ func setup_states() -> void:
 		if state is State:
 			state.set_entity(self)
 
-func on_hit(damage: int) -> void:
+func on_hit(attacker_hitbox: Hitbox) -> void:
 	if invulnerable:
 		return
-
+	attacker_hitbox.hitbox_on_hit()
 	hitstop.start_hitstop(0.1)
-	health_component.take_damage(damage)
+	var damage_taken : int = attacker_hitbox.get_damage()
+	if damage_taken == 0:
+		return
+	health_component.take_damage(damage_taken)
 	sprite_manager.damage_flash()
 	if health_component.is_dead():
 		on_die()
 	else:
 		state_machine.set_state(hurt_state)
+	# var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
+
+	# if health_component.is_dead():
+	# 	on_die()
+	# 	knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
+	# 	return
+
+	# knockback_component.receive_knockback(knockback_direction, damage_taken)
 
 func set_invulnerable(value: bool) -> void:
 	invulnerable = value
@@ -140,6 +151,8 @@ func on_die() -> void:
 		SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
 	)
 
+
+## pickup / actions
 func on_gain_time(amount : int) -> void:
 	# handle gaining time pickup
 	health_component.gain_health(amount)
@@ -153,10 +166,20 @@ func damage(amount: int) -> void:
 	if health_component.is_dead():
 		on_die()
 
-
-
 func gain_status_effect(effect : StatusEffect) -> void:
+	for existing_effect : StatusEffect in status_effects:
+		if existing_effect.name == effect.name:
+			existing_effect.time_remaining += effect.duration
+			existing_effect.duration += effect.duration
+			return
+
 	status_effects.append(effect)
+	print("Gained status effect: ", effect.name)
+
+func clear_effects() -> void:
+	status_effects.clear()	
+
+
 
 func purge_effects() -> void:
 	for effect in status_effects:
@@ -164,5 +187,3 @@ func purge_effects() -> void:
 			status_effects.erase(effect)
 			return
 	
-func clear_effects() -> void:
-	status_effects.clear()	

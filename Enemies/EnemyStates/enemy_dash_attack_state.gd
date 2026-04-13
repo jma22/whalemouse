@@ -5,6 +5,7 @@ var target_position : Vector3
 @export var animation_clip : AnimationClip
 @export var attack_speed : float = 12.0
 @export var dampening : float = 0.88
+@export var hitbox_active_time : float = 0.2
 
 @export var audio_player : AudioStreamPlayer
 var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
@@ -22,11 +23,14 @@ func enter() -> void:
 
 
 func exit() -> void:
+# 	pass
 	entity.hitbox.set_active(false)
 	# entity.knockback_component.set_knockbackable(true)
 
 func run(_delta: float) -> void:
 	check_state()
+	if get_elapsed_time() >= hitbox_active_time:
+		entity.hitbox.set_active(false)
 
 func fixed_run(_delta: float) -> void:
 	entity.velocity *= dampening

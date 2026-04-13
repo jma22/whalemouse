@@ -21,7 +21,13 @@ var current_run_stats : Dictionary = {
 	"damage" : 0,
 	"enemy_damage" : 0,
 	"player_attack_speed" : 0,
+	"ebb_drop": 0,
 }
+
+var wave_augments :Dictionary = {}
+
+
+
 var ordering : Array[String] = []
 
 func setup(player_node : Node3D, hud_node : HUD) -> void:
@@ -49,10 +55,19 @@ func reset_current_run_stats() -> void:
 	for k :String in current_run_stats.keys():
 		current_run_stats[k] = 0
 
-	total_stats["enemies_killed"] = 0
-	total_stats["waves_completed"] = 0
-	total_stats["total_time_survived"] = 0.0
+	for k : String in total_stats.keys():
+		total_stats[k] = 0
+	
+	
 	ordering = []
+	var override_dict : Dictionary = Config.get_override("starting_stats", {})
+	for k : String in override_dict.keys():
+		for i : int in range(override_dict[k]):	
+			add_to_stat(k)
+
+	var override_wave_augments : Dictionary = Config.get_override("starting_wave_augments", {})
+	for k : String in override_wave_augments.keys():
+		add_wave_augment(k, override_wave_augments[k])
 
 func add_to_stat(stat_name: String) -> void:
 	if stat_name not in ordering:
@@ -67,8 +82,32 @@ func add_to_stat(stat_name: String) -> void:
 
 	else:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
-	
-	hud.blessing_bar.sync_bar()
+	if hud and hud.blessing_bar:
+		hud.blessing_bar.sync_bar()
+
+func add_wave_augment(augment_name: String, wave_duration : int) -> void:
+	wave_augments[augment_name] = wave_duration
+	if hud and hud.blessing_bar:
+		hud.blessing_bar.sync_bar()
+
+func decrement_wave_augments() -> void:
+	var augments_to_remove : Array[String] = []
+	for augment_name : String in wave_augments.keys():
+		wave_augments[augment_name] -= 1
+		if wave_augments[augment_name] <= 0:
+			augments_to_remove.append(augment_name)
+	for augment_name : String in augments_to_remove:
+		wave_augments.erase(augment_name)
+	if hud and hud.blessing_bar:
+		hud.blessing_bar.sync_bar()
+
+func get_enemy_per_ebb_drop() -> int:
+	return min(7 - current_run_stats["ebb_drop"],2)
+
+func should_drop_ebb() -> bool:
+	# this is buggy /in consistent but will do now
+	print("Checking for ebb drop: ", total_stats["enemies_killed"], " kills, need ", get_enemy_per_ebb_drop(), " for next drop.")
+	return total_stats["enemies_killed"] % get_enemy_per_ebb_drop() == 0
 
 
 func get_heal_amount() -> int:
@@ -99,7 +138,8 @@ func get_seconds_per_damage() -> float:
 
 
 func get_enemy_speed_multiplier() -> float:
-	return 1.0 + current_run_stats["enemy_speed"] * 0.3
+	var wave_augment_bonus : float = 0.3 if "enemy_speed" in wave_augments else 0.0
+	return 1.0 + current_run_stats["enemy_speed"] * 0.3 + 0.3 * wave_augment_bonus
 
 func get_enemy_health_multiplier() -> float:
 	return 1.0 + current_run_stats["enemy_health"] * 0.5

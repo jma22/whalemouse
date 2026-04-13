@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 	# if wave_info.room_type != "combat":
 	# 	return
 	var raw_delta : float = delta
+	GlobalStats.add_time_survived(raw_delta)
 	for effect : StatusEffect in player.status_effects:
 		effect.tick_effect(raw_delta)
 	for effect : StatusEffect in player.status_effects:
@@ -32,7 +33,6 @@ func _process(delta: float) -> void:
 	
 	var seconds_per_damage : float = GlobalStats.get_seconds_per_damage()
 	if _time_accumulator >= seconds_per_damage:
-		GlobalStats.add_time_survived(seconds_per_damage)
 		_time_accumulator -= seconds_per_damage
 		do_damage()
 		

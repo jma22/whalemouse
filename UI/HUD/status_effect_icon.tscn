@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbhih0m50iyig"]
 
-[ext_resource type="Texture2D" uid="uid://rts4vt3m604m" path="res://UI/HUD/StatusEffectIcons/snowflake.png" id="1_e8vl6"]
+[ext_resource type="Texture2D" uid="uid://rts4vt3m604m" path="res://UI/HUD/StatusEffectIcons/freeze_icon.png" id="1_e8vl6"]
 [ext_resource type="Script" uid="uid://8xqsb1wnri61" path="res://UI/HUD/status_effect_icon.gd" id="2_x1gfl"]
 
 [node name="StatusEffectIcon" type="TextureProgressBar" unique_id=1510859552]

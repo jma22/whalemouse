@@ -17,5 +17,9 @@ func start_room (wave_info_ : WaveInfo) -> void:
 func map_cleared() -> bool:
 	if wave_info and not enemy_spawner.spawner_done():
 		return false
-
 	return enemy_spawner.all_dead()
+
+
+func leave_room() -> void:
+	super()
+	GlobalStats.decrement_wave_augments()

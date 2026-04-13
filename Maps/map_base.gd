@@ -7,8 +7,6 @@ class_name MapManagerBase
 @export var floor : NavigationRegion3D 
 @export var player_spawn_point : Node3D
 
-
-
 var player : CharacterBody3D
 var map_cleared_flag : bool = false
 var wave_info : WaveInfo
@@ -19,6 +17,7 @@ func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 	self.player = player
 	camera.set_bounds(floor.get_bounds())
 	floor.setup(player, camera)
+	gateway.setup(self)
 	room_active = false
 
 
@@ -44,3 +43,6 @@ func map_cleared() -> bool
 
 func on_map_cleared() -> void:
 	gateway.open_gateway()
+
+func leave_room() -> void:
+	room_active = false

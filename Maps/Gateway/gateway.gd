@@ -11,9 +11,15 @@ var idle_animation_clip : AnimationClip
 
 var tween : Tween = null
 var original_scale : Vector3
+var map_manager : MapManagerBase
 
 @export var audio_player : AudioStreamPlayer
 @export var portal_hum : AudioStreamPlayer
+
+func setup(map_manager : MapManagerBase) -> void:
+	self.map_manager = map_manager
+
+
 func _ready() -> void:
 	area.connect("body_entered", Callable(self, "_on_body_entered"))
 	area.connect("body_exited", Callable(self, "_on_body_exited"))
@@ -29,6 +35,7 @@ func _process(_delta: float) -> void:
 		if not done and  Input.is_action_just_pressed("interact"):
 			done = true
 			audio_player.play()
+			map_manager.leave_room()
 			SceneManager.next_wave()
 			close_gateway()
 

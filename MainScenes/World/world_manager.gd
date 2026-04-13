@@ -101,9 +101,6 @@ func map_entered(first_time: bool) -> void:
 
 func next_wave() -> void:
 	wave_manager.current_wave += 1
-	map_manager.room_active = false
-	shrine_map_manager.room_active = false
-	boss_map_manager.room_active = false
 	map_entered(false)
 
 

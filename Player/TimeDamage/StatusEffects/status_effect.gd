@@ -19,11 +19,22 @@ func get_multiplier() -> float:
 		"freeze":
 			return 0.0
 		"slow":
-			return 0.5
+			return 0.33
 		"haste":
 			return 1.5
 		_:
 			return 1.0
+
+func get_icon_path() -> String:
+	match name:
+		"freeze":
+			return "res://UI/HUD/StatusEffectIcons/freeze_icon.png"
+		"slow":
+			return "res://UI/HUD/StatusEffectIcons/slow_icon.png"
+		"haste":
+			return "res://UI/HUD/StatusEffectIcons/haste_icon.png"
+		_:
+			return ""
 
 func tick_effect(delta: float) -> void:
 	time_remaining -= delta

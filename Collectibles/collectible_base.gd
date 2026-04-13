@@ -64,6 +64,7 @@ func _physics_process(delta: float) -> void:
 				var direction : Vector3 = (target.global_transform.origin - global_transform.origin).normalized()
 				global_transform.origin += direction * delta * GlobalStats.get_attracted_speed()
 		PickupState.Despawn:
+			on_pickup()
 			visible = false
 			set_process(false)
 			set_physics_process(false)

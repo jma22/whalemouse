@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rts4vt3m604m"
-path="res://.godot/imported/snowflake.png-c183a34d0c810befdf28dec1f4a510d7.ctex"
+path="res://.godot/imported/freeze_icon.png-4e6d9ad1745af28e9218e50de1b53e70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/HUD/StatusEffectIcons/snowflake.png"
-dest_files=["res://.godot/imported/snowflake.png-c183a34d0c810befdf28dec1f4a510d7.ctex"]
+source_file="res://UI/HUD/StatusEffectIcons/freeze_icon.png"
+dest_files=["res://.godot/imported/freeze_icon.png-4e6d9ad1745af28e9218e50de1b53e70.ctex"]
 
 [params]
 

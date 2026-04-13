@@ -68,26 +68,30 @@ func setup_states() -> void:
 		if state is State:
 			state.set_entity(self)
 
-func on_hit(damage: int) -> void:
+func on_hit(attacker_hitbox: Hitbox) -> void:
 	print("got hit in state:" + str(state_machine.current_state))
 	if is_dead or is_invulnerable:
 		return
 	sprite_manager.damage_flash()
-	health_component.take_damage(damage)
+	var damage_taken : int = attacker_hitbox.get_damage()
+	if damage_taken == 0:
+		return
+	health_component.take_damage(damage_taken)
 
 	on_staggered()
+	attacker_hitbox.hitbox_on_hit() #hitstop
 	hitstop.start_hitstop(0.2)
 
 	# if state_machine.current_state.has_method("on_hit"):
 	# 	state_machine.current_state.on_hit(damage)
+	var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
+
 	if health_component.is_dead():
 		on_die()
-		var knockback_direction : Vector3 = (global_transform.origin - player.global_transform.origin).normalized()
-		knockback_component.receive_knockback(knockback_direction, 0.4*damage)
+		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
 		return
 
-	var knockback_direction : Vector3 = (global_transform.origin - player.global_transform.origin).normalized()
-	knockback_component.receive_knockback(knockback_direction, damage)
+	knockback_component.receive_knockback(knockback_direction, damage_taken)
 
 
 func on_die() -> void:
@@ -96,14 +100,19 @@ func on_die() -> void:
 	is_dead = true
 	var tween : Tween = await sprite_manager.die()
 	GlobalStats.add_kill()
+	var should_drop_ebb : bool = GlobalStats.should_drop_ebb()
+
 
 	await tween.finished
 	if xp_spawner_scene:
 		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		xp_spawner_instance.setup_outwards(GlobalStats.get_enemy_xp_drop(), player)
-	process_mode = Node.PROCESS_MODE_DISABLED
+		xp_spawner_instance.setup_outwards(GlobalStats.get_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME)
+		if should_drop_ebb:
+			xp_spawner_instance.setup_outwards(1, player, CollectibleSpawner.OrbType.EBB)
+			
+	process_mode = Node.PROCESS_MODE_DISABLED	
 
 func on_staggered() -> void:
 	pass

@@ -48,13 +48,14 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 [sub_resource type="AudioStream" id="AudioStream_j670t"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_okpwn"]
+radius = 0.3
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("hitstop")]
 script = ExtResource("1_n0g06")
 hitstop = NodePath("Hitstop")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=1668628302]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.06, 0)
+transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.06, -0.18521112)
 pixel_size = 0.001
 double_sided = false
 alpha_cut = 2
@@ -136,13 +137,16 @@ volume_db = -13.0
 pitch_scale = 1.44
 
 [node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("hitstop") instance=ExtResource("11_pwjut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.042464793)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12498206)
 damage = 5
 hitstop = NodePath("../Hitstop")
 
 [node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1405177479]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_okpwn")
+
+[node name="Sprite3D" parent="Hitbox" index="1" unique_id=468577178]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0)
 
 [node name="KnockbackComponent" type="Node3D" parent="." unique_id=1542646912 node_paths=PackedStringArray("entity")]
 script = ExtResource("14_doop2")
