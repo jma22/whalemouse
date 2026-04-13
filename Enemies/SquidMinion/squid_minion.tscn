@@ -30,14 +30,6 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_okpwn"]
 
-[sub_resource type="Resource" id="Resource_fdp45"]
-script = ExtResource("7_htv12")
-frame_numbers = Array[int]([0])
-metadata/_custom_type_script = "uid://bfemb7cym2htn"
-
-[sub_resource type="AudioStream" id="AudioStream_j670t"]
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_okpwn"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0y1tm"]
 radius = 0.4
 
@@ -95,46 +87,7 @@ stream = ExtResource("14_bdh7n")
 volume_db = -10.562
 pitch_scale = 1.7
 
-
-[node name="EnemyRetreatState" type="Node" parent="StateMachine" unique_id=1126249707 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
-script = ExtResource("15_jf8nf")
-enemy_walk_state = NodePath("../EnemyWalkState")
-enemy_idle_state = NodePath("../EnemyIdleState")
-
-[node name="EnemyHurtState" type="Node" parent="StateMachine" unique_id=101421191]
-script = ExtResource("16_pfwht")
-animation = SubResource("Resource_fdp45")
-
-[node name="EnemyJumpAttackState" type="Node" parent="StateMachine" unique_id=703820865]
-
-[node name="EnemyJumpAttackChargeState" type="Node" parent="StateMachine" unique_id=2032867906]
-animation = ExtResource("12_4wlmv")
-
-[node name="HealthComponent" type="Node" parent="." unique_id=1960699954]
-script = ExtResource("19_nnmn1")
-
-[node name="HurtBox" parent="." unique_id=1638711581 node_paths=PackedStringArray("owner_entity") instance=ExtResource("20_o8pc4")]
-owner_entity = NodePath("..")
-hurt_box_type = 1
-hit_sound_fx = ExtResource("21_y1w68")
-
-[node name="CollisionShape3D" parent="HurtBox" index="0" unique_id=1925812291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.116778135)
-
-[node name="AudioStreamPlayer" parent="HurtBox" index="1" unique_id=1714309578]
-stream = SubResource("AudioStream_j670t")
-volume_db = -13.0
-pitch_scale = 1.44
-[node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.062365532, -0.2356031)
-texture = ExtResource("2_01mlv")
-hframes = 8
-layer_number = 2
-
-[node name="Hitbox" parent="." unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("22_8xu50")]
-
 [node name="Hitbox" parent="StateMachine/EnemyStaticAttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("22_8xu50")]
-
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20677382)
 owner_entity = NodePath("../../..")
 damage = 5
@@ -152,11 +105,7 @@ script = ExtResource("15_jf8nf")
 
 [node name="EnemyHurtState" type="Node3D" parent="StateMachine" unique_id=1612505781]
 script = ExtResource("16_pfwht")
-animation = SubResource("Resource_fdp45")
-
-[node name="EnemyJumpAttackState" type="Node3D" parent="StateMachine" unique_id=384324971]
-
-[node name="EnemyJumpAttackChargeState" type="Node3D" parent="StateMachine" unique_id=853321113]
+animation = ExtResource("12_4wlmv")
 
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("24_5o2e5")]
 
@@ -171,7 +120,8 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.062365532, -0.2356031)
 texture = ExtResource("2_01mlv")
-hframes = 4
+hframes = 8
+layer_number = 2
 
 [editable path="StateMachine/EnemyStaticAttackState/Hitbox"]
 [editable path="CoreComponents"]
