@@ -76,6 +76,7 @@ descent_mult = 10.0
 
 [node name="Hitbox" parent="StateMachine/AttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("12_606se")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
 owner_entity = NodePath("../../..")
 hit_box_type = 1
 hitstop = NodePath("../../../CoreComponents/HitStop")
@@ -101,15 +102,29 @@ fps = 3.0
 script = ExtResource("9_nvl01")
 animation = SubResource("Resource_hshwv")
 
-[node name="RollState" type="Node3D" parent="StateMachine" unique_id=2076206116 node_paths=PackedStringArray("audio_player")]
+[node name="RollState" type="Node3D" parent="StateMachine" unique_id=2076206116 node_paths=PackedStringArray("audio_player", "roll_hitbox")]
 script = ExtResource("10_ivps1")
 animation = ExtResource("12_u1c27")
 audio_player = NodePath("Roll")
+roll_hitbox = NodePath("Hitbox")
 
 [node name="Roll" type="AudioStreamPlayer" parent="StateMachine/RollState" unique_id=1231763994]
 stream = ExtResource("17_gpjlu")
 volume_db = -10.868
 pitch_scale = 1.1
+
+[node name="Hitbox" parent="StateMachine/RollState" unique_id=1636118291 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("12_606se")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.076812744)
+owner_entity = NodePath("../../..")
+hit_box_type = 1
+hitstop = NodePath("../../../CoreComponents/HitStop")
+
+[node name="CollisionShape3D" parent="StateMachine/RollState/Hitbox" index="0" unique_id=1405177479]
+transform = Transform3D(0.695, 0, 0, 0, 0.695, 0, 0, 0, 0.695, 0, 0, -0.029482618)
+shape = SubResource("CylinderShape3D_lfmf2")
+
+[node name="Sprite3D" parent="StateMachine/RollState/Hitbox" index="1" unique_id=468577178]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0.01, -0.012904897)
 
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("25_qemgg")]
 
@@ -132,5 +147,6 @@ vframes = 2
 frames_per_second = 12.0
 
 [editable path="StateMachine/AttackState/Hitbox"]
+[editable path="StateMachine/RollState/Hitbox"]
 [editable path="CoreComponents"]
 [editable path="CoreComponents/HurtBox"]

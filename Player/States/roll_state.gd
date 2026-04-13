@@ -11,6 +11,7 @@ var roll_direction : Vector2 = Vector2.ZERO
 var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
 @export var audio_player : AudioStreamPlayer
 
+@export var roll_hitbox : Hitbox
 
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
@@ -22,13 +23,16 @@ func enter() -> void:
 	entity.set_invulnerable(true, invulnerability_time)
 	audio_player.pitch_scale = 1.0 + randf() * 0.4
 	audio_player.play()
+	roll_hitbox.set_active(true)
+	
 
 # func run(_delta: float) -> void:
 # 	if invulnerability_time <= get_elapsed_time():
 # 		entity.set_invulnerable(false)
 
-# func exit() -> void:
+func exit() -> void:
 	# entity.set_invulnerable(false)
+	roll_hitbox.set_active(false)
 
 func fixed_run(_delta: float) -> void:
 	entity.velocity *= dampening

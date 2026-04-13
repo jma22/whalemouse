@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bh5xf51120yc" path="res://Maps/Floor/floor.png" id="3_dtlwl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
-vertices = PackedVector3Array(-3.75, 0.2, -1.75, -3.75, 0.2, 1.75, 3.75, 0.2, 1.75, 3.75, 0.2, -1.75)
+vertices = PackedVector3Array(-3.75, 0.2, -1.95, -3.75, 0.2, 2.05, 3.75, 0.2, 2.05, 3.75, 0.2, -1.95)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.1
 agent_radius = 0.1
