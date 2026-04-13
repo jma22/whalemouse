@@ -12,6 +12,7 @@ var all_scenes : Dictionary[SceneEnum, Node3D] = {}
 # var _stack: Array[PackedScene] = []
 var _current: Node3D = null
 var _container: Node3D
+var _current_enum: SceneEnum = SceneEnum.MAIN_MENU
 
 func setup(container: Node3D) -> void:
 	_container = container
@@ -28,11 +29,15 @@ func register(scene_enum: SceneEnum, path : String) -> void:
 
 func switch_to(scene_enum: SceneEnum) -> void:
 	if scene_enum not in all_scenes:
-		return 
+		return
+		
+	set_paused(false)
+		
 	deactivate()
+	_current_enum = scene_enum
 	_current = all_scenes[scene_enum]
+	print("Current scene enum: ", _current_enum)
 	activate()
-
 
 func deactivate() -> void:
 	if _current:
@@ -69,14 +74,12 @@ func next_wave() -> void:
 	if world_manager:
 		world_manager.next_wave()
 
-func pause_game() -> void:
-	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
-	var world_manager : WorldManager = game_scene as WorldManager
-	if world_manager:
-		world_manager.pause_game()
+func set_paused(paused: bool) -> void:
+	var tree : SceneTree = get_tree()
+	if tree:
+		tree.paused = paused
 
-func resume_game() -> void:
-	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
-	var world_manager : WorldManager = game_scene as WorldManager
-	if world_manager:
-		world_manager.resume_game()
+
+func can_pause() -> bool:
+	# Prevent pausing on main menu
+	return _current_enum == SceneEnum.GAME or _current_enum == SceneEnum.PAUSE_MENU
