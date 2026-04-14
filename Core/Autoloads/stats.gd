@@ -21,7 +21,15 @@ var current_run_stats : Dictionary = {
 	"damage" : 0,
 	"enemy_damage" : 0,
 	"player_attack_speed" : 0,
+	"attack_size" : 0,
 	"ebb_drop": 0,
+	"damaging_dash": 0,
+	"ebb_on_stand" : 0,
+	"ebb_begin_of_room" : 0,
+	"dying_ebb" :0,
+	"damage_reduction" : 0,
+	"thornmail" : 0,
+
 }
 
 var wave_augments :Dictionary = {}
@@ -101,6 +109,30 @@ func decrement_wave_augments() -> void:
 	if hud and hud.blessing_bar:
 		hud.blessing_bar.sync_bar()
 
+func has_thorns() -> bool:
+	return current_run_stats["thornmail"] > 0
+	
+func get_damage_reduced_by() -> int:
+	return current_run_stats["damage_reduction"]
+
+func get_dying_ebb() -> int:
+	if current_run_stats["dying_ebb"] > 0:
+		return 5 + current_run_stats["dying_ebb"] * 2
+	else:
+		return 0
+		
+func get_ebb_begin_of_room() -> int:
+	if current_run_stats["ebb_begin_of_room"] > 0:
+		return 3 + current_run_stats["ebb_begin_of_room"]
+	else:
+		return 0
+
+func get_ebb_on_stand() -> bool:
+	return current_run_stats["ebb_on_stand"] > 0
+	
+func get_dash_damage() -> bool:
+	return current_run_stats["damaging_dash"] > 0
+
 func get_enemy_per_ebb_drop() -> int:
 	return min(7 - current_run_stats["ebb_drop"],2)
 
@@ -109,6 +141,8 @@ func should_drop_ebb() -> bool:
 	print("Checking for ebb drop: ", total_stats["enemies_killed"], " kills, need ", get_enemy_per_ebb_drop(), " for next drop.")
 	return total_stats["enemies_killed"] % get_enemy_per_ebb_drop() == 0
 
+func get_mouse_attack_hitbox_scale() -> float:
+	return 1.0 + current_run_stats["attack_size"] * 0.4
 
 func get_heal_amount() -> int:
 	return current_run_stats["heal"] * 7 + 7

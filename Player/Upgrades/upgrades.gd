@@ -16,6 +16,14 @@ static func _static_init() -> void:
 	_add_curse("enemy_speed", "Flying Shell", _enemy_speed_desc, [_increase_stats_effect.bind("enemy_speed")])
 	_add_curse("enemy_health", "Bulk Up", _enemy_health_desc, [_increase_stats_effect.bind("enemy_health")])
 	_add_curse("enemy_damage", "Poseidon's Fury", _enemy_damage_desc, [_increase_stats_effect.bind("enemy_damage")])
+	_add_generic_blessing("attack_size", "Giant Clam", _attack_size_desc, [_increase_stats_effect.bind("attack_size")])
+	_add_generic_blessing("player_attack_speed", "Sonic Seashell", _attack_speed_desc, [_increase_stats_effect.bind("player_attack_speed")])
+	_add_generic_blessing("ebb_drop", "Ebb Essence", _ebb_drop_desc, [_increase_stats_effect.bind("ebb_drop")])
+	_add_one_time_blessing("ebb_on_stand", "Ebb's Embrace", _ebb_on_stand_desc, [_increase_stats_effect.bind("ebb_on_stand")])
+	_add_one_time_blessing("damaging_dash", "Shark Teeth", _damaging_dash_desc, [_increase_stats_effect.bind("damaging_dash")])
+	_add_generic_blessing("damage_reduction", "Big Shell", _damge_reduction_desc, [_increase_stats_effect.bind("damage_reduction")])
+	_add_one_time_blessing("thornmail", "Thornmail", _thornmail_desc, [_increase_stats_effect.bind("thornmail")])
+
 
 
 
@@ -55,6 +63,9 @@ static func _add_big_curse(internal_name: String, display_name: String, descript
 	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "big_curse", description_func, effects)
 	list[internal_name] = upgrade
 
+static func _add_one_time_blessing(internal_name: String, display_name: String, description_func: Callable, effects: Array[Callable] = []) -> void:
+	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "one_time_blessing", description_func, effects)
+	list[internal_name] = upgrade
 
 # ---- effects ----
 static func _flat_heal_effect(amount : int) -> void:
@@ -116,3 +127,24 @@ static func _enemy_health_desc() -> String:
 
 static func _enemy_damage_desc() -> String:
 	return "Enemies deal more damage!"
+
+static func _attack_size_desc() -> String:
+	return "Your attacks hit a larger area!"
+
+static func _attack_speed_desc() -> String:
+	return "You can attack faster!"
+
+static func _ebb_drop_desc() -> String:
+	return "Enemies can drop ebb orbs!"
+
+static func _ebb_on_stand_desc() -> String:
+	return "Gain ebb while standing still!"
+
+static func _damaging_dash_desc() -> String:
+	return "Your dash damages enemies!"
+
+static func _damge_reduction_desc() -> String:
+	return "Take less damage!"
+
+static func _thornmail_desc() -> String:
+	return "Damage enemies when you get hit!"

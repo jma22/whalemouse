@@ -3,17 +3,29 @@
 [ext_resource type="Script" uid="uid://xujg62bri8lb" path="res://UI/HUD/hud.gd" id="1_hyjo8"]
 [ext_resource type="Script" uid="uid://dwntwtemf07ge" path="res://UI/HUD/blessing_bar.gd" id="2_gwst3"]
 [ext_resource type="Script" uid="uid://dra8kgw44m4ep" path="res://UI/HUD/boss_health.gd" id="2_hq5uf"]
+[ext_resource type="Material" uid="uid://g7sav26ljf3m" path="res://UI/HUD/Shaders/vignette_mat.tres" id="2_v4ort"]
+[ext_resource type="Script" uid="uid://kpyo8xf0p2ld" path="res://UI/HUD/vignette.gd" id="3_ajsli"]
 [ext_resource type="PackedScene" uid="uid://dvb3n46jwcj8j" path="res://UI/HUD/BlessingIcons/icon.tscn" id="3_hq5uf"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_v4ort"]
 [ext_resource type="PackedScene" uid="uid://dac7dl6bj43cp" path="res://UI/HUD/hud_bar.tscn" id="4_v4ort"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ajsli"]
 
-[node name="HUD" type="CanvasLayer" unique_id=1305888938 node_paths=PackedStringArray("hp_display", "blessing_bar", "boss_health")]
+[node name="HUD" type="CanvasLayer" unique_id=1305888938 node_paths=PackedStringArray("hp_display", "blessing_bar", "boss_health", "vignette")]
 script = ExtResource("1_hyjo8")
 hp_display = NodePath("MarginContainer/Control/Control")
 blessing_bar = NodePath("MarginContainer/Control/HBoxContainer")
 boss_health = NodePath("BossHealth")
+vignette = NodePath("Vignette")
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=2066147691]
+material = ExtResource("2_v4ort")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ajsli")
 
 [node name="BossHealth" type="VBoxContainer" parent="." unique_id=693673062 node_paths=PackedStringArray("health_bar", "boss_name")]
 anchors_preset = 12

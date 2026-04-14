@@ -80,6 +80,7 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 		return
 	health_component.take_damage(damage_taken)
 	hurt_box.on_valid_damaging_hit()
+	
 
 	on_staggered()
 	attacker_hitbox.hitbox_on_hit() #hitstop

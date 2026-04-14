@@ -7,13 +7,14 @@ class_name CoreComponents
 @onready var hitstop : HitStop = $HitStop
 @onready var sprite_manager : SpriteManager = $SpriteManager
 @onready var health_component : HealthComponent = $HealthComponent
+@onready var status_effect_manager : StatusEffectManager = $StatusEffectManager
 
 
 func setup(entity : CharacterBody3D) -> void:
 	hurt_box.setup(entity)
 	knockback_component.setup(entity)
 	sprite_manager.setup(hitstop)
-	health_component.setup(ceil(entity.initial_health * GlobalStats.get_enemy_health_multiplier()))
+	health_component.setup(ceil(entity.initial_health * GlobalStats.get_enemy_health_multiplier()), entity)
 
 func reset() -> void:
 	# hurt_box.reset()

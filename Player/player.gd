@@ -20,7 +20,9 @@ class_name Player extends CharacterBody3D
 @onready var hurt_box : HurtBox = core_components.hurt_box
 @onready var sprite_manager : SpriteManager = core_components.sprite_manager
 @onready var hitstop : HitStop = core_components.hitstop
+@onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
 var time_damage_manager : TimeDamageManager
+var hud_ref : HUD
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
 
@@ -41,6 +43,7 @@ func setup(hud: HUD) -> void:
 	# This is called from the main scene to set up references to other nodes
 	core_components.setup(self)
 	core_components.link_hud(hud)
+	hud_ref = hud
 	setup_states()
 	state_machine.set_state(idle_state)
 
@@ -134,9 +137,15 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	var damage_taken : int = attacker_hitbox.get_damage()
 	if damage_taken == 0:
 		return
+	damage_taken = max(0, damage_taken - GlobalStats.get_damage_reduced_by())
 	health_component.take_damage(damage_taken)
 	sprite_manager.damage_flash()
+	hud_ref.flash_hurt_vignette()
 	hurt_box.on_valid_damaging_hit()
+
+	if GlobalStats.has_thorns():
+		attacker_hitbox.owner_entity.on_hit(attack_state.hitbox)
+	
 
 	var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
 	if health_component.is_dead():
@@ -169,7 +178,6 @@ func on_gain_time(amount : int) -> void:
 	# handle gaining time pickup
 	health_component.gain_health(amount)
 
-
 func heal(amount: int) -> void:
 	health_component.gain_health(amount)
 
@@ -178,24 +186,11 @@ func damage(amount: int) -> void:
 	if health_component.is_dead():
 		on_die()
 
-func gain_status_effect(effect : StatusEffect) -> void:
-	for existing_effect : StatusEffect in status_effects:
-		if existing_effect.name == effect.name:
-			existing_effect.time_remaining += effect.duration
-			existing_effect.duration += effect.duration
-			return
-
-	status_effects.append(effect)
-	print("Gained status effect: ", effect.name)
-
 func clear_effects() -> void:
-	status_effects.clear()	
+	status_effect_manager.clear_effects()
 
+func gain_status_effect(effect : StatusEffect, source : Object) -> void:
+	status_effect_manager.gain_status_effect(effect, source)
 
-
-func purge_effects() -> void:
-	for effect in status_effects:
-		if effect.time_remaining < 0:
-			status_effects.erase(effect)
-			return
-	
+func lose_status_effect(effect : StatusEffect, source : Object) -> void:
+	status_effect_manager.lose_status_effect(effect, source)

@@ -1,6 +1,6 @@
 extends Sprite3D
 
-var offset_shift : Vector2  = Vector2(0, 0.2)
+var offset_shift : Vector2  = Vector2(0, 0.05)
 func play() -> void:
 	rotation.x = -PI/2
 	position += Vector3(offset_shift.x, 0, offset_shift.y)

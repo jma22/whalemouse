@@ -6,13 +6,26 @@ var name : String = ""
 var time_remaining : float = 0.0
 var duration : float = 0.0
 
+var is_conditional : bool = false
+
+
 
 static func create(name: String, duration: float) -> StatusEffect:
 	var effect : StatusEffect = StatusEffect.new()
 	effect.name = name
 	effect.time_remaining = duration
 	effect.duration = duration
+	effect.is_conditional = false
 	return effect
+
+static func create_conditional(name: String) -> StatusEffect:
+	var effect : StatusEffect = StatusEffect.new()
+	effect.name = name
+	effect.time_remaining = -1.0
+	effect.duration = -1.0
+	effect.is_conditional = true
+	return effect
+
 
 func get_multiplier() -> float:
 	match name:

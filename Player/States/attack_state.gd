@@ -26,6 +26,7 @@ func enter() -> void:
 	# convert 2D attack direction to world position for the arc
 	var dir3d := Vector3(attack_direction.x, 0, attack_direction.y)
 	var target := entity.global_transform.origin + dir3d * horizontal_distance
+	hitbox.scale = Vector3(GlobalStats.get_mouse_attack_hitbox_scale(), 1, GlobalStats.get_mouse_attack_hitbox_scale())
 
 	# scale arc params by attack speed multiplier
 	# arc_component.time = 1.5 / spd_mult

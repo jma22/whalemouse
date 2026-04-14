@@ -23,10 +23,8 @@ func _process(delta: float) -> void:
 	# 	return
 	var raw_delta : float = delta
 	GlobalStats.add_time_survived(raw_delta)
-	for effect : StatusEffect in player.status_effects:
-		effect.tick_effect(raw_delta)
-	for effect : StatusEffect in player.status_effects:
-		delta *= effect.get_multiplier()
+
+	delta *= player.status_effect_manager.get_status_time_multiplier()
 	
 		
 	_time_accumulator += delta 
@@ -37,10 +35,7 @@ func _process(delta: float) -> void:
 		do_damage()
 		
 		if player.health_component and player.health_component.is_dead():
-			player.on_die()
-	
-	player.purge_effects()
-	
+			player.on_die()	
 
 func do_damage(damage: int = 1) -> void:
 	if player.health_component:

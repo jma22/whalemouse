@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b3laqrhmbviaw"]
+
+[ext_resource type="Texture2D" uid="uid://c8tucba4rdxb1" path="res://Player/Abilities/Whale/Whale (1).png" id="1_gs0rj"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_3qop0"]
+[ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="3_3il2m"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dlpa8"]
+height = 1.0
+
+[node name="Explosion" type="Node3D" unique_id=1350456821]
+
+[node name="Indicator" type="Node3D" parent="." unique_id=640355351]
+
+[node name="SpriteManager" type="Sprite3D" parent="Indicator" unique_id=56717710]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0)
+pixel_size = 0.001
+texture = ExtResource("1_gs0rj")
+hframes = 7
+script = ExtResource("2_3qop0")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="Hitbox" parent="Indicator" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("3_3il2m")]
+owner_entity = NodePath("..")
+
+[node name="CollisionShape3D" parent="Indicator/Hitbox" index="0" unique_id=1405177479]
+shape = SubResource("CylinderShape3D_dlpa8")
+
+[editable path="Indicator/Hitbox"]

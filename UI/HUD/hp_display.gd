@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 		return
 	set_circle()
 	set_whale_circle()
-	set_status_effects(player.status_effects)
+	set_status_effects(player.status_effect_manager.get_deduped_list())
 
 
 func lose_hp(amount: int, new_hp: int) -> void:
@@ -115,7 +115,6 @@ func set_whale_circle() -> void:
 
 
 func set_status_effects(effects: Array[StatusEffect]) -> void:
-	print(effects)
 	for i : int in range(status_effect_icons.size()):
 		if i < len(effects):
 			var effect : StatusEffect = effects[i]

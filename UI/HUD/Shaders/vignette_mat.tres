@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://g7sav26ljf3m"]
+
+[ext_resource type="Shader" uid="uid://cn8vio3ibyvpo" path="res://UI/HUD/Shaders/hurt_vignette.gdshader" id="1_4n5vh"]
+
+[resource]
+shader = ExtResource("1_4n5vh")
+shader_parameter/flash_color = Color(0.8, 0, 0, 1)
+shader_parameter/flash_intensity = 0.0
+shader_parameter/flash_radius = 0.6870000326325
+shader_parameter/flash_softness = 0.78200003644648
+shader_parameter/flash_max_alpha = 0.95200004522
+shader_parameter/status_color = Color(0.115200005, 0.30762672, 0.64, 1)
+shader_parameter/status_intensity = 1.0
+shader_parameter/status_radius = 0.51200002432
+shader_parameter/status_softness = 0.65800003055648
+shader_parameter/status_max_alpha = 1.0
+shader_parameter/pulse_speed = 2.4230001150925
+shader_parameter/pulse_min = 0.310000014725
+shader_parameter/pulse_max = 0.75200003572
