@@ -130,6 +130,7 @@ func setup_states() -> void:
 			state.set_entity(self)
 
 func on_hit(attacker_hitbox: Hitbox) -> void:
+	print("Player hit by ", attacker_hitbox.name)
 	if invulnerable_component.is_currently_invulnerable():
 		return
 	attacker_hitbox.hitbox_on_hit() ##HITSTOP

@@ -13,7 +13,7 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	# enemy_spawner.set_wave_spawning(wave_info_)
 	# enemy_spawner.spawn_boss("SquidBoss", Vector3(0,0,0))
 
-	enemy_spawner.spawn_enemy("enemy1", Vector3(0,0,0))
+	enemy_spawner.spawn_enemy("ShootingEnemy", Vector3(0,0,0))
 
 
 func map_cleared() -> bool:

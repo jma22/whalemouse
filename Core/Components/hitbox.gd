@@ -29,6 +29,9 @@ func set_active(active: bool) -> void:
 	is_active = active
 
 func hitbox_on_hit() -> void:
+	if owner_entity.has_method("on_hitbox_hit"):
+		owner_entity.on_hitbox_hit()
+		
 	if hitstop:
 		hitstop.start_hitstop(0.1)
 

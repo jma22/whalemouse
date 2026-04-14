@@ -37,7 +37,6 @@ func flash_hurt() -> void:
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 func update_status(status_effects : Array[StatusEffect]) -> void:
-	print("updating status effects: ", status_effects)
 	if status_effects.size() != old_status_effects.size():
 		if status_effect_manager.has_status_effect("slow"):
 			set_status()

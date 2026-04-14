@@ -20,16 +20,22 @@ func setup(owner_entity_: CharacterBody3D) -> void:
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
 	set_collisions()
 	hit_sound.stream = hit_sound_fx
 
 
-func _on_area_entered(hitbox: Area3D) -> void:
+func _on_area_entered(area: Area3D) -> void:
 	if not is_active:
 		return
-	if hitbox.has_method("get_damage"):
-		owner_entity.on_hit(hitbox)
+	if area is Hitbox:
+		owner_entity.on_hit(area)
+	elif area is FloorEffectBase:
+		area._on_enter()
 
+func _on_area_exited(area: Area3D) -> void:
+	if area is FloorEffectBase:
+		area._on_exit()
 
 func on_valid_damaging_hit() -> void:
 	if orbs_on_hit > 0:
