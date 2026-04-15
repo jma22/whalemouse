@@ -16,6 +16,11 @@ func setup(hitstop_: HitStop) -> void:
 	hitstop = hitstop_
 	## visual instance 3d layer
 	set_layer_mask_value(layer_number, true)
+	material_overlay.set_shader_parameter("texture_albedo", texture)
+	var half_h : float = texture.get_height() * pixel_size / 2.0
+	material_overlay.set_shader_parameter("mesh_bottom", -half_h)
+	material_overlay.set_shader_parameter("mesh_top", half_h)
+	
 
 
 func reset() -> void:

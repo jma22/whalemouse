@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dex885e487odc"]
+
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="1_3hssw"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("1_3hssw")
+shader_parameter/level = 1.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0

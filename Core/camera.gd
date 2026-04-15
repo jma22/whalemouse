@@ -17,6 +17,7 @@ func get_offset() -> Vector3:
 	var tilt : float = get_rotation().x * -1.0
 	var offset_y : float = distance * sin(tilt)
 	var offset_z : float = distance * cos(tilt)
+	print("Offset Y: ", offset_y, " Offset Z: ", offset_z)
 	var offset : Vector3= Vector3(0, offset_y, offset_z)
 	# offset = offset.rotated(Vector3(1, 0, 0), get_rotation().x)
 	# print("Offset after rotation: ", offset)

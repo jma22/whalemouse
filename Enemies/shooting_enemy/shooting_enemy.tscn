@@ -9,8 +9,10 @@
 [ext_resource type="Resource" uid="uid://cfaeujvwoxxv3" path="res://Enemies/shooting_enemy/floating.tres" id="7_wt4e8"]
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="8_8w1q2"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_qmvyk"]
+[ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="10_ku4fn"]
 [ext_resource type="Script" uid="uid://c0kuxp5ftpu4b" path="res://Enemies/shooting_enemy/enemy_shooting_state.gd" id="10_w7tql"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="10_yf58v"]
+[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="12_ne1wh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)
@@ -27,6 +29,8 @@ script = ExtResource("5_nyqyn")
 frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku4fn"]
 
 [node name="ShootingEnemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_ts8ab")
@@ -69,12 +73,24 @@ enemy_idle_state = NodePath("../EnemyIdleState")
 script = ExtResource("9_qmvyk")
 animation = SubResource("Resource_tlby2")
 
-[node name="EnemyShootingState" type="Node3D" parent="StateMachine" unique_id=1119467169]
+[node name="EnemyAttackParentState" type="Node3D" parent="StateMachine" unique_id=293896123 node_paths=PackedStringArray("charge_state", "attack_state", "cooldown_state")]
+script = ExtResource("10_ku4fn")
+charge_state = NodePath("EnemyChargeStateBase")
+attack_state = NodePath("EnemyShootingState")
+cooldown_state = NodePath("../EnemyIdleState")
+metadata/_custom_type_script = "uid://e0mqbimeypka"
+
+[node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169]
 script = ExtResource("10_w7tql")
+
+[node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
+script = ExtResource("12_ne1wh")
+metadata/_custom_type_script = "uid://y3u7axpv78ck"
 
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("10_yf58v")]
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
+material_overlay = SubResource("ShaderMaterial_ku4fn")
 layer_number = 2
 
 [editable path="EnemyCoreComponents"]

@@ -13,6 +13,7 @@ var stagger_stamina : int = 1
 var attack_state : State
 
 
+
 func enter() -> void:
 	entity.sprite_manager.play(animation)
 	stagger_stamina = max_stagger_stamina
@@ -23,9 +24,6 @@ func run(_delta: float) -> void:
 	entity.set_sprite_flip(facing_left)
 	check_state()
 
-# func fixed_run(_delta: float) -> void:
-# 	set_velocity()
-
 func exit() -> void:
 	entity.position.y = 0
 	entity.velocity.y = 0
@@ -33,9 +31,7 @@ func exit() -> void:
 
 func check_state() -> void:
 	if set_target_time /  GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() and not target_set:
-		print("hi?")
 		if attack_state.has_method("set_target_position"):
-			print("bye?")
 			attack_state.set_target_position(choose_target())
 		target_set = true
 	if charge_time / GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() :

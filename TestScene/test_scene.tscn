@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="2_e07wx"]
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="3_ncb30"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_88out"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_ptfuc"]
 [ext_resource type="Script" uid="uid://cvxwmfdcfu4rl" path="res://TestScene/test_map_manager.gd" id="5_k8tjy"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="5_rge3y"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="6_oisa6"]
@@ -14,24 +15,32 @@
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptfuc"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("4_ptfuc")
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oisa6"]
 
 [node name="World" type="Node3D" unique_id=511598235]
 script = ExtResource("1_oisa6")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1.273, 0.48)
 fov = 80.0
 size = 12.645
 script = ExtResource("2_e07wx")
 target = NodePath("../Player")
-distance = 1.8
+distance = 2.0
 smooth_speed = 10.0
 
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
 
 [node name="StateMachine" parent="Player" index="1" unique_id=1085580999]
 debug = true
+
+[node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
+material_overlay = SubResource("ShaderMaterial_ptfuc")
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
 time_damage_manager = NodePath("../TimeDamageManager")
