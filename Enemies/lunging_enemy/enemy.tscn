@@ -7,14 +7,15 @@
 [ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="7_pwjut"]
 [ext_resource type="Resource" uid="uid://lvy33ygurnrf" path="res://Enemies/lunging_enemy/idle.tres" id="8_ma22u"]
 [ext_resource type="Script" uid="uid://dwwe3udksx0qe" path="res://Enemies/EnemyStates/enemy_pursuit_state.gd" id="8_pwjut"]
-[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state.gd" id="9_ar8e5"]
 [ext_resource type="Script" uid="uid://buhpc2nac6phq" path="res://Enemies/EnemyStates/enemy_peaceful_state.gd" id="10_ar8e5"]
 [ext_resource type="Script" uid="uid://crc7jcisgbtvc" path="res://Enemies/EnemyStates/enemy_dash_attack_state.gd" id="10_doop2"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="11_pwjut"]
+[ext_resource type="Script" uid="uid://bgo0gvoqjdhxo" path="res://Enemies/EnemyStates/enemy_dash_charge_state.gd" id="12_25vuu"]
 [ext_resource type="Resource" uid="uid://bd28qktpwn3vs" path="res://Enemies/lunging_enemy/lunging.tres" id="13_25vuu"]
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="14_14j78"]
 [ext_resource type="AudioStream" uid="uid://crjmhkf3glryi" path="res://SFX/enemy_dash.wav" id="15_fdp45"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="15_s8tmg"]
+[ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="16_25vuu"]
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="16_t4yqc"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="20_s8tmg"]
 
@@ -29,6 +30,11 @@ frame_numbers = Array[int]([4, 5, 6])
 name = "enemy_idle"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
+[sub_resource type="Resource" id="Resource_fdp45"]
+script = ExtResource("16_t4yqc")
+frame_numbers = Array[int]([0])
+metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
 [sub_resource type="Resource" id="Resource_vdj2e"]
 script = ExtResource("16_t4yqc")
 frame_numbers = Array[int]([1, 2, 3])
@@ -37,11 +43,6 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_okpwn"]
 radius = 0.3
-
-[sub_resource type="Resource" id="Resource_fdp45"]
-script = ExtResource("16_t4yqc")
-frame_numbers = Array[int]([0])
-metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ma22u"]
 height = 1.0
@@ -63,7 +64,6 @@ mesh = SubResource("CylinderMesh_aqk2v")
 
 [node name="StateMachine" type="Node3D" parent="." unique_id=2000720727]
 script = ExtResource("5_vdj2e")
-debug = false
 
 [node name="EnemyPeacefulState" type="Node3D" parent="StateMachine" unique_id=1216176499 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
 script = ExtResource("10_ar8e5")
@@ -83,35 +83,6 @@ script = ExtResource("8_pwjut")
 enemy_walk_state = NodePath("../EnemyWalkState")
 enemy_idle_state = NodePath("../EnemyIdleState")
 
-[node name="EnemyChargeState" type="Node3D" parent="StateMachine" unique_id=1506004953 node_paths=PackedStringArray("attack_state")]
-script = ExtResource("9_ar8e5")
-animation = ExtResource("13_25vuu")
-attack_state = NodePath("../EnemyDashAttackState")
-
-[node name="EnemyDashAttackState" type="Node3D" parent="StateMachine" unique_id=673213724 node_paths=PackedStringArray("hitbox", "audio_player")]
-script = ExtResource("10_doop2")
-animation_clip = SubResource("Resource_vdj2e")
-hitbox_active_time = 0.25
-hitbox = NodePath("Hitbox")
-audio_player = NodePath("AudioStreamPlayer")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/EnemyDashAttackState" unique_id=2009876568]
-stream = ExtResource("15_fdp45")
-volume_db = -10.562
-pitch_scale = 1.7
-
-[node name="Hitbox" parent="StateMachine/EnemyDashAttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("11_pwjut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12498206)
-owner_entity = NodePath("../../..")
-damage = 5
-
-[node name="CollisionShape3D" parent="StateMachine/EnemyDashAttackState/Hitbox" index="0" unique_id=1405177479]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
-shape = SubResource("CylinderShape3D_okpwn")
-
-[node name="Sprite3D" parent="StateMachine/EnemyDashAttackState/Hitbox" index="1" unique_id=468577178]
-transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0)
-
 [node name="EnemyRetreatState" type="Node3D" parent="StateMachine" unique_id=1466642177 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
 script = ExtResource("14_14j78")
 enemy_walk_state = NodePath("../EnemyWalkState")
@@ -120,6 +91,40 @@ enemy_idle_state = NodePath("../EnemyIdleState")
 [node name="EnemyHurtState" type="Node3D" parent="StateMachine" unique_id=1548162842]
 script = ExtResource("15_s8tmg")
 animation = SubResource("Resource_fdp45")
+
+[node name="EnemyAttackParentState" type="Node3D" parent="StateMachine" unique_id=1062246551 node_paths=PackedStringArray("charge_state", "attack_state", "cooldown_state")]
+script = ExtResource("16_25vuu")
+charge_state = NodePath("EnemyChargeState")
+attack_state = NodePath("EnemyDashAttackState")
+cooldown_state = NodePath("../EnemyIdleState")
+
+[node name="EnemyChargeState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1506004953]
+script = ExtResource("12_25vuu")
+animation = ExtResource("13_25vuu")
+
+[node name="EnemyDashAttackState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=673213724 node_paths=PackedStringArray("hitbox", "audio_player")]
+script = ExtResource("10_doop2")
+animation_clip = SubResource("Resource_vdj2e")
+hitbox_active_time = 0.25
+hitbox = NodePath("Hitbox")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/EnemyAttackParentState/EnemyDashAttackState" unique_id=2009876568]
+stream = ExtResource("15_fdp45")
+volume_db = -10.562
+pitch_scale = 1.7
+
+[node name="Hitbox" parent="StateMachine/EnemyAttackParentState/EnemyDashAttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("11_pwjut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12498206)
+owner_entity = NodePath("../../../..")
+damage = 5
+
+[node name="CollisionShape3D" parent="StateMachine/EnemyAttackParentState/EnemyDashAttackState/Hitbox" index="0" unique_id=1405177479]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_okpwn")
+
+[node name="Sprite3D" parent="StateMachine/EnemyAttackParentState/EnemyDashAttackState/Hitbox" index="1" unique_id=468577178]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0)
 
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("20_s8tmg")]
 
@@ -137,6 +142,6 @@ texture = ExtResource("3_t4yqc")
 hframes = 10
 layer_number = 2
 
-[editable path="StateMachine/EnemyDashAttackState/Hitbox"]
+[editable path="StateMachine/EnemyAttackParentState/EnemyDashAttackState/Hitbox"]
 [editable path="CoreComponents"]
 [editable path="CoreComponents/HurtBox"]

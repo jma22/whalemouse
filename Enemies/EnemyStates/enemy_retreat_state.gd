@@ -32,22 +32,13 @@ func get_idle_duration() -> float:
 
 func get_walk_away_player() -> Vector3:
 	var direction : Vector3 = (entity.global_transform.origin - entity.player.global_transform.origin).normalized()
+
 	var pick_direction : Vector3 = sample_cardinal_direction(direction)
 	var distance : float = sample_random_distance()
 	var target_point : Vector3 = entity.global_transform.origin + pick_direction * distance
 
-	var map : AABB = entity.get_floor().get_bounds()
-	if not map.has_point(target_point):
-		print("flipping")
-		if target_point.x < map.position.x:
-			# mirror across the edge of the map to ensure it's always a valid point
-			target_point.x = map.position.x + (map.position.x - target_point.x) *2
-		elif target_point.x > map.position.x + map.size.x:
-			target_point.x = map.position.x + map.size.x - (target_point.x - (map.position.x + map.size.x)) *2
-		if target_point.z < map.position.z:
-			target_point.z = map.position.z + (map.position.z - target_point.z)*2
-		elif target_point.z > map.position.z + map.size.z:
-			target_point.z = map.position.z + map.size.z - (target_point.z - (map.position.z + map.size.z))*2
+	if not entity.get_floor().check_in_bounds(target_point):
+		target_point = entity.get_floor().mirror_position(target_point)
 	target_point.y = 0
 	return target_point
 
@@ -70,12 +61,12 @@ func sample_cardinal_direction(direction: Vector3) -> Vector3:
 	var closest_direction : Vector3 = get_closest_cardinal_direction(direction)
 	var index : int = cardinal_directions.find(closest_direction)
 	var pick : float = randf()
-	if pick < 0.5:
+	if pick < 0.4:
 		return closest_direction
-	elif pick < 0.5 + 0.1:
+	elif pick < 0.4 + 0.1:
 		var second_index : int = (index + 1) % cardinal_directions.size()
 		return cardinal_directions[second_index]
-	elif pick < 0.5 + 0.1 + 0.1:
+	elif pick < 0.4 + 0.1 + 0.1:
 		var third_index : int = (index - 1 + cardinal_directions.size()) % cardinal_directions.size()
 		return cardinal_directions[third_index]
 	else:

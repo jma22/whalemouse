@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="7_htv12"]
 [ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="8_jcl4o"]
 [ext_resource type="Script" uid="uid://dwwe3udksx0qe" path="res://Enemies/EnemyStates/enemy_pursuit_state.gd" id="10_wf80r"]
-[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state.gd" id="11_n1qu4"]
+[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="11_n1qu4"]
 [ext_resource type="Resource" uid="uid://bd28qktpwn3vs" path="res://Enemies/lunging_enemy/lunging.tres" id="12_4wlmv"]
 [ext_resource type="Script" uid="uid://7daypptg61vb" path="res://Enemies/EnemyStates/enemy_static_attack_state.gd" id="13_01mlv"]
 [ext_resource type="AudioStream" uid="uid://crjmhkf3glryi" path="res://SFX/enemy_dash.wav" id="14_bdh7n"]

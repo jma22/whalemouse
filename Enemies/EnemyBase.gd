@@ -2,7 +2,7 @@
 extends CharacterBody3D
 class_name EnemyBase
 
-@export var floor_ : NavigationRegion3D
+@export var floor_ : FloorNav
 @export var player : CharacterBody3D
 var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 
@@ -60,13 +60,15 @@ func _physics_process(delta: float) -> void:
 		state_machine.current_state.deep_fixed_run(delta)
 	knockback_component.handle_knockback()
 	move_and_slide()
+	if floor_:
+		floor_.clamp_body(self, knockback_component)
 
 
 @abstract
 func check_state() -> void
 
 func setup_states() -> void:
-	for state : Node in state_machine.get_children():
+	for state : Node in state_machine.find_children("*", "State", true, false):
 		if state is State:
 			state.set_entity(self)
 
@@ -112,9 +114,9 @@ func on_die() -> void:
 		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		xp_spawner_instance.setup_outwards(GlobalStats.get_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME)
+		xp_spawner_instance.setup_outwards(GlobalStats.get_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
 		if should_drop_ebb:
-			xp_spawner_instance.setup_outwards(1, player, CollectibleSpawner.OrbType.EBB)
+			xp_spawner_instance.setup_outwards(1, player, CollectibleSpawner.OrbType.EBB, get_floor())
 			
 	process_mode = Node.PROCESS_MODE_DISABLED	
 

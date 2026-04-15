@@ -12,7 +12,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.reset()
-	player.setup(hud)
+	player.setup(hud, map.floor)
 	GlobalStats.setup(player, hud)
 	hud.setup(player)
 	map.setup(player,camera, hud)

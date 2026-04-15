@@ -32,7 +32,7 @@ func setup() -> void:
 	boss_map_manager.setup(player, camera, hud)
 	hud.setup(player)
 	time_damage.setup(player)
-	player.setup(hud)
+	player.setup(hud, map_manager.floor)
 	GlobalStats.setup(player, hud)
 	transition.setup()
 	whale_spawner.setup(player, map_manager.floor, map_manager.enemy_spawner)

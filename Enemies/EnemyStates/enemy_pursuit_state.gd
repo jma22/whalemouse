@@ -13,6 +13,7 @@ func run(_delta: float) -> void:
 
 
 func check_state() -> void:
+	print("Current child state: ", get_child_state())
 	if get_child_state() == enemy_idle_state:
 		if enemy_idle_state.is_complete:
 			var target_position : Vector3 = get_walk_toward_player()
@@ -35,11 +36,7 @@ func get_walk_toward_player() -> Vector3:
 	var distance : float = sample_random_distance()
 	var target_point : Vector3 = entity.global_transform.origin + pick_direction * distance
 
-	var map :AABB = entity.get_floor().get_bounds()
-	if not map.has_point(target_point):
-		target_point.x = clamp(target_point.x, map.position.x, map.position.x + map.size.x)
-		target_point.y = clamp(target_point.y, map.position.y, map.position.y + map.size.y)
-		target_point.z = clamp(target_point.z, map.position.z, map.position.z + map.size.z)
+	target_point = entity.get_floor().clamp_position(target_point, 0.1)
 	target_point.y = 0
 	return target_point
 

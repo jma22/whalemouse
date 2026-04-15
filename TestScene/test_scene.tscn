@@ -21,7 +21,7 @@ script = ExtResource("1_oisa6")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
-fov = 85.0
+fov = 80.0
 size = 12.645
 script = ExtResource("2_e07wx")
 target = NodePath("../Player")
@@ -29,6 +29,9 @@ distance = 1.8
 smooth_speed = 10.0
 
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
+
+[node name="StateMachine" parent="Player" index="1" unique_id=1085580999]
+debug = true
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
 time_damage_manager = NodePath("../TimeDamageManager")

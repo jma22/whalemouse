@@ -10,7 +10,7 @@ class_name SquidMinion
 # @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
 @onready var attack_state : EnemyStaticAttackState = $StateMachine/EnemyStaticAttackState
 # @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
-@onready var charge_state : EnemyChargeState = $StateMachine/EnemyChargeState
+@onready var charge_state : EnemyChargeStateBase = $StateMachine/EnemyChargeState
 
 # @onready var enemy_jump_attack_state : EnemyJumpAttackState = $StateMachine/EnemyJumpAttackState
 # @onready var enemy_jump_attack_charge_state : EnemyJumpAttackChargeState = $StateMachine/EnemyJumpAttackChargeState

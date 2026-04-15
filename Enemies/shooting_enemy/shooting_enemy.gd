@@ -13,7 +13,6 @@ var detection_range : float = 2.5
 
 
 func setup(player: CharacterBody3D, map: NavigationRegion3D) -> void:
-	initial_health = 1
 	initial_state = enemy_idle_state
 	super.setup(player, map)
 

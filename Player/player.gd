@@ -23,6 +23,7 @@ class_name Player extends CharacterBody3D
 @onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
 var time_damage_manager : TimeDamageManager
 var hud_ref : HUD
+var floor_ref : FloorNav
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
 
@@ -39,11 +40,12 @@ func reset() -> void:
 	core_components.reset()
 	status_effects.clear()
 
-func setup(hud: HUD) -> void:
+func setup(hud: HUD, floor: FloorNav) -> void:
 	# This is called from the main scene to set up references to other nodes
 	core_components.setup(self)
 	core_components.link_hud(hud)
 	hud_ref = hud
+	floor_ref = floor
 	setup_states()
 	state_machine.set_state(idle_state)
 
@@ -172,6 +174,8 @@ func on_die() -> void:
 	tween.finished.connect(func() -> void:
 		SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
 	)
+func get_floor() -> FloorNav:
+	return floor_ref
 
 
 ## pickup / actions

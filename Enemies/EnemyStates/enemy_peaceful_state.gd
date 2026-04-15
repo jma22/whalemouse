@@ -32,19 +32,13 @@ func get_idle_duration() -> float:
 	return randf_range(idle_duration_min, idle_duration_max) / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
 
 func get_random_walk_target_location() -> Vector3:
+	var max_tries : int = 4
 	var walk_radius : float = init_walk_radius * GlobalStats.get_enemy_speed_multiplier()
-	var random_offset : Vector3 = Vector3(randf_range(-walk_radius, walk_radius), 0, randf_range(-walk_radius, walk_radius))
-	## check if its in map 
-	# var map : RID = entity.get_world_3d().navigation_map
-	var map :AABB = entity.get_floor().get_bounds()
-	var target_point : Vector3 = entity.global_position + random_offset
-	if not map.has_point(target_point):
-		target_point.x = clamp(target_point.x, map.position.x, map.position.x + map.size.x)
-		target_point.y = clamp(target_point.y, map.position.y, map.position.y + map.size.y)
-		target_point.z = clamp(target_point.z, map.position.z, map.position.z + map.size.z)
-	target_point.y = 0
+	for i in range(max_tries):
+		var random_offset : Vector3 = Vector3(randf_range(-walk_radius, walk_radius), 0, randf_range(-walk_radius, walk_radius))
+		var target_point : Vector3 = entity.global_position + random_offset
+		if entity.get_floor().check_in_bounds(target_point, 0.1):
+			return target_point
 
-
-	# var closest_point : Vector3= NavigationServer3D.map_get_closest_point(map, target_point)
-	# print("Closest point on navigation map: ", closest_point)
-	return target_point
+	# If all else fails, just stay in place
+	return entity.global_position

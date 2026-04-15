@@ -13,7 +13,7 @@ var orb_lifetime: float = 5.0
 var spawn_timer: float = 0.0
 
 
-func setup_outwards(num_orbs: int, target_: Node3D, orb_type: OrbType) -> void:
+func setup_outwards(num_orbs: int, target_: Node3D, orb_type: OrbType, floor_: FloorNav) -> void:
 	for i in range(num_orbs):
 		var orb_instance : Node3D = spawn_orb(orb_type)
 	
@@ -23,9 +23,9 @@ func setup_outwards(num_orbs: int, target_: Node3D, orb_type: OrbType) -> void:
 		xz_dir *= scatter_speed
 		var upward_pop : float = randf_range(2.0, 4.0)
 		var velocity : Vector3 = Vector3(xz_dir.x , upward_pop, xz_dir.y)
-		orb_instance.setup(velocity, target_)
+		orb_instance.setup(velocity, target_, floor_)
 
-func setup_directional(num_orbs: int, target_: Node3D, direction : Vector3, orb_type: OrbType) -> void:
+func setup_directional(num_orbs: int, target_: Node3D, direction : Vector3, orb_type: OrbType, floor_: FloorNav	) -> void:
 	for i : int in range(num_orbs):
 		var orb_instance : Node3D = spawn_orb(orb_type)
 
@@ -37,7 +37,7 @@ func setup_directional(num_orbs: int, target_: Node3D, direction : Vector3, orb_
 		xz_dir *= scatter_speed
 		var upward_pop : float = randf_range(2.0, 4.0)
 		var velocity : Vector3 = Vector3(xz_dir.x , upward_pop, xz_dir.y)
-		orb_instance.setup(velocity, target_)
+		orb_instance.setup(velocity, target_, floor_)
 
 func spawn_orb(orb_type: OrbType) -> Node3D:
 	var orb_instance : Node3D

@@ -18,6 +18,7 @@ var animation_clip : AnimationClip
 @export var audio_player : AudioStreamPlayer
 # var attracted_speed : float = 1.0
 var pickup_speed : float = 3.0
+var floor : FloorNav
 
 var friction : float = 0.8
 var velocity : Vector3 = Vector3.ZERO
@@ -27,7 +28,7 @@ var ground_y : float = 0.0
 func _process(delta: float) -> void:
 	check_state()
 
-func setup(_velocity : Vector3, _target : Node3D) -> void:
+func setup(_velocity : Vector3, _target : Node3D, _floor : FloorNav) -> void:
 	self.animation_clip = AnimationClip.new()
 	self.animation_clip.frame_numbers = [0,1,2]
 	if sprite_manager:
@@ -35,6 +36,7 @@ func setup(_velocity : Vector3, _target : Node3D) -> void:
 
 	self.velocity = _velocity
 	self.target = _target
+	self.floor = _floor
 	state = PickupState.Launching
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,6 +69,8 @@ func _physics_process(delta: float) -> void:
 			visible = false
 			set_process(false)
 			set_physics_process(false)
+	if floor:
+		global_transform.origin = floor.clamp_position(global_transform.origin)
 
 
 func check_state() -> void:

@@ -29,6 +29,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [node name="Enemy2" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_k6uer")
+initial_health = 5
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
