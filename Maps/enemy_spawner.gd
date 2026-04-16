@@ -8,7 +8,10 @@ const enemy_string_to_scene = {
 	"SquidBoss": preload("res://Enemies/SquidBoss/squid_boss.tscn"),
 	"Barnacle": preload("res://Enemies/Barnacle/barnacle.tscn"),
 	"ShootingEnemy": preload("res://Enemies/shooting_enemy/shooting_enemy.tscn"),
-	"AuraEnemy": preload("res://Enemies/aura_enemy/aura_enemy.tscn")
+	"AuraEnemy": preload("res://Enemies/aura_enemy/aura_enemy.tscn"),
+
+	"JumpingEnemy": preload("res://Enemies/jumping_enemy/jumping_enemy.tscn"),
+	"LobbingEnemy": preload("res://Enemies/lobbing_enemy/lobbing_enemy.tscn"),
 }
 @export var enemy_spawn_points: Array[Node3D]
 

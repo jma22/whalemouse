@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="6_o77qa"]
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="8_4jy18"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_7nnp6"]
-[ext_resource type="Texture2D" uid="uid://d3jajuurcuvmq" path="res://Enemies/Barnacle/barnacle.PNG" id="10_4glvr"]
+[ext_resource type="Texture2D" uid="uid://c14003xwncnq" path="res://Enemies/Barnacle/spritesheet (6).png" id="10_4glvr"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="10_epy8v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -18,12 +18,12 @@ size = Vector3(1, 3.6142578, 1.4425049)
 
 [sub_resource type="Resource" id="Resource_u8dbj"]
 script = ExtResource("5_xpmfj")
-frame_numbers = Array[int]([3, 4, 5])
+frame_numbers = Array[int]([0])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="Resource" id="Resource_5f726"]
 script = ExtResource("5_xpmfj")
-frame_numbers = Array[int]([3, 4, 5])
+frame_numbers = Array[int]([1])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="Resource" id="Resource_tlby2"]
@@ -78,7 +78,7 @@ animation = SubResource("Resource_tlby2")
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(2, 0, 0, 0, 0.51763815, 1.9318516, 0, -1.9318516, 0.51763815, 0, 0.06779963, -0.23678833)
 texture = ExtResource("10_4glvr")
-hframes = 1
+hframes = 2
 layer_number = 2
 
 [editable path="EnemyCoreComponents"]

@@ -16,7 +16,7 @@ var start_cooldown : bool = false
 # @export var audio_player : AudioStreamPlayer
 var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
 var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
-var impact_effect_scene : PackedScene = load("res://VFX/impact_vfx.tscn")
+var impact_effect_scene : PackedScene = load("res://VFX/Impact/impact_vfx.tscn")
 func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
 	# audio_player.pitch_scale = 1.5 + randf() * 0.2

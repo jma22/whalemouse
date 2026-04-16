@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbn7e1ge0xaap"]
 
 [ext_resource type="Script" uid="uid://drkdyojqrhfs5" path="res://Enemies/Projectiles/damage_projectile.gd" id="1_141wg"]
-[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="3_r681o"]
+[ext_resource type="Texture2D" uid="uid://dbq0m7li6ghnd" path="res://Enemies/Projectiles/spritesheet_17.png" id="3_60c7s"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_4o6ks"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="7_r8gj3"]
 
@@ -23,10 +23,11 @@ damage = 5
 shape = SubResource("CylinderShape3D_2sd3b")
 
 [node name="SpriteManager" type="Sprite3D" parent="InkBall" unique_id=696407533]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0.0003566742, -0.0019249916)
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.02484423, 0.0003566742, -0.043047428)
 pixel_size = 0.001
 render_priority = 1
-texture = ExtResource("3_r681o")
+texture = ExtResource("3_60c7s")
+hframes = 4
 script = ExtResource("4_4o6ks")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 

@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://chrjja4xhniqs"]
+
+[ext_resource type="Script" uid="uid://oge5qr3x2p6n" path="res://Enemies/lobbing_enemy/lobbing_enemy.gd" id="1_3ony3"]
+[ext_resource type="Script" uid="uid://blnovigm0t222" path="res://Core/Components/state_machine.gd" id="2_vgxu3"]
+[ext_resource type="Script" uid="uid://buhpc2nac6phq" path="res://Enemies/EnemyStates/enemy_peaceful_state.gd" id="3_5kjft"]
+[ext_resource type="Script" uid="uid://dasdpk8volql6" path="res://Enemies/EnemyStates/enemy_walk_state.gd" id="4_qyvwf"]
+[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="5_kjjee"]
+[ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="6_p0iba"]
+[ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="8_t0730"]
+[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="9_4dro3"]
+[ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_dm0xu"]
+[ext_resource type="Script" uid="uid://bgwhqji05twiu" path="res://Enemies/jumping_enemy/States/enemy_ink_attack.gd" id="15_gktq0"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="16_ebarl"]
+[ext_resource type="Texture2D" uid="uid://c0hecfc4yqv1r" path="res://Enemies/lobbing_enemy/sketches_boss.png" id="17_gprhh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
+size = Vector3(1, 3.6142578, 1.4425049)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aqk2v"]
+
+[sub_resource type="Resource" id="Resource_he8wq"]
+script = ExtResource("5_kjjee")
+frame_numbers = Array[int]([0])
+name = "Idle"
+metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
+[sub_resource type="Resource" id="Resource_u4k37"]
+script = ExtResource("5_kjjee")
+frame_numbers = Array[int]([3])
+name = "Hurt"
+metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
+[sub_resource type="Resource" id="Resource_v4eda"]
+script = ExtResource("5_kjjee")
+frame_numbers = Array[int]([2])
+name = "Ink"
+metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u4k37"]
+
+[node name="LobbingEnemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
+script = ExtResource("1_3ony3")
+initial_health = 10
+core_components = NodePath("CoreComponents")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+shape = SubResource("BoxShape3D_wse8f")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=38642024]
+visible = false
+mesh = SubResource("CylinderMesh_aqk2v")
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=526269486]
+script = ExtResource("2_vgxu3")
+debug = false
+
+[node name="EnemyPeacefulState" type="Node3D" parent="StateMachine" unique_id=1776131074]
+script = ExtResource("3_5kjft")
+
+[node name="EnemyWalkState" type="Node3D" parent="StateMachine" unique_id=1955607781]
+script = ExtResource("4_qyvwf")
+animation = SubResource("Resource_he8wq")
+
+[node name="EnemyIdleState" type="Node3D" parent="StateMachine" unique_id=1994875307]
+script = ExtResource("6_p0iba")
+animation = SubResource("Resource_he8wq")
+
+[node name="EnemyHurtState" type="Node3D" parent="StateMachine" unique_id=707029297]
+script = ExtResource("9_dm0xu")
+animation = SubResource("Resource_u4k37")
+
+[node name="EnemyAttackParentState" type="Node3D" parent="StateMachine" unique_id=962336063 node_paths=PackedStringArray("charge_state", "attack_state", "cooldown_state")]
+script = ExtResource("8_t0730")
+charge_state = NodePath("EnemyChargeStateBase")
+attack_state = NodePath("EnemyInkAttackState")
+cooldown_state = NodePath("../EnemyIdleState")
+metadata/_custom_type_script = "uid://e0mqbimeypka"
+
+[node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1342239162]
+script = ExtResource("9_4dro3")
+metadata/_custom_type_script = "uid://y3u7axpv78ck"
+
+[node name="EnemyInkAttackState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1193950740]
+script = ExtResource("15_gktq0")
+animation = SubResource("Resource_v4eda")
+
+[node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("16_ebarl")]
+
+[node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
+knockback_mult = 6.0
+
+[node name="HurtBox" parent="CoreComponents" index="3" unique_id=1638711581]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.28258705)
+visible = true
+orbs_on_hit = 1
+
+[node name="CollisionShape3D" parent="CoreComponents/HurtBox" index="0" unique_id=1925812291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10267699, 0, 0)
+shape = SubResource("BoxShape3D_u4k37")
+
+[node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0.08512223, -0.329926)
+texture = ExtResource("17_gprhh")
+hframes = 5
+
+[editable path="CoreComponents"]
+[editable path="CoreComponents/HurtBox"]

@@ -16,6 +16,7 @@ var spawn_time : float = 0.3
 var spawn_amount : int = 2
 var spawn_timer : float = 0.0
 var spawned_count : int = 0
+var target_position : Vector3
 
 var ink_projectile_scene : PackedScene = preload("res://Enemies/Projectiles/ink_ball.tscn")
 
@@ -58,17 +59,11 @@ func sample_position_around_entity() -> Vector3:
 	var angle : float = randf() * 2.0 * PI
 	var offset : Vector3 = Vector3(cos(angle), 0, sin(angle)) * radius
 
-	var aabb : AABB = entity.get_floor().get_bounds()
-	var min_x : float = aabb.position.x
-	var max_x : float = aabb.position.x + aabb.size.x
-	var min_z : float = aabb.position.z
-	var max_z : float = aabb.position.z + aabb.size.z
-	var spawn_x : float = clamp(entity.global_transform.origin.x + offset.x, min_x, max_x)
-	var spawn_z : float = clamp(entity.global_transform.origin.z + offset.z, min_z, max_z)
-	
-	return Vector3(spawn_x, entity.global_transform.origin.y, spawn_z)   
+	var ball_radius : float = 0.3
+	var sample_position : Vector3 = entity.global_transform.origin + offset
+	var clamped_position : Vector3 = entity.get_floor().clamp_position(sample_position, ball_radius)
+	return clamped_position 
 
-# func on_hit(damage : int) -> void:
-# 	stagger_stamina -= damage
-# 	if stagger_stamina <= 0:
-# 		entity.on_staggered()
+# func set_target_position(position: Vector3) -> void:
+# 	target_position = position
+# 	print("Target position set to: ", target_position)

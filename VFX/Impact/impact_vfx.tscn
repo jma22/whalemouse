@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://fqvft8uyr2ia"]
 
-[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="1_42ki7"]
-[ext_resource type="Script" uid="uid://cjxgwnhqj7blu" path="res://VFX/impact_vfx.gd" id="2_ry7qd"]
+[ext_resource type="Texture2D" uid="uid://i6u6twcfsxa0" path="res://VFX/Impact/ring.png" id="1_odjcy"]
+[ext_resource type="Script" uid="uid://cjxgwnhqj7blu" path="res://VFX/Impact/impact_vfx.gd" id="2_ry7qd"]
 
 [sub_resource type="Curve" id="Curve_y5riu"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7616279, 0), -3.7831917, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_64xem"]
 curve = SubResource("Curve_y5riu")
 
 [sub_resource type="Curve" id="Curve_qag4m"]
-_data = [Vector2(0.03389831, 0.033707857), 0.0, 6.8501883, 0, 0, Vector2(0.5367232, 0.9887641), 0.33954525, 0.0, 0, 0]
+_limits = [0.0, 1.0029851, 0.0, 1.0]
+_data = [Vector2(0, 0.5174216), 0.0, 1.9544752, 0, 0, Vector2(0.5988372, 1.0029851), 0.3149206, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_pbji5"]
@@ -25,23 +26,30 @@ alpha_curve = SubResource("CurveTexture_64xem")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64xem"]
 render_priority = 1
-transparency = 4
+transparency = 1
 blend_mode = 1
 cull_mode = 2
 depth_draw_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_42ki7")
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_odjcy")
+albedo_texture_force_srgb = true
+disable_receive_shadows = true
+grow = true
+grow_amount = 0.01
 
 [sub_resource type="QuadMesh" id="QuadMesh_qag4m"]
 material = SubResource("StandardMaterial3D_64xem")
 
 [node name="Impact_VFX" type="GPUParticles3D" unique_id=172523241]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, -1.5, 0, 1.5, -6.556708e-08, 0, 0, 0)
 emitting = false
+amount = 2
+lifetime = 0.8
 one_shot = true
-explosiveness = 0.74
-randomness = 0.21
+explosiveness = 0.85
+randomness = 0.37
 process_material = SubResource("ParticleProcessMaterial_y5riu")
 draw_pass_1 = SubResource("QuadMesh_qag4m")
 script = ExtResource("2_ry7qd")
