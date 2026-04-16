@@ -127,10 +127,9 @@ hitstop = NodePath("../../../CoreComponents/HitStop")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_okpwn")
 
-[node name="EnemyJumpAttackChargeState" type="Node3D" parent="StateMachine" unique_id=1121694066 node_paths=PackedStringArray("attack_state")]
+[node name="EnemyJumpAttackChargeState" type="Node3D" parent="StateMachine" unique_id=1121694066]
 script = ExtResource("18_rt7ug")
 animation = SubResource("Resource_xe88y")
-attack_state = NodePath("../EnemyJumpAttackState")
 
 [node name="EnemySpawnState" type="Node3D" parent="StateMachine" unique_id=1500269070]
 script = ExtResource("19_rt7ug")

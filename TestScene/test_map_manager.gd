@@ -11,10 +11,14 @@ func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 func start_room (wave_info_ : WaveInfo) -> void:
 	# super(wave_info_)
 	# enemy_spawner.set_wave_spawning(wave_info_)
-	# enemy_spawner.spawn_boss("SquidBoss", Vector3(0,0,0))
+	# enemy_spawner.spawn_boss("Barnacle", Vector3(0,0,0))
+	enemy_spawner.spawn_enemy("Barnacle", Vector3(0,0,0))
 
-	for i in range(1):
-		enemy_spawner.spawn_enemy("JumpingEnemy", Vector3(1,0,0))
+	# var i  : int = 0
+	# for k : String in enemy_spawner.enemy_string_to_scene:
+	# 	print("Spawning enemy of type: " + k)
+	# 	enemy_spawner.spawn_enemy(k, Vector3(i*0.5,0,0))
+	# 	i += 1
 
 
 func map_cleared() -> bool:

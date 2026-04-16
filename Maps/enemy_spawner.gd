@@ -4,8 +4,8 @@ class_name EnemySpawner
 const enemy_string_to_scene = {
 	"enemy1": preload("res://Enemies/lunging_enemy/enemy.tscn"),
 	"enemy2": preload("res://Enemies/floating_enemy/enemy2.tscn"),
-	"SquidMinion": preload("res://Enemies/SquidMinion/squid_minion.tscn"),
-	"SquidBoss": preload("res://Enemies/SquidBoss/squid_boss.tscn"),
+	# "SquidMinion": preload("res://Enemies/SquidMinion/squid_minion.tscn"),
+	# "SquidBoss": preload("res://Enemies/SquidBoss/squid_boss.tscn"),
 	"Barnacle": preload("res://Enemies/Barnacle/barnacle.tscn"),
 	"ShootingEnemy": preload("res://Enemies/shooting_enemy/shooting_enemy.tscn"),
 	"AuraEnemy": preload("res://Enemies/aura_enemy/aura_enemy.tscn"),

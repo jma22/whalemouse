@@ -34,7 +34,7 @@ hurt_box_type = 1
 hit_sound_fx = ExtResource("6_v2qbm")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=789758305]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, -0.05529785, 0.25720215, 0.07720947)
 layers = 2
 material_overlay = ExtResource("7_y61lv")
 pixel_size = 0.001

@@ -39,7 +39,10 @@ func get_escape_position() -> Vector3:
 		direction_away.y,
 		direction_away.x * sin(angle_offset) + direction_away.z * cos(angle_offset)
 	)
-	return global_transform.origin + rotated_direction * 1.5
+	var target_location : Vector3= global_transform.origin + rotated_direction * randf_range(2.0, 2.5)
+	# target_location = get_floor().clamp_position(target_location, 0.5)
+	target_location = get_floor().mirror_position(target_location)
+	return target_location
 
 # func check_range() -> void:
 # 	var distance_to_player : float = global_transform.origin.distance_to(player.global_transform.origin)

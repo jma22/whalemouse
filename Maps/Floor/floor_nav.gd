@@ -9,6 +9,9 @@ var time_accumulator : float = 0.0
 
 var offset : Vector2 = Vector2(0,0.2)
 var size : Vector3
+var global_margin : float = 0.5
+
+
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	material = floor_material.get_surface_override_material(0) as ShaderMaterial
 	self.player = player
@@ -29,8 +32,8 @@ func _process(delta: float) -> void:
 
 # # In FloorNav
 func clamp_body(body: CharacterBody3D, knockback : KnockbackComponent, bounce: float = 1.0) -> void:
-	var min_b := global_transform.origin - size / 2
-	var max_b := global_transform.origin + size / 2
+	var min_b := global_transform.origin - size / 2 + Vector3(global_margin, 0, global_margin)
+	var max_b := global_transform.origin + size / 2 - Vector3(global_margin, 0, global_margin)
 	var pos := body.global_position
 	var velocity_copy : Vector3 = body.velocity
 	var flipped : bool = false
@@ -72,16 +75,16 @@ func clamp_body(body: CharacterBody3D, knockback : KnockbackComponent, bounce: f
 # 		body.global_position.z = clampf(pos.z, min_b.z, max_b.z)
 
 func clamp_position(position: Vector3, margin : float = 0) -> Vector3:
-	var min_b := global_transform.origin - size / 2 + Vector3(margin, 0, margin)
-	var max_b := global_transform.origin + size / 2 - Vector3(margin, 0, margin)
+	var min_b := global_transform.origin - size / 2 + Vector3(margin, 0, margin) + Vector3(global_margin, 0, global_margin)
+	var max_b := global_transform.origin + size / 2 - Vector3(margin, 0, margin) - Vector3(global_margin, 0, global_margin)
 	position.x = clampf(position.x, min_b.x, max_b.x)
 	position.z = clampf(position.z, min_b.z, max_b.z)
 	return position
 
 func mirror_position(position: Vector3) -> Vector3:
 	# mirror the position across the edge of the map to ensure it's always a valid point, and return the mirrored position
-	var min_b := global_transform.origin - size / 2
-	var max_b := global_transform.origin + size / 2
+	var min_b := global_transform.origin - size / 2 + Vector3(global_margin, 0, global_margin)
+	var max_b := global_transform.origin + size / 2 - Vector3(global_margin, 0, global_margin)
 	if position.x < min_b.x:
 		position.x = min_b.x + (min_b.x - position.x)
 	elif position.x > max_b.x:
@@ -93,8 +96,8 @@ func mirror_position(position: Vector3) -> Vector3:
 	return position
 
 func check_in_bounds(position: Vector3, margin : float = 0) -> bool:
-	var min_b := global_transform.origin - size / 2 + Vector3(margin, 0, margin)
-	var max_b := global_transform.origin + size / 2 - Vector3(margin, 0, margin)
+	var min_b := global_transform.origin - size / 2 + Vector3(margin, 0, margin) + Vector3(global_margin, 0, global_margin)
+	var max_b := global_transform.origin + size / 2 - Vector3(margin, 0, margin) - Vector3(global_margin, 0, global_margin)
 	return position.x >= min_b.x and position.x <= max_b.x and position.z >= min_b.z and position.z <= max_b.z
 
 

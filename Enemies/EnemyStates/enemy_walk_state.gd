@@ -27,6 +27,6 @@ func fixed_run(delta: float) -> void:
 	entity.velocity.x += noise_value_x * 1.5
 	var noise_value_z : float = noise.get_noise_1d(Time.get_ticks_msec()  * 0.1)
 	entity.velocity.z += noise_value_z * 1.5
-
-	if (entity.global_transform.origin - target_position).length() < 0.01:
+	print("target position: ", target_position, " current position: ", entity.global_transform.origin, " velocity: ", entity.velocity)
+	if (entity.global_transform.origin - target_position).length() < 0.05:
 		is_complete = true

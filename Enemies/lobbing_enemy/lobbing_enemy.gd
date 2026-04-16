@@ -53,9 +53,9 @@ func check_state() -> void:
 # 		if state_machine.current_state != enemy_idle_state and state_machine.current_state != charge_state:
 # 			state_machine.set_state(peaceful_state)
 
-func on_hit(attacker_hitbox : Hitbox) -> void:
-	super(attacker_hitbox)
-	boss_health.update_health(health_component.current_health)
+# func on_hit(attacker_hitbox : Hitbox) -> void:
+# 	super(attacker_hitbox)
+# 	boss_health.update_health(health_component.current_health)
 
 func on_die() -> void:
 	super.on_die()
