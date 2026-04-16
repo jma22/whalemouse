@@ -7,15 +7,16 @@ class_name EnemyAttackParentState
 
 func enter() -> void:
 	charge_state.attack_state = attack_state
-	state_machine.set_state(charge_state)
+	state_machine.set_state(charge_state, true)
+
+# func exit() -> void:
+# 	state_machine.set_state(charge_state, true)
 
 func run(_delta: float) -> void:
 	check_state()
 
 func check_state() -> void:
 	var child_state : State = get_child_state()
-	print(child_state)
-	print(child_state.is_complete)
 	if child_state.is_complete:
 		if child_state == charge_state:
 			state_machine.set_state(attack_state)

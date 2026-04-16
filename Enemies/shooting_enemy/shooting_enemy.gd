@@ -4,7 +4,7 @@ class_name ShootingEnemy
 @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 @onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
 # @onready var retreat_state : EnemyRetreatState = $StateMachine/EnemyRetreatState
-@onready var shooting_state : EnemyShootingState = $StateMachine/EnemyShootingState
+@onready var attack_state : EnemyAttackParentState = $StateMachine/EnemyAttackParentState
 
 @onready var peaceful_state : EnemyPeacefulState = $StateMachine/EnemyPeacefulState
 
@@ -21,12 +21,11 @@ func check_state() -> void:
 		return
 	# check_range()
 	if state_machine.current_state.is_complete:
-		if state_machine.current_state == shooting_state:
+		if state_machine.current_state == attack_state:
 			enemy_idle_state.set_idle_duration(randf() * 1.0 + 0.5)
 			state_machine.set_state(enemy_idle_state)
 		elif state_machine.current_state == enemy_idle_state:
-			shooting_state.set_target_position(player.global_transform.origin)
-			state_machine.set_state(shooting_state)
+			state_machine.set_state(attack_state)
 		elif state_machine.current_state == hurt_state:
 			state_machine.set_state(enemy_idle_state)
 

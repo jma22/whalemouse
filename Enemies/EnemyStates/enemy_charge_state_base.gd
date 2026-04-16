@@ -22,11 +22,13 @@ func enter() -> void:
 func run(_delta: float) -> void:
 	var facing_left : bool = entity.global_transform.origin.x > entity.player.global_transform.origin.x
 	entity.set_sprite_flip(facing_left)
+	set_charge_progress()
 	check_state()
 
 func exit() -> void:
 	entity.position.y = 0
 	entity.velocity.y = 0
+	entity.sprite_manager.set_charge_color(0)
 
 
 func check_state() -> void:
@@ -47,3 +49,8 @@ func on_hit(damage : int) -> void:
 
 func choose_target() -> Vector3:
 	return entity.player.global_transform.origin
+
+func set_charge_progress() -> void:
+	var progress : float = get_elapsed_time() / charge_time
+	progress =  -(cos(PI * progress) - 1) / 2;
+	entity.sprite_manager.set_charge_color(progress)

@@ -74,23 +74,23 @@ func damage_flash() -> void:
 	if tween != null and tween.is_valid():
 		await tween.finished
 	tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1, 0, 0, 1), 0.2)
-	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.1)
+	#material_overlay.set_shader_parameter("flash_level)", 1)
+	tween.tween_callback(Callable(self, "set_flash_level").bind(1))
+	tween.tween_property(self,"material_overlay:shader_parameter/flash_level", 0, 0.2)
 	tween.play()
 
-# func hit_stop() -> void:
-# 	if tween != null and tween.is_valid():
-# 		await tween.finished
-# 	tween = get_tree().create_tween()
-# 	tween.tween_property(self, "modulate", Color(1, 1, 1, 0.5), 0.05)
-# 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.05)
-# 	tween.play()
+func set_flash_level(level : float) -> void:
+	material_overlay.set_shader_parameter("flash_level", level)
+func set_charge_color(progress : float) -> void:
+	material_overlay.set_shader_parameter("charge_level", progress)
 
 func die() -> Tween:
 	if tween != null and tween.is_valid():
 		await tween.finished
 
 	var death_tween : Tween = get_tree().create_tween()
+	death_tween.tween_callback(Callable(self, "set_flash_level").bind(0))
+	death_tween.tween_callback(Callable(self, "set_charge_color").bind(0))
 	death_tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
 	death_tween.play()
 	return death_tween

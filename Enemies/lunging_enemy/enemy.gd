@@ -17,7 +17,6 @@ var attack_range : float = 1.5
 
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
-	initial_health = 2
 	initial_state = approach_state
 	super.setup(player, map)
 

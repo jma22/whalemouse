@@ -30,8 +30,6 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku4fn"]
-
 [node name="ShootingEnemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_ts8ab")
 initial_health = 5
@@ -90,7 +88,6 @@ metadata/_custom_type_script = "uid://y3u7axpv78ck"
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("10_yf58v")]
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_ku4fn")
 layer_number = 2
 
 [editable path="EnemyCoreComponents"]
