@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://811oux5k3iqg"]
 
-[ext_resource type="Script" uid="uid://bujw8g0wv3tj4" path="res://Maps/Floor/FloorEffects/floor_effect_base.gd" id="1_ll2el"]
+[ext_resource type="Script" uid="uid://dbhkdr0rh6p24" path="res://Enemies/aura_enemy/bleed_aura.gd" id="1_ll2el"]
 [ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_0tp5u"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_00vxu"]
 
@@ -8,10 +8,11 @@
 height = 1.0
 radius = 0.7
 
-[node name="Aura" type="Area3D" unique_id=552368814]
+[node name="Aura" type="Area3D" unique_id=552368814 node_paths=PackedStringArray("sprite_manger")]
 monitoring = false
 monitorable = false
 script = ExtResource("1_ll2el")
+sprite_manger = NodePath("SpriteManager")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=260842700]
 shape = SubResource("CylinderShape3D_2e4vk")

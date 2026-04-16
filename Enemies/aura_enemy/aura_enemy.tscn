@@ -9,7 +9,11 @@
 [ext_resource type="Resource" uid="uid://b3poo72jhqetq" path="res://Enemies/aura_enemy/floating.tres" id="7_clr1l"]
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="8_nlniy"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_ns63c"]
+[ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="10_0s6pb"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="10_s8vqk"]
+[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="11_hw2ji"]
+[ext_resource type="Script" uid="uid://bssnd5oam4q8s" path="res://Enemies/aura_enemy/enemy_aura_activate_state.gd" id="12_45ukq"]
+[ext_resource type="PackedScene" uid="uid://811oux5k3iqg" path="res://Enemies/aura_enemy/aura.tscn" id="13_njtbo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)
@@ -27,8 +31,9 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
-[node name="Enemy2" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
+[node name="aura_enemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("aura", "core_components")]
 script = ExtResource("1_ohvf5")
+aura = NodePath("StateMachine/EnemyAttackParentState/EnemyAuraActivateState/Aura")
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -67,9 +72,27 @@ enemy_idle_state = NodePath("../EnemyIdleState")
 script = ExtResource("9_ns63c")
 animation = SubResource("Resource_tlby2")
 
+[node name="EnemyAttackParentState" type="Node3D" parent="StateMachine" unique_id=179782873 node_paths=PackedStringArray("charge_state", "attack_state", "cooldown_state")]
+script = ExtResource("10_0s6pb")
+charge_state = NodePath("EnemyChargeStateBase")
+attack_state = NodePath("EnemyAuraActivateState")
+cooldown_state = NodePath("../EnemyIdleState")
+metadata/_custom_type_script = "uid://e0mqbimeypka"
+
+[node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=529701158]
+script = ExtResource("11_hw2ji")
+metadata/_custom_type_script = "uid://y3u7axpv78ck"
+
+[node name="EnemyAuraActivateState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=320953577 node_paths=PackedStringArray("aura")]
+script = ExtResource("12_45ukq")
+aura = NodePath("Aura")
+
+[node name="Aura" parent="StateMachine/EnemyAttackParentState/EnemyAuraActivateState" unique_id=552368814 instance=ExtResource("13_njtbo")]
+
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("10_s8vqk")]
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
+transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.06801286, -0.2370323)
 layer_number = 2
 
 [editable path="EnemyCoreComponents"]

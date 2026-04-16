@@ -31,11 +31,11 @@ func _on_area_entered(area: Area3D) -> void:
 	if area is Hitbox:
 		owner_entity.on_hit(area)
 	elif area is FloorEffectBase:
-		area._on_enter()
+		area._on_enter(owner_entity)
 
 func _on_area_exited(area: Area3D) -> void:
 	if area is FloorEffectBase:
-		area._on_exit()
+		area._on_exit(owner_entity)
 
 func on_valid_damaging_hit() -> void:
 	if orbs_on_hit > 0:

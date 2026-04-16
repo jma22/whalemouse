@@ -7,7 +7,8 @@ const enemy_string_to_scene = {
 	"SquidMinion": preload("res://Enemies/SquidMinion/squid_minion.tscn"),
 	"SquidBoss": preload("res://Enemies/SquidBoss/squid_boss.tscn"),
 	"Barnacle": preload("res://Enemies/Barnacle/barnacle.tscn"),
-	"ShootingEnemy": preload("res://Enemies/shooting_enemy/shooting_enemy.tscn")
+	"ShootingEnemy": preload("res://Enemies/shooting_enemy/shooting_enemy.tscn"),
+	"AuraEnemy": preload("res://Enemies/aura_enemy/aura_enemy.tscn")
 }
 @export var enemy_spawn_points: Array[Node3D]
 

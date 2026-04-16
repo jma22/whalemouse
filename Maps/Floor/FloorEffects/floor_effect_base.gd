@@ -7,27 +7,39 @@ enum FloorEffectTarget {
 var lifetime : float = 440.0
 var time_active : float = 0.0
 @export var target : FloorEffectTarget = FloorEffectTarget.PLAYER
+@export var sprite_manger : SpriteManager
 
 func _ready() -> void:
-	monitorable = true
-	# connect("body_entered", Callable(self, "_on_enter"))
-	# connect("body_exited", Callable(self, "_on_exit"))
-	# self.set_deferred("monitorable", true)
+	deactivate_aura()
+	set_collisions()
 	
 
 
 func _process(delta: float) -> void:
 	time_active += delta
 	if time_active >= lifetime:
-		queue_free()
+		deactivate_aura()
+		# queue_free()
 
 
-func _on_enter() -> void:
+func _on_enter(entity : CharacterBody3D) -> void:
 	print("entered floor effect area")
 
-func _on_exit() -> void:
+func _on_exit(entity : CharacterBody3D) -> void:
 	print("exited floor effect area")
 
+
+func activate_aura(time : float) -> void:
+	self.set_deferred("monitorable", true)
+	time_active = 0.0
+	lifetime = time
+	if sprite_manger:
+		sprite_manger.show()
+
+func deactivate_aura() -> void:
+	self.set_deferred("monitorable", false)
+	if sprite_manger:
+		sprite_manger.hide()
 
 
 func set_collisions() -> void:

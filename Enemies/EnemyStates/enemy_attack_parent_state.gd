@@ -5,6 +5,7 @@ class_name EnemyAttackParentState
 @export var attack_state : State
 @export var cooldown_state : State
 
+
 func enter() -> void:
 	charge_state.attack_state = attack_state
 	state_machine.set_state(charge_state, true)

@@ -11,11 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_kuwgh"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_2e4vk"]
 [ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="11_2e4vk"]
-[ext_resource type="PackedScene" uid="uid://811oux5k3iqg" path="res://Enemies/aura_enemy/aura.tscn" id="11_ptfuc"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptfuc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2e4vk"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("4_ptfuc")
@@ -43,7 +42,7 @@ smooth_speed = 10.0
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_ptfuc")
+material_overlay = SubResource("ShaderMaterial_2e4vk")
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
 time_damage_manager = NodePath("../TimeDamageManager")
@@ -86,9 +85,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41875648)
 [node name="EnemySpawner" type="Node3D" parent="Map" unique_id=991711266]
 script = ExtResource("11_2e4vk")
 metadata/_custom_type_script = "uid://bshcea0s7twq6"
-
-[node name="Area3D" parent="Map" unique_id=552368814 instance=ExtResource("11_ptfuc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1102028, 0, 0)
 
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
 script = ExtResource("11_qoroo")
