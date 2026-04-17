@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="15_s8tmg"]
 [ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="16_25vuu"]
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="16_t4yqc"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="18_14j78"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="20_s8tmg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -48,9 +49,21 @@ radius = 0.3
 height = 1.0
 radius = 0.4
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8tmg"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("18_14j78")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
+shader_parameter/charge_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
+
 [node name="Enemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_n0g06")
-initial_health = 5
+initial_health = 3
+xp_drop_amount = 3
 core_components = NodePath("CoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -139,6 +152,7 @@ shape = SubResource("CylinderShape3D_ma22u")
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.06598732, -0.2320931)
+material_overlay = SubResource("ShaderMaterial_s8tmg")
 texture = ExtResource("3_t4yqc")
 hframes = 10
 layer_number = 2

@@ -16,7 +16,7 @@ class_name EnemySpawner
 const enemy_data = {
 	"DashEnemy": {
 		"scene": preload("res://Enemies/lunging_enemy/enemy.tscn"),
-		"cost": 2,
+		"cost": 3,
 		"max_per_wave": 3,
 		"min_depth": 0,
 		"spawn_type" : "melee"
@@ -30,14 +30,14 @@ const enemy_data = {
 	},
 	"Barnacle": {
 		"scene": preload("res://Enemies/Barnacle/barnacle.tscn"),
-		"cost": 1,
+		"cost": 3,
 		"max_per_wave": 5,
 		"min_depth": 0,
 		"spawn_type" : "melee"
 	},
 	"ShootingEnemy": {
 		"scene": preload("res://Enemies/shooting_enemy/shooting_enemy.tscn"),
-		"cost": 3,
+		"cost": 4,
 		"max_per_wave": 2,
 		"min_depth": 1,
 		"spawn_type" : "ranged"
@@ -51,7 +51,7 @@ const enemy_data = {
 	},
 	"JumpingEnemy": {
 		"scene": preload("res://Enemies/jumping_enemy/jumping_enemy.tscn"),
-		"cost": 3,
+		"cost": 5,
 		"max_per_wave": 3,
 		"min_depth": 1,
 		"spawn_type": "melee"

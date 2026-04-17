@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c0kuxp5ftpu4b" path="res://Enemies/shooting_enemy/enemy_shooting_state.gd" id="10_w7tql"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="10_yf58v"]
 [ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="12_ne1wh"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="14_4hmcw"]
 [ext_resource type="Texture2D" uid="uid://dx6ijhgg0v4e2" path="res://Enemies/shooting_enemy/2208_Sem_Titulo_20260414171619.png" id="14_ne1wh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -31,9 +32,21 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2l60"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("14_4hmcw")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
+shader_parameter/charge_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
+
 [node name="ShootingEnemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_ts8ab")
-initial_health = 5
+initial_health = 2
+xp_drop_amount = 2
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -90,6 +103,7 @@ metadata/_custom_type_script = "uid://y3u7axpv78ck"
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, 0.08916238, -0.23256248)
+material_overlay = SubResource("ShaderMaterial_p2l60")
 texture = ExtResource("14_ne1wh")
 hframes = 1
 layer_number = 2

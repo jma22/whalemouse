@@ -1,17 +1,92 @@
 [gd_scene format=3 uid="uid://bnoo4a5dj0t3w"]
 
 [ext_resource type="Script" uid="uid://c4tywyvljdc47" path="res://Maps/Shrine/shrine.gd" id="1_osd8o"]
-[ext_resource type="Texture2D" uid="uid://53kk28lc5bjw" path="res://Maps/Gateway/spritesheet_6.png" id="2_rt4r7"]
+[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_mdqob"]
+[ext_resource type="Texture2D" uid="uid://bqoibkbnjs7ga" path="res://Maps/Shrine/shrine_curse.png" id="2_n7lra"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_rt4r7"]
+[ext_resource type="Texture2D" uid="uid://bbp5jb16kkry4" path="res://VFX/spritesheet_13.png" id="4_kpoag"]
+[ext_resource type="Texture2D" uid="uid://00k2chggmyig" path="res://UI/HUD/BlessingIcons/damage.png" id="4_u1um2"]
 [ext_resource type="AudioStream" uid="uid://dy3cvw4o162wb" path="res://SFX/portal_sound.wav" id="5_ouif6"]
+
+[sub_resource type="Curve" id="Curve_y2f2x"]
+_data = [Vector2(0, 1), 0.0, 0.09001076, 0, 0, Vector2(1, 0.039536715), -3.5456688, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0twuy"]
+curve = SubResource("Curve_y2f2x")
+
+[sub_resource type="Gradient" id="Gradient_m0231"]
+offsets = PackedFloat32Array(0, 0.99101126)
+colors = PackedColorArray(1, 1, 1, 1, 0.4899, 0.6953266, 0.71, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5r7gn"]
+gradient = SubResource("Gradient_m0231")
+
+[sub_resource type="Curve" id="Curve_qxc08"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.57947284), 0.0, 0.0, 0, 0, Vector2(1, 0.475639), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_50uo1"]
+curve = SubResource("Curve_qxc08")
+
+[sub_resource type="Curve" id="Curve_gsor4"]
+_data = [Vector2(0, 0.475639), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d5558"]
+curve = SubResource("Curve_gsor4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5558"]
+angle_min = -9.9999895
+angle_max = 10.0000105
+direction = Vector3(0, 1, -1.5)
+spread = 10.244
+flatness = 0.012
+initial_velocity_min = 0.5
+initial_velocity_max = 0.79999995
+velocity_limit_curve = SubResource("CurveTexture_d5558")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 1.9999977
+linear_accel_max = 2.9999976
+scale_min = 0.099999994
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_50uo1")
+color_initial_ramp = SubResource("GradientTexture1D_5r7gn")
+alpha_curve = SubResource("CurveTexture_0twuy")
+anim_speed_min = 3.0
+anim_speed_max = 4.0
+turbulence_enabled = true
+turbulence_noise_strength = 0.2
+turbulence_noise_scale = 0.084
+turbulence_noise_speed_random = 0.0
+turbulence_influence_min = 0.019000001
+turbulence_influence_max = 0.028
+turbulence_initial_displacement_min = 1.490116e-06
+turbulence_initial_displacement_max = 1.490116e-06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2f2x"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 1
+no_depth_test = true
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_kpoag")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_0twuy"]
+material = SubResource("StandardMaterial3D_y2f2x")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iw27f"]
 radius = 0.25
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rt4r7"]
-
 [sub_resource type="Animation" id="Animation_rt4r7"]
-length = 0.001
+length = 1.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,19 +122,19 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(2, 2, 2),
-"points": PackedFloat32Array(0.1, 0, 0, 0.8, 0, 0.2, -0.8, 0, 0.8, 0, 0.1, -0.6, 0, 0, 0),
+"points": PackedFloat32Array(0.2, 0, 0, 0.8, 0, 0.4, -0.8, 0, 0.8, 0, 0.2, -0.6, 0, 0, 0),
 "times": PackedFloat32Array(0.033333387, 1.9830506, 3.9999995)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("FloatingSprite:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.8, 0, 0, 0.8, 0, -0.7, -0.8, 0, 0.8, 0, -0.8, -0.6, 0, 0, 0),
+"times": PackedFloat32Array(0.031370632, 1.9810878, 3.9980369)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rt4r7"]
@@ -74,12 +149,25 @@ sprite = NodePath("Sprite3D")
 floating_sprite = NodePath("FloatingSprite")
 area = NodePath("Area3D")
 animation_player = NodePath("AnimationPlayer")
+curse_shrine_sprite = ExtResource("2_n7lra")
+blessing_shrine_sprite = ExtResource("2_mdqob")
 audio_player = NodePath("AudioStreamPlayer")
 
+[node name="Bubbles" type="GPUParticles3D" parent="." unique_id=304463573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5215454)
+amount = 5
+amount_ratio = 0.5526
+lifetime = 3.0
+explosiveness = 0.76
+randomness = 0.55
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_d5558")
+draw_pass_1 = SubResource("QuadMesh_0twuy")
+
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=297931520]
-transform = Transform3D(0.185, 0, 0, 0, -8.086607e-09, 0.37, 0, -0.185, -1.6173214e-08, 0, 0.01, 0)
-texture = ExtResource("2_rt4r7")
-hframes = 3
+transform = Transform3D(2.5, 0, 0, 0, 0.8550504, 4.698463, 0, -2.3492315, 1.7101008, 0, 0.19869953, -0.55790794)
+pixel_size = 0.001
+texture = ExtResource("2_mdqob")
 script = ExtResource("3_rt4r7")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
@@ -90,10 +178,10 @@ shape = SubResource("CylinderShape3D_iw27f")
 debug_color = Color(1, 0, 0.1833334, 1)
 
 [node name="FloatingSprite" type="Sprite3D" parent="." unique_id=1485702688]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, -0.137)
+transform = Transform3D(1.2, 0, 0, 0, 0.59999996, 1.0392306, 0, -1.0392306, 0.59999996, 0, 0, -0.5452123)
 pixel_size = 0.001
 alpha_cut = 2
-texture = SubResource("CompressedTexture2D_rt4r7")
+texture = ExtResource("4_u1um2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1510893297]
 libraries/ = SubResource("AnimationLibrary_rt4r7")

@@ -4,10 +4,11 @@ class_name Whale
 
 @export var whale_animation_player : AnimationPlayer
 @export var audio_player : AudioStreamPlayer
-
+@export var hitbox : Hitbox
 
 
 func play() -> void:
+	hitbox.set_damage(GlobalStats.get_whale_damage_flat())
 	audio_player.pitch_scale = 1.0
 	audio_player.play()
 	whale_animation_player.play("whale_animation")

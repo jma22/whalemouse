@@ -76,6 +76,7 @@ shader_parameter/mesh_top = 1.0
 [node name="Barnacle" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_4glvr")
 initial_health = 3
+xp_drop_amount = 2
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]

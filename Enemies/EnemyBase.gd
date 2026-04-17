@@ -20,6 +20,7 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 
 @export var initial_health : int = 1
 @export var initial_state : State
+@export var xp_drop_amount : int = 1
 @export var core_components : CoreComponents
 
 @onready var health_component : HealthComponent = core_components.health_component
@@ -114,7 +115,7 @@ func on_die() -> void:
 		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		xp_spawner_instance.setup_outwards(GlobalStats.get_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
+		xp_spawner_instance.setup_outwards(xp_drop_amount + GlobalStats.get_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
 		if should_drop_ebb:
 			xp_spawner_instance.setup_outwards(1, player, CollectibleSpawner.OrbType.EBB, get_floor())
 			

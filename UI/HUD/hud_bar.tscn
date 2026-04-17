@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://20dv4g6iflh2" path="res://UI/HUD/hp_display.gd" id="1_5igc2"]
 [ext_resource type="PackedScene" uid="uid://cy2lsh2rvusbw" path="res://UI/HUD/popup_number.tscn" id="2_fpd43"]
-[ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_mb7uj"]
 [ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="3_an2p0"]
+[ext_resource type="Texture2D" uid="uid://cwcnartars2to" path="res://UI/HUD/circle.png" id="3_tbrkv"]
 [ext_resource type="Texture2D" uid="uid://b53x71wue75kv" path="res://UI/HUD/whale.png" id="5_an2p0"]
 [ext_resource type="PackedScene" uid="uid://dbhih0m50iyig" path="res://UI/HUD/status_effect_icon.tscn" id="6_tbrkv"]
 
@@ -27,7 +27,9 @@ offset_bottom = 176.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 value = 50.0
 fill_mode = 4
-texture_progress = ExtResource("2_mb7uj")
+nine_patch_stretch = true
+texture_progress = ExtResource("3_tbrkv")
+tint_progress = Color(1.5565991, 1.5565991, 1.5565991, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LifeCircle" unique_id=564389056]
 layout_mode = 1

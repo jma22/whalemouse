@@ -20,7 +20,6 @@ var attack_range : float = 0.2
 
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
-	initial_health = 2
 	enemy_idle_state.set_idle_duration(0.5)
 	initial_state = enemy_idle_state
 	super.setup(player, map)

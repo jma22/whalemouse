@@ -21,6 +21,10 @@ func _ready() -> void:
 	if sprite3D:
 		sprite3D.visible = false
 
+func set_damage(damage_amount: int) -> void:
+	damage = damage_amount
+
+	
 func set_active(active: bool) -> void:
 	self.set_deferred("monitorable", active)
 	## show visible

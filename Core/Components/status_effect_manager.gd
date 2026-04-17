@@ -74,7 +74,9 @@ func get_status_time_multiplier() -> float:
 		multiplier *= effect.get_multiplier()
 	return multiplier
 
-func has_status_effect(effect_name: String) -> bool:
+func has_status_effect(effect_name: String = "") -> bool:
+	if effect_name == "":
+		return get_deduped_list().size() > 0
 	for effect : StatusEffect in get_deduped_list():
 		if effect.name == effect_name:
 			return true

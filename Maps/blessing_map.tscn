@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bnoo4a5dj0t3w" path="res://Maps/Decors/shrine.tscn" id="7_68yjn"]
 [ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://UI/Textbox/blessing_description.gd" id="8_68yjn"]
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_327w5"]
-[ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/smoke.gdshader" id="10_617kr"]
+[ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_617kr"]
 [ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/Textbox/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
 
@@ -144,7 +144,7 @@ shader_parameter/bottom_darken = 0.5710000271225
 
 [node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("1_20ttm")
-shrines = [NodePath("Shrine"), NodePath("Shrine2")]
+shrines = [NodePath("Shrines/Shrine"), NodePath("Shrines/Shrine2"), NodePath("Shrines/Shrine3"), NodePath("Shrines/Shrine4")]
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
@@ -269,14 +269,6 @@ double_sided = false
 render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
-[node name="Shrine" parent="." unique_id=2005944346 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1768224, 0, -0.8883581)
-blessing_description = NodePath("../BlessingDescription")
-
-[node name="Shrine2" parent="." unique_id=281271094 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3362546, 0, -0.8883581)
-blessing_description = NodePath("../BlessingDescription")
-
 [node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("item_name_text", "item_description_text", "container", "texture")]
 script = ExtResource("8_68yjn")
 item_name_text = NodePath("VBoxContainer/TextureRect/Item Name Text")
@@ -342,6 +334,25 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=1723267858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.85655856)
+
+[node name="Shrines" type="Node3D" parent="." unique_id=623705621]
+
+[node name="Shrine" parent="Shrines" unique_id=2005944346 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1768224, 0, -0.8883581)
+blessing_description = NodePath("../../BlessingDescription")
+
+[node name="Shrine2" parent="Shrines" unique_id=281271094 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3362546, 0, -0.8883581)
+blessing_description = NodePath("../../BlessingDescription")
+
+[node name="Shrine3" parent="Shrines" unique_id=1589504117 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0686255, 0, -0.2683969)
+blessing_description = NodePath("../../BlessingDescription")
+
+[node name="Shrine4" parent="Shrines" unique_id=874922778 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2158852, 0, -0.18163252)
+blessing_description = NodePath("../../BlessingDescription")
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

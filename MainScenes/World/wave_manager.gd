@@ -3,6 +3,9 @@ extends Node3D
 class_name WaveManager
 var current_wave : int = 0
 
+func choice_options() -> void:
+	var options = ["shop", "time_vs_blessing", "curse_or_blessing", "choose_room_type", "whale_room", "time_vs_curse"]
+
 func reset() -> void:
 	var starting_wave : int = Config.get_override("starting_wave", 0)
 	current_wave = starting_wave	
@@ -13,12 +16,12 @@ func get_current_wave_info() -> WaveInfo:
 	# every 2 and 4 waves are shrine waves
 	# every 5 is a curse
 
-	if wave_info.wave_number == 69:
-		wave_info.enemies_to_spawn = 1
-		wave_info.room_type = "boss"
-		wave_info.boss_name = "SquidBoss"
-		wave_info.name = "The Final Showdown"
-		return wave_info
+	# if wave_info.wave_number == 69:
+	# 	wave_info.enemies_to_spawn = 1
+	# 	wave_info.room_type = "boss"
+	# 	wave_info.boss_name = "SquidBoss"
+	# 	wave_info.name = "The Final Showdown"
+	# 	return wave_info
 
 	if wave_info.wave_number == 7:
 		wave_info.room_type = "shrine"

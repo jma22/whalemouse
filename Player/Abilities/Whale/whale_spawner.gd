@@ -2,7 +2,7 @@ extends Node3D
 
 class_name WhaleSpawner
 @export var whale : Whale
-var cooldown : float = 4.5
+var base_cooldown : float = 5.0
 var cooldown_timer : float = 0.0
 
 var player : CharacterBody3D
@@ -37,14 +37,14 @@ func can_cast() -> bool:
 	return GlobalStats.has_beluga() and cooldown_timer <= 0.0
 
 func cast_whale() -> void:
-	cooldown_timer = cooldown
+	cooldown_timer = get_cooldown()
 	var enemies : Array[Node3D] = enemy_spawner.get_alive_enemies()
 	whale.global_transform.origin = get_spawn_location(enemies)
 	whale.scale = Vector3.ONE * GlobalStats.get_whale_size()
 	play_whale()
 
 func get_cooldown_progress() -> float:
-	return 1.0 - (cooldown_timer / cooldown)
+	return 1.0 - (cooldown_timer / get_cooldown())
 
 
 func get_spawn_location(enemies : Array[Node3D]) -> Vector3:
@@ -68,3 +68,6 @@ func get_spawn_location(enemies : Array[Node3D]) -> Vector3:
 	spawn_location.z = clamp(spawn_location.z, map.position.z + radius, map.position.z + map.size.z - radius)
 
 	return spawn_location
+
+func get_cooldown() -> float:
+	return min(base_cooldown * (1.0 - GlobalStats.get_whale_cooldown()), 0.5)

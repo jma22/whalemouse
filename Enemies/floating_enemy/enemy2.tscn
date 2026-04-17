@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://ck8qpwjbb0o7c" path="res://Enemies/floating_enemy/floating.tres" id="8_uc5q6"]
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="10_potmw"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="11_buvb8"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="11_vonq0"]
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="12_ac7hy"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="12_mejb1"]
 
@@ -27,9 +28,20 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mejb1"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("11_vonq0")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
+shader_parameter/charge_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
+
 [node name="Enemy2" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_k6uer")
-initial_health = 5
+xp_drop_amount = 3
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -71,6 +83,7 @@ animation = SubResource("Resource_tlby2")
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("12_mejb1")]
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
+material_overlay = SubResource("ShaderMaterial_mejb1")
 layer_number = 2
 
 [editable path="EnemyCoreComponents"]

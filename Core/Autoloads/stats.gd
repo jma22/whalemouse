@@ -13,6 +13,8 @@ var current_run_stats : Dictionary = {
 	"xp_suck" : 0,
 	"enemy_xp_drop": 0,
 	"whale_level": 0,
+	"whale_cooldown": 0,
+	"whale_damage": 0,
 	"dash_distance": 0,
 	"time_tick_level": 0,
 	"enemy_speed" : 0,
@@ -29,6 +31,8 @@ var current_run_stats : Dictionary = {
 	"dying_ebb" :0,
 	"damage_reduction" : 0,
 	"thornmail" : 0,
+	"fast_while_status" :0,
+	"flat_speed" : 0,
 
 }
 
@@ -109,6 +113,19 @@ func decrement_wave_augments() -> void:
 	if hud and hud.blessing_bar:
 		hud.blessing_bar.sync_bar()
 
+
+
+func get_whale_damage_flat() -> int:
+	return current_run_stats["whale_damage"]
+func get_whale_cooldown() -> float:
+	return current_run_stats["whale_cooldown"] * 0.1 ## 10 is 0 cooldown
+
+func get_flat_speed() -> float:
+	return current_run_stats["flat_speed"] * 0.5
+
+func speed_during_status() -> int:
+	return current_run_stats["fast_while_status"] * 1.2
+
 func has_thorns() -> bool:
 	return current_run_stats["thornmail"] > 0
 	
@@ -157,7 +174,7 @@ func get_attracted_speed() -> float:
 	return 0.3 + current_run_stats["xp_suck"] * 0.4
 
 func get_enemy_xp_drop() -> int:
-	return 1 + int(1.0 * current_run_stats["enemy_xp_drop"])
+	return 0 + int(1.0 * current_run_stats["enemy_xp_drop"])
 
 func get_enemy_damage() -> int:
 	return 4 + current_run_stats["enemy_damage"] * 5
@@ -167,7 +184,7 @@ func get_dash_distance() -> float:
 
 func get_seconds_per_damage() -> float:
 	## i want the damager per second to quadratically increase
-	return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.5)**1.75
+	return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.4)**1.5
 	# return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.25)
 
 

@@ -7,6 +7,10 @@ class_name Shrine
 @export var blessing_description : BlessingText
 @export var animation_player : AnimationPlayer
 
+@export var curse_shrine_sprite : Texture2D
+@export var blessing_shrine_sprite : Texture2D
+
+
 var upgrade_data : UpgradeData
 var player_inside : bool = false
 var activated : bool = false
@@ -33,6 +37,10 @@ func setup(upgrade_data_: UpgradeData) -> void:
 		
 	floating_sprite.texture = load(upgrade_data_.get_icon_path())
 	upgrade_data = upgrade_data_
+	if upgrade_data_.is_blessing():
+		sprite.texture = blessing_shrine_sprite
+	else:
+		sprite.texture = curse_shrine_sprite
 	activated = false
 	animation_player.play("shrine_on")
 	floating_sprite.visible = true
