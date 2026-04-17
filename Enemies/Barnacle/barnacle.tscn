@@ -32,6 +32,47 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
+[sub_resource type="Shader" id="Shader_4glvr"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_add;
+
+uniform float charge_level : hint_range(0.0, 1.0) = 0.0;
+uniform float flash_level : hint_range(0.0, 1.0) = 0.0;
+
+uniform vec4 flash_color : source_color = vec4(1.0,1.0,1.0,1.0);
+uniform vec4 charge_color : source_color = vec4(1.0,1.0,1.0,1.0);
+uniform sampler2D texture_albedo : source_color;
+uniform float mesh_bottom = -1.0;
+uniform float mesh_top = 1.0;
+varying float vert_y;
+
+void vertex() {
+	vert_y = VERTEX.y;
+}
+
+void fragment() {
+	float gradient = 1.0 - smoothstep(mesh_bottom, mesh_top*1.5, vert_y);
+	float mask = texture(texture_albedo, UV).a;
+	float charge = charge_level * gradient;
+	float combined = max(charge, flash_level);
+	vec3 color = mix(charge_color.rgb, flash_color.rgb, step(charge, flash_level));
+	ALBEDO = color;
+	ALPHA = mask* combined;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xl55"]
+resource_local_to_scene = true
+render_priority = 1
+shader = SubResource("Shader_4glvr")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
+shader_parameter/charge_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
+
 [node name="Barnacle" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_4glvr")
 initial_health = 3
@@ -76,7 +117,8 @@ animation = SubResource("Resource_tlby2")
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("10_epy8v")]
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
-transform = Transform3D(2, 0, 0, 0, 0.51763815, 1.9318516, 0, -1.9318516, 0.51763815, 0, 0.06779963, -0.23678833)
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0.06779963, -0.23678833)
+material_overlay = SubResource("ShaderMaterial_2xl55")
 texture = ExtResource("10_4glvr")
 hframes = 2
 layer_number = 2

@@ -16,6 +16,7 @@ hitbox = NodePath("InkBall/Hitbox")
 [node name="InkBall" type="Node3D" parent="." unique_id=442570818]
 
 [node name="Hitbox" parent="InkBall" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("7_r8gj3")]
+visible = false
 owner_entity = NodePath("../..")
 damage = 5
 
@@ -23,7 +24,7 @@ damage = 5
 shape = SubResource("CylinderShape3D_2sd3b")
 
 [node name="SpriteManager" type="Sprite3D" parent="InkBall" unique_id=696407533]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.02484423, 0.0003566742, -0.043047428)
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0.082837045, 0.061500028, -0.022173405)
 pixel_size = 0.001
 render_priority = 1
 texture = ExtResource("3_60c7s")

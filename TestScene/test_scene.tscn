@@ -4,20 +4,50 @@
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="2_e07wx"]
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="3_ncb30"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_88out"]
-[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_ptfuc"]
 [ext_resource type="Script" uid="uid://cvxwmfdcfu4rl" path="res://TestScene/test_map_manager.gd" id="5_k8tjy"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="5_rge3y"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="6_oisa6"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_kuwgh"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_2e4vk"]
 [ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="11_2e4vk"]
+[ext_resource type="Texture2D" uid="uid://bmv1woq2appcj" path="res://icon.svg" id="11_ptfuc"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2e4vk"]
+[sub_resource type="Shader" id="Shader_3l6jj"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_add;
+
+uniform float charge_level : hint_range(0.0, 1.0) = 0.0;
+uniform float flash_level : hint_range(0.0, 1.0) = 0.0;
+
+uniform vec4 flash_color : source_color = vec4(1.0,1.0,1.0,1.0);
+uniform vec4 charge_color : source_color = vec4(1.0,1.0,1.0,1.0);
+uniform sampler2D texture_albedo : source_color;
+uniform float mesh_bottom = -1.0;
+uniform float mesh_top = 1.0;
+varying float vert_y;
+
+void vertex() {
+	vert_y = VERTEX.y;
+}
+
+void fragment() {
+	float gradient = 1.0 - smoothstep(mesh_bottom, mesh_top*1.5, vert_y);
+	float mask = texture(texture_albedo, UV).a;
+	float charge = charge_level * gradient;
+	float combined = max(charge, flash_level);
+	vec3 color = mix(charge_color.rgb, flash_color.rgb, step(charge, flash_level));
+	ALBEDO = color;
+	ALPHA = mask* combined;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5riu"]
 resource_local_to_scene = true
 render_priority = 1
-shader = ExtResource("4_ptfuc")
+shader = SubResource("Shader_3l6jj")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -42,7 +72,7 @@ smooth_speed = 10.0
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_2e4vk")
+material_overlay = SubResource("ShaderMaterial_y5riu")
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
 time_damage_manager = NodePath("../TimeDamageManager")
@@ -52,9 +82,11 @@ whale_spawner = NodePath("../WhaleSpawner")
 script = ExtResource("5_rge3y")
 player = NodePath("../Player")
 
-[node name="Map" type="Node3D" parent="." unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
+[node name="Map" type="Node3D" parent="." unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "ranged_spawns", "melee_spawns", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("5_k8tjy")
 enemy_spawner = NodePath("EnemySpawner")
+ranged_spawns = NodePath("EnemySpawner/RangedSpawnPoints")
+melee_spawns = NodePath("EnemySpawner/MeleeSpawnPoints")
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("Node3D")
@@ -85,6 +117,118 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41875648)
 [node name="EnemySpawner" type="Node3D" parent="Map" unique_id=991711266]
 script = ExtResource("11_2e4vk")
 metadata/_custom_type_script = "uid://bshcea0s7twq6"
+
+[node name="RangedSpawnPoints" type="Node3D" parent="Map/EnemySpawner" unique_id=323580305]
+
+[node name="SpawnPoint" type="Node3D" parent="Map/EnemySpawner/RangedSpawnPoints" unique_id=1124443092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0333972, 0, -1.308)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/RangedSpawnPoints/SpawnPoint" unique_id=764205933]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint2" type="Node3D" parent="Map/EnemySpawner/RangedSpawnPoints" unique_id=1117055488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1431215, 0, -1.133)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/RangedSpawnPoints/SpawnPoint2" unique_id=1861727598]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint3" type="Node3D" parent="Map/EnemySpawner/RangedSpawnPoints" unique_id=1334453864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0421913, 0, 0.523)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/RangedSpawnPoints/SpawnPoint3" unique_id=1485488785]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint4" type="Node3D" parent="Map/EnemySpawner/RangedSpawnPoints" unique_id=751780170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.402926, 0, 0.793)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/RangedSpawnPoints/SpawnPoint4" unique_id=1746223399]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint5" type="Node3D" parent="Map/EnemySpawner/RangedSpawnPoints" unique_id=584534190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4551208, 0, -1.7066143)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/RangedSpawnPoints/SpawnPoint5" unique_id=1666995630]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint6" type="Node3D" parent="Map/EnemySpawner/RangedSpawnPoints" unique_id=1792328670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.148597, 0, -1.7647197)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/RangedSpawnPoints/SpawnPoint6" unique_id=477591769]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="MeleeSpawnPoints" type="Node3D" parent="Map/EnemySpawner" unique_id=85584068]
+
+[node name="SpawnPoint" type="Node3D" parent="Map/EnemySpawner/MeleeSpawnPoints" unique_id=1590837280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8177485, 0, -0.8229536)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/MeleeSpawnPoints/SpawnPoint" unique_id=1309580464]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint2" type="Node3D" parent="Map/EnemySpawner/MeleeSpawnPoints" unique_id=1150718116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8612535, 0, -0.51257765)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/MeleeSpawnPoints/SpawnPoint2" unique_id=1722186848]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint3" type="Node3D" parent="Map/EnemySpawner/MeleeSpawnPoints" unique_id=1103359163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2359092, 0, -1.0251999e-05)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/MeleeSpawnPoints/SpawnPoint3" unique_id=1865709372]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint4" type="Node3D" parent="Map/EnemySpawner/MeleeSpawnPoints" unique_id=610262124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1880708, 0, -0.23116994)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/MeleeSpawnPoints/SpawnPoint4" unique_id=2044856769]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint5" type="Node3D" parent="Map/EnemySpawner/MeleeSpawnPoints" unique_id=1182648659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5524948, 0, 0.745229)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/MeleeSpawnPoints/SpawnPoint5" unique_id=1885333129]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
+
+[node name="SpawnPoint6" type="Node3D" parent="Map/EnemySpawner/MeleeSpawnPoints" unique_id=1821487891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6515229, 0, 0.73973584)
+
+[node name="Sprite3D" type="Sprite3D" parent="Map/EnemySpawner/MeleeSpawnPoints/SpawnPoint6" unique_id=1818264013]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("11_ptfuc")
 
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
 script = ExtResource("11_qoroo")

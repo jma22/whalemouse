@@ -1,6 +1,7 @@
 extends MapManagerBase
 @export var enemy_spawner : EnemySpawner
-
+@export var ranged_spawns : Node3D
+@export var melee_spawns : Node3D
 # @export var shrines : Array[Node3D]
 
 
@@ -12,7 +13,13 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	# super(wave_info_)
 	# enemy_spawner.set_wave_spawning(wave_info_)
 	# enemy_spawner.spawn_boss("Barnacle", Vector3(0,0,0))
-	enemy_spawner.spawn_enemy("Barnacle", Vector3(0,0,0))
+	# enemy_spawner.spawn_enemy("ShootingEnemy", Vector3(0,0,0))
+	var enemy_pool : Array[String] = ["Barnacle", "ShootingEnemy"]
+	var wave_info : WaveInfo = WaveInfo.new()
+	wave_info.wave_number = 10
+	wave_info.enemy_budget = 6
+	wave_info.enemy_pool = enemy_pool
+	enemy_spawner.set_wave_spawning(wave_info, self)
 
 	# var i  : int = 0
 	# for k : String in enemy_spawner.enemy_string_to_scene:
@@ -27,16 +34,10 @@ func map_cleared() -> bool:
 	# 		return true
 	return false
 
-# func on_map_cleared() -> void:
-# 	super()
-	# for shrine : Shrine in shrines:
-	# 	shrine.close_gateway()
-
-
-# func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> void:
-# 	if enemy_type in enemy_string_to_scene:
-# 		var enemy_scene = enemy_string_to_scene[enemy_type]
-# 		var enemy_instance = enemy_scene.instantiate()
-# 		add_child(enemy_instance)
-# 		enemy_instance.global_transform.origin = spawn_point
-# 		enemy_instance.setup(player, floor)
+func get_spawn_pools() -> Dictionary[String, ShuffledPool] :
+	var spawn_pools : Dictionary[String,ShuffledPool] = {
+		"melee": ShuffledPool.create_shuffled_pool(melee_spawns.get_children()),
+		"ranged": ShuffledPool.create_shuffled_pool(ranged_spawns.get_children()),
+		"any": ShuffledPool.create_shuffled_pool(melee_spawns.get_children() + ranged_spawns.get_children()),
+	}
+	return spawn_pools

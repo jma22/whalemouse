@@ -175,7 +175,7 @@ func get_enemy_speed_multiplier() -> float:
 	var wave_augment_bonus : float = 0.3 if "enemy_speed" in wave_augments else 0.0
 	return 1.0 + current_run_stats["enemy_speed"] * 0.3 + 0.3 * wave_augment_bonus
 
-func get_enemy_health_multiplier() -> float:
+func get_enemy_health_flat() -> float:
 	return 1.0 + current_run_stats["enemy_health"] * 0.5
 
 func get_whale_size() -> float:

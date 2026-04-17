@@ -141,9 +141,11 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
+[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "ranged_spawns", "melee_spawns", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("1_vb07d")
 enemy_spawner = NodePath("EnemySpawner")
+ranged_spawns = NodePath("EnemySpawner/RangedSpawnPoints")
+melee_spawns = NodePath("EnemySpawner/MeleeSpawnPoints")
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
@@ -274,43 +276,119 @@ texture = SubResource("GradientTexture2D_ed26x")
 [node name="GPUParticles3D" parent="." unique_id=304463573 instance=ExtResource("11_1qev3")]
 
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=1902063063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3798218)
 visible = false
 
-[node name="EnemySpawner" type="Node3D" parent="." unique_id=1969495992 node_paths=PackedStringArray("enemy_spawn_points")]
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=1969495992]
 script = ExtResource("12_fjbty")
-enemy_spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4")]
 
-[node name="SpawnPoint" type="Node3D" parent="EnemySpawner" unique_id=946727483]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77, 0, -1.308)
+[node name="RangedSpawnPoints" type="Node3D" parent="EnemySpawner" unique_id=621892688]
 
-[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/SpawnPoint" unique_id=749120342]
+[node name="SpawnPoint" type="Node3D" parent="EnemySpawner/RangedSpawnPoints" unique_id=946727483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0333972, 0, -1.308)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/RangedSpawnPoints/SpawnPoint" unique_id=749120342]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 visible = false
 pixel_size = 0.005
 texture = ExtResource("3_53d03")
 
-[node name="SpawnPoint2" type="Node3D" parent="EnemySpawner" unique_id=1160445348]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.003, 0, -1.133)
+[node name="SpawnPoint2" type="Node3D" parent="EnemySpawner/RangedSpawnPoints" unique_id=1160445348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1431215, 0, -1.133)
 
-[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/SpawnPoint2" unique_id=1182634905]
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/RangedSpawnPoints/SpawnPoint2" unique_id=1182634905]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 visible = false
 pixel_size = 0.005
 texture = ExtResource("3_53d03")
 
-[node name="SpawnPoint3" type="Node3D" parent="EnemySpawner" unique_id=1384429647]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.265, 0, 0.523)
+[node name="SpawnPoint3" type="Node3D" parent="EnemySpawner/RangedSpawnPoints" unique_id=1384429647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0421913, 0, 0.523)
 
-[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/SpawnPoint3" unique_id=1882589051]
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/RangedSpawnPoints/SpawnPoint3" unique_id=1882589051]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 visible = false
 pixel_size = 0.005
 texture = ExtResource("3_53d03")
 
-[node name="SpawnPoint4" type="Node3D" parent="EnemySpawner" unique_id=497179343]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81, 0, 0.793)
+[node name="SpawnPoint4" type="Node3D" parent="EnemySpawner/RangedSpawnPoints" unique_id=497179343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.402926, 0, 0.793)
 
-[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/SpawnPoint4" unique_id=1734452071]
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/RangedSpawnPoints/SpawnPoint4" unique_id=1734452071]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="SpawnPoint5" type="Node3D" parent="EnemySpawner/RangedSpawnPoints" unique_id=1920751055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4551208, 0, -1.7066143)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/RangedSpawnPoints/SpawnPoint5" unique_id=1087911770]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="SpawnPoint6" type="Node3D" parent="EnemySpawner/RangedSpawnPoints" unique_id=1399845208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.148597, 0, -1.7647197)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/RangedSpawnPoints/SpawnPoint6" unique_id=1711531762]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="MeleeSpawnPoints" type="Node3D" parent="EnemySpawner" unique_id=906246147]
+
+[node name="SpawnPoint" type="Node3D" parent="EnemySpawner/MeleeSpawnPoints" unique_id=198844549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8177485, 0, -0.8229536)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/MeleeSpawnPoints/SpawnPoint" unique_id=225665495]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="SpawnPoint2" type="Node3D" parent="EnemySpawner/MeleeSpawnPoints" unique_id=937168814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8612535, 0, -0.51257765)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/MeleeSpawnPoints/SpawnPoint2" unique_id=619164589]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="SpawnPoint3" type="Node3D" parent="EnemySpawner/MeleeSpawnPoints" unique_id=476347865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2359092, 0, -1.0251999e-05)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/MeleeSpawnPoints/SpawnPoint3" unique_id=976388907]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="SpawnPoint4" type="Node3D" parent="EnemySpawner/MeleeSpawnPoints" unique_id=1774487636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1880708, 0, -0.23116994)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/MeleeSpawnPoints/SpawnPoint4" unique_id=1571973224]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="SpawnPoint5" type="Node3D" parent="EnemySpawner/MeleeSpawnPoints" unique_id=1243658247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5524948, 0, 0.745229)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/MeleeSpawnPoints/SpawnPoint5" unique_id=596047325]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+visible = false
+pixel_size = 0.005
+texture = ExtResource("3_53d03")
+
+[node name="SpawnPoint6" type="Node3D" parent="EnemySpawner/MeleeSpawnPoints" unique_id=529809855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6515229, 0, 0.73973584)
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawner/MeleeSpawnPoints/SpawnPoint6" unique_id=215112000]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 visible = false
 pixel_size = 0.005
