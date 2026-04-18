@@ -4,5 +4,5 @@
 
 #ignore build and build.zip
 /build/
-/build.zip
+*.zip
 
