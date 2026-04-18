@@ -10,7 +10,7 @@ class_name Shrine
 @export var curse_shrine_sprite : Texture2D
 @export var blessing_shrine_sprite : Texture2D
 
-
+var unused : bool = false 
 var upgrade_data : UpgradeData
 var player_inside : bool = false
 var activated : bool = false
@@ -32,6 +32,7 @@ func _ready() -> void:
 func setup(upgrade_data_: UpgradeData) -> void:
 	if upgrade_data_ == null:
 		activated = false
+		unused = true
 		sprite.visible = false
 		printerr("Shrine setted up with no upgrade")
 		return
@@ -45,12 +46,14 @@ func setup(upgrade_data_: UpgradeData) -> void:
 	activated = false
 	animation_player.play("shrine_on")
 	floating_sprite.visible = true
+	unused = false
 
 
 func _process(_delta: float) -> void:
 	if player_inside:
 		if Input.is_action_just_pressed("interact"):
 			upgrade_data.apply()
+			Upgrades.chosen_upgrade(upgrade_data)
 			activated = true
 			floating_sprite.visible = false
 			audio_player.play()

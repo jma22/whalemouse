@@ -6,7 +6,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2e4vk"]
 height = 1.0
-radius = 0.7
+radius = 0.9
 
 [node name="Aura" type="Area3D" unique_id=552368814 node_paths=PackedStringArray("sprite_manger")]
 monitoring = false
@@ -18,7 +18,7 @@ sprite_manger = NodePath("SpriteManager")
 shape = SubResource("CylinderShape3D_2e4vk")
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=854407124]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 0, 0, 0)
 modulate = Color(0.9599507, 0.9599507, 0.9599507, 0.60784316)
 texture = ExtResource("2_ll2el")
 script = ExtResource("3_00vxu")

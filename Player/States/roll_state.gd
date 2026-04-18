@@ -23,7 +23,8 @@ func enter() -> void:
 	entity.set_invulnerable(true, invulnerability_time)
 	audio_player.pitch_scale = 1.0 + randf() * 0.4
 	audio_player.play()
-	if GlobalStats.get_dash_damage():
+	if GlobalStats.get_dash_damage() > 0:
+		roll_hitbox.set_damage(GlobalStats.get_dash_damage())
 		roll_hitbox.set_active(true)
 	
 

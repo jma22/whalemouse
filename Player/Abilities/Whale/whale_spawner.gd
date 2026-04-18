@@ -70,4 +70,4 @@ func get_spawn_location(enemies : Array[Node3D]) -> Vector3:
 	return spawn_location
 
 func get_cooldown() -> float:
-	return min(base_cooldown * (1.0 - GlobalStats.get_whale_cooldown()), 0.5)
+	return max(base_cooldown * (1.0 - GlobalStats.get_whale_cooldown()), 0.5)

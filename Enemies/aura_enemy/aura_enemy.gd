@@ -35,6 +35,7 @@ func on_staggered() -> void:
 	state_machine.set_state(hurt_state)
 
 func on_die() -> void:
+	super()
 	aura.deactivate_aura()
 
 func get_cooldown_time() -> float:

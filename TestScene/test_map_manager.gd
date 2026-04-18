@@ -14,7 +14,7 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	# enemy_spawner.set_wave_spawning(wave_info_)
 	# enemy_spawner.spawn_boss("Barnacle", Vector3(0,0,0))
 	# enemy_spawner.spawn_enemy("ShootingEnemy", Vector3(0,0,0))
-	var enemy_pool : Array[String] = ["LobbingEnemy", "ShootingEnemy","DashingEnemy", "JumpingEnemy"]
+	var enemy_pool : Array[String] = ["AuraEnemy", "DashingEnemy", "ShootingEnemy"]
 	var wave_info : CombatWaveInfo = CombatWaveInfo.new()
 	wave_info.wave_number = 10
 	wave_info.enemy_budget = 20

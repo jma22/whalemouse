@@ -19,7 +19,7 @@ class_name JumpingEnemy
 var pursuit_range : float = 3.0
 var attack_range : float = 1.5
 
-var boss_health : BossHealth
+# var boss_health : BossHealth
 
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
@@ -45,10 +45,10 @@ func check_state() -> void:
 			state_machine.set_state(enemy_idle_state)
 
 
-func on_hit(attacker_hitbox : Hitbox) -> void:
-	super(attacker_hitbox)
-	boss_health.update_health(health_component.current_health)
+# func on_hit(attacker_hitbox : Hitbox) -> void:
+# 	super(attacker_hitbox)
+# 	boss_health.update_health(health_component.current_health)
 
-func on_die() -> void:
-	super.on_die()
-	boss_health.hide()
+# func on_die() -> void:
+# 	super.on_die()
+# 	boss_health.hide()

@@ -4,17 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="3_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_fth4m"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_yjwld"]
 [ext_resource type="PackedScene" uid="uid://0yjpdk334va6" path="res://Maps/SquidMap/squid_map.tscn" id="8_b85it"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/wave_map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
-[ext_resource type="Script" uid="uid://c1hdmghu4j63o" path="res://UI/wave_text.gd" id="10_ic0uy"]
+[ext_resource type="Script" path="res://UI/wave_text.gd" id="10_ic0uy"]
 [ext_resource type="Script" uid="uid://dgww6vx235lmc" path="res://MainScenes/World/wave_manager.gd" id="10_k3n1d"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="10_wse8f"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_k3n1d"]
 [ext_resource type="Shader" path="res://UI/transition.gdshader" id="16_2u3nc"]
 [ext_resource type="Script" path="res://UI/transition.gd" id="16_udxuc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6lyg"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("4_yjwld")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/charge_color = Color(1, 1, 1, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
 
 [sub_resource type="Environment" id="Environment_ikiii"]
 background_mode = 2
@@ -106,8 +118,8 @@ smooth_speed = 10.0
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("2_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
 
-[node name="SpriteManager" parent="Player" index="0" unique_id=1668628302]
-frame = 17
+[node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
+material_overlay = SubResource("ShaderMaterial_b6lyg")
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_fth4m")]
 time_damage_manager = NodePath("../TimeDamageManager")
@@ -250,5 +262,7 @@ directional_shadow_max_distance = 4.5
 directional_shadow_pancake_size = 0.0
 
 [editable path="Player"]
-[editable path="Player/Hitbox"]
-[editable path="Player/HurtBox"]
+[editable path="Player/StateMachine/AttackState/Hitbox"]
+[editable path="Player/StateMachine/RollState/Hitbox"]
+[editable path="Player/CoreComponents"]
+[editable path="Player/CoreComponents/HurtBox"]

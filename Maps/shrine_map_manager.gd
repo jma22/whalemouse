@@ -9,7 +9,7 @@ func start_room (wave : WaveInfo) -> void:
 	super(wave)
 	set_shrines(wave.blessings)
 	choice_type = (wave as ChoiceWaveInfo).choice_type
-	player.gain_status_effect(StatusEffect.create("freeze", 20.0), self)
+	player.gain_status_effect(StatusEffect.create("freeze", 30.0), self)
 
 
 
@@ -29,7 +29,7 @@ func map_cleared() -> bool:
 			return true
 		ChoiceWaveInfo.ChoiceType.CHOOSE_ALL:
 			for shrine : Shrine in shrines:
-				if shrine and not shrine.activated:
+				if shrine and not shrine.activated and not shrine.unused:
 					return false
 			return true
 		ChoiceWaveInfo.ChoiceType.CHOOSE_ONE:

@@ -117,7 +117,8 @@ func decrement_wave_augments() -> void:
 
 
 func get_whale_damage_flat() -> int:
-	return current_run_stats["whale_damage"]
+	return current_run_stats["whale_damage"] + 1
+
 func get_whale_cooldown() -> float:
 	return current_run_stats["whale_cooldown"] * 0.1 ## 10 is 0 cooldown
 
@@ -129,9 +130,12 @@ func speed_during_status() -> int:
 
 func has_thorns() -> bool:
 	return current_run_stats["thornmail"] > 0
+
+func get_thorns_damage() -> int:
+	return current_run_stats["thornmail"]
 	
 func get_damage_reduced_by() -> int:
-	return current_run_stats["damage_reduction"]
+	return 1 + current_run_stats["damage_reduction"]
 
 func get_dying_ebb() -> int:
 	if current_run_stats["dying_ebb"] > 0:
@@ -148,18 +152,20 @@ func get_ebb_begin_of_room() -> int:
 func get_ebb_on_stand() -> bool:
 	return current_run_stats["ebb_on_stand"] > 0
 	
-func get_dash_damage() -> bool:
-	return current_run_stats["damaging_dash"] > 0
+func get_dash_damage() -> int:
+	return current_run_stats["damaging_dash"]
 
 func get_enemy_per_ebb_drop() -> int:
-	return min(7 - current_run_stats["ebb_drop"],2)
+	return max(6 - current_run_stats["ebb_drop"],2)
 
 func should_drop_ebb() -> bool:
 	# this is buggy /in consistent but will do now
+	if current_run_stats["ebb_drop"] == 0:
+		return false
 	return total_stats["enemies_killed"] % get_enemy_per_ebb_drop() == 0
 
 func get_mouse_attack_hitbox_scale() -> float:
-	return 1.0 + current_run_stats["attack_size"] * 0.4
+	return 1.0 + current_run_stats["attack_size"] * 0.3
 
 func get_heal_amount() -> int:
 	return current_run_stats["heal"] * 5 + 4
@@ -175,11 +181,11 @@ func get_attracted_speed() -> float:
 	# return 0.3 + current_run_stats["xp_suck"] * 0.4
 	return 0.15 + current_run_stats["xp_suck"] * 0.6
 
-func get_enemy_xp_drop() -> int:
+func get_bonus_enemy_xp_drop() -> int:
 	return int(current_run_stats["enemy_xp_drop"])
 
 func get_enemy_damage() -> int:
-	return 4 + current_run_stats["enemy_damage"] * 2
+	return ceil(5 + current_run_stats["enemy_damage"] * 2.5)
 
 func get_dash_distance() -> float:
 	return 5.0 + current_run_stats["dash_distance"] *3.0
@@ -195,11 +201,11 @@ func get_enemy_projectile_flat() -> int:
 
 func get_enemy_attack_speed_multiplier() -> float:
 	var wave_augment_bonus : float = 1.0 if "enemy_attack_speed" in wave_augments else 0.0
-	return 1.0 + current_run_stats["enemy_attack_speed"] * 0.4 + 0.4 * wave_augment_bonus
+	return 1.0 + current_run_stats["enemy_attack_speed"] * 0.5 + 0.5 * wave_augment_bonus
 
 func get_enemy_speed_multiplier() -> float:
 	var wave_augment_bonus : float = 0.3 if "enemy_speed" in wave_augments else 0.0
-	return 1.0 + current_run_stats["enemy_speed"] * 0.3 + 0.3 * wave_augment_bonus
+	return 1.0 + current_run_stats["enemy_speed"] * 0.4 + 0.4 * wave_augment_bonus
 
 func get_enemy_health_flat() -> float:
 	return current_run_stats["enemy_health"]
@@ -208,7 +214,7 @@ func get_whale_size() -> float:
 	return current_run_stats["whale_level"] * 0.14
 
 func get_attack_speed_multiplier() -> float:
-	return 1.0 + current_run_stats["player_attack_speed"] * 0.2
+	return 1.0 + current_run_stats["player_attack_speed"] * 0.1
 
 func has_beluga() -> bool:
 	# return true

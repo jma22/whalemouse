@@ -62,7 +62,6 @@ func play(animation: AnimationClip, loop: bool = true) -> void:
 	time_accumulator = 0.0
 	looping = loop
 	frame = current_animation.frame_numbers[current_idx]
-	print("Playing animation: ", animation.name)
 
 func check_is_done() -> bool:
 	return is_done

@@ -150,7 +150,7 @@ floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
 
 [node name="Gateway" parent="." unique_id=643489668 instance=ExtResource("2_327w5")]
-transform = Transform3D(0.9998477, 0.017452406, 0, -0.017452406, 0.9998477, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(0.9998477, 0.017452406, 0, -0.017452406, 0.9998477, 0, 0, 0, 1, 0, 0, -0.5279015)
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
 visible = false
@@ -354,19 +354,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.85655856)
 [node name="Shrines" type="Node3D" parent="." unique_id=623705621]
 
 [node name="Shrine" parent="Shrines" unique_id=2005944346 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3977381, 0, -0.8883581)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3977381, 0, -1.1064775)
 blessing_description = NodePath("../../BlessingDescription")
 
 [node name="Shrine2" parent="Shrines" unique_id=281271094 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3362546, 0, -0.8883581)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3362546, 0, -1.1064775)
 blessing_description = NodePath("../../BlessingDescription")
 
 [node name="Shrine3" parent="Shrines" unique_id=1589504117 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.326635, 0, -0.2683969)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5030315, 0, -0.2683969)
 blessing_description = NodePath("../../BlessingDescription")
 
 [node name="Shrine4" parent="Shrines" unique_id=874922778 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3762202, 0, -0.18163252)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.737001, 0, -0.18163252)
 blessing_description = NodePath("../../BlessingDescription")
 
 [editable path="Rocks/BigRock8"]

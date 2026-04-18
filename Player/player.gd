@@ -10,7 +10,7 @@ class_name Player extends CharacterBody3D
 @onready var hurt_state : HurtState = $StateMachine/HurtState
 @onready var roll_state : RollState = $StateMachine/RollState
 @export var attack_state : AttackState
-
+@export var thorn_hitbox : Hitbox
 
 @export var core_components : CoreComponents
 
@@ -147,7 +147,9 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	hurt_box.on_valid_damaging_hit()
 
 	if GlobalStats.has_thorns():
-		attacker_hitbox.owner_entity.on_hit(attack_state.hitbox)
+		thorn_hitbox.set_damage(GlobalStats.get_thorns_damage())
+		if attacker_hitbox.owner_entity and attacker_hitbox.owner_entity.has_method("on_hit"):
+			attacker_hitbox.owner_entity.on_hit(thorn_hitbox)
 	
 
 	var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()

@@ -1,3 +1,4 @@
+@abstract
 class_name FloorEffectBase extends Area3D
 
 enum FloorEffectTarget {
@@ -21,12 +22,11 @@ func _process(delta: float) -> void:
 		deactivate_aura()
 		# queue_free()
 
+@abstract
+func _on_enter(entity : CharacterBody3D) -> void
 
-func _on_enter(entity : CharacterBody3D) -> void:
-	print("entered floor effect area")
-
-func _on_exit(entity : CharacterBody3D) -> void:
-	print("exited floor effect area")
+@abstract
+func _on_exit(entity : CharacterBody3D) -> void
 
 
 func activate_aura(time : float) -> void:

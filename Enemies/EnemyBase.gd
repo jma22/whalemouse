@@ -79,6 +79,7 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 		return
 	sprite_manager.damage_flash()
 	var damage_taken : int = attacker_hitbox.get_damage()
+	print("damage taken: " + str(damage_taken))
 	if damage_taken == 0:
 		return
 	health_component.take_damage(damage_taken)
@@ -115,7 +116,11 @@ func on_die() -> void:
 		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		xp_spawner_instance.setup_outwards(xp_drop_amount + GlobalStats.get_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
+		if randf() < 0.5:
+			xp_spawner_instance.setup_outwards(xp_drop_amount + GlobalStats.get_bonus_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
+		else:
+			xp_spawner_instance.setup_outwards(xp_drop_amount, player, CollectibleSpawner.OrbType.TIME, get_floor())
+
 		if should_drop_ebb:
 			xp_spawner_instance.setup_outwards(1, player, CollectibleSpawner.OrbType.EBB, get_floor())
 			

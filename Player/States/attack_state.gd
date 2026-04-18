@@ -12,6 +12,8 @@ var hitbox_frame: int = 4
 
 var bubbler_scene: PackedScene = load("res://VFX/stomp_bubbler.tscn")
 var crack_scene: PackedScene = load("res://VFX/crack.tscn")
+var impact_effect_scene : PackedScene = load("res://VFX/Impact/impact_vfx.tscn")
+
 
 var horizontal_distance : float = 0.7
 
@@ -62,7 +64,18 @@ func fixed_run(delta: float) -> void:
 		entity.get_parent().add_child(crack)
 		crack.global_transform = entity.global_transform
 		crack.global_transform.origin.y = 0.01
+		var new_scale : float = GlobalStats.get_mouse_attack_hitbox_scale() * 1.5
+		
+		crack.set_scale(Vector3(new_scale, new_scale, new_scale))
 		crack.play()
+
+		var impact_effect_instance : Node = impact_effect_scene.instantiate()
+		get_tree().get_root().add_child(impact_effect_instance)
+		impact_effect_instance.global_transform.origin = entity.global_transform.origin
+
+		impact_effect_instance.setup(GlobalStats.get_mouse_attack_hitbox_scale())
+		impact_effect_instance.play()
+
 
 	if entity.velocity.y < 0 and abs(entity.position.y) < 0.05:
 		entity.velocity = Vector3.ZERO

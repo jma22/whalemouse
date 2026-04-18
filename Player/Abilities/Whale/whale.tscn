@@ -309,10 +309,11 @@ _data = {
 &"whale_animation": SubResource("Animation_wg7fs")
 }
 
-[node name="Whale" type="Node3D" unique_id=1866251720 node_paths=PackedStringArray("whale_animation_player", "audio_player")]
+[node name="Whale" type="Node3D" unique_id=1866251720 node_paths=PackedStringArray("whale_animation_player", "audio_player", "hitbox")]
 script = ExtResource("1_wg7fs")
 whale_animation_player = NodePath("AnimationPlayer")
 audio_player = NodePath("AudioStreamPlayer")
+hitbox = NodePath("Hitbox")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=495411072]
 stream = ExtResource("8_gi7rn")

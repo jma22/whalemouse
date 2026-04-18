@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="8_5xsuw"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_btw86"]
 [ext_resource type="Script" uid="uid://g7glfe1o5h7d" path="res://Enemies/jumping_enemy/States/enemy_jump_attack_state.gd" id="10_bnjmj"]
-[ext_resource type="Script" path="res://Core/ArcComponent.gd" id="11_gckw2"]
+[ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="11_gckw2"]
 [ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="12_1c2xs"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="12_53di0"]
 [ext_resource type="Texture2D" uid="uid://divigl71idyh3" path="res://Enemies/jumping_enemy/2208_Sem_Titulo_20260414172023.png" id="13_lubsp"]
@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u4k37"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_64sjq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehvx3"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("16_ehvx3")
@@ -105,14 +105,13 @@ arc_component = NodePath("ArcComponent")
 
 [node name="ArcComponent" type="Node3D" parent="StateMachine/EnemyAttackParentState/EnemyJumpAttackState" unique_id=795841172]
 script = ExtResource("11_gckw2")
-time = 0.8
-max_height = 0.5
 sharpness = 0.7
 descent_mult = 0.2
 max_x_distance = 2.0
 
 [node name="Hitbox" parent="StateMachine/EnemyAttackParentState/EnemyJumpAttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("12_53di0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.042464793)
+visible = false
 owner_entity = NodePath("../../../..")
 damage = 5
 hitstop = NodePath("../../../../CoreComponents/HitStop")
@@ -127,7 +126,7 @@ script = ExtResource("13_qc8vj")
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("16_pddoi")]
 
 [node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
-knockback_mult = 6.0
+knockback_mult = 0.3
 
 [node name="HurtBox" parent="CoreComponents" index="3" unique_id=1638711581]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.28258705)
@@ -140,7 +139,7 @@ shape = SubResource("BoxShape3D_u4k37")
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0.07528642, -0.2286607)
-material_overlay = SubResource("ShaderMaterial_64sjq")
+material_overlay = SubResource("ShaderMaterial_ehvx3")
 texture = ExtResource("13_lubsp")
 hframes = 1
 

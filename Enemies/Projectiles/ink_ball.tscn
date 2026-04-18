@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://hpr1ljl6r1qy" path="res://Enemies/Projectiles/ink_ball.gd" id="1_ywkbn"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_5u0h0"]
 [ext_resource type="Texture2D" uid="uid://dbq0m7li6ghnd" path="res://Enemies/Projectiles/spritesheet_17.png" id="3_ray6h"]
-[ext_resource type="Script" path="res://Core/ArcComponent.gd" id="4_2sd3b"]
+[ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="4_2sd3b"]
 [ext_resource type="Texture2D" uid="uid://c8tucba4rdxb1" path="res://Player/Abilities/Whale/Whale (1).png" id="4_5rn6a"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="6_2sd3b"]
 
@@ -40,6 +40,7 @@ script = ExtResource("4_2sd3b")
 
 [node name="SpriteManager" type="Sprite3D" parent="Indicator" unique_id=1471458098]
 transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0)
+modulate = Color(1, 0.32, 0.32, 1)
 pixel_size = 0.001
 texture = ExtResource("4_5rn6a")
 hframes = 7

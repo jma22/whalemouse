@@ -28,7 +28,7 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mejb1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vonq0"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("11_vonq0")
@@ -41,7 +41,7 @@ shader_parameter/mesh_top = 1.0
 
 [node name="Enemy2" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_k6uer")
-xp_drop_amount = 3
+xp_drop_amount = 2
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -83,7 +83,7 @@ animation = SubResource("Resource_tlby2")
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("12_mejb1")]
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_mejb1")
+material_overlay = SubResource("ShaderMaterial_vonq0")
 layer_number = 2
 
 [editable path="EnemyCoreComponents"]

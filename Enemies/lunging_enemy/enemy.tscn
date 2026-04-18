@@ -49,7 +49,7 @@ radius = 0.3
 height = 1.0
 radius = 0.4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8tmg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14j78"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("18_14j78")
@@ -130,6 +130,7 @@ pitch_scale = 1.7
 
 [node name="Hitbox" parent="StateMachine/EnemyAttackParentState/EnemyDashAttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("11_pwjut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12498206)
+visible = false
 owner_entity = NodePath("../../../..")
 damage = 5
 
@@ -152,7 +153,7 @@ shape = SubResource("CylinderShape3D_ma22u")
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.06598732, -0.2320931)
-material_overlay = SubResource("ShaderMaterial_s8tmg")
+material_overlay = SubResource("ShaderMaterial_14j78")
 texture = ExtResource("3_t4yqc")
 hframes = 10
 layer_number = 2
