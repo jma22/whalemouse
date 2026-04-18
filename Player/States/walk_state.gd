@@ -23,5 +23,5 @@ func fixed_run(_delta: float) -> void:
 
 func get_speed() -> float:
 	if entity.status_effect_manager.has_status_effect():
-		return speed + GlobalStats.speed_during_ebb() + GlobalStats.get_flat_speed()
+		return speed + GlobalStats.speed_during_status() + GlobalStats.get_flat_speed()
 	return speed + GlobalStats.get_flat_speed()

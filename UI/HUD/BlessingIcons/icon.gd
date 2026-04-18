@@ -7,7 +7,7 @@ class_name Icon
 func setup(blessing_name : String, num_value : int) -> void:
 	print("Setting up icon for blessing: %s with value: %d" % [blessing_name, num_value])
 	text.text = str(num_value)
-	icon_texture.texture = load("res://UI/HUD/BlessingIcons/%s.png" % blessing_name)
+	icon_texture.texture = load(UpgradeData.get_icon_path_static(blessing_name))
 	if GlobalStats.is_positive_stat(blessing_name):
 		text.add_theme_color_override("font_color", Color(0.48235294, 0, 0, 1))
 	else:

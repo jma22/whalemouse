@@ -271,8 +271,8 @@ texture = SubResource("GradientTexture2D_ed26x")
 
 [node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("item_name_text", "item_description_text", "container", "texture")]
 script = ExtResource("8_68yjn")
-item_name_text = NodePath("VBoxContainer/TextureRect/Item Name Text")
-item_description_text = NodePath("VBoxContainer/TextureRect/Item Description Text")
+item_name_text = NodePath("VBoxContainer/TextureRect/VBoxContainer/Item Name Text")
+item_description_text = NodePath("VBoxContainer/TextureRect/VBoxContainer/Item Description Text")
 container = NodePath("VBoxContainer")
 texture = NodePath("VBoxContainer/TextureRect")
 blessing_color = Color(0.9, 0.8796, 0.594, 1)
@@ -285,46 +285,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="BlessingDescription/VBoxContainer" unique_id=804952540]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("13_617kr")
-expand_mode = 2
-
-[node name="Item Name Text" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/TextureRect" unique_id=888206133]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 49.0
-offset_bottom = -80.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
-theme_override_fonts/normal_font = ExtResource("14_2ew54")
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Item Description Text" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/TextureRect" unique_id=809381140]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 92.0
-offset_bottom = -37.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
-theme_override_fonts/normal_font = ExtResource("14_2ew54")
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
-text = "Effect"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Control" type="Control" parent="BlessingDescription/VBoxContainer" unique_id=1320624525]
 layout_mode = 2
 size_flags_vertical = 3
@@ -333,13 +293,68 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="TextureRect" type="TextureRect" parent="BlessingDescription/VBoxContainer" unique_id=804952540]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("13_617kr")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlessingDescription/VBoxContainer/TextureRect" unique_id=680800359]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="BlessingDescription/VBoxContainer/TextureRect/VBoxContainer" unique_id=1932494134]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
+
+[node name="Item Name Text" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/TextureRect/VBoxContainer" unique_id=888206133]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
+theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "g"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item Description Text" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/TextureRect/VBoxContainer" unique_id=809381140]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
+theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Effect 
+asd"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="BlessingDescription/VBoxContainer/TextureRect/VBoxContainer" unique_id=299658466]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=1723267858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.85655856)
 
 [node name="Shrines" type="Node3D" parent="." unique_id=623705621]
 
 [node name="Shrine" parent="Shrines" unique_id=2005944346 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1768224, 0, -0.8883581)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3977381, 0, -0.8883581)
 blessing_description = NodePath("../../BlessingDescription")
 
 [node name="Shrine2" parent="Shrines" unique_id=281271094 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
@@ -347,11 +362,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3362546, 0, -0.8883581)
 blessing_description = NodePath("../../BlessingDescription")
 
 [node name="Shrine3" parent="Shrines" unique_id=1589504117 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0686255, 0, -0.2683969)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.326635, 0, -0.2683969)
 blessing_description = NodePath("../../BlessingDescription")
 
 [node name="Shrine4" parent="Shrines" unique_id=874922778 node_paths=PackedStringArray("blessing_description") instance=ExtResource("7_68yjn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2158852, 0, -0.18163252)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3762202, 0, -0.18163252)
 blessing_description = NodePath("../../BlessingDescription")
 
 [editable path="Rocks/BigRock8"]

@@ -13,6 +13,7 @@ extends Node3D
 func _ready() -> void:
 	player.reset()
 	player.setup(hud, map.floor)
+	GlobalStats.reset_current_run_stats()
 	GlobalStats.setup(player, hud)
 	hud.setup(player)
 	map.setup(player,camera, hud)
@@ -20,8 +21,8 @@ func _ready() -> void:
 	whale_spawner.setup(player, map.floor, map.enemy_spawner)
 	map.start_room(null)
 
-	GlobalStats.add_to_stat("dash_distance")
-	GlobalStats.add_to_stat("whale_level")
+	# GlobalStats.add_to_stat("dash_distance")
+	# GlobalStats.add_to_stat("whale_level")
 	# for i in range(5):
 	# 	GlobalStats.add_to_stat("player_attack_speed")
 

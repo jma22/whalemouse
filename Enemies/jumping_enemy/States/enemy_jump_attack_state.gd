@@ -30,6 +30,7 @@ func enter() -> void:
 	entity.hurt_box.set_active(false)
 	start_cooldown = false
 	cooldown_timer = 0.0
+	arc_component.set_multiplier(1 / GlobalStats.get_enemy_attack_speed_multiplier())
 
 
 # func exit() -> void:
@@ -49,7 +50,7 @@ func fixed_run(_delta: float) -> void:
 	arc_component.tick(_delta)
 	entity.velocity = arc_component.velocity
 
-	var t : float = get_elapsed_time() / arc_component.time
+	var t : float = get_elapsed_time() / arc_component.get_time()
 	t = clamp(t, 0, 1)
 
 

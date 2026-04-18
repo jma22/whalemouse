@@ -28,7 +28,7 @@ func check_state() -> void:
 			is_complete = true
 
 func get_idle_duration() -> float:
-	return 0.3 / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
+	return 0.4 / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
 
 func get_walk_toward_player() -> Vector3:
 	var direction : Vector3 = (entity.player.global_transform.origin - entity.global_transform.origin).normalized()

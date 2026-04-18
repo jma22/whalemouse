@@ -14,6 +14,7 @@ class_name Shrine
 var upgrade_data : UpgradeData
 var player_inside : bool = false
 var activated : bool = false
+var close_once_activated : bool = true
 
 var animation_clip : AnimationClip
 var tween : Tween = null
@@ -53,6 +54,8 @@ func _process(_delta: float) -> void:
 			activated = true
 			floating_sprite.visible = false
 			audio_player.play()
+			if close_once_activated:
+				close_gateway()
 
 
 func _on_body_entered(body: Node) -> void:

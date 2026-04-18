@@ -68,7 +68,7 @@ func map_entered(first_time: bool) -> void:
 	if not first_time:
 		transition.transition_out()
 		await transition.tween.finished
-	var wave_info : WaveInfo = wave_manager.get_current_wave_info()
+	var wave_info : WaveInfo = wave_manager.enter_wave()
 	wave_text.display_wave_info(wave_info)
 	if wave_info.room_type == "combat":
 		# player.global_transform.origin = Vector3.ZERO
@@ -100,5 +100,5 @@ func map_entered(first_time: bool) -> void:
 	
 
 func next_wave() -> void:
-	wave_manager.current_wave += 1
+	wave_manager.exit_wave()
 	map_entered(false)

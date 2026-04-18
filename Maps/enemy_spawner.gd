@@ -14,55 +14,61 @@ class_name EnemySpawner
 # }
 
 const enemy_data = {
-	"DashEnemy": {
+	"DashingEnemy": {
 		"scene": preload("res://Enemies/lunging_enemy/enemy.tscn"),
 		"cost": 3,
 		"max_per_wave": 3,
-		"min_depth": 0,
-		"spawn_type" : "melee"
+		"min_depth": 1,
+		"spawn_type" : "melee",
+		"name": "Piranha",
 	},
-	"FloatEnemy": {
+	"FloatingEnemy": {
 		"scene": preload("res://Enemies/floating_enemy/enemy2.tscn"),
 		"cost": 2,
 		"max_per_wave": 4,
 		"min_depth": 0,
-		"spawn_type": "any"
+		"spawn_type": "any",
+		"name": "Floaty",
 	},
 	"Barnacle": {
 		"scene": preload("res://Enemies/Barnacle/barnacle.tscn"),
 		"cost": 3,
 		"max_per_wave": 5,
-		"min_depth": 0,
-		"spawn_type" : "melee"
+		"min_depth": 1,
+		"spawn_type" : "melee",
+		"name": "Barnacle",
 	},
 	"ShootingEnemy": {
 		"scene": preload("res://Enemies/shooting_enemy/shooting_enemy.tscn"),
 		"cost": 4,
 		"max_per_wave": 2,
-		"min_depth": 1,
-		"spawn_type" : "ranged"
+		"min_depth": 2,
+		"spawn_type" : "ranged",
+		"name": "Spit",
 	},
 	"AuraEnemy": {
 		"scene": preload("res://Enemies/aura_enemy/aura_enemy.tscn"),
 		"cost": 4,
 		"max_per_wave": 2,
 		"min_depth": 2,
-		"spawn_type": "any"
+		"spawn_type": "any",
+		"name": "Electric",
 	},
 	"JumpingEnemy": {
 		"scene": preload("res://Enemies/jumping_enemy/jumping_enemy.tscn"),
 		"cost": 5,
 		"max_per_wave": 3,
-		"min_depth": 1,
-		"spawn_type": "melee"
-
+		"min_depth": 3,
+		"spawn_type": "melee",
+		"name": "Skwid",
 	},
 	"LobbingEnemy": {
 		"scene": preload("res://Enemies/lobbing_enemy/lobbing_enemy.tscn"),
 		"cost": 4,
 		"max_per_wave": 2,
-		"min_depth": 2,
-		"spawn_type": "ranged"
+		"min_depth": 3,
+		"spawn_type": "ranged",
+		"name": "Tosser",
 	},
 }
 
@@ -98,6 +104,24 @@ func setup(player : CharacterBody3D, floor : NavigationRegion3D, boss_health : B
 # 	spawn_enemies(wave_info.enemies_to_spawn, false)
 # 	player.clear_effects()
 
+static func sample_unlockable_enemy(current_wave : int, unlocked_enemies : Array[String]) -> String:
+	var unlockable_enemies : Array[String] = []
+	for enemy_name : String in enemy_data.keys():
+		if current_wave >= enemy_data[enemy_name].min_depth * 10 and not enemy_name in unlocked_enemies:
+			unlockable_enemies.append(enemy_name)
+	
+	if unlockable_enemies.size() == 0:
+		return ""
+	unlockable_enemies.shuffle()	
+	return unlockable_enemies[0]
+
+static func get_enemy_data(enemy_name : String) -> Dictionary:
+	if enemy_name in enemy_data:
+		return enemy_data[enemy_name]
+	else:
+		printerr("Enemy %s not found in enemy data!" % enemy_name)
+		return {}
+
 func set_wave_spawning(wave_info : WaveInfo, _wave_map_manager : MapManagerBase) -> void:
 	var enemies_to_spawn : Array[String] = build_wave(wave_info.enemy_budget, wave_info.enemy_pool, wave_info.wave_number)
 	var spawn_pools : Dictionary[String,ShuffledPool] = _wave_map_manager.get_spawn_pools()
@@ -129,12 +153,13 @@ func build_wave(budget: int, pool: Array[String], current_wave : int) -> Array[S
 
 func get_affordable_enemies(pool: Array[String], budget: int, counts: Dictionary, current_wave : int) -> Array[String]:
 	var filtered: Array[String] = []
-	for enemy in pool:
+	for enemy : String in pool:
 		var data: Dictionary = enemy_data[enemy]
 		var can_afford: bool = int(data.cost) <= budget
 		# var under_cap: bool = int(counts.get(enemy, 0)) < int(data.max_per_wave)
 		var under_cap : bool = true
-		var unlocked: bool = current_wave >= int(data.min_depth)
+		var unlocked : bool = true
+		# var unlocked: bool = current_wave >= int(data.min_depth)
 		if can_afford and under_cap and unlocked:
 			filtered.append(enemy)
 	return filtered

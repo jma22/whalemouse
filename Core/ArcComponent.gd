@@ -4,9 +4,9 @@ class_name ArcComponent
 
 @export var animation_clip: AnimationClip
 
-@export var time: float = 1.5
-@export var max_height: float = 0.7
-@export var hang_time: float = 0.1
+@export var base_time: float = 1.5
+@export var base_max_height: float = 0.7
+@export var base_hang_time: float = 0.1
 @export var sharpness: float = 1.2
 @export var descent_mult: float = 1.0
 @export var max_x_distance: float = 4.0
@@ -16,6 +16,7 @@ var arc_axis := Vector3(0, cos(deg_to_rad(30)), -sin(deg_to_rad(30))).normalized
 var velocity: Vector3 = Vector3.ZERO
 var elapsed_time: float = 0.0
 var is_finished: bool = false
+var multiplier: float = 1.0
 
 var _arc_velocity: float = 0.0
 var _current_arc_pos: float = 0.0
@@ -36,16 +37,16 @@ func tick(delta: float) -> void:
         return
     _set_velocity(delta)
     elapsed_time += delta
-    if elapsed_time >= time + hang_time:
+    if elapsed_time >= get_time() + get_hang_time():
         _arc_velocity = 0.0
         _lateral_velocity = Vector3.ZERO
         velocity = Vector3.ZERO
         is_finished = true
 
 func _set_velocity(delta: float) -> void:
-    var t : float = clamp(elapsed_time / time, 0.0, 1.0)
+    var t : float = clamp(elapsed_time / get_time(), 0.0, 1.0)
 
-    var hang_frac := hang_time / time
+    var hang_frac := get_hang_time() / get_time()
     var hang_start := 0.5 - hang_frac * 0.5
     var hang_end   := 0.5 + hang_frac * 0.5
 
@@ -64,7 +65,7 @@ func _set_velocity(delta: float) -> void:
         else:
             shaped_t = 0.5 + pow((arc_t - 0.5) * 2.0, sharpness / descent_mult) * 0.5
 
-        var target_arc_pos := 4.0 * max_height * shaped_t * (1.0 - shaped_t)
+        var target_arc_pos := 4.0 * get_height() * shaped_t * (1.0 - shaped_t)
         _arc_velocity = (target_arc_pos - _current_arc_pos) / delta
 
     _current_arc_pos += _arc_velocity * delta
@@ -74,4 +75,16 @@ func _set_velocity(delta: float) -> void:
 func _set_lateral_velocity() -> void:
     var direction := (_target_position - global_transform.origin)
     var magnitude := minf(direction.length(), max_x_distance)
-    _lateral_velocity = direction.normalized() * magnitude / (time + hang_time)
+    _lateral_velocity = direction.normalized() * magnitude / (get_time() + get_hang_time())
+
+func get_time() -> float:
+    return base_time * multiplier
+
+func get_hang_time() -> float:
+    return base_hang_time * multiplier
+
+func get_height() -> float:
+    return base_max_height * multiplier
+
+func set_multiplier(mult: float) -> void:
+    multiplier = mult

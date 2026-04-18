@@ -13,7 +13,7 @@ class_name EnemyInkAttackState
 # var stagger_stamina : int = 1
 # @export var max_stagger_stamina : int = 1
 var spawn_time : float = 0.3
-var spawn_amount : int = 2
+var base_spawn_amount : int = 2
 var spawn_timer : float = 0.0
 var spawned_count : int = 0
 var target_position : Vector3
@@ -51,11 +51,11 @@ func exit() -> void:
 
 
 func check_state() -> void:
-	if spawned_count >= spawn_amount:
+	if spawned_count >= get_spawn_amount():
 		is_complete = true
 
 func sample_position_around_entity() -> Vector3:
-	var radius : float = randf_range(1.0, 1.6)
+	var radius : float = get_radius()
 	var angle : float = randf() * 2.0 * PI
 	var offset : Vector3 = Vector3(cos(angle), 0, sin(angle)) * radius
 
@@ -63,6 +63,12 @@ func sample_position_around_entity() -> Vector3:
 	var sample_position : Vector3 = entity.global_transform.origin + offset
 	var clamped_position : Vector3 = entity.get_floor().clamp_position(sample_position, ball_radius)
 	return clamped_position 
+
+func get_spawn_amount() -> int:
+	return base_spawn_amount + GlobalStats.get_enemy_projectile_flat()
+
+func get_radius() -> float:
+	return randf_range(1.0, 1.6 * GlobalStats.get_enemy_attack_speed_multiplier())
 
 # func set_target_position(position: Vector3) -> void:
 # 	target_position = position

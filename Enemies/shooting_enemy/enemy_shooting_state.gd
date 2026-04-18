@@ -5,7 +5,7 @@ var target_position : Vector3
 @export var animation_clip : AnimationClip
 @export var shooting_time : float = 0.3
 @export var shooting_stun_time : float = 1.0
-@export var num_bullets : int = 3
+@export var base_num_bullets : int = 3
 # @export var attack_speed : float = 12.0
 # @export var dampening : float = 0.88
 # @export var hitbox_active_time : float = 0.2
@@ -15,7 +15,7 @@ var target_position : Vector3
 var bullet : PackedScene = load("res://Enemies/Projectiles/damage_projectile.tscn")
 var _original_direction : Vector3
 var _bullets_fired : int = 0
-var angle_between_bullets : float = PI / 18.0  # 10 degrees in radians
+var angle_between_bullets : float = PI / 45.0  # 4 degree spread between bullets
 
 func enter() -> void:
 	entity.sprite_manager.play(animation_clip)
@@ -45,6 +45,7 @@ func shoot_dir(direction : Vector3) -> void:
 
 func run(_delta: float) -> void:
 	# check_state()
+	var num_bullets : int = get_num_bullets()
 	if get_elapsed_time() >= shooting_time / num_bullets * _bullets_fired and _bullets_fired < num_bullets:
 		var angle_offset : float = angle_between_bullets * (_bullets_fired - (num_bullets - 1) / 2.0)  # Center the bullets around the original direction
 		var rotated_direction : Vector3 = Vector3(
@@ -67,6 +68,8 @@ func run(_delta: float) -> void:
 func set_target_position(position: Vector3) -> void:
 	target_position = position
 
+func get_num_bullets() -> int:
+	return base_num_bullets + GlobalStats.get_enemy_projectile_flat()
 # func check_state() -> void:
 # 	pass
 

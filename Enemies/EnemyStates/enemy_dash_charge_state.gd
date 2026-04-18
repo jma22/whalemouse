@@ -20,21 +20,11 @@ func enter() -> void:
 func fixed_run(_delta: float) -> void:
 	super(_delta)
 	var opposite_direction : Vector3 = (pivot - entity.player.global_transform.origin).normalized()
-	var target_position : Vector3 = pivot + opposite_direction * charge_creep_speed * get_elapsed_time() * GlobalStats.get_enemy_speed_multiplier()
+	var target_position : Vector3 = pivot + opposite_direction * charge_creep_speed * get_elapsed_time() * GlobalStats.get_enemy_attack_speed_multiplier()
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
 	direction.y = 0
-	entity.velocity = direction * charge_creep_speed * GlobalStats.get_enemy_speed_multiplier() * _delta
+	entity.velocity = direction * charge_creep_speed * GlobalStats.get_enemy_attack_speed_multiplier() * _delta
 
-
-# func check_state() -> void:
-# 	if set_target_time /  GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() and not target_set:
-# 		if attack_state.has_method("set_target_position"):
-# 			attack_state.set_target_position(choose_target())
-# 		target_set = true
-# 	if charge_time / GlobalStats.get_enemy_speed_multiplier() <= get_elapsed_time() :
-# 		entity.velocity = Vector3.ZERO
-# 		# attack_state.set_target_position(entity.player.global_transform.origin)
-# 		is_complete = true
 
 func choose_target() -> Vector3:
 	return entity.player.global_transform.origin

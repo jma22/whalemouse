@@ -18,6 +18,7 @@ var current_run_stats : Dictionary = {
 	"dash_distance": 0,
 	"time_tick_level": 0,
 	"enemy_speed" : 0,
+	"enemy_attack_speed" : 0,
 	"enemy_health": 0,
 	"heal" : 0,
 	"damage" : 0,
@@ -121,10 +122,10 @@ func get_whale_cooldown() -> float:
 	return current_run_stats["whale_cooldown"] * 0.1 ## 10 is 0 cooldown
 
 func get_flat_speed() -> float:
-	return current_run_stats["flat_speed"] * 0.5
+	return current_run_stats["flat_speed"] * 0.25
 
 func speed_during_status() -> int:
-	return current_run_stats["fast_while_status"] * 1.2
+	return 0.5 + current_run_stats["fast_while_status"] * 0.3
 
 func has_thorns() -> bool:
 	return current_run_stats["thornmail"] > 0
@@ -155,29 +156,30 @@ func get_enemy_per_ebb_drop() -> int:
 
 func should_drop_ebb() -> bool:
 	# this is buggy /in consistent but will do now
-	print("Checking for ebb drop: ", total_stats["enemies_killed"], " kills, need ", get_enemy_per_ebb_drop(), " for next drop.")
 	return total_stats["enemies_killed"] % get_enemy_per_ebb_drop() == 0
 
 func get_mouse_attack_hitbox_scale() -> float:
 	return 1.0 + current_run_stats["attack_size"] * 0.4
 
 func get_heal_amount() -> int:
-	return current_run_stats["heal"] * 7 + 7
+	return current_run_stats["heal"] * 5 + 4
 
 func get_damage_amount() -> int:
-	return current_run_stats["damage"] * 5 + 5
+	return current_run_stats["damage"] * 3 + 4
 
 func get_attracted_radius() -> float:
-	return 0.7 + current_run_stats["xp_suck"] * 0.4
+	# return 0.7 + current_run_stats["xp_suck"] * 0.4
+	return 0.5 + current_run_stats["xp_suck"] * 0.8
 
 func get_attracted_speed() -> float:
-	return 0.3 + current_run_stats["xp_suck"] * 0.4
+	# return 0.3 + current_run_stats["xp_suck"] * 0.4
+	return 0.15 + current_run_stats["xp_suck"] * 0.6
 
 func get_enemy_xp_drop() -> int:
-	return 0 + int(1.0 * current_run_stats["enemy_xp_drop"])
+	return int(current_run_stats["enemy_xp_drop"])
 
 func get_enemy_damage() -> int:
-	return 4 + current_run_stats["enemy_damage"] * 5
+	return 4 + current_run_stats["enemy_damage"] * 2
 
 func get_dash_distance() -> float:
 	return 5.0 + current_run_stats["dash_distance"] *3.0
@@ -187,13 +189,20 @@ func get_seconds_per_damage() -> float:
 	return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.4)**1.5
 	# return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.25)
 
+func get_enemy_projectile_flat() -> int:
+	var wave_augment_bonus : int = 1 if "enemy_attack_speed" in wave_augments else 0
+	return current_run_stats["enemy_attack_speed"] + wave_augment_bonus
+
+func get_enemy_attack_speed_multiplier() -> float:
+	var wave_augment_bonus : float = 1.0 if "enemy_attack_speed" in wave_augments else 0.0
+	return 1.0 + current_run_stats["enemy_attack_speed"] * 0.4 + 0.4 * wave_augment_bonus
 
 func get_enemy_speed_multiplier() -> float:
 	var wave_augment_bonus : float = 0.3 if "enemy_speed" in wave_augments else 0.0
 	return 1.0 + current_run_stats["enemy_speed"] * 0.3 + 0.3 * wave_augment_bonus
 
 func get_enemy_health_flat() -> float:
-	return 1.0 + current_run_stats["enemy_health"] * 0.5
+	return current_run_stats["enemy_health"]
 
 func get_whale_size() -> float:
 	return current_run_stats["whale_level"] * 0.14

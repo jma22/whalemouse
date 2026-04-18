@@ -16,7 +16,7 @@
 [ext_resource type="Resource" uid="uid://cw13rf4mx4tj6" path="res://Player/AnimationClips/attack.tres" id="14_lfmf2"]
 [ext_resource type="AudioStream" uid="uid://dvufetk8lu5rw" path="res://SFX/dash.wav" id="17_gpjlu"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="18_o28un"]
-[ext_resource type="Script" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
+[ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://cnjqg8b31hol6" path="res://SFX/attack.wav" id="22_hshwv"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="25_qemgg"]
 
@@ -81,13 +81,14 @@ pitch_scale = 1.1
 
 [node name="ArcComponent" type="Node3D" parent="StateMachine/AttackState" unique_id=1502366418]
 script = ExtResource("22_gpjlu")
-time = 0.45
-max_height = 0.35
-hang_time = 0.0
+base_time = 0.45
+base_max_height = 0.4
+base_hang_time = 0.05
 sharpness = 0.5
 descent_mult = 10.0
 
 [node name="Hitbox" parent="StateMachine/AttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("12_606se")]
+visible = false
 owner_entity = NodePath("../../..")
 hit_box_type = 1
 hitstop = NodePath("../../../CoreComponents/HitStop")
@@ -152,6 +153,7 @@ shape = SubResource("CylinderShape3D_b1ygp")
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.06751305, -0.2354672)
+layers = 1
 material_overlay = SubResource("ShaderMaterial_o28un")
 texture = ExtResource("2_n471f")
 hframes = 15

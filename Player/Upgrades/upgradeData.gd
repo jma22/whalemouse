@@ -18,7 +18,7 @@ func get_description() -> String:
 	return description_func.call()
 
 func get_icon_path() -> String:
-	return "res://UI/HUD/BlessingIcons/%s.png" % internal_name
+	return UpgradeData.get_icon_path_static(internal_name)
 	
 func apply() -> void:
 	for effect in effects:
@@ -27,3 +27,11 @@ func apply() -> void:
 func is_blessing() -> bool:
 	var blessing_types : Array[String] = ["blessing", "whale_blessing"]
 	return blessing_type in blessing_types
+
+static func get_icon_path_static(internal_name_ : String) -> String:
+	var correct_path : String = "res://UI/HUD/BlessingIcons/%s.png" % internal_name_
+	var placeholder_path : String = "res://UI/HUD/BlessingIcons/Placeholders/%s.png" % internal_name_
+	if ResourceLoader.exists(correct_path):
+		return correct_path
+	else:
+		return placeholder_path

@@ -1,7 +1,7 @@
 # bullet.gd
 extends Node3D
 
-var speed: float = 1.5
+var speed: float = 1.3
 var direction: Vector3 = Vector3.ZERO
 var lifetime: float = 3.0
 @export var hitbox : Hitbox
@@ -16,7 +16,7 @@ func setup(direction_: Vector3, ) -> void:
 
 func _physics_process(delta: float) -> void:
 
-	global_position += direction * speed * delta
+	global_position += direction * speed * delta * GlobalStats.get_enemy_attack_speed_multiplier()
 	# if floor and not floor.check_in_bounds(global_position):
 	# 	queue_free()
 	

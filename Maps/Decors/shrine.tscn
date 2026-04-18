@@ -179,6 +179,7 @@ debug_color = Color(1, 0, 0.1833334, 1)
 
 [node name="FloatingSprite" type="Sprite3D" parent="." unique_id=1485702688]
 transform = Transform3D(1.2, 0, 0, 0, 0.59999996, 1.0392306, 0, -1.0392306, 0.59999996, 0, 0, -0.5452123)
+layers = 2
 pixel_size = 0.001
 alpha_cut = 2
 texture = ExtResource("4_u1um2")
