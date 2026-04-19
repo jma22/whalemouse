@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dfggsvx0tq5f2"]
+
+[ext_resource type="Script" uid="uid://dq0v0yb8rgoxc" path="res://Enemies/AnglerBoss/angler_background.gd" id="1_dbb63"]
+[ext_resource type="Texture2D" uid="uid://d3rr3t5tstvim" path="res://Enemies/AnglerBoss/2220_Sem_Titulo_20260418214052.png" id="2_kmyuf"]
+[ext_resource type="Script" uid="uid://blnovigm0t222" path="res://Core/Components/state_machine.gd" id="4_cdyka"]
+[ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="5_3fc1y"]
+[ext_resource type="Resource" uid="uid://ck8qpwjbb0o7c" path="res://Enemies/floating_enemy/floating.tres" id="6_femd1"]
+[ext_resource type="Script" uid="uid://cdoiofpad2cvd" path="res://Enemies/jumping_enemy/States/enemy_spawn_state.gd" id="7_mka6j"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="8_lfbpe"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="9_u8ycu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbb63"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("9_u8ycu")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
+shader_parameter/charge_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
+
+[node name="AnglerBackground" type="CharacterBody3D" unique_id=451704292 node_paths=PackedStringArray("initial_state", "core_components")]
+script = ExtResource("1_dbb63")
+initial_health = 100
+initial_state = NodePath("StateMachine/EnemySpawnState")
+core_components = NodePath("CoreComponents")
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=529978159]
+script = ExtResource("4_cdyka")
+metadata/_custom_type_script = "uid://blnovigm0t222"
+
+[node name="EnemyIdleState" type="Node3D" parent="StateMachine" unique_id=1068411361]
+script = ExtResource("5_3fc1y")
+animation = ExtResource("6_femd1")
+
+[node name="EnemySpawnState" type="Node3D" parent="StateMachine" unique_id=90861341]
+script = ExtResource("7_mka6j")
+metadata/_custom_type_script = "uid://cdoiofpad2cvd"
+
+[node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("8_lfbpe")]
+
+[node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
+knockback_mult = 0.0
+
+[node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
+transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_dbb63")
+pixel_size = 0.01
+alpha_cut = 0
+render_priority = -1
+texture = ExtResource("2_kmyuf")
+hframes = 1
+
+[node name="BounceComponent" parent="CoreComponents" index="7" unique_id=1964277859]
+bounce_mult = 0.0
+
+[editable path="CoreComponents"]

@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
 
-[sub_resource type="Shader" id="Shader_3l6jj"]
+[sub_resource type="Shader" id="Shader_2e4vk"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_add;
@@ -44,10 +44,10 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5riu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptfuc"]
 resource_local_to_scene = true
 render_priority = 1
-shader = SubResource("Shader_3l6jj")
+shader = SubResource("Shader_2e4vk")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -72,7 +72,7 @@ smooth_speed = 10.0
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_y5riu")
+material_overlay = SubResource("ShaderMaterial_ptfuc")
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
 time_damage_manager = NodePath("../TimeDamageManager")
@@ -82,14 +82,15 @@ whale_spawner = NodePath("../WhaleSpawner")
 script = ExtResource("5_rge3y")
 player = NodePath("../Player")
 
-[node name="Map" type="Node3D" parent="." unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "ranged_spawns", "melee_spawns", "gateway", "floor", "player_spawn_point")]
+[node name="Map" type="Node3D" parent="." unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "ranged_spawns", "melee_spawns", "boss_spawn", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("5_k8tjy")
 enemy_spawner = NodePath("EnemySpawner")
 ranged_spawns = NodePath("EnemySpawner/RangedSpawnPoints")
 melee_spawns = NodePath("EnemySpawner/MeleeSpawnPoints")
+boss_spawn = NodePath("BossSpawn")
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
-player_spawn_point = NodePath("Node3D")
+player_spawn_point = NodePath("BossSpawn")
 
 [node name="Walls" type="GridMap" parent="Map" unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
@@ -111,8 +112,8 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 material_override = null
 texture = SubResource("NoiseTexture2D_oisa6")
 
-[node name="Node3D" type="Node3D" parent="Map" unique_id=78799165]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.41875648)
+[node name="BossSpawn" type="Node3D" parent="Map" unique_id=78799165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12924051, -3.1261668)
 
 [node name="EnemySpawner" type="Node3D" parent="Map" unique_id=991711266]
 script = ExtResource("11_2e4vk")

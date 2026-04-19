@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8erf33pycggw"
-path.s3tc="res://.godot/imported/sketches_boss.png-6a74098667fa82005ec0b6f27607e554.s3tc.ctex"
+uid="uid://d3rr3t5tstvim"
+path.s3tc="res://.godot/imported/2220_Sem_Titulo_20260418214052.png-e9c554c45a69866f0c663fab4aea998b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Enemies/SquidBoss/sketches_boss.png"
-dest_files=["res://.godot/imported/sketches_boss.png-6a74098667fa82005ec0b6f27607e554.s3tc.ctex"]
+source_file="res://Enemies/AnglerBoss/2220_Sem_Titulo_20260418214052.png"
+dest_files=["res://.godot/imported/2220_Sem_Titulo_20260418214052.png-e9c554c45a69866f0c663fab4aea998b.s3tc.ctex"]
 
 [params]
 

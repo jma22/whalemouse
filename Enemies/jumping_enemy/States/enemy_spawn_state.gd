@@ -37,7 +37,8 @@ func run(_delta: float) -> void:
 
 func spawn_enemy() -> void:
 	var spawn_position : Vector3 = sample_position_around_player(0.6)
-	enemy_spawner.spawn_enemy("SquidMinion", spawn_position)
+	var eye : Node3D = enemy_spawner.spawn_enemy("AnglerEye", spawn_position)
+	entity.link_health(eye)
 	spawned_count += 1
 
 func fixed_run(delta: float) -> void:
@@ -55,7 +56,9 @@ func check_state() -> void:
 func sample_position_around_player(radius : float) -> Vector3:
 	var angle : float = randf() * 2.0 * PI
 	var offset : Vector3 = Vector3(cos(angle), 0, sin(angle)) * radius
-	return entity.player.global_transform.origin + offset
+	var target : Vector3 = entity.player.global_transform.origin + offset
+	target.y = 0
+	return target
 
 # func on_hit(damage : int) -> void:
 # 	stagger_stamina -= damage

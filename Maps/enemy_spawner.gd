@@ -70,6 +70,22 @@ const enemy_data = {
 		"spawn_type": "ranged",
 		"name": "Tosser",
 	},
+	"AnglerEye": {
+		"scene": preload("res://Enemies/AnglerBoss/AnglerEye/angler_eye.tscn"),
+		"cost": 99,
+		"max_per_wave": 2,
+		"min_depth": 99,
+		"spawn_type": "ranged",
+		"name": "AnglerEye",
+	},
+	"Angler" :{
+		"scene": preload("res://Enemies/AnglerBoss/angler_background.tscn"),
+		"cost": 99,
+		"max_per_wave": 2,
+		"min_depth": 99,
+		"spawn_type": "ranged",
+		"name": "AnglerEye",
+	},
 }
 
 var spawned_enemies : Array[Node3D] = []
@@ -187,7 +203,7 @@ func all_dead() -> bool:
 			return false
 	return true
 
-func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> void:
+func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> Node3D:
 	if enemy_type in enemy_data:
 		var enemy_scene : PackedScene = enemy_data[enemy_type].scene
 		var enemy_instance : Node = enemy_scene.instantiate()
@@ -195,6 +211,8 @@ func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> void:
 		enemy_instance.global_transform.origin = spawn_point
 		enemy_instance.setup(player, floor)
 		spawned_enemies.append(enemy_instance)
+		return enemy_instance
+	return null
 
 func spawn_boss(enemy_type: String, spawn_point : Vector3) -> void:
 	if enemy_type in enemy_data:

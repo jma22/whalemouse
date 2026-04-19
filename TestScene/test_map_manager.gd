@@ -2,6 +2,7 @@ extends MapManagerBase
 @export var enemy_spawner : EnemySpawner
 @export var ranged_spawns : Node3D
 @export var melee_spawns : Node3D
+@export var boss_spawn : Node3D
 # @export var shrines : Array[Node3D]
 
 
@@ -12,14 +13,14 @@ func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 func start_room (wave_info_ : WaveInfo) -> void:
 	# super(wave_info_)
 	# enemy_spawner.set_wave_spawning(wave_info_)
-	# enemy_spawner.spawn_boss("Barnacle", Vector3(0,0,0))
+	enemy_spawner.spawn_boss("Angler", boss_spawn.global_transform.origin)
 	# enemy_spawner.spawn_enemy("ShootingEnemy", Vector3(0,0,0))
-	var enemy_pool : Array[String] = ["AuraEnemy", "DashingEnemy", "ShootingEnemy","JumpingEnemy"]
-	var wave_info : CombatWaveInfo = CombatWaveInfo.new()
-	wave_info.wave_number = 10
-	wave_info.enemy_budget = 20
-	wave_info.enemy_pool = enemy_pool
-	enemy_spawner.set_wave_spawning(wave_info, self)
+	# var enemy_pool : Array[String] = ["AuraEnemy", "DashingEnemy", "ShootingEnemy","JumpingEnemy"]
+	# var wave_info : CombatWaveInfo = CombatWaveInfo.new()
+	# wave_info.wave_number = 10
+	# wave_info.enemy_budget = 20
+	# wave_info.enemy_pool = enemy_pool
+	# enemy_spawner.set_wave_spawning(wave_info, self)
 
 	# var i  : int = 0
 	# for k : String in enemy_spawner.enemy_string_to_scene:

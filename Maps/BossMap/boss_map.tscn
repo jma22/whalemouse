@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://0yjpdk334va6"]
 
-[ext_resource type="Script" uid="uid://dg2dmidv2g43e" path="res://Maps/SquidMap/boss_map_manager.gd" id="1_pf42a"]
+[ext_resource type="Script" uid="uid://dg2dmidv2g43e" path="res://Maps/BossMap/boss_map_manager.gd" id="1_pf42a"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="2_uxjpn"]
+[ext_resource type="PackedScene" uid="uid://dfggsvx0tq5f2" path="res://Enemies/AnglerBoss/angler_background.tscn" id="2_x6kko"]
 [ext_resource type="PackedScene" uid="uid://d4f06nj2iy67x" path="res://Maps/Decors/seaweed.tscn" id="6_iy2c3"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_j5ys2"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_kt1ox"]
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_uix04"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_qtgbq"]
 [ext_resource type="PackedScene" uid="uid://bb8si1mpdb4l2" path="res://Maps/Decors/bubble_back.tscn" id="11_5bul5"]
+[ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="11_f0u3y"]
 [ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="12_vauxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
@@ -138,12 +140,15 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="SquidMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
+[node name="BossMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("1_pf42a")
 enemy_spawner = NodePath("EnemySpawner")
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
+
+[node name="AnglerBackground" parent="." unique_id=462439655 instance=ExtResource("2_x6kko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12924051, -3.1261668)
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
@@ -192,6 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68, 0.41, 1.43)
 [node name="FloorNav" parent="." unique_id=2014240850 instance=ExtResource("8_kt1ox")]
 
 [node name="Rocks" type="Node3D" parent="." unique_id=1911806210]
+visible = false
 
 [node name="BigRock2" parent="Rocks" unique_id=642199375 instance=ExtResource("9_uix04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07, -0.095, -3.575)
@@ -261,10 +267,29 @@ texture = SubResource("GradientTexture2D_ed26x")
 [node name="GPUParticles3D" parent="." unique_id=304463573 instance=ExtResource("11_5bul5")]
 
 [node name="PlayerSpawn" type="Node3D" parent="." unique_id=1902063063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.556443)
 visible = false
 
 [node name="EnemySpawner" type="Node3D" parent="." unique_id=1969495992]
 script = ExtResource("12_vauxf")
+
+[node name="Camera3D2" type="Camera3D" parent="." unique_id=283640284 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
+fov = 79.4
+size = 23.388
+script = ExtResource("11_f0u3y")
+target = NodePath("../PlayerSpawn")
+distance = 5.0
+smooth_speed = 10.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1162513576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5207565, -3.5342999)
+light_color = Color(0.9999983, 0.37456837, 0.3875323, 1)
+light_energy = 2.0
+light_indirect_energy = 0.0
+light_bake_mode = 1
+omni_range = 40.0
+omni_shadow_mode = 0
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]
