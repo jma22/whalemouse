@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://divigl71idyh3" path="res://Enemies/jumping_enemy/2208_Sem_Titulo_20260414172023.png" id="13_lubsp"]
 [ext_resource type="Script" uid="uid://cbbmsxeo8ekjx" path="res://Enemies/jumping_enemy/States/enemy_jump_attack_charge_state.gd" id="13_qc8vj"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="16_ehvx3"]
-[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="16_pddoi"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="16_pddoi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)
@@ -53,7 +53,6 @@ shader_parameter/mesh_top = 1.0
 [node name="JumpingEnemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_ehvx3")
 initial_health = 4
-xp_drop_amount = 4
 core_components = NodePath("CoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -126,7 +125,7 @@ script = ExtResource("13_qc8vj")
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("16_pddoi")]
 
 [node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
-knockback_mult = 0.3
+knockback_mult = 2.0
 
 [node name="HurtBox" parent="CoreComponents" index="3" unique_id=1638711581]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.28258705)

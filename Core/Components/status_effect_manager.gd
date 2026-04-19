@@ -14,6 +14,8 @@ func _process(delta: float) -> void:
 			print("Lost status effect: ", effect.name)
 
 func gain_status_effect(effect : StatusEffect, source : Object) -> void:
+	if effect.name == "haste":
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BLEED)
 	if effect.is_conditional:
 		var id : int = source.get_instance_id()
 		if id not in status_effects:

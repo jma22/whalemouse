@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="8_nlniy"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_ns63c"]
 [ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="10_0s6pb"]
-[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="10_s8vqk"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="10_s8vqk"]
 [ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="11_hw2ji"]
 [ext_resource type="Script" uid="uid://bssnd5oam4q8s" path="res://Enemies/aura_enemy/enemy_aura_activate_state.gd" id="12_45ukq"]
 [ext_resource type="PackedScene" uid="uid://811oux5k3iqg" path="res://Enemies/aura_enemy/aura.tscn" id="13_njtbo"]

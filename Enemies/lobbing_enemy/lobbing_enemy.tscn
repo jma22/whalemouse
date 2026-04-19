@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_dm0xu"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="12_4dro3"]
 [ext_resource type="Script" uid="uid://bgwhqji05twiu" path="res://Enemies/jumping_enemy/States/enemy_ink_attack.gd" id="15_gktq0"]
-[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="16_ebarl"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="16_ebarl"]
 [ext_resource type="Texture2D" uid="uid://c0hecfc4yqv1r" path="res://Enemies/lobbing_enemy/sketches_boss.png" id="17_gprhh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -53,6 +53,8 @@ shader_parameter/mesh_top = 1.0
 [node name="LobbingEnemy" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_3ony3")
 initial_health = 3
+xp_drop_amount = 3
+ebb_drop_amount = 1
 core_components = NodePath("CoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -107,7 +109,6 @@ knockback_mult = 1.0
 [node name="HurtBox" parent="CoreComponents" index="3" unique_id=1638711581]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.28258705)
 visible = true
-orbs_on_hit = 1
 
 [node name="CollisionShape3D" parent="CoreComponents/HurtBox" index="0" unique_id=1925812291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10267699, 0, 0)

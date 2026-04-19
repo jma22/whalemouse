@@ -30,26 +30,6 @@ func _process(delta: float) -> void:
 	material.set_shader_parameter("world_center", Vector2(pos.x, pos.z) + offset)
 	material.set_shader_parameter("shadow_center", Vector2(pos.x, pos.z) + offset/2)
 
-# # In FloorNav
-func clamp_body(body: CharacterBody3D, knockback : KnockbackComponent, bounce: float = 1.0) -> void:
-	var min_b := global_transform.origin - size / 2 + Vector3(global_margin, 0, global_margin)
-	var max_b := global_transform.origin + size / 2 - Vector3(global_margin, 0, global_margin)
-	var pos := body.global_position
-	var velocity_copy : Vector3 = body.velocity
-	var flipped : bool = false
-	if pos.x < min_b.x or pos.x > max_b.x:
-		flipped = true
-		velocity_copy.x *= -bounce - 1
-	if pos.z < min_b.z or pos.z > max_b.z:
-		flipped = true
-		velocity_copy.z *= -bounce - 1
-	if flipped:
-		knockback.knockback_velocity += velocity_copy
-
-	body.global_position.x = clampf(pos.x, min_b.x, max_b.x)
-	body.global_position.z = clampf(pos.z, min_b.z, max_b.z)
-
-
 # In FloorNav
 # func bounce_body(body: CharacterBody3D, knockback: KnockbackComponent, bounce_force: float = 5.0) -> void:
 # 	var min_b := global_transform.origin - size / 2

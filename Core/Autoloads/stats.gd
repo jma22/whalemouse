@@ -139,7 +139,7 @@ func get_damage_reduced_by() -> int:
 
 func get_dying_ebb() -> int:
 	if current_run_stats["dying_ebb"] > 0:
-		return 5 + current_run_stats["dying_ebb"] * 2
+		return 6 + current_run_stats["dying_ebb"] * 3
 	else:
 		return 0
 		
@@ -155,14 +155,8 @@ func get_ebb_on_stand() -> bool:
 func get_dash_damage() -> int:
 	return current_run_stats["damaging_dash"]
 
-func get_enemy_per_ebb_drop() -> int:
-	return max(6 - current_run_stats["ebb_drop"],2)
-
-func should_drop_ebb() -> bool:
-	# this is buggy /in consistent but will do now
-	if current_run_stats["ebb_drop"] == 0:
-		return false
-	return total_stats["enemies_killed"] % get_enemy_per_ebb_drop() == 0
+func get_ebb_drop() -> int:
+	return current_run_stats["ebb_drop"]
 
 func get_mouse_attack_hitbox_scale() -> float:
 	return 1.0 + current_run_stats["attack_size"] * 0.3
@@ -175,11 +169,11 @@ func get_damage_amount() -> int:
 
 func get_attracted_radius() -> float:
 	# return 0.7 + current_run_stats["xp_suck"] * 0.4
-	return 0.5 + current_run_stats["xp_suck"] * 0.8
+	return 0.4 + current_run_stats["xp_suck"] * 1.2
 
 func get_attracted_speed() -> float:
 	# return 0.3 + current_run_stats["xp_suck"] * 0.4
-	return 0.15 + current_run_stats["xp_suck"] * 0.6
+	return 0.15 + current_run_stats["xp_suck"] * 0.8
 
 func get_bonus_enemy_xp_drop() -> int:
 	return int(current_run_stats["enemy_xp_drop"])

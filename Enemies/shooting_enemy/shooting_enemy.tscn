@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_qmvyk"]
 [ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="10_ku4fn"]
 [ext_resource type="Script" uid="uid://c0kuxp5ftpu4b" path="res://Enemies/shooting_enemy/enemy_shooting_state.gd" id="10_w7tql"]
-[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="10_yf58v"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="10_yf58v"]
 [ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="12_ne1wh"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="14_4hmcw"]
 [ext_resource type="Texture2D" uid="uid://dx6ijhgg0v4e2" path="res://Enemies/shooting_enemy/2208_Sem_Titulo_20260414171619.png" id="14_ne1wh"]
@@ -97,6 +97,7 @@ script = ExtResource("10_w7tql")
 
 [node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
 script = ExtResource("12_ne1wh")
+charge_time = 1.5
 metadata/_custom_type_script = "uid://y3u7axpv78ck"
 
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("10_yf58v")]

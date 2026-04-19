@@ -21,6 +21,7 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @export var initial_health : int = 1
 @export var initial_state : State
 @export var xp_drop_amount : int = 1
+@export var ebb_drop_amount : int = 0
 @export var core_components : CoreComponents
 
 @onready var health_component : HealthComponent = core_components.health_component
@@ -29,6 +30,7 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @onready var hurt_box : HurtBox = core_components.hurt_box
 @onready var sprite_manager : SpriteManager = core_components.sprite_manager
 @onready var hitstop : HitStop = core_components.hitstop
+@onready var bounce_component : BounceComponent = core_components.bounce_component
 
 var is_dead : bool = false
 # var facing_left : bool = false
@@ -60,9 +62,9 @@ func _physics_process(delta: float) -> void:
 	if state_machine.current_state:
 		state_machine.current_state.deep_fixed_run(delta)
 	knockback_component.handle_knockback()
+	bounce_component.handle_bounce()
 	move_and_slide()
-	if floor_:
-		floor_.clamp_body(self, knockback_component)
+	bounce_component.clamp_and_bounce()
 
 
 @abstract
@@ -85,21 +87,23 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	health_component.take_damage(damage_taken)
 	hurt_box.on_valid_damaging_hit()
 	
-
 	on_staggered()
 	attacker_hitbox.hitbox_on_hit() #hitstop
 	hitstop.start_hitstop(0.2)
 
 	# if state_machine.current_state.has_method("on_hit"):
 	# 	state_machine.current_state.on_hit(damage)
-	var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
+	var knockback_direction : Vector3 = Vector3.ZERO
+	if attacker_hitbox.owner_entity != null:
+		knockback_direction = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
+	knockback_component.receive_knockback(knockback_direction, damage_taken)
+
 
 	if health_component.is_dead():
 		on_die()
-		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
+		knockback_component.receive_knockback(knockback_direction, -0.6*damage_taken)
 		return
 
-	knockback_component.receive_knockback(knockback_direction, damage_taken)
 
 
 func on_die() -> void:
@@ -108,7 +112,7 @@ func on_die() -> void:
 	is_dead = true
 	var tween : Tween = await sprite_manager.die()
 	GlobalStats.add_kill()
-	var should_drop_ebb : bool = GlobalStats.should_drop_ebb()
+	
 
 
 	await tween.finished
@@ -121,8 +125,10 @@ func on_die() -> void:
 		else:
 			xp_spawner_instance.setup_outwards(xp_drop_amount, player, CollectibleSpawner.OrbType.TIME, get_floor())
 
-		if should_drop_ebb:
-			xp_spawner_instance.setup_outwards(1, player, CollectibleSpawner.OrbType.EBB, get_floor())
+		if randf() < 0.5:
+			xp_spawner_instance.setup_outwards(ebb_drop_amount, player, CollectibleSpawner.OrbType.EBB, get_floor())
+		else:
+			xp_spawner_instance.setup_outwards(ebb_drop_amount + GlobalStats.get_ebb_drop(), player, CollectibleSpawner.OrbType.EBB, get_floor())
 			
 	process_mode = Node.PROCESS_MODE_DISABLED	
 

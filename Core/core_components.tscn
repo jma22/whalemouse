@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dwnxgyytrsd53"]
+
+[ext_resource type="Script" uid="uid://cpq7ftr5ynev8" path="res://Core/core_components.gd" id="1_6ylru"]
+[ext_resource type="Script" uid="uid://bbvxw3iy1a1yg" path="res://Core/Components/knockback_component.gd" id="2_c1bs7"]
+[ext_resource type="Script" uid="uid://b6arq0r66q6s6" path="res://Core/Components/invulnerable_component.gd" id="3_j225i"]
+[ext_resource type="Script" uid="uid://cm1mms3c071sl" path="res://Core/Components/hitstop.gd" id="4_4dgnb"]
+[ext_resource type="PackedScene" uid="uid://dg1evy6xs7qml" path="res://Core/Components/hurt_box.tscn" id="5_t7jcq"]
+[ext_resource type="AudioStream" uid="uid://brohwidjsyx3n" path="res://SFX/enemy_hit.wav" id="6_ietat"]
+[ext_resource type="Material" uid="uid://dex885e487odc" path="res://Enemies/Shaders/enemy_overlay_shader.tres" id="7_h38xs"]
+[ext_resource type="Texture2D" uid="uid://bd7jtanir3ccq" path="res://Enemies/floating_enemy/spritesheet (3).png" id="8_ly30n"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="9_1hqlx"]
+[ext_resource type="Script" uid="uid://biyu7104cljvh" path="res://Core/Components/health_component.gd" id="10_2vf6f"]
+[ext_resource type="Script" uid="uid://s6r5lok21ywd" path="res://Core/Components/status_effect_manager.gd" id="11_2p3i0"]
+[ext_resource type="Script" uid="uid://bf51pi76mtfhi" path="res://Core/Components/bounce_component.gd" id="12_2n2ur"]
+
+[node name="CoreComponents" type="Node3D" unique_id=1215065551]
+script = ExtResource("1_6ylru")
+
+[node name="KnockbackComponent" type="Node3D" parent="." unique_id=1664003806]
+script = ExtResource("2_c1bs7")
+knockback_mult = 9.0
+knockback_dampening = 0.75
+
+[node name="InvulnerableComponent" type="Node3D" parent="." unique_id=434549807]
+script = ExtResource("3_j225i")
+metadata/_custom_type_script = "uid://b6arq0r66q6s6"
+
+[node name="HitStop" type="Node3D" parent="." unique_id=1414402980]
+script = ExtResource("4_4dgnb")
+metadata/_custom_type_script = "uid://cm1mms3c071sl"
+
+[node name="HurtBox" parent="." unique_id=1638711581 instance=ExtResource("5_t7jcq")]
+visible = false
+hurt_box_type = 1
+hit_sound_fx = ExtResource("6_ietat")
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=789758305]
+transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, -0.05529785, 0.25720215, 0.07720947)
+layers = 2
+material_overlay = ExtResource("7_h38xs")
+pixel_size = 0.001
+double_sided = false
+alpha_cut = 2
+texture = ExtResource("8_ly30n")
+hframes = 6
+script = ExtResource("9_1hqlx")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=2124591919]
+script = ExtResource("10_2vf6f")
+metadata/_custom_type_script = "uid://biyu7104cljvh"
+
+[node name="StatusEffectManager" type="Node3D" parent="." unique_id=323896304]
+script = ExtResource("11_2p3i0")
+
+[node name="BounceComponent" type="Node3D" parent="." unique_id=1964277859]
+script = ExtResource("12_2n2ur")

@@ -25,6 +25,10 @@ func run(_delta: float) -> void:
 	set_charge_progress()
 	check_state()
 
+func fixed_run(_delta: float) -> void:
+	entity.position.y = 0
+	entity.velocity = Vector3.ZERO
+
 func exit() -> void:
 	entity.position.y = 0
 	entity.velocity.y = 0

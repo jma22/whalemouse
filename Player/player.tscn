@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="20_n471f"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://cnjqg8b31hol6" path="res://SFX/attack.wav" id="22_hshwv"]
-[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Enemies/core_components.tscn" id="25_qemgg"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="25_qemgg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1, 3.6142578, 1.4425049)

@@ -48,6 +48,7 @@ static func _static_init() -> void:
 	_add_generic_blessing("player_attack_speed", "Sonic Seashell", _attack_speed_desc, -5, [_increase_stats_effect.bind("player_attack_speed")])
 	_add_generic_blessing("ebb_drop", "Ebb Essence", _ebb_drop_desc, -5, [_increase_stats_effect.bind("ebb_drop")])
 	_add_one_time_blessing("ebb_on_stand", "Ebb's Embrace", _ebb_on_stand_desc, -5, [_increase_stats_effect.bind("ebb_on_stand")])
+	_add_generic_blessing("dying_ebb", "Last Stand", _dying_ebb_desc, -5, [_increase_stats_effect.bind("dying_ebb")])
 	_add_generic_blessing("damaging_dash", "Shark Teeth", _damaging_dash_desc, -5,[_increase_stats_effect.bind("damaging_dash")])
 	_add_generic_blessing("damage_reduction", "Big Shell", _damge_reduction_desc, -5,[_increase_stats_effect.bind("damage_reduction")])
 	_add_generic_blessing("thornmail", "Thornmail", _thornmail_desc, -5, [_increase_stats_effect.bind("thornmail")])
@@ -278,15 +279,18 @@ static func _attack_speed_desc() -> String:
 
 static func _ebb_drop_desc() -> String:
 	if GlobalStats.current_run_stats["ebb_drop"] == 0:
-		return "Enemies drop ebb orbs!"
+		return "Enemies have a chance to drop ebb orbs!"
 	else:		
-		return "Enemies drop ebb orbs more often!"
+		return "Enemies have a chance to drop extra ebb orbs!"
 
 static func _ebb_on_stand_desc() -> String:
 	return "Gain ebb while standing still!"
 
 static func _damaging_dash_desc() -> String:
-	return "Your dash damages enemies!"
+	if GlobalStats.current_run_stats["dash_distance"] == 0:
+		return "Your dash damages enemies! (You have no dash yet)"
+	else:
+		return "Your dash damages enemies!"
 
 static func _damge_reduction_desc() -> String:
 	return "Take less damage!" % (GlobalStats.get_damage_reduced_by())
@@ -302,3 +306,6 @@ static func _fast_during_status_desc() -> String:
 
 static func _flat_speed_desc() -> String:
 	return "Move faster!"
+
+static func _dying_ebb_desc() -> String:
+	return "Gain ebb when you are at low health!"

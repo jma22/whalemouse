@@ -52,7 +52,7 @@ func fade_in() -> void:
 	tween.tween_property(container, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tween.tween_property(background, "modulate:a", 0.8, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	displaying_tutorial = true
-	SceneManager.pause_game()
+	SceneManager.set_paused(true)
 
 
 func show_text(text : String, is_blessing : bool) -> void:
@@ -100,4 +100,4 @@ func exit_tutorial() -> void:
 	displaying_tutorial = false
 	await tween.finished
 	visible = false
-	SceneManager.resume_game()
+	SceneManager.set_paused(false)

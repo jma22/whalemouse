@@ -42,7 +42,6 @@ func fixed_run(_delta: float) -> void:
 
 func set_target_position(position: Vector3) -> void:
 	target_position = position
-	print("Target position set to: ", target_position)
 
 func check_state() -> void:
 	pass

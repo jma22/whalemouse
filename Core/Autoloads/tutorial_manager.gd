@@ -11,6 +11,8 @@ enum TutorialEnum {
 	CURSE_OF_THE_DEPTHS,
 	GOODLUCK,
 	SECOND_CHOICE,
+	EBB_ORB,
+	BLEED
 }
 var tutorial : Tutorial = null
 var tutorials : Dictionary= {
@@ -51,7 +53,9 @@ var tutorials : Dictionary= {
 		["Saves time to buy more time to save time... For what?", false]
 	],
 	TutorialEnum.GOODLUCK: [["You're doing great. You got this!", true],
-		["Got more time to lose", false]]
+		["Got more time to lose", false]],
+	TutorialEnum.EBB_ORB: [["These are ebb orbs! They slow down the curse for one second!", true]],
+	TutorialEnum.BLEED: [["You are decaying! The curse runs faster.", false]],
 }
 
 
@@ -60,7 +64,7 @@ func setup(tutorial : Tutorial) -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 
 func show_tutorial(tutorial_enum : TutorialEnum) -> void:
-	if tutorial_enum not in tutorials or not Config.is_enabled("tutorial_enabled"):
+	if tutorial_enum not in tutorials or not Config.is_enabled("tutorial_enabled", true):
 		return
 	var tutorial_lines : Array = tutorials.get(tutorial_enum)
 	tutorial.take_tutorial(tutorial_lines)

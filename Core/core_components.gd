@@ -8,11 +8,13 @@ class_name CoreComponents
 @onready var sprite_manager : SpriteManager = $SpriteManager
 @onready var health_component : HealthComponent = $HealthComponent
 @onready var status_effect_manager : StatusEffectManager = $StatusEffectManager
+@onready var bounce_component : BounceComponent = $BounceComponent
 
 
 func setup(entity : CharacterBody3D) -> void:
 	hurt_box.setup(entity)
 	knockback_component.setup(entity)
+	bounce_component.setup(entity, entity.get_floor())
 	sprite_manager.setup(hitstop)
 	health_component.setup(ceil(entity.initial_health + GlobalStats.get_enemy_health_flat()), entity)
 
