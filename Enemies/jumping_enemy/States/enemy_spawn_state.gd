@@ -37,8 +37,8 @@ func run(_delta: float) -> void:
 
 func spawn_enemy() -> void:
 	var spawn_position : Vector3 = sample_position_around_player(0.6)
-	var eye : Node3D = enemy_spawner.spawn_enemy("AnglerEye", spawn_position)
-	entity.link_health(eye)
+	var eye : Node3D = enemy_spawner.spawn_enemy("AnglerPillar", spawn_position)
+	# entity.link_health(eye)
 	spawned_count += 1
 
 func fixed_run(delta: float) -> void:

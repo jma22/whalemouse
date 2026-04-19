@@ -54,6 +54,9 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	super(attacker_hitbox)
 	linked_boss.on_hit(attacker_hitbox)
 
+func on_die() -> void:
+	super.on_die()
+	linked_boss.on_phase()
 
 func on_staggered() -> void:
 	hurt_state.set_idle_duration(0.2)

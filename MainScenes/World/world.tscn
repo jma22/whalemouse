@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="3_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_fth4m"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_yjwld"]
-[ext_resource type="PackedScene" uid="uid://0yjpdk334va6" path="res://Maps/BossMap/boss_map.tscn" id="8_b85it"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/wave_map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
@@ -91,11 +90,10 @@ shader_parameter/shape_treshold = 1.0
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2u3nc"]
 gradient = SubResource("Gradient_hiqwa")
 
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "boss_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner", "loading_screen")]
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner", "loading_screen")]
 script = ExtResource("1_ioo17")
 map_manager = NodePath("Map")
 shrine_map_manager = NodePath("BlessingMap")
-boss_map_manager = NodePath("SquidMap")
 player = NodePath("Player")
 hud = NodePath("HUD")
 time_damage = NodePath("TimeDamageManager")
@@ -142,8 +140,6 @@ script = ExtResource("10_wse8f")
 
 [node name="BlessingMap" parent="." unique_id=167256153 instance=ExtResource("10_70uel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
-
-[node name="SquidMap" parent="." unique_id=1918867340 instance=ExtResource("8_b85it")]
 
 [node name="WaveManager" type="Node3D" parent="." unique_id=212606823]
 script = ExtResource("10_k3n1d")

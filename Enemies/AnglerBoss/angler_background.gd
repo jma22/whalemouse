@@ -83,6 +83,14 @@ func on_hit(attacker_hitbox : Hitbox) -> void:
 	super(attacker_hitbox)
 	boss_health.update_health(health_component.current_health)
 
+func on_phase() -> void:
+	## add some overflow calculations here
+	sprite_manager.damage_flash()
+	var damage_taken : int = 30
+	health_component.take_damage(damage_taken)
+	hurt_box.on_valid_damaging_hit()
+	
+
 # func on_die() -> void:
 # 	super.on_die()
 # 	boss_health.hide()

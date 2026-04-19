@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://d37af6vooho1o"]
+
+[ext_resource type="Script" uid="uid://c5ox5s0hu85jd" path="res://Enemies/AnglerBoss/Pillar/angler_pillar.gd" id="1_8ysj7"]
+[ext_resource type="Script" uid="uid://blnovigm0t222" path="res://Core/Components/state_machine.gd" id="2_mnnpu"]
+[ext_resource type="Script" uid="uid://buhpc2nac6phq" path="res://Enemies/EnemyStates/enemy_peaceful_state.gd" id="3_flvac"]
+[ext_resource type="Script" uid="uid://dasdpk8volql6" path="res://Enemies/EnemyStates/enemy_walk_state.gd" id="4_jk5vt"]
+[ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="5_60vsk"]
+[ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="6_icwyp"]
+[ext_resource type="Resource" uid="uid://cfaeujvwoxxv3" path="res://Enemies/shooting_enemy/floating.tres" id="7_bw8ge"]
+[ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="8_1athr"]
+[ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="9_mpstd"]
+[ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="10_xg6p2"]
+[ext_resource type="Script" uid="uid://c0kuxp5ftpu4b" path="res://Enemies/shooting_enemy/enemy_shooting_state.gd" id="11_menin"]
+[ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="12_ix7bx"]
+[ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="13_cnbss"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="14_kfc22"]
+[ext_resource type="Texture2D" uid="uid://dx6ijhgg0v4e2" path="res://Enemies/shooting_enemy/2208_Sem_Titulo_20260414171619.png" id="15_470hc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
+size = Vector3(1, 3.6142578, 1.4425049)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aqk2v"]
+
+[sub_resource type="Resource" id="Resource_u8dbj"]
+script = ExtResource("5_60vsk")
+frame_numbers = Array[int]([3, 4, 5])
+metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
+[sub_resource type="Resource" id="Resource_tlby2"]
+script = ExtResource("5_60vsk")
+frame_numbers = Array[int]([0, 1, 2])
+name = "hurt"
+metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ft8c"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("14_kfc22")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
+shader_parameter/charge_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
+
+[node name="AnglerPillar" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("initial_state", "core_components")]
+script = ExtResource("1_8ysj7")
+initial_health = 6
+initial_state = NodePath("StateMachine/EnemyIdleState")
+core_components = NodePath("EnemyCoreComponents")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+shape = SubResource("BoxShape3D_wse8f")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=38642024]
+visible = false
+mesh = SubResource("CylinderMesh_aqk2v")
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=1875568966]
+script = ExtResource("2_mnnpu")
+debug = false
+
+[node name="EnemyPeacefulState" type="Node3D" parent="StateMachine" unique_id=61386969 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
+script = ExtResource("3_flvac")
+enemy_walk_state = NodePath("../EnemyWalkState")
+enemy_idle_state = NodePath("../EnemyIdleState")
+
+[node name="EnemyWalkState" type="Node3D" parent="StateMachine" unique_id=1458207868]
+script = ExtResource("4_jk5vt")
+animation = SubResource("Resource_u8dbj")
+
+[node name="EnemyIdleState" type="Node3D" parent="StateMachine" unique_id=389107089]
+script = ExtResource("6_icwyp")
+animation = ExtResource("7_bw8ge")
+
+[node name="EnemyRetreatState" type="Node3D" parent="StateMachine" unique_id=2069201459 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
+script = ExtResource("8_1athr")
+enemy_walk_state = NodePath("../EnemyWalkState")
+enemy_idle_state = NodePath("../EnemyIdleState")
+
+[node name="EnemyHurtState" type="Node3D" parent="StateMachine" unique_id=699051894]
+script = ExtResource("9_mpstd")
+animation = SubResource("Resource_tlby2")
+
+[node name="EnemyAttackParentState" type="Node3D" parent="StateMachine" unique_id=293896123 node_paths=PackedStringArray("charge_state", "attack_state", "cooldown_state")]
+script = ExtResource("10_xg6p2")
+charge_state = NodePath("EnemyChargeStateBase")
+attack_state = NodePath("EnemyShootingState")
+cooldown_state = NodePath("../EnemyIdleState")
+metadata/_custom_type_script = "uid://e0mqbimeypka"
+
+[node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169]
+script = ExtResource("11_menin")
+shooting_time = 1.5
+base_num_bullets = 5
+angle_between_bullets_degrees = 0.0
+
+[node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
+script = ExtResource("12_ix7bx")
+charge_time = 1.5
+metadata/_custom_type_script = "uid://y3u7axpv78ck"
+
+[node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("13_cnbss")]
+
+[node name="KnockbackComponent" parent="EnemyCoreComponents" index="0" unique_id=1664003806]
+knockback_mult = 0.0
+
+[node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
+transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, 0.08916238, -0.23256248)
+material_overlay = SubResource("ShaderMaterial_3ft8c")
+texture = ExtResource("15_470hc")
+hframes = 1
+layer_number = 2
+
+[editable path="EnemyCoreComponents"]

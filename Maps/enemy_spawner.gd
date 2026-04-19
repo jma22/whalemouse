@@ -86,6 +86,14 @@ const enemy_data = {
 		"spawn_type": "ranged",
 		"name": "AnglerEye",
 	},
+	"AnglerPillar" : {
+		"scene": preload("res://Enemies/AnglerBoss/Pillar/angler_pillar.tscn"),
+		"cost": 99,
+		"max_per_wave": 2,
+		"min_depth": 99,
+		"spawn_type": "melee",
+		"name": "AnglerPillar",
+	},
 }
 
 var spawned_enemies : Array[Node3D] = []
@@ -204,6 +212,7 @@ func all_dead() -> bool:
 	return true
 
 func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> Node3D:
+	print("spawning enemy: " + enemy_type)
 	if enemy_type in enemy_data:
 		var enemy_scene : PackedScene = enemy_data[enemy_type].scene
 		var enemy_instance : Node = enemy_scene.instantiate()
