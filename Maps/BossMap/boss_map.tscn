@@ -271,7 +271,7 @@ script = ExtResource("12_vauxf")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1162513576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5207565, -3.5342999)
-light_color = Color(0.9999983, 0.37456837, 0.3875323, 1)
+light_color = Color(0.19546086, 0.20995834, 0.591482, 1)
 light_energy = 2.0
 light_indirect_energy = 0.0
 light_bake_mode = 1
