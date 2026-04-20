@@ -6,6 +6,7 @@ class_name BlessingBar
 var icons : Array[Icon] = []
 
 func sync_bar() -> void:
+	print("Syncing BlessingBar")
 	reset()
 	for augment_name : String in GlobalStats.wave_augments.keys():
 		var augment_icon : Icon = icon_scene.instantiate() as Icon

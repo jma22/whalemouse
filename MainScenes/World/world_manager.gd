@@ -63,6 +63,7 @@ func reset() -> void:
 	player.reset()
 	time_damage.reset()
 	wave_manager.reset()
+	hud.reset()
 
 func map_entered(first_time: bool) -> void:
 	if not first_time:

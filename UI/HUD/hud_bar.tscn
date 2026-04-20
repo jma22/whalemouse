@@ -15,7 +15,7 @@
 [node name="HudBar" type="Control" unique_id=460654951 node_paths=PackedStringArray("hp_label", "life_circle", "whale_circle", "whale_icon", "status_effect_icons")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 622.49994
+offset_right = 862.49994
 offset_bottom = 222.49998
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_5igc2")
@@ -66,6 +66,7 @@ value = 75.0
 texture_under = ExtResource("7_j1dtk")
 texture_over = ExtResource("8_3j5as")
 texture_progress = ExtResource("9_v0fj0")
+tint_progress = Color(3.3975437, 3.3975437, 3.3975437, 1)
 
 [node name="Beluga" type="TextureRect" parent="." unique_id=203661529]
 layout_mode = 0

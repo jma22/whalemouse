@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://8272chi4ewoa"]
+
+[ext_resource type="Texture2D" uid="uid://dc1mhqv2l07rt" path="res://UI/HUD/BossRelicIcons/boss_blessing_icon.png" id="1_60hbt"]
+[ext_resource type="Script" uid="uid://dkvamouv8dmr2" path="res://UI/HUD/boss_info_bar.gd" id="1_m3ff7"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="2_60hbt"]
+[ext_resource type="Texture2D" uid="uid://dxexdjcl776p8" path="res://UI/HUD/BossRelicIcons/boss_curse_icon.png" id="3_60hbt"]
+
+[node name="BossInfoBar" type="HBoxContainer" unique_id=1681354303 node_paths=PackedStringArray("blessing_num", "curse_num")]
+offset_right = 100.0
+offset_bottom = 20.0
+theme_override_constants/separation = 0
+script = ExtResource("1_m3ff7")
+blessing_num = NodePath("HBoxContainer/Control/RichTextLabel")
+curse_num = NodePath("HBoxContainer2/Control/RichTextLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1104101680]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1214111026]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_60hbt")
+expand_mode = 5
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1884855506]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Control" unique_id=1357881901]
+layout_mode = 0
+offset_top = -2.5
+offset_right = 16.0
+offset_bottom = 22.5
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_60hbt")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "3"
+scroll_active = false
+vertical_alignment = 1
+justification_flags = 161
+
+[node name="buffer" type="Control" parent="." unique_id=239024495]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=534929460]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2" unique_id=37418052]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_60hbt")
+expand_mode = 5
+
+[node name="Control" type="Control" parent="HBoxContainer2" unique_id=481869972]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer2/Control" unique_id=2052307795]
+layout_mode = 0
+offset_top = -2.5
+offset_right = 16.0
+offset_bottom = 22.5
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_60hbt")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "3"
+scroll_active = false
+vertical_alignment = 1
+justification_flags = 161

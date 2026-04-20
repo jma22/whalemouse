@@ -76,7 +76,7 @@ func get_spawn_location(enemies : Array[Node3D], topk :int = 1) -> Array[Vector3
 	for enemy in enemies:
 		var distance : float = player.global_transform.origin.distance_to(enemy.global_transform.origin)
 		enemy_distance.append({"enemy": enemy, "distance": distance})
-	enemy_distance.sort_custom(func(a : Dictionary, b : Dictionary) -> bool: return a["distance"] > b["distance"])
+	enemy_distance.sort_custom(func(a : Dictionary, b : Dictionary) -> bool: return a["distance"] < b["distance"])
 
 	# var closest_enemy : Node3D = enemies[0]
 	# var closest_distance : float = player.global_transform.origin.distance_to(closest_enemy.global_transform.origin)

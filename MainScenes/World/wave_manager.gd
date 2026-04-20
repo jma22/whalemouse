@@ -123,7 +123,7 @@ func preboss_room() -> ChoiceWaveInfo:
 		"Face the Angler", 
 		func () -> String:
 			return "Fight the Angler.",
-		[_queue_wave_effect.bind(boss_wave)])
+		[_queue_wave_effect.bind(boss_wave())])
 	
 	wave_info.blessings = [upgrade_one]
 	wave_info.room_type = "shrine"
@@ -136,11 +136,11 @@ func boss_choice_path() -> ChoiceWaveInfo:
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	var boss_rooms : Array[Callable] = []
 	for i in range(GlobalStats.get_num_boss_blessings()):
-		boss_rooms.append(_queue_wave_effect.bind(boss_blessings_wave))
+		boss_rooms.append(_queue_wave_effect.bind(boss_blessings_wave()))
 
 	for i in range(GlobalStats.get_num_boss_curses()):
-		boss_rooms.append(_queue_wave_effect.bind(boss_curse_wave))
-	boss_rooms.append(_queue_wave_effect.bind(preboss_room))
+		boss_rooms.append(_queue_wave_effect.bind(boss_curse_wave()))
+	boss_rooms.append(_queue_wave_effect.bind(preboss_room()))
 
 	var upgrade_one : UpgradeData = Upgrades.create_wave_choice_upgrade(
 		"boss_angler", 

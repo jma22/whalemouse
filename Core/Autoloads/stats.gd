@@ -35,8 +35,7 @@ var current_run_stats : Dictionary = {
 	"fast_while_status" :0,
 	"flat_speed" : 0,
 
-	"num_curses": 0,
-	"num_blessings" : 0,
+
 	"num_whales" : 0,
 	"curse_on_hit" : 0,
 	"extra_boss_health" : 0,
@@ -45,6 +44,10 @@ var current_run_stats : Dictionary = {
 	"boss_attack_size" : 0,
 }
 
+var boss_stats : Dictionary = {
+	"num_curses": 0,
+	"num_blessings" : 0,
+}
 # var boss_stats : Dictionary = {
 # 	"boss_health" : 0,
 # 	"boss_damage" : 0,
@@ -114,6 +117,12 @@ func add_to_stat(stat_name: String) -> void:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
 	if hud and hud.blessing_bar:
 		hud.blessing_bar.sync_bar()
+
+func add_boss_stat(stat_name: String) -> void:
+	if boss_stats.has(stat_name):
+		boss_stats[stat_name] += 1
+	if hud and hud.boss_info:
+		hud.boss_info.sync_bar()
 
 func add_wave_augment(augment_name: String, wave_duration : int) -> void:
 	wave_augments[augment_name] = wave_duration
@@ -247,10 +256,10 @@ func is_positive_stat(stat_name: String) -> bool:
 
 ## boss zone
 func get_num_boss_blessings() -> int:
-	return current_run_stats["num_blessings"]
+	return boss_stats["num_blessings"]
 
 func get_num_boss_curses() -> int:
-	return current_run_stats["num_curses"]
+	return boss_stats["num_curses"]
 
 func get_healing_light_heal() -> int:
 	return current_run_stats["time_tick_level"] * 30

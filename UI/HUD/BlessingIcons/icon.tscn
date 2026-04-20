@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="2_otv2m"]
 
 [node name="Icon" type="Control" unique_id=289336127 node_paths=PackedStringArray("icon_texture", "text")]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 45.0
@@ -19,12 +19,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -18.0
-offset_right = -3.0
-offset_bottom = -18.0
+offset_left = -10.0
+offset_top = -20.0
+offset_right = -10.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.41, 1.41)
 texture = ExtResource("2_02y1h")
 expand_mode = 5
 stretch_mode = 6
@@ -36,10 +37,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -41.0
-offset_top = -37.0
-offset_right = -10.0
-offset_bottom = -11.0
+offset_left = -35.0
+offset_top = -22.0
+offset_right = -4.0
+offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/default_color = Color(0.1444, 0.76, 0.19569995, 1)

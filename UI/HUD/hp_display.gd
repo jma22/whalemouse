@@ -106,6 +106,7 @@ func set_whale_circle() -> void:
 		# make sprite grayscale
 		if progress == 1.0:
 			whale_icon.modulate = Color(1, 1, 1, 1)
+			whale_circle.tint_progress = Color(1.5,1.5,1.5,1)
 			if not played_whale_tween:
 				whale_tween = create_tween()
 				whale_tween.tween_property(whale_circle, "scale", Vector2(0.04, 0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
@@ -116,6 +117,7 @@ func set_whale_circle() -> void:
 				played_whale_tween = true
 		else:
 			whale_icon.modulate = Color(1, 1, 1, 0.1)
+			whale_circle.tint_progress = Color(1.0,1.0,1.0,1)
 			played_whale_tween = false
 
 
@@ -129,4 +131,11 @@ func set_status_effects(effects: Array[StatusEffect]) -> void:
 			status_effect_icons[i].turn_off()
 
 
-	 
+		if player.status_effect_manager.has_status_effect("haste"):
+			life_circle.tint_progress = Color(0.15, 0.78, 0.71)
+		elif player.status_effect_manager.has_status_effect("slow"):
+			life_circle.tint_progress = Color(0.31, 0.57, 1.34)
+		elif player.status_effect_manager.has_status_effect("freeze"):
+			life_circle.tint_progress = Color(0.5, 0.5, 1.3)
+		else:
+			life_circle.tint_progress = Color(1.0, 1.0, 1.0, 1.0)
