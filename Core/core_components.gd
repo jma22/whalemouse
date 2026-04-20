@@ -14,7 +14,7 @@ class_name CoreComponents
 func setup(entity : CharacterBody3D) -> void:
 	hurt_box.setup(entity)
 	knockback_component.setup(entity)
-	bounce_component.setup(entity, entity.get_floor())
+	bounce_component.setup(entity)
 	sprite_manager.setup(hitstop)
 	health_component.setup(ceil(entity.initial_health + GlobalStats.get_enemy_health_flat()), entity)
 

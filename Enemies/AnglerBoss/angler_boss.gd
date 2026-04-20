@@ -1,5 +1,4 @@
 extends EnemyBase
-class_name AnglerBoss
 
 
 @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
@@ -13,8 +12,13 @@ class_name AnglerBoss
 # @onready var enemy_jump_attack_state : EnemyJumpAttackState = $StateMachine/EnemyJumpAttackState
 # @onready var enemy_jump_attack_charge_state : EnemyJumpAttackChargeState = $StateMachine/EnemyJumpAttackChargeState
 
-@onready var enemy_spawn_state : EnemySpawnState = $StateMachine/EnemySpawnState
+# @onready var enemy_spawn_state : EnemySpawnState = $StateMachine/EnemySpawnState
+@onready var phase1state : State = $StateMachine/AnglerOneState
+@onready var phase2state : State = $StateMachine/AnglerTwoState
+@onready var phase3state : State = $StateMachine/AnglerThreeState
 
+var minion_spawn_points : Array[Vector3] = []
+var pillar_spawn_points : Array[Vector3] = []
 # @onready var enemy_ink_attack_state : EnemyInkAttackState = $StateMachine/EnemyInkAttackState
 var pursuit_range : float = 3.0
 var attack_range : float = 1.5
@@ -25,8 +29,17 @@ var enemy_spawner : EnemySpawner
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	# initial_state = enemy_ink_attack_state
-	super.setup(player, map)
+	super(player, map)
+	health_component.max_health += GlobalStats.get_extra_boss_health() * 4
+	health_component.current_health = health_component.max_health
+
 	sprite_manager.render_priority = -1
+	sprite_manager.material_overlay.render_priority = -1
+	hurt_box.set_active(false)
+	for node : Node3D in get_tree().get_nodes_in_group("minion_spawn"):
+		minion_spawn_points.append(node.global_transform.origin)
+	for node : Node3D in get_tree().get_nodes_in_group("pillar_points"):
+		pillar_spawn_points.append(node.global_transform.origin)
 
 func link_boss_health(boss_health : BossHealth) -> void:
 	self.boss_health = boss_health
@@ -35,63 +48,41 @@ func link_boss_health(boss_health : BossHealth) -> void:
 func link_health(enemy : EnemyBase) -> void:
 	enemy.link_boss(self)
 
-
 func link_spawner(enemy_spawner_ : EnemySpawner) -> void:
 	enemy_spawner = enemy_spawner_
-	enemy_spawn_state.link_spawner(enemy_spawner)
 
 
 func check_state() -> void:
-	pass
-	# if state_machine.current_state.is_complete:
-	# 	if state_machine.current_state == enemy_jump_attack_charge_state:
-	# 		state_machine.set_state(enemy_jump_attack_state)
-	# 	# elif state_machine.current_state == enemy_jump_attack_state:
-	# 	# 	enemy_idle_state.set_idle_duration(randf() * 1.0 + 0.5)
-	# 	# 	state_machine.set_state(enemy_idle_state)
-	# 	elif state_machine.current_state == enemy_jump_attack_state:
-	# 		state_machine.set_state(sample_next_state())
-	# 	else:
-	# 		state_machine.set_state(enemy_jump_attack_charge_state)
-
-
-# func sample_next_state() -> State:
-# 	var rand : float = randf()
-# 	if rand < 0.5:
-# 		return enemy_jump_attack_charge_state
-# 	elif rand < 0.8:
-# 		return enemy_ink_attack_state
-# 	else:
-# 		return enemy_spawn_state
-
-# func check_range() -> void:
-# 	var distance_to_player : float = global_transform.origin.distance_to(player.global_transform.origin)
-# 	if distance_to_player <= attack_range:
-# 		if state_machine.current_state != attack_state:
-# 			state_machine.set_state(charge_state)
-# 	elif distance_to_player <= pursuit_range:
-# 		if state_machine.current_state != attack_state:
-# 			if randf() < 0.75:
-# 				state_machine.set_state(retreat_state)
-# 			else:
-# 				state_machine.set_state(approach_state)
-# 	else:
-# 		if state_machine.current_state != enemy_idle_state and state_machine.current_state != charge_state:
-# 			state_machine.set_state(peaceful_state)
+	if state_machine.current_state.is_complete:
+		if state_machine.current_state == phase1state:
+			state_machine.set_state(phase2state)
+		elif state_machine.current_state == phase2state:
+			state_machine.set_state(phase3state)
+		elif state_machine.current_state == phase3state:
+			return
+			# state_machine.set_state(phase1state)
 
 func on_hit(attacker_hitbox : Hitbox) -> void:
 	super(attacker_hitbox)
 	boss_health.update_health(health_component.current_health)
 
-func on_phase() -> void:
-	## add some overflow calculations here
+func on_eye_died() -> void:
+	var quarter: int = health_component.max_health / 4
+	var next_quarter: int = ((health_component.current_health - 1) / quarter) * quarter
+	var damage_taken: int = health_component.current_health - next_quarter
 	sprite_manager.damage_flash()
-	var damage_taken : int = 30
+	# next closest quarter of health 
 	health_component.take_damage(damage_taken)
 	hurt_box.on_valid_damaging_hit()
+	state_machine.current_state.on_eye_died()
 	
 
-# func on_die() -> void:
+func on_die() -> void:
+	if is_dead:
+		return
+	super()
+	enemy_spawner.kill_all_enemies() 
+
 # 	super.on_die()
 # 	boss_health.hide()
 # func on_staggered() -> void:

@@ -1,7 +1,8 @@
 extends Camera3D
 
 @export var target : Node3D = null
-@export var distance : float = 1.2
+@export var wave_distance : float = 1.9
+@export var boss_distance : float = 2.5
 
 @export var smooth_speed : float = 5.0
 
@@ -10,8 +11,14 @@ extends Camera3D
 @export var t_margin : float
 var bounds : AABB
 # var offset : Vector3 = Vector3(0, 2, 2)
+var distance :float = 1.9
 
 
+func set_wave_mode() -> void:
+	distance = wave_distance
+
+func set_boss_mode() -> void:
+	distance = boss_distance
 
 func get_offset() -> Vector3:
 	var tilt : float = get_rotation().x * -1.0

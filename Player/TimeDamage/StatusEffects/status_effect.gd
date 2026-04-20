@@ -34,7 +34,7 @@ func get_multiplier() -> float:
 		"slow":
 			return 0.33
 		"haste":
-			return 1.5
+			return 2.0
 		_:
 			return 1.0
 

@@ -54,6 +54,16 @@ static func _static_init() -> void:
 	_add_generic_blessing("thornmail", "Thornmail", _thornmail_desc, -5, [_increase_stats_effect.bind("thornmail")])
 	_add_generic_blessing("fast_while_status", "Swift Current", _fast_during_status_desc, -5, [_increase_stats_effect.bind("fast_while_status")])
 	_add_generic_blessing("flat_speed", "Eel boots?", _flat_speed_desc, -5, [_increase_stats_effect.bind("flat_speed")])
+
+	_add_boss_curse("extra_boss_health", "Angler's Feast", _extra_boss_health_desc, [_increase_stats_effect.bind("extra_boss_health")])
+	_add_boss_curse("curse_on_hit", "Poisonous Touch", _curse_on_hit_desc, [_increase_stats_effect.bind("curse_on_hit")])
+	_add_boss_curse("boss_attack_size", "Massive Tentacles", _boss_attack_size_desc, [_increase_stats_effect.bind("boss_attack_size")])
+
+	_add_boss_blessing("flat_heal", "Healing Light", _boss_heal_desc,  [_boss_heal_effect])
+	_add_boss_blessing("num_whales", "Whale Song", _num_whales_desc,  [_increase_stats_effect.bind("num_whales")])
+	_add_boss_blessing("boss_xp_drop", "Angler Hunter", _enemy_xp_drop_desc,  [_increase_stats_effect.bind("boss_xp_drop")])
+	_add_boss_blessing("critical_chance", "Sharpshell", _critical_chance_desc,  [_increase_stats_effect.bind("critical_chance")])
+	
 	
 
 
@@ -92,9 +102,20 @@ static func get_randomized_upgrades(type: Array[String], amount: int) -> Array[U
 
 	if randomized.size() < amount:
 		return randomized
-
+	
 	randomized.shuffle()
-	return randomized.slice(0, amount)
+	var chosen_upgrades : Array[UpgradeData] = randomized.slice(0, amount)
+	for upgrade in chosen_upgrades:
+		if upgrade.blessing_type == "big_curse":
+			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
+			chosen_upgrades.append(get_beluga_upgrade(upgrade))
+			chosen_upgrades.erase(upgrade)
+		else:
+			if randf() < 0.05:
+				TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
+				chosen_upgrades.append(get_beluga_upgrade(upgrade))
+				chosen_upgrades.erase(upgrade)
+	return chosen_upgrades
 
 static func scale_augment_cost(flat : int)	-> int:
 	var heal_scaling : float = 1.0
@@ -164,6 +185,23 @@ static func get_augmented_upgrade(upgrade_data : UpgradeData) -> UpgradeData:
 		new_effects)
 	return new_upgrade
 
+static func get_beluga_upgrade(upgrade_data : UpgradeData) -> UpgradeData:
+	var new_effects : Array[Callable] = upgrade_data.effects.duplicate()
+
+	new_effects.append(_increase_stats_effect.bind("num_blessings"))
+
+	var new_desc : Callable = func new_description_func() -> String:
+		return upgrade_data.get_description() + "\n[rainbow freq=0.6 sat=0.8 val=1.0 speed=0.4]Beluga's Blessing[/rainbow]"
+		
+
+	var new_display_name : String = upgrade_data.display_name + "+"
+	var new_upgrade : UpgradeData = UpgradeData.new(
+		upgrade_data.internal_name, 
+		new_display_name, 
+		upgrade_data.blessing_type, 
+		new_desc,
+		new_effects)
+	return new_upgrade
 
 # --- constructors ---
 static func _add_generic_blessing(internal_name: String, display_name: String, description_func: Callable, base_augment : int, effects: Array[Callable] = []) -> void:
@@ -195,9 +233,20 @@ static func create_wave_choice_upgrade(internal_name: String, display_name: Stri
 	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "wave_choice_upgrade", description_func, effects)
 	return upgrade
 
+static func _add_boss_curse(internal_name: String, display_name: String, description_func: Callable, effects: Array[Callable] = []) -> void:
+	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "boss_curse", description_func, effects)
+	list[internal_name] = upgrade
+
+static func _add_boss_blessing(internal_name: String, display_name: String, description_func: Callable, effects: Array[Callable] = []) -> void:
+	var upgrade : UpgradeData = UpgradeData.new(internal_name, display_name, "boss_blessing", description_func, effects)
+	list[internal_name] = upgrade
+
 # ---- effects ----
 static func _flat_heal_effect(amount : int) -> void:
 	GlobalStats.player.heal(amount)
+
+static func _boss_heal_effect() -> void:
+	GlobalStats.player.heal(GlobalStats.get_healing_light_heal())
 
 static func _scaled_heal_effect() -> void:
 	var amount : int = GlobalStats.get_heal_amount()
@@ -309,3 +358,27 @@ static func _flat_speed_desc() -> String:
 
 static func _dying_ebb_desc() -> String:
 	return "Gain ebb when you are at low health!"
+
+
+## boss zone
+
+static func _boss_heal_desc() -> String:
+	return "Heal %d" % (GlobalStats.get_healing_light_heal())
+
+static func _curse_on_hit_desc() -> String:
+	return "Bleed when you take damage."
+
+static func _num_whales_desc() -> String:
+	return "Summon an extra whale when you call Beluga!"
+
+static func _extra_boss_health_desc() -> String:
+	return "Increase boss health!"
+
+static func _critical_chance_desc() -> String:
+	return "Your attacks can critically strike for double damage!"
+
+static func _boss_xp_drop_desc() -> String:
+	return "Boss drops time orbs when damaged!"
+
+static func _boss_attack_size_desc() -> String:
+	return "Boss signature attack hits a larger area!"

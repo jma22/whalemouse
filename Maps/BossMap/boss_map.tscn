@@ -2,14 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dg2dmidv2g43e" path="res://Maps/BossMap/boss_map_manager.gd" id="1_pf42a"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="2_uxjpn"]
-[ext_resource type="PackedScene" uid="uid://dfggsvx0tq5f2" path="res://Enemies/AnglerBoss/angler_background.tscn" id="2_x6kko"]
 [ext_resource type="PackedScene" uid="uid://d4f06nj2iy67x" path="res://Maps/Decors/seaweed.tscn" id="6_iy2c3"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_j5ys2"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_kt1ox"]
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_uix04"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_qtgbq"]
 [ext_resource type="PackedScene" uid="uid://bb8si1mpdb4l2" path="res://Maps/Decors/bubble_back.tscn" id="11_5bul5"]
-[ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="11_f0u3y"]
 [ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="12_vauxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
@@ -140,15 +138,13 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="BossMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "gateway", "floor", "player_spawn_point")]
+[node name="BossMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "boss_spawn", "gateway", "floor", "player_spawn_point")]
 script = ExtResource("1_pf42a")
 enemy_spawner = NodePath("EnemySpawner")
+boss_spawn = NodePath("BossSpawn")
 gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
-
-[node name="AnglerBackground" parent="." unique_id=462439655 instance=ExtResource("2_x6kko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12924051, -3.1261668)
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)
@@ -273,15 +269,6 @@ visible = false
 [node name="EnemySpawner" type="Node3D" parent="." unique_id=1969495992]
 script = ExtResource("12_vauxf")
 
-[node name="Camera3D2" type="Camera3D" parent="." unique_id=283640284 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
-fov = 79.4
-size = 23.388
-script = ExtResource("11_f0u3y")
-target = NodePath("../PlayerSpawn")
-distance = 5.0
-smooth_speed = 10.0
-
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1162513576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5207565, -3.5342999)
 light_color = Color(0.9999983, 0.37456837, 0.3875323, 1)
@@ -290,6 +277,115 @@ light_indirect_energy = 0.0
 light_bake_mode = 1
 omni_range = 40.0
 omni_shadow_mode = 0
+
+[node name="BossSpawn" type="Node3D" parent="." unique_id=864518164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12924051, -3.43473)
+visible = false
+
+[node name="EyeCheckpoints" type="Node3D" parent="." unique_id=139912398]
+
+[node name="Node3D" type="Node3D" parent="EyeCheckpoints" unique_id=1456445457 groups=["eye_checkpoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.369591, 0, 0.5805642)
+
+[node name="Node3D2" type="Node3D" parent="EyeCheckpoints" unique_id=1252638234 groups=["eye_checkpoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3470254, 0, 0.4756196)
+
+[node name="Node3D3" type="Node3D" parent="EyeCheckpoints" unique_id=875572357 groups=["eye_checkpoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4382449, 0, -0.75591576)
+
+[node name="Node3D4" type="Node3D" parent="EyeCheckpoints" unique_id=1767894046 groups=["eye_checkpoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4514861, 0, -0.76516044)
+
+[node name="MinionSpawnpoints" type="Node3D" parent="." unique_id=884905680]
+
+[node name="Node3D" type="Node3D" parent="MinionSpawnpoints" unique_id=2080938562 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0496118, 0, -1.8456277)
+
+[node name="Node3D2" type="Node3D" parent="MinionSpawnpoints" unique_id=119572470 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0496118, 0, -0.98769915)
+
+[node name="Node3D3" type="Node3D" parent="MinionSpawnpoints" unique_id=705576285 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0496118, 0, -0.38931227)
+
+[node name="Node3D4" type="Node3D" parent="MinionSpawnpoints" unique_id=1183489230 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0496118, 0, 0.18744642)
+
+[node name="Node3D5" type="Node3D" parent="MinionSpawnpoints" unique_id=1735685631 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0496118, 0, 0.78583354)
+
+[node name="Node3D6" type="Node3D" parent="MinionSpawnpoints" unique_id=1454174580 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2586858, 0, 0.78583354)
+
+[node name="Node3D7" type="Node3D" parent="MinionSpawnpoints" unique_id=1007095100 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2586858, 0, 0.24512237)
+
+[node name="Node3D8" type="Node3D" parent="MinionSpawnpoints" unique_id=1642969212 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2586858, 0, -0.3532648)
+
+[node name="Node3D9" type="Node3D" parent="MinionSpawnpoints" unique_id=1824420480 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2586858, 0, -0.8723476)
+
+[node name="Node3D10" type="Node3D" parent="MinionSpawnpoints" unique_id=123360638 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2586858, 0, -1.5788767)
+
+[node name="Node3D11" type="Node3D" parent="MinionSpawnpoints" unique_id=1152480607 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5088997, 0, -1.5788767)
+
+[node name="Node3D12" type="Node3D" parent="MinionSpawnpoints" unique_id=1893318703 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8810134, 0, -1.5788767)
+
+[node name="Node3D13" type="Node3D" parent="MinionSpawnpoints" unique_id=1838419755 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2905166, 0, -1.5788767)
+
+[node name="Node3D14" type="Node3D" parent="MinionSpawnpoints" unique_id=1596841699 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59712815, 0, -1.5788767)
+
+[node name="Node3D15" type="Node3D" parent="MinionSpawnpoints" unique_id=238828792 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033014715, 0, -1.5788767)
+
+[node name="Node3D16" type="Node3D" parent="MinionSpawnpoints" unique_id=17170457 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63565725, 0, -1.5788767)
+
+[node name="Node3D17" type="Node3D" parent="MinionSpawnpoints" unique_id=1438342172 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1222869, 0, -1.5788767)
+
+[node name="Node3D18" type="Node3D" parent="MinionSpawnpoints" unique_id=335973244 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5269367, 0, -1.5788767)
+
+[node name="Node3D19" type="Node3D" parent="MinionSpawnpoints" unique_id=1213265158 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28174, 0, -1.5788767)
+
+[node name="Node3D20" type="Node3D" parent="MinionSpawnpoints" unique_id=2084981639 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.728905, 0, -1.5788767)
+
+[node name="Node3D21" type="Node3D" parent="MinionSpawnpoints" unique_id=1241216767 groups=["minion_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.728905, 0, -1.5788767)
+
+[node name="PillarPoints" type="Node3D" parent="." unique_id=898279051]
+
+[node name="Node3D" type="Node3D" parent="PillarPoints" unique_id=1969007497 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0519333, 0, 0.37841797)
+
+[node name="Node3D2" type="Node3D" parent="PillarPoints" unique_id=680103760 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77150726, 0, 0.37841797)
+
+[node name="Node3D3" type="Node3D" parent="PillarPoints" unique_id=1447740665 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0519333, 0, -0.814209)
+
+[node name="Node3D4" type="Node3D" parent="PillarPoints" unique_id=561099662 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1269608, 0, -0.96539307)
+
+[node name="Node3D5" type="Node3D" parent="PillarPoints" unique_id=418722889 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2907715, 0, 0.6508179)
+
+[node name="Node3D6" type="Node3D" parent="PillarPoints" unique_id=1606798015 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4279785, 0, -1.5252075)
+
+[node name="Node3D7" type="Node3D" parent="PillarPoints" unique_id=977888163 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.710556, 0, -1.1232175)
+
+[node name="Node3D8" type="Node3D" parent="PillarPoints" unique_id=916832286 groups=["pillar_points"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2126694, 0, 0.84033203)
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

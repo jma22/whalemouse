@@ -38,7 +38,11 @@ func flash_hurt() -> void:
 
 func update_status(status_effects : Array[StatusEffect]) -> void:
 	if status_effects.size() != old_status_effects.size():
-		if status_effect_manager.has_status_effect("slow"):
+		if status_effect_manager.has_status_effect("haste"):
+			material.set_shader_parameter("status_color", Color(0.0, 0.68, 0.41))
+			set_status()
+		elif status_effect_manager.has_status_effect("slow"):
+			material.set_shader_parameter("status_color", Color(0.11, 0.27, 0.94))
 			set_status()
 		else:
 			clear_status()

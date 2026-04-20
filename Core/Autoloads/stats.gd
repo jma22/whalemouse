@@ -35,7 +35,21 @@ var current_run_stats : Dictionary = {
 	"fast_while_status" :0,
 	"flat_speed" : 0,
 
+	"num_blessings" : 0,
+	"num_whales" : 0,
+	"curse_on_hit" : 0,
+	"extra_boss_health" : 0,
+	"critical_chance" : 0,
+	"boss_xp_drop" : 0,
+	"boss_attack_size" : 0,
 }
+
+# var boss_stats : Dictionary = {
+# 	"boss_health" : 0,
+# 	"boss_damage" : 0,
+# 	"boss_speed" : 0,
+# 	"num_whales" : 0,
+# }
 
 var wave_augments :Dictionary = {}
 
@@ -93,6 +107,8 @@ func add_to_stat(stat_name: String) -> void:
 		elif stat_name == "dash_distance" and current_run_stats[stat_name] ==1:
 			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_DASH)
 
+	# elif boss_stats.has(stat_name):
+	# 	boss_stats[stat_name] += 1
 	else:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
 	if hud and hud.blessing_bar:
@@ -165,7 +181,7 @@ func get_heal_amount() -> int:
 	return current_run_stats["heal"] * 5 + 4
 
 func get_damage_amount() -> int:
-	return current_run_stats["damage"] * 3 + 4
+	return current_run_stats["damage"] * 4 + 4
 
 func get_attracted_radius() -> float:
 	# return 0.7 + current_run_stats["xp_suck"] * 0.4
@@ -186,7 +202,7 @@ func get_dash_distance() -> float:
 
 func get_seconds_per_damage() -> float:
 	## i want the damager per second to quadratically increase
-	return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.4)**1.5
+	return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.4)**1.3
 	# return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.25)
 
 func get_enemy_projectile_flat() -> int:
@@ -225,3 +241,28 @@ func is_positive_stat(stat_name: String) -> bool:
 		return false
 	else:
 		return true
+
+
+
+## boss zone
+
+func get_healing_light_heal() -> int:
+	return current_run_stats["time_tick_level"] * 30
+
+func get_num_whales() -> int:
+	return current_run_stats["num_whales"] + 1
+
+func get_curse_duration_on_hit() -> float:
+	return current_run_stats["curse_on_hit"] * 2.0
+
+func get_extra_boss_health() -> int:
+	return current_run_stats["extra_boss_health"] * 10
+
+func get_critical_chance() -> float:
+	return current_run_stats["critical_chance"] * 0.2
+
+func get_boss_xp_drop_per_hit() -> int:
+	return current_run_stats["boss_xp_drop"]
+
+func get_boss_attack_size_multiplier() -> float:
+	return 1.0 + current_run_stats["boss_attack_size"] * 0.5

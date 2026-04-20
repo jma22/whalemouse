@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cl0e65jbns0dw" path="res://Enemies/SquidMinion/squid_minion.gd" id="1_5o2e5"]
 [ext_resource type="Texture2D" uid="uid://ba37fdyt37b1k" path="res://Enemies/SquidMinion/spritesheet_10.png" id="2_01mlv"]
 [ext_resource type="Script" uid="uid://blnovigm0t222" path="res://Core/Components/state_machine.gd" id="4_dt3ya"]
-[ext_resource type="Script" uid="uid://buhpc2nac6phq" path="res://Enemies/EnemyStates/enemy_peaceful_state.gd" id="5_xnwce"]
 [ext_resource type="Script" uid="uid://dasdpk8volql6" path="res://Enemies/EnemyStates/enemy_walk_state.gd" id="6_i85eb"]
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="7_htv12"]
 [ext_resource type="Script" uid="uid://ls5yyway87r7" path="res://Enemies/EnemyStates/enemy_idle_state.gd" id="8_jcl4o"]
@@ -11,9 +10,10 @@
 [ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="11_n1qu4"]
 [ext_resource type="Resource" uid="uid://bd28qktpwn3vs" path="res://Enemies/lunging_enemy/lunging.tres" id="12_4wlmv"]
 [ext_resource type="Script" uid="uid://7daypptg61vb" path="res://Enemies/EnemyStates/enemy_static_attack_state.gd" id="13_01mlv"]
-[ext_resource type="AudioStream" uid="uid://crjmhkf3glryi" path="res://SFX/enemy_dash.wav" id="14_bdh7n"]
+[ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="15_c23d6"]
 [ext_resource type="Script" uid="uid://dxewmof81bub4" path="res://Enemies/EnemyStates/enemy_retreat_state.gd" id="15_jf8nf"]
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="16_pfwht"]
+[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="17_kr8oo"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="22_8xu50"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="24_5o2e5"]
 
@@ -29,9 +29,22 @@ name = "minionwalk"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_okpwn"]
+height = 1.0
+radius = 0.2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0y1tm"]
 radius = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tblea"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("17_kr8oo")
+shader_parameter/charge_level = 0.0
+shader_parameter/flash_level = 0.0
+shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
+shader_parameter/charge_color = Color(0.21806103, 0.21806103, 0.21806103, 1)
+shader_parameter/mesh_bottom = -1.0
+shader_parameter/mesh_top = 1.0
 
 [node name="SquidMinion" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_5o2e5")
@@ -50,55 +63,22 @@ mesh = SubResource("CylinderMesh_aqk2v")
 [node name="StateMachine" type="Node3D" parent="." unique_id=493578502]
 script = ExtResource("4_dt3ya")
 
-[node name="EnemyPeacefulState" type="Node3D" parent="StateMachine" unique_id=1118483892 node_paths=PackedStringArray("enemy_walk_state")]
-script = ExtResource("5_xnwce")
-enemy_walk_state = NodePath("../EnemyWalkState")
-
 [node name="EnemyWalkState" type="Node3D" parent="StateMachine" unique_id=306571734]
 script = ExtResource("6_i85eb")
 animation = SubResource("Resource_01mlv")
-speed = 0.8
+speed = 2.0
 
 [node name="EnemyIdleState" type="Node3D" parent="StateMachine" unique_id=1853718207]
 script = ExtResource("8_jcl4o")
 animation = SubResource("Resource_01mlv")
 
-[node name="EnemyPursuitState" type="Node3D" parent="StateMachine" unique_id=1046851315]
+[node name="EnemyPursuitState" type="Node3D" parent="StateMachine" unique_id=1046851315 node_paths=PackedStringArray("enemy_walk_state", "enemy_idle_state")]
 script = ExtResource("10_wf80r")
-
-[node name="EnemyChargeState" type="Node3D" parent="StateMachine" unique_id=1796527246 node_paths=PackedStringArray("attack_state")]
-script = ExtResource("11_n1qu4")
-animation = SubResource("Resource_01mlv")
-charge_time = 0.3
-set_target_time = 0.29
-charge_creep_speed = 0.0
-attack_state = NodePath("../EnemyStaticAttackState")
-
-[node name="EnemyStaticAttackState" type="Node3D" parent="StateMachine" unique_id=1479567456 node_paths=PackedStringArray("audio_player", "hitbox")]
-script = ExtResource("13_01mlv")
-animation_clip = SubResource("Resource_01mlv")
-attack_speed = 0.0
-attack_duration = 0.3
-audio_player = NodePath("AudioStreamPlayer")
-hitbox = NodePath("Hitbox")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/EnemyStaticAttackState" unique_id=2009876568]
-stream = ExtResource("14_bdh7n")
-volume_db = -10.562
-pitch_scale = 1.7
-
-[node name="Hitbox" parent="StateMachine/EnemyStaticAttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("22_8xu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20677382)
-owner_entity = NodePath("../../..")
-damage = 5
-hitstop = NodePath("../../../CoreComponents/HitStop")
-
-[node name="CollisionShape3D" parent="StateMachine/EnemyStaticAttackState/Hitbox" index="0" unique_id=1405177479]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
-shape = SubResource("CylinderShape3D_okpwn")
-
-[node name="Sprite3D" parent="StateMachine/EnemyStaticAttackState/Hitbox" index="1" unique_id=468577178]
-visible = false
+enemy_walk_state = NodePath("../EnemyWalkState")
+enemy_idle_state = NodePath("../EnemyIdleState")
+optimal_probability = 1.0
+suboptimal_probability = 0.0
+idle_time = 0.0
 
 [node name="EnemyRetreatState" type="Node3D" parent="StateMachine" unique_id=1321767955]
 script = ExtResource("15_jf8nf")
@@ -106,6 +86,40 @@ script = ExtResource("15_jf8nf")
 [node name="EnemyHurtState" type="Node3D" parent="StateMachine" unique_id=1612505781]
 script = ExtResource("16_pfwht")
 animation = ExtResource("12_4wlmv")
+
+[node name="EnemyAttackParentState" type="Node3D" parent="StateMachine" unique_id=656962604 node_paths=PackedStringArray("charge_state", "attack_state", "cooldown_state")]
+script = ExtResource("15_c23d6")
+charge_state = NodePath("EnemyChargeStateBase")
+attack_state = NodePath("EnemyStaticAttackState")
+cooldown_state = NodePath("../EnemyIdleState")
+metadata/_custom_type_script = "uid://e0mqbimeypka"
+
+[node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=857032721]
+script = ExtResource("11_n1qu4")
+charge_time = 0.05
+set_target_time = 0.0
+metadata/_custom_type_script = "uid://y3u7axpv78ck"
+
+[node name="EnemyStaticAttackState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=524952895 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("13_01mlv")
+hitbox = NodePath("Hitbox")
+metadata/_custom_type_script = "uid://7daypptg61vb"
+
+[node name="Hitbox" parent="StateMachine/EnemyAttackParentState/EnemyStaticAttackState" unique_id=754444443 node_paths=PackedStringArray("owner_entity", "hitstop") instance=ExtResource("22_8xu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.20677382)
+visible = false
+owner_entity = NodePath("../../../..")
+damage = 5
+hitstop = NodePath("../../../../CoreComponents/HitStop")
+
+[node name="CollisionShape3D" parent="StateMachine/EnemyAttackParentState/EnemyStaticAttackState/Hitbox" index="0" unique_id=1405177479]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00833264, 0.03996277, 0.06772447)
+shape = SubResource("CylinderShape3D_okpwn")
+debug_color = Color(1, 0, 0, 0.7294118)
+debug_fill = true
+
+[node name="Sprite3D" parent="StateMachine/EnemyAttackParentState/EnemyStaticAttackState/Hitbox" index="1" unique_id=468577178]
+visible = false
 
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("24_5o2e5")]
 
@@ -119,10 +133,12 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0, 0.062365532, -0.2356031)
+material_overlay = SubResource("ShaderMaterial_tblea")
 texture = ExtResource("2_01mlv")
 hframes = 8
+frames_per_second = 5.0
 layer_number = 2
 
-[editable path="StateMachine/EnemyStaticAttackState/Hitbox"]
+[editable path="StateMachine/EnemyAttackParentState/EnemyStaticAttackState/Hitbox"]
 [editable path="CoreComponents"]
 [editable path="CoreComponents/HurtBox"]

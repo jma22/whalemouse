@@ -3,7 +3,7 @@ extends Node3D
 class_name WorldManager
 @export var map_manager: MapManagerBase
 @export var shrine_map_manager: MapManagerBase
-# @export var boss_map_manager: MapManagerBase
+@export var boss_map_manager: MapManagerBase
 
 @export var player : Node3D
 # @export var player_spawn_point: Node3D
@@ -29,13 +29,13 @@ class_name WorldManager
 func setup() -> void:
 	shrine_map_manager.setup(player, camera, hud)
 	map_manager.setup(player, camera, hud)
-	# boss_map_manager.setup(player, camera, hud)
+	boss_map_manager.setup(player, camera, hud)
 	hud.setup(player)
 	time_damage.setup(player)
-	player.setup(hud, map_manager.floor)
+	player.setup(hud)
 	GlobalStats.setup(player, hud)
 	transition.setup()
-	whale_spawner.setup(player, map_manager.floor, map_manager.enemy_spawner)
+	whale_spawner.setup(player)
 	call_deferred("map_entered", true)
 	## call  fade_out_loading() when above call is done 
 	## wait tille camera velocity is 0 then call fadeoutlaoding
@@ -73,12 +73,18 @@ func map_entered(first_time: bool) -> void:
 	if wave_info.room_type == "combat":
 		# player.global_transform.origin = Vector3.ZERO
 		map_manager.start_room(wave_info)
+		whale_spawner.enter_map(map_manager)
+		player.enter_map(map_manager)
 	elif wave_info.room_type == "shrine":
 		# player.global_transform.origin = Vector3(20, 0, 0)
 		shrine_map_manager.start_room(wave_info)
-	# elif wave_info.room_type == "boss":
-	# 	# player.global_transform.origin = Vector3(20, 0, 0)
-	# 	boss_map_manager.start_room(wave_info)
+		player.enter_map(shrine_map_manager)
+		# whale_spawner.enter_map(shrine_map_manager)
+	elif wave_info.room_type == "boss":
+		# player.global_transform.origin = Vector3(20, 0, 0)
+		boss_map_manager.start_room(wave_info)
+		whale_spawner.enter_map(boss_map_manager)
+		player.enter_map(boss_map_manager)
 
 
 	transition.transition_in()
@@ -86,17 +92,16 @@ func map_entered(first_time: bool) -> void:
 	# await wave_text.tween.finished
 	if first_time:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.INTRO)
-	if wave_manager.current_wave == 11:
-		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.GOODLUCK)
+	# if wave_manager.current_wave == 11:
+		# TutorialManager.show_tutorial(TutorialManager.TutorialEnum.GOODLUCK)
 	if wave_manager.current_wave == 1:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRSTARRIVE)
 	if wave_manager.current_wave == 5:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_CURSE)
-	if wave_manager.current_wave == 10:
-		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.CURSE_OF_THE_DEPTHS)
-	if wave_manager.current_wave == 4:
-		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.SECOND_CHOICE)
-
+	if wave_manager.current_wave_state == WaveManager.WaveState.BOSS_CHOICE:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BOSS_OPTION)
+	if wave_manager.current_wave_state == WaveManager.WaveState.FUNNY:
+		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FUNNY)
 	
 
 func next_wave() -> void:

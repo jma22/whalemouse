@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbn7e1ge0xaap"]
 
-[ext_resource type="Script" uid="uid://drkdyojqrhfs5" path="res://Enemies/Projectiles/damage_projectile.gd" id="1_141wg"]
+[ext_resource type="Script" uid="uid://drkdyojqrhfs5" path="res://Enemies/Projectiles/Bullet/damage_projectile.gd" id="1_141wg"]
 [ext_resource type="Texture2D" uid="uid://dbq0m7li6ghnd" path="res://Enemies/Projectiles/spritesheet_17.png" id="3_60c7s"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_4o6ks"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="7_r8gj3"]

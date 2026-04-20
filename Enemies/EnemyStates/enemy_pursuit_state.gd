@@ -3,6 +3,9 @@ extends State
 class_name EnemyPursuitState
 @export var enemy_walk_state : EnemyWalkState
 @export var enemy_idle_state : EnemyIdleState
+@export var optimal_probability : float = 0.5
+@export var suboptimal_probability : float = 0.2
+@export var idle_time : float = 0.4
 
 func enter() -> void:
 	enemy_idle_state.set_idle_duration(get_idle_duration())
@@ -23,12 +26,19 @@ func check_state() -> void:
 			state_machine.set_state(enemy_walk_state)
 	if get_child_state() == enemy_walk_state:
 		if enemy_walk_state.is_complete:
-			enemy_idle_state.set_idle_duration(get_idle_duration())
-			state_machine.set_state(enemy_idle_state)
-			is_complete = true
+			if idle_time == 0:
+				var target_position : Vector3 = get_walk_toward_player()
+				enemy_walk_state.set_target_position(target_position)
+				var facing_left : bool =  target_position.x < entity.global_transform.origin.x
+				entity.set_sprite_flip(facing_left)
+				state_machine.set_state(enemy_walk_state, true)
+			else:
+				enemy_idle_state.set_idle_duration(get_idle_duration())
+				state_machine.set_state(enemy_idle_state)
+				is_complete = true
 
 func get_idle_duration() -> float:
-	return 0.4 / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
+	return idle_time / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
 
 func get_walk_toward_player() -> Vector3:
 	var direction : Vector3 = (entity.player.global_transform.origin - entity.global_transform.origin).normalized()
@@ -41,7 +51,7 @@ func get_walk_toward_player() -> Vector3:
 	return target_point
 
 func sample_random_distance() -> float:
-	return randf_range(0.2, 0.8)
+	return randf_range(0.0, 0.4)
 
 
 func sample_cardinal_direction(direction: Vector3) -> Vector3:
@@ -59,12 +69,12 @@ func sample_cardinal_direction(direction: Vector3) -> Vector3:
 	var closest_direction : Vector3 = get_closest_cardinal_direction(direction)
 	var index : int = cardinal_directions.find(closest_direction)
 	var pick : float = randf()
-	if pick < 0.5:
+	if pick < optimal_probability:
 		return closest_direction
-	elif pick < 0.5 + 0.2:
+	elif pick < optimal_probability + suboptimal_probability:
 		var second_index : int = (index + 1) % cardinal_directions.size()
 		return cardinal_directions[second_index]
-	elif pick < 0.5 + 0.2 + 0.2:
+	elif pick < optimal_probability + suboptimal_probability + suboptimal_probability:
 		var third_index : int = (index - 1 + cardinal_directions.size()) % cardinal_directions.size()
 		return cardinal_directions[third_index]
 	else:

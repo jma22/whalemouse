@@ -4,7 +4,8 @@ class_name EnemyAttackParentState
 @export var charge_state : EnemyChargeStateBase
 @export var attack_state : State
 @export var cooldown_state : State
-
+@export var cooldown_mean_time : float = 1.0
+@export var cooldown_variance : float = 0.5
 
 func enter() -> void:
 	charge_state.attack_state = attack_state
@@ -22,10 +23,12 @@ func check_state() -> void:
 		if child_state == charge_state:
 			state_machine.set_state(attack_state)
 		elif child_state == attack_state:
-			cooldown_state.set_idle_duration(randf() * 1.0 + 0.5)
+			cooldown_state.set_idle_duration(sample_cooldown_time())
 			state_machine.set_state(cooldown_state)
 		elif child_state == cooldown_state:
 			is_complete = true
 
+func sample_cooldown_time() -> float:
+	return cooldown_mean_time + randf() * cooldown_variance * 2 - cooldown_variance
 
 			

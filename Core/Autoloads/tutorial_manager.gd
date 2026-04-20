@@ -12,50 +12,63 @@ enum TutorialEnum {
 	GOODLUCK,
 	SECOND_CHOICE,
 	EBB_ORB,
-	BLEED
+	BLEED,
+	BELUGAS_BLESSING,
+	BOSS_OPTION,
+	FUNNY
 }
 var tutorial : Tutorial = null
 var tutorials : Dictionary= {
 	TutorialEnum.INTRO: [["You're running out of time... [Press Space]", true], 
 		["You must go deeper and find more time.", true], 
-		[ "No he doesn't", false], 
-		["...?", true],
-		[ "That's just more work...", false], 
+		["When you're strong enough, you can go after the one who did this to you.", true], 
+		["But only when you are ready.", true],
+		["Who me?", false],
 		["Don't mind him. Use [WASD] to move around", true]
 	],
 	TutorialEnum.OVERSHRINE: [["Let me help you out...", true], 
 		["Use [Space] to choose one of these blessings. Trust me it'll help you out!", true],
 		["Then why don't you just give him both?", false]
 	],
-	TutorialEnum.OVERPORTAL: [["Let's keep going, you don't have much time left!", true]],
+	# TutorialEnum.OVERPORTAL: [["Let's keep going, you don't have much time left!", true]],
 	TutorialEnum.FIRSTARRIVE: [["Press [Space] to step on your enemies...", true],
 	["Don't forget to pick up those orbs to get some more time!", true],
-		["Why don't you try stepping on these poor guys yourself?", false]
+		# ["Why don't you try stepping on these poor guys yourself?", false]
 	],
 	TutorialEnum.FIRST_CURSE: [["Why don't you let me help you out a bit?", false],
-		["You're just making this harder!", true],
-		["It's called helping him \'move on\'.", false]
+		# ["You're just making this harder!", true],
+		# ["It's called helping him \'move on\'.", false]
 	],
-	TutorialEnum.SECOND_CHOICE: [["If you can't make up your mind, try pressing [esc]", false],
-		["I think that's cheating.", true],
-		["Oh so now you want him to have less time?", false]
+	TutorialEnum.FUNNY: [["Some choices are harder than others...", true],
+		["I can only freeze the curse for 30 seconds while you choose.", true],
+		["Actually, maybe you should hurry up.", false]
 	],
-	TutorialEnum.CURSE_OF_THE_DEPTHS: [["I'll make this easier for you.", false],
-		["I think you're supposed to give him two choices", true],
-		["Too bad", false]
-	],
+	# TutorialEnum.SECOND_CHOICE: [["If you can't make up your mind, try pressing [esc]", false],
+	# 	["I think that's cheating.", true],
+	# 	["Oh so now you want him to have less time?", false]
+	# ],
+	# TutorialEnum.CURSE_OF_THE_DEPTHS: [["I'll make this easier for you.", false],
+	# 	["I think you're supposed to give him two choices", true],
+	# 	["Too bad", false]
+	# ],
 	TutorialEnum.FIRST_BELUGA: [["Let me help you.", true],
-		["Wait you can do that?", false],
 		["Press [j/q] to summon me.", true]
 	],
 
 	TutorialEnum.FIRST_DASH: [["Press [shift] to dash - it saves some time.", true],
-		["Saves time to buy more time to save time... For what?", false]
+		["To lose to me faster.", false]
 	],
-	TutorialEnum.GOODLUCK: [["You're doing great. You got this!", true],
-		["Got more time to lose", false]],
+	# TutorialEnum.GOODLUCK: [["You're doing great. You got this!", true],
+	# 	["Got more time to lose", false]],
 	TutorialEnum.EBB_ORB: [["These are ebb orbs! They slow down the curse for one second!", true]],
 	TutorialEnum.BLEED: [["You are decaying! The curse runs faster.", false]],
+	TutorialEnum.BELUGAS_BLESSING: [["Some shrines will have my blessing.", true],
+		["They will give you powerful upgrades before fighting the boss.", true],
+		["They might even give you a blessing of my own...", true]],
+	TutorialEnum.BOSS_OPTION: [["You can choose to fight the boss, or continue to search for more time.", true],
+		["...", false],
+		["The boss will have his boons, but so will you.", true],
+		["Choose wisely.", true]]
 }
 
 

@@ -6,6 +6,7 @@ class_name HurtBox extends Area3D
 @export var time_on_hit : Node3D
 
 @export var orbs_on_hit : int = 0
+@export var ebb_on_hit : int = 0
 
 var owner_entity: CharacterBody3D
 var is_active : bool = true
@@ -40,6 +41,8 @@ func _on_area_exited(area: Area3D) -> void:
 func on_valid_damaging_hit() -> void:
 	if orbs_on_hit > 0:
 		time_on_hit.spawn_time(orbs_on_hit)
+	if ebb_on_hit > 0:
+		time_on_hit.spawn_ebb(ebb_on_hit)
 	if hit_sound:
 		hit_sound.pitch_scale = 0.75 + randf() * 0.5
 		hit_sound.play()

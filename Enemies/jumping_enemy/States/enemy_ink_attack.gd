@@ -18,7 +18,7 @@ var spawn_timer : float = 0.0
 var spawned_count : int = 0
 var target_position : Vector3
 
-var ink_projectile_scene : PackedScene = preload("res://Enemies/Projectiles/ink_ball.tscn")
+var ink_projectile_scene : PackedScene = preload("res://Enemies/Projectiles/InkBall/ink_ball.tscn")
 
 func enter() -> void:
 	entity.sprite_manager.play(animation)

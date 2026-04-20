@@ -35,3 +35,6 @@ static func get_icon_path_static(internal_name_ : String) -> String:
 		return correct_path
 	else:
 		return placeholder_path
+
+func has_belugas_blessing() -> bool:
+	return internal_name == "time_tick_level"

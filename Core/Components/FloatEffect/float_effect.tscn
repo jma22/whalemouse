@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c4d5jeqwnnnjb"]
+
+[ext_resource type="Script" uid="uid://cjbs8a1iuqo82" path="res://Core/Components/FloatEffect/float_effect.gd" id="1_47odg"]
+
+[node name="FloatEffect" type="Node3D" unique_id=1405987306]
+script = ExtResource("1_47odg")

@@ -13,18 +13,20 @@ enum WaveState {
 	WHALE_BLESSING,
 	QUEUED_WAVE,
 	INTRO_BLESSING,
+	BOSS_CHOICE,
 }
 var wave_sequence : Array[WaveState] = [
 	WaveState.INTRO_COMBAT,
 	WaveState.FUNNY, 
 	WaveState.COMBAT, 
 	WaveState.WHALE_BLESSING, 
-	WaveState.CURSE, 
+	WaveState.HARD_CURSE, 
 	WaveState.INTRO_COMBAT,
 	WaveState.FUNNY,
 	WaveState.COMBAT,
 	WaveState.BLESSING,
-	WaveState.HARD_CURSE,
+	WaveState.CURSE,
+	WaveState.BOSS_CHOICE,
 	]
 
 var current_enemy_pool : Array[String] = []
@@ -43,7 +45,9 @@ func reset() -> void:
 func exit_wave() -> void:
 	## called before entering 
 	if current_wave_state == WaveState.QUEUED_WAVE:
-		queued_wave_infos.pop_front()
+		var info : WaveInfo = queued_wave_infos.pop_front()
+		if info.room_type == "boss":
+			SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
 		return
 	
 
@@ -92,6 +96,8 @@ func _state_to_wave_info(state : WaveState) -> WaveInfo:
 			return intro_blessing()
 		WaveState.QUEUED_WAVE:
 			return queued_wave_infos[0]
+		WaveState.BOSS_CHOICE:
+			return boss_choice_path()
 
 		
 	printerr("Invalid wave state: ", state)
@@ -102,9 +108,58 @@ func funny_wave() -> ChoiceWaveInfo:
 		"bless_vs_curse": bless_vs_curse_wave,
 		"shop": shop_wave,
 		"choose_path": choice_path_wave,
+		"whale_blessing": whale_blessing_wave,
 	}
 	var wave_fn : Callable = name_to_wave_fn.values().pick_random()
 	return wave_fn.call()
+
+
+func preboss_room() -> ChoiceWaveInfo:
+	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
+	wave_info.wave_number = current_wave
+	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
+	var upgrade_one : UpgradeData = Upgrades.create_wave_choice_upgrade(
+		"boss_angler", 
+		"Face the Angler", 
+		func () -> String:
+			return "Fight the Angler.",
+		[_queue_wave_effect.bind(boss_wave)])
+	
+	wave_info.blessings = [upgrade_one]
+	wave_info.room_type = "shrine"
+	wave_info.name = "An Encounter"
+	return wave_info
+
+func boss_choice_path() -> ChoiceWaveInfo:
+	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
+	wave_info.wave_number = current_wave
+	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
+	var boss_rooms : Array[Callable] = []
+	for i in range(GlobalStats.current_run_stats["num_blessings"]):
+		boss_rooms.append(_queue_wave_effect.bind(boss_blessings_wave))
+
+	for i in range(2):
+		boss_rooms.append(_queue_wave_effect.bind(boss_curse_wave))
+	boss_rooms.append(_queue_wave_effect.bind(preboss_room))
+
+	var upgrade_one : UpgradeData = Upgrades.create_wave_choice_upgrade(
+		"boss_angler", 
+		"Face the Curse", 
+		func () -> String:
+			return "Prepare to for a powerful foe. You have %d blessings." % GlobalStats.current_run_stats["num_blessings"],
+		boss_rooms)
+	var upgrade_two : UpgradeData = Upgrades.create_wave_choice_upgrade(
+		"skip_boss", 
+		"Skip the Boss",
+		func () -> String:
+			return "Go Deeper. Fight the boss later.",
+		[])
+	wave_info.blessings = [upgrade_one, upgrade_two]
+	wave_info.room_type = "shrine"
+	wave_info.name = "A Chance for an Encounter"
+	return wave_info
+
+
 
 func choice_path_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
@@ -126,6 +181,28 @@ func choice_path_wave() -> ChoiceWaveInfo:
 	wave_info.room_type = "shrine"
 	wave_info.name = "Illusion of Choice"
 	return wave_info
+
+func boss_blessings_wave() -> ChoiceWaveInfo:
+	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
+	wave_info.wave_number = current_wave
+	var blessing_pool : Array[String] = ["boss_blessing"]
+	wave_info.blessings = Upgrades.get_randomized_upgrades(blessing_pool, 2)
+	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
+	wave_info.room_type = "shrine"
+	wave_info.name = "Beluga's Blessing"
+	return wave_info
+
+func boss_curse_wave() -> ChoiceWaveInfo:
+	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
+	wave_info.wave_number = current_wave
+	var blessing_pool : Array[String] = ["boss_curse"]
+	wave_info.blessings = Upgrades.get_randomized_upgrades(blessing_pool, 2)
+	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
+	wave_info.room_type = "shrine"
+	wave_info.name = "Angler's Wrath"
+	return wave_info
+	
+	
 
 func two_random_blessings_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
@@ -225,6 +302,16 @@ func combat_wave() -> CombatWaveInfo:
 	wave_info.room_type = "combat"
 	wave_info.name = "Wave " + str(combat_wave_number+1)
 	return wave_info
+
+func boss_wave() -> BossWaveInfo:
+	var wave_info : BossWaveInfo = BossWaveInfo.new()
+	wave_info.wave_number = current_wave
+	wave_info.boss_name = "Angler"
+	wave_info.room_type = "boss"
+	wave_info.name = "The Angler"
+	return wave_info
+
+
 
 func intro_combat_wave() -> CombatWaveInfo:
 	var new_enemy : String = EnemySpawner.sample_unlockable_enemy(current_wave, current_enemy_pool)

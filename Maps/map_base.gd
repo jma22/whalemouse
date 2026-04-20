@@ -10,12 +10,14 @@ class_name MapManagerBase
 var player : CharacterBody3D
 var map_cleared_flag : bool = false
 var wave_info : WaveInfo
+var camera : Camera3D
 
 var room_active : bool = false
 
 func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 	self.player = player
-	camera.set_bounds(floor.get_bounds())
+	self.camera = camera
+	self.camera.set_bounds(floor.get_bounds())
 	floor.setup(player, camera)
 	gateway.setup(self)
 	room_active = false
@@ -30,6 +32,7 @@ func _process(delta: float) -> void:
 
 func start_room(wave_info_ : WaveInfo) -> void:
 	player.clear_effects()
+	self.camera.set_wave_mode()
 	map_cleared_flag = false
 	player.global_transform.origin = player_spawn_point.global_transform.origin
 	gateway.close_gateway()

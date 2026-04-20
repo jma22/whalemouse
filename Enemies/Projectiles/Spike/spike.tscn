@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://doqi10dkovpso"]
+
+[ext_resource type="Script" uid="uid://b0k30kosbbfyy" path="res://Enemies/Projectiles/Spike/spike.gd" id="1_ayw48"]
+[ext_resource type="Texture2D" uid="uid://c8tucba4rdxb1" path="res://Player/Abilities/Whale/Whale (1).png" id="1_habkl"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_yugeu"]
+[ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="3_juyu4"]
+[ext_resource type="Texture2D" uid="uid://bs3c18c1xu7gn" path="res://Enemies/Projectiles/Spike/2220_Sem_Titulo_20260419190510.png" id="5_ayw48"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dlpa8"]
+height = 1.0
+radius = 0.2
+
+[sub_resource type="Animation" id="Animation_juyu4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spike:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.171, 0.571)]
+}
+
+[sub_resource type="Animation" id="Animation_yugeu"]
+resource_name = "spike_up"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spike:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.062339544, 0.1, 1.0595577, 1.0958941, 1.1197774, 1.1584008, 1.186681, 1.2253044, 1.3030022),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.171, 0.671), Vector3(0, 0.15, -0.311), Vector3(0, 0.118, -0.2), Vector3(0, 0.118, -0.2), Vector3(0, 0.123, -0.218), Vector3(0, 0.137, -0.267), Vector3(0, 0.123, -0.218), Vector3(0, 0.137, -0.267), Vector3(0, 0.123, -0.218), Vector3(0, -0.171, 0.671)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Indicator/Hitbox")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_active"
+}, {
+"args": [false],
+"method": &"set_active"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_juyu4"]
+_data = {
+&"RESET": SubResource("Animation_juyu4"),
+&"spike_up": SubResource("Animation_yugeu")
+}
+
+[node name="Spike" type="Node3D" unique_id=1350456821 node_paths=PackedStringArray("indicator_sprite", "animation_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009292603, 0.00012207031, -0.00012207031)
+script = ExtResource("1_ayw48")
+indicator_sprite = NodePath("Indicator/SpriteManager")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Indicator" type="Node3D" parent="." unique_id=640355351]
+
+[node name="SpriteManager" type="Sprite3D" parent="Indicator" unique_id=56717710]
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, -1.5, 0, 1.5, -6.556708e-08, 0, 0, 0)
+modulate = Color(0.7647059, 0.3137255, 0.3254902, 1)
+pixel_size = 0.001
+texture = ExtResource("1_habkl")
+hframes = 7
+script = ExtResource("2_yugeu")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="Hitbox" parent="Indicator" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("3_juyu4")]
+visible = false
+owner_entity = NodePath("..")
+
+[node name="CollisionShape3D" parent="Indicator/Hitbox" index="0" unique_id=1405177479]
+shape = SubResource("CylinderShape3D_dlpa8")
+
+[node name="Spike" type="Sprite3D" parent="." unique_id=296845340]
+transform = Transform3D(1.2, 0, 0, 0, 0.51303023, 1.1276312, 0, -1.409539, 0.4104242, 0, -0.171, 0.571)
+pixel_size = 0.001
+alpha_cut = 1
+texture = ExtResource("5_ayw48")
+script = ExtResource("2_yugeu")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=645050461]
+libraries/ = SubResource("AnimationLibrary_juyu4")
+
+[editable path="Indicator/Hitbox"]

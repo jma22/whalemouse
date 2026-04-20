@@ -5,11 +5,9 @@ class_name BounceComponent
 @export var bounce_dampening : float = 0.8
 @export var bounce_velocity : Vector3 = Vector3.ZERO
 var entity: CharacterBody3D
-var floor_ : FloorNav
 
 
-func setup(entity_: CharacterBody3D, floor_: FloorNav) -> void:
-	self.floor_ = floor_	
+func setup(entity_: CharacterBody3D) -> void:
 	entity = entity_
 
 func handle_bounce() -> void:
@@ -21,6 +19,7 @@ func handle_bounce() -> void:
 
 # # In FloorNav
 func clamp_and_bounce() -> void:
+	var floor_ : FloorNav = entity.get_floor()
 	var min_b := floor_.global_transform.origin - floor_.size / 2 + Vector3(floor_.global_margin, 0, floor_.global_margin)
 	var max_b := floor_.global_transform.origin + floor_.size / 2 - Vector3(floor_.global_margin, 0, floor_.global_margin)
 	var pos := entity.global_position

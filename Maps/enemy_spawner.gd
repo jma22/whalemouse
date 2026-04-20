@@ -79,7 +79,7 @@ const enemy_data = {
 		"name": "AnglerEye",
 	},
 	"Angler" :{
-		"scene": preload("res://Enemies/AnglerBoss/angler_background.tscn"),
+		"scene": preload("res://Enemies/AnglerBoss/angler_boss.tscn"),
 		"cost": 99,
 		"max_per_wave": 2,
 		"min_depth": 99,
@@ -93,6 +93,14 @@ const enemy_data = {
 		"min_depth": 99,
 		"spawn_type": "melee",
 		"name": "AnglerPillar",
+	},
+	"SquidMinion": {
+		"scene": preload("res://Enemies/SquidMinion/squid_minion.tscn"),
+		"cost": 3,
+		"max_per_wave": 4,
+		"min_depth": 1,
+		"spawn_type": "any",
+		"name": "Squid Minion",
 	},
 }
 
@@ -217,19 +225,28 @@ func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> Node3D:
 		var enemy_scene : PackedScene = enemy_data[enemy_type].scene
 		var enemy_instance : Node = enemy_scene.instantiate()
 		add_child(enemy_instance)
+
 		enemy_instance.global_transform.origin = spawn_point
 		enemy_instance.setup(player, floor)
 		spawned_enemies.append(enemy_instance)
 		return enemy_instance
 	return null
 
-func spawn_boss(enemy_type: String, spawn_point : Vector3) -> void:
+func spawn_boss(enemy_type: String, spawn_point : Vector3) -> Node3D:
 	if enemy_type in enemy_data:
 		var enemy_scene : PackedScene = enemy_data[enemy_type].scene
 		var enemy_instance : Node = enemy_scene.instantiate()
 		add_child(enemy_instance)
+
 		enemy_instance.global_transform.origin = spawn_point
-		enemy_instance.setup(player, floor)
 		enemy_instance.link_boss_health(boss_health)
 		enemy_instance.link_spawner(self)
-		spawned_enemies.append(enemy_instance)
+		enemy_instance.setup(player, floor)
+		# spawned_enemies.append(enemy_instance)
+		return enemy_instance
+	return null
+
+func kill_all_enemies() -> void:
+	for enemy in spawned_enemies:
+		enemy.on_die()
+	spawned_enemies.clear()

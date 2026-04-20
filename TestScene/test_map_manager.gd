@@ -14,7 +14,8 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	# super(wave_info_)
 	# enemy_spawner.set_wave_spawning(wave_info_)
 	enemy_spawner.spawn_boss("Angler", boss_spawn.global_transform.origin)
-	# enemy_spawner.spawn_enemy("ShootingEnemy", Vector3(0,0,0))
+
+	# enemy_spawner.spawn_enemy("AnglerEye", Vector3(0,0,0))
 	# var enemy_pool : Array[String] = ["AuraEnemy", "DashingEnemy", "ShootingEnemy","JumpingEnemy"]
 	# var wave_info : CombatWaveInfo = CombatWaveInfo.new()
 	# wave_info.wave_number = 10
@@ -22,11 +23,8 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	# wave_info.enemy_pool = enemy_pool
 	# enemy_spawner.set_wave_spawning(wave_info, self)
 
-	# var i  : int = 0
-	# for k : String in enemy_spawner.enemy_string_to_scene:
-	# 	print("Spawning enemy of type: " + k)
-	# 	enemy_spawner.spawn_enemy(k, Vector3(i*0.5,0,0))
-	# 	i += 1
+	# for i in range(10):
+	# 	enemy_spawner.spawn_enemy("SquidMinion", Vector3(i*0.5,0,0))
 
 
 func map_cleared() -> bool:

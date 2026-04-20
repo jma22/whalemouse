@@ -16,6 +16,7 @@ var impact_effect_scene : PackedScene = load("res://VFX/Impact/impact_vfx.tscn")
 
 
 var horizontal_distance : float = 0.7
+var will_crit : bool = false
 
 func enter() -> void:
 	# entity.sprite_manager.frames_per_second = 12
@@ -33,6 +34,12 @@ func enter() -> void:
 	# scale arc params by attack speed multiplier
 	# arc_component.time = 1.5 / spd_mult
 	arc_component.setup(target)
+
+	will_crit = randf() < GlobalStats.get_critical_chance()
+	if will_crit:
+		hitbox.set_damage(2)
+	else:
+		hitbox.set_damage(1)
 
 func adjust_speed() -> void:
 	var mult : float = GlobalStats.get_attack_speed_multiplier()
@@ -73,7 +80,7 @@ func fixed_run(delta: float) -> void:
 		get_tree().get_root().add_child(impact_effect_instance)
 		impact_effect_instance.global_transform.origin = entity.global_transform.origin
 
-		impact_effect_instance.setup(GlobalStats.get_mouse_attack_hitbox_scale())
+		impact_effect_instance.setup(GlobalStats.get_mouse_attack_hitbox_scale(), will_crit)
 		impact_effect_instance.play()
 
 

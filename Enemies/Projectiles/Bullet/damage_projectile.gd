@@ -1,9 +1,9 @@
 # bullet.gd
 extends Node3D
 
-var speed: float = 1.3
+var speed: float = 1.5
 var direction: Vector3 = Vector3.ZERO
-var lifetime: float = 3.0
+var lifetime: float = 5.0
 @export var hitbox : Hitbox
 # var floor : FloorNav
 

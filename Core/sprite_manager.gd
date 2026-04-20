@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 				is_done = true
 		
 		if current_animation != null:
-			frame = current_animation.frame_numbers[current_idx]
+			frame = min(hframes * vframes - 1, current_animation.frame_numbers[current_idx])
 		time_accumulator = 0.0
 
 
@@ -61,7 +61,7 @@ func play(animation: AnimationClip, loop: bool = true) -> void:
 	current_idx = 0
 	time_accumulator = 0.0
 	looping = loop
-	frame = current_animation.frame_numbers[current_idx]
+	frame = min(hframes * vframes - 1, current_animation.frame_numbers[current_idx])
 
 func check_is_done() -> bool:
 	return is_done

@@ -8,7 +8,7 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 
 @onready var state_machine : StateMachine = $StateMachine
 
-@onready var hitbox : Node = $Hitbox
+# @onready var hitbox : Node = $Hitbox
 # @onready var walk_state : WalkState = $StateMachine/WalkState
 # @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 # @onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
@@ -33,6 +33,8 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @onready var bounce_component : BounceComponent = core_components.bounce_component
 
 var is_dead : bool = false
+var setup_complete : bool = false
+@export var skip_physics : bool = false
 # var facing_left : bool = false
 func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	self.player = player_
@@ -40,11 +42,14 @@ func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	core_components.setup(self)
 	setup_states()
 	state_machine.set_state(initial_state)
+	setup_complete = true
 
 
 # func _ready() -> void:
 	
 func _process(_delta: float) -> void:
+	if not setup_complete:
+		return
 	if is_dead or hitstop.is_in_hitstop:
 		return
 	if state_machine.current_state:
@@ -56,6 +61,8 @@ func _process(_delta: float) -> void:
 	# 	sprite_manager.set_flip(false)
 
 func _physics_process(delta: float) -> void:
+	if not setup_complete or skip_physics:
+		return
 	if is_dead or hitstop.is_in_hitstop:
 		return
 	

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://iru6l8ayin5o"]
 
-[ext_resource type="Script" uid="uid://bmxkncceeo22n" path="res://Enemies/Projectiles/physics_manager.gd" id="1_plwrt"]
-[ext_resource type="Script" uid="uid://hpr1ljl6r1qy" path="res://Enemies/Projectiles/ink_ball.gd" id="1_ywkbn"]
+[ext_resource type="Script" uid="uid://bmxkncceeo22n" path="res://Enemies/Projectiles/InkBall/physics_manager.gd" id="1_plwrt"]
+[ext_resource type="Script" uid="uid://hpr1ljl6r1qy" path="res://Enemies/Projectiles/InkBall/ink_ball.gd" id="1_ywkbn"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_5u0h0"]
 [ext_resource type="Texture2D" uid="uid://dbq0m7li6ghnd" path="res://Enemies/Projectiles/spritesheet_17.png" id="3_ray6h"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="4_2sd3b"]

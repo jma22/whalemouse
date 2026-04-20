@@ -23,7 +23,7 @@ class_name Player extends CharacterBody3D
 @onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
 var time_damage_manager : TimeDamageManager
 var hud_ref : HUD
-var floor_ref : FloorNav
+var map_ref : MapManagerBase
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
 
@@ -40,14 +40,16 @@ func reset() -> void:
 	core_components.reset()
 	status_effects.clear()
 
-func setup(hud: HUD, floor: FloorNav) -> void:
+func setup(hud: HUD) -> void:
 	# This is called from the main scene to set up references to other nodes
 	core_components.setup(self)
 	core_components.link_hud(hud)
 	hud_ref = hud
-	floor_ref = floor
 	setup_states()
 	state_machine.set_state(idle_state)
+
+func enter_map(map : MapManagerBase) -> void:
+	map_ref = map
 
 # func _ready() -> void:
 # 	setup_states()
@@ -141,6 +143,9 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	if damage_taken == 0:
 		return
 	damage_taken = max(0, damage_taken - GlobalStats.get_damage_reduced_by())
+	if map_ref is BossMapManager:
+		if GlobalStats.get_curse_duration_on_hit() > 0:
+			gain_status_effect(StatusEffect.create("haste", GlobalStats.get_curse_duration_on_hit()), self)
 	health_component.take_damage(damage_taken)
 	sprite_manager.damage_flash()
 	hud_ref.flash_hurt_vignette()
@@ -177,7 +182,7 @@ func on_die() -> void:
 		SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
 	)
 func get_floor() -> FloorNav:
-	return floor_ref
+	return map_ref.floor
 
 
 ## pickup / actions
