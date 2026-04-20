@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqkvkixwnk24c"
-path="res://.godot/imported/slow_icon.png-e16a165c81d737dccf8b0d2dccd1bb54.ctex"
+uid="uid://cosx5gkvugxlu"
+path="res://.godot/imported/bar_back.png-9db46df4e0a04d628e86acbe3dde4296.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/HUD/StatusEffectIcons/slow_icon.png"
-dest_files=["res://.godot/imported/slow_icon.png-e16a165c81d737dccf8b0d2dccd1bb54.ctex"]
+source_file="res://UI/HUD/Sprites/bar_back.png"
+dest_files=["res://.godot/imported/bar_back.png-9db46df4e0a04d628e86acbe3dde4296.ctex"]
 
 [params]
 

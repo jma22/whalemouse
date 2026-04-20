@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbhih0m50iyig"]
 
-[ext_resource type="Texture2D" uid="uid://dnnjejbc30y16" path="res://UI/HUD/StatusEffectIcons/slow_icon.png" id="1_x1gfl"]
+[ext_resource type="Texture2D" uid="uid://dqkvkixwnk24c" path="res://UI/HUD/StatusEffectIcons/slow_icon.png" id="1_x1gfl"]
 [ext_resource type="Script" uid="uid://8xqsb1wnri61" path="res://UI/HUD/status_effect_icon.gd" id="2_x1gfl"]
 
 [node name="StatusEffectIcon" type="TextureProgressBar" unique_id=1510859552]
