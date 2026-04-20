@@ -35,16 +35,18 @@ var _buffered_action : StringName = &""
 var _buffer_timer : float = 0.0
 
 var status_effects : Array[StatusEffect] = []
+var camera_ref : Camera3D
 
 func reset() -> void:
 	core_components.reset()
 	status_effects.clear()
 
-func setup(hud: HUD) -> void:
+func setup(hud: HUD, camera : Camera3D) -> void:
 	# This is called from the main scene to set up references to other nodes
 	core_components.setup(self)
 	core_components.link_hud(hud)
 	hud_ref = hud
+	camera_ref = camera
 	setup_states()
 	state_machine.set_state(idle_state)
 

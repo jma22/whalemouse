@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cdoiofpad2cvd" path="res://Enemies/jumping_enemy/States/enemy_spawn_state.gd" id="7_mka6j"]
 [ext_resource type="Script" uid="uid://ruhnsbnrmhmc" path="res://Enemies/AnglerBoss/angler_three_state.gd" id="8_gb5aa"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="8_lfbpe"]
+[ext_resource type="Script" uid="uid://cmafjmj8psjmp" path="res://Enemies/AnglerBoss/phase_change_state.gd" id="9_dqwr4"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="9_u8ycu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gb5aa"]
@@ -56,6 +57,9 @@ idle_state = NodePath("../EnemyIdleState")
 script = ExtResource("8_gb5aa")
 enemy_spawn_state = NodePath("../EnemySpawnState")
 idle_state = NodePath("../EnemyIdleState")
+
+[node name="PhaseChangeState" type="Node3D" parent="StateMachine" unique_id=1977165809]
+script = ExtResource("9_dqwr4")
 
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("8_lfbpe")]
 

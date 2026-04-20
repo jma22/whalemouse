@@ -12,13 +12,13 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.reset()
-	player.setup(hud, map.floor)
+	player.setup(hud,camera)
 	GlobalStats.reset_current_run_stats()
 	GlobalStats.setup(player, hud)
 	hud.setup(player)
 	map.setup(player,camera, hud)
 	# enemy.setup(player, map.floor)
-	whale_spawner.setup(player, map.floor, map.enemy_spawner)
+	whale_spawner.setup(player)
 	map.start_room(null)
 
 	# GlobalStats.add_to_stat("dash_distance")

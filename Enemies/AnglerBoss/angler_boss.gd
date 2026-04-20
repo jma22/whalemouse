@@ -1,7 +1,7 @@
 extends EnemyBase
 
 
-@onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
+# @onready var enemy_idle_state : EnemyIdleState = $StateMachine/EnemyIdleState
 # @onready var hurt_state : EnemyHurtState = $StateMachine/EnemyHurtState
 # @onready var retreat_state : EnemyRetreatState = $StateMachine/EnemyRetreatState
 # @onready var approach_state : EnemyPursuitState = $StateMachine/EnemyPursuitState
@@ -16,6 +16,8 @@ extends EnemyBase
 @onready var phase1state : State = $StateMachine/AnglerOneState
 @onready var phase2state : State = $StateMachine/AnglerTwoState
 @onready var phase3state : State = $StateMachine/AnglerThreeState
+@onready var phase_change_state : PhaseChangeState = $StateMachine/PhaseChangeState
+
 
 var minion_spawn_points : Array[Vector3] = []
 var pillar_spawn_points : Array[Vector3] = []
@@ -25,6 +27,10 @@ var attack_range : float = 1.5
 
 var boss_health : BossHealth
 var enemy_spawner : EnemySpawner
+var current_phase : int = 0
+@onready var phase_state_order : Array[State] = [phase1state, phase2state, phase3state]
+var camera : Camera3D
+
 
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
@@ -35,6 +41,9 @@ func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 
 	sprite_manager.render_priority = -1
 	sprite_manager.material_overlay.render_priority = -1
+
+	phase_change_state.set_idle_duration(3.0)
+
 	hurt_box.set_active(false)
 	for node : Node3D in get_tree().get_nodes_in_group("minion_spawn"):
 		minion_spawn_points.append(node.global_transform.origin)
@@ -48,19 +57,20 @@ func link_boss_health(boss_health : BossHealth) -> void:
 func link_health(enemy : EnemyBase) -> void:
 	enemy.link_boss(self)
 
+func link_camera(camera : Camera3D) -> void:
+	self.camera = camera
+
 func link_spawner(enemy_spawner_ : EnemySpawner) -> void:
 	enemy_spawner = enemy_spawner_
 
 
 func check_state() -> void:
 	if state_machine.current_state.is_complete:
-		if state_machine.current_state == phase1state:
-			state_machine.set_state(phase2state)
-		elif state_machine.current_state == phase2state:
-			state_machine.set_state(phase3state)
-		elif state_machine.current_state == phase3state:
-			return
-			# state_machine.set_state(phase1state)
+		if state_machine.current_state == phase_change_state:
+			state_machine.set_state(phase_state_order[current_phase-1]) ## start in phase change state as intro
+		else:
+			state_machine.set_state(phase_change_state)
+			current_phase += 1
 
 func on_hit(attacker_hitbox : Hitbox) -> void:
 	super(attacker_hitbox)
@@ -75,6 +85,8 @@ func on_eye_died() -> void:
 	health_component.take_damage(damage_taken)
 	hurt_box.on_valid_damaging_hit()
 	state_machine.current_state.on_eye_died()
+	boss_health.flash_health_bar()
+	camera.camera_shake(5.0, 0.5)
 	
 
 func on_die() -> void:

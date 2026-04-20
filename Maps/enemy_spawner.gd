@@ -113,12 +113,14 @@ var player : CharacterBody3D
 var floor : NavigationRegion3D
 
 var boss_health : BossHealth
+var camera : Camera3D
 
 
-func setup(player : CharacterBody3D, floor : NavigationRegion3D, boss_health : BossHealth) -> void:
+func setup(player : CharacterBody3D, floor : NavigationRegion3D, boss_health : BossHealth, camera : Camera3D) -> void:
 	self.player = player
 	self.floor = floor
 	self.boss_health = boss_health
+	self.camera = camera
 	clear_enemies()
 	
 
@@ -241,6 +243,7 @@ func spawn_boss(enemy_type: String, spawn_point : Vector3) -> Node3D:
 		enemy_instance.global_transform.origin = spawn_point
 		enemy_instance.link_boss_health(boss_health)
 		enemy_instance.link_spawner(self)
+		enemy_instance.link_camera(camera)
 		enemy_instance.setup(player, floor)
 		# spawned_enemies.append(enemy_instance)
 		return enemy_instance

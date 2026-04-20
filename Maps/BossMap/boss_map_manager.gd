@@ -7,7 +7,7 @@ class_name BossMapManager
 var boss : EnemyBase = null
 func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 	super(player, camera, hud)
-	enemy_spawner.setup(player, floor, hud.boss_health)
+	enemy_spawner.setup(player, floor, hud.boss_health, camera)
 
 
 func start_room (wave_info_ : WaveInfo) -> void:
@@ -20,5 +20,3 @@ func map_cleared() -> bool:
 	if not wave_info:
 		return false
 	return boss and boss.is_dead
-
-
