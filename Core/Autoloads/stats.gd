@@ -35,6 +35,7 @@ var current_run_stats : Dictionary = {
 	"fast_while_status" :0,
 	"flat_speed" : 0,
 
+	"num_curses": 0,
 	"num_blessings" : 0,
 	"num_whales" : 0,
 	"curse_on_hit" : 0,
@@ -245,6 +246,11 @@ func is_positive_stat(stat_name: String) -> bool:
 
 
 ## boss zone
+func get_num_boss_blessings() -> int:
+	return current_run_stats["num_blessings"]
+
+func get_num_boss_curses() -> int:
+	return current_run_stats["num_curses"]
 
 func get_healing_light_heal() -> int:
 	return current_run_stats["time_tick_level"] * 30

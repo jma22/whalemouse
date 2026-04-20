@@ -111,9 +111,14 @@ static func get_randomized_upgrades(type: Array[String], amount: int) -> Array[U
 			chosen_upgrades.append(get_beluga_upgrade(upgrade))
 			chosen_upgrades.erase(upgrade)
 		else:
-			if randf() < 0.05:
+			var rand_val : float = randf()
+			if rand_val < 0.025:
 				TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
 				chosen_upgrades.append(get_beluga_upgrade(upgrade))
+				chosen_upgrades.erase(upgrade)
+			elif rand_val < 0.05:
+				TutorialManager.show_tutorial(TutorialManager.TutorialEnum.ANGLERS_CURSE)
+				chosen_upgrades.append(get_angler_upgrade(upgrade))
 				chosen_upgrades.erase(upgrade)
 	return chosen_upgrades
 
@@ -192,6 +197,24 @@ static func get_beluga_upgrade(upgrade_data : UpgradeData) -> UpgradeData:
 
 	var new_desc : Callable = func new_description_func() -> String:
 		return upgrade_data.get_description() + "\n[rainbow freq=0.6 sat=0.8 val=1.0 speed=0.4]Beluga's Blessing[/rainbow]"
+		
+
+	var new_display_name : String = upgrade_data.display_name + "+"
+	var new_upgrade : UpgradeData = UpgradeData.new(
+		upgrade_data.internal_name, 
+		new_display_name, 
+		upgrade_data.blessing_type, 
+		new_desc,
+		new_effects)
+	return new_upgrade
+
+static func get_angler_upgrade(upgrade_data : UpgradeData) -> UpgradeData:
+	var new_effects : Array[Callable] = upgrade_data.effects.duplicate()
+
+	new_effects.append(_increase_stats_effect.bind("num_curses"))
+
+	var new_desc : Callable = func new_description_func() -> String:
+		return upgrade_data.get_description() + "\n[pulse freq=2.0 color=#3cb510FF ease=-3.0]Angler's Curse[/pulse]"
 		
 
 	var new_display_name : String = upgrade_data.display_name + "+"

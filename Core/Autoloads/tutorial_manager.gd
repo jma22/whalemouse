@@ -14,6 +14,7 @@ enum TutorialEnum {
 	EBB_ORB,
 	BLEED,
 	BELUGAS_BLESSING,
+	ANGLERS_CURSE,
 	BOSS_OPTION,
 	FUNNY
 }
@@ -63,8 +64,10 @@ var tutorials : Dictionary= {
 	TutorialEnum.EBB_ORB: [["These are ebb orbs! They slow down the curse for one second!", true]],
 	TutorialEnum.BLEED: [["You are decaying! The curse runs faster.", false]],
 	TutorialEnum.BELUGAS_BLESSING: [["Some shrines will have my blessing.", true],
-		["They will give you powerful upgrades before fighting the boss.", true],
-		["They might even give you a blessing of my own...", true]],
+		["They will give you powerful upgrades before your final encounter.", true],],
+	TutorialEnum.ANGLERS_CURSE: [["These shrines will have my curse.", false],
+		["They will give me powers instead.", false],],
+		
 	TutorialEnum.BOSS_OPTION: [["You can choose to fight the boss, or continue to search for more time.", true],
 		["...", false],
 		["The boss will have his boons, but so will you.", true],

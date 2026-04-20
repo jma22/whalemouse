@@ -135,10 +135,10 @@ func boss_choice_path() -> ChoiceWaveInfo:
 	wave_info.wave_number = current_wave
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	var boss_rooms : Array[Callable] = []
-	for i in range(GlobalStats.current_run_stats["num_blessings"]):
+	for i in range(GlobalStats.get_num_boss_blessings()):
 		boss_rooms.append(_queue_wave_effect.bind(boss_blessings_wave))
 
-	for i in range(2):
+	for i in range(GlobalStats.get_num_boss_curses()):
 		boss_rooms.append(_queue_wave_effect.bind(boss_curse_wave))
 	boss_rooms.append(_queue_wave_effect.bind(preboss_room))
 
@@ -146,7 +146,7 @@ func boss_choice_path() -> ChoiceWaveInfo:
 		"boss_angler", 
 		"Face the Curse", 
 		func () -> String:
-			return "Prepare to for a powerful foe. You have %d blessings." % GlobalStats.current_run_stats["num_blessings"],
+			return "Prepare to for a powerful foe. You have %d blessings and %d curses." % [GlobalStats.get_num_boss_blessings(), GlobalStats.get_num_boss_curses()],
 		boss_rooms)
 	var upgrade_two : UpgradeData = Upgrades.create_wave_choice_upgrade(
 		"skip_boss", 
