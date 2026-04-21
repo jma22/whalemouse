@@ -96,7 +96,7 @@ const enemy_data = {
 	},
 	"SquidMinion": {
 		"scene": preload("res://Enemies/SquidMinion/squid_minion.tscn"),
-		"cost": 3,
+		"cost": 1,
 		"max_per_wave": 4,
 		"min_depth": 1,
 		"spawn_type": "any",
@@ -201,6 +201,7 @@ func get_affordable_enemies(pool: Array[String], budget: int, counts: Dictionary
 func get_alive_enemies() -> Array[Node3D]:
 	var non_dead_enemies : Array[Node3D] = []
 	for enemy in spawned_enemies:
+		print("checking enemy: ", enemy.name, " is_dead: ", enemy.is_dead)
 		if not enemy.is_dead:
 			# centroid = enemy.global_transform.origin
 			non_dead_enemies.append(enemy)

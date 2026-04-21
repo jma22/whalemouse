@@ -302,6 +302,20 @@ tracks/18/keys = {
 "points": PackedFloat32Array(0.5834116, -0.25, 0, 0.76666665, 0.025740981, -0.22822905, 0, 0.43056738, 0.06531727, 0.058816656, -0.76479167, -0.055555563, 0, 0.14545181, 0, -0.8163957, -0.14444445, 0, 0.12177348, 0.44112498, 0.5952043, -0.16476727, -0.7914282, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6, 0.8, 1.2333333, 1.6333333)
 }
+tracks/19/type = "method"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath(".")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"camera_shake_callback"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxwv7"]
 _data = {
@@ -330,7 +344,7 @@ shape = SubResource("CylinderShape3D_70uel")
 debug_color = Color(0.9873156, 0, 0.2555665, 1)
 
 [node name="Whale" type="Sprite3D" parent="." unique_id=466033286]
-transform = Transform3D(0.5538338, 0, 0, 0, 0.18895784, 0.5204347, 0, -0.5191574, 0.18942274, 0, 0, -0.70850176)
+transform = Transform3D(0.44406122, 0, 0, 0, 0.15187788, 0.41728106, 0, -0.41728106, 0.15187788, 0, 0, 0.49813345)
 modulate = Color(1, 1, 1, 0)
 no_depth_test = true
 render_priority = 2
@@ -352,7 +366,7 @@ metadata/_custom_type_script = "uid://chgfscc28odqd"
 libraries/ = SubResource("AnimationLibrary_mxwv7")
 
 [node name="Splash" type="Sprite3D" parent="." unique_id=614721659]
-transform = Transform3D(0.2793187, 3.2588733e-08, -1.4244987e-15, 0, -9.434029e-09, -0.21582541, -4.2175955e-08, 0.21582541, -9.434029e-09, 0, 0.01, 0)
+transform = Transform3D(0.7236548, 3.2588733e-08, -1.4244987e-15, 0, -9.434029e-09, -0.21582541, -1.09268846e-07, 0.21582541, -9.434029e-09, 0, 0.01, 0)
 modulate = Color(0.71400005, 0.85, 0.78200006, 0)
 texture = ExtResource("7_yc1uw")
 hframes = 3

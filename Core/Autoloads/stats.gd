@@ -89,6 +89,8 @@ func reset_current_run_stats() -> void:
 	for k : String in total_stats.keys():
 		total_stats[k] = 0
 	
+	for k : String in boss_stats.keys():
+		boss_stats[k] = 0
 	
 	ordering = []
 	var override_dict : Dictionary = Config.get_override("starting_stats", {})
@@ -99,6 +101,7 @@ func reset_current_run_stats() -> void:
 	var override_wave_augments : Dictionary = Config.get_override("starting_wave_augments", {})
 	for k : String in override_wave_augments.keys():
 		add_wave_augment(k, override_wave_augments[k])
+	
 
 func add_to_stat(stat_name: String) -> void:
 	if stat_name not in ordering:
@@ -220,12 +223,12 @@ func get_enemy_projectile_flat() -> int:
 	return current_run_stats["enemy_attack_speed"] + wave_augment_bonus
 
 func get_enemy_attack_speed_multiplier() -> float:
-	var wave_augment_bonus : float = 1.0 if "enemy_attack_speed" in wave_augments else 0.0
-	return 1.0 + current_run_stats["enemy_attack_speed"] * 0.5 + 0.5 * wave_augment_bonus
+	# var wave_augment_bonus : float = 1.0 if "enemy_attack_speed" in wave_augments else 0.0
+	return 1.0 + current_run_stats["enemy_attack_speed"] * 0.2
 
 func get_enemy_speed_multiplier() -> float:
-	var wave_augment_bonus : float = 0.3 if "enemy_speed" in wave_augments else 0.0
-	return 1.0 + current_run_stats["enemy_speed"] * 0.4 + 0.4 * wave_augment_bonus
+	# var wave_augment_bonus : float = 0.3 if "enemy_speed" in wave_augments else 0.0
+	return 1.0 + current_run_stats["enemy_speed"] * 0.25
 
 func get_enemy_health_flat() -> float:
 	return current_run_stats["enemy_health"]
@@ -262,7 +265,7 @@ func get_num_boss_curses() -> int:
 	return boss_stats["num_curses"]
 
 func get_healing_light_heal() -> int:
-	return current_run_stats["time_tick_level"] * 30
+	return current_run_stats["time_tick_level"] * 15
 
 func get_num_whales() -> int:
 	return current_run_stats["num_whales"] + 1

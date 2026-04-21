@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b3njbpc7i0djy" path="res://UI/Textbox/tutorial.tscn" id="2_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://c0b8ged7b866o" path="res://UI/pause.tscn" id="3_bxsma"]
 [ext_resource type="AudioStream" uid="uid://cikbpd4iny72d" path="res://SFX/whalemouse.mp3" id="4_lkrbl"]
+[ext_resource type="Script" uid="uid://b5kb0x1oi0rae" path="res://Core/background_music.gd" id="5_ap3s8"]
 
 [node name="GameRoot" type="Node3D" unique_id=544021186 node_paths=PackedStringArray("scene_container")]
 script = ExtResource("1_xj5yv")
@@ -21,3 +22,4 @@ stream = ExtResource("4_lkrbl")
 volume_db = -16.0
 autoplay = true
 parameters/looping = true
+script = ExtResource("5_ap3s8")

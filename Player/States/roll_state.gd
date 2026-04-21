@@ -20,7 +20,7 @@ func enter() -> void:
 	var bubbler_instance : Node = bubbler_scene.instantiate()
 	entity.add_child(bubbler_instance)
 	bubbler_instance.start()
-	entity.set_invulnerable(true, invulnerability_time)
+	# entity.set_invulnerable(true, invulnerability_time)
 	audio_player.pitch_scale = 1.0 + randf() * 0.4
 	audio_player.play()
 	if GlobalStats.get_dash_damage() > 0:

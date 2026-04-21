@@ -18,8 +18,10 @@ func _ready() -> void:
 	hud.setup(player)
 	map.setup(player,camera, hud)
 	# enemy.setup(player, map.floor)
-	whale_spawner.setup(player)
+	whale_spawner.setup(player,camera)
 	map.start_room(null)
+	whale_spawner.enter_map(map)
+	player.enter_map(map)
 
 	# GlobalStats.add_to_stat("dash_distance")
 	# GlobalStats.add_to_stat("whale_level")

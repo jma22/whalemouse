@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 height = 1.0
 radius = 0.4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcx1h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwmmi"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("14_kfc22")
@@ -41,8 +41,10 @@ shader_parameter/mesh_top = 1.0
 
 [node name="AnglerPillar" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("initial_state", "core_components")]
 script = ExtResource("1_8ysj7")
-initial_health = 6
+initial_health = 5
 initial_state = NodePath("StateMachine/EnemyIdleState")
+xp_drop_amount = 0
+ebb_drop_amount = 3
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -93,7 +95,6 @@ knockback_mult = 0.0
 
 [node name="HurtBox" parent="EnemyCoreComponents" index="3" unique_id=1638711581]
 visible = true
-ebb_on_hit = 1
 
 [node name="CollisionShape3D" parent="EnemyCoreComponents/HurtBox" index="0" unique_id=1925812291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.17767334)
@@ -101,7 +102,7 @@ shape = SubResource("CylinderShape3D_hwmmi")
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(0.8, 0, 0, 0, 0.51303023, 0.9396926, 0, -1.409539, 0.34202015, 0, 0.13482323, -0.32652372)
-material_overlay = SubResource("ShaderMaterial_vcx1h")
+material_overlay = SubResource("ShaderMaterial_hwmmi")
 texture = ExtResource("12_hwmmi")
 hframes = 1
 layer_number = 2

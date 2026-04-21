@@ -67,7 +67,7 @@ script = ExtResource("4_dt3ya")
 [node name="EnemyWalkState" type="Node3D" parent="StateMachine" unique_id=306571734]
 script = ExtResource("6_i85eb")
 animation = SubResource("Resource_01mlv")
-speed = 2.0
+speed = 1.2
 
 [node name="EnemyIdleState" type="Node3D" parent="StateMachine" unique_id=1853718207]
 script = ExtResource("8_jcl4o")

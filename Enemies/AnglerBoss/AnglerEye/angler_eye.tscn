@@ -46,7 +46,7 @@ shader_parameter/mesh_top = 1.0
 
 [node name="AnglerEye" type="CharacterBody3D" unique_id=2043569761 node_paths=PackedStringArray("initial_state", "core_components")]
 script = ExtResource("1_pxe0n")
-initial_health = 3
+initial_health = 30
 initial_state = NodePath("StateMachine/EnemyIdleState")
 xp_drop_amount = 0
 core_components = NodePath("EnemyCoreComponents")

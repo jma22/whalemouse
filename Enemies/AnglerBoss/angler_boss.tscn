@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://cmafjmj8psjmp" path="res://Enemies/AnglerBoss/phase_change_state.gd" id="9_dqwr4"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="9_u8ycu"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gb5aa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqwr4"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("9_u8ycu")
@@ -26,8 +26,9 @@ shader_parameter/mesh_top = 1.0
 
 [node name="AnglerBackground" type="CharacterBody3D" unique_id=451704292 node_paths=PackedStringArray("initial_state", "core_components")]
 script = ExtResource("1_e8njn")
-initial_health = 300
-initial_state = NodePath("StateMachine/AnglerOneState")
+initial_health = 240
+initial_state = NodePath("StateMachine/PhaseChangeState")
+xp_drop_amount = 0
 core_components = NodePath("CoreComponents")
 skip_physics = true
 
@@ -68,7 +69,7 @@ knockback_mult = 0.0
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, -0.126, 0.233)
-material_overlay = SubResource("ShaderMaterial_gb5aa")
+material_overlay = SubResource("ShaderMaterial_dqwr4")
 pixel_size = 0.01
 alpha_cut = 1
 render_priority = -1

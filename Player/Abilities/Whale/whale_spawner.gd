@@ -8,11 +8,12 @@ var cooldown_timer : float = 0.0
 var player : CharacterBody3D
 var floor : FloorNav
 var enemy_spawner : EnemySpawner
-
+var camera : Camera3D
 var whale_scene : PackedScene = preload("res://Player/Abilities/Whale/whale.tscn")
 
-func setup(player_ : CharacterBody3D) -> void:
+func setup(player_ : CharacterBody3D, camera_ : Camera3D) -> void:
 	self.player = player_
+	self.camera = camera_
 
 func enter_map(map : MapManagerBase) -> void:
 	self.floor = map.floor
@@ -33,7 +34,7 @@ func _process(delta: float) -> void:
 
 func play_whale(whale : Whale) -> void:
 	whale.visible = true
-	whale.play()
+	whale.play(self)
 	await whale.whale_animation_player.animation_finished
 	whale.visible = false
 	whale.queue_free()
@@ -57,9 +58,13 @@ func cast_whale() -> void:
 		whale_instance.scale = Vector3.ONE * GlobalStats.get_whale_size()
 		play_whale(whale_instance)
 
-	# whale_instance.global_transform.origin = spawn_location
-	# whale_instance.scale = Vector3.ONE * GlobalStats.get_whale_size()
-	# play_whale(whale_instance)
+
+func camera_shake_callback() -> void:
+	if GlobalStats.current_run_stats["whale_level"] >= 3:
+		camera.camera_shake(1.0, 0.2)
+		
+
+
 
 func get_cooldown_progress() -> float:
 	return 1.0 - (cooldown_timer / get_cooldown())

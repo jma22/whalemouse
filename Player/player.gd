@@ -152,6 +152,7 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	sprite_manager.damage_flash()
 	hud_ref.flash_hurt_vignette()
 	hurt_box.on_valid_damaging_hit()
+	camera_ref.camera_shake(0.2, 0.25)
 
 	if GlobalStats.has_thorns():
 		thorn_hitbox.set_damage(GlobalStats.get_thorns_damage())

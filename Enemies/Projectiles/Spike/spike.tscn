@@ -35,7 +35,7 @@ tracks/0/path = NodePath("Spike:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.062339544, 0.1, 1.0595577, 1.0958941, 1.1197774, 1.1584008, 1.186681, 1.2253044, 1.3030022),
+"times": PackedFloat32Array(0, 0.062339544, 0.1, 0.6666667, 0.7030031, 0.72688645, 0.7655098, 0.79379004, 0.8324134, 0.91011125),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, -0.171, 0.671), Vector3(0, 0.15, -0.311), Vector3(0, 0.118, -0.2), Vector3(0, 0.118, -0.2), Vector3(0, 0.123, -0.218), Vector3(0, 0.137, -0.267), Vector3(0, 0.123, -0.218), Vector3(0, 0.137, -0.267), Vector3(0, 0.123, -0.218), Vector3(0, -0.171, 0.671)]
@@ -47,7 +47,7 @@ tracks/1/path = NodePath("Indicator/Hitbox")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667, 0.13333334),
+"times": PackedFloat32Array(0.06666667, 0.56666666),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [true],

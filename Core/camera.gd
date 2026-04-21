@@ -11,16 +11,16 @@ extends Camera3D
 @export var t_margin : float
 
 @export_group("Shake")
-@export var shake_strength : float = 0.3
-@export var shake_duration : float = 0.4
-@export var shake_noise_frequency : float = 2.0
-@export var shake_noise_speed : float = 120.0
+@export var shake_strength : float = 0.15
+@export var shake_duration : float = 0.2
+@export var shake_noise_frequency : float = 50.0
+@export var shake_noise_speed : float = 4.0
 
 var bounds : AABB
 # var offset : Vector3 = Vector3(0, 2, 2)
 var distance :float = 1.9
 
-var _shake_time_left : float = 0.0
+@export var _shake_time_left : float = 0.0
 var _shake_time_total : float = 0.0
 var _shake_noise : FastNoiseLite = FastNoiseLite.new()
 var _shake_elapsed : float = 0.0

@@ -82,6 +82,10 @@ func fixed_run(delta: float) -> void:
 
 		impact_effect_instance.setup(GlobalStats.get_mouse_attack_hitbox_scale(), will_crit)
 		impact_effect_instance.play()
+		if will_crit:
+			entity.camera_ref.camera_shake(0.3,0.35)
+		else:
+			entity.camera_ref.camera_shake(0.1,0.15)
 
 
 	if entity.velocity.y < 0 and abs(entity.position.y) < 0.05:

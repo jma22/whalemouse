@@ -53,7 +53,6 @@ func _process(_delta: float) -> void:
 	if player_inside:
 		if Input.is_action_just_pressed("interact"):
 			upgrade_data.apply()
-			Upgrades.chosen_upgrade(upgrade_data)
 			activated = true
 			floating_sprite.visible = false
 			audio_player.play()

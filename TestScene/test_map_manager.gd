@@ -8,7 +8,7 @@ extends MapManagerBase
 
 func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 	super(player, camera, hud)
-	enemy_spawner.setup(player, floor, hud.boss_health)
+	enemy_spawner.setup(player, floor, hud.boss_health, camera)
 
 func start_room (wave_info_ : WaveInfo) -> void:
 	# super(wave_info_)

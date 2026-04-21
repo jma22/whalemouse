@@ -28,7 +28,7 @@ var attack_range : float = 1.5
 var boss_health : BossHealth
 var enemy_spawner : EnemySpawner
 var current_phase : int = 0
-@onready var phase_state_order : Array[State] = [phase1state, phase2state, phase3state]
+var phase_state_order : Array[State]
 var camera : Camera3D
 
 
@@ -43,7 +43,7 @@ func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	sprite_manager.material_overlay.render_priority = -1
 
 	phase_change_state.set_idle_duration(3.0)
-
+	phase_state_order = [phase1state, phase2state, phase3state]
 	hurt_box.set_active(false)
 	for node : Node3D in get_tree().get_nodes_in_group("minion_spawn"):
 		minion_spawn_points.append(node.global_transform.origin)
@@ -52,7 +52,7 @@ func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 
 func link_boss_health(boss_health : BossHealth) -> void:
 	self.boss_health = boss_health
-	boss_health.setup("Schkwid", initial_health)
+	boss_health.setup("Angler", initial_health)
 
 func link_health(enemy : EnemyBase) -> void:
 	enemy.link_boss(self)
@@ -67,7 +67,8 @@ func link_spawner(enemy_spawner_ : EnemySpawner) -> void:
 func check_state() -> void:
 	if state_machine.current_state.is_complete:
 		if state_machine.current_state == phase_change_state:
-			state_machine.set_state(phase_state_order[current_phase-1]) ## start in phase change state as intro
+			print("starting phase ", current_phase)
+			state_machine.set_state(phase_state_order[current_phase]) ## start in phase change state as intro
 		else:
 			state_machine.set_state(phase_change_state)
 			current_phase += 1
@@ -86,7 +87,7 @@ func on_eye_died() -> void:
 	hurt_box.on_valid_damaging_hit()
 	state_machine.current_state.on_eye_died()
 	boss_health.flash_health_bar()
-	camera.camera_shake(5.0, 0.5)
+	camera.camera_shake(2.0, 0.3)
 	
 
 func on_die() -> void:

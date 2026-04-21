@@ -127,7 +127,7 @@ func on_die() -> void:
 		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
-		if randf() < 0.5:
+		if randf() < 0.33:
 			xp_spawner_instance.setup_outwards(xp_drop_amount + GlobalStats.get_bonus_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
 		else:
 			xp_spawner_instance.setup_outwards(xp_drop_amount, player, CollectibleSpawner.OrbType.TIME, get_floor())

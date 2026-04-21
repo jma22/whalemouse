@@ -21,11 +21,12 @@ func get_icon_path() -> String:
 	return UpgradeData.get_icon_path_static(internal_name)
 	
 func apply() -> void:
+	Upgrades.chosen_upgrade(self)
 	for effect in effects:
 		effect.call()
 
 func is_blessing() -> bool:
-	var blessing_types : Array[String] = ["blessing", "whale_blessing"]
+	var blessing_types : Array[String] = ["blessing", "whale_blessing", "one_time_blessing","boss_blessing"]
 	return blessing_type in blessing_types
 
 static func get_icon_path_static(internal_name_ : String) -> String:

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cvxwmfdcfu4rl" path="res://TestScene/test_map_manager.gd" id="5_k8tjy"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="5_rge3y"]
 [ext_resource type="MeshLibrary" uid="uid://x272w2id65qf" path="res://Core/Meshlib/basic.meshlib" id="6_oisa6"]
+[ext_resource type="PackedScene" uid="uid://b3laqrhmbviaw" path="res://Enemies/Projectiles/explosion.tscn" id="7_3l6jj"]
 [ext_resource type="PackedScene" uid="uid://ccp4gr2ej1txd" path="res://Maps/Gateway/gateway.tscn" id="7_kuwgh"]
 [ext_resource type="PackedScene" uid="uid://doqi10dkovpso" path="res://Enemies/Projectiles/Spike/spike.tscn" id="7_ptfuc"]
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="8_2e4vk"]
@@ -92,7 +93,10 @@ gateway = NodePath("Gateway")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("BossSpawn")
 
-[node name="Spike" parent="Map" unique_id=1350456821 instance=ExtResource("7_ptfuc")]
+[node name="Bomb" parent="Map" unique_id=1350456821 instance=ExtResource("7_3l6jj")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1.9403076, 0, 0)
+
+[node name="Spike" parent="Map" unique_id=820634404 instance=ExtResource("7_ptfuc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1393661, 0.00012207031, -0.00012207031)
 
 [node name="Walls" type="GridMap" parent="Map" unique_id=720446888]
@@ -339,9 +343,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.710556, 0, -1.4624634)
 [node name="Node3D8" type="Node3D" parent="Map/PillarPoints" unique_id=249822956 groups=["pillar_points"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2126694, 0, 0.84033203)
 
-[node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412 node_paths=PackedStringArray("whale")]
+[node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412]
 script = ExtResource("11_qoroo")
-whale = NodePath("Whale")
 
 [node name="Whale" parent="WhaleSpawner" unique_id=1866251720 instance=ExtResource("12_fefcl")]
 visible = false

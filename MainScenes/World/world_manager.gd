@@ -35,7 +35,7 @@ func setup() -> void:
 	player.setup(hud, camera)
 	GlobalStats.setup(player, hud)
 	transition.setup()
-	whale_spawner.setup(player)
+	whale_spawner.setup(player, camera)
 	call_deferred("map_entered", true)
 	## call  fade_out_loading() when above call is done 
 	## wait tille camera velocity is 0 then call fadeoutlaoding
@@ -91,13 +91,13 @@ func map_entered(first_time: bool) -> void:
 	transition.transition_in()
 	await transition.tween.finished
 	# await wave_text.tween.finished
-	if first_time:
+	if wave_manager.current_wave_state == WaveManager.WaveState.INTRO_BLESSING:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.INTRO)
 	# if wave_manager.current_wave == 11:
 		# TutorialManager.show_tutorial(TutorialManager.TutorialEnum.GOODLUCK)
-	if wave_manager.current_wave == 1:
+	if wave_manager.current_wave_state == WaveManager.WaveState.INTRO_COMBAT:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRSTARRIVE)
-	if wave_manager.current_wave == 5:
+	if wave_manager.current_wave_state == WaveManager.WaveState.HARD_CURSE:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_CURSE)
 	if wave_manager.current_wave_state == WaveManager.WaveState.BOSS_CHOICE:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BOSS_OPTION)

@@ -32,24 +32,24 @@ static var augment_cost := {}
 
 static func _static_init() -> void:
 	_add_generic_blessing("heal","Time in a Jar", _heal_desc, -5, [_scaled_heal_effect, _increase_stats_effect.bind("heal")])
-	_add_one_time_blessing("xp_suck", "Orb Catcher", _xp_suck_desc, -5, [_increase_stats_effect.bind("xp_suck")])
+	_add_generic_blessing("xp_suck", "Orb Catcher", _xp_suck_desc, -5, [_increase_stats_effect.bind("xp_suck")])
 	_add_generic_blessing("enemy_xp_drop", "Feast Totem", _enemy_xp_drop_desc, -5, [_increase_stats_effect.bind("enemy_xp_drop")])
 	_add_whale_blessing("whale_level", "Beluga Plushie", _whale_desc, -5, [_increase_stats_effect.bind("whale_level")])
 	_add_whale_blessing("whale_cooldown", "Beluga Boon", _whale_cooldown_desc, -5, [_increase_stats_effect.bind("whale_cooldown")])
 	_add_whale_blessing("whale_damage", "Beluga Fangs", _whale_damage_desc, -5, [_increase_stats_effect.bind("whale_damage")])
-	_add_generic_blessing("dash_distance", "VROOM!!", _dash_desc, -5,[_increase_stats_effect.bind("dash_distance")])
-	_add_big_curse("time_tick_level", "Dark Algae", _time_tick_desc, 10, [_increase_stats_effect.bind("time_tick_level")])
-	_add_curse("damage", "Little Bite", _damage_desc, 10, [_scaled_damage_effect, _increase_stats_effect.bind("damage")])
-	_add_curse("enemy_speed", "Flying Shell", _enemy_speed_desc, 10, [_increase_stats_effect.bind("enemy_speed")])
-	_add_curse("enemy_attack_speed", "Piranha Fangs", _enemy_attack_speed_desc, 10, [_increase_stats_effect.bind("enemy_attack_speed")])
-	_add_curse("enemy_health", "Bulk Up", _enemy_health_desc, 10, [_increase_stats_effect.bind("enemy_health")])
-	_add_curse("enemy_damage", "Poseidon's Fury", _enemy_damage_desc, 10, [_increase_stats_effect.bind("enemy_damage")])
+	_add_one_time_blessing("dash_distance", "VROOM!!", _dash_desc, -5,[_increase_stats_effect.bind("dash_distance")])
+	_add_big_curse("time_tick_level", "Dark Algae", _time_tick_desc, 8, [_increase_stats_effect.bind("time_tick_level")])
+	_add_curse("damage", "Little Bite", _damage_desc, 8, [_scaled_damage_effect, _increase_stats_effect.bind("damage")])
+	_add_curse("enemy_speed", "Flying Shell", _enemy_speed_desc, 8, [_increase_stats_effect.bind("enemy_speed")])
+	_add_curse("enemy_attack_speed", "Piranha Fangs", _enemy_attack_speed_desc, 8, [_increase_stats_effect.bind("enemy_attack_speed")])
+	_add_curse("enemy_health", "Bulk Up", _enemy_health_desc, 8, [_increase_stats_effect.bind("enemy_health")])
+	_add_curse("enemy_damage", "Poseidon's Fury", _enemy_damage_desc, 8, [_increase_stats_effect.bind("enemy_damage")])
 	_add_generic_blessing("attack_size", "Giant Potato", _attack_size_desc, -5, [_increase_stats_effect.bind("attack_size")])
 	_add_generic_blessing("player_attack_speed", "Sonic Seashell", _attack_speed_desc, -5, [_increase_stats_effect.bind("player_attack_speed")])
 	_add_generic_blessing("ebb_drop", "Ebb Essence", _ebb_drop_desc, -5, [_increase_stats_effect.bind("ebb_drop")])
 	_add_one_time_blessing("ebb_on_stand", "Ebb's Embrace", _ebb_on_stand_desc, -5, [_increase_stats_effect.bind("ebb_on_stand")])
 	_add_generic_blessing("dying_ebb", "Last Stand", _dying_ebb_desc, -5, [_increase_stats_effect.bind("dying_ebb")])
-	_add_generic_blessing("damaging_dash", "Shark Teeth", _damaging_dash_desc, -5,[_increase_stats_effect.bind("damaging_dash")])
+	_add_one_time_blessing("damaging_dash", "Shark Teeth", _damaging_dash_desc, -5,[_increase_stats_effect.bind("damaging_dash")])
 	_add_generic_blessing("damage_reduction", "Big Shell", _damge_reduction_desc, -5,[_increase_stats_effect.bind("damage_reduction")])
 	_add_generic_blessing("thornmail", "Thornmail", _thornmail_desc, -5, [_increase_stats_effect.bind("thornmail")])
 	_add_generic_blessing("fast_while_status", "Swift Current", _fast_during_status_desc, -5, [_increase_stats_effect.bind("fast_while_status")])
@@ -92,7 +92,7 @@ static func get_randomized_augmented_upgrades(type: Array[String], amount: int) 
 	return augmented_sample
 
 
-static func get_randomized_upgrades(type: Array[String], amount: int) -> Array[UpgradeData]:
+static func get_randomized_upgrades(type: Array[String], amount: int, do_upgrade : bool = true) -> Array[UpgradeData]:
 	var randomized: Array[UpgradeData] = []
 
 	# Collect only blessings or curses
@@ -105,46 +105,55 @@ static func get_randomized_upgrades(type: Array[String], amount: int) -> Array[U
 	
 	randomized.shuffle()
 	var chosen_upgrades : Array[UpgradeData] = randomized.slice(0, amount)
+	if not do_upgrade:
+		return chosen_upgrades
+	# else:
+	# 	return chosen_upgrades
+
+	var new_upgrades : Array[UpgradeData] = []
+	var cursed : bool = false
 	for upgrade in chosen_upgrades:
 		if upgrade.blessing_type == "big_curse":
 			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
-			chosen_upgrades.append(get_beluga_upgrade(upgrade))
-			chosen_upgrades.erase(upgrade)
+			new_upgrades.append(get_beluga_upgrade(upgrade))
 		else:
 			var rand_val : float = randf()
-			if rand_val < 0.05:
-				TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
-				chosen_upgrades.append(get_beluga_upgrade(upgrade))
-				chosen_upgrades.erase(upgrade)
-			elif rand_val < 0.1:
+			# if rand_val < 0.05:
+			# 	TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
+			# 	new_upgrades.append(get_beluga_upgrade(upgrade))
+			if rand_val < 0.15 and not cursed:
 				TutorialManager.show_tutorial(TutorialManager.TutorialEnum.ANGLERS_CURSE)
-				chosen_upgrades.append(get_angler_upgrade(upgrade))
-				chosen_upgrades.erase(upgrade)
-	return chosen_upgrades
+				new_upgrades.append(get_angler_upgrade(upgrade))
+				cursed = true
+			else:
+				new_upgrades.append(upgrade)
+	return new_upgrades
 
 static func scale_augment_cost(flat : int)	-> int:
-	var heal_scaling : float = 1.0
-	var damage_scaling : float = 1.0
-	var num : float = flat
-	var seconds_scaling : float = 2
+	# var heal_scaling : float = 1.0
+	# var damage_scaling : float = 1.0
+	var num : int = flat
+	# var seconds_scaling : float = 2
 	if num < 0:
-		## heal post curse
-		num = abs(num) * (1  / GlobalStats.get_seconds_per_damage()) * seconds_scaling
-		num *= heal_scaling
+	# 	## heal post curse
+	# 	num = abs(num) * (1  / GlobalStats.get_seconds_per_damage()) * seconds_scaling
+	# 	num *= heal_scaling
 		num += randi_range(-3, 3)
 	else:
-		## damage post blessing
-		num = abs(num) * (1  / GlobalStats.get_seconds_per_damage()) * seconds_scaling
-		num *= damage_scaling
+	# 	## damage post blessing
+	# 	num = abs(num) * (1  / GlobalStats.get_seconds_per_damage()) * seconds_scaling
+	# 	num *= damage_scaling
 		num += randi_range(-2, 2)
+	# var num : float = flat
 	num = max(0, num)
 	return floor(num)
 
 static func scale_curse_damage(amount : int) -> int:
 	# var damage_scaling : float = 0.5
-	var seconds_scaling : float = 2
-	var num : float = amount * (1  / GlobalStats.get_seconds_per_damage()) * seconds_scaling
+	# var seconds_scaling : float = 2
+	# var num : float = amount * (1  / GlobalStats.get_seconds_per_damage()) * seconds_scaling
 	# num *= damage_scaling
+	var num :int = amount
 	num += randi_range(-2, 2)
 	num = max(0, num)
 	return floor(num)
@@ -214,7 +223,7 @@ static func get_angler_upgrade(upgrade_data : UpgradeData) -> UpgradeData:
 	new_effects.append(_increase_boss_effect.bind("num_curses"))
 
 	var new_desc : Callable = func new_description_func() -> String:
-		return upgrade_data.get_description() + "\n[pulse freq=2.0 color=#3cb510FF ease=-3.0]Angler's Curse[/pulse]"
+		return upgrade_data.get_description() + "\n[pulse freq=2.0 color=#960028FF ease=-3.0]Angler's Curse[/pulse]"
 		
 
 	var new_display_name : String = upgrade_data.display_name + "+"
