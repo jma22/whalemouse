@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="6_dlpa8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dx1dy"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_dlpa8")
 shader_parameter/charge_level = 0.0
@@ -48,6 +49,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3il2m"]
+resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_3il2m")
 shader_parameter/charge_level = 0.0
@@ -61,6 +63,7 @@ shader_parameter/mesh_top = 1.0
 radius = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dlpa8"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_dlpa8")
 shader_parameter/charge_level = 0.0

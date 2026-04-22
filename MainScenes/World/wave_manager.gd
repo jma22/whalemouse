@@ -134,14 +134,13 @@ func preboss_room() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
-	var upgrade_one : UpgradeData = Upgrades.create_wave_choice_upgrade(
-		"boss_angler", 
-		"Face the Angler", 
+	var choice_one : WaveChoice = WaveChoice.new(
+		"Face the Angler",
 		func () -> String:
 			return "Fight the Angler.",
 		[_queue_wave_effect.bind(boss_wave())])
-	
-	wave_info.blessings = [upgrade_one]
+
+	wave_info.blessings = [choice_one]
 	wave_info.room_type = "shrine"
 	wave_info.name = "An Encounter"
 	return wave_info
@@ -158,20 +157,18 @@ func boss_choice_path() -> ChoiceWaveInfo:
 		boss_rooms.append(_queue_wave_effect.bind(boss_curse_wave()))
 	boss_rooms.append(_queue_wave_effect.bind(preboss_room()))
 
-	var upgrade_one : UpgradeData = Upgrades.create_wave_choice_upgrade(
-		"boss_angler", 
-		"Face the Curse", 
+	var choice_one : WaveChoice = WaveChoice.new(
+		"Face the Curse",
 		func () -> String:
 			return "Prepare to for a powerful foe. You have %d blessings and %d curses." % [GlobalStats.get_num_boss_blessings(), GlobalStats.get_num_boss_curses()],
 		boss_rooms)
-	var upgrade_two : UpgradeData = Upgrades.create_wave_choice_upgrade(
-		"skip_boss", 
+	var choice_two : WaveChoice = WaveChoice.new(
 		"Skip the Boss",
 		func () -> String:
 			return "Go Deeper. Fight the boss later.",
 		[])
-	upgrade_two = Upgrades.get_angler_upgrade(upgrade_two)
-	wave_info.blessings = [upgrade_one, upgrade_two]
+	choice_two = choice_two.with_angler_curse()
+	wave_info.blessings = [choice_one, choice_two]
 	wave_info.room_type = "shrine"
 	wave_info.name = "A Chance for an Encounter"
 	return wave_info
@@ -181,19 +178,17 @@ func choice_path_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
-	var upgrade_one : UpgradeData = Upgrades.create_wave_choice_upgrade(
-		"random_bless_choose_curse", 
-		"Choice of curse", 
+	var choice_one : WaveChoice = WaveChoice.new(
+		"Choice of curse",
 		func () -> String:
 			return "Get two random blessings, choose one curse.",
 		[_queue_wave_effect.bind(two_random_blessings_wave()), _queue_wave_effect.bind(curse_wave())])
-	var upgrade_two : UpgradeData = Upgrades.create_wave_choice_upgrade(
-		"random_curse_choose_bless",
+	var choice_two : WaveChoice = WaveChoice.new(
 		"Choice of blessing",
 		func () -> String:
 			return "Get a random curse, choose two blessings.",
 		[_queue_wave_effect.bind(force_random_curse_wave()), _queue_wave_effect.bind(two_blessing_wave()), _queue_wave_effect.bind(two_blessing_wave())])
-	wave_info.blessings = [upgrade_one, upgrade_two]
+	wave_info.blessings = [choice_one, choice_two]
 	wave_info.room_type = "shrine"
 	wave_info.name = "Illusion of Choice"
 	return wave_info
@@ -202,7 +197,7 @@ func boss_blessings_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	var blessing_pool : Array[String] = ["boss_blessing"]
-	wave_info.blessings = Upgrades.get_randomized_upgrades(blessing_pool, 2, false)
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(blessing_pool, 2, false))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Beluga's Blessing"
@@ -212,7 +207,7 @@ func boss_curse_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	var blessing_pool : Array[String] = ["boss_curse"]
-	wave_info.blessings = Upgrades.get_randomized_upgrades(blessing_pool, 2, false)
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(blessing_pool, 2, false))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Angler's Wrath"
@@ -223,10 +218,8 @@ func boss_curse_wave() -> ChoiceWaveInfo:
 func two_random_blessings_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	var blessing_pool : Array[String] = ["blessing", "one_time_blessing"]
-	if GlobalStats.has_beluga():
-		blessing_pool.append("whale_blessing")
-	wave_info.blessings = Upgrades.get_randomized_upgrades(blessing_pool, 2)
+	var blessing_pool : Array[String] = ["blessing", "one_time_blessing", "whale_blessing"]
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(blessing_pool, 2))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ALL
 	wave_info.room_type = "shrine"
 	wave_info.name = "Twin Blessings"
@@ -235,7 +228,7 @@ func two_random_blessings_wave() -> ChoiceWaveInfo:
 func force_random_curse_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	wave_info.blessings = Upgrades.get_randomized_upgrades(["curse","big_curse"], 1)
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(["curse","big_curse"], 1))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ALL
 	wave_info.room_type = "shrine"
 	wave_info.name = "A Curse for You"
@@ -246,13 +239,10 @@ func bless_vs_curse_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
-	var blessing_pool : Array[String] = ["blessing","one_time_blessing"]
+	var blessing_pool : Array[String] = ["blessing", "one_time_blessing", "whale_blessing"]
 	var upgrade_pool : Array[UpgradeData] = Upgrades.get_randomized_augmented_upgrades(["curse","big_curse"], 1)
-	if GlobalStats.has_beluga():
-		blessing_pool.append("whale_blessing")
-	
 	upgrade_pool.append_array(Upgrades.get_randomized_augmented_upgrades(blessing_pool, 1))
-	wave_info.blessings = upgrade_pool
+	wave_info.blessings.assign(upgrade_pool)
 	wave_info.room_type = "shrine"
 	wave_info.name = "A Blessing or A Curse?"
 	return wave_info
@@ -262,10 +252,8 @@ func shop_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.SKIPPABLE
-	var shop_pool : Array[String] = ["blessing","curse", "one_time_blessing","big_curse"]
-	if GlobalStats.has_beluga():
-		shop_pool.append("whale_blessing")
-	wave_info.blessings = Upgrades.get_randomized_augmented_upgrades(shop_pool, 3)
+	var shop_pool : Array[String] = ["blessing", "curse", "one_time_blessing", "big_curse", "whale_blessing"]
+	wave_info.blessings.assign(Upgrades.get_randomized_augmented_upgrades(shop_pool, 3))
 	wave_info.room_type = "shrine"
 	wave_info.name = "A Mysterious Shop"
 	return wave_info
@@ -276,8 +264,8 @@ func hard_curse_wave() -> ChoiceWaveInfo:
 	wave_info.wave_number = current_wave
 	var curses : Array[UpgradeData] = Upgrades.get_randomized_upgrades(["big_curse"],1)
 	var bonus_curses : Array[UpgradeData] = Upgrades.get_randomized_upgrades(["curse"], 1)
-	curses.append(Upgrades.get_harder_curse(bonus_curses[0]))
-	wave_info.blessings = curses
+	curses.append(bonus_curses[0].with_harder_curse())
+	wave_info.blessings.assign(curses)
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Curse of the Depths"
@@ -299,7 +287,7 @@ func dash_wave() -> ChoiceWaveInfo:
 func curse_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	wave_info.blessings = Upgrades.get_randomized_upgrades(["curse","big_curse"], 2)
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(["curse","big_curse"], 2))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Curses"
@@ -309,10 +297,7 @@ func curse_wave() -> ChoiceWaveInfo:
 func whale_blessing_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	if GlobalStats.has_beluga():
-		wave_info.blessings = Upgrades.get_randomized_upgrades(["whale_blessing"], 2)
-	else:
-		wave_info.blessings = [Upgrades.get_upgrade("whale_level")]
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(["whale_blessing"], 2))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Beluga's Aide"
@@ -321,10 +306,8 @@ func whale_blessing_wave() -> ChoiceWaveInfo:
 func intro_blessing() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	var blessing_pool : Array[String] = ["blessing"]
-	if GlobalStats.has_beluga():
-		blessing_pool.append("whale_blessing")
-	wave_info.blessings = Upgrades.get_randomized_upgrades(blessing_pool, 2, false)
+	var blessing_pool : Array[String] = ["blessing", "whale_blessing"]
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(blessing_pool, 2, false))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 
@@ -367,10 +350,8 @@ func intro_combat_wave() -> CombatWaveInfo:
 func two_blessing_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	var blessing_pool : Array[String] = ["blessing", "one_time_blessing"]
-	if GlobalStats.has_beluga():
-		blessing_pool.append("whale_blessing")
-	wave_info.blessings = Upgrades.get_randomized_upgrades(blessing_pool, 2)
+	var blessing_pool : Array[String] = ["blessing", "one_time_blessing", "whale_blessing"]
+	wave_info.blessings.assign(Upgrades.get_randomized_upgrades(blessing_pool, 2))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Two Blessings"

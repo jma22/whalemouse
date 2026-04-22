@@ -13,7 +13,7 @@ func start_room (wave : WaveInfo) -> void:
 
 
 
-func set_shrines(blessings: Array[UpgradeData]) -> void:
+func set_shrines(blessings: Array[Choice]) -> void:
 	for i in range(shrines.size()):
 		if i >= blessings.size():
 			shrines[i].setup(null)	

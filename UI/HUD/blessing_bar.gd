@@ -5,6 +5,13 @@ class_name BlessingBar
 @export var icon_scene : PackedScene
 var icons : Array[Icon] = []
 
+func _ready() -> void:
+	GlobalStats.stat_changed.connect(_on_stat_changed)
+	GlobalStats.wave_augments_changed.connect(sync_bar)
+
+func _on_stat_changed(_stat_name: StringName, _new_value: int) -> void:
+	sync_bar()
+
 func sync_bar() -> void:
 	print("Syncing BlessingBar")
 	reset()

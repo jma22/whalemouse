@@ -75,6 +75,17 @@ var tutorials : Dictionary= {
 }
 
 
+func _ready() -> void:
+	GlobalStats.stat_changed.connect(_on_stat_changed)
+
+func _on_stat_changed(stat_name: StringName, new_value: int) -> void:
+	if new_value != 1:
+		return
+	if stat_name == &"whale_level":
+		show_tutorial(TutorialEnum.FIRST_BELUGA)
+	elif stat_name == &"dash_distance":
+		show_tutorial(TutorialEnum.FIRST_DASH)
+
 func setup(tutorial : Tutorial) -> void:
 	self.tutorial = tutorial
 	process_mode = PROCESS_MODE_ALWAYS

@@ -14,7 +14,7 @@ func _ready() -> void:
 	player.reset()
 	player.setup(hud,camera)
 	GlobalStats.reset_current_run_stats()
-	GlobalStats.setup(player, hud)
+	GlobalStats.setup(player)
 	hud.setup(player)
 	map.setup(player,camera, hud)
 	# enemy.setup(player, map.floor)

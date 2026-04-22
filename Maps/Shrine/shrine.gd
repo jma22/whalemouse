@@ -10,8 +10,8 @@ class_name Shrine
 @export var curse_shrine_sprite : Texture2D
 @export var blessing_shrine_sprite : Texture2D
 
-var unused : bool = false 
-var upgrade_data : UpgradeData
+var unused : bool = false
+var choice : Choice
 var player_inside : bool = false
 var activated : bool = false
 var close_once_activated : bool = true
@@ -29,17 +29,17 @@ func _ready() -> void:
 	animation_clip.frame_numbers = [0,1,2]
 	original_scale = sprite.scale
 
-func setup(upgrade_data_: UpgradeData) -> void:
-	if upgrade_data_ == null:
+func setup(choice_: Choice) -> void:
+	if choice_ == null:
 		activated = false
 		unused = true
 		sprite.visible = false
-		printerr("Shrine setted up with no upgrade")
+		printerr("Shrine setted up with no choice")
 		return
-		
-	floating_sprite.texture = load(upgrade_data_.get_icon_path())
-	upgrade_data = upgrade_data_
-	if upgrade_data_.is_blessing():
+
+	floating_sprite.texture = load(choice_.get_icon_path())
+	choice = choice_
+	if choice_.is_blessing():
 		sprite.texture = blessing_shrine_sprite
 	else:
 		sprite.texture = curse_shrine_sprite
@@ -52,7 +52,7 @@ func setup(upgrade_data_: UpgradeData) -> void:
 func _process(_delta: float) -> void:
 	if player_inside:
 		if Input.is_action_just_pressed("interact"):
-			upgrade_data.apply()
+			choice.apply()
 			activated = true
 			floating_sprite.visible = false
 			audio_player.play()
@@ -66,7 +66,7 @@ func _on_body_entered(body: Node) -> void:
 
 		sprite.modulate = Color(0.7, 0.8, 0.8) # Change color to red when player enters
 		player_inside = true
-		blessing_description.display_blessing_info(upgrade_data)
+		blessing_description.display_blessing_info(choice)
 		sprite.frames_per_second = 5
 		if tween:
 			tween.stop()

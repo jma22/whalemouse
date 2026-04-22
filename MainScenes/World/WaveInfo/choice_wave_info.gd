@@ -1,7 +1,7 @@
 extends WaveInfo
 
 class_name ChoiceWaveInfo
-var blessings : Array[UpgradeData] = []
+var blessings : Array[Choice] = []
 var choice_type : ChoiceType
 
 enum ChoiceType {
@@ -18,7 +18,7 @@ enum ChoiceType {
     # TWO_CURSES
 }
 
-static func create(wave_number: int, blessings: Array[UpgradeData], choice_type: ChoiceType, name: String = "") -> ChoiceWaveInfo:
+static func create(wave_number: int, blessings: Array[Choice], choice_type: ChoiceType, name: String = "") -> ChoiceWaveInfo:
     var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
     wave_info.wave_number = wave_number
     wave_info.blessings = blessings

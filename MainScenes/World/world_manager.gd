@@ -33,7 +33,7 @@ func setup() -> void:
 	hud.setup(player)
 	time_damage.setup(player)
 	player.setup(hud, camera)
-	GlobalStats.setup(player, hud)
+	GlobalStats.setup(player)
 	transition.setup()
 	whale_spawner.setup(player, camera)
 	call_deferred("map_entered", true)

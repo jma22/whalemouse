@@ -18,7 +18,7 @@ func _ready() -> void:
 	container.modulate.a = 0.0
 
 
-func display_blessing_info(upgrade: UpgradeData) -> void:
+func display_blessing_info(upgrade: Choice) -> void:
 	_kill_tween()
 
 	_setup_visuals(upgrade)
@@ -34,7 +34,7 @@ func exit_blessing_info() -> void:
 # Internal helpers
 # ------------------------
 
-func _setup_visuals(upgrade: UpgradeData) -> void:
+func _setup_visuals(upgrade: Choice) -> void:
 	texture.texture = blessing_background if upgrade.is_blessing() else curse_background
 	var color : Color = blessing_color if upgrade.is_blessing() else curse_color
 	item_description_text.add_theme_color_override("font_color", color)

@@ -1,7 +1,10 @@
 extends Node
 
+signal stat_changed(stat_name: StringName, new_value: int)
+signal boss_stat_changed(stat_name: StringName, new_value: int)
+signal wave_augments_changed
+
 var player :Node3D
-var hud : HUD
 
 var total_stats : Dictionary = {
 	"enemies_killed": 0,
@@ -62,9 +65,8 @@ var wave_augments :Dictionary = {}
 
 var ordering : Array[String] = []
 
-func setup(player_node : Node3D, hud_node : HUD) -> void:
+func setup(player_node : Node3D) -> void:
 	player = player_node
-	hud = hud_node
 
 func get_current_stats() -> Array[Dictionary]:
 	var stats : Array[Dictionary] = []
@@ -110,28 +112,18 @@ func add_to_stat(stat_name: String) -> void:
 
 	if current_run_stats.has(stat_name):
 		current_run_stats[stat_name] += 1
-		if stat_name == "whale_level" and current_run_stats[stat_name] ==1:
-			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_BELUGA)
-		elif stat_name == "dash_distance" and current_run_stats[stat_name] ==1:
-			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRST_DASH)
-
-	# elif boss_stats.has(stat_name):
-	# 	boss_stats[stat_name] += 1
+		stat_changed.emit(stat_name, current_run_stats[stat_name])
 	else:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
-	if hud and hud.blessing_bar:
-		hud.blessing_bar.sync_bar()
 
 func add_boss_stat(stat_name: String) -> void:
 	if boss_stats.has(stat_name):
 		boss_stats[stat_name] += 1
-	if hud and hud.boss_info:
-		hud.boss_info.sync_bar()
+		boss_stat_changed.emit(stat_name, boss_stats[stat_name])
 
 func add_wave_augment(augment_name: String, wave_duration : int) -> void:
 	wave_augments[augment_name] = wave_duration
-	if hud and hud.blessing_bar:
-		hud.blessing_bar.sync_bar()
+	wave_augments_changed.emit()
 
 func decrement_wave_augments() -> void:
 	var augments_to_remove : Array[String] = []
@@ -141,150 +133,128 @@ func decrement_wave_augments() -> void:
 			augments_to_remove.append(augment_name)
 	for augment_name : String in augments_to_remove:
 		wave_augments.erase(augment_name)
-	if hud and hud.blessing_bar:
-		hud.blessing_bar.sync_bar()
+	wave_augments_changed.emit()
 
 
 
 func has_dash_bomb() -> bool:
-	return current_run_stats["dash_bomb"] > 0
-	
+	return StatCalculator.has_dash_bomb()
+
 func get_whale_damage_flat() -> int:
-	return current_run_stats["whale_damage"] + 1
+	return StatCalculator.get_whale_damage_flat()
 
 func get_whale_cooldown() -> float:
-	return current_run_stats["whale_cooldown"] * 0.1 ## 10 is 0 cooldown
+	return StatCalculator.get_whale_cooldown()
 
 func get_flat_speed() -> float:
-	return current_run_stats["flat_speed"] * 0.25
+	return StatCalculator.get_flat_speed()
 
 func speed_during_status() -> int:
-	return 0.5 + current_run_stats["fast_while_status"] * 0.3
+	return StatCalculator.speed_during_status()
 
 func has_thorns() -> bool:
-	return current_run_stats["thornmail"] > 0
+	return StatCalculator.has_thorns()
 
 func get_thorns_damage() -> int:
-	return current_run_stats["thornmail"]
-	
+	return StatCalculator.get_thorns_damage()
+
 func get_damage_reduced_by() -> int:
-	return 1 + current_run_stats["damage_reduction"]
+	return StatCalculator.get_damage_reduced_by()
 
 func get_dying_ebb() -> int:
-	if current_run_stats["dying_ebb"] > 0:
-		return 6 + current_run_stats["dying_ebb"] * 3
-	else:
-		return 0
-		
+	return StatCalculator.get_dying_ebb()
+
 func get_ebb_begin_of_room() -> int:
-	if current_run_stats["ebb_begin_of_room"] > 0:
-		return 3 + current_run_stats["ebb_begin_of_room"]
-	else:
-		return 0
+	return StatCalculator.get_ebb_begin_of_room()
 
 func get_ebb_on_stand() -> bool:
-	return current_run_stats["ebb_on_stand"] > 0
-	
+	return StatCalculator.get_ebb_on_stand()
+
 func get_dash_damage() -> int:
-	return current_run_stats["damaging_dash"]
+	return StatCalculator.get_dash_damage()
 
 func get_ebb_drop() -> int:
-	return current_run_stats["ebb_drop"]
+	return StatCalculator.get_ebb_drop()
 
 func get_mouse_attack_hitbox_scale() -> float:
-	return 1.0 + current_run_stats["attack_size"] * 0.3
+	return StatCalculator.get_mouse_attack_hitbox_scale()
 
 func get_heal_amount() -> int:
-	return current_run_stats["heal"] * 5 + 4
+	return StatCalculator.get_heal_amount()
 
 func get_damage_amount() -> int:
-	return current_run_stats["damage"] * 4 + 4
+	return StatCalculator.get_damage_amount()
 
 func get_attracted_radius() -> float:
-	# return 0.7 + current_run_stats["xp_suck"] * 0.4
-	return 0.4 + current_run_stats["xp_suck"] * 1.2
+	return StatCalculator.get_attracted_radius()
 
 func get_attracted_speed() -> float:
-	# return 0.3 + current_run_stats["xp_suck"] * 0.4
-	return 0.15 + current_run_stats["xp_suck"] * 0.8
+	return StatCalculator.get_attracted_speed()
 
 func get_bonus_enemy_xp_drop() -> int:
-	return int(current_run_stats["enemy_xp_drop"])
+	return StatCalculator.get_bonus_enemy_xp_drop()
 
 func get_enemy_damage() -> int:
-	return ceil(5 + current_run_stats["enemy_damage"] * 2.5)
+	return StatCalculator.get_enemy_damage()
 
 func get_dash_distance() -> float:
-	return 5.0 + current_run_stats["dash_distance"] *3.0
+	return StatCalculator.get_dash_distance()
 
 func get_seconds_per_damage() -> float:
-	## i want the damager per second to quadratically increase
-	return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.4)**1.3
-	# return 2.5/(1.0 + current_run_stats["time_tick_level"] * 0.25)
+	return StatCalculator.get_seconds_per_damage()
 
 func get_enemy_projectile_flat() -> int:
-	var wave_augment_bonus : int = 1 if "enemy_attack_speed" in wave_augments else 0
-	return current_run_stats["enemy_attack_speed"] + wave_augment_bonus
+	return StatCalculator.get_enemy_projectile_flat()
 
 func get_enemy_attack_speed_multiplier() -> float:
-	# var wave_augment_bonus : float = 1.0 if "enemy_attack_speed" in wave_augments else 0.0
-	return 1.0 + current_run_stats["enemy_attack_speed"] * 0.2
+	return StatCalculator.get_enemy_attack_speed_multiplier()
 
 func get_enemy_speed_multiplier() -> float:
-	# var wave_augment_bonus : float = 0.3 if "enemy_speed" in wave_augments else 0.0
-	return 1.0 + current_run_stats["enemy_speed"] * 0.25
+	return StatCalculator.get_enemy_speed_multiplier()
 
 func get_enemy_health_flat() -> float:
-	return current_run_stats["enemy_health"]
+	return StatCalculator.get_enemy_health_flat()
 
 func get_whale_size() -> float:
-	return current_run_stats["whale_level"] * 0.14
+	return StatCalculator.get_whale_size()
 
 func get_attack_speed_multiplier() -> float:
-	return 1.0 + current_run_stats["player_attack_speed"] * 0.1
+	return StatCalculator.get_attack_speed_multiplier()
 
 func has_beluga() -> bool:
-	# return true
-	return current_run_stats["whale_level"] > 0
+	return StatCalculator.has_beluga()
 
 func has_dash() -> bool:
-	# return true
-	return current_run_stats["dash_distance"] > 0
+	return StatCalculator.has_dash()
 
 func is_positive_stat(stat_name: String) -> bool:
-	if stat_name in ["xp_suck", "enemy_xp_drop", "whale_level", "dash_distance", "player_attack_speed"]:
-		return true
-	elif stat_name in ["time_tick_level", "enemy_speed", "enemy_health", "damage", "enemy_damage"]:
-		return false
-	else:
-		return true
-
+	return StatCalculator.is_positive_stat(stat_name)
 
 
 ## boss zone
 func get_num_boss_blessings() -> int:
-	return boss_stats["num_blessings"]
+	return StatCalculator.get_num_boss_blessings()
 
 func get_num_boss_curses() -> int:
-	return boss_stats["num_curses"]
+	return StatCalculator.get_num_boss_curses()
 
 func get_healing_light_heal() -> int:
-	return current_run_stats["time_tick_level"] * 15
+	return StatCalculator.get_healing_light_heal()
 
 func get_num_whales() -> int:
-	return current_run_stats["num_whales"] + 1
+	return StatCalculator.get_num_whales()
 
 func get_curse_duration_on_hit() -> float:
-	return current_run_stats["curse_on_hit"] * 2.0
+	return StatCalculator.get_curse_duration_on_hit()
 
 func get_extra_boss_health() -> int:
-	return current_run_stats["extra_boss_health"] * 10
+	return StatCalculator.get_extra_boss_health()
 
 func get_critical_chance() -> float:
-	return current_run_stats["critical_chance"] * 0.2
+	return StatCalculator.get_critical_chance()
 
 func get_boss_xp_drop_per_hit() -> int:
-	return current_run_stats["boss_xp_drop"]
+	return StatCalculator.get_boss_xp_drop_per_hit()
 
 func get_boss_attack_size_multiplier() -> float:
-	return 1.0 + current_run_stats["boss_attack_size"] * 0.5
+	return StatCalculator.get_boss_attack_size_multiplier()
