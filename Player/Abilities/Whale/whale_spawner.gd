@@ -40,7 +40,7 @@ func play_whale(whale : Whale) -> void:
 	whale.queue_free()
 
 func can_cast() -> bool:
-	return GlobalStats.has_beluga() and cooldown_timer <= 0.0
+	return StatCalculator.has_beluga() and cooldown_timer <= 0.0
 
 func cast_whale() -> void:
 	cooldown_timer = get_cooldown()
@@ -50,12 +50,12 @@ func cast_whale() -> void:
 	else:
 		enemies = []
 	print("num_enemies: " + str(enemies.size()))
-	var spawn_locations : Array[Vector3] = get_spawn_location(enemies, GlobalStats.get_num_whales())
+	var spawn_locations : Array[Vector3] = get_spawn_location(enemies, StatCalculator.get_num_whales())
 	for spawn_location in spawn_locations:
 		var whale_instance : Whale = whale_scene.instantiate() as Whale
 		add_child(whale_instance)
 		whale_instance.global_transform.origin = spawn_location
-		whale_instance.scale = Vector3.ONE * GlobalStats.get_whale_size()
+		whale_instance.scale = Vector3.ONE * StatCalculator.get_whale_size()
 		play_whale(whale_instance)
 
 
@@ -90,7 +90,7 @@ func get_spawn_location(enemies : Array[Node3D], topk :int = 1) -> Array[Vector3
 	# 	if distance < closest_distance:
 	# 		closest_enemy = enemy
 	# 		closest_distance = distance
-	var radius :float = 1.5 * GlobalStats.get_whale_size()
+	var radius :float = 1.5 * StatCalculator.get_whale_size()
 
 	for i in range(min(topk, enemies.size())):
 		var closest_enemy : Node3D = enemy_distance[i]["enemy"]
@@ -100,4 +100,4 @@ func get_spawn_location(enemies : Array[Node3D], topk :int = 1) -> Array[Vector3
 	return ans
 
 func get_cooldown() -> float:
-	return max(base_cooldown * (1.0 - GlobalStats.get_whale_cooldown()), 0.5)
+	return max(base_cooldown * (1.0 - StatCalculator.get_whale_cooldown()), 0.5)

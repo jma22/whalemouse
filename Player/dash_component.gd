@@ -17,7 +17,7 @@ func _tick_dash_cooldown(delta: float) -> void:
 			dash_cooldown_timer = 0.0
 
 func can_dash() -> bool:
-	return GlobalStats.has_dash() and dash_cooldown_timer <= 0.0
+	return StatCalculator.has_dash() and dash_cooldown_timer <= 0.0
 
 func get_cooldown_progress() -> float:
 	if dash_cooldown_timer <= 0.0:

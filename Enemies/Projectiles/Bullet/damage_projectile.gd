@@ -16,7 +16,7 @@ func setup(direction_: Vector3, ) -> void:
 
 func _physics_process(delta: float) -> void:
 
-	global_position += direction * speed * delta * GlobalStats.get_enemy_attack_speed_multiplier()
+	global_position += direction * speed * delta * StatCalculator.get_enemy_attack_speed_multiplier()
 	# if floor and not floor.check_in_bounds(global_position):
 	# 	queue_free()
 	

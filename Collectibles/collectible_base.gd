@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 		PickupState.Attracted:
 			if target:
 				var direction : Vector3 = (target.global_transform.origin - global_transform.origin).normalized()
-				global_transform.origin += direction * delta * GlobalStats.get_attracted_speed()
+				global_transform.origin += direction * delta * StatCalculator.get_attracted_speed()
 		PickupState.Despawn:
 			visible = false
 			set_process(false)
@@ -85,7 +85,7 @@ func check_state() -> void:
 			play_sound()
 		elif distance_to_target <= pickup_radius:
 			state = PickupState.PickedUp
-		elif distance_to_target <= GlobalStats.get_attracted_radius():
+		elif distance_to_target <= StatCalculator.get_attracted_radius():
 			state = PickupState.Attracted
 		else:
 			state = PickupState.Idle

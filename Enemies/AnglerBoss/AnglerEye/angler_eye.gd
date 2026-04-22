@@ -23,9 +23,9 @@ func setup(player: CharacterBody3D, map: NavigationRegion3D) -> void:
 	for node : Node3D in get_tree().get_nodes_in_group("eye_checkpoints"):
 		checkpoints.append(node.global_position)
 	super(player, map)
-	health_component.max_health += GlobalStats.get_extra_boss_health()
+	health_component.max_health += StatCalculator.get_extra_boss_health()
 	health_component.current_health = health_component.max_health
-	hurt_box.orbs_on_hit = GlobalStats.get_boss_xp_drop_per_hit()
+	hurt_box.orbs_on_hit = StatCalculator.get_boss_xp_drop_per_hit()
 
 func set_variant(variant : int) -> void:
 	match variant:

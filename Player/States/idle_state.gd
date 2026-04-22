@@ -11,11 +11,11 @@ func enter() -> void:
 	entity.velocity = Vector3.ZERO
 	entity.sprite_manager.play(animation)
 	entity.position.y = 0
-	if GlobalStats.get_ebb_on_stand():
+	if StatCalculator.get_ebb_on_stand():
 		entity.gain_status_effect(ebb_status_effect, self)
 
 func exit() -> void:
-	if GlobalStats.get_ebb_on_stand():
+	if StatCalculator.get_ebb_on_stand():
 		entity.lose_status_effect(ebb_status_effect, self)
 
 		

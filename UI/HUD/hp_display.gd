@@ -100,7 +100,7 @@ func set_circle() -> void:
 
 func set_whale_circle() -> void:
 	if whale_spawner:
-		if not GlobalStats.has_beluga():
+		if not StatCalculator.has_beluga():
 			whale_circle.visible = false
 			whale_icon.visible = false
 			return
@@ -127,7 +127,7 @@ func set_whale_circle() -> void:
 	
 func set_dash_bar() -> void:
 	if dash_component:
-		if not GlobalStats.has_dash():
+		if not StatCalculator.has_dash():
 			dash_bar.visible = false
 			return
 		dash_bar.visible = true

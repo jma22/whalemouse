@@ -150,14 +150,14 @@ func on_die() -> void:
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		if randf() < 0.33:
-			xp_spawner_instance.setup_outwards(xp_drop_amount + GlobalStats.get_bonus_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
+			xp_spawner_instance.setup_outwards(xp_drop_amount + StatCalculator.get_bonus_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
 		else:
 			xp_spawner_instance.setup_outwards(xp_drop_amount, player, CollectibleSpawner.OrbType.TIME, get_floor())
 
 		if randf() < 0.5:
 			xp_spawner_instance.setup_outwards(ebb_drop_amount, player, CollectibleSpawner.OrbType.EBB, get_floor())
 		else:
-			xp_spawner_instance.setup_outwards(ebb_drop_amount + GlobalStats.get_ebb_drop(), player, CollectibleSpawner.OrbType.EBB, get_floor())
+			xp_spawner_instance.setup_outwards(ebb_drop_amount + StatCalculator.get_ebb_drop(), player, CollectibleSpawner.OrbType.EBB, get_floor())
 			
 	process_mode = Node.PROCESS_MODE_DISABLED	
 
@@ -174,13 +174,13 @@ func get_floor() -> NavigationRegion3D:
 	return floor_
 
 func get_speed_multiplier() -> float:
-	return GlobalStats.get_enemy_speed_multiplier() * status_effect_manager.get_speed_multiplier()
+	return StatCalculator.get_enemy_speed_multiplier() * status_effect_manager.get_speed_multiplier()
 
 func get_attack_speed_multiplier() -> float:
-	return GlobalStats.get_enemy_attack_speed_multiplier() * status_effect_manager.get_attack_speed_multiplier()
+	return StatCalculator.get_enemy_attack_speed_multiplier() * status_effect_manager.get_attack_speed_multiplier()
 
 func get_projectile_flat() -> int:
-	return GlobalStats.get_enemy_projectile_flat() + status_effect_manager.get_projectile_flat()
+	return StatCalculator.get_enemy_projectile_flat() + status_effect_manager.get_projectile_flat()
 
 func clear_effects() -> void:
 	status_effect_manager.clear_effects()

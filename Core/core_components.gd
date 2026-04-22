@@ -17,7 +17,7 @@ func setup(entity : CharacterBody3D) -> void:
 	knockback_component.setup(entity)
 	bounce_component.setup(entity)
 	sprite_manager.setup(hitstop)
-	health_component.setup(ceil(entity.initial_health + GlobalStats.get_enemy_health_flat()), entity)
+	health_component.setup(ceil(entity.initial_health + StatCalculator.get_enemy_health_flat()), entity)
 	status_effect_manager.setup(entity)
 	shield_component.setup(entity)
 

@@ -25,13 +25,13 @@ func enter() -> void:
 	audio_player.pitch_scale = 1.0 + randf() * 0.4
 	audio_player.play()
 	
-	if GlobalStats.has_dash_bomb():
+	if StatCalculator.has_dash_bomb():
 		var bomb_instance : Node3D = explosion.instantiate()
 		entity.get_parent().add_child(bomb_instance)
 		bomb_instance.global_transform.origin = entity.global_transform.origin
 		bomb_instance.setup(2.0)
-	if GlobalStats.get_dash_damage() > 0:
-		roll_hitbox.set_damage(GlobalStats.get_dash_damage())
+	if StatCalculator.get_dash_damage() > 0:
+		roll_hitbox.set_damage(StatCalculator.get_dash_damage())
 		roll_hitbox.set_behavior(RollHitboxBehavior.make())
 		roll_hitbox.set_active(true)
 	
@@ -53,5 +53,5 @@ func set_direction(direction: Vector2) -> void:
 	roll_direction = direction
 
 func initial_velocity() -> void:
-	entity.velocity.x = roll_direction.x * GlobalStats.get_dash_distance()
-	entity.velocity.z = roll_direction.y * GlobalStats.get_dash_distance()
+	entity.velocity.x = roll_direction.x * StatCalculator.get_dash_distance()
+	entity.velocity.z = roll_direction.y * StatCalculator.get_dash_distance()

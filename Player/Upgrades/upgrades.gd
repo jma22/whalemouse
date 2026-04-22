@@ -2,69 +2,189 @@ extends Node
 class_name Upgrades
 
 static func _static_init() -> void:
-	UpgradeBuilder.new("heal", "Time in a Jar").pool(UpgradePool.BLESSING).description_fn(_heal_desc).augment(-5) \
-		.effect(HealScaledEffect.new()).effect(IncreaseStatEffect.new(&"heal")).register()
-	UpgradeBuilder.new("xp_suck", "Orb Catcher").pool(UpgradePool.BLESSING).description_fn(_xp_suck_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"xp_suck")).register()
-	UpgradeBuilder.new("enemy_xp_drop", "Feast Totem").pool(UpgradePool.BLESSING).description_fn(_enemy_xp_drop_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"enemy_xp_drop")).register()
-	UpgradeBuilder.new("whale_level", "Beluga Plushie").pool(UpgradePool.WHALE_BLESSING).description_fn(_whale_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"whale_level")).register()
-	UpgradeBuilder.new("whale_cooldown", "Beluga Boon").pool(UpgradePool.WHALE_BLESSING).description_fn(_whale_cooldown_desc).augment(-5) \
-		.prereqs([&"whale_level"]).effect(IncreaseStatEffect.new(&"whale_cooldown")).register()
-	UpgradeBuilder.new("whale_damage", "Beluga Fangs").pool(UpgradePool.WHALE_BLESSING).description_fn(_whale_damage_desc).augment(-5) \
-		.prereqs([&"whale_level"]).effect(IncreaseStatEffect.new(&"whale_damage")).register()
-	UpgradeBuilder.new("dash_distance", "VROOM!!").pool(UpgradePool.ONE_TIME_BLESSING).description_fn(_dash_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"dash_distance")).register()
-	UpgradeBuilder.new("time_tick_level", "Dark Algae").pool(UpgradePool.BIG_CURSE).description_fn(_time_tick_desc).augment(8) \
-		.effect(IncreaseStatEffect.new(&"time_tick_level")).register()
-	UpgradeBuilder.new("damage", "Little Bite").pool(UpgradePool.CURSE).description_fn(_damage_desc).augment(8) \
-		.effect(DamageScaledEffect.new()).effect(IncreaseStatEffect.new(&"damage")).register()
-	UpgradeBuilder.new("enemy_speed", "Flying Shell").pool(UpgradePool.CURSE).description_fn(_enemy_speed_desc).augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_speed")).register()
-	UpgradeBuilder.new("enemy_attack_speed", "Piranha Fangs").pool(UpgradePool.CURSE).description_fn(_enemy_attack_speed_desc).augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_attack_speed")).register()
-	UpgradeBuilder.new("enemy_health", "Bulk Up").pool(UpgradePool.CURSE).description_fn(_enemy_health_desc).augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_health")).register()
-	UpgradeBuilder.new("enemy_damage", "Poseidon's Fury").pool(UpgradePool.CURSE).description_fn(_enemy_damage_desc).augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_damage")).register()
-	UpgradeBuilder.new("attack_size", "Giant Potato").pool(UpgradePool.BLESSING).description_fn(_attack_size_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"attack_size")).register()
-	UpgradeBuilder.new("player_attack_speed", "Sonic Seashell").pool(UpgradePool.BLESSING).description_fn(_attack_speed_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"player_attack_speed")).register()
-	UpgradeBuilder.new("ebb_drop", "Ebb Essence").pool(UpgradePool.BLESSING).description_fn(_ebb_drop_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"ebb_drop")).register()
-	UpgradeBuilder.new("ebb_on_stand", "Ebb's Embrace").pool(UpgradePool.ONE_TIME_BLESSING).description_fn(_ebb_on_stand_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"ebb_on_stand")).register()
-	UpgradeBuilder.new("dying_ebb", "Last Stand").pool(UpgradePool.BLESSING).description_fn(_dying_ebb_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"dying_ebb")).register()
-	UpgradeBuilder.new("damaging_dash", "Shark Teeth").pool(UpgradePool.ONE_TIME_BLESSING).description_fn(_damaging_dash_desc).augment(-5) \
-		.prereqs([&"dash_distance"]).effect(IncreaseStatEffect.new(&"damaging_dash")).register()
-	UpgradeBuilder.new("damage_reduction", "Big Shell").pool(UpgradePool.BLESSING).description_fn(_damge_reduction_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"damage_reduction")).register()
-	UpgradeBuilder.new("thornmail", "Thornmail").pool(UpgradePool.BLESSING).description_fn(_thornmail_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"thornmail")).register()
-	UpgradeBuilder.new("fast_while_status", "Swift Current").pool(UpgradePool.BLESSING).description_fn(_fast_during_status_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"fast_while_status")).register()
-	UpgradeBuilder.new("flat_speed", "Eel boots?").pool(UpgradePool.BLESSING).description_fn(_flat_speed_desc).augment(-5) \
-		.effect(IncreaseStatEffect.new(&"flat_speed")).register()
+	UpgradeBuilder.new("heal", "Time in a Jar") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_heal_desc) \
+		.augment(-5) \
+		.effect(HealScaledEffect.new()) \
+		.effect(IncreaseStatEffect.new(&"heal")) \
+		.register()
+	UpgradeBuilder.new("xp_suck", "Orb Catcher") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_xp_suck_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"xp_suck")) \
+		.register()
+	UpgradeBuilder.new("enemy_xp_drop", "Feast Totem") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_enemy_xp_drop_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"enemy_xp_drop")) \
+		.register()
+	UpgradeBuilder.new("whale_level", "Beluga Plushie") \
+		.pool(UpgradePool.WHALE_BLESSING) \
+		.description_fn(_whale_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"whale_level")) \
+		.register()
+	UpgradeBuilder.new("whale_cooldown", "Beluga Boon") \
+		.pool(UpgradePool.WHALE_BLESSING) \
+		.description_fn(_whale_cooldown_desc) \
+		.augment(-5) \
+		.prereqs([&"whale_level"]) \
+		.effect(IncreaseStatEffect.new(&"whale_cooldown")) \
+		.register()
+	UpgradeBuilder.new("whale_damage", "Beluga Fangs") \
+		.pool(UpgradePool.WHALE_BLESSING) \
+		.description_fn(_whale_damage_desc) \
+		.augment(-5) \
+		.prereqs([&"whale_level"]) \
+		.effect(IncreaseStatEffect.new(&"whale_damage")) \
+		.register()
+	UpgradeBuilder.new("dash_distance", "VROOM!!") \
+		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.description_fn(_dash_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"dash_distance")) \
+		.register()
+	UpgradeBuilder.new("time_tick_level", "Dark Algae") \
+		.pool(UpgradePool.BIG_CURSE) \
+		.description_fn(_time_tick_desc) \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"time_tick_level")) \
+		.register()
+	UpgradeBuilder.new("damage", "Little Bite") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(_damage_desc) \
+		.augment(8) \
+		.effect(DamageScaledEffect.new()) \
+		.effect(IncreaseStatEffect.new(&"damage")) \
+		.register()
+	UpgradeBuilder.new("enemy_speed", "Flying Shell") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(_enemy_speed_desc) \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_speed")) \
+		.register()
+	UpgradeBuilder.new("enemy_attack_speed", "Piranha Fangs") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(_enemy_attack_speed_desc) \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_attack_speed")) \
+		.register()
+	UpgradeBuilder.new("enemy_health", "Bulk Up") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(_enemy_health_desc) \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_health")) \
+		.register()
+	UpgradeBuilder.new("enemy_damage", "Poseidon's Fury") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(_enemy_damage_desc) \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_damage")) \
+		.register()
+	UpgradeBuilder.new("attack_size", "Giant Potato") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_attack_size_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"attack_size")) \
+		.register()
+	UpgradeBuilder.new("player_attack_speed", "Sonic Seashell") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_attack_speed_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"player_attack_speed")) \
+		.register()
+	UpgradeBuilder.new("ebb_drop", "Ebb Essence") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_ebb_drop_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"ebb_drop")) \
+		.register()
+	UpgradeBuilder.new("ebb_on_stand", "Ebb's Embrace") \
+		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.description_fn(_ebb_on_stand_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"ebb_on_stand")) \
+		.register()
+	UpgradeBuilder.new("dying_ebb", "Last Stand") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_dying_ebb_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"dying_ebb")) \
+		.register()
+	UpgradeBuilder.new("damaging_dash", "Shark Teeth") \
+		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.description_fn(_damaging_dash_desc) \
+		.augment(-5) \
+		.prereqs([&"dash_distance"]) \
+		.effect(IncreaseStatEffect.new(&"damaging_dash")) \
+		.register()
+	UpgradeBuilder.new("damage_reduction", "Big Shell") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_damge_reduction_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"damage_reduction")) \
+		.register()
+	UpgradeBuilder.new("thornmail", "Thornmail") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_thornmail_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"thornmail")) \
+		.register()
+	UpgradeBuilder.new("fast_while_status", "Swift Current") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_fast_during_status_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"fast_while_status")) \
+		.register()
+	UpgradeBuilder.new("flat_speed", "Eel boots?") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_flat_speed_desc) \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"flat_speed")) \
+		.register()
 
-	UpgradeBuilder.new("extra_boss_health", "Angler's Feast").pool(UpgradePool.BOSS_CURSE).description_fn(_extra_boss_health_desc) \
-		.effect(IncreaseStatEffect.new(&"extra_boss_health")).register()
-	UpgradeBuilder.new("curse_on_hit", "Poisonous Touch").pool(UpgradePool.BOSS_CURSE).description_fn(_curse_on_hit_desc) \
-		.effect(IncreaseStatEffect.new(&"curse_on_hit")).register()
-	UpgradeBuilder.new("boss_attack_size", "Massive Tentacles").pool(UpgradePool.BOSS_CURSE).description_fn(_boss_attack_size_desc) \
-		.effect(IncreaseStatEffect.new(&"boss_attack_size")).register()
+	UpgradeBuilder.new("extra_boss_health", "Angler's Feast") \
+		.pool(UpgradePool.BOSS_CURSE) \
+		.description_fn(_extra_boss_health_desc) \
+		.effect(IncreaseStatEffect.new(&"extra_boss_health")) \
+		.register()
+	UpgradeBuilder.new("curse_on_hit", "Poisonous Touch") \
+		.pool(UpgradePool.BOSS_CURSE) \
+		.description_fn(_curse_on_hit_desc) \
+		.effect(IncreaseStatEffect.new(&"curse_on_hit")) \
+		.register()
+	UpgradeBuilder.new("boss_attack_size", "Massive Tentacles") \
+		.pool(UpgradePool.BOSS_CURSE) \
+		.description_fn(_boss_attack_size_desc) \
+		.effect(IncreaseStatEffect.new(&"boss_attack_size")) \
+		.register()
 
-	UpgradeBuilder.new("flat_heal", "Healing Light").pool(UpgradePool.BOSS_BLESSING).description_fn(_boss_heal_desc) \
-		.effect(HealingLightEffect.new()).register()
-	UpgradeBuilder.new("num_whales", "Whale Song").pool(UpgradePool.BOSS_BLESSING).description_fn(_num_whales_desc) \
-		.prereqs([&"whale_level"]).effect(IncreaseStatEffect.new(&"num_whales")).register()
-	UpgradeBuilder.new("boss_xp_drop", "Angler Hunter").pool(UpgradePool.BOSS_BLESSING).description_fn(_enemy_xp_drop_desc) \
-		.effect(IncreaseStatEffect.new(&"boss_xp_drop")).register()
-	UpgradeBuilder.new("critical_chance", "Sharpshell").pool(UpgradePool.BOSS_BLESSING).description_fn(_critical_chance_desc) \
-		.effect(IncreaseStatEffect.new(&"critical_chance")).register()
+	UpgradeBuilder.new("flat_heal", "Healing Light") \
+		.pool(UpgradePool.BOSS_BLESSING) \
+		.description_fn(_boss_heal_desc) \
+		.effect(HealingLightEffect.new()) \
+		.register()
+	UpgradeBuilder.new("num_whales", "Whale Song") \
+		.pool(UpgradePool.BOSS_BLESSING) \
+		.description_fn(_num_whales_desc) \
+		.prereqs([&"whale_level"]) \
+		.effect(IncreaseStatEffect.new(&"num_whales")) \
+		.register()
+	UpgradeBuilder.new("boss_xp_drop", "Angler Hunter") \
+		.pool(UpgradePool.BOSS_BLESSING) \
+		.description_fn(_enemy_xp_drop_desc) \
+		.effect(IncreaseStatEffect.new(&"boss_xp_drop")) \
+		.register()
+	UpgradeBuilder.new("critical_chance", "Sharpshell") \
+		.pool(UpgradePool.BOSS_BLESSING) \
+		.description_fn(_critical_chance_desc) \
+		.effect(IncreaseStatEffect.new(&"critical_chance")) \
+		.register()
 
+	
 
 # --- public methods ---
 static func chosen_upgrade(upgrade_data : UpgradeData) -> void:
@@ -107,10 +227,10 @@ static func get_randomized_upgrades(type: Array[String], amount: int, do_upgrade
 
 # ------- DESCRIPTION FUNCTIONS -------
 static func _heal_desc() -> String:
-	return "Take some time! Increase every time you choose it! (+%d)" % (GlobalStats.get_heal_amount())
+	return "Take some time! Increase every time you choose it! (+%d)" % (StatCalculator.get_heal_amount())
 
 static func _damage_desc() -> String:
-	return "Lose some time! Increase every time you choose it! (-%d)" % (GlobalStats.get_damage_amount())
+	return "Lose some time! Increase every time you choose it! (-%d)" % (StatCalculator.get_damage_amount())
 
 static func _xp_suck_desc() -> String:
 	return "Orbs are attracted to you!"
@@ -178,13 +298,13 @@ static func _damaging_dash_desc() -> String:
 	return "Your dash damages enemies!"
 
 static func _damge_reduction_desc() -> String:
-	return "Take less damage!" % (GlobalStats.get_damage_reduced_by())
+	return "Take less damage!" % (StatCalculator.get_damage_reduced_by())
 
 static func _thornmail_desc() -> String:
 	if GlobalStats.current_run_stats["thornmail"] == 0:
 		return "Deal damage to enemies when you get hit!"
 	else:
-		return "Deal more damage to enemies when you get hit!" % (GlobalStats.get_thorns_damage())
+		return "Deal more damage to enemies when you get hit!" % (StatCalculator.get_thorns_damage())
 
 static func _fast_during_status_desc() -> String:
 	return "Move faster while affected by a status effect!"
@@ -199,7 +319,7 @@ static func _dying_ebb_desc() -> String:
 ## boss zone
 
 static func _boss_heal_desc() -> String:
-	return "Heal %d" % (GlobalStats.get_healing_light_heal())
+	return "Heal %d" % (StatCalculator.get_healing_light_heal())
 
 static func _curse_on_hit_desc() -> String:
 	return "Bleed when you take damage."

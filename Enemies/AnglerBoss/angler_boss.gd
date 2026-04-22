@@ -36,7 +36,7 @@ var camera : Camera3D
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	# initial_state = enemy_ink_attack_state
 	super(player, map)
-	health_component.max_health += GlobalStats.get_extra_boss_health() * 4
+	health_component.max_health += StatCalculator.get_extra_boss_health() * 4
 	health_component.current_health = health_component.max_health
 
 	sprite_manager.render_priority = -1

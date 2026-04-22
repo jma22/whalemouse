@@ -46,7 +46,7 @@ func summon_spike(position : Vector3, delay: float) -> void:
 	var spike_instance : Node = spike_scene.instantiate()
 	entity.get_parent().add_child(spike_instance)
 	spike_instance.global_transform.origin = position
-	var scale_ : float = GlobalStats.get_boss_attack_size_multiplier()
+	var scale_ : float = StatCalculator.get_boss_attack_size_multiplier()
 	spike_instance.scale = Vector3(scale_, scale_, scale_)
 	spike_instance.setup(delay)
 

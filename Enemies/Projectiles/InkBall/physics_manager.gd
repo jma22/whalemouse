@@ -14,7 +14,7 @@ var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
 
 func setup(target_position: Vector3) -> void:
 	arc_component.setup(target_position)
-	arc_component.set_multiplier(1 / GlobalStats.get_enemy_attack_speed_multiplier())
+	arc_component.set_multiplier(1 / StatCalculator.get_enemy_attack_speed_multiplier())
 
 
 func _physics_process(delta: float) -> void:

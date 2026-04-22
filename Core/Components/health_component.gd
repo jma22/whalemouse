@@ -28,7 +28,7 @@ func reset() -> void:
 func take_damage(damage: int) -> void:
 	print("Taking damage: ", damage , " Current health: ", current_health)
 	current_health -= damage
-	if GlobalStats.get_dying_ebb() >= current_health and entity is Player:
+	if StatCalculator.get_dying_ebb() >= current_health and entity is Player:
 		entity.gain_status_effect(ebb_effect, self)
 
 	if current_health <= 0:
@@ -38,7 +38,7 @@ func take_damage(damage: int) -> void:
 
 func gain_health(amount: int) -> void:
 	current_health += amount
-	if GlobalStats.get_dying_ebb() < current_health and entity is Player:
+	if StatCalculator.get_dying_ebb() < current_health and entity is Player:
 		entity.lose_status_effect(ebb_effect, self)
 	# if current_health > max_health:
 	# 	current_health = max_health

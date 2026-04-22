@@ -29,13 +29,13 @@ func enter() -> void:
 	# convert 2D attack direction to world position for the arc
 	var dir3d := Vector3(attack_direction.x, 0, attack_direction.y)
 	var target := entity.global_transform.origin + dir3d * horizontal_distance
-	hitbox.scale = Vector3(GlobalStats.get_mouse_attack_hitbox_scale(), 1, GlobalStats.get_mouse_attack_hitbox_scale())
+	hitbox.scale = Vector3(StatCalculator.get_mouse_attack_hitbox_scale(), 1, StatCalculator.get_mouse_attack_hitbox_scale())
 
 	# scale arc params by attack speed multiplier
 	# arc_component.time = 1.5 / spd_mult
 	arc_component.setup(target)
 
-	will_crit = randf() < GlobalStats.get_critical_chance()
+	will_crit = randf() < StatCalculator.get_critical_chance()
 	if will_crit:
 		hitbox.set_damage(2)
 	else:
@@ -45,7 +45,7 @@ func enter() -> void:
 	hitbox.set_behavior(AttackHitboxBehavior.make())
 
 func adjust_speed() -> void:
-	var mult : float = GlobalStats.get_attack_speed_multiplier()
+	var mult : float = StatCalculator.get_attack_speed_multiplier()
 	arc_component.set_multiplier(1/mult)
 
 	entity.sprite_manager.frames_per_second = 12 * mult
@@ -74,7 +74,7 @@ func fixed_run(delta: float) -> void:
 		entity.get_parent().add_child(crack)
 		crack.global_transform = entity.global_transform
 		crack.global_transform.origin.y = 0.01
-		var new_scale : float = GlobalStats.get_mouse_attack_hitbox_scale() * 1.5
+		var new_scale : float = StatCalculator.get_mouse_attack_hitbox_scale() * 1.5
 		
 		crack.set_scale(Vector3(new_scale, new_scale, new_scale))
 		crack.play()
@@ -83,7 +83,7 @@ func fixed_run(delta: float) -> void:
 		get_tree().get_root().add_child(impact_effect_instance)
 		impact_effect_instance.global_transform.origin = entity.global_transform.origin
 
-		impact_effect_instance.setup(GlobalStats.get_mouse_attack_hitbox_scale(), will_crit)
+		impact_effect_instance.setup(StatCalculator.get_mouse_attack_hitbox_scale(), will_crit)
 		impact_effect_instance.play()
 		if will_crit:
 			entity.camera_ref.camera_shake(0.3,0.35)

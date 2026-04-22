@@ -76,7 +76,7 @@ func get_input() -> Vector2:
 
 func _tick_input_buffer(delta: float) -> void:
 	# Record new presses into the buffer
-	if GlobalStats.has_dash() and Input.is_action_just_pressed("dash"):
+	if StatCalculator.has_dash() and Input.is_action_just_pressed("dash"):
 		_buffered_action = &"dash"
 		_buffer_timer = BUFFER_WINDOW
 	elif Input.is_action_just_pressed("atk"):
@@ -150,10 +150,10 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	if damage_taken == 0:
 		return
 
-	damage_taken = max(0, damage_taken - GlobalStats.get_damage_reduced_by())
+	damage_taken = max(0, damage_taken - StatCalculator.get_damage_reduced_by())
 	if map_ref is BossMapManager:
-		if GlobalStats.get_curse_duration_on_hit() > 0:
-			gain_status_effect(HasteEffect.make(GlobalStats.get_curse_duration_on_hit()), self)
+		if StatCalculator.get_curse_duration_on_hit() > 0:
+			gain_status_effect(HasteEffect.make(StatCalculator.get_curse_duration_on_hit()), self)
 	health_component.take_damage(damage_taken)
 
 	if attacker_hitbox.effect_on_hit:
@@ -165,8 +165,8 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	hurt_box.on_valid_damaging_hit()
 	camera_ref.camera_shake(0.2, 0.25)
 
-	if GlobalStats.has_thorns():
-		thorn_hitbox.set_damage(GlobalStats.get_thorns_damage())
+	if StatCalculator.has_thorns():
+		thorn_hitbox.set_damage(StatCalculator.get_thorns_damage())
 		if attacker_hitbox.owner_entity and attacker_hitbox.owner_entity.has_method("on_hit"):
 			attacker_hitbox.owner_entity.on_hit(thorn_hitbox)
 
