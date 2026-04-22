@@ -41,7 +41,7 @@ func enter() -> void:
 	else:
 		hitbox.set_damage(1)
 	# hitbox.set_effect_on_hit(MarkEffect.make())
-	hitbox.set_effect_on_hit(PoisonEffect.make(2.0))
+	hitbox.set_effect_on_hit(PoisonEffect.make())
 	hitbox.set_behavior(AttackHitboxBehavior.make())
 
 func adjust_speed() -> void:

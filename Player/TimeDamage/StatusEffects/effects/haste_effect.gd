@@ -4,7 +4,7 @@ const TIME_MULTIPLIER : float = 2.0
 
 static func make(p_duration: float) -> HasteEffect:
 	var effect : HasteEffect = HasteEffect.new()
-	effect.name = "haste"
+	effect.name = StatusEffectNames.HASTE
 	effect.time_remaining = p_duration
 	effect.duration = p_duration
 	effect.is_conditional = false
@@ -12,7 +12,7 @@ static func make(p_duration: float) -> HasteEffect:
 
 static func make_conditional() -> HasteEffect:
 	var effect : HasteEffect = HasteEffect.new()
-	effect.name = "haste"
+	effect.name = StatusEffectNames.HASTE
 	effect.time_remaining = -1.0
 	effect.duration = -1.0
 	effect.is_conditional = true

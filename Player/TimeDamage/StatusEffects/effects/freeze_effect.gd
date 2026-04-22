@@ -2,7 +2,7 @@ class_name FreezeEffect extends PlayerStatusEffect
 
 static func make(p_duration: float) -> FreezeEffect:
 	var effect : FreezeEffect = FreezeEffect.new()
-	effect.name = "freeze"
+	effect.name = StatusEffectNames.FREEZE
 	effect.time_remaining = p_duration
 	effect.duration = p_duration
 	effect.is_conditional = false
@@ -10,7 +10,7 @@ static func make(p_duration: float) -> FreezeEffect:
 
 static func make_conditional() -> FreezeEffect:
 	var effect : FreezeEffect = FreezeEffect.new()
-	effect.name = "freeze"
+	effect.name = StatusEffectNames.FREEZE
 	effect.time_remaining = -1.0
 	effect.duration = -1.0
 	effect.is_conditional = true

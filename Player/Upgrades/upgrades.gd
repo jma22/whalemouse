@@ -162,10 +162,10 @@ static func _static_init() -> void:
 		.effect(IncreaseStatEffect.new(&"boss_attack_size")) \
 		.register()
 
-	UpgradeBuilder.new("flat_heal", "Healing Light") \
+	UpgradeBuilder.new("boss_freeze", "Frozen Time") \
 		.pool(UpgradePool.BOSS_BLESSING) \
-		.description_fn(_boss_heal_desc) \
-		.effect(HealingLightEffect.new()) \
+		.description_fn(_boss_freeze_desc) \
+		.effect(IncreaseStatEffect.new(&"boss_freeze_time")) \
 		.register()
 	UpgradeBuilder.new("num_whales", "Whale Song") \
 		.pool(UpgradePool.BOSS_BLESSING) \
@@ -184,7 +184,67 @@ static func _static_init() -> void:
 		.effect(IncreaseStatEffect.new(&"critical_chance")) \
 		.register()
 
+
+	# new curses!
+	UpgradeBuilder.new("enemy_spawn_berserk", "Berserk Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn berserk!") \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_berserk")) \
+		.register()
 	
+	UpgradeBuilder.new("enemy_spawn_cursed", "Cursed Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn cursed!") \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_cursed")) \
+		.register()
+	UpgradeBuilder.new("enemy_spawn_slippery", "Slippery Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn slippery!") \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_slippery")) \
+		.register()
+	UpgradeBuilder.new("enemy_spawn_spikey", "Spikey Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn spikey!") \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_spikey")) \
+		.register()
+	UpgradeBuilder.new("enemy_spawn_wither", "Withering Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn withering!") \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_wither")) \
+		.register()
+	UpgradeBuilder.new("enemy_spawn_shielded", "Shielded Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn shielded!") \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_shielded")) \
+		.register()
+	
+	UpgradeBuilder.new("enemy_spawn_infested", "Infested Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn infested!") \
+		.augment(8) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_infested")) \
+		.register()
+
+	UpgradeBuilder.new("enemy_spawn_poisoned", "Poisonous Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn poisoned!") \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_poisoned")) \
+		.register()
+
+	UpgradeBuilder.new("enemy_spawn_marked", "Marked Spawns") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn marked!") \
+		.augment(-5) \
+		.effect(IncreaseStatEffect.new(&"enemy_spawn_marked")) \
+		.register()	
+
 
 # --- public methods ---
 static func chosen_upgrade(upgrade_data : UpgradeData) -> void:
@@ -318,8 +378,8 @@ static func _dying_ebb_desc() -> String:
 
 ## boss zone
 
-static func _boss_heal_desc() -> String:
-	return "Heal %d" % (StatCalculator.get_healing_light_heal())
+static func _boss_freeze_desc() -> String:
+	return "Freeze time for %d seconds" % (StatCalculator.get_boss_freeze_time())
 
 static func _curse_on_hit_desc() -> String:
 	return "Bleed when you take damage."

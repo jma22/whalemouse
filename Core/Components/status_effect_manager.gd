@@ -37,13 +37,14 @@ func _process(delta: float) -> void:
 func gain_status_effect(effect : StatusEffectBase, source : Object) -> void:
 	print("Gained status effect: ", effect.name, " from source: ", source)
 	effect.source = source
-	if effect.name == "haste":
+	if effect.name == StatusEffectNames.HASTE:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BLEED)
 	if effect.is_conditional:
 		var id : int = source.get_instance_id()
 		if id not in status_effects:
 			status_effects[id] = []
 		status_effects[id].append(effect)
+		effect.on_applied(entity)
 		refresh_color_overlay()
 
 	else:
@@ -52,6 +53,7 @@ func gain_status_effect(effect : StatusEffectBase, source : Object) -> void:
 				effect.stack_with(existing_effect)
 				return
 		timed_effects.append(effect)
+		effect.on_applied(entity)
 		refresh_color_overlay()
 
 

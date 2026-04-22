@@ -163,8 +163,25 @@ func set_wave_spawning(wave_info : WaveInfo, _wave_map_manager : MapManagerBase)
 	for enemy : String in enemies_to_spawn:
 		var spawn_type : String = enemy_data[enemy].spawn_type
 		var point : Node3D = spawn_pools[spawn_type].next()
-		spawn_enemy(enemy, point.global_position)
+		var enemy_node : Node3D = spawn_enemy(enemy, point.global_position)
+		if enemy_node is EnemyBase:
+			for effect_name : String in sample_status_effects():
+				var effect : StatusEffectBase = StatusEffectFactory.make(effect_name)
+				if effect is EnemyStatusEffect:
+					(enemy_node as EnemyBase).gain_status_effect(effect, self)
 
+
+func sample_status_effects() -> Array[String]:
+	## sample from statcalculator
+	var possible_effects : Array[String] = [StatusEffectNames.WITHER, StatusEffectNames.POISON, StatusEffectNames.MARK, StatusEffectNames.SHIELDED, StatusEffectNames.SLIPPERY, StatusEffectNames.SPIKEY, StatusEffectNames.CURSED, StatusEffectNames.BERSERK, StatusEffectNames.INFESTED]
+	var chosen_effects : Array[String] = []
+	for effect in possible_effects:
+		var chance : float = 0.0 + StatCalculator.get_chance_for_effect(effect)
+		if chance == 0.0:
+			continue
+		if randf() < chance:
+			chosen_effects.append(effect)
+	return chosen_effects
 
 func build_wave(budget: int, pool: Array[String], current_wave : int) -> Array[String]:
 	var result: Array[String] = []

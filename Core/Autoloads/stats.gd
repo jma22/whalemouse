@@ -46,6 +46,17 @@ var current_run_stats : Dictionary = {
 	"critical_chance" : 0,
 	"boss_xp_drop" : 0,
 	"boss_attack_size" : 0,
+	"boss_freeze_time" : 0,
+
+	"enemy_spawn_berserk": 0,
+	"enemy_spawn_cursed": 0,
+	"enemy_spawn_slippery": 0,
+	"enemy_spawn_spikey": 0,
+	"enemy_spawn_wither": 0,
+	"enemy_spawn_poisoned": 0,
+	"enemy_spawn_marked": 0,
+	"enemy_spawn_shielded": 0,
+	"enemy_spawn_infested": 0,
 }
 
 var boss_stats : Dictionary = {

@@ -3,12 +3,10 @@ class_name SlipperyEffect extends EnemyStatusEffect
 const COLOR : Color = Color(0.5, 0.85, 1.0)
 const SPEED_MULTIPLIER : float = 1.6
 
-static func make(p_duration: float = -1.0) -> SlipperyEffect:
+static func make() -> SlipperyEffect:
 	var effect : SlipperyEffect = SlipperyEffect.new()
-	effect.name = "slippery"
-	effect.duration = p_duration
-	effect.time_remaining = p_duration
-	effect.persists_forever = p_duration <= 0.0
+	effect.name = StatusEffectNames.SLIPPERY
+	effect.persists_forever = true
 	effect.is_conditional = false
 	return effect
 

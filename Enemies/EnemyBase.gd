@@ -47,7 +47,7 @@ func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	setup_states()
 	state_machine.set_state(initial_state)
 	setup_complete = true
-	shield_component.activate_shield()
+	gain_status_effect(ShieldedEffect.make(), self)
 
 
 # func _ready() -> void:
@@ -96,15 +96,11 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 		raw_damage = attacker_hitbox.behavior.modify_outgoing_damage(raw_damage, self)
 	var damage_taken : int = status_effect_manager.modify_incoming_damage(raw_damage, attacker_hitbox)
 	print("damage taken: " + str(damage_taken))
-	if damage_taken == 0:
-		return
 	attacker_hitbox.hitbox_on_hit() # hitstop
 	hitstop.start_hitstop(0.2)
-
-	if shield_component.is_active:
-		invulnerable_component.set_invulnerable(true, 0.1) ## for debouncing same hitbox
-		shield_component.lose_shield()
+	if damage_taken == 0:
 		return
+
 	health_component.take_damage(damage_taken)
 
 	status_effect_manager.notify_hit_consumed(attacker_hitbox) ## consume first

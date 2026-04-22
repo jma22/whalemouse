@@ -3,12 +3,10 @@ class_name BulkyEffect extends EnemyStatusEffect
 const COLOR : Color = Color(0.55, 0.55, 0.6)
 const DAMAGE_MULTIPLIER : float = 0.5
 
-static func make(p_duration: float = -1.0) -> BulkyEffect:
+static func make() -> BulkyEffect:
 	var effect : BulkyEffect = BulkyEffect.new()
-	effect.name = "bulky"
-	effect.duration = p_duration
-	effect.time_remaining = p_duration
-	effect.persists_forever = p_duration <= 0.0
+	effect.name = StatusEffectNames.BULKY
+	effect.persists_forever = true
 	effect.is_conditional = false
 	return effect
 

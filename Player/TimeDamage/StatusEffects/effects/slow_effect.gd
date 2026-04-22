@@ -4,7 +4,7 @@ const TIME_MULTIPLIER : float = 0.33
 
 static func make(p_duration: float) -> SlowEffect:
 	var effect : SlowEffect = SlowEffect.new()
-	effect.name = "slow"
+	effect.name = StatusEffectNames.SLOW
 	effect.time_remaining = p_duration
 	effect.duration = p_duration
 	effect.is_conditional = false
@@ -12,7 +12,7 @@ static func make(p_duration: float) -> SlowEffect:
 
 static func make_conditional() -> SlowEffect:
 	var effect : SlowEffect = SlowEffect.new()
-	effect.name = "slow"
+	effect.name = StatusEffectNames.SLOW
 	effect.time_remaining = -1.0
 	effect.duration = -1.0
 	effect.is_conditional = true

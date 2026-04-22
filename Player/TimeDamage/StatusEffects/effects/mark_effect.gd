@@ -7,7 +7,7 @@ const COLOR_MAX : Color = Color(1, 0.25, 0.25)
 
 static func make() -> MarkEffect:
 	var effect : MarkEffect = MarkEffect.new()
-	effect.name = "mark"
+	effect.name = StatusEffectNames.MARK
 	effect.time_remaining = -1.0
 	effect.duration = -1.0
 	effect.is_conditional = false

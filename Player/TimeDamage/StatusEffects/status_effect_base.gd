@@ -45,6 +45,9 @@ func on_hit_consumed(_entity: Node3D, _attacker_hitbox: Hitbox) -> bool:
 func on_owner_killed(_entity: Node3D, _killer: Object) -> void:
 	pass
 
+func on_applied(_entity: Node3D) -> void:
+	pass
+
 func on_dot_tick(_entity: Node3D, _delta: float) -> void:
 	pass
 

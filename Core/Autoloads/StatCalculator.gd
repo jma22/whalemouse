@@ -69,7 +69,7 @@ static func get_dash_distance() -> float:
 	return 5.0 + GlobalStats.current_run_stats["dash_distance"] * 3.0
 
 static func get_seconds_per_damage() -> float:
-	return 2.5 / (1.0 + GlobalStats.current_run_stats["time_tick_level"] * 0.4) ** 1.3
+	return 2.5 / (1.0 + GlobalStats.current_run_stats["time_tick_level"] * 0.4) ** 1.1
 
 static func get_enemy_projectile_flat() -> int:
 	var wave_augment_bonus: int = 1 if "enemy_attack_speed" in GlobalStats.wave_augments else 0
@@ -111,8 +111,8 @@ static func get_num_boss_blessings() -> int:
 static func get_num_boss_curses() -> int:
 	return GlobalStats.boss_stats["num_curses"]
 
-static func get_healing_light_heal() -> int:
-	return GlobalStats.current_run_stats["time_tick_level"] * 15
+static func get_boss_freeze_time() -> int:
+	return GlobalStats.current_run_stats["boss_freeze_time"] * 8
 
 static func get_num_whales() -> int:
 	return GlobalStats.current_run_stats["num_whales"] + 1
@@ -131,3 +131,49 @@ static func get_boss_xp_drop_per_hit() -> int:
 
 static func get_boss_attack_size_multiplier() -> float:
 	return 1.0 + GlobalStats.current_run_stats["boss_attack_size"] * 0.5
+
+#enemy spawn zone
+
+static func get_chance_for_effect(effect_name: String) -> float:
+	if effect_name == "cursed":
+		return get_chance_to_spawn_cursed()
+	elif effect_name == "berserk":
+		return get_chance_to_spawn_berserk()
+	elif effect_name == "slippery":
+		return get_chance_to_spawn_slippery()
+	elif effect_name == "spikey":
+		return get_chance_to_spawn_spikey()
+	elif effect_name == "wither":
+		return get_chance_to_spawn_wither()
+	elif effect_name == "poison":
+		return get_chance_to_spawn_poisoned()
+	elif effect_name == "mark":
+		return get_chance_to_spawn_marked()
+	elif effect_name == "shielded":
+		return get_chance_to_spawn_shielded()
+	return 0.0
+
+
+static func get_chance_to_spawn_cursed() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_cursed"] * 0.1
+
+static func get_chance_to_spawn_berserk() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_berserk"] * 0.1
+
+static func get_chance_to_spawn_slippery() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_slippery"] * 0.1
+
+static func get_chance_to_spawn_spikey() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_spikey"] * 0.1
+
+static func get_chance_to_spawn_wither() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_wither"] * 0.1
+
+static func get_chance_to_spawn_poisoned() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_poisoned"] * 0.1
+
+static func get_chance_to_spawn_marked() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_marked"] * 0.1
+
+static func get_chance_to_spawn_shielded() -> float:
+	return  GlobalStats.current_run_stats["enemy_spawn_shielded"] * 0.1

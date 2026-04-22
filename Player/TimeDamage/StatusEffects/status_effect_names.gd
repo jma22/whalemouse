@@ -1,0 +1,15 @@
+class_name StatusEffectNames extends RefCounted
+
+const BERSERK : StringName = &"berserk"
+const BULKY : StringName = &"bulky"
+const CURSED : StringName = &"cursed"
+const FREEZE : StringName = &"freeze"
+const HASTE : StringName = &"haste"
+const INFESTED : StringName = &"infested"
+const MARK : StringName = &"mark"
+const POISON : StringName = &"poison"
+const SHIELDED : StringName = &"shielded"
+const SLIPPERY : StringName = &"slippery"
+const SLOW : StringName = &"slow"
+const SPIKEY : StringName = &"spikey"
+const WITHER : StringName = &"wither"
