@@ -16,8 +16,8 @@ func set_target_position(target: Vector3) -> void:
 
 func fixed_run(delta: float) -> void:
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
-	entity.velocity.x = direction.x * speed * GlobalStats.get_enemy_speed_multiplier()
-	entity.velocity.z = direction.z * speed * GlobalStats.get_enemy_speed_multiplier()
+	entity.velocity.x = direction.x * speed * entity.get_speed_multiplier()
+	entity.velocity.z = direction.z * speed * entity.get_speed_multiplier()
 	if abs(entity.velocity.x) > 0.1:
 		entity.set_sprite_flip(entity.velocity.x < 0)
 		

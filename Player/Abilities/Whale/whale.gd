@@ -12,6 +12,7 @@ func play(whale_spawner_ : WhaleSpawner) -> void:
 	self.whale_spawner = whale_spawner_
 
 	hitbox.set_damage(GlobalStats.get_whale_damage_flat())
+	hitbox.set_behavior(WhaleHitboxBehavior.make())
 	audio_player.pitch_scale = 1.0
 	audio_player.play()
 	whale_animation_player.play("whale_animation")

@@ -29,11 +29,11 @@ func check_state() -> void:
 			state_machine.set_state(enemy_idle_state)
 
 func get_idle_duration() -> float:
-	return randf_range(idle_duration_min, idle_duration_max) / GlobalStats.get_enemy_speed_multiplier() ## faster enemies have shorter idle times
+	return randf_range(idle_duration_min, idle_duration_max) / entity.get_speed_multiplier() ## faster enemies have shorter idle times
 
 func get_random_walk_target_location() -> Vector3:
 	var max_tries : int = 4
-	var walk_radius : float = init_walk_radius * GlobalStats.get_enemy_speed_multiplier()
+	var walk_radius : float = init_walk_radius * entity.get_speed_multiplier()
 	for i in range(max_tries):
 		var random_offset : Vector3 = Vector3(randf_range(-walk_radius, walk_radius), 0, randf_range(-walk_radius, walk_radius))
 		var target_point : Vector3 = entity.global_position + random_offset

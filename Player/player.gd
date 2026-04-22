@@ -145,18 +145,21 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 		return
 	attacker_hitbox.hitbox_on_hit() ##HITSTOP
 	hitstop.start_hitstop(0.1)
-	var damage_taken : int = attacker_hitbox.get_damage()
+	var raw_damage : int = attacker_hitbox.get_damage()
+	var damage_taken : int = status_effect_manager.modify_incoming_damage(raw_damage, attacker_hitbox)
 	if damage_taken == 0:
 		return
-		
-	if attacker_hitbox.effect_on_hit:
-		gain_status_effect(attacker_hitbox.effect_on_hit, attacker_hitbox)
 
 	damage_taken = max(0, damage_taken - GlobalStats.get_damage_reduced_by())
 	if map_ref is BossMapManager:
 		if GlobalStats.get_curse_duration_on_hit() > 0:
-			gain_status_effect(PlayerStatusEffect.create("haste", GlobalStats.get_curse_duration_on_hit()), self)
+			gain_status_effect(HasteEffect.make(GlobalStats.get_curse_duration_on_hit()), self)
 	health_component.take_damage(damage_taken)
+
+	if attacker_hitbox.effect_on_hit:
+		gain_status_effect(attacker_hitbox.effect_on_hit, attacker_hitbox)
+	status_effect_manager.notify_hit_consumed(attacker_hitbox)
+
 	sprite_manager.damage_flash()
 	hud_ref.flash_hurt_vignette()
 	hurt_box.on_valid_damaging_hit()
@@ -166,13 +169,14 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 		thorn_hitbox.set_damage(GlobalStats.get_thorns_damage())
 		if attacker_hitbox.owner_entity and attacker_hitbox.owner_entity.has_method("on_hit"):
 			attacker_hitbox.owner_entity.on_hit(thorn_hitbox)
-	
+
 
 	var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
 	if health_component.is_dead():
+		status_effect_manager.notify_owner_killed(attacker_hitbox.owner_entity)
 		on_die()
 		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
-		return 
+		return
 	else:
 		knockback_component.receive_knockback(knockback_direction, damage_taken)
 		state_machine.set_state(hurt_state)
@@ -213,6 +217,8 @@ func clear_effects() -> void:
 	status_effect_manager.clear_effects()
 
 func gain_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
+	if effect.get_affects_enemy():
+		return
 	status_effect_manager.gain_status_effect(effect, source)
 
 func lose_status_effect(effect : PlayerStatusEffect, source : Object) -> void:

@@ -5,7 +5,7 @@ class_name IdleState
 var idle_duration : float = 3.0
 
 
-var ebb_status_effect : PlayerStatusEffect = PlayerStatusEffect.create_conditional("slow")
+var ebb_status_effect : SlowEffect = SlowEffect.make_conditional()
 
 func enter() -> void:
 	entity.velocity = Vector3.ZERO

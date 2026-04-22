@@ -6,7 +6,7 @@ var max_health: int
 var current_health: int
 var entity : CharacterBody3D
 
-var ebb_effect : PlayerStatusEffect = PlayerStatusEffect.create_conditional("slow")
+var ebb_effect : SlowEffect = SlowEffect.make_conditional()
 
 func setup(_max_health: int, entity: CharacterBody3D) -> void:
 	self.max_health = _max_health

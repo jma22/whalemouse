@@ -65,10 +65,10 @@ func sample_position_around_entity() -> Vector3:
 	return clamped_position 
 
 func get_spawn_amount() -> int:
-	return base_spawn_amount + GlobalStats.get_enemy_projectile_flat()
+	return base_spawn_amount + entity.get_projectile_flat()
 
 func get_radius() -> float:
-	return randf_range(1.0, 1.6 * GlobalStats.get_enemy_attack_speed_multiplier())
+	return randf_range(1.0, 1.6 * entity.get_attack_speed_multiplier())
 
 # func set_target_position(position: Vector3) -> void:
 # 	target_position = position

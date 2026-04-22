@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	var raw_delta : float = delta
 	GlobalStats.add_time_survived(raw_delta)
 
-	delta *= player.status_effect_manager.get_status_time_multiplier()
+	delta = player.status_effect_manager.modify_time_delta(delta)
 	
 		
 	_time_accumulator += delta 

@@ -1,0 +1,20 @@
+class_name SpikeyEffect extends EnemyStatusEffect
+
+const COLOR : Color = Color(1.0, 0.8, 0.2)
+const DAMAGE_MULTIPLIER : float = 1.5
+
+static func make(p_duration: float = -1.0) -> SpikeyEffect:
+	var effect : SpikeyEffect = SpikeyEffect.new()
+	effect.name = "spikey"
+	effect.duration = p_duration
+	effect.time_remaining = p_duration
+	effect.persists_forever = p_duration <= 0.0
+	effect.is_conditional = false
+	return effect
+
+
+func get_damage_multiplier() -> float:
+	return DAMAGE_MULTIPLIER
+
+func get_color_overlay() -> Color:
+	return COLOR

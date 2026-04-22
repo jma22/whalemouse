@@ -28,7 +28,7 @@ func check_state() -> void:
 			is_complete = true
 
 func get_idle_duration() -> float:
-	return 0.4 / GlobalStats.get_enemy_speed_multiplier()
+	return 0.4 / entity.get_speed_multiplier()
 
 func get_walk_away_player() -> Vector3:
 	var direction : Vector3 = (entity.global_transform.origin - entity.player.global_transform.origin).normalized()
@@ -43,7 +43,7 @@ func get_walk_away_player() -> Vector3:
 	return target_point
 
 func sample_random_distance() -> float:
-	return randf_range(0.4, 0.6) * GlobalStats.get_enemy_speed_multiplier()
+	return randf_range(0.4, 0.6) * entity.get_speed_multiplier()
 
 
 func sample_cardinal_direction(direction: Vector3) -> Vector3:

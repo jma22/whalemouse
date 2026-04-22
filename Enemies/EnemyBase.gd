@@ -91,7 +91,10 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	if is_dead or invulnerable_component.is_currently_invulnerable():
 		return
 	sprite_manager.damage_flash()
-	var damage_taken : int = attacker_hitbox.get_damage()
+	var raw_damage : int = attacker_hitbox.get_damage()
+	if attacker_hitbox.behavior:
+		raw_damage = attacker_hitbox.behavior.modify_outgoing_damage(raw_damage, self)
+	var damage_taken : int = status_effect_manager.modify_incoming_damage(raw_damage, attacker_hitbox)
 	print("damage taken: " + str(damage_taken))
 	if damage_taken == 0:
 		return
@@ -103,15 +106,16 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 		shield_component.lose_shield()
 		return
 	health_component.take_damage(damage_taken)
-	
+
+	status_effect_manager.notify_hit_consumed(attacker_hitbox) ## consume first
 	if attacker_hitbox.effect_on_hit:
 		gain_status_effect(attacker_hitbox.effect_on_hit, attacker_hitbox)
 	hurt_box.on_valid_damaging_hit()
-	
+	if attacker_hitbox.behavior:
+		attacker_hitbox.behavior.on_hit_landed(attacker_hitbox, self)
+
 	on_staggered()
-	
-	# if state_machine.current_state.has_method("on_hit"):
-	# 	state_machine.current_state.on_hit(damage)
+
 	var knockback_direction : Vector3 = Vector3.ZERO
 	if attacker_hitbox.owner_entity != null:
 		knockback_direction = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
@@ -119,6 +123,9 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 
 
 	if health_component.is_dead():
+		status_effect_manager.notify_owner_killed(attacker_hitbox.owner_entity)
+		if attacker_hitbox.behavior:
+			attacker_hitbox.behavior.on_kill(attacker_hitbox, self)
 		on_die()
 		knockback_component.receive_knockback(knockback_direction, -0.6*damage_taken)
 		return
@@ -135,6 +142,9 @@ func on_die() -> void:
 
 
 	await tween.finished
+	if status_effect_manager.has_status_effect("cursed"):
+		process_mode = Node.PROCESS_MODE_DISABLED
+		return
 	if xp_spawner_scene:
 		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
@@ -163,16 +173,24 @@ func set_sprite_flip(left: bool) -> void:
 func get_floor() -> NavigationRegion3D:
 	return floor_
 
+func get_speed_multiplier() -> float:
+	return GlobalStats.get_enemy_speed_multiplier() * status_effect_manager.get_speed_multiplier()
+
+func get_attack_speed_multiplier() -> float:
+	return GlobalStats.get_enemy_attack_speed_multiplier() * status_effect_manager.get_attack_speed_multiplier()
+
+func get_projectile_flat() -> int:
+	return GlobalStats.get_enemy_projectile_flat() + status_effect_manager.get_projectile_flat()
+
 func clear_effects() -> void:
 	status_effect_manager.clear_effects()
 
 func gain_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
 	if not effect.get_affects_enemy():
 		return
-	
+
 	status_effect_manager.gain_status_effect(effect, source)
-	sprite_manager.set_modulate(effect.get_color_overlay())  ## wrong
 
 func lose_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
 	status_effect_manager.lose_status_effect(effect, source)
-	sprite_manager.set_modulate(Color(1, 1, 1)) ## wrong
+

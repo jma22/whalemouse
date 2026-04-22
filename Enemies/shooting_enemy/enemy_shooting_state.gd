@@ -71,7 +71,7 @@ func set_target_position(position: Vector3) -> void:
 	target_position = position
 
 func get_num_bullets() -> int:
-	return base_num_bullets + GlobalStats.get_enemy_projectile_flat()
+	return base_num_bullets + entity.get_projectile_flat()
 # func check_state() -> void:
 # 	pass
 

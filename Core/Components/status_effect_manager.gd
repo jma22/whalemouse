@@ -6,21 +6,37 @@ var timed_effects : Array[StatusEffectBase] = []
 
 @export var entity : Node3D
 var is_enemy : bool = false
-# Called when the node enters the scene tree for the first time.
 
 func setup(player_node : Node3D) -> void:
 	entity = player_node
 	is_enemy = entity is EnemyBase
 
 func _process(delta: float) -> void:
-	for effect : StatusEffectBase in timed_effects:
-		effect.tick_effect(delta)
-		if effect.time_remaining <= 0:
-			timed_effects.erase(effect)
-			print("Lost status effect: ", effect.name)
+	var last_damaging_effect : StatusEffectBase = null
+	var any_expired : bool = false
+	for effect : StatusEffectBase in timed_effects.duplicate():
+		effect.on_dot_tick(entity, delta)
+		if not effect.persists_forever:
+			effect.tick_effect(delta)
+		if not effect.persists_forever and effect.time_remaining <= 0:
+			last_damaging_effect = effect
+			any_expired = true
+			if effect.on_expired(entity):
+				timed_effects.erase(effect)
+				print("Lost status effect: ", effect.name)
+
+	if any_expired:
+		refresh_color_overlay()
+
+	if is_enemy and entity:
+		var enemy : EnemyBase = entity as EnemyBase
+		if enemy and not enemy.is_dead and enemy.health_component.is_dead():
+			notify_owner_killed(last_damaging_effect)
+			enemy.on_die()
 
 func gain_status_effect(effect : StatusEffectBase, source : Object) -> void:
 	print("Gained status effect: ", effect.name, " from source: ", source)
+	effect.source = source
 	if effect.name == "haste":
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BLEED)
 	if effect.is_conditional:
@@ -28,14 +44,15 @@ func gain_status_effect(effect : StatusEffectBase, source : Object) -> void:
 		if id not in status_effects:
 			status_effects[id] = []
 		status_effects[id].append(effect)
-		
+		refresh_color_overlay()
+
 	else:
 		for existing_effect : StatusEffectBase in timed_effects:
 			if existing_effect.name == effect.name:
-				existing_effect.time_remaining += effect.duration
-				existing_effect.duration += effect.duration
+				effect.stack_with(existing_effect)
 				return
 		timed_effects.append(effect)
+		refresh_color_overlay()
 
 
 func lose_status_effect(effect : StatusEffectBase, source : Object) -> void:
@@ -49,17 +66,19 @@ func lose_status_effect(effect : StatusEffectBase, source : Object) -> void:
 					print("Lost status effect: ", effect.name, " from source: ", source)
 					if effects.is_empty():
 						status_effects.erase(id)
-					return
+					refresh_color_overlay()
 	else:
 		for existing_effect : StatusEffectBase in status_effects:
 			if existing_effect.name == effect.name:
 				status_effects.erase(existing_effect)
 				print("Lost status effect: ", effect.name)
-				return
+				refresh_color_overlay()
+	
 
 func clear_effects() -> void:
-	status_effects.clear()	
+	status_effects.clear()
 	timed_effects.clear()
+	refresh_color_overlay()
 
 func get_deduped_list() -> Array[StatusEffectBase]:
 	var deduped : Array[StatusEffectBase] = []
@@ -77,11 +96,48 @@ func get_deduped_list() -> Array[StatusEffectBase]:
 
 	return deduped
 
-func get_status_time_multiplier() -> float:
-	var multiplier : float = 1.0
+func modify_time_delta(delta: float) -> float:
 	for effect : StatusEffectBase in get_deduped_list():
-		multiplier *= effect.get_multiplier()
-	return multiplier
+		delta = effect.modify_time_delta(delta)
+	return delta
+
+func modify_incoming_damage(damage: int, attacker_hitbox: Hitbox) -> int:
+	for effect : StatusEffectBase in get_deduped_list():
+		damage = effect.modify_incoming_damage(damage, attacker_hitbox)
+	return damage
+
+func get_speed_multiplier() -> float:
+	var m : float = 1.0
+	for effect : StatusEffectBase in get_deduped_list():
+		m *= effect.get_speed_multiplier()
+	return m
+
+func get_attack_speed_multiplier() -> float:
+	var m : float = 1.0
+	for effect : StatusEffectBase in get_deduped_list():
+		m *= effect.get_attack_speed_multiplier()
+	return m
+
+func get_projectile_flat() -> int:
+	var total : int = 0
+	for effect : StatusEffectBase in get_deduped_list():
+		total += effect.get_projectile_flat()
+	return total
+
+func get_damage_multiplier() -> float:
+	var m : float = 1.0
+	for effect : StatusEffectBase in get_deduped_list():
+		m *= effect.get_damage_multiplier()
+	return m
+
+func notify_hit_consumed(attacker_hitbox: Hitbox) -> void:
+	for effect : StatusEffectBase in get_deduped_list().duplicate():
+		if effect.on_hit_consumed(entity, attacker_hitbox):
+			timed_effects.erase(effect)
+
+func notify_owner_killed(killer: Object) -> void:
+	for effect : StatusEffectBase in get_deduped_list():
+		effect.on_owner_killed(entity, killer)
 
 func has_status_effect(effect_name: String = "") -> bool:
 	if effect_name == "":
@@ -90,3 +146,12 @@ func has_status_effect(effect_name: String = "") -> bool:
 		if effect.name == effect_name:
 			return true
 	return false
+
+
+func refresh_color_overlay() -> void:
+	var color : Color = Color(1, 1, 1)
+	for effect : StatusEffectBase in get_deduped_list():
+		var c : Color = effect.get_color_overlay()
+		if c != Color(1, 1, 1):
+			color = c
+	entity.sprite_manager.set_modulate(color)

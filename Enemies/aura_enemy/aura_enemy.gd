@@ -39,4 +39,4 @@ func on_die() -> void:
 	aura.deactivate_aura()
 
 func get_cooldown_time() -> float:
-	return cooldown_time / GlobalStats.get_enemy_speed_multiplier()
+	return cooldown_time / get_speed_multiplier()

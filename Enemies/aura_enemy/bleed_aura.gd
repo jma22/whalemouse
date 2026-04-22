@@ -1,6 +1,6 @@
 extends FloorEffectBase
 
-var effect : PlayerStatusEffect = PlayerStatusEffect.create_conditional("haste")
+var effect : HasteEffect = HasteEffect.make_conditional()
 func _on_enter(entity : CharacterBody3D) -> void:
 	if target == FloorEffectTarget.PLAYER and entity is Player:
 		var player : Player = entity as Player

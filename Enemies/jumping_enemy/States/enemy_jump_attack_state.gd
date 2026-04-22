@@ -30,7 +30,7 @@ func enter() -> void:
 	entity.hurt_box.set_active(false)
 	start_cooldown = false
 	cooldown_timer = 0.0
-	arc_component.set_multiplier(1 / GlobalStats.get_enemy_attack_speed_multiplier())
+	arc_component.set_multiplier(1 / entity.get_attack_speed_multiplier())
 
 
 # func exit() -> void:

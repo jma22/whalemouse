@@ -16,6 +16,7 @@ func _ready() -> void:
 
 
 func setup(time_to_explode: float) -> void:
+	enemy_hitbox.set_behavior(ExplosionHitboxBehavior.make())
 	bomb_sprite.visible = true
 	explosion_sprite.visible = false
 	explosion_area.visible = true

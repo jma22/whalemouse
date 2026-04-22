@@ -32,6 +32,7 @@ func enter() -> void:
 		bomb_instance.setup(2.0)
 	if GlobalStats.get_dash_damage() > 0:
 		roll_hitbox.set_damage(GlobalStats.get_dash_damage())
+		roll_hitbox.set_behavior(RollHitboxBehavior.make())
 		roll_hitbox.set_active(true)
 	
 

@@ -36,11 +36,11 @@ func exit() -> void:
 
 
 func check_state() -> void:
-	if set_target_time /  GlobalStats.get_enemy_attack_speed_multiplier() <= get_elapsed_time() and not target_set:
+	if set_target_time /  entity.get_attack_speed_multiplier() <= get_elapsed_time() and not target_set:
 		if attack_state.has_method("set_target_position"):
 			attack_state.set_target_position(choose_target())
 		target_set = true
-	if charge_time / GlobalStats.get_enemy_attack_speed_multiplier() <= get_elapsed_time() :
+	if charge_time / entity.get_attack_speed_multiplier() <= get_elapsed_time() :
 		entity.velocity = Vector3.ZERO
 		# attack_state.set_target_position(entity.player.global_transform.origin)
 		is_complete = true

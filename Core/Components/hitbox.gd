@@ -9,6 +9,7 @@ extends Area3D
 
 var is_active: bool = false
 var effect_on_hit : StatusEffectBase = null
+var behavior : HitboxBehavior = null
 
 enum HitBoxType {
 	HIT_PLAYER,
@@ -29,6 +30,9 @@ func set_damage(damage_amount: int) -> void:
 func set_effect_on_hit(effect: StatusEffectBase) -> void:
 	effect_on_hit = effect
 
+func set_behavior(b: HitboxBehavior) -> void:
+	behavior = b
+
 	
 func set_active(active: bool) -> void:
 	self.set_deferred("monitorable", active)
@@ -46,7 +50,10 @@ func hitbox_on_hit() -> void:
 
 func get_damage() -> int:
 	if hit_box_type == HitBoxType.HIT_PLAYER:
-		return GlobalStats.get_enemy_damage()
+		var base : int = GlobalStats.get_enemy_damage()
+		if owner_entity is EnemyBase:
+			base = int(ceil(base * owner_entity.status_effect_manager.get_damage_multiplier()))
+		return base
 	else:
 		return damage
 
