@@ -12,6 +12,17 @@
 [ext_resource type="Script" uid="uid://biyu7104cljvh" path="res://Core/Components/health_component.gd" id="10_2vf6f"]
 [ext_resource type="Script" uid="uid://s6r5lok21ywd" path="res://Core/Components/status_effect_manager.gd" id="11_2p3i0"]
 [ext_resource type="Script" uid="uid://bf51pi76mtfhi" path="res://Core/Components/bounce_component.gd" id="12_2n2ur"]
+[ext_resource type="Script" uid="uid://b108re1s0l4tc" path="res://Core/shield_component.gd" id="13_c1bs7"]
+[ext_resource type="Texture2D" uid="uid://i6u6twcfsxa0" path="res://VFX/Impact/ring.png" id="14_j225i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j225i"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0.39151636, 1)
+albedo_texture = ExtResource("14_j225i")
+billboard_mode = 1
+billboard_keep_scale = true
 
 [node name="CoreComponents" type="Node3D" unique_id=1215065551]
 script = ExtResource("1_6ylru")
@@ -54,3 +65,16 @@ script = ExtResource("11_2p3i0")
 
 [node name="BounceComponent" type="Node3D" parent="." unique_id=1964277859]
 script = ExtResource("12_2n2ur")
+
+[node name="ShieldComponent" type="Node3D" parent="." unique_id=25984567 node_paths=PackedStringArray("shield_sprite")]
+script = ExtResource("13_c1bs7")
+shield_sprite = NodePath("ShieldSprite")
+
+[node name="ShieldSprite" type="Sprite3D" parent="ShieldComponent" unique_id=72354988]
+transform = Transform3D(0.1, 0, 0, 0, 0.034202017, 0.09396926, 0, -0.09396926, 0.034202017, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_j225i")
+modulate = Color(1, 1, 1, 0.115)
+alpha_cut = 2
+texture = ExtResource("14_j225i")
+script = ExtResource("9_1hqlx")
+metadata/_custom_type_script = "uid://chgfscc28odqd"

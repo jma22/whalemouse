@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ba5r35sr4ifo5" path="res://UI/HUD/Sprites/bar_front.png" id="8_3j5as"]
 [ext_resource type="Texture2D" uid="uid://cqp1x1wmaa8ng" path="res://UI/HUD/Sprites/bar_progress.png" id="9_v0fj0"]
 
-[node name="HudBar" type="Control" unique_id=460654951 node_paths=PackedStringArray("hp_label", "life_circle", "whale_circle", "whale_icon", "status_effect_icons")]
+[node name="HudBar" type="Control" unique_id=460654951 node_paths=PackedStringArray("hp_label", "life_circle", "whale_circle", "dash_bar", "whale_icon", "status_effect_icons")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 862.49994
@@ -22,6 +22,7 @@ script = ExtResource("1_5igc2")
 hp_label = NodePath("LifeCircle/RichTextLabel")
 life_circle = NodePath("LifeCircle")
 whale_circle = NodePath("bar")
+dash_bar = NodePath("dashbar")
 whale_icon = NodePath("Beluga")
 status_effect_icons = [NodePath("HBoxContainer/TextureProgressBar"), NodePath("HBoxContainer/TextureProgressBar2"), NodePath("HBoxContainer/TextureProgressBar3"), NodePath("HBoxContainer/TextureProgressBar4")]
 popup_number_scene = ExtResource("2_fpd43")
@@ -54,12 +55,25 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="dashbar" type="TextureProgressBar" parent="." unique_id=1145244220]
+layout_mode = 0
+offset_left = 197.5
+offset_top = 59.999996
+offset_right = 548.5
+offset_bottom = 120.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+value = 75.0
+texture_under = ExtResource("7_j1dtk")
+texture_over = ExtResource("8_3j5as")
+texture_progress = ExtResource("9_v0fj0")
+tint_progress = Color(0.8199772, 3.0263755, 3.045841, 1)
+
 [node name="bar" type="TextureProgressBar" parent="." unique_id=1895419532]
 layout_mode = 0
 offset_left = 277.49997
-offset_top = 32.499996
+offset_top = 14.999998
 offset_right = 628.5
-offset_bottom = 92.5
+offset_bottom = 75.0
 scale = Vector2(1.5, 1.5)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 value = 75.0
@@ -93,10 +107,10 @@ texture_progress = ExtResource("5_an2p0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1511859140]
 layout_mode = 1
-offset_left = 202.5
-offset_top = 95.00001
-offset_right = 614.5
-offset_bottom = 195.00002
+offset_left = 205.00002
+offset_top = 115.00001
+offset_right = 635.0
+offset_bottom = 215.00002
 scale = Vector2(0.7, 0.7)
 theme_override_constants/separation = 10
 

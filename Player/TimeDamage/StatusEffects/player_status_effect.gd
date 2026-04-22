@@ -1,29 +1,21 @@
-extends RefCounted
+class_name PlayerStatusEffect extends StatusEffectBase
 
-class_name StatusEffect
-
-var name : String = ""
-var time_remaining : float = 0.0
-var duration : float = 0.0
-
-var is_conditional : bool = false
-
-
-
-static func create(name: String, duration: float) -> StatusEffect:
-	var effect : StatusEffect = StatusEffect.new()
+static func create(name: String, duration: float) -> PlayerStatusEffect:
+	var effect : PlayerStatusEffect = PlayerStatusEffect.new()
 	effect.name = name
 	effect.time_remaining = duration
 	effect.duration = duration
 	effect.is_conditional = false
+	effect.is_enemy_effect = false
 	return effect
 
-static func create_conditional(name: String) -> StatusEffect:
-	var effect : StatusEffect = StatusEffect.new()
+static func create_conditional(name: String) -> PlayerStatusEffect:
+	var effect : PlayerStatusEffect = PlayerStatusEffect.new()
 	effect.name = name
 	effect.time_remaining = -1.0
 	effect.duration = -1.0
 	effect.is_conditional = true
+	effect.is_enemy_effect = false
 	return effect
 
 
@@ -49,5 +41,6 @@ func get_icon_path() -> String:
 		_:
 			return ""
 
-func tick_effect(delta: float) -> void:
-	time_remaining -= delta
+# func tick_effect(delta: float) -> void:
+# 	time_remaining -= delta
+

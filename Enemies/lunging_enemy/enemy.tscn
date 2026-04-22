@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://b6216itjkd2gt" path="res://Enemies/EnemyStates/enemy_hurt_state.gd" id="15_s8tmg"]
 [ext_resource type="Script" uid="uid://e0mqbimeypka" path="res://Enemies/EnemyStates/enemy_attack_parent_state.gd" id="16_25vuu"]
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="16_t4yqc"]
-[ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="18_14j78"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="20_s8tmg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -49,10 +48,40 @@ radius = 0.3
 height = 1.0
 radius = 0.4
 
+[sub_resource type="Shader" id="Shader_25vuu"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode blend_add;
+
+uniform float charge_level : hint_range(0.0, 1.0) = 0.0;
+uniform float flash_level : hint_range(0.0, 1.0) = 0.0;
+
+uniform vec4 flash_color : source_color = vec4(1.0,1.0,1.0,1.0);
+uniform vec4 charge_color : source_color = vec4(1.0,1.0,1.0,1.0);
+uniform sampler2D texture_albedo : source_color;
+uniform float mesh_bottom = -1.0;
+uniform float mesh_top = 1.0;
+varying float vert_y;
+
+void vertex() {
+	vert_y = VERTEX.y;
+}
+
+void fragment() {
+	float gradient = 1.0 - smoothstep(mesh_bottom, mesh_top*1.5, vert_y);
+	float mask = texture(texture_albedo, UV).a;
+	float charge = charge_level * gradient;
+	float combined = max(charge, flash_level);
+	vec3 color = mix(charge_color.rgb, flash_color.rgb, step(charge, flash_level));
+	ALBEDO = color;
+	ALPHA = mask* combined;
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14j78"]
 resource_local_to_scene = true
 render_priority = 1
-shader = ExtResource("18_14j78")
+shader = SubResource("Shader_25vuu")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(0.8500505, 0.85005057, 0.8500505, 1)
@@ -157,6 +186,9 @@ material_overlay = SubResource("ShaderMaterial_14j78")
 texture = ExtResource("3_t4yqc")
 hframes = 10
 layer_number = 2
+
+[node name="ShieldSprite" parent="CoreComponents/ShieldComponent" parent_id_path=PackedInt32Array(1215065551, 25984567) index="0" unique_id=72354988]
+modulate = Color(1, 1, 1, 1)
 
 [editable path="StateMachine/EnemyAttackParentState/EnemyDashAttackState/Hitbox"]
 [editable path="CoreComponents"]

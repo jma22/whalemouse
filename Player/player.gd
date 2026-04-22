@@ -21,6 +21,8 @@ class_name Player extends CharacterBody3D
 @onready var sprite_manager : SpriteManager = core_components.sprite_manager
 @onready var hitstop : HitStop = core_components.hitstop
 @onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
+
+@onready var dash_component : DashComponent = $DashComponent 
 var time_damage_manager : TimeDamageManager
 var hud_ref : HUD
 var map_ref : MapManagerBase
@@ -29,12 +31,13 @@ var last_direction : Vector2 = Vector2.LEFT
 
 var initial_health : int = 60
 
+
 # Input buffer — remembers the last action pressed within BUFFER_WINDOW seconds
 const BUFFER_WINDOW : float = 0.2
 var _buffered_action : StringName = &""
 var _buffer_timer : float = 0.0
 
-var status_effects : Array[StatusEffect] = []
+var status_effects : Array[PlayerStatusEffect] = []
 var camera_ref : Camera3D
 
 func reset() -> void:
@@ -107,9 +110,10 @@ func neutral_state() -> void:
 	var did_attack : bool = _consume_buffered(&"atk")
 	if input_vector.length() > 0:
 		last_direction = input_vector
-	if did_dash:
+	if did_dash and dash_component.can_dash():
 		roll_state.set_direction(last_direction)
 		state_machine.set_state(roll_state)
+		dash_component.set_dash_cooldown()
 		return
 
 	if did_attack:
@@ -144,10 +148,14 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	var damage_taken : int = attacker_hitbox.get_damage()
 	if damage_taken == 0:
 		return
+		
+	if attacker_hitbox.effect_on_hit:
+		gain_status_effect(attacker_hitbox.effect_on_hit, attacker_hitbox)
+
 	damage_taken = max(0, damage_taken - GlobalStats.get_damage_reduced_by())
 	if map_ref is BossMapManager:
 		if GlobalStats.get_curse_duration_on_hit() > 0:
-			gain_status_effect(StatusEffect.create("haste", GlobalStats.get_curse_duration_on_hit()), self)
+			gain_status_effect(PlayerStatusEffect.create("haste", GlobalStats.get_curse_duration_on_hit()), self)
 	health_component.take_damage(damage_taken)
 	sprite_manager.damage_flash()
 	hud_ref.flash_hurt_vignette()
@@ -204,8 +212,8 @@ func damage(amount: int) -> void:
 func clear_effects() -> void:
 	status_effect_manager.clear_effects()
 
-func gain_status_effect(effect : StatusEffect, source : Object) -> void:
+func gain_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 	status_effect_manager.gain_status_effect(effect, source)
 
-func lose_status_effect(effect : StatusEffect, source : Object) -> void:
+func lose_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 	status_effect_manager.lose_status_effect(effect, source)

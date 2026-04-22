@@ -34,6 +34,7 @@ var current_run_stats : Dictionary = {
 	"thornmail" : 0,
 	"fast_while_status" :0,
 	"flat_speed" : 0,
+	"dash_bomb" : 0,
 
 
 	"num_whales" : 0,
@@ -145,6 +146,9 @@ func decrement_wave_augments() -> void:
 
 
 
+func has_dash_bomb() -> bool:
+	return current_run_stats["dash_bomb"] > 0
+	
 func get_whale_damage_flat() -> int:
 	return current_run_stats["whale_damage"] + 1
 

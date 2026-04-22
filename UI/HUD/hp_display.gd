@@ -5,6 +5,7 @@ class_name HPDisplay
 @export var hp_label : RichTextLabel
 @export var life_circle : TextureProgressBar
 @export var whale_circle : TextureProgressBar
+@export var dash_bar : TextureProgressBar
 @export var whale_icon : TextureRect
 
 @export var status_effect_icons : Array[StatusEffectIcon]
@@ -16,15 +17,17 @@ var player : Player
 @export var popup_number_scene : PackedScene
 var life_tween : Tween
 var whale_tween : Tween
+var dash_tween : Tween
 var played_whale_tween : bool = false
+var played_dash_tween : bool = false
+var dash_component : DashComponent
 
 func setup(player_ : Node3D, time_damage_: TimeDamageManager, whale_spawner_: WhaleSpawner) -> void:
 	time_damage = time_damage_
 	whale_spawner = whale_spawner_
 	player = player_ as Player
 	refresh_hp(player.health_component.current_health)
-
-
+	dash_component = player.dash_component
 	
 func _process(_delta: float) -> void:
 	if not player:
@@ -32,6 +35,8 @@ func _process(_delta: float) -> void:
 	set_circle()
 	set_whale_circle()
 	set_status_effects(player.status_effect_manager.get_deduped_list())
+	set_dash_bar()
+
 
 
 func lose_hp(amount: int, new_hp: int) -> void:
@@ -119,12 +124,36 @@ func set_whale_circle() -> void:
 			whale_icon.modulate = Color(1, 1, 1, 0.1)
 			whale_circle.tint_progress = Color(1.0,1.0,1.0,1)
 			played_whale_tween = false
+	
+func set_dash_bar() -> void:
+	if dash_component:
+		if not GlobalStats.has_dash():
+			dash_bar.visible = false
+			return
+		dash_bar.visible = true
+		var progress : float = dash_component.get_cooldown_progress()
+		dash_bar.value = progress * dash_bar.max_value
+
+		if progress == 1.0:
+			if not played_dash_tween:
+				dash_bar.tint_progress += Color(0.5,0.5,0.5,0)
+				dash_tween = create_tween()
+				dash_tween.tween_property(dash_bar, "scale", Vector2(0.04, 0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT)
+				dash_tween.tween_property(dash_bar, "scale", Vector2(-0.04,-0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT)
+				played_dash_tween = true
+
+		else:
+			if played_dash_tween:
+				dash_bar.tint_progress -= Color(0.5,0.5,0.5,0)
+				played_dash_tween = false
 
 
-func set_status_effects(effects: Array[StatusEffect]) -> void:
+
+
+func set_status_effects(effects: Array[StatusEffectBase]) -> void:
 	for i : int in range(status_effect_icons.size()):
 		if i < len(effects):
-			var effect : StatusEffect = effects[i]
+			var effect : PlayerStatusEffect = effects[i] as PlayerStatusEffect
 			var icon : StatusEffectIcon = status_effect_icons[i]
 			icon.setup(effect)
 		else:

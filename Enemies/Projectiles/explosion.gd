@@ -5,6 +5,7 @@ extends Node3D
 @export var explosion_area : SpriteManager
 
 @export var explosion_hitbox : Hitbox
+@export var enemy_hitbox : Hitbox
 
 
 func _ready() -> void:
@@ -30,11 +31,13 @@ func setup(time_to_explode: float) -> void:
 
 	# explode
 	tween.tween_callback(explosion_hitbox.set_active.bind(true))
+	tween.tween_callback(enemy_hitbox.set_active.bind(true))
 	tween.tween_callback(explosion_sprite.show)
 	tween.tween_callback(bomb_sprite.hide)
 	tween.tween_callback(explosion_area.set_flash_level.bind(1))
 	tween.tween_interval(0.1)
 	tween.tween_callback(explosion_hitbox.set_active.bind(false))
+	tween.tween_callback(enemy_hitbox.set_active.bind(false))
 
 	# fade out (parallel)
 	tween.tween_property(explosion_sprite, "modulate:a", 0.0, 0.4)

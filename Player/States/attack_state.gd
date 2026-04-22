@@ -40,6 +40,7 @@ func enter() -> void:
 		hitbox.set_damage(2)
 	else:
 		hitbox.set_damage(1)
+	hitbox.set_effect_on_hit(EnemyStatusEffect.create("mark", 2.0))
 
 func adjust_speed() -> void:
 	var mult : float = GlobalStats.get_attack_speed_multiplier()

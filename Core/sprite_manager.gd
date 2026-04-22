@@ -23,6 +23,10 @@ func setup(hitstop_: HitStop) -> void:
 	material_overlay.set_shader_parameter("mesh_top", half_h)
 	material_overlay.set_shader_parameter("charge_level", 0)
 	material_overlay.set_shader_parameter("flash_level", 0)
+
+	if material_override:
+		material_override.set_shader_parameter("texture_albedo", texture)
+		# material_override.next_pass.set_shader_parameter("texture_albedo", texture)
 	
 
 

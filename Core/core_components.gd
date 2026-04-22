@@ -9,6 +9,7 @@ class_name CoreComponents
 @onready var health_component : HealthComponent = $HealthComponent
 @onready var status_effect_manager : StatusEffectManager = $StatusEffectManager
 @onready var bounce_component : BounceComponent = $BounceComponent
+@onready var shield_component : ShieldComponent = $ShieldComponent
 
 
 func setup(entity : CharacterBody3D) -> void:
@@ -17,6 +18,8 @@ func setup(entity : CharacterBody3D) -> void:
 	bounce_component.setup(entity)
 	sprite_manager.setup(hitstop)
 	health_component.setup(ceil(entity.initial_health + GlobalStats.get_enemy_health_flat()), entity)
+	status_effect_manager.setup(entity)
+	shield_component.setup(entity)
 
 func reset() -> void:
 	# hurt_box.reset()

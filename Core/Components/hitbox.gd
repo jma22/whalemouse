@@ -6,7 +6,9 @@ extends Area3D
 @onready var sprite3D : Sprite3D = $Sprite3D
 @export var damage: int = 1
 @export var hitstop : HitStop
+
 var is_active: bool = false
+var effect_on_hit : StatusEffectBase = null
 
 enum HitBoxType {
 	HIT_PLAYER,
@@ -24,6 +26,9 @@ func _ready() -> void:
 func set_damage(damage_amount: int) -> void:
 	damage = damage_amount
 
+func set_effect_on_hit(effect: StatusEffectBase) -> void:
+	effect_on_hit = effect
+
 	
 func set_active(active: bool) -> void:
 	self.set_deferred("monitorable", active)
@@ -35,7 +40,7 @@ func set_active(active: bool) -> void:
 func hitbox_on_hit() -> void:
 	if owner_entity and owner_entity.has_method("on_hitbox_hit"):
 		owner_entity.on_hitbox_hit()
-		
+
 	if hitstop:
 		hitstop.start_hitstop(0.1)
 

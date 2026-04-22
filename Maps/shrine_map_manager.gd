@@ -9,7 +9,7 @@ func start_room (wave : WaveInfo) -> void:
 	super(wave)
 	set_shrines(wave.blessings)
 	choice_type = (wave as ChoiceWaveInfo).choice_type
-	player.gain_status_effect(StatusEffect.create("freeze", 30.0), self)
+	player.gain_status_effect(PlayerStatusEffect.create("freeze", 30.0), self)
 
 
 

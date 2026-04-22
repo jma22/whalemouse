@@ -1,7 +1,7 @@
 extends TextureProgressBar
 
 class_name StatusEffectIcon
-func setup(effect : StatusEffect) -> void:
+func setup(effect : PlayerStatusEffect) -> void:
 	if effect.is_conditional:
 		value = 10.0
 		max_value = 10.0

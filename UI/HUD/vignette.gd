@@ -9,7 +9,7 @@ var _flash_tween  : Tween
 var _status_tween : Tween
 
 var status_effect_manager : StatusEffectManager
-var old_status_effects : Array[StatusEffect] = []
+var old_status_effects : Array[StatusEffectBase] = []
  
 func setup(status_effect_manager_ : StatusEffectManager) -> void:
 	status_effect_manager = status_effect_manager_
@@ -36,7 +36,7 @@ func flash_hurt() -> void:
 	_flash_tween.tween_property(material, "shader_parameter/flash_intensity", 0.0, flash_duration)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
-func update_status(status_effects : Array[StatusEffect]) -> void:
+func update_status(status_effects : Array[StatusEffectBase]) -> void:
 	if status_effects.size() != old_status_effects.size():
 		if status_effect_manager.has_status_effect("haste"):
 			material.set_shader_parameter("status_color", Color(0.0, 0.68, 0.41))

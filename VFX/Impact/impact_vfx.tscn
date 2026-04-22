@@ -25,9 +25,14 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_pbji5")
 alpha_curve = SubResource("CurveTexture_64xem")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n8ct8"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64xem"]
 render_priority = 1
-transparency = 1
+next_pass = SubResource("ShaderMaterial_n8ct8")
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 blend_mode = 1
 cull_mode = 2
 depth_draw_mode = 1

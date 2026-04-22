@@ -31,10 +31,14 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @onready var sprite_manager : SpriteManager = core_components.sprite_manager
 @onready var hitstop : HitStop = core_components.hitstop
 @onready var bounce_component : BounceComponent = core_components.bounce_component
+@onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
+@onready var shield_component : ShieldComponent = core_components.shield_component
 
 var is_dead : bool = false
 var setup_complete : bool = false
 @export var skip_physics : bool = false
+
+
 # var facing_left : bool = false
 func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	self.player = player_
@@ -43,6 +47,7 @@ func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	setup_states()
 	state_machine.set_state(initial_state)
 	setup_complete = true
+	shield_component.activate_shield()
 
 
 # func _ready() -> void:
@@ -83,7 +88,6 @@ func setup_states() -> void:
 			state.set_entity(self)
 
 func on_hit(attacker_hitbox: Hitbox) -> void:
-	print("got hit in state:" + str(state_machine.current_state))
 	if is_dead or invulnerable_component.is_currently_invulnerable():
 		return
 	sprite_manager.damage_flash()
@@ -91,13 +95,21 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 	print("damage taken: " + str(damage_taken))
 	if damage_taken == 0:
 		return
+	attacker_hitbox.hitbox_on_hit() # hitstop
+	hitstop.start_hitstop(0.2)
+
+	if shield_component.is_active:
+		invulnerable_component.set_invulnerable(true, 0.1) ## for debouncing same hitbox
+		shield_component.lose_shield()
+		return
 	health_component.take_damage(damage_taken)
+	
+	if attacker_hitbox.effect_on_hit:
+		gain_status_effect(attacker_hitbox.effect_on_hit, attacker_hitbox)
 	hurt_box.on_valid_damaging_hit()
 	
 	on_staggered()
-	attacker_hitbox.hitbox_on_hit() #hitstop
-	hitstop.start_hitstop(0.2)
-
+	
 	# if state_machine.current_state.has_method("on_hit"):
 	# 	state_machine.current_state.on_hit(damage)
 	var knockback_direction : Vector3 = Vector3.ZERO
@@ -150,3 +162,17 @@ func set_sprite_flip(left: bool) -> void:
 
 func get_floor() -> NavigationRegion3D:
 	return floor_
+
+func clear_effects() -> void:
+	status_effect_manager.clear_effects()
+
+func gain_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
+	if not effect.get_affects_enemy():
+		return
+	
+	status_effect_manager.gain_status_effect(effect, source)
+	sprite_manager.set_modulate(effect.get_color_overlay())  ## wrong
+
+func lose_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
+	status_effect_manager.lose_status_effect(effect, source)
+	sprite_manager.set_modulate(Color(1, 1, 1)) ## wrong
