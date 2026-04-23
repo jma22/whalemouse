@@ -3,6 +3,7 @@ class_name Choice
 
 var display_name: String
 var description_func: Callable
+var _sprite_path : Resource
 
 func _init(_display_name: String = "", _description_func: Callable = Callable()) -> void:
 	display_name = _display_name
@@ -18,6 +19,9 @@ func apply() -> void:
 
 func is_blessing() -> bool:
 	return true
+
+func get_sprite_path() ->  String:
+	return _sprite_path.get_icon_path_for(&"")
 
 func get_icon_path() -> String:
 	return Choice.get_icon_path_for(&"")

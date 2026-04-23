@@ -146,6 +146,3 @@ func decrement_wave_augments() -> void:
 	for augment_name : String in augments_to_remove:
 		wave_augments.erase(augment_name)
 	wave_augments_changed.emit()
-
-
-
