@@ -42,7 +42,10 @@ func get_damage_multiplier() -> int:
 func on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
 	return false
 
-func on_owner_killed(_entity: Node3D, _killer: Object) -> void:
+func on_killed_by_effect(_entity: Node3D, _killer: Object) -> void:
+	pass
+
+func on_entity_died(_entity: Node3D) -> void:
 	pass
 
 func on_applied(_entity: Node3D) -> void:

@@ -34,6 +34,7 @@ func set_effect_on_hit(effect: StatusEffectBase) -> void:
 
 func set_behavior(b: HitboxBehavior) -> void:
 	behavior = b
+	b.hitbox = self
 
 
 func set_active(active: bool) -> void:

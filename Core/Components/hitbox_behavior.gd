@@ -2,7 +2,7 @@ class_name HitboxBehavior
 extends RefCounted
 
 var name : String = ""
-
+var hitbox : Hitbox
 
 func modify_outgoing_damage(_info: DamageInfo, _target: Node3D) -> void:
 	pass

@@ -11,11 +11,11 @@ static func make() -> InfestedEffect:
 	return effect
 
 
-func on_owner_killed(entity: Node3D, _killer: Object) -> void:
+func on_entity_died(entity: Node3D) -> void:
 	if not entity:
 		return
 	var parent : Node = entity.get_parent()
-	print("infested on_owner_killed: ", parent)
+	print("infested on_entity_died: ", parent)
 	if parent is EnemySpawner:
 		(parent as EnemySpawner).spawn_enemy(MINION_TYPE, entity.global_transform.origin)
 

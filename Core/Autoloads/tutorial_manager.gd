@@ -81,7 +81,7 @@ func _ready() -> void:
 func _on_stat_changed(stat_name: StringName, new_value: int) -> void:
 	if new_value != 1:
 		return
-	if stat_name == &"whale_level":
+	if stat_name == &"whale_size":
 		show_tutorial(TutorialEnum.FIRST_BELUGA)
 	elif stat_name == &"dash_distance":
 		show_tutorial(TutorialEnum.FIRST_DASH)

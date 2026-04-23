@@ -95,9 +95,15 @@ func on_hit(info: DamageInfo) -> void:
 	if hitbox.behavior:
 		hitbox.behavior.modify_outgoing_damage(info, self)
 	status_effect_manager.modify_incoming_damage(info)
-	var damage_taken : int = info.amount
+	
 	hitbox.hitbox_on_hit() # hitstop
-	hitstop.start_hitstop(0.2)
+	hitstop.start_hitstop(0.15)
+	## poisonouse dash here
+	## should we play sound
+
+	if hitbox.behavior:
+		hitbox.behavior.on_hit_landed(info, self)
+	var damage_taken : int = info.amount
 	if damage_taken == 0:
 		return
 
@@ -107,8 +113,7 @@ func on_hit(info: DamageInfo) -> void:
 	if hitbox.effect_on_hit:
 		gain_status_effect(hitbox.effect_on_hit, hitbox)
 	hurt_box.on_valid_damaging_hit()
-	if hitbox.behavior:
-		hitbox.behavior.on_hit_landed(info, self)
+
 
 	on_staggered()
 
@@ -119,7 +124,6 @@ func on_hit(info: DamageInfo) -> void:
 
 
 	if health_component.is_dead():
-		status_effect_manager.notify_owner_killed(info.source)
 		if hitbox.behavior:
 			hitbox.behavior.on_kill(info, self)
 		on_die()
@@ -132,6 +136,7 @@ func on_die() -> void:
 	if is_dead:
 		return
 	is_dead = true
+	status_effect_manager.notify_entity_died()
 	var tween : Tween = await sprite_manager.die()
 	GlobalStats.add_kill()
 	
@@ -146,15 +151,10 @@ func on_die() -> void:
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
 		xp_spawner_instance.global_transform.origin.y = 0.0
-		if randf() < 0.33:
-			xp_spawner_instance.setup_outwards(xp_drop_amount + StatCalculator.get_bonus_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
-		else:
-			xp_spawner_instance.setup_outwards(xp_drop_amount, player, CollectibleSpawner.OrbType.TIME, get_floor())
 
-		if randf() < 0.5:
-			xp_spawner_instance.setup_outwards(ebb_drop_amount, player, CollectibleSpawner.OrbType.EBB, get_floor())
-		else:
-			xp_spawner_instance.setup_outwards(ebb_drop_amount + StatCalculator.get_ebb_drop(), player, CollectibleSpawner.OrbType.EBB, get_floor())
+		xp_spawner_instance.setup_outwards(xp_drop_amount, player, CollectibleSpawner.OrbType.TIME, get_floor())
+		xp_spawner_instance.setup_outwards(ebb_drop_amount, player, CollectibleSpawner.OrbType.EBB, get_floor())
+
 			
 	process_mode = Node.PROCESS_MODE_DISABLED	
 
@@ -190,4 +190,3 @@ func gain_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
 
 func lose_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
 	status_effect_manager.lose_status_effect(effect, source)
-

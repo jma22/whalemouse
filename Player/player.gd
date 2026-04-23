@@ -146,19 +146,28 @@ func on_hit(info: DamageInfo) -> void:
 		return
 	hitbox.hitbox_on_hit() ##HITSTOP
 	hitstop.start_hitstop(0.1)
+	if hitbox.behavior:
+		hitbox.behavior.modify_outgoing_damage(info, self)
 	status_effect_manager.modify_incoming_damage(info)
 	var damage_taken : int = info.amount
 	if damage_taken == 0:
 		return
 
 	damage_taken = max(0, damage_taken - StatCalculator.get_damage_reduced_by())
+	if StatCalculator.has_death_dance():
+		damage_taken = min(damage_taken, 1)
+		gain_status_effect(HasteEffect.make(1.5), self)
 	if map_ref is BossMapManager:
 		if StatCalculator.get_curse_duration_on_hit() > 0:
 			gain_status_effect(HasteEffect.make(StatCalculator.get_curse_duration_on_hit()), self)
 	health_component.take_damage(damage_taken)
+	
+	if StatCalculator.get_decay_on_damaged() > 0:
+		gain_status_effect(HasteEffect.make(StatCalculator.get_decay_on_damaged()), self)
 
 	if hitbox.effect_on_hit:
 		gain_status_effect(hitbox.effect_on_hit, hitbox)
+	
 	status_effect_manager.notify_hit_consumed(info)
 
 	sprite_manager.damage_flash()
@@ -205,6 +214,8 @@ func get_floor() -> FloorNav:
 func on_gain_time(amount : int) -> void:
 	# handle gaining time pickup
 	health_component.gain_health(amount)
+	if StatCalculator.get_flow_stacks_per_pickup() > 0:
+		gain_status_effect(FlowEffect.make(StatCalculator.get_flow_stacks_per_pickup()), self)
 
 func heal(amount: int) -> void:
 	health_component.gain_health(amount)

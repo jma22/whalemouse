@@ -20,7 +20,7 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	var enemy_pool : Array[String] = ["LobbingEnemy", "ShootingEnemy"]
 	var wave_info : CombatWaveInfo = CombatWaveInfo.new()
 	wave_info.wave_number = 10
-	wave_info.enemy_budget = 5
+	wave_info.enemy_budget = 20
 	wave_info.enemy_pool = enemy_pool
 	enemy_spawner.set_wave_spawning(wave_info, self)
 

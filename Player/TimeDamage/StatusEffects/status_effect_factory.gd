@@ -18,6 +18,7 @@ static var _builders : Dictionary = {
 	StatusEffectNames.SPIKEY: func(_d: float) -> StatusEffectBase: return SpikeyEffect.make(),
 	StatusEffectNames.WITHER: func(_d: float) -> StatusEffectBase: return WitherEffect.make(),
 	StatusEffectNames.EBBY: func(_d: float) -> StatusEffectBase: return EbbyEffect.make(),
+	StatusEffectNames.FLOW: func(_d: float) -> StatusEffectBase: return FlowEffect.make(1),
 }	
 
 static func make(effect_name: StringName, duration: float = -1.0) -> StatusEffectBase:

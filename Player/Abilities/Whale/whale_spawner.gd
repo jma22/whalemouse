@@ -2,7 +2,7 @@ extends Node3D
 
 class_name WhaleSpawner
 # @export var whale : Whale
-var base_cooldown : float = 5.0
+var base_cooldown : float = 6.0
 var cooldown_timer : float = 0.0
 
 var player : CharacterBody3D
@@ -30,6 +30,9 @@ func _process(delta: float) -> void:
 		cooldown_timer -= delta
 		if cooldown_timer < 0.0:
 			cooldown_timer = 0.0
+	if StatCalculator.beluga_auto_cast() and can_cast():
+		# if not (player as Player).status_effect_manager.has_status_effect(StatusEffectNames.FREEZE):
+		cast_whale()
 
 
 func play_whale(whale : Whale) -> void:
@@ -44,6 +47,8 @@ func can_cast() -> bool:
 
 func cast_whale() -> void:
 	cooldown_timer = get_cooldown()
+	if StatCalculator.beluga_freeze_time() > 0.0:
+		(player as Player).gain_status_effect(FreezeEffect.make(StatCalculator.beluga_freeze_time()), self)
 	var enemies : Array[Node3D]
 	if enemy_spawner != null:
 		enemies = enemy_spawner.get_alive_enemies()
@@ -60,7 +65,7 @@ func cast_whale() -> void:
 
 
 func camera_shake_callback() -> void:
-	if GlobalStats.current_run_stats["whale_level"] >= 3:
+	if GlobalStats.current_run_stats["whale_size"] >= 35:
 		camera.camera_shake(1.0, 0.2)
 		
 
@@ -100,4 +105,4 @@ func get_spawn_location(enemies : Array[Node3D], topk :int = 1) -> Array[Vector3
 	return ans
 
 func get_cooldown() -> float:
-	return max(base_cooldown * (1.0 - StatCalculator.get_whale_cooldown()), 0.5)
+	return max(base_cooldown * StatCalculator.get_whale_cooldown_reduction() + StatCalculator.beluga_freeze_time() * 1.5, 1.0)

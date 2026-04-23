@@ -6,3 +6,5 @@ func on_pickup() -> void:
 	
 	if target and target.has_method("gain_status_effect"):
 		target.gain_status_effect(SlowEffect.make(1.5), self)
+		if StatCalculator.get_flow_stacks_per_pickup() > 0:
+			target.gain_status_effect(FlowEffect.make(StatCalculator.get_flow_stacks_per_pickup()), target)

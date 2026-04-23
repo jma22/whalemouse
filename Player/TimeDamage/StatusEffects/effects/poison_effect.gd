@@ -9,8 +9,9 @@ const TICK_DURATION : float = 3.0
 static func make() -> PoisonEffect:
 	var effect : PoisonEffect = PoisonEffect.new()
 	effect.name = StatusEffectNames.POISON
-	effect.time_remaining = TICK_DURATION
-	effect.duration = TICK_DURATION
+	var tick_duration : float = TICK_DURATION * StatCalculator.get_poison_tick_multiplier()
+	effect.time_remaining = tick_duration
+	effect.duration = tick_duration
 	effect.is_conditional = false
 	effect.max_stacks = MAX_STACKS
 	effect.stacks = 1
@@ -22,8 +23,9 @@ func stack_with(existing: StatusEffectBase) -> void:
 	existing.time_remaining = min(time_remaining, existing.time_remaining)
 
 func on_expired(entity: Node3D) -> bool:
+	var expiry_damage : int = StatCalculator.get_poison_expiry_damage()
 	if entity and "health_component" in entity:
-		entity.health_component.take_damage(EXPIRY_DAMAGE)
+		entity.health_component.take_damage(expiry_damage)
 		if "sprite_manager" in entity and entity.sprite_manager:
 			entity.sprite_manager.damage_flash()
 		if "hurt_box" in entity and entity.hurt_box and entity.hurt_box.hit_sound:
@@ -34,6 +36,30 @@ func on_expired(entity: Node3D) -> bool:
 		time_remaining = duration
 		return false
 	return true
+
+func on_killed_by_effect(entity: Node3D, _killer: Object) -> void:
+	var orb_count : int = StatCalculator.get_poison_kills_drop_orbs()
+	if orb_count > 0:
+		_spawn_orbs(entity, orb_count, CollectibleSpawner.OrbType.TIME)
+
+func on_entity_died(entity: Node3D) -> void:
+	if StatCalculator.has_poison_enemies_drop_bombs():
+		var explosion : PackedScene = load("res://Enemies/Projectiles/Explosion.tscn")
+		var explosion_instance : Node3D = explosion.instantiate()
+		entity.get_parent().add_child(explosion_instance)
+		explosion_instance.global_transform.origin = entity.global_transform.origin
+		explosion_instance.global_transform.origin.y = 0.0
+		explosion_instance.setup(null)
+	var ebb_count : int = StatCalculator.get_poisoned_enemies_drop_ebbs()
+	if ebb_count > 0:
+		_spawn_orbs(entity, ebb_count, CollectibleSpawner.OrbType.EBB)
+
+func _spawn_orbs(entity: Node3D, count: int, orb_type: CollectibleSpawner.OrbType) -> void:
+	var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
+	var xp_spawner : Node3D = xp_spawner_scene.instantiate()
+	entity.get_parent().add_child(xp_spawner)
+	xp_spawner.global_transform.origin = entity.global_transform.origin
+	xp_spawner.setup_outwards(count, GlobalStats.player, orb_type, GlobalStats.player.get_floor())
 
 func get_color_overlay() -> Color:
 	var t : float = float(stacks - 1) / float(max(max_stacks - 1, 1))

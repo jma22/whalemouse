@@ -7,21 +7,44 @@ extends ProjectileBase
 @export var explosion_hitbox : Hitbox
 @export var enemy_hitbox : Hitbox
 
-const time_to_explode : float = 2.0
+@export var xp_spawner_scene : PackedScene 
+
+var time_to_explode : float = 2.0
+var is_super_bomb : bool = false
 
 func _ready() -> void:
 	bomb_sprite.setup(null)
 	explosion_sprite.setup(null)
 	explosion_area.setup(null)
-	explosion_hitbox.source = source
+	
+
 	explosion_hitbox.damage_type = DamageInfo.DamageType.BOMB
-	enemy_hitbox.source = source
 	enemy_hitbox.damage_type = DamageInfo.DamageType.BOMB
+	
+	time_to_explode = StatCalculator.get_bomb_tick_time()
+	
+	scale = Vector3.ONE * StatCalculator.get_bomb_size()
+	
+		# explosion_hitbox.damage_type = DamageInfo.DamageType.SUPER_BOMB
+		# explosion_sprite.set_flash_level(2)
+
+
+
+
 
 
 func setup(source : Node3D) -> void:
 	super.set_source(source)
-	enemy_hitbox.set_behavior(ExplosionHitboxBehavior.make())
+	explosion_hitbox.source = source
+	enemy_hitbox.source = source
+	is_super_bomb = randf() < StatCalculator.get_super_bomb_chance()
+	if is_super_bomb:
+		explosion_sprite.modulate = Color(1, 0.5, 0.5)
+		explosion_area.modulate = Color(1, 0.5, 0.5)
+
+
+	enemy_hitbox.set_behavior(ExplosionHitboxBehavior.make(is_super_bomb))
+	explosion_hitbox.set_behavior(ExplosionHitboxBehavior.make(is_super_bomb))
 	bomb_sprite.visible = true
 	explosion_sprite.visible = false
 	explosion_area.visible = true
@@ -48,6 +71,23 @@ func setup(source : Node3D) -> void:
 	# fade out (parallel)
 	tween.tween_property(explosion_sprite, "modulate:a", 0.0, 0.4)
 	tween.parallel().tween_property(explosion_area, "modulate:a", 0.0, 0.4)
-
+	tween.tween_callback(maybe_orb_drop)
 	# cleanup
 	tween.tween_callback(queue_free)
+
+
+func maybe_orb_drop() -> void:
+	if GlobalStats.player.map_ref is ShrineMapManager:
+		return	
+	var drop_orb : bool = randf() < StatCalculator.get_bomb_orb_drop_chance()
+	var drop_ebb : bool = randf() < StatCalculator.get_bomb_orb_drop_chance()
+	if drop_orb or drop_ebb:
+		var xp_spawner : Node3D = xp_spawner_scene.instantiate()
+		get_parent().add_child(xp_spawner)
+
+		xp_spawner.global_transform.origin = global_transform.origin
+		if drop_orb:
+			xp_spawner.setup_outwards(1, GlobalStats.player, CollectibleSpawner.OrbType.TIME, GlobalStats.player.get_floor())
+		if drop_ebb:
+			xp_spawner.setup_outwards(1, GlobalStats.player, CollectibleSpawner.OrbType.EBB, GlobalStats.player.get_floor())
+		

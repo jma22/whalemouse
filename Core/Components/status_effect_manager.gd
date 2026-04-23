@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 	if is_enemy and entity:
 		var enemy : EnemyBase = entity as EnemyBase
 		if enemy and not enemy.is_dead and enemy.health_component.is_dead():
-			notify_owner_killed(last_damaging_effect)
+			last_damaging_effect.on_killed_by_effect(enemy, last_damaging_effect.source)
 			enemy.on_die()
 
 func gain_status_effect(effect : StatusEffectBase, source : Object) -> void:
@@ -51,6 +51,7 @@ func gain_status_effect(effect : StatusEffectBase, source : Object) -> void:
 		for existing_effect : StatusEffectBase in timed_effects:
 			if existing_effect.name == effect.name:
 				effect.stack_with(existing_effect)
+				effect.on_applied(entity)
 				return
 		timed_effects.append(effect)
 		effect.on_applied(entity)
@@ -136,9 +137,14 @@ func notify_hit_consumed(info: DamageInfo) -> void:
 		if effect.on_hit_consumed(entity, info):
 			timed_effects.erase(effect)
 
-func notify_owner_killed(killer: Object) -> void:
+# func notify_owner_killed(killer: Object) -> void:
+# 	## ised for status
+# 	for effect : StatusEffectBase in get_deduped_list():
+# 		effect.on_owner_killed(entity, killer)
+
+func notify_entity_died() -> void:
 	for effect : StatusEffectBase in get_deduped_list():
-		effect.on_owner_killed(entity, killer)
+		effect.on_entity_died(entity)
 
 func has_status_effect(effect_name: String = "") -> bool:
 	if effect_name == "":

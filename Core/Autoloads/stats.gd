@@ -13,31 +13,28 @@ var total_stats : Dictionary = {
 }
 
 var current_run_stats : Dictionary = {
-	"xp_suck" : 0,
-	"enemy_xp_drop": 0,
-	"whale_level": 0,
-	"whale_cooldown": 0,
-	"whale_damage": 0,
-	"dash_distance": 0,
+	
+	# "enemy_xp_drop": 0,
+	
+	# "whale_damage": 0,
+	# "dash_distance": 0,
 	"time_tick_level": 0,
-	"enemy_speed" : 0,
-	"enemy_attack_speed" : 0,
-	"enemy_health": 0,
+	# "enemy_speed" : 0,
+	# "enemy_attack_speed" : 0,
+	# "enemy_health": 0,
 	"heal" : 0,
 	"damage" : 0,
-	"enemy_damage" : 0,
-	"player_attack_speed" : 0,
-	"attack_size" : 0,
-	"ebb_drop": 0,
-	"damaging_dash": 0,
-	"ebb_on_stand" : 0,
-	"ebb_begin_of_room" : 0,
-	"dying_ebb" :0,
-	"damage_reduction" : 0,
-	"thornmail" : 0,
-	"fast_while_status" :0,
-	"flat_speed" : 0,
-	"dash_bomb" : 0,
+	# "enemy_damage" : 0,
+
+	# "ebb_drop": 0,
+	# "damaging_dash": 0,
+	# "ebb_on_stand" : 0,
+	
+	# "damage_reduction" : 0,
+	# "thornmail" : 0,
+	# "fast_while_status" :0,
+	# "flat_speed" : 0,
+	
 
 
 	"num_whales" : 0,
@@ -58,6 +55,73 @@ var current_run_stats : Dictionary = {
 	"enemy_spawn_shielded": 0,
 	"enemy_spawn_infested": 0,
 	"enemy_spawn_ebby": 0,
+
+	"decay_on_damaged": 0,
+	
+
+	"dash_bomb" : 0,
+	"bomber_whale": 0,
+	"bomb_size": 0,
+	"bomb_tick_time": 0,
+	"bomb_crit": 0,
+	"bomb_orb_drop": 0,
+	"poison_bombs": 0,
+
+	"poison_beluga": 0,
+	"poison_ebb_attack": 0,
+	"poison_enemies_drop_bombs": 0,
+	"poisoned_enemies_drop_ebbs": 0,
+	"poison_kills_drop_orbs": 0,
+	"faster_poison": 0,
+	"slower_poison_more_lethal": 0,
+
+	"marking_dash": 0,
+	"marking_beluga": 0,
+	"mark_makes_a_bomb": 0,
+	"mark_to_orb": 0,
+	"auto_consume_mark": 0,
+
+	"player_attack_speed" : 0,
+	"bigger_attack_every_n_hits" : 0,
+	"player_attack_shrink" : 0,
+
+	"movement_speed_up" : 0,
+	"movement_slow_down" : 0,
+	
+	"dash_cooldown_reduction" : 0,
+	"dash_cooldown_increase" : 0,
+	"dash_distance" : 0,
+	"suicide_dash" : 0,
+	"dash_reset_on_damage" : 0,
+	"special_killer_dash" : 0,
+
+	"whale_size": 0,
+	"whale_cooldown_reduction": 0,
+	"on_beluga_kill_orb_drop": 0,
+	"on_beluga_kill_cd_refund": 0,
+	"on_beluga_kill_size_grow": 0,
+	"beluga_whale_size_decrease": 0,
+	"beluga_whale_cooldown_decrease": 0,
+	"beluga_special_killer": 0,
+	"beluga_auto_cast": 0,
+	"beluga_freeze": 0,
+
+	"deaths_dance": 0,
+	"xp_suck" : 0,
+	"speed_on_pickup": 0,
+	"movement_speed_flat": 0,
+	"ebb_begin_of_room": 0,
+	"dying_ebb" :0,
+	
+	"has_beluga": 0,
+	"has_dash": 0
+
+
+
+
+
+	
+	
 }
 
 var boss_stats : Dictionary = {

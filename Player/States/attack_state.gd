@@ -17,8 +17,10 @@ var impact_effect_scene : PackedScene = load("res://VFX/Impact/impact_vfx.tscn")
 
 var horizontal_distance : float = 0.7
 var will_crit : bool = false
+var num_attacks : int = 0
 
 func enter() -> void:
+	
 	# entity.sprite_manager.frames_per_second = 12
 	adjust_speed()
 	entity.sprite_manager.play(animation, false)
@@ -29,8 +31,12 @@ func enter() -> void:
 	# convert 2D attack direction to world position for the arc
 	var dir3d := Vector3(attack_direction.x, 0, attack_direction.y)
 	var target := entity.global_transform.origin + dir3d * horizontal_distance
-	hitbox.scale = Vector3(StatCalculator.get_mouse_attack_hitbox_scale(), 1, StatCalculator.get_mouse_attack_hitbox_scale())
 
+	if StatCalculator.get_bigger_attack_every_n_hits() > 0:
+		num_attacks += 1
+
+	
+	hitbox.scale = get_attack_size()	
 	# scale arc params by attack speed multiplier
 	# arc_component.time = 1.5 / spd_mult
 	arc_component.setup(target)
@@ -43,6 +49,7 @@ func enter() -> void:
 	# hitbox.set_effect_on_hit(MarkEffect.make())
 	hitbox.set_effect_on_hit(PoisonEffect.make())
 	hitbox.set_behavior(AttackHitboxBehavior.make())
+
 
 func adjust_speed() -> void:
 	var mult : float = StatCalculator.get_attack_speed_multiplier()
@@ -74,16 +81,15 @@ func fixed_run(delta: float) -> void:
 		entity.get_parent().add_child(crack)
 		crack.global_transform = entity.global_transform
 		crack.global_transform.origin.y = 0.01
-		var new_scale : float = StatCalculator.get_mouse_attack_hitbox_scale() * 1.5
 		
-		crack.set_scale(Vector3(new_scale, new_scale, new_scale))
+		crack.set_scale(get_attack_size())
 		crack.play()
 
 		var impact_effect_instance : Node = impact_effect_scene.instantiate()
 		get_tree().get_root().add_child(impact_effect_instance)
 		impact_effect_instance.global_transform.origin = entity.global_transform.origin
 
-		impact_effect_instance.setup(StatCalculator.get_mouse_attack_hitbox_scale(), will_crit)
+		impact_effect_instance.setup(get_attack_size().x, will_crit)
 		impact_effect_instance.play()
 		if will_crit:
 			entity.camera_ref.camera_shake(0.3,0.35)
@@ -101,3 +107,10 @@ func exit() -> void:
 
 func set_direction(direction: Vector2) -> void:
 	attack_direction = direction
+
+func get_attack_size() -> Vector3:
+	var base_scale := Vector3(StatCalculator.get_mouse_attack_hitbox_shrink(), 1, StatCalculator.get_mouse_attack_hitbox_shrink())
+	if StatCalculator.get_bigger_attack_every_n_hits() > 0:
+		if num_attacks % StatCalculator.get_bigger_attack_every_n_hits() == 0:
+			base_scale *= 2.0
+	return base_scale
