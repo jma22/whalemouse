@@ -83,7 +83,7 @@ metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="Hitbox" parent="Indicator" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("3_juyu4")]
 visible = false
-owner_entity = NodePath("../..")
+owner_entity = NodePath("..")
 
 [node name="CollisionShape3D" parent="Indicator/Hitbox" index="0" unique_id=1405177479]
 shape = SubResource("CylinderShape3D_dlpa8")

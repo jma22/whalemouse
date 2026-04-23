@@ -92,9 +92,9 @@ func get_random_checkpoint() -> Vector3:
 # 	else:
 # 		state_machine.set_state(peaceful_state)
 
-func on_hit(info: DamageInfo) -> void:
-	super(info)
-	linked_boss.on_hit(info)
+func on_hit(attacker_hitbox: Hitbox) -> void:
+	super(attacker_hitbox)
+	linked_boss.on_hit(attacker_hitbox)
 
 func on_die() -> void:
 	if is_dead:

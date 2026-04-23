@@ -9,6 +9,8 @@ class_name Shrine
 
 @export var curse_shrine_sprite : Texture2D
 @export var blessing_shrine_sprite : Texture2D
+@export var curse_choose_bless_sprite : Texture2D
+@export var bless_choose_curse_sprite : Texture2D
 
 var unused : bool = false
 var choice : Choice
@@ -38,11 +40,17 @@ func setup(choice_: Choice) -> void:
 		return
 
 	floating_sprite.texture = load(choice_.get_icon_path())
-	choice = choice_
-	if choice_.is_blessing():
+		
+	var is_blessing : bool = choice_.is_blessing()
+	if choice_.internal_name == "random_bless_choose_curse":
+		sprite.texture = bless_choose_curse_sprite
+	elif choice_.internal_name == "random_curse_choose_bless":
+		sprite.texture = curse_choose_bless_sprite
+	elif is_blessing:
 		sprite.texture = blessing_shrine_sprite
-	else:
+	elif not is_blessing:
 		sprite.texture = curse_shrine_sprite
+		
 	activated = false
 	animation_player.play("shrine_on")
 	floating_sprite.visible = true

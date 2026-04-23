@@ -1,7 +1,7 @@
 class_name SlipperyEffect extends EnemyStatusEffect
 
 const COLOR : Color = Color(0.5, 0.85, 1.0)
-const SPEED_MULTIPLIER : float = 1.8
+const SPEED_MULTIPLIER : float = 1.6
 
 static func make() -> SlipperyEffect:
 	var effect : SlipperyEffect = SlipperyEffect.new()

@@ -57,7 +57,6 @@ var current_run_stats : Dictionary = {
 	"enemy_spawn_marked": 0,
 	"enemy_spawn_shielded": 0,
 	"enemy_spawn_infested": 0,
-	"enemy_spawn_ebby": 0,
 }
 
 var boss_stats : Dictionary = {
@@ -146,6 +145,3 @@ func decrement_wave_augments() -> void:
 	for augment_name : String in augments_to_remove:
 		wave_augments.erase(augment_name)
 	wave_augments_changed.emit()
-
-
-

@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_mdqob"]
 [ext_resource type="Texture2D" uid="uid://bqoibkbnjs7ga" path="res://Maps/Shrine/shrine_curse.png" id="2_n7lra"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_rt4r7"]
+[ext_resource type="Texture2D" uid="uid://b0ufteyf1m654" path="res://Maps/Shrine/bless_choice.png" id="4_eol3q"]
 [ext_resource type="Texture2D" uid="uid://bbp5jb16kkry4" path="res://VFX/spritesheet_13.png" id="4_kpoag"]
 [ext_resource type="Texture2D" uid="uid://00k2chggmyig" path="res://UI/HUD/BlessingIcons/damage.png" id="4_u1um2"]
+[ext_resource type="Texture2D" uid="uid://c8ck02a7uensa" path="res://Maps/Shrine/curse_choicee.png" id="5_2atwv"]
 [ext_resource type="AudioStream" uid="uid://dy3cvw4o162wb" path="res://SFX/portal_sound.wav" id="5_ouif6"]
 
 [sub_resource type="Curve" id="Curve_y2f2x"]
@@ -151,6 +153,8 @@ area = NodePath("Area3D")
 animation_player = NodePath("AnimationPlayer")
 curse_shrine_sprite = ExtResource("2_n7lra")
 blessing_shrine_sprite = ExtResource("2_mdqob")
+curse_choose_bless_sprite = ExtResource("4_eol3q")
+bless_choose_curse_sprite = ExtResource("5_2atwv")
 audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Bubbles" type="GPUParticles3D" parent="." unique_id=304463573]

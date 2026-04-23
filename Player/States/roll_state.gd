@@ -29,7 +29,7 @@ func enter() -> void:
 		var bomb_instance : Node3D = explosion.instantiate()
 		entity.get_parent().add_child(bomb_instance)
 		bomb_instance.global_transform.origin = entity.global_transform.origin
-		bomb_instance.setup(entity)
+		bomb_instance.setup(2.0)
 	if StatCalculator.get_dash_damage() > 0:
 		roll_hitbox.set_damage(StatCalculator.get_dash_damage())
 		roll_hitbox.set_behavior(RollHitboxBehavior.make())

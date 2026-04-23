@@ -1,8 +1,8 @@
 class_name BerserkEffect extends EnemyStatusEffect
 
 const COLOR : Color = Color(1.0, 0.45, 0.25)
-const ATTACK_SPEED_MULTIPLIER : float = 2.0
-const PROJECTILE_BONUS : int = 2
+const ATTACK_SPEED_MULTIPLIER : float = 1.5
+const PROJECTILE_BONUS : int = 1
 
 static func make() -> BerserkEffect:
 	var effect : BerserkEffect = BerserkEffect.new()

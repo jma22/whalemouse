@@ -1,4 +1,4 @@
-extends ProjectileBase
+extends Node3D
 
 @export var ink_ball : Node3D
 @export var indicator : Node3D
@@ -8,13 +8,10 @@ var hitbox_active_time : float = 0.1
 var hitbox_timer : float = 0.0
 func _ready() -> void:
 	hitbox_timer = 0.0
-	hitbox.source = source
-	hitbox.damage_type = DamageInfo.DamageType.INK
 	hitbox.set_active(false)
-	# setup(Vector3.ZERO)
+	setup(Vector3.ZERO)
 
-func setup(target_position : Vector3, source_: Node3D) -> void:
-	super.set_source(source_)
+func setup(target_position : Vector3) -> void:
 	# look_at(target_position, Vector3.UP)
 	# indicator.look_at(target_entity.global_transform.origin, Vector3.UP)
 	indicator.global_transform.origin = target_position
