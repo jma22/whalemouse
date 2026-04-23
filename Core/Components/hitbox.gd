@@ -62,7 +62,9 @@ func build_damage_info(_target: Node3D) -> DamageInfo:
 func _compute_base_amount(info: DamageInfo) -> int:
 	if hit_box_type == HitBoxType.HIT_PLAYER:
 		var base : int = StatCalculator.get_enemy_damage()
+		print("calculating source damage multiplier for ", info.source)
 		if info.source is EnemyBase:
+			print("source is EnemyBase with status effect manager ", info.source.status_effect_manager.get_damage_multiplier())
 			base = int(ceil(base * info.source.status_effect_manager.get_damage_multiplier()))
 		return base
 	return damage
