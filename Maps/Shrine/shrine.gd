@@ -32,6 +32,8 @@ func _ready() -> void:
 	original_scale = sprite.scale
 
 func setup(choice_: Choice) -> void:
+	choice = choice_
+	
 	if choice_ == null:
 		activated = false
 		unused = true
