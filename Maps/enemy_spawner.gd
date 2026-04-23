@@ -173,7 +173,7 @@ func set_wave_spawning(wave_info : WaveInfo, _wave_map_manager : MapManagerBase)
 
 func sample_status_effects() -> Array[String]:
 	## sample from statcalculator
-	var possible_effects : Array[String] = [StatusEffectNames.WITHER, StatusEffectNames.POISON, StatusEffectNames.MARK, StatusEffectNames.SHIELDED, StatusEffectNames.SLIPPERY, StatusEffectNames.SPIKEY, StatusEffectNames.CURSED, StatusEffectNames.BERSERK, StatusEffectNames.INFESTED]
+	var possible_effects : Array[String] = [StatusEffectNames.EBBY, StatusEffectNames.WITHER, StatusEffectNames.POISON, StatusEffectNames.MARK, StatusEffectNames.SHIELDED, StatusEffectNames.SLIPPERY, StatusEffectNames.SPIKEY, StatusEffectNames.CURSED, StatusEffectNames.BERSERK, StatusEffectNames.INFESTED]
 	var chosen_effects : Array[String] = []
 	for effect in possible_effects:
 		var chance : float = 0.0 + StatCalculator.get_chance_for_effect(effect)
@@ -247,6 +247,7 @@ func spawn_enemy(enemy_type: String, spawn_point : Vector3) -> Node3D:
 		add_child(enemy_instance)
 
 		enemy_instance.global_transform.origin = spawn_point
+		enemy_instance.global_transform.origin.y = 0
 		enemy_instance.setup(player, floor)
 		spawned_enemies.append(enemy_instance)
 		return enemy_instance

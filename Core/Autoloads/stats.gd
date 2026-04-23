@@ -57,6 +57,7 @@ var current_run_stats : Dictionary = {
 	"enemy_spawn_marked": 0,
 	"enemy_spawn_shielded": 0,
 	"enemy_spawn_infested": 0,
+	"enemy_spawn_ebby": 0,
 }
 
 var boss_stats : Dictionary = {

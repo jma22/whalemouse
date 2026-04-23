@@ -139,14 +139,15 @@ func setup_states() -> void:
 		if state is State:
 			state.set_entity(self)
 
-func on_hit(attacker_hitbox: Hitbox) -> void:
-	print("Player hit by ", attacker_hitbox.name)
+func on_hit(info: DamageInfo) -> void:
+	var hitbox : Hitbox = info.hitbox
+	print("Player hit by ", hitbox.name)
 	if invulnerable_component.is_currently_invulnerable():
 		return
-	attacker_hitbox.hitbox_on_hit() ##HITSTOP
+	hitbox.hitbox_on_hit() ##HITSTOP
 	hitstop.start_hitstop(0.1)
-	var raw_damage : int = attacker_hitbox.get_damage()
-	var damage_taken : int = status_effect_manager.modify_incoming_damage(raw_damage, attacker_hitbox)
+	status_effect_manager.modify_incoming_damage(info)
+	var damage_taken : int = info.amount
 	if damage_taken == 0:
 		return
 
@@ -156,24 +157,24 @@ func on_hit(attacker_hitbox: Hitbox) -> void:
 			gain_status_effect(HasteEffect.make(StatCalculator.get_curse_duration_on_hit()), self)
 	health_component.take_damage(damage_taken)
 
-	if attacker_hitbox.effect_on_hit:
-		gain_status_effect(attacker_hitbox.effect_on_hit, attacker_hitbox)
-	status_effect_manager.notify_hit_consumed(attacker_hitbox)
+	if hitbox.effect_on_hit:
+		gain_status_effect(hitbox.effect_on_hit, hitbox)
+	status_effect_manager.notify_hit_consumed(info)
 
 	sprite_manager.damage_flash()
 	hud_ref.flash_hurt_vignette()
 	hurt_box.on_valid_damaging_hit()
 	camera_ref.camera_shake(0.2, 0.25)
 
-	if StatCalculator.has_thorns():
-		thorn_hitbox.set_damage(StatCalculator.get_thorns_damage())
-		if attacker_hitbox.owner_entity and attacker_hitbox.owner_entity.has_method("on_hit"):
-			attacker_hitbox.owner_entity.on_hit(thorn_hitbox)
+	# if StatCalculator.has_thorns():
+	# 	thorn_hitbox.set_damage(StatCalculator.get_thorns_damage())
+	# 	if info.source and info.source.has_method("on_hit"):
+	# 		info.source.on_hit(thorn_hitbox.build_damage_info(info.source))
 
 
-	var knockback_direction : Vector3 = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
+	var knockback_direction : Vector3 = (global_transform.origin - info.owner_entity.global_transform.origin).normalized()
 	if health_component.is_dead():
-		status_effect_manager.notify_owner_killed(attacker_hitbox.owner_entity)
+		status_effect_manager.notify_owner_killed(info.source)
 		on_die()
 		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
 		return

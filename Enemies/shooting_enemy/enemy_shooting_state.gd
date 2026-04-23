@@ -37,7 +37,7 @@ func shoot_dir(direction : Vector3) -> void:
 	var bullet_instance : Node = bullet.instantiate()
 	entity.get_parent().add_child(bullet_instance)
 	bullet_instance.global_transform.origin = entity.global_transform.origin
-	bullet_instance.setup(direction)
+	bullet_instance.setup(direction, entity)
 
 # func exit() -> void:
 # # 	pass

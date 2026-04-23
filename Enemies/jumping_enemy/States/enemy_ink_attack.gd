@@ -39,7 +39,7 @@ func spawn_ink() -> void:
 	var ink_instance : Node = ink_projectile_scene.instantiate()
 	ink_instance.global_transform.origin = entity.global_transform.origin
 	get_tree().get_root().add_child(ink_instance)
-	ink_instance.setup(spawn_position)
+	ink_instance.setup(spawn_position, entity)
 	spawned_count += 1
 
 func fixed_run(delta: float) -> void:

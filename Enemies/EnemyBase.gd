@@ -47,7 +47,7 @@ func setup(player_ : CharacterBody3D, floor_ : NavigationRegion3D) -> void:
 	setup_states()
 	state_machine.set_state(initial_state)
 	setup_complete = true
-	gain_status_effect(ShieldedEffect.make(), self)
+	invulnerable_component.set_invulnerable(true, 0.2)
 
 
 # func _ready() -> void:
@@ -87,41 +87,41 @@ func setup_states() -> void:
 		if state is State:
 			state.set_entity(self)
 
-func on_hit(attacker_hitbox: Hitbox) -> void:
+func on_hit(info: DamageInfo) -> void:
 	if is_dead or invulnerable_component.is_currently_invulnerable():
 		return
 	sprite_manager.damage_flash()
-	var raw_damage : int = attacker_hitbox.get_damage()
-	if attacker_hitbox.behavior:
-		raw_damage = attacker_hitbox.behavior.modify_outgoing_damage(raw_damage, self)
-	var damage_taken : int = status_effect_manager.modify_incoming_damage(raw_damage, attacker_hitbox)
-	print("damage taken: " + str(damage_taken))
-	attacker_hitbox.hitbox_on_hit() # hitstop
+	var hitbox : Hitbox = info.hitbox
+	if hitbox.behavior:
+		hitbox.behavior.modify_outgoing_damage(info, self)
+	status_effect_manager.modify_incoming_damage(info)
+	var damage_taken : int = info.amount
+	hitbox.hitbox_on_hit() # hitstop
 	hitstop.start_hitstop(0.2)
 	if damage_taken == 0:
 		return
 
 	health_component.take_damage(damage_taken)
 
-	status_effect_manager.notify_hit_consumed(attacker_hitbox) ## consume first
-	if attacker_hitbox.effect_on_hit:
-		gain_status_effect(attacker_hitbox.effect_on_hit, attacker_hitbox)
+	status_effect_manager.notify_hit_consumed(info) ## consume first
+	if hitbox.effect_on_hit:
+		gain_status_effect(hitbox.effect_on_hit, hitbox)
 	hurt_box.on_valid_damaging_hit()
-	if attacker_hitbox.behavior:
-		attacker_hitbox.behavior.on_hit_landed(attacker_hitbox, self)
+	if hitbox.behavior:
+		hitbox.behavior.on_hit_landed(info, self)
 
 	on_staggered()
 
 	var knockback_direction : Vector3 = Vector3.ZERO
-	if attacker_hitbox.owner_entity != null:
-		knockback_direction = (global_transform.origin - attacker_hitbox.owner_entity.global_transform.origin).normalized()
+	if info.owner_entity != null:
+		knockback_direction = (global_transform.origin - info.owner_entity.global_transform.origin).normalized()
 	knockback_component.receive_knockback(knockback_direction, damage_taken)
 
 
 	if health_component.is_dead():
-		status_effect_manager.notify_owner_killed(attacker_hitbox.owner_entity)
-		if attacker_hitbox.behavior:
-			attacker_hitbox.behavior.on_kill(attacker_hitbox, self)
+		status_effect_manager.notify_owner_killed(info.source)
+		if hitbox.behavior:
+			hitbox.behavior.on_kill(info, self)
 		on_die()
 		knockback_component.receive_knockback(knockback_direction, -0.6*damage_taken)
 		return
@@ -145,6 +145,7 @@ func on_die() -> void:
 		var xp_spawner_instance : Node = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner_instance)
 		xp_spawner_instance.global_transform.origin = global_transform.origin
+		xp_spawner_instance.global_transform.origin.y = 0.0
 		if randf() < 0.33:
 			xp_spawner_instance.setup_outwards(xp_drop_amount + StatCalculator.get_bonus_enemy_xp_drop(), player, CollectibleSpawner.OrbType.TIME, get_floor())
 		else:

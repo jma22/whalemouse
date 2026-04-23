@@ -1,4 +1,4 @@
-extends Node3D
+extends ProjectileBase
 
 @export var bomb_sprite : SpriteManager
 @export var explosion_sprite : SpriteManager
@@ -7,15 +7,20 @@ extends Node3D
 @export var explosion_hitbox : Hitbox
 @export var enemy_hitbox : Hitbox
 
+const time_to_explode : float = 2.0
 
 func _ready() -> void:
 	bomb_sprite.setup(null)
 	explosion_sprite.setup(null)
 	explosion_area.setup(null)
-	setup(1.5)
+	explosion_hitbox.source = source
+	explosion_hitbox.damage_type = DamageInfo.DamageType.BOMB
+	enemy_hitbox.source = source
+	enemy_hitbox.damage_type = DamageInfo.DamageType.BOMB
 
 
-func setup(time_to_explode: float) -> void:
+func setup(source : Node3D) -> void:
+	super.set_source(source)
 	enemy_hitbox.set_behavior(ExplosionHitboxBehavior.make())
 	bomb_sprite.visible = true
 	explosion_sprite.visible = false

@@ -30,7 +30,8 @@ func _on_area_entered(area: Area3D) -> void:
 	if not is_active:
 		return
 	if area is Hitbox:
-		owner_entity.on_hit(area)
+		var info : DamageInfo = (area as Hitbox).build_damage_info(owner_entity)
+		owner_entity.on_hit(info)
 	elif area is FloorEffectBase:
 		area._on_enter(owner_entity)
 

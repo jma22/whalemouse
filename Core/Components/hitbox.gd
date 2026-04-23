@@ -3,10 +3,12 @@ extends Area3D
 
 @export var owner_entity: Node3D
 @export var hit_box_type: HitBoxType = HitBoxType.HIT_PLAYER
+@export var damage_type : DamageInfo.DamageType = DamageInfo.DamageType.MELEE
 @onready var sprite3D : Sprite3D = $Sprite3D
 @export var damage: int = 1
 @export var hitstop : HitStop
 
+var source : Node3D
 var is_active: bool = false
 var effect_on_hit : StatusEffectBase = null
 var behavior : HitboxBehavior = null
@@ -33,7 +35,7 @@ func set_effect_on_hit(effect: StatusEffectBase) -> void:
 func set_behavior(b: HitboxBehavior) -> void:
 	behavior = b
 
-	
+
 func set_active(active: bool) -> void:
 	self.set_deferred("monitorable", active)
 	## show visible
@@ -48,14 +50,22 @@ func hitbox_on_hit() -> void:
 	if hitstop:
 		hitstop.start_hitstop(0.1)
 
-func get_damage() -> int:
+func build_damage_info(_target: Node3D) -> DamageInfo:
+	var info : DamageInfo = DamageInfo.new()
+	info.hitbox = self
+	info.owner_entity = owner_entity
+	info.source = source if source != null else owner_entity
+	info.damage_type = damage_type
+	info.amount = _compute_base_amount(info)
+	return info
+
+func _compute_base_amount(info: DamageInfo) -> int:
 	if hit_box_type == HitBoxType.HIT_PLAYER:
 		var base : int = StatCalculator.get_enemy_damage()
-		if owner_entity is EnemyBase:
-			base = int(ceil(base * owner_entity.status_effect_manager.get_damage_multiplier()))
+		if info.source is EnemyBase:
+			base = int(ceil(base * info.source.status_effect_manager.get_damage_multiplier()))
 		return base
-	else:
-		return damage
+	return damage
 
 
 

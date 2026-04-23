@@ -103,10 +103,9 @@ func modify_time_delta(delta: float) -> float:
 		delta = effect.modify_time_delta(delta)
 	return delta
 
-func modify_incoming_damage(damage: int, attacker_hitbox: Hitbox) -> int:
+func modify_incoming_damage(info: DamageInfo) -> void:
 	for effect : StatusEffectBase in get_deduped_list():
-		damage = effect.modify_incoming_damage(damage, attacker_hitbox)
-	return damage
+		effect.modify_incoming_damage(info)
 
 func get_speed_multiplier() -> float:
 	var m : float = 1.0
@@ -126,15 +125,15 @@ func get_projectile_flat() -> int:
 		total += effect.get_projectile_flat()
 	return total
 
-func get_damage_multiplier() -> float:
-	var m : float = 1.0
+func get_damage_multiplier() -> int:
+	var m : int = 1
 	for effect : StatusEffectBase in get_deduped_list():
 		m *= effect.get_damage_multiplier()
 	return m
 
-func notify_hit_consumed(attacker_hitbox: Hitbox) -> void:
+func notify_hit_consumed(info: DamageInfo) -> void:
 	for effect : StatusEffectBase in get_deduped_list().duplicate():
-		if effect.on_hit_consumed(entity, attacker_hitbox):
+		if effect.on_hit_consumed(entity, info):
 			timed_effects.erase(effect)
 
 func notify_owner_killed(killer: Object) -> void:
