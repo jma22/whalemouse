@@ -12,4 +12,3 @@ var boss_name : String = ""
 #     wave_info.room_type = "combat"
 #     wave_info.name = name
 #     return wave_info
-

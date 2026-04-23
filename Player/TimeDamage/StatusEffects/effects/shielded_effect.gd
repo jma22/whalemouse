@@ -19,9 +19,9 @@ func on_applied(entity: Node3D) -> void:
 		entity.shield_component.activate_shield()
 
 
-func modify_incoming_damage(info: DamageInfo) -> void:
+func modify_incoming_damage(damage: int, _attacker_hitbox: Hitbox) -> int:
 	if not _charged:
-		return
+		return damage
 	_charged = false
 	if source and "shield_component" in source and source.shield_component:
 		source.shield_component.lose_shield()
@@ -29,4 +29,4 @@ func modify_incoming_damage(info: DamageInfo) -> void:
 		source.invulnerable_component.set_invulnerable(true, INVULNERABLE_DEBOUNCE)
 	persists_forever = false
 	time_remaining = 0.0
-	info.amount = 0
+	return 0

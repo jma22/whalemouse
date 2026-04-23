@@ -18,7 +18,6 @@ hitbox = NodePath("InkBall/Hitbox")
 [node name="Hitbox" parent="InkBall" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("7_r8gj3")]
 visible = false
 owner_entity = NodePath("../..")
-damage_type = 1
 damage = 5
 
 [node name="CollisionShape3D" parent="InkBall/Hitbox" index="0" unique_id=1405177479]

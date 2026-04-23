@@ -151,17 +151,8 @@ static func get_chance_for_effect(effect_name: String) -> float:
 		return get_chance_to_spawn_marked()
 	elif effect_name == "shielded":
 		return get_chance_to_spawn_shielded()
-	elif effect_name == "infested":
-		return get_chance_to_spawn_infested()
-	elif effect_name == "ebby":
-		return get_chance_to_spawn_ebby()
 	return 0.0
 
-static func get_chance_to_spawn_ebby() -> float:
-	return  GlobalStats.current_run_stats["enemy_spawn_ebby"] * 0.1
-	
-static func get_chance_to_spawn_infested() -> float:
-	return  GlobalStats.current_run_stats["enemy_spawn_infested"] * 0.1
 
 static func get_chance_to_spawn_cursed() -> float:
 	return  GlobalStats.current_run_stats["enemy_spawn_cursed"] * 0.1

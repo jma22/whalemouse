@@ -20,13 +20,10 @@ static func make() -> MarkEffect:
 func stack_with(existing: StatusEffectBase) -> void:
 	existing.stacks = min(existing.stacks + 1, MAX_STACKS)
 
-func modify_incoming_damage(info: DamageInfo) -> void:
-	var bonus : int = DAMAGE_BONUS * stacks
-	if bonus > 0:
-		info.amount += bonus
-		info.was_marked = true
+func modify_incoming_damage(damage: int, _attacker_hitbox: Hitbox) -> int:
+	return damage + DAMAGE_BONUS * stacks
 
-func on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
+func on_hit_consumed(_entity: Node3D, _attacker_hitbox: Hitbox) -> bool:
 	return true
 
 func on_owner_killed(_entity: Node3D, _killer: Object) -> void:

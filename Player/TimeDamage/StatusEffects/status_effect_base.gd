@@ -21,8 +21,8 @@ func get_affects_enemy() -> bool:
 	return is_enemy_effect
 
 
-func modify_incoming_damage(_info: DamageInfo) -> void:
-	pass
+func modify_incoming_damage(damage: int, _attacker_hitbox: Hitbox) -> int:
+	return damage
 
 func modify_time_delta(delta: float) -> float:
 	return delta
@@ -36,10 +36,10 @@ func get_attack_speed_multiplier() -> float:
 func get_projectile_flat() -> int:
 	return 0
 
-func get_damage_multiplier() -> int:
-	return 1
+func get_damage_multiplier() -> float:
+	return 1.0
 
-func on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
+func on_hit_consumed(_entity: Node3D, _attacker_hitbox: Hitbox) -> bool:
 	return false
 
 func on_owner_killed(_entity: Node3D, _killer: Object) -> void:

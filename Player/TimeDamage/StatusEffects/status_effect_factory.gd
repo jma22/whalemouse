@@ -17,8 +17,7 @@ static var _builders : Dictionary = {
 	StatusEffectNames.SLOW: SlowEffect.make,
 	StatusEffectNames.SPIKEY: func(_d: float) -> StatusEffectBase: return SpikeyEffect.make(),
 	StatusEffectNames.WITHER: func(_d: float) -> StatusEffectBase: return WitherEffect.make(),
-	StatusEffectNames.EBBY: func(_d: float) -> StatusEffectBase: return EbbyEffect.make(),
-}	
+}
 
 static func make(effect_name: StringName, duration: float = -1.0) -> StatusEffectBase:
 	if effect_name not in _builders:

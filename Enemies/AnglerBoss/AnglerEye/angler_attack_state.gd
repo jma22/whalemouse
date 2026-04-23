@@ -48,7 +48,7 @@ func summon_spike(position : Vector3, delay: float) -> void:
 	spike_instance.global_transform.origin = position
 	var scale_ : float = StatCalculator.get_boss_attack_size_multiplier()
 	spike_instance.scale = Vector3(scale_, scale_, scale_)
-	spike_instance.setup(delay, entity)
+	spike_instance.setup(delay)
 
 func summon_spike_straight_to_end(direction : Vector3) -> void:
 	var space_between_spikes : float = 0.5

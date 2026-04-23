@@ -73,8 +73,8 @@ func check_state() -> void:
 			state_machine.set_state(phase_change_state)
 			current_phase += 1
 
-func on_hit(info : DamageInfo) -> void:
-	super(info)
+func on_hit(attacker_hitbox : Hitbox) -> void:
+	super(attacker_hitbox)
 	boss_health.update_health(health_component.current_health)
 
 func on_eye_died() -> void:

@@ -12,7 +12,7 @@ class_name LobbingEnemy
 var pursuit_range : float = 3.0
 var attack_range : float = 1.5
 
-# var boss_health : BossHealth
+var boss_health : BossHealth
 
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
@@ -56,9 +56,9 @@ func check_state() -> void:
 # 	super(attacker_hitbox)
 # 	boss_health.update_health(health_component.current_health)
 
-# func on_die() -> void:
-	# super.on_die()
-	# boss_health.hide()
+func on_die() -> void:
+	super.on_die()
+	boss_health.hide()
 # func on_staggered() -> void:
 	# pass
 	# hurt_state.set_idle_duration(0.3)
