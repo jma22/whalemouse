@@ -48,7 +48,6 @@ shader_parameter/mesh_top = 1.0
 
 [node name="SquidMinion" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("core_components")]
 script = ExtResource("1_5o2e5")
-xp_drop_amount = 0
 core_components = NodePath("CoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -139,6 +138,10 @@ texture = ExtResource("2_01mlv")
 hframes = 8
 frames_per_second = 5.0
 layer_number = 2
+
+[node name="EnemyStatusDisplay" parent="CoreComponents" index="9" unique_id=1830548483]
+transform = Transform3D(0.9999912, -0.004206231, 0, 0.0014386157, 0.34201714, 0.9396926, -0.003952564, -0.93968433, 0.34202012, -0.0005341841, 0.17476998, -0.5268532)
+debug_icon_count = 2
 
 [editable path="StateMachine/EnemyAttackParentState/EnemyStaticAttackState/Hitbox"]
 [editable path="CoreComponents"]

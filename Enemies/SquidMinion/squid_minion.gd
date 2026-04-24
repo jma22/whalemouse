@@ -50,4 +50,4 @@ func on_staggered() -> void:
 	state_machine.set_state(hurt_state)
 
 func on_hitbox_hit() -> void:
-	on_die()
+	on_die(DamageInfo.new())

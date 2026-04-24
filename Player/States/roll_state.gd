@@ -14,7 +14,7 @@ var explosion : PackedScene = load("res://Enemies/Projectiles/explosion.tscn")
 
 @export var roll_hitbox : Hitbox
 
-const BASE_DASH_DISTANCE : float = 5.0
+const BASE_DASH_DISTANCE : float = 9.0
 
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
@@ -33,15 +33,20 @@ func enter() -> void:
 	if StatCalculator.has_suicide_dash():
 		entity.damage(1)
 		entity.sprite_manager.damage_flash()
+		DebugLog.dbg("RollState", "suicide_dash → player took 1 dmg")
 
-	if StatCalculator.dash_damages_status() or StatCalculator.has_marking_dash():
+	if StatCalculator.dash_damages_status() or StatCalculator.has_marking_dash() or StatCalculator.get_midas_dash_touch_num() > 0:
 		roll_hitbox.set_active(true)
+		DebugLog.dbg("RollState", "roll hitbox active (dash_damages_status=%s marking_dash=%s)" % [
+			StatCalculator.dash_damages_status(), StatCalculator.has_marking_dash()
+		])
 
 	if StatCalculator.has_dash_bomb():
 		var bomb_instance : Node3D = explosion.instantiate()
 		entity.get_parent().add_child(bomb_instance)
 		bomb_instance.global_transform.origin = entity.global_transform.origin
 		bomb_instance.setup(entity)
+		DebugLog.dbg("RollState", "dash_bomb → spawned explosion at player")
 	# if StatCalculator.get_dash_damage() > 0:
 	# 	roll_hitbox.set_active(true)
 	

@@ -1,0 +1,13 @@
+=== 2026-04-23T22:13:03 ===
+[StatusEffectManager] gained freeze from BlessingMap#775
+[StatusEffect:freeze] on_applied entity=Player#430
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#954 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#954 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#954 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#954
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#430
+[StatusEffect:slow] on_expired entity=Player#430
+[StatusEffectManager] expired and removed: slow

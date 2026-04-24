@@ -141,7 +141,7 @@ func setup_states() -> void:
 
 func on_hit(info: DamageInfo) -> void:
 	var hitbox : Hitbox = info.hitbox
-	print("Player hit by ", hitbox.name)
+	DebugLog.dbg("Combat", "Player hit by %s [%s]" % [DebugLog.entity_name(hitbox), DamageInfo.DamageType.keys()[info.damage_type]])
 	if invulnerable_component.is_currently_invulnerable():
 		return
 	hitbox.hitbox_on_hit() ##HITSTOP
@@ -153,20 +153,31 @@ func on_hit(info: DamageInfo) -> void:
 	if damage_taken == 0:
 		return
 
-	damage_taken = max(0, damage_taken - StatCalculator.get_damage_reduced_by())
+	var reduced_by : int = StatCalculator.get_damage_reduced_by()
+	if reduced_by > 0:
+		DebugLog.dbg("Combat", "damage_reduced_by=%s: %s→%s" % [reduced_by, damage_taken, max(0, damage_taken - reduced_by)])
+	damage_taken = max(0, damage_taken - reduced_by)
 	if StatCalculator.has_death_dance():
 		damage_taken = min(damage_taken, 1)
 		gain_status_effect(HasteEffect.make(1.5), self)
+		DebugLog.dbg("Combat", "death_dance → dmg capped to 1, gained Haste(1.5s)")
 	if map_ref is BossMapManager:
 		if StatCalculator.get_curse_duration_on_hit() > 0:
 			gain_status_effect(HasteEffect.make(StatCalculator.get_curse_duration_on_hit()), self)
+			DebugLog.dbg("Combat", "curse_duration_on_hit → gained Haste(%.1fs)" % StatCalculator.get_curse_duration_on_hit())
+	var hp_before : int = health_component.current_health
 	health_component.take_damage(damage_taken)
-	
+	DebugLog.dbg("Combat", "Player took %s dmg | hp: %s→%s%s" % [
+		damage_taken, hp_before, health_component.current_health,
+		" | DEAD" if health_component.is_dead() else ""
+	])
+
 	if StatCalculator.get_decay_on_damaged() > 0:
 		gain_status_effect(HasteEffect.make(StatCalculator.get_decay_on_damaged()), self)
+		DebugLog.dbg("Combat", "decay_on_damaged → gained Haste(%.1fs)" % StatCalculator.get_decay_on_damaged())
 
-	if hitbox.effect_on_hit:
-		gain_status_effect(hitbox.effect_on_hit, hitbox)
+	# if hitbox.effect_on_hit:
+	# 	gain_status_effect(hitbox.effect_on_hit, hitbox)
 	
 	status_effect_manager.notify_hit_consumed(info)
 
@@ -183,7 +194,7 @@ func on_hit(info: DamageInfo) -> void:
 
 	var knockback_direction : Vector3 = (global_transform.origin - info.owner_entity.global_transform.origin).normalized()
 	if health_component.is_dead():
-		status_effect_manager.notify_owner_killed(info.source)
+		# status_effect_manager.notify_owner_killed(info.get_source())
 		on_die()
 		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
 		return

@@ -112,4 +112,7 @@ texture = ExtResource("14_ne1wh")
 hframes = 1
 layer_number = 2
 
+[node name="EnemyStatusDisplay" parent="EnemyCoreComponents" index="9" unique_id=1830548483]
+transform = Transform3D(0.9999912, -0.004206231, 0, 0.0014386157, 0.34201714, 0.9396926, -0.003952564, -0.93968433, 0.34202012, -0.00020352105, 0.17616509, -0.44268832)
+
 [editable path="EnemyCoreComponents"]

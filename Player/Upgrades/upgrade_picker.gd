@@ -1,22 +1,71 @@
 extends Object
 class_name UpgradePicker
 
-static func is_eligible(upgrade: UpgradeData) -> bool:
+
+static var choice_history: Array[StringName] = []
+static var chosen_tags: Array[StringName] = []
+
+
+static func _dbg(string : String) -> void:
+	DebugLog.dbg("UpgradePicker:", string)
+
+static func has_chosen_tag(tag: StringName) -> bool:
+	return tag in chosen_tags
+
+static func times_chosen(internal_name: StringName) -> int:
+	return choice_history.count(internal_name)
+
+static func reset() -> void:
+	choice_history.clear()
+	chosen_tags.clear()
+
+
+static func is_eligible(upgrade: UpgradeData, extra_reqs : Array[StringName]) -> bool:
+	var times: int = times_chosen(upgrade.internal_name)
+
+	if UpgradeTag.ONETIME in upgrade.tags and times >= 1:
+		_dbg("Ineligible for %s because it's one-time and we've already chosen it %d times" % [upgrade.internal_name, times])
+		return false
+	if upgrade.max_stacks > 0 and times >= upgrade.max_stacks:
+		_dbg("Ineligible for %s because we've already chosen it %d times and the max is %d" % [upgrade.internal_name, times, upgrade.max_stacks])
+		return false
+
 	for prereq: StringName in upgrade.prereqs:
-		if GlobalStats.current_run_stats.get(prereq, 0) <= 0:
+		# var stat_ok: bool = GlobalStats.current_run_stats.get(prereq, 0) > 0
+		# var name_ok: bool = has_chosen(prereq)
+		var tag_ok: bool = has_chosen_tag(prereq)
+		if not (tag_ok):
+			_dbg("Ineligible for %s because we haven't chosen required tag %s" % [upgrade.internal_name, prereq])
 			return false
+	
+	for tag: StringName in extra_reqs:
+		if not upgrade.tags.has(tag):
+			_dbg("Ineligible for %s because we need tag %s but it only has tags %s" % [upgrade.internal_name, tag, upgrade.tags])
+			return false
+
 	return true
 
-static func eligible_in_pools(pools: Array[String]) -> Array[UpgradeData]:
+static func eligible_in_pool(pool: String, need_tags: Array[StringName], exclude: Array[StringName] = []) -> Array[UpgradeData]:
 	var result: Array[UpgradeData] = []
 	for upgrade: UpgradeData in UpgradeRegistry.all():
-		if upgrade.blessing_type in pools and is_eligible(upgrade):
+		if upgrade.blessing_type == pool and is_eligible(upgrade, need_tags) and not (upgrade.internal_name in exclude):
 			result.append(upgrade)
 	return result
 
-static func pick(pools: Array[String], amount: int) -> Array[UpgradeData]:
-	var candidates: Array[UpgradeData] = eligible_in_pools(pools)
+static func pick(pool: String, amount: int, need_tags: Array[StringName], exclude: Array[StringName] = []) -> Array[UpgradeData]:
+	## exclude is for internal_names, not tags
+	var candidates: Array[UpgradeData] = eligible_in_pool(pool, need_tags, exclude)
 	if candidates.size() <= amount:
+		_dbg("[ERROR]Not enough candidates in pool %s, need %d but only have %d. Returning all." % [pool, amount, candidates.size()])
+		return candidates
+	return _weighted_sample(candidates, amount)
+
+static func pick_or(pool: String, amount: int, at_least_one_tags: Array[StringName], exclude: Array[StringName] = []) -> Array[UpgradeData]:
+	var candidates: Array[UpgradeData] = []
+	for tag in at_least_one_tags:
+		candidates += eligible_in_pool(pool, [tag], exclude)
+	if candidates.size() == 0:
+		_dbg("No candidates in pool %s with tags %s" % [pool, at_least_one_tags])
 		return candidates
 	return _weighted_sample(candidates, amount)
 
@@ -43,3 +92,10 @@ static func _weighted_sample(candidates: Array[UpgradeData], amount: int) -> Arr
 				pool.remove_at(j)
 				break
 	return result
+
+
+static func chosen_upgrade(upgrade_data: UpgradeData) -> void:
+	choice_history.append(upgrade_data.internal_name)
+	for tag: StringName in upgrade_data.tags:
+		if not (tag in chosen_tags):
+			chosen_tags.append(tag)

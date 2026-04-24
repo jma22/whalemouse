@@ -1,0 +1,7 @@
+=== 2026-04-23T17:46:42 ===
+[UpgradePicker:] [ERROR]Not enough candidates in pool blessing, need 2 but only have 0. Returning all.
+[StatusEffectManager] gained freeze from BlessingMap#439
+[StatusEffect:freeze] on_applied entity=Player#094
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[StatusEffect:freeze] on_expired entity=Player#094
+[StatusEffectManager] expired and removed: freeze

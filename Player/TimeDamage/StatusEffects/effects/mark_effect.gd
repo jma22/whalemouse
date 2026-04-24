@@ -1,7 +1,7 @@
 class_name MarkEffect extends EnemyStatusEffect
 
 const MAX_STACKS : int = 5
-const DAMAGE_BONUS : int = 2
+const DAMAGE_BONUS : int = 1
 const COLOR_MIN : Color = Color(1, 0.75, 0.75)
 const COLOR_MAX : Color = Color(1, 0.25, 0.25)
 
@@ -19,25 +19,30 @@ static func make() -> MarkEffect:
 	return effect
 
 
-func stack_with(existing: StatusEffectBase) -> void:
+func _stack_with(existing: StatusEffectBase) -> void:
 	if StatCalculator.auto_consume_mark() and existing.stacks >= MAX_STACKS:
 		_should_auto_consume = true
+		_dbg("auto_consume_mark triggered at max stacks (%s)" % MAX_STACKS)
 	else:
 		existing.stacks = min(existing.stacks + 1, MAX_STACKS)
 
 func modify_incoming_damage(info: DamageInfo) -> void:
+	if info.amount <= 0:
+		return
 	var bonus : int = DAMAGE_BONUS * stacks
 	if bonus > 0:
 		info.amount += bonus
 		info.was_marked = true
+		_dbg("mark bonus: +%s dmg (stacks=%s)" % [bonus, stacks])
 
-func on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
-	if StatCalculator.mark_to_orb():
-		_spawn_orbs(_entity, stacks)
+func _on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
+	if StatCalculator.mark_to_orb() > 0:
+		_dbg("mark_to_orb → spawning %s orbs at %s" % [stacks, DebugLog.entity_name(_entity)])
+		_spawn_orbs(_entity, stacks * StatCalculator.mark_to_orb())
 	return true
 
 
-func on_applied(_entity: Node3D) -> void:
+func _on_applied(_entity: Node3D) -> void:
 	if _should_auto_consume:
 		_do_auto_consume(_entity)
 		return
@@ -50,6 +55,7 @@ func on_applied(_entity: Node3D) -> void:
 		explosion_instance.global_transform.origin = _entity.global_transform.origin
 		explosion_instance.global_transform.origin.y = 0.0
 		explosion_instance.setup(source)
+		_dbg("marks_needed_to_make_bomb=%s reached → spawned explosion at %s" % [needed, DebugLog.entity_name(_entity)])
 
 
 func _get_entity_mark_stacks(_entity: Node3D) -> int:
@@ -72,7 +78,16 @@ func _do_auto_consume(_entity: Node3D) -> void:
 				_entity.health_component.take_damage(consumed_stacks)
 				if "sprite_manager" in _entity and _entity.sprite_manager:
 					_entity.sprite_manager.damage_flash()
+				if _entity.health_component.is_dead():
+					var info : DamageInfo = DamageInfo.new()
+					info.amount = consumed_stacks
+					info.damage_type = DamageInfo.DamageType.DASH ## buggy
+					info.source = source
+					info.was_marked = true
+					_entity.on_die(info)
+			_dbg("auto-consumed %s mark stacks → %s dmg direct on %s" % [consumed_stacks, consumed_stacks, DebugLog.entity_name(_entity)])
 			if StatCalculator.mark_to_orb():
+				_dbg("mark_to_orb → spawning %s orbs at %s" % [consumed_stacks, DebugLog.entity_name(_entity)])
 				_spawn_orbs(_entity, consumed_stacks)
 			break
 

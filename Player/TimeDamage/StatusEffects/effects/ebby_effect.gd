@@ -11,7 +11,7 @@ static func make() -> InfestedEffect:
 	return effect
 
 
-func  on_entity_died(entity: Node3D) -> void:
+func _on_entity_died(entity: Node3D) -> void:
 	if not entity:
 		return
 	var xp_spawner_instance : Node = entity.xp_spawner_scene.instance()

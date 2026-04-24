@@ -90,10 +90,10 @@ func on_eye_died() -> void:
 	camera.camera_shake(2.0, 0.3)
 	
 
-func on_die() -> void:
+func on_die(info: DamageInfo) -> void:
 	if is_dead:
 		return
-	super()
+	super(info)
 	enemy_spawner.kill_all_enemies() 
 
 # 	super.on_die()

@@ -26,9 +26,9 @@ func reset() -> void:
 
 
 func take_damage(damage: int) -> void:
-	print("Taking damage: ", damage , " Current health: ", current_health)
 	current_health -= damage
 	if StatCalculator.get_dying_ebb() >= current_health and entity is Player:
+		DebugLog.dbg("HealthComponent", "dying_ebb threshold reached (threshold=%s hp=%s) → gained Slow" % [StatCalculator.get_dying_ebb(), current_health])
 		entity.gain_status_effect(ebb_effect, self)
 
 	if current_health <= 0:

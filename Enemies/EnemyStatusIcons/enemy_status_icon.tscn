@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cc0cr87neu0lm"]
+
+[ext_resource type="Texture2D" uid="uid://cowx8pmo0f366" path="res://Enemies/EnemyStatusIcons/berserk_icon.png" id="1_7jkqc"]
+
+[node name="Sprite3D" type="Sprite3D" unique_id=2022809666]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+pixel_size = 0.001
+texture = ExtResource("1_7jkqc")

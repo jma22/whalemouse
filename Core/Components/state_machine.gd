@@ -18,7 +18,9 @@ func set_state(new_state: State, force :bool = false) -> void:
 		current_state.enter()
 		if debug:
 			var debug_str : String = "State change: " + current_path + " -> " + current_state.get_full_state_path()
-			print(debug_str)
+			if Config.is_enabled("debug_state_log"):
+				DebugLog.dbg("State[%s]" % DebugLog.entity_name(get_parent()), debug_str)
+				print(debug_str)
 
 
 # func _process(delta: float) -> void:

@@ -1,7 +1,7 @@
 class_name FlowEffect extends PlayerStatusEffect
 
-const DURATION: float = 1.5
-const SPEED_PER_STACK: float = 0.15
+const DURATION: float = 2.0
+const SPEED_PER_STACK: float = 0.07
 
 static func make(p_stacks: int) -> FlowEffect:
 	var effect := FlowEffect.new()
@@ -15,7 +15,7 @@ static func make(p_stacks: int) -> FlowEffect:
 func get_speed_multiplier() -> float:
 	return (1.0 + (stacks * SPEED_PER_STACK * (time_remaining / DURATION) ** 0.5))
 
-func stack_with(existing: StatusEffectBase) -> void:
+func _stack_with(existing: StatusEffectBase) -> void:
 	existing.time_remaining = DURATION
 	existing.stacks = min(existing.stacks + stacks, max_stacks)
 

@@ -115,5 +115,8 @@ layer_number = 2
 
 [node name="FloatEffect" parent="EnemyCoreComponents/SpriteManager" index="0" unique_id=1405987306 instance=ExtResource("14_dqiqe")]
 
+[node name="EnemyStatusDisplay" parent="EnemyCoreComponents" index="9" unique_id=1830548483]
+transform = Transform3D(0.9999912, -0.004206231, 0, 0.0014386157, 0.34201714, 0.9396926, -0.003952564, -0.93968433, 0.34202012, -0.00013552605, 0.3442586, -0.49833873)
+
 [editable path="EnemyCoreComponents"]
 [editable path="EnemyCoreComponents/HurtBox"]

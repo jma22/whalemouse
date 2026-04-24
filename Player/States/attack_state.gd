@@ -44,10 +44,11 @@ func enter() -> void:
 	will_crit = randf() < StatCalculator.get_critical_chance()
 	if will_crit:
 		hitbox.set_damage(2)
+		DebugLog.dbg("AttackState", "CRIT rolled (chance=%.2f) → dmg=2" % StatCalculator.get_critical_chance())
 	else:
 		hitbox.set_damage(1)
 	# hitbox.set_effect_on_hit(MarkEffect.make())
-	hitbox.set_effect_on_hit(PoisonEffect.make())
+	# hitbox.set_effect_on_hit(MarkEffect.make())
 	hitbox.set_behavior(AttackHitboxBehavior.make())
 
 
@@ -113,4 +114,7 @@ func get_attack_size() -> Vector3:
 	if StatCalculator.get_bigger_attack_every_n_hits() > 0:
 		if num_attacks % StatCalculator.get_bigger_attack_every_n_hits() == 0:
 			base_scale *= 2.0
+			DebugLog.dbg("AttackState", "bigger_attack_every_n_hits=%s → hit #%s is big (scale x2)" % [
+				StatCalculator.get_bigger_attack_every_n_hits(), num_attacks
+			])
 	return base_scale

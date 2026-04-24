@@ -33,6 +33,7 @@ var xp_spawner_scene : PackedScene = load("res://Collectibles/xp_spawner.tscn")
 @onready var bounce_component : BounceComponent = core_components.bounce_component
 @onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
 @onready var shield_component : ShieldComponent = core_components.shield_component
+@onready var enemy_status_display : EnemyStatusDisplay = core_components.enemy_status_display
 
 var is_dead : bool = false
 var setup_complete : bool = false
@@ -92,26 +93,40 @@ func on_hit(info: DamageInfo) -> void:
 		return
 	sprite_manager.damage_flash()
 	var hitbox : Hitbox = info.hitbox
+
 	if hitbox.behavior:
 		hitbox.behavior.modify_outgoing_damage(info, self)
 	status_effect_manager.modify_incoming_damage(info)
 	
-	hitbox.hitbox_on_hit() # hitstop
-	hitstop.start_hitstop(0.15)
+	
+	hitstop.start_hitstop(0.15) ## enemy hitstop
 	## poisonouse dash here
 	## should we play sound
 
+	status_effect_manager.notify_hit_consumed(info) ## consume first
 	if hitbox.behavior:
 		hitbox.behavior.on_hit_landed(info, self)
 	var damage_taken : int = info.amount
 	if damage_taken == 0:
 		return
+	hitbox.hitbox_on_hit() # player hitstop
 
+
+	
+	var hp_before : int = health_component.current_health
 	health_component.take_damage(damage_taken)
+	var kill_prefix : String = "KILL " if health_component.is_dead() else ""
+	var behavior_name : String = hitbox.behavior.name if hitbox.behavior else "?"
+	DebugLog.dbg("Combat", "%s%s → %s | %s dmg [%s] | hp: %s→%s" % [
+		kill_prefix, behavior_name,
+		DebugLog.entity_name(self),
+		damage_taken,
+		DamageInfo.DamageType.keys()[info.damage_type],
+		hp_before, health_component.current_health
+	])
 
-	status_effect_manager.notify_hit_consumed(info) ## consume first
-	if hitbox.effect_on_hit:
-		gain_status_effect(hitbox.effect_on_hit, hitbox)
+	# if hitbox.effect_on_hit:
+	# 	gain_status_effect(hitbox.effect_on_hit, hitbox)
 	hurt_box.on_valid_damaging_hit()
 
 
@@ -124,20 +139,25 @@ func on_hit(info: DamageInfo) -> void:
 
 
 	if health_component.is_dead():
-		if hitbox.behavior:
-			hitbox.behavior.on_kill(info, self)
-		on_die()
+		on_die(info)
 		knockback_component.receive_knockback(knockback_direction, -0.6*damage_taken)
 		return
 
 
 
-func on_die() -> void:
+func on_die(info: DamageInfo) -> void:
 	if is_dead:
 		return
+	
+	if info.hitbox and info.hitbox.behavior:
+		info.hitbox.behavior.on_kill(info, self)
 	is_dead = true
 	status_effect_manager.notify_entity_died()
 	var tween : Tween = await sprite_manager.die()
+	## clear sprites
+	enemy_status_display.hide()
+	sprite_manager.hide()
+
 	GlobalStats.add_kill()
 	
 
@@ -171,7 +191,7 @@ func get_floor() -> NavigationRegion3D:
 	return floor_
 
 func get_speed_multiplier() -> float:
-	return StatCalculator.get_enemy_speed_multiplier() * status_effect_manager.get_speed_multiplier()
+	return StatCalculator.get_enemy_speed_multiplier() * status_effect_manager.get_speed_multiplier_from_status()
 
 func get_attack_speed_multiplier() -> float:
 	return StatCalculator.get_enemy_attack_speed_multiplier() * status_effect_manager.get_attack_speed_multiplier()

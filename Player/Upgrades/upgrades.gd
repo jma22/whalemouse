@@ -7,495 +7,674 @@ static func _static_init() -> void:
 	# 	.description_fn(_heal_desc) \
 	# 	.augment(-5) \
 	# 	.effect(HealScaledEffect.new()) \
-	# 	.effect(IncreaseStatEffect.new(&"heal")) \
+	# 	.effect(_stat(&"heal")) \
 	# 	.register()
-	UpgradeBuilder.new("xp_suck", "Orb Catcher") \
-		.pool(UpgradePool.BLESSING) \
-		.description_fn(_xp_suck_desc) \
-		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"xp_suck")) \
-		.register()
+	# UpgradeBuilder.new("xp_suck", "Orb Catcher") \
+	# 	.pool(UpgradePool.BLESSING) \
+	# 	.description_fn(_xp_suck_desc) \
+	# 	.augment(-5) \
+	# 	.effect(_stat(&"xp_suck")) \
+	# 	.register()
 	# UpgradeBuilder.new("enemy_xp_drop", "Feast Totem") \
 	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_enemy_xp_drop_desc) \
 	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"enemy_xp_drop")) \
+	# 	.effect(_stat(&"enemy_xp_drop")) \
 	# 	.register()
 	# UpgradeBuilder.new("whale_size", "Beluga Plushie") \
-	# 	.pool(UpgradePool.WHALE_BLESSING) \
+	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_whale_desc) \
 	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"whale_size")) \
+	# 	.effect(_stat(&"whale_size")) \
 	# 	.register()
 	# UpgradeBuilder.new("whale_cooldown", "Beluga Boon") \
-	# 	.pool(UpgradePool.WHALE_BLESSING) \
+	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_whale_cooldown_desc) \
 	# 	.augment(-5) \
 	# 	.prereqs([&"whale_size"]) \
-	# 	.effect(IncreaseStatEffect.new(&"whale_cooldown")) \
+	# 	.effect(_stat(&"whale_cooldown")) \
 	# 	.register()
 	# UpgradeBuilder.new("whale_damage", "Beluga Fangs") \
-	# 	.pool(UpgradePool.WHALE_BLESSING) \
+	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_whale_damage_desc) \
 	# 	.augment(-5) \
 	# 	.prereqs([&"whale_size"]) \
-	# 	.effect(IncreaseStatEffect.new(&"whale_damage")) \
+	# 	.effect(_stat(&"whale_damage")) \
 	# 	.register()
 	# UpgradeBuilder.new("dash_distance", "VROOM!!") \
 	# 	.pool(UpgradePool.ONE_TIME_BLESSING) \
 	# 	.description_fn(_dash_desc) \
 	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"dash_distance")) \
+	# 	.effect(_stat(&"dash_distance")) \
 	# 	.register()
+
+	## generics
 	UpgradeBuilder.new("time_tick_level", "Dark Algae") \
-		.pool(UpgradePool.BIG_CURSE) \
+		.pool(UpgradePool.CURSE) \
 		.description_fn(_time_tick_desc) \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"time_tick_level")) \
+		.effect(_stat(&"time_tick_level")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BIG_CURSE]) \
 		.register()
-	# UpgradeBuilder.new("damage", "Little Bite") \
-	# 	.pool(UpgradePool.CURSE) \
-	# 	.description_fn(_damage_desc) \
-	# 	.augment(8) \
-	# 	.effect(DamageScaledEffect.new()) \
-	# 	.effect(IncreaseStatEffect.new(&"damage")) \
-	# 	.register()
-	# UpgradeBuilder.new("enemy_speed", "Flying Shell") \
-	# 	.pool(UpgradePool.CURSE) \
-	# 	.description_fn(_enemy_speed_desc) \
-	# 	.augment(8) \
-	# 	.effect(IncreaseStatEffect.new(&"enemy_speed")) \
-	# 	.register()
-	# UpgradeBuilder.new("enemy_attack_speed", "Piranha Fangs") \
-	# 	.pool(UpgradePool.CURSE) \
-	# 	.description_fn(_enemy_attack_speed_desc) \
-	# 	.augment(8) \
-	# 	.effect(IncreaseStatEffect.new(&"enemy_attack_speed")) \
-	# 	.register()
-	# UpgradeBuilder.new("enemy_health", "Bulk Up") \
-	# 	.pool(UpgradePool.CURSE) \
-	# 	.description_fn(_enemy_health_desc) \
-	# 	.augment(8) \
-	# 	.effect(IncreaseStatEffect.new(&"enemy_health")) \
-	# 	.register()
-	# UpgradeBuilder.new("enemy_damage", "Poseidon's Fury") \
-	# 	.pool(UpgradePool.CURSE) \
-	# 	.description_fn(_enemy_damage_desc) \
-	# 	.augment(8) \
-	# 	.effect(IncreaseStatEffect.new(&"enemy_damage")) \
-	# 	.register()
-	# UpgradeBuilder.new("attack_size", "Giant Potato") \
-	# 	.pool(UpgradePool.BLESSING) \
-	# 	.description_fn(_attack_size_desc) \
-	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"attack_size")) \
-	# 	.register()
-	# UpgradeBuilder.new("player_attack_speed", "Sonic Seashell") \
-	# 	.pool(UpgradePool.BLESSING) \
-	# 	.description_fn(_attack_speed_desc) \
-	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"player_attack_speed")) \
-	# 	.register()
-	# UpgradeBuilder.new("ebb_drop", "Ebb Essence") \
-	# 	.pool(UpgradePool.BLESSING) \
-	# 	.description_fn(_ebb_drop_desc) \
-	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"ebb_drop")) \
-	# 	.register()
-	# UpgradeBuilder.new("ebb_on_stand", "Ebb's Embrace") \
-	# 	.pool(UpgradePool.ONE_TIME_BLESSING) \
-	# 	.description_fn(_ebb_on_stand_desc) \
-	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"ebb_on_stand")) \
-	# 	.register()
+	UpgradeBuilder.new("decay_on_hit", "Rotting Touch") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Gain decay when hit.") \
+		.augment(8) \
+		.effect(_stat(&"decay_on_damaged")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BIG_CURSE])  \
+		.register()
+
 	UpgradeBuilder.new("dying_ebb", "Last Stand") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(_dying_ebb_desc) \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"dying_ebb")) \
-		.register()
+		.effect(_stat(&"dying_ebb")) \
+		.tags([UpgradeTag.EBB_SOURCE, UpgradeTag.STACKABLE]) \
+		.register()	
 	UpgradeBuilder.new("movement_speed_flat", "Streamlined") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "+0.75 flat movement speed") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"movement_speed_flat")) \
+		.effect(_stat(&"movement_speed_flat")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.GENERIC]) \
 		.register()
 	UpgradeBuilder.new("ebb_begin_of_room", "Tidal Surge") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Gain %d seconds of Ebb at the start of each room" % (3 + GlobalStats.current_run_stats["ebb_begin_of_room"] + 1)) \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"ebb_begin_of_room")) \
+		.effect(_stat(&"ebb_begin_of_room")) \
+		.tags([UpgradeTag.EBB_SOURCE, UpgradeTag.STACKABLE]) \
 		.register()
-	UpgradeBuilder.new("orb_weight", "Heavy Current") \
-		.pool(UpgradePool.CURSE) \
+	UpgradeBuilder.new("orb_weight", "Orb Catcher") \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Orbs attract faster and wider, but you move slower") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"xp_suck")) \
-		.effect(IncreaseStatEffect.new(&"movement_slow_down")) \
+		.effect(_stat(&"xp_suck")) \
+		.effect(_stat(&"movement_slow_down")) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.ONETIME]) \
+		.limit_stacks(1) \
 		.register()
-	UpgradeBuilder.new("burst_movement", "Burst Fins") \
-		.pool(UpgradePool.CURSE) \
-		.description_fn(func() -> String: return "+10%% movement speed, but dash recharges slower") \
-		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"movement_speed_up")) \
-		.effect(IncreaseStatEffect.new(&"dash_cooldown_increase")) \
-		.register()
+
 	UpgradeBuilder.new("speed_on_pickup", "Flow State") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Picking up any orb grants a 1.5s movement speed boost (stacks in power, not time)") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"speed_on_pickup")) \
+		.effect(_stat(&"speed_on_pickup")) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.STACKABLE]) \
 		.register()
 	UpgradeBuilder.new("deaths_dance", "Death's Dance") \
-		.pool(UpgradePool.CURSE) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Take only 1 damage per hit, but each hit applies 1.5s of Haste/Decay") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"deaths_dance")) \
+		.effect(_stat(&"deaths_dance")) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.ONETIME]) \
 		.register()
 	# UpgradeBuilder.new("damaging_dash", "Shark Teeth") \
 	# 	.pool(UpgradePool.ONE_TIME_BLESSING) \
 	# 	.description_fn(_damaging_dash_desc) \
 	# 	.augment(-5) \
 	# 	.prereqs([&"dash_distance"]) \
-	# 	.effect(IncreaseStatEffect.new(&"damaging_dash")) \
+	# 	.effect(_stat(&"damaging_dash")) \
 	# 	.register()
 	# UpgradeBuilder.new("damage_reduction", "Big Shell") \
 	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_damge_reduction_desc) \
 	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"damage_reduction")) \
+	# 	.effect(_stat(&"damage_reduction")) \
 	# 	.register()
 	# UpgradeBuilder.new("thornmail", "Thornmail") \
 	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_thornmail_desc) \
 	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"thornmail")) \
+	# 	.effect(_stat(&"thornmail")) \
 	# 	.register()
 	# UpgradeBuilder.new("fast_while_status", "Swift Current") \
 	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_fast_during_status_desc) \
 	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"fast_while_status")) \
+	# 	.effect(_stat(&"fast_while_status")) \
 	# 	.register()
 	# UpgradeBuilder.new("flat_speed", "Eel boots?") \
 	# 	.pool(UpgradePool.BLESSING) \
 	# 	.description_fn(_flat_speed_desc) \
 	# 	.augment(-5) \
-	# 	.effect(IncreaseStatEffect.new(&"flat_speed")) \
+	# 	.effect(_stat(&"flat_speed")) \
 	# 	.register()
 
 	UpgradeBuilder.new("extra_boss_health", "Angler's Feast") \
 		.pool(UpgradePool.BOSS_CURSE) \
 		.description_fn(_extra_boss_health_desc) \
-		.effect(IncreaseStatEffect.new(&"extra_boss_health")) \
+		.effect(_boss_stat(&"extra_boss_health")) \
 		.register()
 	UpgradeBuilder.new("curse_on_hit", "Poisonous Touch") \
 		.pool(UpgradePool.BOSS_CURSE) \
 		.description_fn(_curse_on_hit_desc) \
-		.effect(IncreaseStatEffect.new(&"curse_on_hit")) \
+		.effect(_boss_stat(&"curse_on_hit")) \
 		.register()
 	UpgradeBuilder.new("boss_attack_size", "Massive Tentacles") \
 		.pool(UpgradePool.BOSS_CURSE) \
 		.description_fn(_boss_attack_size_desc) \
-		.effect(IncreaseStatEffect.new(&"boss_attack_size")) \
+		.effect(_boss_stat(&"boss_attack_size")) \
 		.register()
 
 	UpgradeBuilder.new("boss_freeze", "Frozen Time") \
 		.pool(UpgradePool.BOSS_BLESSING) \
 		.description_fn(_boss_freeze_desc) \
-		.effect(IncreaseStatEffect.new(&"boss_freeze_time")) \
+		.effect(_boss_stat(&"boss_freeze_time")) \
 		.register()
 	UpgradeBuilder.new("num_whales", "Whale Song") \
 		.pool(UpgradePool.BOSS_BLESSING) \
 		.description_fn(_num_whales_desc) \
 		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"num_whales")) \
+		.effect(_boss_stat(&"num_whales")) \
 		.register()
 	UpgradeBuilder.new("boss_xp_drop", "Angler Hunter") \
 		.pool(UpgradePool.BOSS_BLESSING) \
-		.description_fn(_enemy_xp_drop_desc) \
-		.effect(IncreaseStatEffect.new(&"boss_xp_drop")) \
+		.description_fn(_boss_xp_drop_desc) \
+		.effect(_boss_stat(&"boss_xp_drop")) \
 		.register()
 	UpgradeBuilder.new("critical_chance", "Sharpshell") \
 		.pool(UpgradePool.BOSS_BLESSING) \
 		.description_fn(_critical_chance_desc) \
-		.effect(IncreaseStatEffect.new(&"critical_chance")) \
+		.effect(_boss_stat(&"critical_chance")) \
 		.register()
 
 
-	# new curses!
+	# enemy spawns
 	UpgradeBuilder.new("enemy_spawn_berserk", "Berserk Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn berserk!") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_berserk")) \
+		.effect(_stat(&"enemy_spawn_berserk")) \
+		.tags([UpgradeTag.STACKABLE]) \
 		.register()
 	
 	UpgradeBuilder.new("enemy_spawn_cursed", "Cursed Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn cursed!") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_cursed")) \
+		.effect(_stat(&"enemy_spawn_cursed")) \
+		.tags([UpgradeTag.STACKABLE]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_slippery", "Slippery Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn slippery!") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_slippery")) \
+		.effect(_stat(&"enemy_spawn_slippery")) \
+		.tags([UpgradeTag.STACKABLE]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_spikey", "Spikey Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn spikey!") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_spikey")) \
+		.effect(_stat(&"enemy_spawn_spikey")) \
+		.tags([UpgradeTag.STACKABLE]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_wither", "Withering Spawns") \
-		.pool(UpgradePool.CURSE) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn withering!") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_wither")) \
+		.effect(_stat(&"enemy_spawn_wither")) \
+		.tags([UpgradeTag.STACKABLE]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_shielded", "Shielded Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn shielded!") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_shielded")) \
+		.effect(_stat(&"enemy_spawn_shielded")) \
+		.tags([UpgradeTag.STACKABLE]) \
 		.register()
 	
 	UpgradeBuilder.new("enemy_spawn_infested", "Infested Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn infested!") \
 		.augment(8) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_infested")) \
+		.effect(_stat(&"enemy_spawn_infested")) \
+		.tags([UpgradeTag.STACKABLE]) \
 		.register()
 
 	UpgradeBuilder.new("enemy_spawn_poisoned", "Poisonous Spawns") \
-		.pool(UpgradePool.CURSE) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn poisoned!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_poisoned")) \
+		.effect(_stat(&"enemy_spawn_poisoned")) \
+		.prereqs([UpgradeTag.POISON_SOURCE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.POISON_SOURCE]) \
 		.register()
 
 	UpgradeBuilder.new("enemy_spawn_marked", "Marked Spawns") \
-		.pool(UpgradePool.CURSE) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn marked!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"enemy_spawn_marked")) \
+		.effect(_stat(&"enemy_spawn_marked")) \
+		.prereqs([UpgradeTag.MARK_SOURCE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.MARK_SOURCE]) \
+		.register()
+	UpgradeBuilder.new("enemy_spawn_ebby", "Ebby Spawns") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Enemies have a chance to spawn Ebby!") \
+		.augment(8) \
+		.effect(_stat(&"enemy_spawn_ebby")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.EBB_SOURCE]) \
+		.register()
+
+	## marks i guess ------
+	UpgradeBuilder.new("marking_dash", "Marking Dash") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Your dash applies a mark.") \
+		.augment(-5) \
+		.effect(_stat(&"marking_dash")) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.tags([UpgradeTag.SOURCE, UpgradeTag.MARK_SOURCE, UpgradeTag.ONETIME, UpgradeTag.DASH]) \
+		.register()
+	
+	UpgradeBuilder.new("marking_beluga", "Marking Beluga") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Beluga applies 2 marks.") \
+		.augment(-5) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"marking_beluga")) \
+		.tags([UpgradeTag.SOURCE, UpgradeTag.MARK_SOURCE, UpgradeTag.ONETIME, UpgradeTag.BELUGA]) \
 		.register()
 
 	UpgradeBuilder.new("mark_to_orb", "Marked Harvest") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Consuming marks drops time orbs!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"mark_to_orb")) \
+		.effect(_stat(&"mark_to_orb")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_MARK, UpgradeTag.DROPS_ORBS]) \
+		.prereqs([UpgradeTag.MARK_SOURCE]) \
 		.register()
 
-	UpgradeBuilder.new("auto_consume_mark", "Overloaded Marks") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+	UpgradeBuilder.new("auto_consume_mark", "Mark Overflow") \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Applying a 6th mark auto-consumes all 5, dealing 5 damage!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"auto_consume_mark")) \
+		.effect(_stat(&"auto_consume_mark")) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.NEEDS_MARK]) \
+		.prereqs([UpgradeTag.MARK_SOURCE]) \
+		.register()
+	
+	UpgradeBuilder.new("mark_makes_a_bomb", "Bombardment") \
+		.pool(UpgradePool.CURSE) \
+		.description_fn(func() -> String: return "Applying %d marks spawns a bomb at the enemy's location!" % GlobalStats.current_run_stats["mark_makes_a_bomb"]) \
+		.augment(8) \
+		.effect(_stat(&"mark_makes_a_bomb")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_MARK, UpgradeTag.DROPS_ORBS, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
+		.prereqs([UpgradeTag.MARK_SOURCE]) \
+		.limit_stacks(5) \
 		.register()
 
+	### poison zone
+
 	UpgradeBuilder.new("poison_beluga", "Toxic Beluga") \
-		.pool(UpgradePool.WHALE_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Beluga poisons enemies on hit!") \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"poison_beluga")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"poison_beluga")) \
+		.tags([UpgradeTag.BELUGA, UpgradeTag.SOURCE, UpgradeTag.ONETIME, UpgradeTag.POISON_SOURCE]) \
 		.register()
 
 	UpgradeBuilder.new("poison_ebb_attack", "Poisonous Current") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Your attacks poison enemies while you have ebb!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"poison_ebb_attack")) \
+		.effect(_stat(&"poison_ebb_attack")) \
+		.tags([UpgradeTag.EBB, UpgradeTag.SOURCE, UpgradeTag.ONETIME, UpgradeTag.POISON_SOURCE]) \
 		.register()
 
 	UpgradeBuilder.new("poison_enemies_drop_bombs", "Toxic Explosion") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Poisoned enemies drop a bomb when they die!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"poison_enemies_drop_bombs")) \
+		.effect(_stat(&"poison_enemies_drop_bombs")) \
+		.prereqs([UpgradeTag.POISON_SOURCE]) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.NEEDS_POISON, UpgradeTag.BOMB_SOURCE]) \
 		.register()
 
 	UpgradeBuilder.new("poisoned_enemies_drop_ebbs", "Toxic Tribute") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Poisoned enemies drop ebb orbs when they die!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"poisoned_enemies_drop_ebbs")) \
+		.effect(_stat(&"poisoned_enemies_drop_ebbs")) \
+		.tags([ UpgradeTag.NEEDS_POISON, UpgradeTag.EBB_SOURCE, UpgradeTag.STACKABLE]) \
+		.prereqs([UpgradeTag.POISON_SOURCE]) \
 		.register()
 
 	UpgradeBuilder.new("poison_kills_drop_orbs", "Toxic Harvest") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Enemies killed by poison drop time orbs!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"poison_kills_drop_orbs")) \
+		.effect(_stat(&"poison_kills_drop_orbs")) \
+		.tags([ UpgradeTag.NEEDS_POISON, UpgradeTag.DROPS_ORBS, UpgradeTag.STACKABLE]) \
+		.prereqs([UpgradeTag.POISON_SOURCE]) \
 		.register()
 
 	UpgradeBuilder.new("faster_poison", "Accelerated Venom") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Poison ticks faster!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"faster_poison")) \
+		.effect(_stat(&"faster_poison")) \
+		.tags([UpgradeTag.NEEDS_POISON, UpgradeTag.STACKABLE]) \
+		.limit_stacks(10) \
+		.prereqs([UpgradeTag.POISON_SOURCE]) \
 		.register()
 
 	UpgradeBuilder.new("slower_poison_more_lethal", "Lethal Seep") \
 		.pool(UpgradePool.BLESSING) \
-		.description_fn(func() -> String: return "Poison ticks slower but deals double damage!") \
+		.description_fn(func() -> String: return "Poison ticks slower but deals 2 damage!") \
 		.augment(-5) \
-		.effect(IncreaseStatEffect.new(&"slower_poison_more_lethal")) \
+		.effect(_stat(&"slower_poison_more_lethal")) \
+		.tags([UpgradeTag.NEEDS_POISON, UpgradeTag.STACKABLE]) \
+		.prereqs([UpgradeTag.POISON_SOURCE]) \
 		.register()
 
+	## BOMB ZONE ----------
+
+	UpgradeBuilder.new("dash_bomb", "Explosive Dash") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Your dash spawns a bomb at the start location!") \
+		.augment(-5) \
+		.effect(_stat(&"dash_bomb")) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.DASH, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
+		.register()
+
+	UpgradeBuilder.new("bomber_whale", "Bomber Whale") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Beluga spawns a bomb on hit!") \
+		.augment(-5) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"bomber_whale")) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.BELUGA, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
+		.register()
+	
+	UpgradeBuilder.new("bomb_chain_reaction", "Chain Reaction") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Bombs you spawn also spawn a smaller bomb on death!") \
+		.augment(-5) \
+		.effect(_stat(&"bomb_chain_reaction")) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.NEEDS_BOMB]) \
+		.prereqs([UpgradeTag.BOMB_SOURCE]) \
+		.register()
+
+	UpgradeBuilder.new("bomb_size", "Big Bombs") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Your bombs are bigger!") \
+		.augment(-5) \
+		.effect(_stat(&"bomb_size")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_BOMB]) \
+		.prereqs([UpgradeTag.BOMB_SOURCE]) \
+		.register()
+	
+	UpgradeBuilder.new("bomb_tick_time", "Fast Bombs") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Your bombs tick faster!") \
+		.augment(-5) \
+		.effect(_stat(&"bomb_tick_time")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_BOMB]) \
+		.prereqs([UpgradeTag.BOMB_SOURCE]) \
+		.register()
+	
+	UpgradeBuilder.new("bomb_crit", "Critical Bombs") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Have a chance to spawn a super bomb that does double damage!") \
+		.augment(-5) \
+		.effect(_stat(&"bomb_crit")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_BOMB]) \
+		.limit_stacks(7) \
+		.prereqs([UpgradeTag.BOMB_SOURCE]) \
+		.register()
+	
+	UpgradeBuilder.new("lucky_bombs", "Lucky Bombs") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Your bombs have a chance to drop a pickup when they explode!") \
+		.augment(-5) \
+		.effect(_stat(&"lucky_bombs")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_BOMB, UpgradeTag.DROPS_ORBS, UpgradeTag.EBB]) \
+		.limit_stacks(7) \
+		.prereqs([UpgradeTag.BOMB_SOURCE]) \
+		.register()
+
+	UpgradeBuilder.new("poison_bombs", "Toxic Bombs") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Your bombs poison enemies!") \
+		.augment(-5) \
+		.effect(_stat(&"poison_bombs")) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.NEEDS_BOMB, UpgradeTag.POISON_SOURCE, UpgradeTag.SOURCE]) \
+		.prereqs([UpgradeTag.BOMB_SOURCE]) \
+		.register()
+	
+	## WHALE ZONE ---------
+
 	UpgradeBuilder.new("whale_cooldown_reduction", "Tidal Rhythm") \
-		.pool(UpgradePool.WHALE_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Beluga's cooldown decreases!") \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"whale_cooldown_reduction")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"whale_cooldown_reduction")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BELUGA]) \
 		.register()
 
 	UpgradeBuilder.new("whale_size_big", "Mega Beluga") \
-		.pool(UpgradePool.WHALE_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Beluga grows much bigger!") \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"whale_size")) \
-		.effect(IncreaseStatEffect.new(&"whale_size")) \
-		.effect(IncreaseStatEffect.new(&"whale_size")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"whale_size")) \
+		.effect(_stat(&"whale_size")) \
+		.effect(_stat(&"whale_size")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BELUGA]) \
 		.register()
 
 	UpgradeBuilder.new("on_beluga_kill_orb_drop", "Whale's Bounty") \
-		.pool(UpgradePool.WHALE_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(_beluga_orb_drop_desc) \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"on_beluga_kill_orb_drop")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"on_beluga_kill_orb_drop")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BELUGA, UpgradeTag.DROPS_ORBS]) \
 		.register()
 
 	UpgradeBuilder.new("on_beluga_kill_cd_refund", "Whale's Momentum") \
-		.pool(UpgradePool.WHALE_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(_beluga_cd_refund_desc) \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"on_beluga_kill_cd_refund")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"on_beluga_kill_cd_refund")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BELUGA]) \
 		.register()
 
 	UpgradeBuilder.new("on_beluga_kill_size_grow", "Feeding Frenzy") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Each kill by Beluga permanently increases Beluga's size!") \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"on_beluga_kill_size_grow")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"on_beluga_kill_size_grow")) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.BELUGA]) \
 		.register()
 
 	UpgradeBuilder.new("beluga_special_killer", "Status Predator") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
-		.description_fn(func() -> String: return "Beluga deals 1 extra damage to enemies with a status effect!") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Beluga deals x2 damage to enemies with a status effect!") \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"beluga_special_killer")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"beluga_special_killer")) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.BELUGA]) \
 		.register()
 
 	UpgradeBuilder.new("beluga_auto_cast", "Autonomous Beluga") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Beluga casts itself automatically when its cooldown is ready!") \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"beluga_auto_cast")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"beluga_auto_cast")) \
+		.tags([UpgradeTag.ONETIME, UpgradeTag.BELUGA]) \
 		.register()
 
 	UpgradeBuilder.new("beluga_freeze", "Frozen Tide") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(_beluga_freeze_desc) \
 		.augment(-5) \
-		.prereqs([&"whale_size"]) \
-		.effect(IncreaseStatEffect.new(&"beluga_freeze")) \
+		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"beluga_freeze")) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BELUGA]) \
 		.register()
 
-	UpgradeBuilder.new("dash_cooldown_reduction", "Slippery Fins") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
-		.description_fn(_dash_cooldown_reduction_desc) \
-		.augment(-5) \
-		.prereqs([&"dash_distance"]) \
-		.effect(IncreaseStatEffect.new(&"dash_cooldown_reduction")) \
-		.effect(IncreaseStatEffect.new(&"movement_slow_down")) \
-		.register()
+	# DASH zone ----------
+
+	# UpgradeBuilder.new("dash_cooldown_reduction_move_slow", "Slippery Fins") \
+	# 	.pool(UpgradePool.BLESSING) \
+	# 	.description_fn(_dash_cooldown_reduction_desc) \
+	# 	.augment(-5) \
+	# 	.prereqs([UpgradeTag.DASH_SOURCE]) \
+	# 	.effect(_stat(&"dash_cooldown_reduction")) \
+	# 	.effect(_stat(&"movement_slow_down")) \
+	# 	.tags([UpgradeTag.DASH, UpgradeTag.STACKABLE]) \
+	# 	.register()
 
 	UpgradeBuilder.new("dash_cooldown_increase", "Dashing Blur") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(_dash_cooldown_increase_desc) \
 		.augment(-5) \
-		.prereqs([&"dash_distance"]) \
-		.effect(IncreaseStatEffect.new(&"dash_cooldown_increase")) \
-		.effect(IncreaseStatEffect.new(&"movement_speed_up")) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.effect(_stat(&"dash_cooldown_increase")) \
+		.effect(_stat(&"movement_speed_up")) \
+		.tags([UpgradeTag.DASH, UpgradeTag.STACKABLE]) \
 		.register()
+	
+
 
 	UpgradeBuilder.new("suicide_dash", "Reckless Rush") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(_suicide_dash_desc) \
 		.augment(-5) \
-		.prereqs([&"dash_distance"]) \
-		.effect(IncreaseStatEffect.new(&"suicide_dash")) \
-		.effect(IncreaseStatEffect.new(&"dash_cooldown_reduction")) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.effect(_stat(&"suicide_dash")) \
+		.tags([UpgradeTag.DASH, UpgradeTag.ONETIME]) \
 		.register()
 
 	UpgradeBuilder.new("dash_reset_on_damage", "Pain Surge") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(_dash_reset_on_damage_desc) \
 		.augment(-5) \
-		.prereqs([&"dash_distance"]) \
-		.effect(IncreaseStatEffect.new(&"dash_reset_on_damage")) \
-		.effect(IncreaseStatEffect.new(&"dash_cooldown_increase")) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.effect(_stat(&"dash_reset_on_damage")) \
+		.tags([UpgradeTag.DASH, UpgradeTag.ONETIME]) \
+		.register()
+
+	UpgradeBuilder.new("fast_but_short_dash", "Quick Dash") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Dash faster but shorter!") \
+		.augment(-5) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.effect(_stat(&"dash_distance_decrease")) \
+		.effect(_stat(&"dash_cooldown_reduction")) \
+		.tags([UpgradeTag.DASH, UpgradeTag.STACKABLE]) \
 		.register()
 
 	UpgradeBuilder.new("special_killer_dash", "Status Slasher") \
-		.pool(UpgradePool.ONE_TIME_BLESSING) \
+		.pool(UpgradePool.BLESSING) \
 		.description_fn(_dash_damages_status_desc) \
 		.augment(-5) \
-		.prereqs([&"dash_distance"]) \
-		.effect(IncreaseStatEffect.new(&"special_killer_dash")) \
-		.effect(IncreaseStatEffect.new(&"dash_cooldown_increase")) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.effect(_stat(&"special_killer_dash")) \
+
+		.tags([UpgradeTag.DASH, UpgradeTag.ONETIME]) \
+		.register()
+
+	UpgradeBuilder.new("midas_dash_touch", "Midas Dash") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_midas_dash_touch_desc) \
+		.augment(-5) \
+		.prereqs([UpgradeTag.DASH_SOURCE]) \
+		.effect(_stat(&"midas_dash_touch")) \
+		.tags([UpgradeTag.DASH, UpgradeTag.STACKABLE, UpgradeTag.DROPS_ORBS]) \
+		.register()
+
+	##auto attacks -----
+	UpgradeBuilder.new("hop_skip_jump", "Hop Skip Jump") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_hop_skip_jump_desc) \
+		.augment(-5) \
+		.effect(_stat(&"bigger_attack_every_n_hits")) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.STACKABLE]) \
+		.limit_stacks(5) \
+		.register()
+
+	UpgradeBuilder.new("precise_jump", "Precise Jump") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Your jump hits smaller area, but more frequent!") \
+		.augment(-5) \
+		.effect(_stat(&"player_attack_shrink")) \
+		.effect(_stat(&"player_attack_speed")) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.STACKABLE]) \
+		.register()
+
+	UpgradeBuilder.new("jump_kill_orb", "Lethal Harvest") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(_jump_kill_orb_desc) \
+		.augment(-5) \
+		.effect(_stat(&"jump_kill_orb")) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.STACKABLE, UpgradeTag.DROPS_ORBS]) \
 		.register()
 
 
-# --- public methods ---
-static func chosen_upgrade(upgrade_data : UpgradeData) -> void:
-	if upgrade_data.blessing_type == UpgradePool.ONE_TIME_BLESSING:
-		UpgradeRegistry.erase(upgrade_data.internal_name)
 
+	## givens
+	UpgradeBuilder.new("has_beluga", "Beluga") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Summon Beluga to fight by your side!") \
+		.effect(_stat(&"has_beluga")) \
+		.tags([UpgradeTag.BELUGA_SOURCE, UpgradeTag.SOURCE, UpgradeTag.ONETIME]) \
+		.register()
+	
+	UpgradeBuilder.new("has_dash", "Dash") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Gain the ability to dash!") \
+		.effect(_stat(&"has_dash")) \
+		.tags([UpgradeTag.DASH_SOURCE, UpgradeTag.SOURCE, UpgradeTag.ONETIME]) \
+		.register()
+# --- public methods ---
+
+static func _stat(s: StringName) -> Callable:
+	return func() -> void: GlobalStats.add_to_stat(s)
+
+static func _boss_stat(s: StringName) -> Callable:
+	return func() -> void: GlobalStats.add_boss_stat(s)
 
 static func get_upgrade(internal_name: String) -> UpgradeData:
 	return UpgradeRegistry.get_by_name(internal_name)
 
-static func get_randomized_augmented_upgrades(type: Array[String], amount: int) -> Array[UpgradeData]:
-	var random_sample : Array[UpgradeData] = get_randomized_upgrades(type, amount)
-	var augmented_sample : Array[UpgradeData] = []
-	for upgrade: UpgradeData in random_sample:
-		augmented_sample.append(upgrade.with_augment_cost())
-	return augmented_sample
+# static func get_randomized_augmented_upgrades(type: Array[String], amount: int) -> Array[UpgradeData]:
+# 	var random_sample : Array[UpgradeData] = get_randomized_upgrades(type, amount)
+# 	var augmented_sample : Array[UpgradeData] = []
+# 	for upgrade: UpgradeData in random_sample:
+# 		augmented_sample.append(upgrade.with_augment_cost())
+# 	return augmented_sample
 
 
-static func get_randomized_upgrades(type: Array[String], amount: int, do_upgrade : bool = true) -> Array[UpgradeData]:
-	var chosen_upgrades : Array[UpgradeData] = UpgradePicker.pick(type, amount)
-	if not do_upgrade:
-		return chosen_upgrades
+# static func get_randomized_upgrades(type: Array[String], amount: int, do_upgrade : bool = true) -> Array[UpgradeData]:
+# 	var chosen_upgrades : Array[UpgradeData] = UpgradePicker.pick(type, amount)
+# 	if not do_upgrade:
+# 		return chosen_upgrades
 
-	var new_upgrades : Array[UpgradeData] = []
-	var cursed : bool = false
-	for upgrade: UpgradeData in chosen_upgrades:
-		if upgrade.blessing_type == UpgradePool.BIG_CURSE:
-			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
-			new_upgrades.append(upgrade.with_beluga_blessing())
-		else:
-			var rand_val : float = randf()
-			if rand_val < 0.15 and not cursed:
-				TutorialManager.show_tutorial(TutorialManager.TutorialEnum.ANGLERS_CURSE)
-				new_upgrades.append(upgrade.with_angler_curse())
-				cursed = true
-			else:
-				new_upgrades.append(upgrade)
-	return new_upgrades
+# 	var new_upgrades : Array[UpgradeData] = []
+# 	var cursed : bool = false
+# 	for upgrade: UpgradeData in chosen_upgrades:
+# 		if upgrade.blessing_type == UpgradePool.BIG_CURSE:
+# 			TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BELUGAS_BLESSING)
+# 			new_upgrades.append(upgrade.with_beluga_blessing())
+# 		else:
+# 			var rand_val : float = randf()
+# 			if rand_val < 0.15 and not cursed:
+# 				TutorialManager.show_tutorial(TutorialManager.TutorialEnum.ANGLERS_CURSE)
+# 				new_upgrades.append(upgrade.with_angler_curse())
+# 				cursed = true
+# 			else:
+# 				new_upgrades.append(upgrade)
+# 	return new_upgrades
 
 
 # ------- DESCRIPTION FUNCTIONS -------
@@ -508,6 +687,11 @@ static func _damage_desc() -> String:
 static func _xp_suck_desc() -> String:
 	return "Orbs are attracted to you!"
 
+static func _hop_skip_jump_desc() -> String:
+	if GlobalStats.current_run_stats["bigger_attack_every_n_hits"] == 0:
+		return "Every 6 hits, your attack hits a larger area!"
+	else:
+		return "Every %d hits, your attack hits an even larger area!" % (6 - GlobalStats.current_run_stats["bigger_attack_every_n_hits"])
 static func _enemy_xp_drop_desc() -> String:
 	if GlobalStats.current_run_stats["enemy_xp_drop"] == 0:
 		return "Enemies have a chance to drop extra time orbs!"
@@ -634,9 +818,17 @@ static func _beluga_orb_drop_desc() -> String:
 	return "Beluga kills drop even more time orbs! (%d)" % (current + 1)
 
 static func _beluga_cd_refund_desc() -> String:
-	var refund : float = StatCalculator.on_beluga_kill_cd_refund_percent() * 100.0
+	var refund : float = (1 - 0.8 ** GlobalStats.current_run_stats["on_beluga_kill_cd_refund"]) * 100.0
 	return "Beluga kills refund %.0f%% of its remaining cooldown!" % refund
 
 static func _beluga_freeze_desc() -> String:
 	var t : float = StatCalculator.beluga_freeze_time()
-	return "Casting Beluga freezes time for %.0fs! Cooldown increases by the same amount." % t
+	return "Casting Beluga freezes time for %.0fs! Cooldown increases by the same amount x1.5." % t
+
+static func _midas_dash_touch_desc() -> String:
+	var num_orbs : int = GlobalStats.current_run_stats["midas_dash_touch"]
+	return "Dashing through an enemy has a chance to drop %d time orb!" % num_orbs
+
+static func _jump_kill_orb_desc() -> String:
+	var num_orbs : int = GlobalStats.current_run_stats["jump_kill_orb"]
+	return "Kills from your jump have a chance to drop %d time orb!" % num_orbs

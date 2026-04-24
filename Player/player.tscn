@@ -46,7 +46,7 @@ shader = ExtResource("18_7emwf")
 shader_parameter/width = 10.6050005037375
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Shader" id="Shader_hshwv"]
+[sub_resource type="Shader" id="Shader_7emwf"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_add;
@@ -76,10 +76,10 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpjlu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hshwv"]
 resource_local_to_scene = true
 render_priority = 1
-shader = SubResource("Shader_hshwv")
+shader = SubResource("Shader_7emwf")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -171,6 +171,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.076812744)
 visible = false
 owner_entity = NodePath("../../..")
 hit_box_type = 1
+damage = 0
 hitstop = NodePath("../../../CoreComponents/HitStop")
 
 [node name="CollisionShape3D" parent="StateMachine/RollState/Hitbox" index="0" unique_id=1405177479]
@@ -198,7 +199,7 @@ shape = SubResource("CylinderShape3D_b1ygp")
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0.002998352, 0.07312828, -0.22069669)
 layers = 1
 material_override = SubResource("ShaderMaterial_o28un")
-material_overlay = SubResource("ShaderMaterial_gpjlu")
+material_overlay = SubResource("ShaderMaterial_hshwv")
 texture = ExtResource("2_n471f")
 hframes = 15
 vframes = 2

@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity += gravity * delta
 			velocity *= friction
-			if velocity.length() < 1.0:
+			if velocity.length() < 0.5:
 				state = PickupState.Idle	
 				velocity = Vector3.ZERO
 		PickupState.PickedUp:

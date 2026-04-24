@@ -1,0 +1,743 @@
+=== 2026-04-23T19:05:07 ===
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#607 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#607 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#607 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#607
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#940 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#940 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#940 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#940
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#489 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#489 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#489 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#489
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for marking_dash because we need tag stackable but it only has tags [&"source", &"mark_source", &"onetime", &"dash"]
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_ebb_attack because we need tag stackable but it only has tags [&"ebb", &"source", &"onetime", &"poison_source"]
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for dash_bomb because we need tag stackable but it only has tags [&"onetime", &"dash", &"bomb_source", &"source"]
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poisonous bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for suicide_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for has_beluga because we need tag stackable but it only has tags [&"beluga_source", &"source", &"onetime"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[AttackState] bigger_attack_every_n_hits=6 → hit #0 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=6 → hit #0 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#114 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#114 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#114 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#114
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#628 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#628 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#628 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#628
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for marking_dash because we need tag stackable but it only has tags [&"source", &"mark_source", &"onetime", &"dash"]
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_ebb_attack because we need tag stackable but it only has tags [&"ebb", &"source", &"onetime", &"poison_source"]
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for dash_bomb because we need tag stackable but it only has tags [&"onetime", &"dash", &"bomb_source", &"source"]
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poisonous bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for suicide_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for has_beluga because we need tag stackable but it only has tags [&"beluga_source", &"source", &"onetime"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[AttackState] bigger_attack_every_n_hits=6 → hit #6 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=6 → hit #6 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=6 → hit #6 is big (scale x2)
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[AttackState] bigger_attack_every_n_hits=5 → hit #10 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #10 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #10 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #15 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #15 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #15 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#947 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#947 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#947 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#947
+[StatusEffectManager] notify_entity_died
+[AttackState] bigger_attack_every_n_hits=5 → hit #20 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #20 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #20 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#079 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#079 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#079 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#079
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#552 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#552 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#552 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#552
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#702
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#702
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#061 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#061 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#061 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#061
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#702
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#570 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#570 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#570 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#570
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#702
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we haven't chosen required tag mark_source
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[StatusEffect:freeze] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: freeze
+[AttackState] bigger_attack_every_n_hits=5 → hit #25 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #25 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #25 is big (scale x2)
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source"]
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poisonous bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for dash_cooldown_reduction_move_slow because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag onetime but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[Hitbox] computing damage for source=Enemy:<CharacterBody3D#856762092520>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#520] [MELEE]
+[Combat] Player took 5 dmg | hp: 36→31
+[StatusEffectManager] notify_hit_consumed dmg=5
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#520 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#520 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#520
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#520
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#262 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#262 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#262
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#262
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#262 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy#262 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy#262
+[Combat] attack → Enemy#262 | 2 dmg [MELEE] | hp: 3→1
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#520 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#520 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffectManager] stacking mark
+[StatusEffect:mark] stack_with existing=mark stacks=1
+[StatusEffect:mark] on_applied entity=Enemy#520
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#520
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#520 dmg=1
+[StatusEffect:mark] mark bonus: +2 dmg (stacks=2)
+[HitboxBehavior:attack] on_hit_landed target=Enemy#520 dmg=3
+[StatusEffectManager] notify_hit_consumed dmg=3
+[StatusEffect:mark] on_hit_consumed entity=Enemy#520
+[Combat] KILL attack → Enemy#520 | 3 dmg [MELEE] | hp: 3→0
+[HitboxBehavior:attack] on_kill target=Enemy#520
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#262 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#262 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#262
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#262
+[AttackState] bigger_attack_every_n_hits=5 → hit #30 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #30 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #30 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#262 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy#262 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy#262
+[Combat] KILL attack → Enemy#262 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#262
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#367 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#367 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#367 | 1 dmg [MELEE] | hp: 3→2
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#367 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#367 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#367
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#367
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#367 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy#367 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy#367
+[Combat] KILL attack → Enemy#367 | 2 dmg [MELEE] | hp: 2→0
+[HitboxBehavior:attack] on_kill target=Enemy#367
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[AttackState] bigger_attack_every_n_hits=5 → hit #35 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #35 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #35 is big (scale x2)
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#138 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#138 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#138
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#138
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#720 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#720 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#720
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#720
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#720 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy#720 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy#720
+[Combat] attack → Enemy#720 | 2 dmg [MELEE] | hp: 3→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#138 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#138 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#138
+[Combat] KILL attack → Enemy2#138 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#138
+[StatusEffectManager] notify_entity_died
+[Hitbox] computing damage for source=@CharacterBody3D@560:<CharacterBody3D#990275177720>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#720] [MELEE]
+[Combat] Player took 5 dmg | hp: 27→22
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#720 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#720 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy#720 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#720
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#734 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#734 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#734
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#734
+[AttackState] bigger_attack_every_n_hits=5 → hit #40 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #40 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #40 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#734 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy#734 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy#734
+[Combat] attack → Enemy#734 | 2 dmg [MELEE] | hp: 3→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#734 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#734 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy#734 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#734
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#839 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#839 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#839 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#839 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#839 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#839 | 1 dmg [MELEE] | hp: 2→1
+[AttackState] bigger_attack_every_n_hits=5 → hit #45 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #45 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #45 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#839 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#839 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy#839 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#839
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#629 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#629 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#629 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#629
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#439 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#439 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#439
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#439
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#439 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#439 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#439
+[Combat] KILL attack → Enemy2#439 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#439
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for deaths_dance because we need tag stackable but it only has tags [&"generic", &"onetime"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we need tag stackable but it only has tags [&"onetime", &"needs_mark", &"drops_orbs"]
+[UpgradePicker:] Ineligible for auto_consume_mark because we need tag stackable but it only has tags [&"onetime", &"needs_mark"]
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_ebb_attack because we need tag stackable but it only has tags [&"ebb", &"source", &"onetime", &"poison_source"]
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for dash_bomb because we need tag stackable but it only has tags [&"onetime", &"dash", &"bomb_source", &"source"]
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poisonous bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for suicide_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for has_beluga because we need tag stackable but it only has tags [&"beluga_source", &"source", &"onetime"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[AttackState] bigger_attack_every_n_hits=5 → hit #50 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #50 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #50 is big (scale x2)
+[Hitbox] computing damage for source=@CharacterBody3D@782:<CharacterBody3D#1147729350465>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#465] [MELEE]
+[Combat] Player took 5 dmg | hp: 28→23
+[StatusEffectManager] notify_hit_consumed dmg=5
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#956 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#956 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#956
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#956
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#360 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#360 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#360 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#360 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#360 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#360 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#956 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#956 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#956
+[Combat] KILL attack → Enemy2#956 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#956
+[HitboxBehavior:attack] jump_kill_orb → rolled on Enemy2#956 but did not proc orb (chance 30.00%). (Rolled a 86.15)
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#494 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#494 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#494 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#494
+[HitboxBehavior:attack] jump_kill_orb → rolled on Enemy2#494 but did not proc orb (chance 30.00%). (Rolled a 72.27)
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#360 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#360 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#360
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#360
+[AttackState] bigger_attack_every_n_hits=5 → hit #55 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #55 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #55 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#360 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[HitboxBehavior:attack] on_hit_landed target=Enemy#360 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy#360
+[Combat] KILL attack → Enemy#360 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#360
+[HitboxBehavior:attack] jump_kill_orb → rolled on Enemy#360 but did not proc orb (chance 30.00%). (Rolled a 42.06)
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#255 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#255 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#255 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#255
+[HitboxBehavior:attack] jump_kill_orb → rolled on Enemy2#255 but did not proc orb (chance 30.00%). (Rolled a 31.38)
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#011 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#011 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy2#011 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#011
+[HitboxBehavior:attack] jump_kill_orb → rolled on Enemy2#011 but did not proc orb (chance 30.00%). (Rolled a 36.01)
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#702
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#959 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#959 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#959 | 1 dmg [MELEE] | hp: 3→2
+[StatusEffect:slow] on_expired entity=Player#702
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#959 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#959 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#959 | 1 dmg [MELEE] | hp: 2→1
+[AttackState] bigger_attack_every_n_hits=5 → hit #60 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #60 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #60 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#959 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#959 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy#959 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#959
+[HitboxBehavior:attack] jump_kill_orb → rolled on Enemy#959 but did not proc orb (chance 30.00%). (Rolled a 31.19)
+[StatusEffectManager] notify_entity_died
+[Hitbox] computing damage for source=@CharacterBody3D@782:<CharacterBody3D#1147729350465>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#465] [MELEE]
+[Combat] Player took 5 dmg | hp: 27→22
+[StatusEffectManager] notify_hit_consumed dmg=5
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#465 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#465 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#465 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#465 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#465 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#465 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#465 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#465 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy#465 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#465
+[HitboxBehavior:attack] jump_kill_orb → spawned orb on Enemy#465 rolled a 16.25 but needed 30.00
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#764 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#764 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#764 | 1 dmg [MELEE] | hp: 3→2
+[AttackState] bigger_attack_every_n_hits=5 → hit #65 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #65 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #65 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#764 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#764 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → Enemy#764 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#764 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#764 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → Enemy#764 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#764
+[HitboxBehavior:attack] jump_kill_orb → spawned orb on Enemy#764 rolled a 22.11 but needed 30.00
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[UpgradePicker:] Ineligible for enemy_spawn_berserk because we need tag big_curse but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_cursed because we need tag big_curse but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_slippery because we need tag big_curse but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_spikey because we need tag big_curse but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_shielded because we need tag big_curse but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_infested because we need tag big_curse but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we need tag big_curse but it only has tags [&"onetime", &"needs_mark", &"drops_orbs", &"bomb_source", &"source"]
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[UpgradePicker:] Ineligible for dying_ebb because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag source but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for deaths_dance because we need tag source but it only has tags [&"generic", &"onetime"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag source but it only has tags [&"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we need tag source but it only has tags [&"stackable", &"mark_source"]
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag source but it only has tags [&"stackable", &"ebb_source"]
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we need tag source but it only has tags [&"onetime", &"needs_mark", &"drops_orbs"]
+[UpgradePicker:] Ineligible for auto_consume_mark because we need tag source but it only has tags [&"onetime", &"needs_mark"]
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we need tag source but it only has tags [&"onetime", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_size because we need tag source but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_tick_time because we need tag source but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_crit because we need tag source but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for lucky_bombs because we need tag source but it only has tags [&"stackable", &"needs_bomb", &"drops_orbs", &"ebb"]
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for dash_cooldown_reduction_move_slow because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for suicide_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag source but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag source but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[AttackState] bigger_attack_every_n_hits=5 → hit #70 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #70 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #70 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#677 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#677 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → ShootingEnemy#677 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#677 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#677 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → ShootingEnemy#677 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#677
+[HitboxBehavior:attack] jump_kill_orb → spawned orb on ShootingEnemy#677 rolled a 22.79 but needed 30.00
+[StatusEffectManager] notify_entity_died
+[AttackState] bigger_attack_every_n_hits=5 → hit #75 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #75 is big (scale x2)
+[AttackState] bigger_attack_every_n_hits=5 → hit #75 is big (scale x2)
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#125 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#125 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → ShootingEnemy#125 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#125 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#125 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → ShootingEnemy#125 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#125
+[HitboxBehavior:attack] jump_kill_orb → rolled on ShootingEnemy#125 but did not proc orb (chance 30.00%). (Rolled a 91.46)
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#522 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#522 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] attack → ShootingEnemy#522 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#522 dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#522 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[Combat] KILL attack → ShootingEnemy#522 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#522
+[HitboxBehavior:attack] jump_kill_orb → rolled on ShootingEnemy#522 but did not proc orb (chance 30.00%). (Rolled a 84.49)
+[StatusEffectManager] notify_entity_died
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for deaths_dance because we need tag stackable but it only has tags [&"generic", &"onetime"]
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we need tag stackable but it only has tags [&"onetime", &"needs_mark", &"drops_orbs"]
+[UpgradePicker:] Ineligible for auto_consume_mark because we need tag stackable but it only has tags [&"onetime", &"needs_mark"]
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_ebb_attack because we need tag stackable but it only has tags [&"ebb", &"source", &"onetime", &"poison_source"]
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we need tag stackable but it only has tags [&"onetime", &"needs_poison", &"bomb_source"]
+[UpgradePicker:] Ineligible for dash_bomb because we need tag stackable but it only has tags [&"onetime", &"dash", &"bomb_source", &"source"]
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we need tag stackable but it only has tags [&"onetime", &"needs_bomb"]
+[UpgradePicker:] Ineligible for poisonous bombs because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for suicide_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag stackable but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for has_beluga because we need tag stackable but it only has tags [&"beluga_source", &"source", &"onetime"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#047
+[StatusEffect:freeze] on_applied entity=Player#702
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[AttackState] bigger_attack_every_n_hits=5 → hit #80 is big (scale x2)

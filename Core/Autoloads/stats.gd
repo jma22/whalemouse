@@ -61,6 +61,7 @@ var current_run_stats : Dictionary = {
 
 	"dash_bomb" : 0,
 	"bomber_whale": 0,
+	"bomb_chain_reaction": 0,
 	"bomb_size": 0,
 	"bomb_tick_time": 0,
 	"bomb_crit": 0,
@@ -90,7 +91,7 @@ var current_run_stats : Dictionary = {
 	
 	"dash_cooldown_reduction" : 0,
 	"dash_cooldown_increase" : 0,
-	"dash_distance" : 0,
+	"dash_distance_decrease" : 0,
 	"suicide_dash" : 0,
 	"dash_reset_on_damage" : 0,
 	"special_killer_dash" : 0,
@@ -112,6 +113,8 @@ var current_run_stats : Dictionary = {
 	"movement_speed_flat": 0,
 	"ebb_begin_of_room": 0,
 	"dying_ebb" :0,
+	"midas_dash_touch": 0,
+	"jump_kill_orb": 0,
 	
 	"has_beluga": 0,
 	"has_dash": 0
@@ -176,6 +179,10 @@ func reset_current_run_stats() -> void:
 	for k : String in override_dict.keys():
 		for i : int in range(override_dict[k]):	
 			add_to_stat(k)
+	
+	var override_chosen_upgrades : Array = Config.get_override("chosen_upgrades", [])
+	for upgrade_name : String in override_chosen_upgrades:
+		UpgradeRegistry.get_by_name(upgrade_name).apply()
 
 	var override_wave_augments : Dictionary = Config.get_override("starting_wave_augments", {})
 	for k : String in override_wave_augments.keys():
@@ -210,6 +217,3 @@ func decrement_wave_augments() -> void:
 	for augment_name : String in augments_to_remove:
 		wave_augments.erase(augment_name)
 	wave_augments_changed.emit()
-
-
-

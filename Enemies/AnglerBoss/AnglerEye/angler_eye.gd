@@ -96,10 +96,10 @@ func on_hit(info: DamageInfo) -> void:
 	super(info)
 	linked_boss.on_hit(info)
 
-func on_die() -> void:
+func on_die(info: DamageInfo) -> void:
 	if is_dead:
 		return
-	super()
+	super(info)
 	linked_boss.on_eye_died()
 
 # func on_staggered() -> void:
