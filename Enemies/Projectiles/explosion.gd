@@ -80,17 +80,23 @@ func setup(source : Node3D) -> void:
 func maybe_orb_drop() -> void:
 	if GlobalStats.player.map_ref is ShrineMapManager:
 		return	
-	var drop_orb : bool = randf() < StatCalculator.get_bomb_orb_drop_chance()
-	var drop_ebb : bool = randf() < StatCalculator.get_bomb_orb_drop_chance()
-	if drop_orb or drop_ebb:
+	var chance : float = 0.5
+	var num_orbs : int = 0
+	var num_ebbs : int = 0
+	for i in range(StatCalculator.get_lucky_bomb_roll_times()):
+		if randf() < chance:
+			num_orbs += 1
+		if randf() < chance:
+			num_ebbs += 1
+	if num_orbs > 0 or num_ebbs > 0:
 		var xp_spawner : Node3D = xp_spawner_scene.instantiate()
 		get_parent().add_child(xp_spawner)
 
 		xp_spawner.global_transform.origin = global_transform.origin
-		if drop_orb:
-			xp_spawner.setup_outwards(1, GlobalStats.player, CollectibleSpawner.OrbType.TIME, GlobalStats.player.get_floor())
-			DebugLog.dbg("Explosion", "bomb_orb_drop → spawned 1 time orb")
-		if drop_ebb:
-			xp_spawner.setup_outwards(1, GlobalStats.player, CollectibleSpawner.OrbType.EBB, GlobalStats.player.get_floor())
-			DebugLog.dbg("Explosion", "bomb_orb_drop → spawned 1 ebb orb")
+		if num_orbs > 0:
+			xp_spawner.setup_outwards(num_orbs, GlobalStats.player, CollectibleSpawner.OrbType.TIME, GlobalStats.player.get_floor())
+			DebugLog.dbg("Explosion", "bomb_orb_drop → spawned %d time orbs" % num_orbs)
+		if num_ebbs > 0:
+			xp_spawner.setup_outwards(num_ebbs, GlobalStats.player, CollectibleSpawner.OrbType.EBB, GlobalStats.player.get_floor())
+			DebugLog.dbg("Explosion", "bomb_orb_drop → spawned %d ebb orbs" % num_ebbs)
 		

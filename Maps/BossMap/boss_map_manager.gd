@@ -15,8 +15,9 @@ func start_room (wave_info_ : WaveInfo) -> void:
 	camera.set_boss_mode()
 	# enemy_spawner.set_wave_spawning(wave_info_)
 	boss = enemy_spawner.spawn_boss(wave_info_.boss_name, boss_spawn.global_transform.origin)
+	
 	player.gain_status_effect(FreezeEffect.make(StatCalculator.get_boss_freeze_time()), self)
-
+	print("Boss freeze time:", StatCalculator.get_boss_freeze_time())
 	
 func map_cleared() -> bool:
 	if not wave_info:

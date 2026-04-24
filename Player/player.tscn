@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="13_7emwf"]
 [ext_resource type="Resource" uid="uid://cw13rf4mx4tj6" path="res://Player/AnimationClips/attack.tres" id="14_lfmf2"]
 [ext_resource type="AudioStream" uid="uid://dvufetk8lu5rw" path="res://SFX/dash.wav" id="17_gpjlu"]
-[ext_resource type="Shader" uid="uid://d54w71ckm338" path="res://Core/outline.gdshader" id="18_7emwf"]
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="20_n471f"]
 [ext_resource type="Script" uid="uid://dttq4pd68s4ee" path="res://Player/dash_component.gd" id="21_7emwf"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
@@ -40,13 +39,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 height = 1.0
 radius = 0.25
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o28un"]
-render_priority = 1
-shader = ExtResource("18_7emwf")
-shader_parameter/width = 10.6050005037375
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Shader" id="Shader_7emwf"]
+[sub_resource type="Shader" id="Shader_n471f"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_add;
@@ -76,10 +69,10 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hshwv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7emwf"]
 resource_local_to_scene = true
 render_priority = 1
-shader = SubResource("Shader_7emwf")
+shader = SubResource("Shader_n471f")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -198,8 +191,7 @@ shape = SubResource("CylinderShape3D_b1ygp")
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0.002998352, 0.07312828, -0.22069669)
 layers = 1
-material_override = SubResource("ShaderMaterial_o28un")
-material_overlay = SubResource("ShaderMaterial_hshwv")
+material_overlay = SubResource("ShaderMaterial_7emwf")
 texture = ExtResource("2_n471f")
 hframes = 15
 vframes = 2

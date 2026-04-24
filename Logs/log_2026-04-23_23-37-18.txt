@@ -1,0 +1,8 @@
+=== 2026-04-23T23:37:18 ===
+[StatusEffectManager] gained freeze from BlessingMap#174
+[StatusEffect:freeze] on_applied entity=Player#829
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 3 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=Barnacle#457 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:whale] on_hit_landed target=Barnacle#457 dmg=1
+[Combat] whale → Barnacle#457 | 1 dmg [MELEE] | hp: 3→2

@@ -1,0 +1,51 @@
+=== 2026-04-24T00:18:06 ===
+[StatusEffectManager] gained freeze from BlessingMap#995
+[StatusEffect:freeze] on_applied entity=Player#246
+[StatusEffectManager] gained freeze from BlessingMap#995
+[StatusEffect:freeze] on_applied entity=Player#246
+[StatusEffectManager] gained freeze from BossMap#227
+[StatusEffect:freeze] on_applied entity=Player#246
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerEye#090 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerEye#090 dmg=1
+[Combat] attack → AnglerEye#090 | 1 dmg [MELEE] | hp: 30→29
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerBackground#377 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerBackground#377 dmg=1
+[Combat] attack → AnglerBackground#377 | 1 dmg [MELEE] | hp: 240→239
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerEye#090 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerEye#090 dmg=1
+[Combat] attack → AnglerEye#090 | 1 dmg [MELEE] | hp: 29→28
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerBackground#377 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerBackground#377 dmg=1
+[Combat] attack → AnglerBackground#377 | 1 dmg [MELEE] | hp: 239→238
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#999 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#999 dmg=1
+[Combat] KILL attack → SquidMinion#999 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#999
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#488 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#488 dmg=1
+[Combat] KILL attack → SquidMinion#488 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#488
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerEye#090 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerEye#090 dmg=1
+[Combat] attack → AnglerEye#090 | 1 dmg [MELEE] | hp: 28→27
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerBackground#377 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerBackground#377 dmg=1
+[Combat] attack → AnglerBackground#377 | 1 dmg [MELEE] | hp: 238→237
+[Hitbox] computing damage for source=AnglerEye:<CharacterBody3D#205537676090>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[AnglerEye#090] [SPIKE]
+[Combat] Player took 5 dmg | hp: 60→55
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffect:freeze] on_hit_consumed entity=Player#246
+[StatusEffect:freeze] on_expired entity=Player#246
+[StatusEffectManager] expired and removed: freeze

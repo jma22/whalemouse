@@ -118,13 +118,6 @@ var current_run_stats : Dictionary = {
 	
 	"has_beluga": 0,
 	"has_dash": 0
-
-
-
-
-
-	
-	
 }
 
 var boss_stats : Dictionary = {
@@ -179,6 +172,7 @@ func reset_current_run_stats() -> void:
 	for k : String in override_dict.keys():
 		for i : int in range(override_dict[k]):	
 			add_to_stat(k)
+			add_boss_stat(k)
 	
 	var override_chosen_upgrades : Array = Config.get_override("chosen_upgrades", [])
 	for upgrade_name : String in override_chosen_upgrades:
@@ -190,10 +184,10 @@ func reset_current_run_stats() -> void:
 	
 
 func add_to_stat(stat_name: String) -> void:
-	if stat_name not in ordering:
-		ordering.append(stat_name)
-
 	if current_run_stats.has(stat_name):
+		if stat_name not in ordering:
+			ordering.append(stat_name)
+
 		current_run_stats[stat_name] += 1
 		stat_changed.emit(stat_name, current_run_stats[stat_name])
 	else:

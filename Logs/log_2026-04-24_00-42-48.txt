@@ -1,0 +1,24 @@
+=== 2026-04-24T00:42:48 ===
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[StatusEffectManager] gained freeze from BlessingMap#723
+[StatusEffect:freeze] on_applied entity=Player#974
+[StatusEffectManager] gained freeze from BlessingMap#723
+[StatusEffect:freeze] on_applied entity=Player#974
+[StatusEffectManager] gained freeze from BlessingMap#723
+[StatusEffect:freeze] on_applied entity=Player#974
+[StatusEffectManager] gained freeze from BlessingMap#723
+[StatusEffect:freeze] on_applied entity=Player#974
+[StatusEffectManager] gained freeze from BlessingMap#723
+[StatusEffect:freeze] on_applied entity=Player#974
+[StatusEffectManager] gained freeze from BossMap#955
+[StatusEffect:freeze] on_applied entity=Player#974
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerEye#978 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerEye#978 dmg=1
+[Combat] attack → AnglerEye#978 | 1 dmg [MELEE] | hp: 30→29
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerBackground#488 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AnglerBackground#488 dmg=1
+[Combat] attack → AnglerBackground#488 | 1 dmg [MELEE] | hp: 240→239

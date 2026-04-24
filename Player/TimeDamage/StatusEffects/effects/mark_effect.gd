@@ -6,6 +6,7 @@ const COLOR_MIN : Color = Color(1, 0.75, 0.75)
 const COLOR_MAX : Color = Color(1, 0.25, 0.25)
 
 var _should_auto_consume: bool = false
+var explosion_scene : PackedScene = load("res://Enemies/Projectiles/explosion.tscn")
 
 static func make() -> MarkEffect:
 	var effect : MarkEffect = MarkEffect.new()
@@ -36,6 +37,8 @@ func modify_incoming_damage(info: DamageInfo) -> void:
 		_dbg("mark bonus: +%s dmg (stacks=%s)" % [bonus, stacks])
 
 func _on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
+	if _info.amount <= 0:
+		return false
 	if StatCalculator.mark_to_orb() > 0:
 		_dbg("mark_to_orb → spawning %s orbs at %s" % [stacks, DebugLog.entity_name(_entity)])
 		_spawn_orbs(_entity, stacks * StatCalculator.mark_to_orb())
@@ -49,8 +52,7 @@ func _on_applied(_entity: Node3D) -> void:
 
 	var needed : int = StatCalculator.marks_needed_to_make_bomb()
 	if needed > 0 and _get_entity_mark_stacks(_entity) == needed:
-		var explosion : PackedScene = preload("res://Enemies/Projectiles/Explosion.tscn")
-		var explosion_instance : Node3D = explosion.instantiate()
+		var explosion_instance : Node3D = explosion_scene.instantiate()
 		_entity.get_parent().add_child(explosion_instance)
 		explosion_instance.global_transform.origin = _entity.global_transform.origin
 		explosion_instance.global_transform.origin.y = 0.0

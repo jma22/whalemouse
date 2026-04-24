@@ -9,7 +9,7 @@ var player : CharacterBody3D
 var floor : FloorNav
 var enemy_spawner : EnemySpawner
 var camera : Camera3D
-var whale_scene : PackedScene = preload("res://Player/Abilities/Whale/whale.tscn")
+var whale_scene : PackedScene = load("res://Player/Abilities/Whale/whale.tscn")
 
 func setup(player_ : CharacterBody3D, camera_ : Camera3D) -> void:
 	self.player = player_

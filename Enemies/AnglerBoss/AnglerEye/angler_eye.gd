@@ -25,6 +25,7 @@ func setup(player: CharacterBody3D, map: NavigationRegion3D) -> void:
 	super(player, map)
 	health_component.max_health += StatCalculator.get_extra_boss_health()
 	health_component.current_health = health_component.max_health
+	print(StatCalculator.get_boss_xp_drop_per_hit(), " xp per hit")
 	hurt_box.orbs_on_hit = StatCalculator.get_boss_xp_drop_per_hit()
 
 func set_variant(variant : int) -> void:

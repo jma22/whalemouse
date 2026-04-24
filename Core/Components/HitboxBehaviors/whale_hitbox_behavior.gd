@@ -1,6 +1,7 @@
 class_name WhaleHitboxBehavior
 extends HitboxBehavior
 
+var explosion_scene : PackedScene = load("res://Enemies/Projectiles/explosion.tscn")
 static func make() -> WhaleHitboxBehavior:
 	var behavior : WhaleHitboxBehavior = WhaleHitboxBehavior.new()
 	behavior.name = "whale"
@@ -8,8 +9,7 @@ static func make() -> WhaleHitboxBehavior:
 
 func _on_hit_landed(_info: DamageInfo, _target: Node3D) -> void:
 	if StatCalculator.has_bomber_whale():
-		var explosion : PackedScene = preload("res://Enemies/Projectiles/Explosion.tscn")
-		var explosion_instance : Node3D = explosion.instantiate()
+		var explosion_instance : Node3D = explosion_scene.instantiate()
 		_target.get_parent().add_child(explosion_instance)
 		explosion_instance.global_transform.origin = _target.global_transform.origin
 		explosion_instance.global_transform.origin.y = 0.0

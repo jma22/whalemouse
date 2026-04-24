@@ -131,7 +131,7 @@ static func get_num_boss_curses() -> int:
 	return GlobalStats.boss_stats["num_curses"]
 
 static func get_boss_freeze_time() -> int:
-	return GlobalStats.current_run_stats["boss_freeze_time"] * 10
+	return (GlobalStats.current_run_stats["boss_freeze_time"]) * 10
 
 static func get_num_whales() -> int:
 	return GlobalStats.current_run_stats["num_whales"] + 1
@@ -146,6 +146,7 @@ static func get_critical_chance() -> float:
 	return GlobalStats.current_run_stats["critical_chance"] * 0.2
 
 static func get_boss_xp_drop_per_hit() -> int:
+	print("boss_xp_drop stat:", GlobalStats.current_run_stats["boss_xp_drop"])
 	return GlobalStats.current_run_stats["boss_xp_drop"]
 
 static func get_boss_attack_size_multiplier() -> float:
@@ -181,10 +182,8 @@ static func get_super_bomb_chance() -> float:
 		return 0.0
 	return 0.3 + GlobalStats.current_run_stats["bomb_crit"] * 0.1
 
-static func get_bomb_orb_drop_chance() -> float:
-	if GlobalStats.current_run_stats["bomb_orb_drop"] == 0:
-		return 0.0
-	return 0.3 + GlobalStats.current_run_stats["bomb_orb_drop"] * 0.2
+static func get_lucky_bomb_roll_times() -> int:
+	return GlobalStats.current_run_stats["bomb_orb_drop"]
 
 static func has_poison_bombs() -> bool:
 	return GlobalStats.current_run_stats["poison_bombs"] > 0

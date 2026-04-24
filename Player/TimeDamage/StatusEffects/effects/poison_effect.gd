@@ -5,6 +5,8 @@ const EXPIRY_DAMAGE : int = 1
 const COLOR_MIN : Color = Color(0.75, 1, 0.75)
 const COLOR_MAX : Color = Color(0.25, 0.9, 0.25)
 const TICK_DURATION : float = 3.0
+var explosion_scene : PackedScene = load("res://Enemies/Projectiles/explosion.tscn")
+
 
 static func make() -> PoisonEffect:
 	var effect : PoisonEffect = PoisonEffect.new()
@@ -46,8 +48,7 @@ func _on_killed_by_effect(entity: Node3D) -> void:
 
 func _on_entity_died(entity: Node3D) -> void:
 	if StatCalculator.has_poison_enemies_drop_bombs():
-		var explosion : PackedScene = load("res://Enemies/Projectiles/Explosion.tscn")
-		var explosion_instance : Node3D = explosion.instantiate()
+		var explosion_instance : Node3D = explosion_scene.instantiate()
 		entity.get_parent().add_child(explosion_instance)
 		explosion_instance.global_transform.origin = entity.global_transform.origin
 		explosion_instance.global_transform.origin.y = 0.0

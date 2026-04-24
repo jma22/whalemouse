@@ -1,0 +1,14 @@
+=== 2026-04-24T00:39:30 ===
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[StatusEffectManager] gained freeze from BlessingMap#291
+[StatusEffect:freeze] on_applied entity=Player#542
+[StatusEffectManager] gained freeze from BlessingMap#291
+[StatusEffect:freeze] on_applied entity=Player#542
+[StatusEffectManager] gained freeze from BlessingMap#291
+[StatusEffect:freeze] on_applied entity=Player#542
+[StatusEffectManager] gained freeze from BlessingMap#291
+[StatusEffect:freeze] on_applied entity=Player#542
+[StatusEffect:freeze] on_expired entity=Player#542
+[StatusEffectManager] expired and removed: freeze

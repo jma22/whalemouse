@@ -297,7 +297,7 @@ static func _static_init() -> void:
 	
 	UpgradeBuilder.new("mark_makes_a_bomb", "Bombardment") \
 		.pool(UpgradePool.CURSE) \
-		.description_fn(func() -> String: return "Applying %d marks spawns a bomb at the enemy's location!" % GlobalStats.current_run_stats["mark_makes_a_bomb"]) \
+		.description_fn(func() -> String: return "Applying %d marks spawns a bomb at the enemy's location!" % 5-GlobalStats.current_run_stats["mark_makes_a_bomb"]) \
 		.augment(8) \
 		.effect(_stat(&"mark_makes_a_bomb")) \
 		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_MARK, UpgradeTag.DROPS_ORBS, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
@@ -566,7 +566,7 @@ static func _static_init() -> void:
 
 	UpgradeBuilder.new("fast_but_short_dash", "Quick Dash") \
 		.pool(UpgradePool.BLESSING) \
-		.description_fn(func() -> String: return "Dash faster but shorter!") \
+		.description_fn(func() -> String: return "Dash a shorter distance, but more often!") \
 		.augment(-5) \
 		.prereqs([UpgradeTag.DASH_SOURCE]) \
 		.effect(_stat(&"dash_distance_decrease")) \
@@ -642,7 +642,7 @@ static func _stat(s: StringName) -> Callable:
 	return func() -> void: GlobalStats.add_to_stat(s)
 
 static func _boss_stat(s: StringName) -> Callable:
-	return func() -> void: GlobalStats.add_boss_stat(s)
+	return func() -> void: GlobalStats.add_to_stat(s)
 
 static func get_upgrade(internal_name: String) -> UpgradeData:
 	return UpgradeRegistry.get_by_name(internal_name)
@@ -689,14 +689,14 @@ static func _xp_suck_desc() -> String:
 
 static func _hop_skip_jump_desc() -> String:
 	if GlobalStats.current_run_stats["bigger_attack_every_n_hits"] == 0:
-		return "Every 6 hits, your attack hits a larger area!"
+		return "Every 5 hits, your attack hits a larger area!"
 	else:
 		return "Every %d hits, your attack hits an even larger area!" % (6 - GlobalStats.current_run_stats["bigger_attack_every_n_hits"])
-static func _enemy_xp_drop_desc() -> String:
-	if GlobalStats.current_run_stats["enemy_xp_drop"] == 0:
-		return "Enemies have a chance to drop extra time orbs!"
-	else:
-		return "Enemies have a chance to drop even more time orbs!"
+# static func _enemy_xp_drop_desc() -> String:
+# 	if GlobalStats.current_run_stats["enemy_xp_drop"] == 0:
+# 		return "Enemies have a chance to drop extra time orbs!"
+# 	else:
+# 		return "Enemies have a chance to drop even more time orbs!"
 
 static func _whale_desc() -> String:
 	if not StatCalculator.has_beluga():
@@ -776,7 +776,7 @@ static func _dying_ebb_desc() -> String:
 ## boss zone
 
 static func _boss_freeze_desc() -> String:
-	return "Freeze time for %d seconds" % (StatCalculator.get_boss_freeze_time())
+	return "Freeze time for %d seconds" % ((GlobalStats.current_run_stats["boss_freeze_time"] + 1) * 10)
 
 static func _curse_on_hit_desc() -> String:
 	return "Bleed when you take damage."
@@ -791,7 +791,7 @@ static func _critical_chance_desc() -> String:
 	return "Your attacks can critically strike for double damage!"
 
 static func _boss_xp_drop_desc() -> String:
-	return "Boss drops time orbs when damaged!"
+	return "Boss drops %d time orbs when damaged!" % (GlobalStats.current_run_stats["boss_xp_drop"] + 1)
 
 static func _boss_attack_size_desc() -> String:
 	return "Boss signature attack hits a larger area!"
@@ -818,7 +818,7 @@ static func _beluga_orb_drop_desc() -> String:
 	return "Beluga kills drop even more time orbs! (%d)" % (current + 1)
 
 static func _beluga_cd_refund_desc() -> String:
-	var refund : float = (1 - 0.8 ** GlobalStats.current_run_stats["on_beluga_kill_cd_refund"]) * 100.0
+	var refund : float = (1 - 0.8 ** (1+GlobalStats.current_run_stats["on_beluga_kill_cd_refund"])) * 100.0
 	return "Beluga kills refund %.0f%% of its remaining cooldown!" % refund
 
 static func _beluga_freeze_desc() -> String:
@@ -826,9 +826,9 @@ static func _beluga_freeze_desc() -> String:
 	return "Casting Beluga freezes time for %.0fs! Cooldown increases by the same amount x1.5." % t
 
 static func _midas_dash_touch_desc() -> String:
-	var num_orbs : int = GlobalStats.current_run_stats["midas_dash_touch"]
+	var num_orbs : int = (1+GlobalStats.current_run_stats["midas_dash_touch"])
 	return "Dashing through an enemy has a chance to drop %d time orb!" % num_orbs
 
 static func _jump_kill_orb_desc() -> String:
-	var num_orbs : int = GlobalStats.current_run_stats["jump_kill_orb"]
+	var num_orbs : int = (1+GlobalStats.current_run_stats["jump_kill_orb"]) *2
 	return "Kills from your jump have a chance to drop %d time orb!" % num_orbs
