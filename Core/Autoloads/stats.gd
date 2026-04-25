@@ -6,11 +6,13 @@ signal wave_augments_changed
 
 var player :Node3D
 
-var total_stats : Dictionary = {
+var run_stats : Dictionary = {
 	"enemies_killed": 0,
 	"waves_completed": 0,
 	"total_time_survived": 0.0
 }
+
+var boss_defeated: bool = false
 
 var current_run_stats : Dictionary = {
 	
@@ -116,6 +118,7 @@ var current_run_stats : Dictionary = {
 	"midas_dash_touch": 0,
 	"jump_kill_orb": 0,
 	
+	"player_max_health": 0,
 	"has_beluga": 0,
 	"has_dash": 0
 }
@@ -149,20 +152,23 @@ func get_current_stats() -> Array[Dictionary]:
 	return stats
 
 func add_kill() -> void:
-	total_stats["enemies_killed"] += 1
+	run_stats["enemies_killed"] += 1
 
 func add_wave() -> void:
-	total_stats["waves_completed"] += 1
+	run_stats["waves_completed"] += 1
 
 func add_time_survived(time: float) -> void:
-	total_stats["total_time_survived"] += time
+	run_stats["total_time_survived"] += time
 
 func reset_current_run_stats() -> void:
+	wave_augments.clear()
+	emit_signal("wave_augments_changed")
 	for k :String in current_run_stats.keys():
 		current_run_stats[k] = 0
 
-	for k : String in total_stats.keys():
-		total_stats[k] = 0
+	for k : String in run_stats.keys():
+		run_stats[k] = 0
+	boss_defeated = false
 	
 	for k : String in boss_stats.keys():
 		boss_stats[k] = 0
@@ -174,9 +180,14 @@ func reset_current_run_stats() -> void:
 			add_to_stat(k)
 			add_boss_stat(k)
 	
+	Upgrades.ensure_initialized()
 	var override_chosen_upgrades : Array = Config.get_override("chosen_upgrades", [])
 	for upgrade_name : String in override_chosen_upgrades:
-		UpgradeRegistry.get_by_name(upgrade_name).apply()
+		var upgrade : UpgradeData = UpgradeRegistry.get_by_name(upgrade_name)
+		if upgrade == null:
+			push_warning("GlobalStats: starting upgrade '%s' not found in registry" % upgrade_name)
+			continue
+		upgrade.apply()
 
 	var override_wave_augments : Dictionary = Config.get_override("starting_wave_augments", {})
 	for k : String in override_wave_augments.keys():

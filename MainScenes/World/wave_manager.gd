@@ -6,7 +6,7 @@ var combat_wave_number : int = 0
 enum WaveState {
 	INTRO_COMBAT,
 	COMBAT,
-	STACKABLE_BLESSING,
+	ANY_BLESSING,
 	FUNNY,
 	CURSE,
 	HARD_CURSE,
@@ -21,7 +21,7 @@ var wave_sequence : Array[WaveState] = [
 	WaveState.INTRO_COMBAT,
 	WaveState.FUNNY, 
 	WaveState.COMBAT, 
-	WaveState.CURSE, 
+	WaveState.HARD_CURSE,
 	#cycle
 	WaveState.ONETIME_BLESSING,
 	WaveState.INTRO_COMBAT,
@@ -31,18 +31,9 @@ var wave_sequence : Array[WaveState] = [
 	#cycle
 	WaveState.SOURCE,
 	WaveState.INTRO_COMBAT,
-	WaveState.STACKABLE_BLESSING,
-	WaveState.COMBAT,
-	WaveState.CURSE,
-
-	#cycle
-	WaveState.ONETIME_BLESSING,
-	WaveState.INTRO_COMBAT,
 	WaveState.FUNNY,
 	WaveState.COMBAT,
-	WaveState.HARD_CURSE,
 	WaveState.BOSS_CHOICE,
-	
 	]
 
 var current_enemy_pool : Array[String] = []
@@ -63,6 +54,7 @@ func exit_wave() -> void:
 	if current_wave_state == WaveState.QUEUED_WAVE:
 		var info : WaveInfo = queued_wave_infos.pop_front()
 		if info.room_type == "boss":
+			GlobalStats.boss_defeated = true
 			SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
 		return
 	
@@ -95,8 +87,8 @@ func _state_to_wave_info(state : WaveState) -> WaveInfo:
 	match state:
 		WaveState.COMBAT:
 			return combat_wave()
-		WaveState.STACKABLE_BLESSING:
-			return stackable_blessing_wave()
+		WaveState.ANY_BLESSING:
+			return any_blessing_wave()
 		WaveState.CURSE:
 			return curse_wave()
 		WaveState.FUNNY:
@@ -127,7 +119,7 @@ func _state_to_wave_info(state : WaveState) -> WaveInfo:
 
 func intro_blessing() -> ChoiceWaveInfo:
 	if StatCalculator.has_dash() and StatCalculator.has_beluga():
-		return one_time_blessing_wave()
+		return any_blessing_wave()
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	var upgrades : Array[UpgradeData] = []
@@ -162,10 +154,10 @@ func one_time_blessing_wave() -> ChoiceWaveInfo:
 	return wave_info
 
 	
-func stackable_blessing_wave() -> ChoiceWaveInfo:
+func any_blessing_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	wave_info.blessings.assign(UpgradePicker.pick(UpgradePool.BLESSING, 2, [UpgradeTag.STACKABLE]))
+	wave_info.blessings.assign(UpgradePicker.pick(UpgradePool.BLESSING, 2,[]))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Minor Relics"
@@ -176,17 +168,10 @@ func hard_curse_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	var big_curse_data : UpgradeData = UpgradePicker.pick(UpgradePool.CURSE, 1, [UpgradeTag.BIG_CURSE])[0]
-	var big_curse : Choice = big_curse_data.with_beluga_blessing()
+	var big_curse : Choice = curse_adjusting(big_curse_data)
 	big_curse.override_blessing = false
 	var second_curse_data : UpgradeData = UpgradePicker.pick(UpgradePool.CURSE, 1, [], [big_curse_data.internal_name])[0]
-	var second_curse : Choice
-	if second_curse_data.has_tag(UpgradeTag.BIG_CURSE):
-		print("Applying beluga blessing to big curse: ", second_curse_data.internal_name)
-		second_curse = second_curse_data.with_beluga_blessing()
-		second_curse.override_blessing = false
-	else:
-		second_curse = second_curse_data.with_damage(8)
-		second_curse.override_blessing = false
+	var second_curse : Choice = curse_adjusting(second_curse_data)
 	wave_info.blessings.assign([big_curse, second_curse])
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
@@ -202,15 +187,8 @@ func curse_wave() -> ChoiceWaveInfo:
 	var raw_upgrades : Array[UpgradeData] = UpgradePicker.pick(UpgradePool.CURSE, 2, [])
 	var upgrades : Array[Choice] = []
 	for upgrade : UpgradeData in raw_upgrades:
-		print("Curse wave upgrade: ", upgrade.internal_name)
-		print("Curse wave upgrade tags: ", upgrade.tags)
-		if upgrade.has_tag(UpgradeTag.BIG_CURSE):
-			print("Applying beluga blessing to big curse: ", upgrade.internal_name)
-			var wrapped : Choice = upgrade.with_beluga_blessing()
-			wrapped.override_blessing = false
-			upgrades.append(wrapped)
-		else:
-			upgrades.append(upgrade)
+		var wrapped : Choice = curse_adjusting(upgrade)
+		upgrades.append(wrapped)
 	wave_info.blessings.assign(upgrades)
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
@@ -230,7 +208,7 @@ func funny_wave() -> ChoiceWaveInfo:
 		# "curse": curse_wave,
 		# "hard_curse" : hard_curse_wave,
 		"bless_or_heal": bless_or_heal_wave,  
-		"curse_or_damage": curse_or_damage_wave,
+		# "curse_or_damage": curse_or_damage_wave,
 		"intro": intro_blessing,
 	}
 	var wave_fn : Callable = name_to_wave_fn.values().pick_random()
@@ -240,10 +218,13 @@ func sustain_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	var upgrades : Array[Choice] = []
-	upgrades.assign(UpgradePicker.pick_or(UpgradePool.BLESSING, 2, [UpgradeTag.DROPS_ORBS, UpgradeTag.EBB_SOURCE]))
+	var max_health :UpgradeData = UpgradeRegistry.get_by_name("little_max_health")
+	upgrades.append(max_health)
+	upgrades.assign(UpgradePicker.pick_or(UpgradePool.BLESSING, 2, [UpgradeTag.DROPS_ORBS, UpgradeTag.EBB_SOURCE], [max_health.internal_name]))
 	var heal_choice : Choice = Choice.new(
 		"Heal 10",
 		func () -> String: return "Heal 10.").with_heal(10)
+	
 	upgrades.append(heal_choice)
 	wave_info.blessings.assign(upgrades)
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
@@ -297,10 +278,7 @@ func bless_and_curse_wave() -> ChoiceWaveInfo:
 	var upgrades : Array[Choice] = []
 	upgrades.assign(UpgradePicker.pick(UpgradePool.BLESSING, 1, []))
 	var curse_data : UpgradeData = UpgradePicker.pick(UpgradePool.CURSE, 1, [])[0]
-	var curse : Choice = curse_data
-	if curse_data.has_tag(UpgradeTag.BIG_CURSE):
-		curse = curse_data.with_beluga_blessing()
-		curse.override_blessing = false
+	var curse : Choice = curse_adjusting(curse_data)
 	upgrades.append(curse)
 	wave_info.blessings.assign(upgrades)
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ALL
@@ -335,11 +313,11 @@ func bless_or_heal_wave() -> ChoiceWaveInfo:
 	var choice_one : Choice = Choice.new(
 		"Blessing",
 		func () -> String: return "Get a random blessing.")
-	choice_one.effects = [_queue_wave_effect.bind(stackable_blessing_wave())]
+	choice_one.effects = [_queue_wave_effect.bind(any_blessing_wave())]
 	var choice_two : Choice = Choice.new(
 		"Heal",
-		func () -> String: return "Heal 10 HP.")
-	choice_two = choice_two.with_heal(10)
+		func () -> String: return "Heal 5 HP.")
+	choice_two = choice_two.with_heal(5)
 	wave_info.blessings = [choice_one, choice_two]
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
@@ -466,7 +444,15 @@ func _queue_wave_effect(wave : WaveInfo) -> void:
 	print("Queueing wave: ", wave.name)
 	queued_wave_infos.append(wave)
 
-
+func curse_adjusting(upgrade : UpgradeData) -> Choice:
+	if upgrade.has_tag(UpgradeTag.BIG_CURSE):
+		var wrapped : Choice = upgrade.with_beluga_blessing()
+		if upgrade.internal_name == "time_tick_level":
+			wrapped = wrapped.with_heal(10)
+		wrapped.override_blessing = false
+		return wrapped
+	else:
+		return upgrade
 
 # func two_random_blessings_wave() -> ChoiceWaveInfo:
 # 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()

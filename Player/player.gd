@@ -23,14 +23,15 @@ class_name Player extends CharacterBody3D
 @onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
 
 @onready var dash_component : DashComponent = $DashComponent 
+
+const BASE_MAX_HEALTH : int = 30
 var time_damage_manager : TimeDamageManager
 var hud_ref : HUD
 var map_ref : MapManagerBase
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
 
-var initial_health : int = 60
-
+var initial_health : int = BASE_MAX_HEALTH
 
 # Input buffer — remembers the last action pressed within BUFFER_WINDOW seconds
 const BUFFER_WINDOW : float = 0.2
@@ -246,3 +247,6 @@ func gain_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 
 func lose_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 	status_effect_manager.lose_status_effect(effect, source)
+
+func get_initial_health() -> int:
+	return BASE_MAX_HEALTH

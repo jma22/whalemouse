@@ -1,0 +1,91 @@
+=== 2026-04-24T18:35:50 ===
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for marking_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for dash_bomb because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for suicide_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for fast_but_short_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for special_killer_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for midas_dash_touch because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[StatusEffectManager] gained freeze from BlessingMap#270
+[StatusEffect:freeze] on_applied entity=Player#926
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for marking_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for dash_bomb because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for suicide_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for fast_but_short_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for special_killer_dash because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for midas_dash_touch because we haven't chosen required tag dash_source
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[StatusEffectManager] gained freeze from BlessingMap#114
+[StatusEffect:freeze] on_applied entity=Player#424

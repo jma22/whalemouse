@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://UI/Textbox/blessing_description.gd" id="8_68yjn"]
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_327w5"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_617kr"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="12_617kr"]
 [ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/Textbox/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
 
@@ -269,10 +270,11 @@ double_sided = false
 render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
-[node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("item_name_text", "item_description_text", "container", "texture")]
+[node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("item_name_text", "item_description_text", "supplementary_text", "container", "texture")]
 script = ExtResource("8_68yjn")
 item_name_text = NodePath("VBoxContainer/TextureRect/VBoxContainer/Item Name Text")
 item_description_text = NodePath("VBoxContainer/TextureRect/VBoxContainer/Item Description Text")
+supplementary_text = NodePath("VBoxContainer/Control2/DefinitionText")
 container = NodePath("VBoxContainer")
 texture = NodePath("VBoxContainer/TextureRect")
 blessing_color = Color(0.9, 0.8796, 0.594, 1)
@@ -292,6 +294,30 @@ size_flags_vertical = 3
 [node name="Control2" type="Control" parent="BlessingDescription/VBoxContainer" unique_id=928803736]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="DefinitionText" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/Control2" unique_id=1979688434]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_colors/default_color = Color(0.15294118, 0.16862746, 0.011764706, 1)
+theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_fonts/bold_font = ExtResource("12_617kr")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Mark:
+Poison:"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="BlessingDescription/VBoxContainer" unique_id=804952540]
 layout_mode = 2
@@ -319,6 +345,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
 theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_fonts/bold_font = ExtResource("12_617kr")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "g"
@@ -334,6 +361,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
 theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_fonts/bold_font = ExtResource("12_617kr")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Effect 

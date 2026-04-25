@@ -54,3 +54,7 @@ func on_kill(_info: DamageInfo, _target: Node3D) -> void:
 			_dbg("on_beluga_kill_cd_refund_percent → refunded %s%% whale cooldown for %s" % [
 				StatCalculator.on_beluga_kill_cd_refund_percent() * 100, DebugLog.entity_name(hitbox.get_source())
 			])
+			
+	if StatCalculator.on_beluga_kill_size_grow():
+		GlobalStats.current_run_stats["whale_size"] += 1
+		_dbg("on_beluga_kill_size_grow → increased whale_size to %s" % GlobalStats.current_run_stats["whale_size"])

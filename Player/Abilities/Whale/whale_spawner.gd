@@ -2,7 +2,7 @@ extends Node3D
 
 class_name WhaleSpawner
 # @export var whale : Whale
-var base_cooldown : float = 6.0
+var base_cooldown : float = 5.0
 var cooldown_timer : float = 0.0
 
 var player : CharacterBody3D

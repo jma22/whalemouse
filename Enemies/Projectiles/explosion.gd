@@ -1,4 +1,5 @@
 extends ProjectileBase
+class_name BombExplosion
 
 @export var bomb_sprite : SpriteManager
 @export var explosion_sprite : SpriteManager
@@ -11,6 +12,9 @@ extends ProjectileBase
 
 var time_to_explode : float = 2.0
 var is_super_bomb : bool = false
+
+const BASE_BOMB_DAMAGE : int = 2
+const BASE_BOMB_FRIENDLY_FIRE_DAMAGE : int = 5
 
 func _ready() -> void:
 	bomb_sprite.setup(null)
@@ -39,9 +43,11 @@ func setup(source : Node3D) -> void:
 	enemy_hitbox.source = source
 	is_super_bomb = randf() < StatCalculator.get_super_bomb_chance()
 	if is_super_bomb:
-		explosion_sprite.modulate = Color(1, 0.5, 0.5)
-		explosion_area.modulate = Color(1, 0.5, 0.5)
+		explosion_sprite.modulate = Color(1, 0.0, 0.5)
+		explosion_area.modulate = Color(1, 0.0, 0.5)
 		DebugLog.dbg("Explosion", "super_bomb rolled (chance=%.2f) → doubled dmg" % StatCalculator.get_super_bomb_chance())
+	explosion_hitbox.damage = BASE_BOMB_DAMAGE * (2 if is_super_bomb else 1)
+	enemy_hitbox.damage = BASE_BOMB_FRIENDLY_FIRE_DAMAGE * (2 if is_super_bomb else 1)
 
 
 	enemy_hitbox.set_behavior(ExplosionHitboxBehavior.make(is_super_bomb))

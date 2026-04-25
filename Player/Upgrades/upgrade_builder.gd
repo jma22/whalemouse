@@ -11,6 +11,7 @@ var _weight: float = 1.0
 var _prereqs: Array[StringName] = []
 var _tags: Array[StringName] = []
 var _max_stacks: int = 0
+var _unlock_condition: Callable
 
 func _init(internal_name: String, display_name: String) -> void:
 	_internal_name = internal_name
@@ -56,6 +57,10 @@ func limit_stacks(amount: int) -> UpgradeBuilder:
 	_max_stacks = amount
 	return self
 
+func unlocks_after(condition: Callable) -> UpgradeBuilder:
+	_unlock_condition = condition
+	return self
+
 func build() -> UpgradeData:
 	var upgrade: UpgradeData = UpgradeData.new(
 		_internal_name,
@@ -68,6 +73,13 @@ func build() -> UpgradeData:
 	upgrade.prereqs = _prereqs
 	upgrade.tags = _tags
 	upgrade.max_stacks = _max_stacks
+	upgrade.unlock_condition = _unlock_condition
+
+	if UpgradeTag.SOURCE in _tags:
+		upgrade.weight *= 0.75
+	if UpgradeTag.DROPS_ORBS in _tags:
+		upgrade.weight *= 1.5
+	
 	return upgrade
 
 func register() -> UpgradeData:

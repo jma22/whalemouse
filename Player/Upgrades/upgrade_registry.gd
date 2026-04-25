@@ -5,6 +5,7 @@ static var _by_name: Dictionary = {}
 
 static func register(upgrade: UpgradeData) -> void:
 	_by_name[upgrade.internal_name] = upgrade
+	# print("Current registry: %s" % _by_name)
 
 static func get_by_name(internal_name: String) -> UpgradeData:
 	return _by_name.get(internal_name, null)

@@ -59,14 +59,16 @@ func reset_game() -> void:
 	if not all_scenes:
 		printerr("All scenes array is empty!"); get_tree().quit()
 		return
-	
-	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
-	var world_manager : WorldManager = game_scene as WorldManager
-	
-	if world_manager:
-		world_manager.reset()
-		# world_manager.setup()
-		GlobalStats.reset_current_run_stats()
+
+	GlobalStats.reset_current_run_stats()
+	UpgradePicker.reset()
+
+	if all_scenes.has(SceneEnum.GAME):
+		all_scenes[SceneEnum.GAME].queue_free()
+		all_scenes.erase(SceneEnum.GAME)
+
+	register(SceneEnum.GAME, "res://MainScenes/World/world.tscn")
+	switch_to(SceneEnum.GAME)
 
 func next_wave() -> void:
 	var game_scene : Node3D = all_scenes[SceneEnum.GAME]

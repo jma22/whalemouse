@@ -149,20 +149,21 @@ func on_die(info: DamageInfo) -> void:
 	if is_dead:
 		return
 	
-	if info.hitbox and info.hitbox.behavior:
+	if info and info.hitbox and info.hitbox.behavior:
 		info.hitbox.behavior.on_kill(info, self)
 	is_dead = true
 	status_effect_manager.notify_entity_died()
 	var tween : Tween = await sprite_manager.die()
-	## clear sprites
-	enemy_status_display.hide()
-	sprite_manager.hide()
+	
 
 	GlobalStats.add_kill()
 	
 
 
 	await tween.finished
+	## clear sprites
+	enemy_status_display.hide()
+	sprite_manager.hide()
 	if status_effect_manager.has_status_effect("cursed"):
 		process_mode = Node.PROCESS_MODE_DISABLED
 		return
@@ -210,3 +211,6 @@ func gain_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
 
 func lose_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
 	status_effect_manager.lose_status_effect(effect, source)
+
+func get_initial_health() -> int:
+	return initial_health + StatCalculator.get_enemy_health_flat()

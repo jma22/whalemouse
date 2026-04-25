@@ -1,0 +1,2265 @@
+=== 2026-04-25T12:27:32 ===
+[StatusEffectManager] gained freeze from BlessingMap#230
+[StatusEffect:freeze] on_applied entity=Player#886
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#480 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#480 dmg=1
+[Combat] KILL attack → Enemy2#480 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#480
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#023 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#023 dmg=1
+[Combat] KILL attack → Enemy2#023 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#023
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#971 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#971 dmg=1
+[Combat] KILL attack → Enemy2#971 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#971
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#784 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#784 dmg=1
+[Combat] KILL attack → Enemy2#784 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#784
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#758 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#758 dmg=1
+[Combat] KILL attack → Enemy2#758 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#758
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[UpgradePicker:] Ineligible for enemy_spawn_berserk because we need tag big_curse but it only has tags [&"stackable", &"spawns_berserk"]
+[UpgradePicker:] Ineligible for enemy_spawn_cursed because we need tag big_curse but it only has tags [&"stackable", &"spawns_cursed"]
+[UpgradePicker:] Ineligible for enemy_spawn_slippery because we need tag big_curse but it only has tags [&"stackable", &"spawns_slippery"]
+[UpgradePicker:] Ineligible for enemy_spawn_spikey because we need tag big_curse but it only has tags [&"stackable", &"spawns_spikey"]
+[UpgradePicker:] Ineligible for enemy_spawn_shielded because we need tag big_curse but it only has tags [&"stackable", &"spawns_shielded"]
+[UpgradePicker:] Ineligible for enemy_spawn_infested because we need tag big_curse but it only has tags [&"stackable", &"spawns_infested"]
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we need tag big_curse but it only has tags [&"stackable", &"needs_mark", &"drops_orbs", &"bomb_source", &"source"]
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we need tag onetime but it only has tags [&"stackable", &"spawns_marked"]
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we need tag onetime but it only has tags [&"stackable", &"needs_mark", &"drops_orbs"]
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag onetime but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for little_max_health because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#589 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#589 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#589
+[Combat] attack → Barnacle#589 | 1 dmg [MELEE] | hp: 3→2
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#185 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#185 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#185
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#185
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#694 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#694 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#694
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#694
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#694 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#694
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#694 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#694
+[Combat] attack → Barnacle#694 | 2 dmg [MELEE] | hp: 3→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#185 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#185
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#185 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#185
+[Combat] attack → Barnacle#185 | 2 dmg [MELEE] | hp: 3→1
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#589 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#589 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#589
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#589
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#589 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#589
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#589 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#589
+[Combat] KILL attack → Barnacle#589 | 2 dmg [MELEE] | hp: 2→0
+[HitboxBehavior:attack] on_kill target=Barnacle#589
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#694 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#694 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#694
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#694
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#694 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#694
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#694 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#694
+[Combat] KILL attack → Barnacle#694 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#694
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#185 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#185 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#185
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#185
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#185 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#185
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#185 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#185
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#185
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#185 (source has Slow)
+[Combat] KILL attack → Barnacle#185 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#185
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=Barnacle#185
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#322 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#322 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#322
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#322
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#832 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#832 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#832
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#832
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#322 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#322
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#322 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#322
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#322
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#322 (source has Slow)
+[Combat] attack → Barnacle#322 | 2 dmg [MELEE] | hp: 3→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#935 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#935 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#935
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#935
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#935 (source has Slow)
+[Combat] KILL attack → Enemy2#935 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#935
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=Enemy2#935
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#322 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:poison] on_hit_consumed entity=Barnacle#322
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#322 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#322
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#322
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#322 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:poison] on_hit_consumed entity=Barnacle#322
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#322
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#322 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#322
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffectManager] stacking poison
+[StatusEffect:poison] stack_with existing=poison stacks=1
+[StatusEffect:poison] on_applied entity=Barnacle#322
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#322 (source has Slow)
+[Combat] KILL attack → Barnacle#322 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#322
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=Barnacle#322
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[StatusEffect:poison] on_expired entity=Barnacle#322
+[StatusEffect:poison] expiry dealt 1 dmg to Barnacle#322 (stacks remaining=1)
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#815 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#815 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#815
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#815
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#815 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#815
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#815 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy2#815
+[Combat] KILL attack → Enemy2#815 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#815
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#832 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#832
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#832 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffectManager] stacking mark
+[StatusEffect:mark] stack_with existing=mark stacks=1
+[StatusEffect:mark] on_applied entity=Enemy2#832
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#832
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#832 dmg=1
+[StatusEffect:mark] mark bonus: +2 dmg (stacks=2)
+[StatusEffectManager] notify_hit_consumed dmg=3
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#832
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#832 dmg=3
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy2#832
+[Combat] KILL attack → Enemy2#832 | 3 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#832
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[UpgradePicker:] Ineligible for enemy_spawn_berserk because we need tag big_curse but it only has tags [&"stackable", &"spawns_berserk"]
+[UpgradePicker:] Ineligible for enemy_spawn_cursed because we need tag big_curse but it only has tags [&"stackable", &"spawns_cursed"]
+[UpgradePicker:] Ineligible for enemy_spawn_slippery because we need tag big_curse but it only has tags [&"stackable", &"spawns_slippery"]
+[UpgradePicker:] Ineligible for enemy_spawn_spikey because we need tag big_curse but it only has tags [&"stackable", &"spawns_spikey"]
+[UpgradePicker:] Ineligible for enemy_spawn_shielded because we need tag big_curse but it only has tags [&"stackable", &"spawns_shielded"]
+[UpgradePicker:] Ineligible for enemy_spawn_infested because we need tag big_curse but it only has tags [&"stackable", &"spawns_infested"]
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we need tag big_curse but it only has tags [&"stackable", &"needs_mark", &"drops_orbs", &"bomb_source", &"source"]
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[UpgradePicker:] Ineligible for dying_ebb because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag source but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for orb_weight because we need tag source but it only has tags [&"generic", &"onetime"]
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for deaths_dance because we need tag source but it only has tags [&"generic", &"onetime", &"decay"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag source but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we need tag source but it only has tags [&"stackable", &"spawns_poisoned"]
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we need tag source but it only has tags [&"stackable", &"spawns_marked"]
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag source but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we need tag source but it only has tags [&"stackable", &"needs_mark", &"drops_orbs"]
+[UpgradePicker:] Ineligible for auto_consume_mark because we need tag source but it only has tags [&"onetime", &"needs_mark"]
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we need tag source but it only has tags [&"onetime", &"needs_poison", &"bomb_source"]
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we need tag source but it only has tags [&"needs_poison", &"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we need tag source but it only has tags [&"needs_poison", &"drops_orbs", &"stackable"]
+[UpgradePicker:] Ineligible for faster_poison because we need tag source but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we need tag source but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for suicide_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag source but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag source but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for little_max_health because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] [ERROR]Not enough candidates in pool blessing, need 2 but only have 2. Returning all.
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy#177
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy#062
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy#949
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[Hitbox] computing damage for source=@CharacterBody3D@559:<CharacterBody3D#724943506949>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#949] [MELEE]
+[Combat] Player took 4 dmg | hp: 22→18
+[StatusEffectManager] notify_hit_consumed dmg=4
+[StatusEffect:slow] on_hit_consumed entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#949 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#949
+[HitboxBehavior:attack] on_hit_landed target=Enemy#949 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy#949
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy#949
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy#949 (source has Slow)
+[Combat] attack → Enemy#949 | 1 dmg [MELEE] | hp: 3→2
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#949 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#949
+[StatusEffect:poison] on_hit_consumed entity=Enemy#949
+[HitboxBehavior:roll] on_hit_landed target=Enemy#949 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#949
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#949
+[Hitbox] computing damage for source=@CharacterBody3D@559:<CharacterBody3D#724943506949>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#949] [MELEE]
+[Combat] Player took 4 dmg | hp: 17→13
+[StatusEffectManager] notify_hit_consumed dmg=4
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#949 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#949
+[StatusEffect:poison] on_hit_consumed entity=Enemy#949
+[StatusEffect:mark] on_hit_consumed entity=Enemy#949
+[HitboxBehavior:attack] on_hit_landed target=Enemy#949 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#949
+[Combat] KILL attack → Enemy#949 | 2 dmg [MELEE] | hp: 2→0
+[HitboxBehavior:attack] on_kill target=Enemy#949
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy#949
+[StatusEffect:poison] on_entity_died entity=Enemy#949
+[Hitbox] computing damage for source=Enemy:<CharacterBody3D#723483888177>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#177] [MELEE]
+[Combat] Player took 4 dmg | hp: 13→9
+[StatusEffectManager] notify_hit_consumed dmg=4
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#177 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#177
+[HitboxBehavior:attack] on_hit_landed target=Enemy#177 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#177
+[Combat] attack → Enemy#177 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#177 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#177
+[HitboxBehavior:attack] on_hit_landed target=Enemy#177 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#177
+[Combat] attack → Enemy#177 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#177 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#177
+[HitboxBehavior:attack] on_hit_landed target=Enemy#177 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#177
+[Combat] KILL attack → Enemy#177 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#177
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy#177
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#062 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#062
+[HitboxBehavior:roll] on_hit_landed target=Enemy#062 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#062
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#062
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#062 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#062
+[StatusEffect:mark] on_hit_consumed entity=Enemy#062
+[HitboxBehavior:attack] on_hit_landed target=Enemy#062 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#062
+[Combat] attack → Enemy#062 | 2 dmg [MELEE] | hp: 3→1
+[Hitbox] computing damage for source=@CharacterBody3D@556:<CharacterBody3D#724238863062>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#062] [MELEE]
+[Combat] Player took 4 dmg | hp: 8→4
+[StatusEffectManager] notify_hit_consumed dmg=4
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#062 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#062
+[HitboxBehavior:attack] on_hit_landed target=Enemy#062 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#062
+[Combat] KILL attack → Enemy#062 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#062
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy#062
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for dash_bomb because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy2#915
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Barnacle#201
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=Enemy2#445
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#427 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#427 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#427
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#427
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#427 (source has Slow)
+[Combat] attack → Barnacle#427 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#171 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#171 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#171
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#171
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#171 (source has Slow)
+[Combat] KILL attack → Enemy2#171 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#171
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=Enemy2#171
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy2#171
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#201 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#201
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#201 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#201
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#201
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#201 (source has Slow)
+[Combat] attack → Barnacle#201 | 1 dmg [MELEE] | hp: 3→2
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:poison] on_expired entity=Barnacle#427
+[StatusEffect:poison] expiry dealt 1 dmg to Barnacle#427 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#201 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#201
+[StatusEffect:poison] on_hit_consumed entity=Barnacle#201
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#201 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#201
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#201
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#201 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#201
+[StatusEffect:poison] on_hit_consumed entity=Barnacle#201
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#201
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#201 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#201
+[Combat] KILL attack → Barnacle#201 | 2 dmg [MELEE] | hp: 2→0
+[HitboxBehavior:attack] on_kill target=Barnacle#201
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Barnacle#201
+[StatusEffect:poison] on_entity_died entity=Barnacle#201
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Barnacle#201
+[StatusEffect:poison] on_expired entity=Barnacle#201
+[StatusEffect:poison] expiry dealt 1 dmg to Barnacle#201 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#936 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#936 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#936
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#936
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#936 (source has Slow)
+[Combat] attack → Barnacle#936 | 1 dmg [MELEE] | hp: 3→2
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#427 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#427 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#427
+[Combat] KILL attack → Barnacle#427 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#427
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:poison] on_expired entity=Barnacle#936
+[StatusEffect:poison] expiry dealt 1 dmg to Barnacle#936 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#915 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#915
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#915 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#915
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#915
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#915 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#915
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#915
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#915 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy2#915
+[Combat] KILL attack → Enemy2#915 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#915
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy2#915
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#936 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#936 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#936
+[Combat] KILL attack → Barnacle#936 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#936
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#445 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Enemy2#445
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#445 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy2#445
+[Combat] KILL attack → Enemy2#445 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#445
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=Enemy2#445
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#647 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#647 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#647
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#647
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#647 (source has Slow)
+[Combat] KILL attack → SquidMinion#647 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#647
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#647
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#647
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=LobbingEnemy#467
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=LobbingEnemy#496
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=LobbingEnemy#391
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 3 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=LobbingEnemy#467 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=LobbingEnemy#467
+[HitboxBehavior:whale] on_hit_landed target=LobbingEnemy#467 dmg=1
+[Combat] whale → LobbingEnemy#467 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=LobbingEnemy#467 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=LobbingEnemy#467
+[HitboxBehavior:attack] on_hit_landed target=LobbingEnemy#467 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target LobbingEnemy#467
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=LobbingEnemy#467
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to LobbingEnemy#467 (source has Slow)
+[Combat] attack → LobbingEnemy#467 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=LobbingEnemy#467 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=LobbingEnemy#467
+[StatusEffect:poison] on_hit_consumed entity=LobbingEnemy#467
+[HitboxBehavior:attack] on_hit_landed target=LobbingEnemy#467 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target LobbingEnemy#467
+[Combat] KILL attack → LobbingEnemy#467 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=LobbingEnemy#467
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=LobbingEnemy#467
+[StatusEffect:poison] on_entity_died entity=LobbingEnemy#467
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at LobbingEnemy#467
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#144 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#144 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#144
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#144
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#144 (source has Slow)
+[Combat] KILL attack → SquidMinion#144 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#144
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#144
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#144
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=LobbingEnemy#496 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=LobbingEnemy#496
+[HitboxBehavior:roll] on_hit_landed target=LobbingEnemy#496 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=LobbingEnemy#496
+[HitboxBehavior:roll] marking_dash → applied Mark to LobbingEnemy#496
+[HitboxBehavior:attack] modify_outgoing_damage target=LobbingEnemy#496 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=LobbingEnemy#496
+[StatusEffect:mark] on_hit_consumed entity=LobbingEnemy#496
+[HitboxBehavior:attack] on_hit_landed target=LobbingEnemy#496 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target LobbingEnemy#496
+[Combat] attack → LobbingEnemy#496 | 2 dmg [MELEE] | hp: 3→1
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 2 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=LobbingEnemy#496 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=LobbingEnemy#496
+[HitboxBehavior:whale] on_hit_landed target=LobbingEnemy#496 dmg=1
+[Combat] KILL whale → LobbingEnemy#496 | 1 dmg [MELEE] | hp: 1→0
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=LobbingEnemy#496
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=LobbingEnemy#391 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=LobbingEnemy#391
+[HitboxBehavior:roll] on_hit_landed target=LobbingEnemy#391 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=LobbingEnemy#391
+[HitboxBehavior:roll] marking_dash → applied Mark to LobbingEnemy#391
+[HitboxBehavior:attack] modify_outgoing_damage target=LobbingEnemy#391 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=LobbingEnemy#391
+[StatusEffect:mark] on_hit_consumed entity=LobbingEnemy#391
+[HitboxBehavior:attack] on_hit_landed target=LobbingEnemy#391 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target LobbingEnemy#391
+[Combat] attack → LobbingEnemy#391 | 2 dmg [MELEE] | hp: 3→1
+[HitboxBehavior:explosion] modify_outgoing_damage target=LobbingEnemy#391 dmg=5
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffect:berserk] on_hit_consumed entity=LobbingEnemy#391
+[HitboxBehavior:explosion] on_hit_landed target=LobbingEnemy#391 dmg=5
+[Combat] KILL explosion → LobbingEnemy#391 | 5 dmg [BOMB] | hp: 1→0
+[HitboxBehavior:explosion] on_kill target=LobbingEnemy#391
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=LobbingEnemy#391
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for dash_bomb because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=Barnacle#312
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Barnacle#063
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Barnacle#047
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy2#990
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Barnacle#716
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#586 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#586 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#586
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#586
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#047 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#047
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#047 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#047
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#047
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#990 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#990
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#990 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#990
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#990
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#990 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#990
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#990
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#990 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#990
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#990
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#990 (source has Slow)
+[Combat] KILL attack → Enemy2#990 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#990
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy2#990
+[StatusEffect:poison] on_entity_died entity=Enemy2#990
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy2#990
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#047 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#047
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#047
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#047 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#047
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#047
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#047 (source has Slow)
+[Combat] attack → Barnacle#047 | 2 dmg [MELEE] | hp: 3→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#586 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#586
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#586 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#586
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#586
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#586 (source has Slow)
+[Combat] attack → Barnacle#586 | 2 dmg [MELEE] | hp: 3→1
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#047 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#047
+[StatusEffect:poison] on_hit_consumed entity=Barnacle#047
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#047 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#047
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffectManager] stacking poison
+[StatusEffect:poison] stack_with existing=poison stacks=1
+[StatusEffect:poison] on_applied entity=Barnacle#047
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#047 (source has Slow)
+[Combat] KILL attack → Barnacle#047 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#047
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Barnacle#047
+[StatusEffect:poison] on_entity_died entity=Barnacle#047
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Barnacle#047
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:poison] on_expired entity=Barnacle#586
+[StatusEffect:poison] expiry dealt 1 dmg to Barnacle#586 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[StatusEffectManager] entity died via effect: poison
+[StatusEffect:poison] on_killed_by_effect entity=Barnacle#586 
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#312 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#312
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#312 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Barnacle#312
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Barnacle#312
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Barnacle#312 (source has Slow)
+[Combat] attack → Barnacle#312 | 1 dmg [MELEE] | hp: 3→2
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#312 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#312
+[StatusEffect:poison] on_hit_consumed entity=Barnacle#312
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#312 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#312
+[Combat] attack → Barnacle#312 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#716 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#716
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#716 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#716
+[Combat] attack → Barnacle#716 | 1 dmg [MELEE] | hp: 3→2
+[StatusEffect:poison] on_expired entity=Barnacle#312
+[StatusEffect:poison] expiry dealt 1 dmg to Barnacle#312 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[StatusEffectManager] entity died via effect: poison
+[StatusEffect:poison] on_killed_by_effect entity=Barnacle#312 
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=Barnacle#312
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#282 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#282 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#282
+[Combat] KILL attack → SquidMinion#282 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#282
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 3 nearby enemies
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:whale] modify_outgoing_damage target=Barnacle#063 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#063
+[HitboxBehavior:whale] on_hit_landed target=Barnacle#063 dmg=1
+[Combat] whale → Barnacle#063 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#063 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#063
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#063 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#063
+[Combat] attack → Barnacle#063 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#063 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#063
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#063 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#063
+[Combat] KILL attack → Barnacle#063 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#063
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Barnacle#063
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#983 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#983 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#983
+[Combat] attack → Enemy#983 | 1 dmg [MELEE] | hp: 3→2
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#983 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy#983 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy#983
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy#983
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy#983 (source has Slow)
+[Combat] attack → Enemy#983 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#716 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#716
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#716 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#716
+[Combat] attack → Barnacle#716 | 1 dmg [MELEE] | hp: 2→1
+[Hitbox] computing damage for source=@CharacterBody3D@1237:<CharacterBody3D#1458141400983>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[Enemy#983] [MELEE]
+[Combat] Player took 4 dmg | hp: 12→8
+[StatusEffectManager] notify_hit_consumed dmg=4
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy#983 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:poison] on_hit_consumed entity=Enemy#983
+[HitboxBehavior:attack] on_hit_landed target=Enemy#983 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Enemy#983
+[Combat] KILL attack → Enemy#983 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy#983
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=Enemy#983
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy#983
+[StatusEffect:poison] on_expired entity=Enemy#983
+[StatusEffect:poison] expiry dealt 1 dmg to Enemy#983 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#716 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#716
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#716 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#716
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#716
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#716 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#716
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#716
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#716 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#716
+[Combat] KILL attack → Barnacle#716 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#716
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Barnacle#716
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[UpgradePicker:] Ineligible for enemy_spawn_berserk because we need tag big_curse but it only has tags [&"stackable", &"spawns_berserk"]
+[UpgradePicker:] Ineligible for enemy_spawn_cursed because we need tag big_curse but it only has tags [&"stackable", &"spawns_cursed"]
+[UpgradePicker:] Ineligible for enemy_spawn_slippery because we need tag big_curse but it only has tags [&"stackable", &"spawns_slippery"]
+[UpgradePicker:] Ineligible for enemy_spawn_spikey because we need tag big_curse but it only has tags [&"stackable", &"spawns_spikey"]
+[UpgradePicker:] Ineligible for enemy_spawn_shielded because we need tag big_curse but it only has tags [&"stackable", &"spawns_shielded"]
+[UpgradePicker:] Ineligible for enemy_spawn_infested because we need tag big_curse but it only has tags [&"stackable", &"spawns_infested"]
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we need tag big_curse but it only has tags [&"stackable", &"needs_mark", &"drops_orbs", &"bomb_source", &"source"]
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we need tag onetime but it only has tags [&"stackable", &"spawns_poisoned"]
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we need tag onetime but it only has tags [&"stackable", &"spawns_marked"]
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for mark_to_orb because we need tag onetime but it only has tags [&"stackable", &"needs_mark", &"drops_orbs"]
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we need tag onetime but it only has tags [&"needs_poison", &"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we need tag onetime but it only has tags [&"needs_poison", &"drops_orbs", &"stackable"]
+[UpgradePicker:] Ineligible for faster_poison because we need tag onetime but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we need tag onetime but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for dash_bomb because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for bomb_size because we need tag onetime but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_tick_time because we need tag onetime but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_crit because we need tag onetime but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for lucky_bombs because we need tag onetime but it only has tags [&"stackable", &"needs_bomb", &"drops_orbs", &"ebb"]
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for whale_size_big because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we need tag onetime but it only has tags [&"stackable", &"beluga", &"drops_orbs"]
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_freeze because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag onetime but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for little_max_health because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#449 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#449 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#449
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#449
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#611 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#611 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#611
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#611
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#449 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#449
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#449 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#449
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#449
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#449 (source has Slow)
+[Combat] KILL attack → SquidMinion#449 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#449
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#449
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#449
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#821 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#821 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#821
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#821
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#821 (source has Slow)
+[Combat] KILL attack → SquidMinion#821 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#821
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#821
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#821
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#611 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#611
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#611 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#611
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#611
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#611 (source has Slow)
+[Combat] KILL attack → SquidMinion#611 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#611
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#611
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#611
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for dash_bomb because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained spikey from EnemySpawner#720
+[StatusEffect:spikey] on_applied entity=Enemy#648
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy#648
+[StatusEffectManager] gained spikey from EnemySpawner#720
+[StatusEffect:spikey] on_applied entity=Enemy2#740
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy2#740
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=SquidMinion#698
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy2#161
+[StatusEffectManager] gained spikey from EnemySpawner#720
+[StatusEffect:spikey] on_applied entity=Enemy2#490
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy2#490
+[StatusEffectManager] gained spikey from EnemySpawner#720
+[StatusEffect:spikey] on_applied entity=Enemy2#384
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=Enemy2#639
+[StatusEffectManager] gained spikey from EnemySpawner#720
+[StatusEffect:spikey] on_applied entity=SquidMinion#365
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=SquidMinion#365
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=Enemy2#609
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#648 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:spikey] on_hit_consumed entity=Enemy#648
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#648
+[HitboxBehavior:roll] on_hit_landed target=Enemy#648 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#648
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#648
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#161 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#161
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#161 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#161
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#161
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy#335 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Enemy#335 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy#335
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy#335
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 13 nearby enemies
+[Hitbox] computing damage for source=@CharacterBody3D@1883:<CharacterBody3D#1878444217230>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[SquidMinion#230] [MELEE]
+[StatusEffectManager] notify_entity_died
+[Combat] Player took 4 dmg | hp: 18→14
+[StatusEffectManager] notify_hit_consumed dmg=4
+[StatusEffect:slow] on_hit_consumed entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#384 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:spikey] on_hit_consumed entity=Enemy2#384
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#384 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#384
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#384
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#384 (source has Slow)
+[Combat] KILL attack → Enemy2#384 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#384
+[StatusEffectManager] notify_entity_died
+[StatusEffect:spikey] on_entity_died entity=Enemy2#384
+[StatusEffect:poison] on_entity_died entity=Enemy2#384
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy2#384
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#129 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#129 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#129
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#129
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#129 (source has Slow)
+[Combat] KILL attack → SquidMinion#129 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#129
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#129
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#129
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#609 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Enemy2#609
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#609 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#609
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#609
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#609 (source has Slow)
+[Combat] KILL attack → Enemy2#609 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#609
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=Enemy2#609
+[StatusEffect:poison] on_entity_died entity=Enemy2#609
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy2#609
+[HitboxBehavior:explosion] modify_outgoing_damage target=Enemy#335 dmg=5
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=6
+[StatusEffect:mark] on_hit_consumed entity=Enemy#335
+[HitboxBehavior:explosion] on_hit_landed target=Enemy#335 dmg=6
+[Combat] KILL explosion → Enemy#335 | 6 dmg [BOMB] | hp: 3→0
+[HitboxBehavior:explosion] on_kill target=Enemy#335
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:explosion] modify_outgoing_damage target=Enemy2#161 dmg=5
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=6
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#161
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#161
+[HitboxBehavior:explosion] on_hit_landed target=Enemy2#161 dmg=6
+[Combat] KILL explosion → Enemy2#161 | 6 dmg [BOMB] | hp: 1→0
+[HitboxBehavior:explosion] on_kill target=Enemy2#161
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy2#161
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#698 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=SquidMinion#698
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#698 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#698
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#698
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#698 (source has Slow)
+[Combat] KILL attack → SquidMinion#698 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#698
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=SquidMinion#698
+[StatusEffect:poison] on_entity_died entity=SquidMinion#698
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#698
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#365 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:spikey] on_hit_consumed entity=SquidMinion#365
+[StatusEffect:infested] on_hit_consumed entity=SquidMinion#365
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#365 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#365
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#365
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#365 (source has Slow)
+[Combat] KILL attack → SquidMinion#365 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#365
+[StatusEffectManager] notify_entity_died
+[StatusEffect:spikey] on_entity_died entity=SquidMinion#365
+[StatusEffect:infested] on_entity_died entity=SquidMinion#365
+[StatusEffect:poison] on_entity_died entity=SquidMinion#365
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#365
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#927 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#927 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#927
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#927
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#927 (source has Slow)
+[Combat] KILL attack → SquidMinion#927 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#927
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#927
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#927
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#639 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Enemy2#639
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#639 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#639
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#639
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#639 (source has Slow)
+[Combat] KILL attack → Enemy2#639 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#639
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=Enemy2#639
+[StatusEffect:poison] on_entity_died entity=Enemy2#639
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy2#639
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#116 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#116 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#116
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#116
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#116 (source has Slow)
+[Combat] KILL attack → SquidMinion#116 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#116
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#116
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#116
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#471 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#471 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#471
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#471
+[HitboxBehavior:explosion] modify_outgoing_damage target=Enemy#648 dmg=5
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=6
+[StatusEffect:spikey] on_hit_consumed entity=Enemy#648
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#648
+[StatusEffect:mark] on_hit_consumed entity=Enemy#648
+[HitboxBehavior:explosion] on_hit_landed target=Enemy#648 dmg=6
+[Combat] KILL explosion → Enemy#648 | 6 dmg [BOMB] | hp: 3→0
+[HitboxBehavior:explosion] on_kill target=Enemy#648
+[StatusEffectManager] notify_entity_died
+[StatusEffect:spikey] on_entity_died entity=Enemy#648
+[StatusEffect:berserk] on_entity_died entity=Enemy#648
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#471 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#471
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#471 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#471
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#471
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#471 (source has Slow)
+[Combat] KILL attack → SquidMinion#471 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#471
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#471
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#471
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 3 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=Enemy2#490 dmg=1
+[HitboxBehavior:whale] beluga_special_killer: Enemy2#490 has effects → dmg doubled to 2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:spikey] on_hit_consumed entity=Enemy2#490
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#490
+[HitboxBehavior:whale] on_hit_landed target=Enemy2#490 dmg=2
+[Combat] KILL whale → Enemy2#490 | 2 dmg [MELEE] | hp: 1→0
+[StatusEffectManager] notify_entity_died
+[StatusEffect:spikey] on_entity_died entity=Enemy2#490
+[StatusEffect:berserk] on_entity_died entity=Enemy2#490
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#226 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#226 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#226
+[Combat] attack → Barnacle#226 | 1 dmg [MELEE] | hp: 3→2
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#226 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#226 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#226
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#226
+[HitboxBehavior:roll] modify_outgoing_damage target=Enemy2#740 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:spikey] on_hit_consumed entity=Enemy2#740
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#740
+[HitboxBehavior:roll] on_hit_landed target=Enemy2#740 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Enemy2#740
+[HitboxBehavior:roll] marking_dash → applied Mark to Enemy2#740
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#226 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#226
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#226 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#226
+[Combat] KILL attack → Barnacle#226 | 2 dmg [MELEE] | hp: 2→0
+[HitboxBehavior:attack] on_kill target=Barnacle#226
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#740 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:spikey] on_hit_consumed entity=Enemy2#740
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#740
+[StatusEffect:mark] on_hit_consumed entity=Enemy2#740
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#740 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#740
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#740
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#740 (source has Slow)
+[Combat] KILL attack → Enemy2#740 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#740
+[StatusEffectManager] notify_entity_died
+[StatusEffect:spikey] on_entity_died entity=Enemy2#740
+[StatusEffect:berserk] on_entity_died entity=Enemy2#740
+[StatusEffect:poison] on_entity_died entity=Enemy2#740
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy2#740
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[UpgradePicker:] Ineligible for enemy_spawn_berserk because we need tag big_curse but it only has tags [&"stackable", &"spawns_berserk"]
+[UpgradePicker:] Ineligible for enemy_spawn_cursed because we need tag big_curse but it only has tags [&"stackable", &"spawns_cursed"]
+[UpgradePicker:] Ineligible for enemy_spawn_slippery because we need tag big_curse but it only has tags [&"stackable", &"spawns_slippery"]
+[UpgradePicker:] Ineligible for enemy_spawn_spikey because we need tag big_curse but it only has tags [&"stackable", &"spawns_spikey"]
+[UpgradePicker:] Ineligible for enemy_spawn_shielded because we need tag big_curse but it only has tags [&"stackable", &"spawns_shielded"]
+[UpgradePicker:] Ineligible for enemy_spawn_infested because we need tag big_curse but it only has tags [&"stackable", &"spawns_infested"]
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we need tag big_curse but it only has tags [&"stackable", &"needs_mark", &"drops_orbs", &"bomb_source", &"source"]
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[UpgradePicker:] Ineligible for dying_ebb because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag source but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for deaths_dance because we need tag source but it only has tags [&"generic", &"onetime", &"decay"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag source but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we need tag source but it only has tags [&"stackable", &"spawns_poisoned"]
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we need tag source but it only has tags [&"stackable", &"spawns_marked"]
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag source but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for mark_to_orb because we need tag source but it only has tags [&"stackable", &"needs_mark", &"drops_orbs"]
+[UpgradePicker:] Ineligible for auto_consume_mark because we need tag source but it only has tags [&"onetime", &"needs_mark"]
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we need tag source but it only has tags [&"needs_poison", &"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we need tag source but it only has tags [&"needs_poison", &"drops_orbs", &"stackable"]
+[UpgradePicker:] Ineligible for faster_poison because we need tag source but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we need tag source but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for dash_bomb because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we need tag source but it only has tags [&"onetime", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_size because we need tag source but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_tick_time because we need tag source but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for bomb_crit because we need tag source but it only has tags [&"stackable", &"needs_bomb"]
+[UpgradePicker:] Ineligible for lucky_bombs because we need tag source but it only has tags [&"stackable", &"needs_bomb", &"drops_orbs", &"ebb"]
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for whale_size_big because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we need tag source but it only has tags [&"stackable", &"beluga", &"drops_orbs"]
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we need tag source but it only has tags [&"onetime", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_special_killer because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for beluga_auto_cast because we need tag source but it only has tags [&"onetime", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_freeze because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for suicide_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag source but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag source but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for little_max_health because we need tag source but it only has tags [&"generic", &"stackable"]
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=JumpingEnemy#546
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=JumpingEnemy#781
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=JumpingEnemy#781 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=JumpingEnemy#781
+[HitboxBehavior:roll] on_hit_landed target=JumpingEnemy#781 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=JumpingEnemy#781
+[HitboxBehavior:roll] marking_dash → applied Mark to JumpingEnemy#781
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=JumpingEnemy#234 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=JumpingEnemy#234 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=JumpingEnemy#234
+[HitboxBehavior:roll] marking_dash → applied Mark to JumpingEnemy#234
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#234 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=JumpingEnemy#234
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#234 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#234
+[Combat] attack → JumpingEnemy#234 | 2 dmg [MELEE] | hp: 4→2
+[HitboxBehavior:explosion] modify_outgoing_damage target=JumpingEnemy#546 dmg=5
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffect:infested] on_hit_consumed entity=JumpingEnemy#546
+[HitboxBehavior:explosion] on_hit_landed target=JumpingEnemy#546 dmg=5
+[Combat] KILL explosion → JumpingEnemy#546 | 5 dmg [BOMB] | hp: 4→0
+[HitboxBehavior:explosion] on_kill target=JumpingEnemy#546
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=JumpingEnemy#546
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#234 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#234 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#234
+[Combat] attack → JumpingEnemy#234 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#060 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#060 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#060
+[Combat] KILL attack → SquidMinion#060 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#060
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 2 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#781 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=JumpingEnemy#781
+[StatusEffect:mark] on_hit_consumed entity=JumpingEnemy#781
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#781 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#781
+[Combat] attack → JumpingEnemy#781 | 2 dmg [MELEE] | hp: 4→2
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=JumpingEnemy#781 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:berserk] on_hit_consumed entity=JumpingEnemy#781
+[HitboxBehavior:roll] on_hit_landed target=JumpingEnemy#781 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=JumpingEnemy#781
+[HitboxBehavior:roll] marking_dash → applied Mark to JumpingEnemy#781
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#781 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:berserk] on_hit_consumed entity=JumpingEnemy#781
+[StatusEffect:mark] on_hit_consumed entity=JumpingEnemy#781
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#781 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#781
+[Combat] KILL attack → JumpingEnemy#781 | 2 dmg [MELEE] | hp: 2→0
+[HitboxBehavior:attack] on_kill target=JumpingEnemy#781
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=JumpingEnemy#781
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=JumpingEnemy#234 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=JumpingEnemy#234 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=JumpingEnemy#234
+[HitboxBehavior:roll] marking_dash → applied Mark to JumpingEnemy#234
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#234 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=JumpingEnemy#234
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#234 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#234
+[Combat] KILL attack → JumpingEnemy#234 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=JumpingEnemy#234
+[StatusEffectManager] notify_entity_died
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for marking_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_ebb_attack because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for dash_bomb because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for bomber_whale because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for beluga_special_killer because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=Enemy#820
+[StatusEffectManager] gained spikey from EnemySpawner#720
+[StatusEffect:spikey] on_applied entity=Enemy2#034
+[StatusEffectManager] gained infested from EnemySpawner#720
+[StatusEffect:infested] on_applied entity=Barnacle#223
+[StatusEffectManager] gained spikey from EnemySpawner#720
+[StatusEffect:spikey] on_applied entity=SquidMinion#862
+[StatusEffectManager] gained berserk from EnemySpawner#720
+[StatusEffect:berserk] on_applied entity=SquidMinion#862
+[StatusEffectManager] gained slow from Map#888
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#177 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#177 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#177
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#177
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#862 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:spikey] on_hit_consumed entity=SquidMinion#862
+[StatusEffect:berserk] on_hit_consumed entity=SquidMinion#862
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#862 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#862
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#862
+[HitboxBehavior:roll] modify_outgoing_damage target=JumpingEnemy#429 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=JumpingEnemy#429 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=JumpingEnemy#429
+[HitboxBehavior:roll] marking_dash → applied Mark to JumpingEnemy#429
+[HitboxBehavior:roll] modify_outgoing_damage target=JumpingEnemy#449 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=JumpingEnemy#449 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=JumpingEnemy#449
+[HitboxBehavior:roll] marking_dash → applied Mark to JumpingEnemy#449
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#449 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=JumpingEnemy#449
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#449 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target JumpingEnemy#449
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=JumpingEnemy#449
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to JumpingEnemy#449 (source has Slow)
+[Combat] attack → JumpingEnemy#449 | 2 dmg [MELEE] | hp: 4→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#034 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:spikey] on_hit_consumed entity=Enemy2#034
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#034 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target Enemy2#034
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=Enemy2#034
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to Enemy2#034 (source has Slow)
+[Combat] KILL attack → Enemy2#034 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#034
+[StatusEffectManager] notify_entity_died
+[StatusEffect:spikey] on_entity_died entity=Enemy2#034
+[StatusEffect:poison] on_entity_died entity=Enemy2#034
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at Enemy2#034
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#862 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:spikey] on_hit_consumed entity=SquidMinion#862
+[StatusEffect:berserk] on_hit_consumed entity=SquidMinion#862
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#862
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#862 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#862
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#862
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#862 (source has Slow)
+[Combat] KILL attack → SquidMinion#862 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#862
+[StatusEffectManager] notify_entity_died
+[StatusEffect:spikey] on_entity_died entity=SquidMinion#862
+[StatusEffect:berserk] on_entity_died entity=SquidMinion#862
+[StatusEffect:poison] on_entity_died entity=SquidMinion#862
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#862
+[HitboxBehavior:explosion] modify_outgoing_damage target=Enemy#820 dmg=5
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffect:berserk] on_hit_consumed entity=Enemy#820
+[HitboxBehavior:explosion] on_hit_landed target=Enemy#820 dmg=5
+[Combat] KILL explosion → Enemy#820 | 5 dmg [BOMB] | hp: 3→0
+[HitboxBehavior:explosion] on_kill target=Enemy#820
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy#820
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 6 nearby enemies
+[HitboxBehavior:explosion] modify_outgoing_damage target=JumpingEnemy#429 dmg=5
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=6
+[StatusEffect:mark] on_hit_consumed entity=JumpingEnemy#429
+[HitboxBehavior:explosion] on_hit_landed target=JumpingEnemy#429 dmg=6
+[Combat] KILL explosion → JumpingEnemy#429 | 6 dmg [BOMB] | hp: 4→0
+[HitboxBehavior:explosion] on_kill target=JumpingEnemy#429
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[Hitbox] computing damage for source=Player:<CharacterBody3D#168627800936>
+[Combat] Player hit by hitbox[Player#936] [BOMB]
+[HitboxBehavior:explosion] modify_outgoing_damage target=Player#936 dmg=4
+[Combat] Player took 4 dmg | hp: 26→22
+[StatusEffectManager] notify_hit_consumed dmg=4
+[HurtState] dash_reset_on_damage → dash cooldown reset
+[StatusEffect:poison] on_expired entity=JumpingEnemy#449
+[StatusEffect:poison] expiry dealt 1 dmg to JumpingEnemy#449 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#177 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#177
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#177 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#177
+[Combat] attack → Barnacle#177 | 2 dmg [MELEE] | hp: 3→1
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#778 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#778 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#778
+[Combat] attack → JumpingEnemy#778 | 1 dmg [MELEE] | hp: 4→3
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#223 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#223
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#223 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#223
+[Combat] attack → Barnacle#223 | 1 dmg [MELEE] | hp: 3→2
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 5 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#449 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#449 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#449
+[Combat] KILL attack → JumpingEnemy#449 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=JumpingEnemy#449
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=JumpingEnemy#778 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=JumpingEnemy#778 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=JumpingEnemy#778
+[HitboxBehavior:roll] marking_dash → applied Mark to JumpingEnemy#778
+[HitboxBehavior:attack] modify_outgoing_damage target=JumpingEnemy#778 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=JumpingEnemy#778
+[HitboxBehavior:attack] on_hit_landed target=JumpingEnemy#778 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target JumpingEnemy#778
+[Combat] attack → JumpingEnemy#778 | 2 dmg [MELEE] | hp: 3→1
+[HitboxBehavior:explosion] modify_outgoing_damage target=JumpingEnemy#778 dmg=5
+[StatusEffectManager] notify_hit_consumed dmg=5
+[HitboxBehavior:explosion] on_hit_landed target=JumpingEnemy#778 dmg=5
+[Combat] KILL explosion → JumpingEnemy#778 | 5 dmg [BOMB] | hp: 1→0
+[HitboxBehavior:explosion] on_kill target=JumpingEnemy#778
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#040 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#040 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#040
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#040
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#223 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#223
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#223 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#223
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#223
+[HitboxBehavior:explosion] modify_outgoing_damage target=Barnacle#040 dmg=5
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=6
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#040
+[HitboxBehavior:explosion] on_hit_landed target=Barnacle#040 dmg=6
+[Combat] KILL explosion → Barnacle#040 | 6 dmg [BOMB] | hp: 3→0
+[HitboxBehavior:explosion] on_kill target=Barnacle#040
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#223 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#223
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#223
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#223 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#223
+[Combat] KILL attack → Barnacle#223 | 2 dmg [MELEE] | hp: 2→0
+[HitboxBehavior:attack] on_kill target=Barnacle#223
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=Barnacle#223
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#666 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#666 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source has Slow → applying Poison to target SquidMinion#666
+[StatusEffectManager] gained poison from hitbox[Player#936]
+[StatusEffect:poison] on_applied entity=SquidMinion#666
+[HitboxBehavior:attack] PoisonEbbAttack → applied Poison to SquidMinion#666 (source has Slow)
+[Combat] KILL attack → SquidMinion#666 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#666
+[StatusEffectManager] notify_entity_died
+[StatusEffect:poison] on_entity_died entity=SquidMinion#666
+[StatusEffect:poison] poisoned_drop_bombs → spawned explosion at SquidMinion#666
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=Barnacle#177 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=Barnacle#177 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=Barnacle#177
+[HitboxBehavior:roll] marking_dash → applied Mark to Barnacle#177
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#177 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=Barnacle#177
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#177 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target Barnacle#177
+[Combat] KILL attack → Barnacle#177 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#177
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#936
+[StatusEffect:slow] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: slow
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[UpgradePicker:] Ineligible for num_whales because we haven't chosen required tag whale_size
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained freeze from BlessingMap#579
+[StatusEffect:freeze] on_applied entity=Player#936
+[StatusEffectManager] gained freeze from BossMap#194
+[StatusEffect:freeze] on_applied entity=Player#936
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=AnglerEye#540 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=AnglerEye#540 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=AnglerEye#540
+[HitboxBehavior:roll] marking_dash → applied Mark to AnglerEye#540
+[HitboxBehavior:roll] modify_outgoing_damage target=AnglerBackground#983 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=AnglerBackground#983 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=AnglerBackground#983
+[HitboxBehavior:roll] marking_dash → applied Mark to AnglerBackground#983
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerEye#540 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=AnglerEye#540
+[HitboxBehavior:attack] on_hit_landed target=AnglerEye#540 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target AnglerEye#540
+[Combat] attack → AnglerEye#540 | 2 dmg [MELEE] | hp: 30→28
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerBackground#983 dmg=2
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=3
+[StatusEffect:mark] on_hit_consumed entity=AnglerBackground#983
+[HitboxBehavior:attack] on_hit_landed target=AnglerBackground#983 dmg=3
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target AnglerBackground#983
+[Combat] attack → AnglerBackground#983 | 3 dmg [MELEE] | hp: 240→237
+[Hitbox] computing damage for source=Player:<CharacterBody3D#168627800936>
+[Combat] Player hit by hitbox[Player#936] [BOMB]
+[HitboxBehavior:explosion] modify_outgoing_damage target=Player#936 dmg=4
+[Combat] Player took 4 dmg | hp: 18→14
+[StatusEffectManager] notify_hit_consumed dmg=4
+[StatusEffect:freeze] on_hit_consumed entity=Player#936
+[HurtState] dash_reset_on_damage → dash cooldown reset
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#511 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#511 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#511
+[Combat] KILL attack → SquidMinion#511 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#511
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#116 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#116 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#116
+[Combat] KILL attack → SquidMinion#116 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#116
+[StatusEffectManager] notify_entity_died
+[StatusEffect:freeze] on_expired entity=Player#936
+[StatusEffectManager] expired and removed: freeze
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#223 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#223 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#223
+[Combat] KILL attack → SquidMinion#223 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#223
+[StatusEffectManager] notify_entity_died
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=AnglerEye#540 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=AnglerEye#540 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=AnglerEye#540
+[HitboxBehavior:roll] marking_dash → applied Mark to AnglerEye#540
+[HitboxBehavior:roll] modify_outgoing_damage target=AnglerBackground#983 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=AnglerBackground#983 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=AnglerBackground#983
+[HitboxBehavior:roll] marking_dash → applied Mark to AnglerBackground#983
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:explosion] modify_outgoing_damage target=AnglerEye#540 dmg=5
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=6
+[StatusEffect:mark] on_hit_consumed entity=AnglerEye#540
+[HitboxBehavior:explosion] on_hit_landed target=AnglerEye#540 dmg=6
+[Combat] explosion → AnglerEye#540 | 6 dmg [BOMB] | hp: 28→22
+[HitboxBehavior:explosion] modify_outgoing_damage target=AnglerBackground#983 dmg=6
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=7
+[StatusEffect:mark] on_hit_consumed entity=AnglerBackground#983
+[HitboxBehavior:explosion] on_hit_landed target=AnglerBackground#983 dmg=7
+[Combat] explosion → AnglerBackground#983 | 7 dmg [BOMB] | hp: 237→230
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[Hitbox] computing damage for source=@CharacterBody3D@3304:<CharacterBody3D#2714956208231>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[SquidMinion#231] [MELEE]
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#231 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#231 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#231
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#231
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#021 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#021 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#021
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#021
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#021 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#021
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#021 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#021
+[Combat] KILL attack → SquidMinion#021 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#021
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#772 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#772 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#772
+[Combat] KILL attack → SquidMinion#772 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#772
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#011 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#011 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#011
+[Combat] KILL attack → SquidMinion#011 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#011
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:explosion] modify_outgoing_damage target=SquidMinion#231 dmg=5
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=6
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#231
+[HitboxBehavior:explosion] on_hit_landed target=SquidMinion#231 dmg=6
+[Combat] KILL explosion → SquidMinion#231 | 6 dmg [BOMB] | hp: 1→0
+[HitboxBehavior:explosion] on_kill target=SquidMinion#231
+[StatusEffectManager] notify_entity_died
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 1 nearby enemies
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=AnglerEye#540 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=AnglerEye#540 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=AnglerEye#540
+[HitboxBehavior:roll] marking_dash → applied Mark to AnglerEye#540
+[HitboxBehavior:roll] modify_outgoing_damage target=AnglerBackground#983 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=AnglerBackground#983 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=AnglerBackground#983
+[HitboxBehavior:roll] marking_dash → applied Mark to AnglerBackground#983
+[Hitbox] computing damage for source=AnglerEye:<CharacterBody3D#2641908209540>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[AnglerEye#540] [SPIKE]
+[Combat] Player took 4 dmg | hp: 9→5
+[StatusEffectManager] notify_hit_consumed dmg=4
+[HurtState] dash_reset_on_damage → dash cooldown reset
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#717 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#717 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#717
+[Combat] KILL attack → SquidMinion#717 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#717
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#859 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#859 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#859
+[Combat] KILL attack → SquidMinion#859 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#859
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#738 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#738 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#738
+[Combat] KILL attack → SquidMinion#738 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#738
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerEye#540 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=AnglerEye#540
+[HitboxBehavior:attack] on_hit_landed target=AnglerEye#540 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target AnglerEye#540
+[Combat] attack → AnglerEye#540 | 2 dmg [MELEE] | hp: 22→20
+[HitboxBehavior:attack] modify_outgoing_damage target=AnglerBackground#983 dmg=2
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=3
+[StatusEffect:mark] on_hit_consumed entity=AnglerBackground#983
+[HitboxBehavior:attack] on_hit_landed target=AnglerBackground#983 dmg=3
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target AnglerBackground#983
+[Combat] attack → AnglerBackground#983 | 3 dmg [MELEE] | hp: 230→227
+[AttackState] CRIT rolled (chance=0.20) → dmg=2
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#104 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#104 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#104
+[Combat] KILL attack → SquidMinion#104 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#104
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#166 dmg=2
+[StatusEffectManager] notify_hit_consumed dmg=2
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#166 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#166
+[Combat] KILL attack → SquidMinion#166 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#166
+[StatusEffectManager] notify_entity_died
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 1 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=AnglerEye#540 dmg=1
+[HitboxBehavior:whale] beluga_special_killer: AnglerEye#540 has no effects → dmg unchanged at 1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:whale] on_hit_landed target=AnglerEye#540 dmg=1
+[HitboxBehavior:whale] bomber_whale → spawned explosion at AnglerEye#540
+[Combat] whale → AnglerEye#540 | 1 dmg [MELEE] | hp: 20→19
+[HitboxBehavior:whale] modify_outgoing_damage target=AnglerBackground#983 dmg=1
+[HitboxBehavior:whale] beluga_special_killer: AnglerBackground#983 has no effects → dmg unchanged at 1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:whale] on_hit_landed target=AnglerBackground#983 dmg=1
+[HitboxBehavior:whale] bomber_whale → spawned explosion at AnglerBackground#983
+[Combat] whale → AnglerBackground#983 | 1 dmg [MELEE] | hp: 227→226
+[RollState] roll hitbox active (dash_damages_status=false marking_dash=true)
+[RollState] dash_bomb → spawned explosion at player
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#523 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#523 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#523
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#523
+[HitboxBehavior:roll] modify_outgoing_damage target=SquidMinion#182 dmg=0
+[HitboxBehavior:roll] RollHitboxBehavior modifying damage to 0
+[StatusEffectManager] notify_hit_consumed dmg=0
+[HitboxBehavior:roll] on_hit_landed target=SquidMinion#182 dmg=0
+[StatusEffectManager] gained mark from null
+[StatusEffect:mark] on_applied entity=SquidMinion#182
+[HitboxBehavior:roll] marking_dash → applied Mark to SquidMinion#182
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#182 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#182
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#182 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#182
+[Combat] KILL attack → SquidMinion#182 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#182
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#523 dmg=1
+[StatusEffect:mark] mark bonus: +1 dmg (stacks=1)
+[StatusEffectManager] notify_hit_consumed dmg=2
+[StatusEffect:mark] on_hit_consumed entity=SquidMinion#523
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#523 dmg=2
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#523
+[Combat] KILL attack → SquidMinion#523 | 2 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#523
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#064 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#064 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#064
+[Combat] KILL attack → SquidMinion#064 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#064
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#744 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#744 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#744
+[Combat] KILL attack → SquidMinion#744 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#744
+[StatusEffectManager] notify_entity_died
+[Hitbox] computing damage for source=@CharacterBody3D@3492:<CharacterBody3D#2832749042193>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[SquidMinion#193] [MELEE]
+[StatusEffectManager] notify_entity_died
+[HealthComponent] dying_ebb threshold reached (threshold=0 hp=-3) → gained Slow
+[StatusEffectManager] gained slow from HealthComponent#293
+[StatusEffect:slow] on_applied entity=Player#936
+[Combat] Player took 4 dmg | hp: 1→0 | DEAD
+[StatusEffectManager] notify_hit_consumed dmg=4
+[StatusEffect:slow] on_hit_consumed entity=Player#936
+[StatusEffectManager] lost conditional slow from HealthComponent#293
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#145 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#145 dmg=1
+[HitboxBehavior:attack] PoisonEbbAttack: source does not have Slow → not applying Poison to target SquidMinion#145
+[Combat] KILL attack → SquidMinion#145 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#145
+[StatusEffectManager] notify_entity_died

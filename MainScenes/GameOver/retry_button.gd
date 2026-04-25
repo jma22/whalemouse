@@ -10,7 +10,6 @@ func _ready() -> void:
 
 
 func on_clicked() -> void:
-	SceneManager.switch_to(SceneManager.SceneEnum.GAME)
 	SceneManager.reset_game()
 
 func _on_mouse_entered() -> void:

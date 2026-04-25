@@ -80,3 +80,6 @@ static func get_icon_path_for(internal_name: StringName) -> String:
 	if ResourceLoader.exists(correct_path):
 		return correct_path
 	return placeholder_path
+
+func get_supplement_info() -> String:
+	return ""

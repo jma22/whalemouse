@@ -1,7 +1,7 @@
 class_name FlowEffect extends PlayerStatusEffect
 
 const DURATION: float = 2.0
-const SPEED_PER_STACK: float = 0.07
+const SPEED_PER_STACK: float = 0.05
 
 static func make(p_stacks: int) -> FlowEffect:
 	var effect := FlowEffect.new()

@@ -80,12 +80,13 @@ metadata/_custom_type_script = "uid://e0mqbimeypka"
 script = ExtResource("11_menin")
 shooting_time = 1.5
 shooting_stun_time = 1.5
-base_num_bullets = 8
+base_num_bullets = 6
 angle_between_bullets_degrees = 0.0
 
 [node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
 script = ExtResource("12_ix7bx")
 charge_time = 1.5
+set_target_time = 0.5
 metadata/_custom_type_script = "uid://y3u7axpv78ck"
 
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("13_cnbss")]

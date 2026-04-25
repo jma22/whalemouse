@@ -3,6 +3,8 @@ class_name StatCalculator
 
 
 ### NEWS
+static func get_player_bonus_max_health(preview: bool = false) -> int:
+	return GlobalStats.current_run_stats["player_max_health"] * 5
 
 static func get_movement_speed_flat() -> float:
 	return GlobalStats.current_run_stats["movement_speed_flat"] * 0.5
@@ -13,22 +15,28 @@ static func has_death_dance() -> bool:
 static func get_flow_stacks_per_pickup() -> int:
 	return GlobalStats.current_run_stats["speed_on_pickup"]
 
-static func orbs_on_beluga_kill() -> int:
-	return GlobalStats.current_run_stats["on_beluga_kill_orb_drop"]*2
+static func orbs_on_beluga_kill(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["on_beluga_kill_orb_drop"] + (1 if preview else 0)
+	return stat_level * 2
 
-static func on_beluga_kill_cd_refund_percent() -> float:
-	return 1 - 0.5 ** GlobalStats.current_run_stats["on_beluga_kill_cd_refund"]
+static func on_beluga_kill_cd_refund_percent(preview: bool = false) -> float:
+	var stat_level: int = GlobalStats.current_run_stats["on_beluga_kill_cd_refund"] + (1 if preview else 0)
+	return 1 - 0.5 ** stat_level
 
+static func on_beluga_kill_size_grow() -> bool:
+	return GlobalStats.current_run_stats["on_beluga_kill_size_grow"] > 0
+	
 static func beluga_special_killer() -> bool:
 	return GlobalStats.current_run_stats["beluga_special_killer"] > 0
 
 static func beluga_auto_cast() -> bool:
 	return GlobalStats.current_run_stats["beluga_auto_cast"] > 0
 
-static func beluga_freeze_time() -> float:
-	if GlobalStats.current_run_stats["beluga_freeze"] == 0:
+static func beluga_freeze_time(preview: bool = false) -> float:
+	var stat_level: int = GlobalStats.current_run_stats["beluga_freeze"] + (1 if preview else 0)
+	if stat_level == 0:
 		return 0.0
-	return 3.0 + GlobalStats.current_run_stats["beluga_freeze"] * 2.0
+	return 3.0 + stat_level * 2.0
 
 static func get_whale_cooldown_reduction() -> float:
 	return  0.8 ** GlobalStats.current_run_stats["whale_cooldown_reduction"] 
@@ -82,7 +90,7 @@ static func get_attracted_speed() -> float:
 	# return int(GlobalStats.current_run_stats["enemy_xp_drop"])
 
 static func get_enemy_damage() -> int:
-	return 5
+	return 4
 	# return ceil(5 + GlobalStats.current_run_stats["enemy_damage"] * 2.5)
 
 # static func get_dash_distance() -> float:
@@ -130,8 +138,9 @@ static func get_num_boss_blessings() -> int:
 static func get_num_boss_curses() -> int:
 	return GlobalStats.boss_stats["num_curses"]
 
-static func get_boss_freeze_time() -> int:
-	return (GlobalStats.current_run_stats["boss_freeze_time"]) * 10
+static func get_boss_freeze_time(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["boss_freeze_time"] + (1 if preview else 0)
+	return stat_level * 10
 
 static func get_num_whales() -> int:
 	return GlobalStats.current_run_stats["num_whales"] + 1
@@ -145,9 +154,9 @@ static func get_extra_boss_health() -> int:
 static func get_critical_chance() -> float:
 	return GlobalStats.current_run_stats["critical_chance"] * 0.2
 
-static func get_boss_xp_drop_per_hit() -> int:
-	print("boss_xp_drop stat:", GlobalStats.current_run_stats["boss_xp_drop"])
-	return GlobalStats.current_run_stats["boss_xp_drop"]
+static func get_boss_xp_drop_per_hit(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["boss_xp_drop"] + (1 if preview else 0)
+	return stat_level
 
 static func get_boss_attack_size_multiplier() -> float:
 	return 1.0 + GlobalStats.current_run_stats["boss_attack_size"] * 0.5
@@ -156,10 +165,11 @@ static func get_boss_attack_size_multiplier() -> float:
 static func get_decay_on_damaged() -> float:
 	return GlobalStats.current_run_stats["decay_on_damaged"] * 1.0
 
-static func get_bigger_attack_every_n_hits() -> int:
-	if GlobalStats.current_run_stats["bigger_attack_every_n_hits"] == 0:
+static func get_bigger_attack_every_n_hits(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["bigger_attack_every_n_hits"] + (1 if preview else 0)
+	if stat_level == 0:
 		return 0
-	return max(2,7-GlobalStats.current_run_stats["bigger_attack_every_n_hits"])
+	return max(2, 7 - stat_level)
 
 # bomb zone
 static func has_dash_bomb() -> bool:
@@ -219,16 +229,18 @@ static func has_marking_dash() -> bool:
 static func has_marking_beluga() -> bool:
 	return GlobalStats.current_run_stats["marking_beluga"] > 0
 
-static func marks_needed_to_make_bomb() -> int:
-	if GlobalStats.current_run_stats["mark_makes_a_bomb"] == 0:
+static func marks_needed_to_make_bomb(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["mark_makes_a_bomb"] + (1 if preview else 0)
+	if stat_level == 0:
 		return 0
-	return max(1, 5 - GlobalStats.current_run_stats["mark_makes_a_bomb"])
+	return max(1, 5 - stat_level)
 
 static func mark_to_orb() -> int:
 	return GlobalStats.current_run_stats["mark_to_orb"]
 
 static func auto_consume_mark() -> bool:
 	return GlobalStats.current_run_stats["auto_consume_mark"] > 0
+
 
 #enemy spawn zone
 static func get_chance_for_effect(effect_name: String) -> float:
@@ -317,16 +329,19 @@ static func get_dying_ebb() -> int:
 		return 6 + GlobalStats.current_run_stats["dying_ebb"] * 3
 	return 0
 
-static func get_ebb_begin_of_room() -> int:
-	if GlobalStats.current_run_stats["ebb_begin_of_room"] > 0:
-		return 3 + GlobalStats.current_run_stats["ebb_begin_of_room"]
+static func get_ebb_begin_of_room(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["ebb_begin_of_room"] + (1 if preview else 0)
+	if stat_level > 0:
+		return 3 + stat_level
 	return 0
 
-static func get_midas_dash_touch_num() -> float:
-	return GlobalStats.current_run_stats["midas_dash_touch"]
+static func get_midas_dash_touch_num(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["midas_dash_touch"] + (1 if preview else 0)
+	return stat_level
 
-static func get_jump_kill_orb_num() -> int:
-	return GlobalStats.current_run_stats["jump_kill_orb"] * 2
+static func get_jump_kill_orb_num(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["jump_kill_orb"] + (1 if preview else 0)
+	return stat_level * 2
 
 
 static func get_damage_reduced_by() -> int:

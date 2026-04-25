@@ -1,6 +1,10 @@
 extends Node
 class_name Upgrades
 
+static func ensure_initialized() -> void:
+	if UpgradeRegistry._by_name.is_empty():
+		_static_init()
+
 static func _static_init() -> void:
 	# UpgradeBuilder.new("heal", "Time in a Jar") \
 	# 	.pool(UpgradePool.BLESSING) \
@@ -54,6 +58,8 @@ static func _static_init() -> void:
 		.description_fn(_time_tick_desc) \
 		.augment(8) \
 		.effect(_stat(&"time_tick_level")) \
+		.effect(_stat(&"player_max_health")) \
+		.effect(_stat(&"player_max_health")) \
 		.tags([UpgradeTag.STACKABLE, UpgradeTag.BIG_CURSE]) \
 		.register()
 	UpgradeBuilder.new("decay_on_hit", "Rotting Touch") \
@@ -61,7 +67,7 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Gain decay when hit.") \
 		.augment(8) \
 		.effect(_stat(&"decay_on_damaged")) \
-		.tags([UpgradeTag.STACKABLE, UpgradeTag.BIG_CURSE])  \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.BIG_CURSE, UpgradeTag.DECAY])  \
 		.register()
 
 	UpgradeBuilder.new("dying_ebb", "Last Stand") \
@@ -80,7 +86,7 @@ static func _static_init() -> void:
 		.register()
 	UpgradeBuilder.new("ebb_begin_of_room", "Tidal Surge") \
 		.pool(UpgradePool.BLESSING) \
-		.description_fn(func() -> String: return "Gain %d seconds of Ebb at the start of each room" % (3 + GlobalStats.current_run_stats["ebb_begin_of_room"] + 1)) \
+		.description_fn(func() -> String: return "Gain %d seconds of Ebb at the start of each room" % StatCalculator.get_ebb_begin_of_room(true)) \
 		.augment(-5) \
 		.effect(_stat(&"ebb_begin_of_room")) \
 		.tags([UpgradeTag.EBB_SOURCE, UpgradeTag.STACKABLE]) \
@@ -107,7 +113,7 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Take only 1 damage per hit, but each hit applies 1.5s of Haste/Decay") \
 		.augment(8) \
 		.effect(_stat(&"deaths_dance")) \
-		.tags([UpgradeTag.GENERIC, UpgradeTag.ONETIME]) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.ONETIME, UpgradeTag.DECAY]) \
 		.register()
 	# UpgradeBuilder.new("damaging_dash", "Shark Teeth") \
 	# 	.pool(UpgradePool.ONE_TIME_BLESSING) \
@@ -146,9 +152,9 @@ static func _static_init() -> void:
 		.description_fn(_extra_boss_health_desc) \
 		.effect(_boss_stat(&"extra_boss_health")) \
 		.register()
-	UpgradeBuilder.new("curse_on_hit", "Poisonous Touch") \
+	UpgradeBuilder.new("curse_on_hit", "Decaying Touch") \
 		.pool(UpgradePool.BOSS_CURSE) \
-		.description_fn(_curse_on_hit_desc) \
+		.description_fn(_decaying_touch_desc) \
 		.effect(_boss_stat(&"curse_on_hit")) \
 		.register()
 	UpgradeBuilder.new("boss_attack_size", "Massive Tentacles") \
@@ -186,7 +192,7 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Enemies have a chance to spawn berserk!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_berserk")) \
-		.tags([UpgradeTag.STACKABLE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_BERSERK]) \
 		.register()
 	
 	UpgradeBuilder.new("enemy_spawn_cursed", "Cursed Spawns") \
@@ -194,35 +200,35 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Enemies have a chance to spawn cursed!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_cursed")) \
-		.tags([UpgradeTag.STACKABLE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_CURSED]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_slippery", "Slippery Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn slippery!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_slippery")) \
-		.tags([UpgradeTag.STACKABLE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_SLIPPERY]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_spikey", "Spikey Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn spikey!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_spikey")) \
-		.tags([UpgradeTag.STACKABLE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_SPIKEY]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_wither", "Withering Spawns") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn withering!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_wither")) \
-		.tags([UpgradeTag.STACKABLE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_WITHER]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_shielded", "Shielded Spawns") \
 		.pool(UpgradePool.CURSE) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn shielded!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_shielded")) \
-		.tags([UpgradeTag.STACKABLE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_SHIELDED]) \
 		.register()
 	
 	UpgradeBuilder.new("enemy_spawn_infested", "Infested Spawns") \
@@ -230,7 +236,7 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Enemies have a chance to spawn infested!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_infested")) \
-		.tags([UpgradeTag.STACKABLE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_INFESTED]) \
 		.register()
 
 	UpgradeBuilder.new("enemy_spawn_poisoned", "Poisonous Spawns") \
@@ -239,7 +245,7 @@ static func _static_init() -> void:
 		.augment(-5) \
 		.effect(_stat(&"enemy_spawn_poisoned")) \
 		.prereqs([UpgradeTag.POISON_SOURCE]) \
-		.tags([UpgradeTag.STACKABLE, UpgradeTag.POISON_SOURCE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_POISONED]) \
 		.register()
 
 	UpgradeBuilder.new("enemy_spawn_marked", "Marked Spawns") \
@@ -248,14 +254,14 @@ static func _static_init() -> void:
 		.augment(-5) \
 		.effect(_stat(&"enemy_spawn_marked")) \
 		.prereqs([UpgradeTag.MARK_SOURCE]) \
-		.tags([UpgradeTag.STACKABLE, UpgradeTag.MARK_SOURCE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.SPAWNS_MARKED]) \
 		.register()
 	UpgradeBuilder.new("enemy_spawn_ebby", "Ebby Spawns") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Enemies have a chance to spawn Ebby!") \
 		.augment(8) \
 		.effect(_stat(&"enemy_spawn_ebby")) \
-		.tags([UpgradeTag.STACKABLE, UpgradeTag.EBB_SOURCE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.EBB_SOURCE, UpgradeTag.SPAWNS_EBBY]) \
 		.register()
 
 	## marks i guess ------
@@ -264,6 +270,7 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Your dash applies a mark.") \
 		.augment(-5) \
 		.effect(_stat(&"marking_dash")) \
+		.effect(_stat(&"dash_cooldown_reduction")) \
 		.prereqs([UpgradeTag.DASH_SOURCE]) \
 		.tags([UpgradeTag.SOURCE, UpgradeTag.MARK_SOURCE, UpgradeTag.ONETIME, UpgradeTag.DASH]) \
 		.register()
@@ -274,6 +281,8 @@ static func _static_init() -> void:
 		.augment(-5) \
 		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
 		.effect(_stat(&"marking_beluga")) \
+		.effect(_stat(&"whale_size")) \
+		.effect(_stat(&"whale_size")) \
 		.tags([UpgradeTag.SOURCE, UpgradeTag.MARK_SOURCE, UpgradeTag.ONETIME, UpgradeTag.BELUGA]) \
 		.register()
 
@@ -297,10 +306,10 @@ static func _static_init() -> void:
 	
 	UpgradeBuilder.new("mark_makes_a_bomb", "Bombardment") \
 		.pool(UpgradePool.CURSE) \
-		.description_fn(func() -> String: return "Applying %d marks spawns a bomb at the enemy's location!" % 5-GlobalStats.current_run_stats["mark_makes_a_bomb"]) \
+		.description_fn(func() -> String: return "Applying %d marks spawns a bomb at the enemy's location!" % StatCalculator.marks_needed_to_make_bomb(true)) \
 		.augment(8) \
 		.effect(_stat(&"mark_makes_a_bomb")) \
-		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_MARK, UpgradeTag.DROPS_ORBS, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
+		.tags([UpgradeTag.STACKABLE, UpgradeTag.NEEDS_MARK, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
 		.prereqs([UpgradeTag.MARK_SOURCE]) \
 		.limit_stacks(5) \
 		.register()
@@ -313,6 +322,8 @@ static func _static_init() -> void:
 		.augment(-5) \
 		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
 		.effect(_stat(&"poison_beluga")) \
+		.effect(_stat(&"whale_size")) \
+		.effect(_stat(&"whale_size")) \
 		.tags([UpgradeTag.BELUGA, UpgradeTag.SOURCE, UpgradeTag.ONETIME, UpgradeTag.POISON_SOURCE]) \
 		.register()
 
@@ -377,6 +388,7 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Your dash spawns a bomb at the start location!") \
 		.augment(-5) \
 		.effect(_stat(&"dash_bomb")) \
+		.effect(_stat(&"dash_cooldown_reduction")) \
 		.prereqs([UpgradeTag.DASH_SOURCE]) \
 		.tags([UpgradeTag.ONETIME, UpgradeTag.DASH, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
 		.register()
@@ -386,6 +398,7 @@ static func _static_init() -> void:
 		.description_fn(func() -> String: return "Beluga spawns a bomb on hit!") \
 		.augment(-5) \
 		.prereqs([UpgradeTag.BELUGA_SOURCE]) \
+		.effect(_stat(&"whale_cooldown_reduction")) \
 		.effect(_stat(&"bomber_whale")) \
 		.tags([UpgradeTag.ONETIME, UpgradeTag.BELUGA, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
 		.register()
@@ -636,6 +649,14 @@ static func _static_init() -> void:
 		.effect(_stat(&"has_dash")) \
 		.tags([UpgradeTag.DASH_SOURCE, UpgradeTag.SOURCE, UpgradeTag.ONETIME]) \
 		.register()
+
+	UpgradeBuilder.new("little_max_health", "Tough Skin") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Gain 5 max health!") \
+		.augment(-5) \
+		.effect(_stat(&"player_max_health")) \
+		.tags([UpgradeTag.GENERIC, UpgradeTag.STACKABLE]) \
+		.register()
 # --- public methods ---
 
 static func _stat(s: StringName) -> Callable:
@@ -691,7 +712,7 @@ static func _hop_skip_jump_desc() -> String:
 	if GlobalStats.current_run_stats["bigger_attack_every_n_hits"] == 0:
 		return "Every 5 hits, your attack hits a larger area!"
 	else:
-		return "Every %d hits, your attack hits an even larger area!" % (6 - GlobalStats.current_run_stats["bigger_attack_every_n_hits"])
+		return "Every %d hits, your attack hits an even larger area!" % StatCalculator.get_bigger_attack_every_n_hits(true)
 # static func _enemy_xp_drop_desc() -> String:
 # 	if GlobalStats.current_run_stats["enemy_xp_drop"] == 0:
 # 		return "Enemies have a chance to drop extra time orbs!"
@@ -722,7 +743,7 @@ static func _dash_desc() -> String:
 	return "Even more dashing!"
 
 static func _time_tick_desc() -> String:
-	return "Time ticks faster..."
+	return "Time ticks faster... Gain %d max health." % 10
 
 static func _enemy_speed_desc() -> String:
 	return "Enemies move faster!"
@@ -776,10 +797,10 @@ static func _dying_ebb_desc() -> String:
 ## boss zone
 
 static func _boss_freeze_desc() -> String:
-	return "Freeze time for %d seconds" % ((GlobalStats.current_run_stats["boss_freeze_time"] + 1) * 10)
+	return "Freeze time for %d seconds" % StatCalculator.get_boss_freeze_time(true)
 
-static func _curse_on_hit_desc() -> String:
-	return "Bleed when you take damage."
+static func _decaying_touch_desc() -> String:
+	return "Decay when you take damage."
 
 static func _num_whales_desc() -> String:
 	return "Summon an extra whale when you call Beluga!"
@@ -791,7 +812,7 @@ static func _critical_chance_desc() -> String:
 	return "Your attacks can critically strike for double damage!"
 
 static func _boss_xp_drop_desc() -> String:
-	return "Boss drops %d time orbs when damaged!" % (GlobalStats.current_run_stats["boss_xp_drop"] + 1)
+	return "Boss drops %d time orbs when damaged!" % StatCalculator.get_boss_xp_drop_per_hit(true)
 
 static func _boss_attack_size_desc() -> String:
 	return "Boss signature attack hits a larger area!"
@@ -806,29 +827,28 @@ static func _suicide_dash_desc() -> String:
 	return "Dash recharges much faster, but each dash costs 1 health."
 
 static func _dash_reset_on_damage_desc() -> String:
-	return "Taking damage instantly resets your dash, but it recharges slower."
+	return "Taking damage instantly resets your dash."
 
 static func _dash_damages_status_desc() -> String:
-	return "Your dash deals 1 damage to enemies with a status effect, but it recharges slower."
+	return "Your dash deals 1 damage to enemies with a status effect."
 
 static func _beluga_orb_drop_desc() -> String:
-	var current : int = GlobalStats.current_run_stats["on_beluga_kill_orb_drop"]
-	if current == 0:
+	if StatCalculator.orbs_on_beluga_kill() == 0:
 		return "Beluga kills drop time orbs!"
-	return "Beluga kills drop even more time orbs! (%d)" % (current + 1)
+	return "Beluga kills drop even more time orbs! (%d)" % StatCalculator.orbs_on_beluga_kill(true)
 
 static func _beluga_cd_refund_desc() -> String:
-	var refund : float = (1 - 0.8 ** (1+GlobalStats.current_run_stats["on_beluga_kill_cd_refund"])) * 100.0
+	var refund : float = StatCalculator.on_beluga_kill_cd_refund_percent(true) * 100.0
 	return "Beluga kills refund %.0f%% of its remaining cooldown!" % refund
 
 static func _beluga_freeze_desc() -> String:
-	var t : float = StatCalculator.beluga_freeze_time()
+	var t : float = StatCalculator.beluga_freeze_time(true)
 	return "Casting Beluga freezes time for %.0fs! Cooldown increases by the same amount x1.5." % t
 
 static func _midas_dash_touch_desc() -> String:
-	var num_orbs : int = (1+GlobalStats.current_run_stats["midas_dash_touch"])
+	var num_orbs : int = StatCalculator.get_midas_dash_touch_num(true)
 	return "Dashing through an enemy has a chance to drop %d time orb!" % num_orbs
 
 static func _jump_kill_orb_desc() -> String:
-	var num_orbs : int = (1+GlobalStats.current_run_stats["jump_kill_orb"]) *2
+	var num_orbs : int = StatCalculator.get_jump_kill_orb_num(true)
 	return "Kills from your jump have a chance to drop %d time orb!" % num_orbs

@@ -17,6 +17,7 @@ func _ready() -> void:
 # 	setup()
 
 func setup() -> void:
+	GameData.record_run(GlobalStats.run_stats, GlobalStats.boss_defeated)
 	screen_height = get_viewport().get_visible_rect().size.y
 
 	button_control.visible = false
@@ -46,7 +47,7 @@ func play_sound(i : int) -> void:
 	audio_player.play()
 
 func display_stats() -> void:
-	var stats : Dictionary = GlobalStats.total_stats
+	var stats : Dictionary = GlobalStats.run_stats
 	var i : int = 0
 	for stat_name : String in stats.keys():
 		var number : int = int(stats[stat_name])

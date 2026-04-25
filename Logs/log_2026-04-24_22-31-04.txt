@@ -1,0 +1,679 @@
+=== 2026-04-24T22:31:04 ===
+[StatusEffectManager] gained freeze from BlessingMap#693
+[StatusEffect:freeze] on_applied entity=Player#349
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#233 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#233 dmg=1
+[Combat] KILL attack → Enemy2#233 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#233
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#175 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#175 dmg=1
+[Combat] KILL attack → Enemy2#175 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#175
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#684 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#684 dmg=1
+[Combat] KILL attack → Enemy2#684 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#684
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#692
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we haven't chosen required tag mark_source
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#915 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#915 dmg=1
+[Combat] KILL attack → Enemy2#915 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#915
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#396 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#396 dmg=1
+[Combat] KILL attack → Enemy2#396 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#396
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[UpgradePicker:] Ineligible for enemy_spawn_berserk because we need tag big_curse but it only has tags [&"stackable", &"spawns_berserk"]
+[UpgradePicker:] Ineligible for enemy_spawn_cursed because we need tag big_curse but it only has tags [&"stackable", &"spawns_cursed"]
+[UpgradePicker:] Ineligible for enemy_spawn_slippery because we need tag big_curse but it only has tags [&"stackable", &"spawns_slippery"]
+[UpgradePicker:] Ineligible for enemy_spawn_spikey because we need tag big_curse but it only has tags [&"stackable", &"spawns_spikey"]
+[UpgradePicker:] Ineligible for enemy_spawn_shielded because we need tag big_curse but it only has tags [&"stackable", &"spawns_shielded"]
+[UpgradePicker:] Ineligible for enemy_spawn_infested because we need tag big_curse but it only has tags [&"stackable", &"spawns_infested"]
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we haven't chosen required tag mark_source
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for marking_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for bomber_whale because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for whale_size_big because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_special_killer because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_auto_cast because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for beluga_freeze because we haven't chosen required tag beluga_source
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag onetime but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[StatusEffectManager] gained infested from EnemySpawner#460
+[StatusEffect:infested] on_applied entity=ShootingEnemy#754
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#754 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=ShootingEnemy#754
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#754 dmg=1
+[Combat] attack → ShootingEnemy#754 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#754 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=ShootingEnemy#754
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#754 dmg=1
+[Combat] KILL attack → ShootingEnemy#754 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#754
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=ShootingEnemy#754
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#357 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#357 dmg=1
+[Combat] KILL attack → SquidMinion#357 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#357
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#874 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#874 dmg=1
+[Combat] attack → ShootingEnemy#874 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#874 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#874 dmg=1
+[Combat] KILL attack → ShootingEnemy#874 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#874
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#163 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#163 dmg=1
+[Combat] attack → ShootingEnemy#163 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#163 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#163 dmg=1
+[Combat] KILL attack → ShootingEnemy#163 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#163
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[StatusEffectManager] gained berserk from EnemySpawner#460
+[StatusEffect:berserk] on_applied entity=Enemy2#344
+[StatusEffectManager] gained infested from EnemySpawner#460
+[StatusEffect:infested] on_applied entity=Enemy2#344
+[StatusEffectManager] gained infested from EnemySpawner#460
+[StatusEffect:infested] on_applied entity=Enemy2#637
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 4 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#316 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#316 dmg=1
+[Combat] KILL attack → Enemy2#316 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#316
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=Enemy2#344 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=Enemy2#344
+[StatusEffect:infested] on_hit_consumed entity=Enemy2#344
+[HitboxBehavior:attack] on_hit_landed target=Enemy2#344 dmg=1
+[Combat] KILL attack → Enemy2#344 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Enemy2#344
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=Enemy2#344
+[StatusEffect:infested] on_entity_died entity=Enemy2#344
+[StatusEffectManager] gained slow from null
+[StatusEffectManager] stacking slow
+[StatusEffect:slow] stack_with existing=slow stacks=1
+[StatusEffect:slow] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#698 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#698 dmg=1
+[Combat] KILL attack → SquidMinion#698 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#698
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#481 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#481 dmg=1
+[Combat] attack → ShootingEnemy#481 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#481 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#481 dmg=1
+[Combat] KILL attack → ShootingEnemy#481 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#481
+[StatusEffectManager] notify_entity_died
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 1 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=Enemy2#637 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Enemy2#637
+[HitboxBehavior:whale] on_hit_landed target=Enemy2#637 dmg=1
+[Combat] KILL whale → Enemy2#637 | 1 dmg [MELEE] | hp: 1→0
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=Enemy2#637
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[Hitbox] computing damage for source=@CharacterBody3D@512:<CharacterBody3D#753380888028>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[SquidMinion#028] [MELEE]
+[StatusEffectManager] notify_entity_died
+[Combat] Player took 5 dmg | hp: 27→22
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffect:slow] on_hit_consumed entity=Player#692
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[UpgradePicker:] Ineligible for enemy_spawn_berserk because we need tag big_curse but it only has tags [&"stackable", &"spawns_berserk"]
+[UpgradePicker:] Ineligible for enemy_spawn_cursed because we need tag big_curse but it only has tags [&"stackable", &"spawns_cursed"]
+[UpgradePicker:] Ineligible for enemy_spawn_slippery because we need tag big_curse but it only has tags [&"stackable", &"spawns_slippery"]
+[UpgradePicker:] Ineligible for enemy_spawn_spikey because we need tag big_curse but it only has tags [&"stackable", &"spawns_spikey"]
+[UpgradePicker:] Ineligible for enemy_spawn_shielded because we need tag big_curse but it only has tags [&"stackable", &"spawns_shielded"]
+[UpgradePicker:] Ineligible for enemy_spawn_infested because we need tag big_curse but it only has tags [&"stackable", &"spawns_infested"]
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we haven't chosen required tag mark_source
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[UpgradePicker:] Ineligible for dying_ebb because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag source but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag source but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for deaths_dance because we need tag source but it only has tags [&"generic", &"onetime", &"decay"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag source but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag source but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for faster_poison because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we haven't chosen required tag poison_source
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for whale_size_big because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we need tag source but it only has tags [&"stackable", &"beluga", &"drops_orbs"]
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for on_beluga_kill_size_grow because we need tag source but it only has tags [&"onetime", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_special_killer because we need tag source but it only has tags [&"onetime", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_auto_cast because we need tag source but it only has tags [&"onetime", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_freeze because we need tag source but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for suicide_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for dash_reset_on_damage because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag source but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for special_killer_dash because we need tag source but it only has tags [&"dash", &"onetime"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag source but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag source but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag source but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[StatusEffectManager] gained infested from EnemySpawner#460
+[StatusEffect:infested] on_applied entity=Barnacle#620
+[StatusEffectManager] gained slippery from EnemySpawner#460
+[StatusEffect:slippery] on_applied entity=Barnacle#397
+[StatusEffectManager] gained slippery from EnemySpawner#460
+[StatusEffect:slippery] on_applied entity=Barnacle#173
+[StatusEffectManager] gained berserk from EnemySpawner#460
+[StatusEffect:berserk] on_applied entity=Barnacle#173
+[StatusEffectManager] gained infested from EnemySpawner#460
+[StatusEffect:infested] on_applied entity=Barnacle#173
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 3 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=Barnacle#173 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#173
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#173
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#173
+[HitboxBehavior:whale] on_hit_landed target=Barnacle#173 dmg=1
+[StatusEffectManager] gained poison from null
+[StatusEffect:poison] on_applied entity=Barnacle#173
+[HitboxBehavior:whale] poison_beluga → applied Poison to Barnacle#173
+[Combat] whale → Barnacle#173 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#397 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#397
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#397 dmg=1
+[Combat] attack → Barnacle#397 | 1 dmg [MELEE] | hp: 3→2
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#397 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#397
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#397 dmg=1
+[Combat] attack → Barnacle#397 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffect:poison] on_expired entity=Barnacle#173
+[StatusEffect:poison] expiry dealt 1 dmg to Barnacle#173 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#397 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#397
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#397 dmg=1
+[Combat] KILL attack → Barnacle#397 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#397
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slippery] on_entity_died entity=Barnacle#397
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#620 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#620
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#620 dmg=1
+[Combat] attack → Barnacle#620 | 1 dmg [MELEE] | hp: 3→2
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 2 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#620 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#620
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#620 dmg=1
+[Combat] attack → Barnacle#620 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#620 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#620
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#620 dmg=1
+[Combat] KILL attack → Barnacle#620 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#620
+[StatusEffectManager] notify_entity_died
+[StatusEffect:infested] on_entity_died entity=Barnacle#620
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=SquidMinion#863 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=SquidMinion#863 dmg=1
+[Combat] KILL attack → SquidMinion#863 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=SquidMinion#863
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#173 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#173
+[StatusEffect:berserk] on_hit_consumed entity=Barnacle#173
+[StatusEffect:infested] on_hit_consumed entity=Barnacle#173
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#173 dmg=1
+[Combat] KILL attack → Barnacle#173 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#173
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slippery] on_entity_died entity=Barnacle#173
+[StatusEffect:berserk] on_entity_died entity=Barnacle#173
+[StatusEffect:infested] on_entity_died entity=Barnacle#173
+[Hitbox] computing damage for source=@CharacterBody3D@711:<CharacterBody3D#922948210400>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[SquidMinion#400] [MELEE]
+[StatusEffectManager] notify_entity_died
+[Combat] Player took 5 dmg | hp: 18→13
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we need tag onetime but it only has tags [&"stackable", &"spawns_poisoned"]
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we need tag onetime but it only has tags [&"needs_poison", &"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we need tag onetime but it only has tags [&"needs_poison", &"drops_orbs", &"stackable"]
+[UpgradePicker:] Ineligible for faster_poison because we need tag onetime but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we need tag onetime but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for whale_size_big because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we need tag onetime but it only has tags [&"stackable", &"beluga", &"drops_orbs"]
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_freeze because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag onetime but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[StatusEffectManager] gained berserk from EnemySpawner#460
+[StatusEffect:berserk] on_applied entity=ShootingEnemy#934
+[StatusEffectManager] gained slippery from EnemySpawner#460
+[StatusEffect:slippery] on_applied entity=Barnacle#575
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#668 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#668 dmg=1
+[Combat] attack → Barnacle#668 | 1 dmg [MELEE] | hp: 3→2
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 4 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=ShootingEnemy#934 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=ShootingEnemy#934
+[HitboxBehavior:whale] on_hit_landed target=ShootingEnemy#934 dmg=1
+[StatusEffectManager] gained poison from null
+[StatusEffect:poison] on_applied entity=ShootingEnemy#934
+[HitboxBehavior:whale] poison_beluga → applied Poison to ShootingEnemy#934
+[Combat] whale → ShootingEnemy#934 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#934 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:berserk] on_hit_consumed entity=ShootingEnemy#934
+[StatusEffect:poison] on_hit_consumed entity=ShootingEnemy#934
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#934 dmg=1
+[Combat] KILL attack → ShootingEnemy#934 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#934
+[StatusEffectManager] notify_entity_died
+[StatusEffect:berserk] on_entity_died entity=ShootingEnemy#934
+[StatusEffect:poison] on_entity_died entity=ShootingEnemy#934
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#668 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#668 dmg=1
+[Combat] attack → Barnacle#668 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#575 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#575
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#575 dmg=1
+[Combat] attack → Barnacle#575 | 1 dmg [MELEE] | hp: 3→2
+[Hitbox] computing damage for source=@CharacterBody3D@792:<CharacterBody3D#978413686592>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[ShootingEnemy#592] [BULLET]
+[Combat] Player took 5 dmg | hp: 11→6
+[StatusEffectManager] notify_hit_consumed dmg=5
+[Hitbox] computing damage for source=@CharacterBody3D@792:<CharacterBody3D#978413686592>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[ShootingEnemy#592] [BULLET]
+[Hitbox] computing damage for source=@CharacterBody3D@792:<CharacterBody3D#978413686592>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[ShootingEnemy#592] [BULLET]
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 3 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#668 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#668 dmg=1
+[Combat] KILL attack → Barnacle#668 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#668
+[StatusEffectManager] notify_entity_died
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#592 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#592 dmg=1
+[Combat] attack → ShootingEnemy#592 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#592 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#592 dmg=1
+[Combat] KILL attack → ShootingEnemy#592 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#592
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#575 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#575
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#575 dmg=1
+[Combat] attack → Barnacle#575 | 1 dmg [MELEE] | hp: 2→1
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 1 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#575 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=Barnacle#575
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#575 dmg=1
+[Combat] KILL attack → Barnacle#575 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=Barnacle#575
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slippery] on_entity_died entity=Barnacle#575
+[StatusEffectManager] gained slow from null
+[StatusEffect:slow] on_applied entity=Player#692
+[StatusEffect:slow] on_expired entity=Player#692
+[StatusEffectManager] expired and removed: slow
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[UpgradePicker:] Ineligible for dying_ebb because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for movement_speed_flat because we need tag onetime but it only has tags [&"stackable", &"generic"]
+[UpgradePicker:] Ineligible for ebb_begin_of_room because we need tag onetime but it only has tags [&"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for speed_on_pickup because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for enemy_spawn_wither because we need tag onetime but it only has tags [&"stackable", &"spawns_wither"]
+[UpgradePicker:] Ineligible for enemy_spawn_poisoned because we need tag onetime but it only has tags [&"stackable", &"spawns_poisoned"]
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for enemy_spawn_ebby because we need tag onetime but it only has tags [&"stackable", &"ebb_source", &"spawns_ebby"]
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poisoned_enemies_drop_ebbs because we need tag onetime but it only has tags [&"needs_poison", &"ebb_source", &"stackable"]
+[UpgradePicker:] Ineligible for poison_kills_drop_orbs because we need tag onetime but it only has tags [&"needs_poison", &"drops_orbs", &"stackable"]
+[UpgradePicker:] Ineligible for faster_poison because we need tag onetime but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for slower_poison_more_lethal because we need tag onetime but it only has tags [&"needs_poison", &"stackable"]
+[UpgradePicker:] Ineligible for bomb_chain_reaction because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_size because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_tick_time because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for bomb_crit because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for lucky_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for poison_bombs because we haven't chosen required tag bomb_source
+[UpgradePicker:] Ineligible for whale_cooldown_reduction because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for whale_size_big because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for on_beluga_kill_orb_drop because we need tag onetime but it only has tags [&"stackable", &"beluga", &"drops_orbs"]
+[UpgradePicker:] Ineligible for on_beluga_kill_cd_refund because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for beluga_auto_cast because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for beluga_freeze because we need tag onetime but it only has tags [&"stackable", &"beluga"]
+[UpgradePicker:] Ineligible for dash_cooldown_increase because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for fast_but_short_dash because we need tag onetime but it only has tags [&"dash", &"stackable"]
+[UpgradePicker:] Ineligible for midas_dash_touch because we need tag onetime but it only has tags [&"dash", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for hop_skip_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for precise_jump because we need tag onetime but it only has tags [&"generic", &"stackable"]
+[UpgradePicker:] Ineligible for jump_kill_orb because we need tag onetime but it only has tags [&"generic", &"stackable", &"drops_orbs"]
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=aura_enemy#816 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=aura_enemy#816 dmg=1
+[Combat] attack → aura_enemy#816 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffectManager] gained haste from Aura#490
+[StatusEffect:haste] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=AuraEnemy#610 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AuraEnemy#610 dmg=1
+[Combat] attack → AuraEnemy#610 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffectManager] gained haste from Aura#378
+[StatusEffect:haste] on_applied entity=Player#692
+[StatusEffectManager] lost conditional haste from Aura#490
+[StatusEffectManager] lost conditional haste from Aura#378
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 3 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=AuraEnemy#558 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:whale] on_hit_landed target=AuraEnemy#558 dmg=1
+[StatusEffectManager] gained poison from null
+[StatusEffect:poison] on_applied entity=AuraEnemy#558
+[HitboxBehavior:whale] poison_beluga → applied Poison to AuraEnemy#558
+[Combat] whale → AuraEnemy#558 | 1 dmg [MELEE] | hp: 2→1
+[StatusEffectManager] gained haste from Aura#188
+[StatusEffect:haste] on_applied entity=Player#692
+[StatusEffectManager] gained haste from Aura#490
+[StatusEffect:haste] on_applied entity=Player#692
+[StatusEffectManager] lost conditional haste from Aura#490
+[HitboxBehavior:attack] modify_outgoing_damage target=aura_enemy#816 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=aura_enemy#816 dmg=1
+[Combat] KILL attack → aura_enemy#816 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=aura_enemy#816
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] lost conditional haste from Aura#188
+[StatusEffectManager] gained haste from Aura#490
+[StatusEffect:haste] on_applied entity=Player#692
+[StatusEffectManager] lost conditional haste from Aura#490
+[StatusEffectManager] gained haste from Aura#490
+[StatusEffect:haste] on_applied entity=Player#692
+[StatusEffect:poison] on_expired entity=AuraEnemy#558
+[StatusEffect:poison] expiry dealt 1 dmg to AuraEnemy#558 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[StatusEffectManager] entity died via effect: poison
+[StatusEffect:poison] on_killed_by_effect entity=AuraEnemy#558 
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] lost conditional haste from Aura#490
+[StatusEffectManager] gained haste from Aura#490
+[StatusEffect:haste] on_applied entity=Player#692
+[HitboxBehavior:attack] modify_outgoing_damage target=AuraEnemy#610 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=AuraEnemy#610 dmg=1
+[Combat] KILL attack → AuraEnemy#610 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=AuraEnemy#610
+[StatusEffectManager] notify_entity_died
+[StatusEffectManager] lost conditional haste from Aura#490
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[UpgradePicker:] Ineligible for orb_weight because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for enemy_spawn_marked because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for mark_to_orb because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for auto_consume_mark because we haven't chosen required tag mark_source
+[UpgradePicker:] Ineligible for poison_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for poison_enemies_drop_bombs because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for beluga_auto_cast because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_beluga because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for has_dash because it's one-time and we've already chosen it 1 times
+[UpgradePicker:] Ineligible for mark_makes_a_bomb because we haven't chosen required tag mark_source
+[StatusEffectManager] gained freeze from BlessingMap#319
+[StatusEffect:freeze] on_applied entity=Player#692
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 0 nearby enemies
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffectManager] gained shielded from EnemySpawner#460
+[StatusEffect:shielded] on_applied entity=ShootingEnemy#283
+[StatusEffectManager] gained slippery from EnemySpawner#460
+[StatusEffect:slippery] on_applied entity=AuraEnemy#094
+[StatusEffectManager] gained infested from EnemySpawner#460
+[StatusEffect:infested] on_applied entity=ShootingEnemy#215
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 5 nearby enemies
+[HitboxBehavior:whale] modify_outgoing_damage target=AuraEnemy#094 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[StatusEffect:slippery] on_hit_consumed entity=AuraEnemy#094
+[HitboxBehavior:whale] on_hit_landed target=AuraEnemy#094 dmg=1
+[StatusEffectManager] gained poison from null
+[StatusEffect:poison] on_applied entity=AuraEnemy#094
+[HitboxBehavior:whale] poison_beluga → applied Poison to AuraEnemy#094
+[Combat] whale → AuraEnemy#094 | 1 dmg [MELEE] | hp: 2→1
+[HitboxBehavior:attack] modify_outgoing_damage target=Barnacle#882 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=Barnacle#882 dmg=1
+[Combat] attack → Barnacle#882 | 1 dmg [MELEE] | hp: 3→2
+[RollState] dash_bomb → spawned explosion at player
+[StatusEffect:poison] on_expired entity=AuraEnemy#094
+[StatusEffect:poison] expiry dealt 1 dmg to AuraEnemy#094 (stacks remaining=0)
+[StatusEffectManager] expired and removed: poison
+[StatusEffectManager] entity died via effect: poison
+[StatusEffect:poison] on_killed_by_effect entity=AuraEnemy#094 
+[StatusEffectManager] notify_entity_died
+[StatusEffect:slippery] on_entity_died entity=AuraEnemy#094
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#283 dmg=1
+[StatusEffect:shielded] ShieldedEffect modifying incoming damage: currently charged=true
+[StatusEffect:shielded] shield absorbed hit → damage zeroed (1 → 0)
+[StatusEffectManager] notify_hit_consumed dmg=0
+[StatusEffect:shielded] on_hit_consumed entity=ShootingEnemy#283
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#283 dmg=0
+[StatusEffect:shielded] on_expired entity=ShootingEnemy#283
+[StatusEffectManager] expired and removed: shielded
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#283 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#283 dmg=1
+[Combat] attack → ShootingEnemy#283 | 1 dmg [MELEE] | hp: 2→1
+[WhaleSpawner: ] auto-casting whale because of beluga_auto_cast
+[WhaleSpawner: ] cast 1 whale(s) size=0.1 on 4 nearby enemies
+[HitboxBehavior:attack] modify_outgoing_damage target=ShootingEnemy#283 dmg=1
+[StatusEffectManager] notify_hit_consumed dmg=1
+[HitboxBehavior:attack] on_hit_landed target=ShootingEnemy#283 dmg=1
+[Combat] KILL attack → ShootingEnemy#283 | 1 dmg [MELEE] | hp: 1→0
+[HitboxBehavior:attack] on_kill target=ShootingEnemy#283
+[StatusEffectManager] notify_entity_died
+[Hitbox] computing damage for source=@CharacterBody3D@1214:<CharacterBody3D#1317112123215>
+[Hitbox] source is EnemyBase dmg_multiplier=1
+[Combat] Player hit by hitbox[ShootingEnemy#215] [BULLET]
+[HealthComponent] dying_ebb threshold reached (threshold=0 hp=-3) → gained Slow
+[StatusEffectManager] gained slow from HealthComponent#049
+[StatusEffect:slow] on_applied entity=Player#692
+[Combat] Player took 5 dmg | hp: 2→0 | DEAD
+[StatusEffectManager] notify_hit_consumed dmg=5
+[StatusEffect:slow] on_hit_consumed entity=Player#692

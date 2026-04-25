@@ -18,7 +18,7 @@ const enemy_data = {
 		"scene": preload("res://Enemies/lunging_enemy/enemy.tscn"),
 		"cost": 3,
 		"max_per_wave": 3,
-		"min_depth": 1,
+		"min_depth": 2,
 		"spawn_type" : "melee",
 		"name": "Piranha",
 	},
@@ -34,7 +34,7 @@ const enemy_data = {
 		"scene": preload("res://Enemies/Barnacle/barnacle.tscn"),
 		"cost": 3,
 		"max_per_wave": 5,
-		"min_depth": 0,
+		"min_depth": 1,
 		"spawn_type" : "melee",
 		"name": "Barnacle",
 	},
@@ -50,7 +50,7 @@ const enemy_data = {
 		"scene": preload("res://Enemies/aura_enemy/aura_enemy.tscn"),
 		"cost": 4,
 		"max_per_wave": 2,
-		"min_depth": 2,
+		"min_depth": 3,
 		"spawn_type": "any",
 		"name": "Electric",
 	},
@@ -58,7 +58,7 @@ const enemy_data = {
 		"scene": preload("res://Enemies/jumping_enemy/jumping_enemy.tscn"),
 		"cost": 5,
 		"max_per_wave": 3,
-		"min_depth": 2,
+		"min_depth": 3,
 		"spawn_type": "melee",
 		"name": "Skwid",
 	},
@@ -270,5 +270,5 @@ func spawn_boss(enemy_type: String, spawn_point : Vector3) -> Node3D:
 
 func kill_all_enemies() -> void:
 	for enemy in spawned_enemies:
-		enemy.on_die()
+		enemy.on_die(null)
 	spawned_enemies.clear()

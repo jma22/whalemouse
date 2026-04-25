@@ -3,6 +3,7 @@ class_name BlessingText
 
 @export var item_name_text: RichTextLabel
 @export var item_description_text: RichTextLabel
+@export var supplementary_text: RichTextLabel
 @export var container: Control
 @export var texture: TextureRect
 
@@ -46,10 +47,10 @@ func _setup_visuals(upgrade: Choice) -> void:
 	var shake_tag := "[shake rate=4.0 level=4 connected=1]" if upgrade.is_blessing() else "[shake rate=10.0 level=6 connected=1]"
 	
 	item_description_text.text = (
-		shake_tag +
-		upgrade.get_description() +
-		"[/shake]"
+		Keywords.apply(upgrade.get_description()) 
 	)
+
+	supplementary_text.text = Keywords.apply(upgrade.get_supplement_info(), true)
 
 
 func _fade(target_alpha: float, ease_type: Tween.EaseType) -> void:
@@ -62,3 +63,6 @@ func _fade(target_alpha: float, ease_type: Tween.EaseType) -> void:
 func _kill_tween() -> void:
 	if tween and tween.is_valid():
 		tween.kill()
+
+func get_description_for_upgrade(upgrade: Choice) -> String:
+	return upgrade.get_description()

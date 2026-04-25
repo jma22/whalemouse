@@ -94,9 +94,8 @@ func die() -> Tween:
 	if tween != null and tween.is_valid():
 		await tween.finished
 
-	var death_tween : Tween = get_tree().create_tween()
+	var death_tween : Tween = create_tween()
 	death_tween.tween_callback(Callable(self, "set_flash_level").bind(0))
 	death_tween.tween_callback(Callable(self, "set_charge_color").bind(0))
 	death_tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
-	death_tween.play()
 	return death_tween

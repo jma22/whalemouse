@@ -30,6 +30,10 @@ static func is_eligible(upgrade: UpgradeData, extra_reqs : Array[StringName]) ->
 		_dbg("Ineligible for %s because we've already chosen it %d times and the max is %d" % [upgrade.internal_name, times, upgrade.max_stacks])
 		return false
 
+	if upgrade.unlock_condition.is_valid() and not GameData.is_unlocked(upgrade.internal_name):
+		_dbg("Ineligible for %s because it is locked" % upgrade.internal_name)
+		return false
+
 	for prereq: StringName in upgrade.prereqs:
 		# var stat_ok: bool = GlobalStats.current_run_stats.get(prereq, 0) > 0
 		# var name_ok: bool = has_chosen(prereq)
