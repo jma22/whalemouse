@@ -16,6 +16,8 @@ func _ready() -> void:
 # 	await get_tree().create_timer(2.0).timeout
 # 	setup()
 
+
+
 func setup() -> void:
 	GameData.record_run(GlobalStats.run_stats, GlobalStats.boss_defeated)
 	screen_height = get_viewport().get_visible_rect().size.y
@@ -38,6 +40,7 @@ func setup() -> void:
 	tween.play()
 	await tween.finished
 	button_control.visible = true
+	button_control.get_child(0).accept_inputs()
 
 
 

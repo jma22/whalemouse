@@ -96,8 +96,8 @@ static func get_enemy_damage() -> int:
 # static func get_dash_distance() -> float:
 	# return 5.0 + GlobalStats.current_run_stats["dash_distance"] * 3.0
 
-static func get_seconds_per_damage() -> float: ## 2.5 seconds per damage is chill no time change
-	return 2.0 / (1.0 + GlobalStats.current_run_stats["time_tick_level"] * 0.4) ** 1.1
+static func get_seconds_per_damage() -> float: ## 2.5 seconds per damage is chill no time change ## was 0.4 now 0.3
+	return 2.0 / (1.0 + GlobalStats.current_run_stats["time_tick_level"] * 0.3) ** 1.1
 
 static func get_enemy_projectile_flat() -> int:
 	return 0
@@ -149,10 +149,11 @@ static func get_curse_duration_on_hit() -> float:
 	return GlobalStats.current_run_stats["curse_on_hit"] * 2.0
 
 static func get_extra_boss_health() -> int:
-	return GlobalStats.current_run_stats["extra_boss_health"] * 10
+	return GlobalStats.current_run_stats["extra_boss_health"] * 7
 
-static func get_critical_chance() -> float:
-	return GlobalStats.current_run_stats["critical_chance"] * 0.2
+static func get_critical_damage(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["critical_damage"] + (1 if preview else 0)
+	return 1 + stat_level
 
 static func get_boss_xp_drop_per_hit(preview: bool = false) -> int:
 	var stat_level: int = GlobalStats.current_run_stats["boss_xp_drop"] + (1 if preview else 0)
@@ -324,9 +325,10 @@ static func get_chance_to_spawn_shielded() -> float:
 # static func get_damage_reduced_by() -> int:
 	# return 1 + GlobalStats.current_run_stats["damage_reduction"]
 
-static func get_dying_ebb() -> int:
-	if GlobalStats.current_run_stats["dying_ebb"] > 0:
-		return 6 + GlobalStats.current_run_stats["dying_ebb"] * 3
+static func get_dying_ebb(preview: bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["dying_ebb"] + (1 if preview else 0)
+	if stat_level > 0:
+		return 1 + stat_level * 3
 	return 0
 
 static func get_ebb_begin_of_room(preview: bool = false) -> int:

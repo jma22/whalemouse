@@ -1,0 +1,10 @@
+=== 2026-04-25T22:00:10 ===
+[SceneManager] clearing game
+[StatusEffectManager] gained freeze from BlessingMap#894
+[StatusEffect:freeze] on_applied entity=Player#276
+[HealthComponent] dying_ebb threshold reached (threshold=0 hp=0) → gained Slow
+[StatusEffectManager] gained slow from HealthComponent#633
+[StatusEffect:slow] on_applied entity=Player#276
+[SceneManager] Unlocks: dash_bomb
+[SceneManager] Next Scene: have unlocks dash_bomb
+[UnlockScene] setup called with dash_bomb

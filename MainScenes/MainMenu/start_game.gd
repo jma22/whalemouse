@@ -18,8 +18,9 @@ func _process(_delta: float) -> void:
 		on_clicked()
 
 func on_clicked() -> void:
+	SceneManager.clear_game()
 	SceneManager.switch_to(SceneManager.SceneEnum.GAME)
-	SceneManager.reset_game()
+	
 
 
 func _on_hover_start() -> void:

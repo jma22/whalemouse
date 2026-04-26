@@ -42,7 +42,7 @@ var current_run_stats : Dictionary = {
 	"num_whales" : 0,
 	"curse_on_hit" : 0,
 	"extra_boss_health" : 0,
-	"critical_chance" : 0,
+	"critical_damage" : 0,
 	"boss_xp_drop" : 0,
 	"boss_attack_size" : 0,
 	"boss_freeze_time" : 0,
@@ -163,12 +163,13 @@ func add_time_survived(time: float) -> void:
 func reset_current_run_stats() -> void:
 	wave_augments.clear()
 	emit_signal("wave_augments_changed")
+	boss_defeated = false
+
 	for k :String in current_run_stats.keys():
 		current_run_stats[k] = 0
 
 	for k : String in run_stats.keys():
 		run_stats[k] = 0
-	boss_defeated = false
 	
 	for k : String in boss_stats.keys():
 		boss_stats[k] = 0

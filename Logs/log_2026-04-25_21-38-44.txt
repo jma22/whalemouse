@@ -1,0 +1,3 @@
+=== 2026-04-25T21:38:44 ===
+[StatusEffectManager] gained freeze from BlessingMap#957
+[StatusEffect:freeze] on_applied entity=Player#386

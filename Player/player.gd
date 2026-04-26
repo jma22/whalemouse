@@ -160,8 +160,8 @@ func on_hit(info: DamageInfo) -> void:
 	damage_taken = max(0, damage_taken - reduced_by)
 	if StatCalculator.has_death_dance():
 		damage_taken = min(damage_taken, 1)
-		gain_status_effect(HasteEffect.make(1.5), self)
-		DebugLog.dbg("Combat", "death_dance → dmg capped to 1, gained Haste(1.5s)")
+		gain_status_effect(HasteEffect.make(1.0), self)
+		DebugLog.dbg("Combat", "death_dance → dmg capped to 1, gained Haste(1.0s)")
 	if map_ref is BossMapManager:
 		if StatCalculator.get_curse_duration_on_hit() > 0:
 			gain_status_effect(HasteEffect.make(StatCalculator.get_curse_duration_on_hit()), self)
@@ -249,4 +249,5 @@ func lose_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 	status_effect_manager.lose_status_effect(effect, source)
 
 func get_initial_health() -> int:
-	return BASE_MAX_HEALTH
+	var override : Variant = Config.get_override("starting_health")
+	return override if override != null else BASE_MAX_HEALTH

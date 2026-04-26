@@ -41,10 +41,11 @@ func enter() -> void:
 	# arc_component.time = 1.5 / spd_mult
 	arc_component.setup(target)
 
-	will_crit = randf() < StatCalculator.get_critical_chance()
+	will_crit = StatCalculator.get_critical_damage() > 1 and randf() < 0.25
 	if will_crit:
-		hitbox.set_damage(2)
-		DebugLog.dbg("AttackState", "CRIT rolled (chance=%.2f) → dmg=2" % StatCalculator.get_critical_chance())
+		var crit_dmg : int = StatCalculator.get_critical_damage()
+		hitbox.set_damage(crit_dmg)
+		DebugLog.dbg("AttackState", "CRIT rolled (chance=%.2f) → dmg=%d" % [0.25,crit_dmg])
 	else:
 		hitbox.set_damage(1)
 	# hitbox.set_effect_on_hit(MarkEffect.make())

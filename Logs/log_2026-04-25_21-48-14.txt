@@ -1,0 +1,8 @@
+=== 2026-04-25T21:48:14 ===
+[StatusEffectManager] gained freeze from BlessingMap#053
+[StatusEffect:freeze] on_applied entity=Player#514
+[HealthComponent] dying_ebb threshold reached (threshold=0 hp=0) → gained Slow
+[StatusEffectManager] gained slow from HealthComponent#870
+[StatusEffect:slow] on_applied entity=Player#514
+[StatusEffectManager] gained freeze from BlessingMap#327
+[StatusEffect:freeze] on_applied entity=Player#477

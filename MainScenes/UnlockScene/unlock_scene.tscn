@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://c4hkfho8iguug"]
+
+[ext_resource type="Script" uid="uid://c34yniulp7isx" path="res://MainScenes/UnlockScene/unlock_scene.gd" id="1_0b6e3"]
+[ext_resource type="Texture2D" uid="uid://dfmy2gx5m520l" path="res://MainScenes/UnlockScene/2234_Sem_Titulo_20260425135139.png" id="2_0b6e3"]
+[ext_resource type="Texture2D" uid="uid://be27fg6kqq5mr" path="res://UI/HUD/BlessingIcons/Placeholders/ebb_drop.png" id="3_ghb57"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="4_al04h"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="5_spel1"]
+[ext_resource type="AudioStream" uid="uid://cpy7lxcu2085s" path="res://SFX/transition.wav" id="6_hxcm3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxph1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xd6gs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_waywm"]
+
+[sub_resource type="GDScript" id="GDScript_0b6e3"]
+script/source = "extends Button
+
+@export var text_label : RichTextLabel
+# Called when the node enters the scene tree for the first time.
+var tween : Tween = null
+func _ready() -> void:
+	pressed.connect(on_clicked)
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+
+
+func on_clicked() -> void:
+	SceneManager.reset_game()
+
+func _on_mouse_entered() -> void:
+	if tween and tween.is_valid():
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(self,\"scale\", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.play()
+	text_label.text = \"[u]\"
+	text_label.text += \"[shake rate=6.0 level=6 connected=1]Try Again?[/shake]\"
+	text_label.text += \"[/u]\"
+
+func _on_mouse_exited() -> void:
+	if tween and tween.is_valid():
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(self,\"scale\", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.play()
+	text_label.text = \"[shake rate=4.0 level=4 connected=1]Try Again?[/shake]\"
+"
+
+[node name="UnlockScene" type="Node3D" unique_id=1521685688 node_paths=PackedStringArray("background", "audio_player", "relic_name", "relic_description", "relic_supplement", "relic_texture", "button_control")]
+script = ExtResource("1_0b6e3")
+background = NodePath("Control/TextureRect")
+audio_player = NodePath("AudioStreamPlayer")
+relic_name = NodePath("Control/Control/RelicName")
+relic_description = NodePath("Control/Control/VBoxContainer/RelicDescription")
+relic_supplement = NodePath("Control/Control/VBoxContainer/RelicSupplement")
+relic_texture = NodePath("Control/RelicImage")
+button_control = NodePath("Control/VBoxContainer/Control")
+
+[node name="Control" type="Control" parent="." unique_id=473503477]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1822904499]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.088, 0.08873333, 0.11, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1447394169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0b6e3")
+expand_mode = 2
+
+[node name="RelicImage" type="TextureRect" parent="Control" unique_id=658440739]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -101.000015
+offset_right = 511.0
+offset_bottom = 379.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.416159, 0.40650046)
+texture = ExtResource("3_ghb57")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1736086154]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer" unique_id=29338108]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+
+[node name="Control" type="Control" parent="Control/VBoxContainer" unique_id=1268228828]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/Control" unique_id=1305187883 node_paths=PackedStringArray("text_label")]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qxph1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xd6gs")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_waywm")
+script = SubResource("GDScript_0b6e3")
+text_label = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/Control/Button" unique_id=89701532]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_al04h")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]Try Again?[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="Control/VBoxContainer" unique_id=1979533319]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="Control" unique_id=335402028]
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RelicName" type="RichTextLabel" parent="Control/Control" unique_id=1655636633]
+z_index = 20
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 33.0
+offset_right = 5.0
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("5_spel1")
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]200 seconds[/shake]"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Control" unique_id=944066545]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -124.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RelicDescription" type="RichTextLabel" parent="Control/Control/VBoxContainer" unique_id=831044440]
+z_index = 20
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_al04h")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]10 waves[/shake]
+"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="RelicSupplement" type="RichTextLabel" parent="Control/Control/VBoxContainer" unique_id=1865800394]
+z_index = 20
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_al04h")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]10 waves[/shake]
+"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1539445550]
+stream = ExtResource("6_hxcm3")
+volume_db = -13.812
+pitch_scale = 0.69

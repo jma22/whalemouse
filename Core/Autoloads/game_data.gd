@@ -1,6 +1,8 @@
 extends Node
 
 const SAVE_PATH := "user://game_data.cfg"
+# cd Appdata/Roaming/Godot/app_userdata/
+
 
 var lifetime_stats: Dictionary = {
 	"enemies_killed": 0,
@@ -13,6 +15,8 @@ var lifetime_stats: Dictionary = {
 var unlocked_upgrades: Array[String] = []
 
 func _ready() -> void:
+	if Config.get_override("reset_gamedata"):
+		_save()
 	_load()
 
 func is_unlocked(upgrade_name: String) -> bool:
@@ -27,14 +31,21 @@ func record_run(run_stats: Dictionary, boss_defeated: bool) -> void:
 	lifetime_stats["games_played"] += 1
 	if boss_defeated:
 		lifetime_stats["boss_defeats"] += 1
-	_evaluate_unlocks()
+	var new_unlocks : Array[String] = _evaluate_unlocks()
+	SceneManager.add_unlocks(new_unlocks)
 	_save()
 
-func _evaluate_unlocks() -> void:
+func _evaluate_unlocks() -> Array[String]:
+	var new_unlocks : Array[String] = []
 	for upgrade: UpgradeData in UpgradeRegistry.all():
 		if upgrade.unlock_condition.is_valid() and not is_unlocked(upgrade.internal_name):
 			if upgrade.unlock_condition.call(lifetime_stats):
+				new_unlocks.append(upgrade.internal_name)
 				unlocked_upgrades.append(upgrade.internal_name)
+	return new_unlocks
+
+func get_stat(name_: String) -> Variant:
+	return lifetime_stats[name_]
 
 func _save() -> void:
 	var cfg := ConfigFile.new()

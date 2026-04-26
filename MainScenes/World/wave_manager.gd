@@ -219,11 +219,11 @@ func sustain_wave() -> ChoiceWaveInfo:
 	wave_info.wave_number = current_wave
 	var upgrades : Array[Choice] = []
 	var max_health :UpgradeData = UpgradeRegistry.get_by_name("little_max_health")
-	upgrades.append(max_health)
 	upgrades.assign(UpgradePicker.pick_or(UpgradePool.BLESSING, 2, [UpgradeTag.DROPS_ORBS, UpgradeTag.EBB_SOURCE], [max_health.internal_name]))
 	var heal_choice : Choice = Choice.new(
 		"Heal 10",
 		func () -> String: return "Heal 10.").with_heal(10)
+	upgrades.append(max_health)
 	
 	upgrades.append(heal_choice)
 	wave_info.blessings.assign(upgrades)

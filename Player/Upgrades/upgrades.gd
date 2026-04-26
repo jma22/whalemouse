@@ -110,7 +110,7 @@ static func _static_init() -> void:
 		.register()
 	UpgradeBuilder.new("deaths_dance", "Death's Dance") \
 		.pool(UpgradePool.BLESSING) \
-		.description_fn(func() -> String: return "Take only 1 damage per hit, but each hit applies 1.5s of Haste/Decay") \
+		.description_fn(func() -> String: return "Take only 1 damage per hit, but each hit applies 1.0s of Decay") \
 		.augment(8) \
 		.effect(_stat(&"deaths_dance")) \
 		.tags([UpgradeTag.GENERIC, UpgradeTag.ONETIME, UpgradeTag.DECAY]) \
@@ -179,10 +179,10 @@ static func _static_init() -> void:
 		.description_fn(_boss_xp_drop_desc) \
 		.effect(_boss_stat(&"boss_xp_drop")) \
 		.register()
-	UpgradeBuilder.new("critical_chance", "Sharpshell") \
+	UpgradeBuilder.new("critical_damage", "Sharpshell") \
 		.pool(UpgradePool.BOSS_BLESSING) \
-		.description_fn(_critical_chance_desc) \
-		.effect(_boss_stat(&"critical_chance")) \
+		.description_fn(_critical_damage_desc) \
+		.effect(_boss_stat(&"critical_damage")) \
 		.register()
 
 
@@ -391,6 +391,7 @@ static func _static_init() -> void:
 		.effect(_stat(&"dash_cooldown_reduction")) \
 		.prereqs([UpgradeTag.DASH_SOURCE]) \
 		.tags([UpgradeTag.ONETIME, UpgradeTag.DASH, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
+		.unlocks_after(after_n_games.bind(1)) \
 		.register()
 
 	UpgradeBuilder.new("bomber_whale", "Bomber Whale") \
@@ -401,6 +402,7 @@ static func _static_init() -> void:
 		.effect(_stat(&"whale_cooldown_reduction")) \
 		.effect(_stat(&"bomber_whale")) \
 		.tags([UpgradeTag.ONETIME, UpgradeTag.BELUGA, UpgradeTag.BOMB_SOURCE, UpgradeTag.SOURCE]) \
+		.unlocks_after(after_n_games.bind(1)) \
 		.register()
 	
 	UpgradeBuilder.new("bomb_chain_reaction", "Chain Reaction") \
@@ -698,6 +700,19 @@ static func get_upgrade(internal_name: String) -> UpgradeData:
 # 	return new_upgrades
 
 
+#------ UPGRADE CALLABLES -------- #
+static func after_n_games(post_game_stats: Dictionary, n: int) -> bool:
+	## ok post_game_stats right now is life time stats, but im sure this can be current_run_stats
+	# but i guess thats also globally accessible (but not guarantee to still exist)
+	return GameData.get_stat("games_played") >= n
+
+static func after_n_wins(post_game_stats: Dictionary, n: int) -> bool:
+	## ok post_game_stats right now is life time stats, but im sure this can be current_run_stats
+	# but i guess thats also globally accessible (but not guarantee to still exist)
+	return GameData.get_stat("boss_defeats") >= n
+
+		
+
 # ------- DESCRIPTION FUNCTIONS -------
 static func _heal_desc() -> String:
 	return "Take some time! Increase every time you choose it!"
@@ -791,7 +806,7 @@ static func _flat_speed_desc() -> String:
 	return "Move faster!"
 
 static func _dying_ebb_desc() -> String:
-	return "Gain ebb when you are at low health!"
+	return "Gain ebb when you have less than %d health!" % StatCalculator.get_dying_ebb(true)
 
 
 ## boss zone
@@ -808,8 +823,8 @@ static func _num_whales_desc() -> String:
 static func _extra_boss_health_desc() -> String:
 	return "Increase boss health!"
 
-static func _critical_chance_desc() -> String:
-	return "Your attacks can critically strike for double damage!"
+static func _critical_damage_desc() -> String:
+	return "Your attacks can critically strike (25%) for %d damage!" % StatCalculator.get_critical_damage(true)
 
 static func _boss_xp_drop_desc() -> String:
 	return "Boss drops %d time orbs when damaged!" % StatCalculator.get_boss_xp_drop_per_hit(true)
@@ -821,7 +836,7 @@ static func _dash_cooldown_reduction_desc() -> String:
 	return "Dash recharges faster, but you move slower."
 
 static func _dash_cooldown_increase_desc() -> String:
-	return "Dash recharges slower, but you move faster."
+	return "You move faster, but your dash charges slower."
 
 static func _suicide_dash_desc() -> String:
 	return "Dash recharges much faster, but each dash costs 1 health."
