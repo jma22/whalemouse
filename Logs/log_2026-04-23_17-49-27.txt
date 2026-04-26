@@ -1,4 +1,0 @@
-=== 2026-04-23T17:49:27 ===
-[UpgradePicker:] [ERROR]Not enough candidates in pool blessing, need 2 but only have 0. Returning all.
-[StatusEffectManager] gained freeze from BlessingMap#439
-[StatusEffect:freeze] on_applied entity=Player#094

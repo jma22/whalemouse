@@ -5,6 +5,7 @@ var target_position : Vector3
 @export var animation_clip : AnimationClip
 @export var shooting_time : float = 0.3
 @export var shooting_stun_time : float = 1.0
+@export var shooting_speed_multiplier : float = 1.0
 @export var base_num_bullets : int = 3
 @export var angle_between_bullets_degrees : float = 4
 
@@ -37,7 +38,7 @@ func shoot_dir(direction : Vector3) -> void:
 	var bullet_instance : Node = bullet.instantiate()
 	entity.get_parent().add_child(bullet_instance)
 	bullet_instance.global_transform.origin = entity.global_transform.origin
-	bullet_instance.setup(direction, entity)
+	bullet_instance.setup(direction, entity, shooting_speed_multiplier)
 
 # func exit() -> void:
 # # 	pass

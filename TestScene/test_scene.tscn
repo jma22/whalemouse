@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="11_qoroo"]
 [ext_resource type="PackedScene" uid="uid://2u15sjxj0hbn" path="res://Player/Abilities/Whale/whale.tscn" id="12_fefcl"]
 
-[sub_resource type="Shader" id="Shader_ptfuc"]
+[sub_resource type="Shader" id="Shader_3l6jj"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_add;
@@ -46,10 +46,10 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3l6jj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5riu"]
 resource_local_to_scene = true
 render_priority = 1
-shader = SubResource("Shader_ptfuc")
+shader = SubResource("Shader_3l6jj")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -73,7 +73,7 @@ smooth_speed = 10.0
 [node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("3_ncb30")]
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_3l6jj")
+material_overlay = SubResource("ShaderMaterial_y5riu")
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_88out")]
 time_damage_manager = NodePath("../TimeDamageManager")

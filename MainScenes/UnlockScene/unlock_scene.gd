@@ -26,7 +26,7 @@ func _ready() -> void:
 # 	setup()
 
 func setup(upgrade_internal_name : String) -> void:
-	DebugLog.dbg("UnlockScene", "setup called with " + upgrade_internal_name)
+	DebugLog.dbg_from(self,"setup called with " + upgrade_internal_name)
 	var upgrade_data : UpgradeData = UpgradeRegistry.get_by_name(upgrade_internal_name)
 	relic_name.text = shake(upgrade_data.display_name)
 	relic_description.text = shake(upgrade_data.get_description())

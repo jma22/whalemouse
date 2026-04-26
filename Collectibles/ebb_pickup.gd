@@ -10,4 +10,4 @@ func on_pickup() -> void:
 		target.gain_status_effect(SlowEffect.make(SLOW_DURATION), null)
 		if StatCalculator.get_flow_stacks_per_pickup() > 0:
 			target.gain_status_effect(FlowEffect.make(StatCalculator.get_flow_stacks_per_pickup()), null)
-			DebugLog.dbg("EbbPickup", "flow_stacks_per_pickup → gained Flow x%s" % StatCalculator.get_flow_stacks_per_pickup())
+			DebugLog.dbg_from(self,"flow_stacks_per_pickup → gained Flow x%s" % StatCalculator.get_flow_stacks_per_pickup())

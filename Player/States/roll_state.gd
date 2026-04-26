@@ -33,11 +33,11 @@ func enter() -> void:
 	if StatCalculator.has_suicide_dash():
 		entity.damage(1)
 		entity.sprite_manager.damage_flash()
-		DebugLog.dbg("RollState", "suicide_dash → player took 1 dmg")
+		DebugLog.dbg_from(self,"suicide_dash → player took 1 dmg")
 
 	if StatCalculator.dash_damages_status() or StatCalculator.has_marking_dash() or StatCalculator.get_midas_dash_touch_num() > 0:
 		roll_hitbox.set_active(true)
-		DebugLog.dbg("RollState", "roll hitbox active (dash_damages_status=%s marking_dash=%s)" % [
+		DebugLog.dbg_from(self,"roll hitbox active (dash_damages_status=%s marking_dash=%s)" % [
 			StatCalculator.dash_damages_status(), StatCalculator.has_marking_dash()
 		])
 
@@ -46,7 +46,7 @@ func enter() -> void:
 		entity.get_parent().add_child(bomb_instance)
 		bomb_instance.global_transform.origin = entity.global_transform.origin
 		bomb_instance.setup(entity)
-		DebugLog.dbg("RollState", "dash_bomb → spawned explosion at player")
+		DebugLog.dbg_from(self,"dash_bomb → spawned explosion at player")
 	# if StatCalculator.get_dash_damage() > 0:
 	# 	roll_hitbox.set_active(true)
 	

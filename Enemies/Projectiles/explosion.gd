@@ -45,7 +45,7 @@ func setup(source : Node3D) -> void:
 	if is_super_bomb:
 		explosion_sprite.modulate = Color(1, 0.0, 0.5)
 		explosion_area.modulate = Color(1, 0.0, 0.5)
-		DebugLog.dbg("Explosion", "super_bomb rolled (chance=%.2f) → doubled dmg" % StatCalculator.get_super_bomb_chance())
+		DebugLog.dbg_from(self,"super_bomb rolled (chance=%.2f) → doubled dmg" % StatCalculator.get_super_bomb_chance())
 	explosion_hitbox.damage = BASE_BOMB_DAMAGE * (2 if is_super_bomb else 1)
 	enemy_hitbox.damage = BASE_BOMB_FRIENDLY_FIRE_DAMAGE * (2 if is_super_bomb else 1)
 
@@ -101,8 +101,8 @@ func maybe_orb_drop() -> void:
 		xp_spawner.global_transform.origin = global_transform.origin
 		if num_orbs > 0:
 			xp_spawner.setup_outwards(num_orbs, GlobalStats.player, CollectibleSpawner.OrbType.TIME, GlobalStats.player.get_floor())
-			DebugLog.dbg("Explosion", "bomb_orb_drop → spawned %d time orbs" % num_orbs)
+			DebugLog.dbg_from(self,"bomb_orb_drop → spawned %d time orbs" % num_orbs)
 		if num_ebbs > 0:
 			xp_spawner.setup_outwards(num_ebbs, GlobalStats.player, CollectibleSpawner.OrbType.EBB, GlobalStats.player.get_floor())
-			DebugLog.dbg("Explosion", "bomb_orb_drop → spawned %d ebb orbs" % num_ebbs)
+			DebugLog.dbg_from(self,"bomb_orb_drop → spawned %d ebb orbs" % num_ebbs)
 		

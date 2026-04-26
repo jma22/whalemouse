@@ -22,6 +22,15 @@ func entity_name(node: Object) -> String:
 		return "Entity#%s" % short_id
 	return str(node)
 
+func dbg_from(object: Object, msg: String) -> void:
+	var script: Script = object.get_script() as Script
+	var tag: String
+	if script and script.get_global_name() != "":
+		tag = script.get_global_name()
+	else:
+		tag = object.get_class()
+	dbg(tag, msg)
+
 func dbg(tag: String, msg: String) -> void:
 	if not Config.is_enabled("debug_print"):
 		return

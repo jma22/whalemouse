@@ -45,7 +45,7 @@ func enter() -> void:
 	if will_crit:
 		var crit_dmg : int = StatCalculator.get_critical_damage()
 		hitbox.set_damage(crit_dmg)
-		DebugLog.dbg("AttackState", "CRIT rolled (chance=%.2f) → dmg=%d" % [0.25,crit_dmg])
+		DebugLog.dbg_from(self,"CRIT rolled (chance=%.2f) → dmg=%d" % [0.25,crit_dmg])
 	else:
 		hitbox.set_damage(1)
 	# hitbox.set_effect_on_hit(MarkEffect.make())
@@ -115,7 +115,7 @@ func get_attack_size() -> Vector3:
 	if StatCalculator.get_bigger_attack_every_n_hits() > 0:
 		if num_attacks % StatCalculator.get_bigger_attack_every_n_hits() == 0:
 			base_scale *= 2.0
-			DebugLog.dbg("AttackState", "bigger_attack_every_n_hits=%s → hit #%s is big (scale x2)" % [
+			DebugLog.dbg_from(self,"bigger_attack_every_n_hits=%s → hit #%s is big (scale x2)" % [
 				StatCalculator.get_bigger_attack_every_n_hits(), num_attacks
 			])
 	return base_scale

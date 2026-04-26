@@ -7,9 +7,6 @@ var timed_effects : Array[StatusEffectBase] = []
 @export var entity : Node3D
 var is_enemy : bool = false
 
-func _dbg(msg: String) -> void:
-	DebugLog.dbg("StatusEffectManager", msg)
-
 func setup(player_node : Node3D) -> void:
 	entity = player_node
 	is_enemy = entity is EnemyBase
@@ -26,7 +23,7 @@ func _process(delta: float) -> void:
 			any_expired = true
 			if effect.on_expired(entity):
 				timed_effects.erase(effect)
-				_dbg("expired and removed: %s" % effect.name)
+				DebugLog.dbg_from(self,"expired and removed: %s" % effect.name)
 
 	if any_expired:
 		refresh_color_overlay()
@@ -34,7 +31,7 @@ func _process(delta: float) -> void:
 	if is_enemy and entity:
 		var enemy : EnemyBase = entity as EnemyBase
 		if enemy and not enemy.is_dead and enemy.health_component.is_dead() and last_damaging_effect:
-			_dbg("entity died via effect: %s" % last_damaging_effect.name)
+			DebugLog.dbg_from(self,"entity died via effect: %s" % last_damaging_effect.name)
 			last_damaging_effect.on_killed_by_effect(enemy)
 			var info : DamageInfo = DamageInfo.new()
 			info.amount = enemy.health_component.current_health
@@ -44,7 +41,7 @@ func _process(delta: float) -> void:
 			enemy.on_die(info)
 
 func gain_status_effect(effect : StatusEffectBase, source_entity : Object) -> void:
-	_dbg("gained %s from %s" % [effect.name, DebugLog.entity_name(source_entity)])
+	DebugLog.dbg_from(self,"gained %s from %s" % [effect.name, DebugLog.entity_name(source_entity)])
 	## only conditionals need entity
 	if effect.is_conditional:
 		assert(source_entity != null)
@@ -62,7 +59,7 @@ func gain_status_effect(effect : StatusEffectBase, source_entity : Object) -> vo
 	else:
 		for existing_effect : StatusEffectBase in timed_effects:
 			if existing_effect.name == effect.name:
-				_dbg("stacking %s" % effect.name)
+				DebugLog.dbg_from(self,"stacking %s" % effect.name)
 				effect.stack_with(existing_effect)
 				effect.on_applied(entity)
 				return
@@ -79,7 +76,7 @@ func lose_status_effect(effect : StatusEffectBase, source_entity : Object) -> vo
 			for existing_effect : StatusEffectBase in effects:
 				if existing_effect == effect:
 					effects.erase(existing_effect)
-					_dbg("lost conditional %s from %s" % [effect.name, DebugLog.entity_name(source_entity)])
+					DebugLog.dbg_from(self,"lost conditional %s from %s" % [effect.name, DebugLog.entity_name(source_entity)])
 					if effects.is_empty():
 						status_effects.erase(id)
 					refresh_color_overlay()
@@ -87,7 +84,7 @@ func lose_status_effect(effect : StatusEffectBase, source_entity : Object) -> vo
 		for existing_effect : StatusEffectBase in status_effects:
 			if existing_effect.name == effect.name:
 				status_effects.erase(existing_effect)
-				_dbg("lost %s" % effect.name)
+				DebugLog.dbg_from(self,"lost %s" % effect.name)
 				refresh_color_overlay()
 
 
@@ -146,7 +143,7 @@ func get_damage_multiplier() -> int:
 	return m
 
 func notify_hit_consumed(info: DamageInfo) -> void:
-	_dbg("notify_hit_consumed dmg=%s" % info.amount)
+	DebugLog.dbg_from(self,"notify_hit_consumed dmg=%s" % info.amount)
 	for effect : StatusEffectBase in get_deduped_list().duplicate():
 		if effect.on_hit_consumed(entity, info):
 			timed_effects.erase(effect)
@@ -157,7 +154,7 @@ func notify_hit_consumed(info: DamageInfo) -> void:
 # 		effect.on_owner_killed(entity, killer)
 
 func notify_entity_died() -> void:
-	_dbg("notify_entity_died")
+	DebugLog.dbg_from(self,"notify_entity_died")
 	for effect : StatusEffectBase in get_deduped_list():
 		effect.on_entity_died(entity)
 

@@ -50,7 +50,8 @@ func reset() -> void:
 	current_wave_state = WaveState.INTRO_COMBAT
 
 func exit_wave() -> void:
-	## called before entering 
+	DebugLog.dbg_from(self, "exit_wave  state=%s" % WaveState.keys()[current_wave_state])
+	## called before entering
 	if current_wave_state == WaveState.QUEUED_WAVE:
 		var info : WaveInfo = queued_wave_infos.pop_front()
 		if info.room_type == "boss":
@@ -60,11 +61,11 @@ func exit_wave() -> void:
 	
 
 func enter_wave() -> WaveInfo:
-	print("Entering wave ", current_wave)
+	DebugLog.dbg_from(self, "=== enter_wave #%d ===" % current_wave)
 	var wave_state : WaveState = _get_next_wave_state()
 	current_wave_state = wave_state
 	var current_wave_info : WaveInfo = _state_to_wave_info(wave_state)
-	print("Wave state: ", wave_state, " Wave info: ", current_wave_info)
+	DebugLog.dbg_from(self, "state=%s  info=%s" % [WaveState.keys()[wave_state], current_wave_info.name])
 
 	if wave_state == WaveState.QUEUED_WAVE:
 		pass
@@ -441,7 +442,7 @@ func intro_combat_wave() -> CombatWaveInfo:
 
 
 func _queue_wave_effect(wave : WaveInfo) -> void:
-	print("Queueing wave: ", wave.name)
+	DebugLog.dbg_from(self, "queued wave: %s" % wave.name)
 	queued_wave_infos.append(wave)
 
 func curse_adjusting(upgrade : UpgradeData) -> Choice:

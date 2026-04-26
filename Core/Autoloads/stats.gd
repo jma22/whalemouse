@@ -175,24 +175,44 @@ func reset_current_run_stats() -> void:
 		boss_stats[k] = 0
 	
 	ordering = []
-	var override_dict : Dictionary = Config.get_override("starting_stats", {})
-	for k : String in override_dict.keys():
-		for i : int in range(override_dict[k]):	
-			add_to_stat(k)
-			add_boss_stat(k)
+	_apply_overrides()
+	# var override_dict : Dictionary = Config.get_override("starting_stats", {})
+	# for k : String in override_dict.keys():
+	# 	for i : int in range(override_dict[k]):	
+	# 		add_to_stat(k)
+	# 		add_boss_stat(k)
 	
+	# Upgrades.ensure_initialized()
+	# var override_chosen_upgrades : Array = Config.get_override("chosen_upgrades", [])
+	# for upgrade_name : String in override_chosen_upgrades:
+	# 	var upgrade : UpgradeData = UpgradeRegistry.get_by_name(upgrade_name)
+	# 	if upgrade == null:
+	# 		push_warning("GlobalStats: starting upgrade '%s' not found in registry" % upgrade_name)
+	# 		continue
+	# 	upgrade.apply()
+
+	# var override_wave_augments : Dictionary = Config.get_override("starting_wave_augments", {})
+	# for k : String in override_wave_augments.keys():
+	# 	add_wave_augment(k, override_wave_augments[k])
+
+func _apply_overrides() -> void:
+	for k : String in current_run_stats.keys():
+		if Config.get_override("current_stats/" + k) != null:
+			for i : int in range(Config.get_override("current_stats/" + k)):
+				add_to_stat(k)
+	for k : String in boss_stats.keys():
+		if Config.get_override("boss_stats/" + k) != null:
+			for i : int in range(Config.get_override("boss_stats/" + k)):
+				add_boss_stat(k)
 	Upgrades.ensure_initialized()
-	var override_chosen_upgrades : Array = Config.get_override("chosen_upgrades", [])
-	for upgrade_name : String in override_chosen_upgrades:
+
+	for upgrade_name : String in Config.get_override("chosen_upgrades", []):
 		var upgrade : UpgradeData = UpgradeRegistry.get_by_name(upgrade_name)
 		if upgrade == null:
-			push_warning("GlobalStats: starting upgrade '%s' not found in registry" % upgrade_name)
+			push_warning("GlobalStats: override upgrade '%s' not found in registry" % upgrade_name)
 			continue
 		upgrade.apply()
 
-	var override_wave_augments : Dictionary = Config.get_override("starting_wave_augments", {})
-	for k : String in override_wave_augments.keys():
-		add_wave_augment(k, override_wave_augments[k])
 	
 
 func add_to_stat(stat_name: String) -> void:

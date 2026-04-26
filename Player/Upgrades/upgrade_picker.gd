@@ -7,7 +7,7 @@ static var chosen_tags: Array[StringName] = []
 
 
 static func _dbg(string : String) -> void:
-	DebugLog.dbg("UpgradePicker:", string)
+	DebugLog.dbg("UpgradePicker", string)
 
 static func has_chosen_tag(tag: StringName) -> bool:
 	return tag in chosen_tags
@@ -54,6 +54,13 @@ static func eligible_in_pool(pool: String, need_tags: Array[StringName], exclude
 	for upgrade: UpgradeData in UpgradeRegistry.all():
 		if upgrade.blessing_type == pool and is_eligible(upgrade, need_tags) and not (upgrade.internal_name in exclude):
 			result.append(upgrade)
+	var total_w: float = 0.0
+	for u: UpgradeData in result:
+		total_w += u.weight
+	_dbg("pool=[%s] need_tags=%s  %d eligible:" % [pool, need_tags, result.size()])
+	for u: UpgradeData in result:
+		var pct: float = (u.weight / total_w * 100.0) if total_w > 0.0 else 0.0
+		_dbg("  %-30s  w=%.2f  (%.1f%%)" % [u.internal_name, u.weight, pct])
 	return result
 
 static func pick(pool: String, amount: int, need_tags: Array[StringName], exclude: Array[StringName] = []) -> Array[UpgradeData]:
@@ -62,7 +69,9 @@ static func pick(pool: String, amount: int, need_tags: Array[StringName], exclud
 	if candidates.size() <= amount:
 		_dbg("[ERROR]Not enough candidates in pool %s, need %d but only have %d. Returning all." % [pool, amount, candidates.size()])
 		return candidates
-	return _weighted_sample(candidates, amount)
+	var picks := _weighted_sample(candidates, amount)
+	_dbg("pick result: %s" % str(picks.map(func(u: UpgradeData) -> String: return u.internal_name)))
+	return picks
 
 static func pick_or(pool: String, amount: int, at_least_one_tags: Array[StringName], exclude: Array[StringName] = []) -> Array[UpgradeData]:
 	var candidates: Array[UpgradeData] = []
@@ -85,6 +94,7 @@ static func _weighted_sample(candidates: Array[UpgradeData], amount: int) -> Arr
 		if total_weight <= 0.0:
 			var idx: int = randi() % pool.size()
 			result.append(pool[idx])
+			_dbg("  draw %d: (zero weights) random → %s" % [result.size(), pool[idx].internal_name])
 			pool.remove_at(idx)
 			continue
 		var roll: float = randf() * total_weight
@@ -93,6 +103,7 @@ static func _weighted_sample(candidates: Array[UpgradeData], amount: int) -> Arr
 			cumulative += pool[j].weight
 			if roll <= cumulative:
 				result.append(pool[j])
+				_dbg("  draw %d: roll=%.3f / %.3f → %s" % [result.size(), roll, total_weight, pool[j].internal_name])
 				pool.remove_at(j)
 				break
 	return result

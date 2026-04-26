@@ -18,9 +18,19 @@ func _ready() -> void:
 	if Config.get_override("reset_gamedata"):
 		_save()
 	_load()
+	_apply_overrides()
 
+func _apply_overrides() -> void:
+	for key: String in lifetime_stats:
+		lifetime_stats[key] = Config.get_override("gamedata/" + key, lifetime_stats[key])
+	# for name: String in unlocked_upgrades:
+	_evaluate_unlocks()
+	# _save()
+		
 func is_unlocked(upgrade_name: String) -> bool:
 	if Config.get_override("unlock_all", false):
+		return true
+	if Config.get_setting("user_unlock_all", false):
 		return true
 	return upgrade_name in unlocked_upgrades
 

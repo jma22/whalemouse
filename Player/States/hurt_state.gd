@@ -11,7 +11,7 @@ func enter() -> void:
 	entity.set_invulnerable(true, invulnerability_duration)
 	if StatCalculator.has_dash_reset_on_damage():
 		entity.dash_component.reset_dash_cooldown()
-		DebugLog.dbg("HurtState", "dash_reset_on_damage → dash cooldown reset")
+		DebugLog.dbg_from(self,"dash_reset_on_damage → dash cooldown reset")
 	# var random_dir : Vector3 = Vector3(randf() * 2.0 - 1.0, 0, randf() * 2.0 - 1.0).normalized()
 	# entity.velocity = random_dir * knockback_strength
 	entity.position.y = 0

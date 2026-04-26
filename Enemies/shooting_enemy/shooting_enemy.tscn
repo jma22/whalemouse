@@ -94,6 +94,9 @@ metadata/_custom_type_script = "uid://e0mqbimeypka"
 
 [node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169]
 script = ExtResource("10_w7tql")
+shooting_time = 0.0
+shooting_speed_multiplier = 0.9
+angle_between_bullets_degrees = 15.0
 
 [node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
 script = ExtResource("12_ne1wh")

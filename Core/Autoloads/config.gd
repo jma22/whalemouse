@@ -2,6 +2,7 @@ extends Node
 
 const FLAGS_PATH := "res://Config/feature_flags.cfg"
 const USER_FLAGS_PATH := "user://feature_flags.cfg"
+# cd Appdata/Roaming/Godot/app_userdata/
 
 
 var _cfg := ConfigFile.new()
@@ -34,6 +35,7 @@ func get_override(key: String, default: Variant = null) -> Variant:
     if not OS.has_feature("editor"):
         return default  # overrides never apply in release builds
     return _cfg.get_value("overrides", key, default)
+
 
 func set_setting(key: String, value: Variant, save := false) -> void:
     _user_cfg.set_value("settings", key, value)
