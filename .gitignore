@@ -5,4 +5,4 @@
 #ignore build and build.zip
 /build/
 *.zip
-
+logs/
