@@ -51,7 +51,7 @@ static func get_description_for_tag(tag: StringName) -> String:
 		BOMB_SOURCE, NEEDS_BOMB:
 			return Keywords.apply("Bomb: Deal %d damage in an area. Deals %d damage to you." % [BombExplosion.BASE_BOMB_DAMAGE, BombExplosion.BASE_BOMB_FRIENDLY_FIRE_DAMAGE])
 		DECAY:
-			return Keywords.apply("Decay: Curse ticks at double speed.")
+			return Keywords.apply("Decay: Curse ticks at double speed for one second.")
 		SPAWNS_BERSERK:
 			return Keywords.apply("Berserk: Enemies attack and move faster.")
 		SPAWNS_CURSED:

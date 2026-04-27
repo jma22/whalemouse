@@ -39,6 +39,7 @@ func _modify_outgoing_damage(_info: DamageInfo, _target: Node3D) -> void:
 
 
 func on_kill(_info: DamageInfo, _target: Node3D) -> void:
+	_dbg("WhaleHitboxBehavior on_kill triggered for %s" % DebugLog.entity_name(_target))
 	if StatCalculator.orbs_on_beluga_kill() > 0:
 		if _target is EnemyBase:
 			var spawner : Node3D = (load("res://Collectibles/xp_spawner.tscn") as PackedScene).instantiate()
@@ -49,6 +50,7 @@ func on_kill(_info: DamageInfo, _target: Node3D) -> void:
 			_dbg("orbs_on_beluga_kill → spawned %s orbs at %s" % [StatCalculator.orbs_on_beluga_kill(), DebugLog.entity_name(_target)])
 	
 	if StatCalculator.on_beluga_kill_cd_refund_percent() > 0:
+		_dbg("on_beluga_kill_cd_refund_percent → attempting to refund whale cooldown for %s" % DebugLog.entity_name(hitbox.get_source()))
 		if hitbox.get_source() and hitbox.get_source().has_method("refund_whale_cooldown"):
 			hitbox.get_source().refund_whale_cooldown(StatCalculator.on_beluga_kill_cd_refund_percent())
 			_dbg("on_beluga_kill_cd_refund_percent → refunded %s%% whale cooldown for %s" % [

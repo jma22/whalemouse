@@ -114,7 +114,7 @@ func get_attack_size() -> Vector3:
 	var base_scale := Vector3(StatCalculator.get_mouse_attack_hitbox_shrink(), 1, StatCalculator.get_mouse_attack_hitbox_shrink())
 	if StatCalculator.get_bigger_attack_every_n_hits() > 0:
 		if num_attacks % StatCalculator.get_bigger_attack_every_n_hits() == 0:
-			base_scale *= 2.0
+			base_scale *= 2.5
 			DebugLog.dbg_from(self,"bigger_attack_every_n_hits=%s → hit #%s is big (scale x2)" % [
 				StatCalculator.get_bigger_attack_every_n_hits(), num_attacks
 			])

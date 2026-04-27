@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://birlwkgna56fn" path="res://MainScenes/GameOver/game_over_scene.gd" id="1_2gdd6"]
 [ext_resource type="Script" uid="uid://dsd7io4ojj2ch" path="res://MainScenes/GameOver/retry_button.gd" id="1_qpvvx"]
+[ext_resource type="Texture2D" uid="uid://dsanarmjmbf10" path="res://MainScenes/GameOver/win_screen.png" id="2_7dhkh"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_qxph1"]
 [ext_resource type="Texture2D" uid="uid://bujyudcxbwii8" path="res://MainScenes/GameOver/2169_Sem_Titulo_20260404180154.png" id="3_su5tw"]
 [ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="5_xd6gs"]
@@ -18,6 +19,8 @@ script = ExtResource("1_2gdd6")
 background = NodePath("Control/TextureRect")
 audio_player = NodePath("AudioStreamPlayer")
 text_labels = [NodePath("Control/Control/RichTextLabel"), NodePath("Control/Control/RichTextLabel2"), NodePath("Control/Control/RichTextLabel3")]
+game_win_texture = ExtResource("2_7dhkh")
+game_over_texture = ExtResource("3_su5tw")
 button_control = NodePath("Control/VBoxContainer/Control")
 
 [node name="Control" type="Control" parent="." unique_id=473503477]
@@ -103,7 +106,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("3_qxph1")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[shake rate=4.0 level=4 connected=1]Try Again?[/shake]"
+text = "[shake rate=4.0 level=4 connected=1]Next[/shake]"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

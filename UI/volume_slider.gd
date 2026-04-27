@@ -2,7 +2,7 @@ extends HSlider
 
 
 func _ready() -> void:
-	value = Config.get_setting("volume", 0.5)
+	value = Config.get_setting("volume", 0.25)
 	value_changed.connect(_on_value_changed)
 	
 

@@ -7,6 +7,7 @@ enum WaveState {
 	INTRO_COMBAT,
 	COMBAT,
 	ANY_BLESSING,
+	STACKABLE_BLESSING,
 	FUNNY,
 	CURSE,
 	HARD_CURSE,
@@ -14,6 +15,7 @@ enum WaveState {
 	QUEUED_WAVE,
 	INTRO_BLESSING,
 	BOSS_CHOICE,
+	FIFTY_FIFTY,
 	SOURCE
 }
 var wave_sequence : Array[WaveState] = [
@@ -23,7 +25,7 @@ var wave_sequence : Array[WaveState] = [
 	WaveState.COMBAT, 
 	WaveState.HARD_CURSE,
 	#cycle
-	WaveState.ONETIME_BLESSING,
+	WaveState.FIFTY_FIFTY,
 	WaveState.INTRO_COMBAT,
 	WaveState.FUNNY,
 	WaveState.COMBAT,
@@ -31,6 +33,8 @@ var wave_sequence : Array[WaveState] = [
 	#cycle
 	WaveState.SOURCE,
 	WaveState.INTRO_COMBAT,
+	WaveState.FUNNY,
+	WaveState.COMBAT,
 	WaveState.FUNNY,
 	WaveState.COMBAT,
 	WaveState.BOSS_CHOICE,
@@ -108,6 +112,8 @@ func _state_to_wave_info(state : WaveState) -> WaveInfo:
 			return one_time_blessing_wave()
 		WaveState.HARD_CURSE:
 			return hard_curse_wave()
+		WaveState.FIFTY_FIFTY:
+			return fifty_fifty_wave()	
 
 		
 	printerr("Invalid wave state: ", state)
@@ -138,20 +144,48 @@ func intro_blessing() -> ChoiceWaveInfo:
 func source_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	wave_info.blessings.assign(UpgradePicker.pick(UpgradePool.BLESSING, 2, [UpgradeTag.SOURCE]))
+	var upgrades : Array[UpgradeData] = UpgradePicker.pick(UpgradePool.BLESSING, 2, [UpgradeTag.SOURCE])
+	if len(upgrades) == 0:
+		DebugLog.dbg_from(self, "No source blessings available!")
+		return any_blessing_wave()
+	wave_info.blessings.assign(upgrades)
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "The Source"
 	return wave_info
 
+func fifty_fifty_wave() -> ChoiceWaveInfo:
+	if randf() < 0.5:
+		return one_time_blessing_wave()
+	else:
+		return stackable_blessing_wave()
+
 
 func one_time_blessing_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
-	wave_info.blessings.assign(UpgradePicker.pick(UpgradePool.BLESSING, 2, [UpgradeTag.ONETIME]))
+	var upgrades : Array[UpgradeData] = UpgradePicker.pick(UpgradePool.BLESSING, 2, [UpgradeTag.ONETIME])
+	if len(upgrades) == 0:
+		DebugLog.dbg_from(self, "No one-time blessings available!")
+		return any_blessing_wave()
+	wave_info.blessings.assign(upgrades)
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
 	wave_info.name = "Major Relics"
+	return wave_info
+
+
+func stackable_blessing_wave() -> ChoiceWaveInfo:
+	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
+	wave_info.wave_number = current_wave
+	var upgrades : Array[UpgradeData] = UpgradePicker.pick(UpgradePool.BLESSING, 2, [UpgradeTag.STACKABLE])
+	if len(upgrades) == 0:
+		DebugLog.dbg_from(self, "No stackable blessings available!")
+		return any_blessing_wave()
+	wave_info.blessings.assign(upgrades)
+	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
+	wave_info.room_type = "shrine"
+	wave_info.name = "Minor Relics"
 	return wave_info
 
 	
@@ -161,7 +195,7 @@ func any_blessing_wave() -> ChoiceWaveInfo:
 	wave_info.blessings.assign(UpgradePicker.pick(UpgradePool.BLESSING, 2,[]))
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = "shrine"
-	wave_info.name = "Minor Relics"
+	wave_info.name = "Any Relics"
 	return wave_info
 
 
@@ -202,24 +236,21 @@ func funny_wave() -> ChoiceWaveInfo:
 		"bless_and_curse": choose_bless_and_curse_wave,
 		"rerolls": reroll_wave.bind([] as Array[StringName], 1),
 		"sustain": sustain_wave,
-		# "shop": shop_wave,
 		"shop_wave": shop_wave,
-		# "whale_blessing": whale_blessing_wave,
-		# "blessing" : two_blessing_wave,
-		# "curse": curse_wave,
-		# "hard_curse" : hard_curse_wave,
+
 		"bless_or_heal": bless_or_heal_wave,  
 		# "curse_or_damage": curse_or_damage_wave,
 		"intro": intro_blessing,
+		"fifty_fifty": fifty_fifty_wave,
 	}
 	var wave_fn : Callable = name_to_wave_fn.values().pick_random()
 	return wave_fn.call()
-
+\
 func sustain_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	var upgrades : Array[Choice] = []
-	var max_health :UpgradeData = UpgradeRegistry.get_by_name("little_max_health")
+	var max_health :UpgradeData = UpgradeRegistry.get_by_name("player_max_health")
 	upgrades.assign(UpgradePicker.pick_or(UpgradePool.BLESSING, 2, [UpgradeTag.DROPS_ORBS, UpgradeTag.EBB_SOURCE], [max_health.internal_name]))
 	var heal_choice : Choice = Choice.new(
 		"Heal 10",

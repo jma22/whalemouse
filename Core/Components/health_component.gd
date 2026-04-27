@@ -14,7 +14,7 @@ func setup(_max_health: int, entity: CharacterBody3D) -> void:
 	self.entity = entity
 	current_health = max_health
 	is_player = entity is Player
-	
+	DebugLog.dbg_from(self,"HealthComponent setup with max_health=%s for entity %s (is_player=%s)" % [max_health, DebugLog.entity_name(entity), is_player])
 
 func link_player_health(hud: HUD) -> void:
 	self.hp_display = hud.hp_display
@@ -57,7 +57,7 @@ func set_max_health(new_max: int) -> void:
 
 func get_functional_max_health() -> int:
 	if is_player:
-		return Player.BASE_MAX_HEALTH + StatCalculator.get_player_bonus_max_health()
+		return StatCalculator.get_player_max_health()
 	return max_health 
 
 func is_dead() -> bool:

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dra8kgw44m4ep" path="res://UI/HUD/boss_health.gd" id="2_hq5uf"]
 [ext_resource type="Material" uid="uid://g7sav26ljf3m" path="res://UI/HUD/Shaders/vignette_mat.tres" id="2_v4ort"]
 [ext_resource type="Script" uid="uid://kpyo8xf0p2ld" path="res://UI/HUD/vignette.gd" id="3_ajsli"]
-[ext_resource type="PackedScene" uid="uid://dvb3n46jwcj8j" path="res://UI/HUD/BlessingIcons/icon.tscn" id="3_hq5uf"]
+[ext_resource type="PackedScene" uid="uid://dvb3n46jwcj8j" path="res://UI/HUD/RelicIcons/icon.tscn" id="3_hq5uf"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_v4ort"]
 [ext_resource type="PackedScene" uid="uid://dac7dl6bj43cp" path="res://UI/HUD/hud_bar.tscn" id="4_v4ort"]
 [ext_resource type="Texture2D" uid="uid://lkyr6obvdh1" path="res://UI/HUD/BossHPBar/boss_hp_under.png" id="6_2k7cj"]

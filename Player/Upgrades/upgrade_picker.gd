@@ -54,13 +54,6 @@ static func eligible_in_pool(pool: String, need_tags: Array[StringName], exclude
 	for upgrade: UpgradeData in UpgradeRegistry.all():
 		if upgrade.blessing_type == pool and is_eligible(upgrade, need_tags) and not (upgrade.internal_name in exclude):
 			result.append(upgrade)
-	var total_w: float = 0.0
-	for u: UpgradeData in result:
-		total_w += u.weight
-	_dbg("pool=[%s] need_tags=%s  %d eligible:" % [pool, need_tags, result.size()])
-	for u: UpgradeData in result:
-		var pct: float = (u.weight / total_w * 100.0) if total_w > 0.0 else 0.0
-		_dbg("  %-30s  w=%.2f  (%.1f%%)" % [u.internal_name, u.weight, pct])
 	return result
 
 static func pick(pool: String, amount: int, need_tags: Array[StringName], exclude: Array[StringName] = []) -> Array[UpgradeData]:
@@ -77,13 +70,17 @@ static func pick_or(pool: String, amount: int, at_least_one_tags: Array[StringNa
 	var candidates: Array[UpgradeData] = []
 	for tag in at_least_one_tags:
 		candidates += eligible_in_pool(pool, [tag], exclude)
-	if candidates.size() == 0:
-		_dbg("No candidates in pool %s with tags %s" % [pool, at_least_one_tags])
-		return candidates
 	return _weighted_sample(candidates, amount)
 
 static func _weighted_sample(candidates: Array[UpgradeData], amount: int) -> Array[UpgradeData]:
 	var pool: Array[UpgradeData] = candidates.duplicate()
+	var total_w: float = 0.0
+	for u: UpgradeData in pool:
+		total_w += u.weight
+	_dbg("%d candidates:" % pool.size())
+	for u: UpgradeData in pool:
+		var pct: float = (u.weight / total_w * 100.0) if total_w > 0.0 else 0.0
+		_dbg("  %-30s  w=%.2f  (%.1f%%)" % [u.internal_name, u.weight, pct])
 	var result: Array[UpgradeData] = []
 	for i in amount:
 		if pool.is_empty():

@@ -3,8 +3,16 @@ class_name StatCalculator
 
 
 ### NEWS
-static func get_player_bonus_max_health(preview: bool = false) -> int:
-	return GlobalStats.current_run_stats["player_max_health"] * 5
+static func get_player_max_health() -> int:
+	var base_health:int = 30
+	match Config.get_difficulty():
+		Config.Difficulty.EASY:
+			base_health = 40
+		Config.Difficulty.NORMAL:
+			base_health = 30
+		Config.Difficulty.HARD:
+			base_health = 20
+	return base_health + GlobalStats.current_run_stats["player_max_health"] * 5
 
 static func get_movement_speed_flat() -> float:
 	return GlobalStats.current_run_stats["movement_speed_flat"] * 0.5
@@ -21,7 +29,7 @@ static func orbs_on_beluga_kill(preview: bool = false) -> int:
 
 static func on_beluga_kill_cd_refund_percent(preview: bool = false) -> float:
 	var stat_level: int = GlobalStats.current_run_stats["on_beluga_kill_cd_refund"] + (1 if preview else 0)
-	return 1 - 0.5 ** stat_level
+	return 1 - 0.75 ** stat_level
 
 static func on_beluga_kill_size_grow() -> bool:
 	return GlobalStats.current_run_stats["on_beluga_kill_size_grow"] > 0
@@ -90,14 +98,29 @@ static func get_attracted_speed() -> float:
 	# return int(GlobalStats.current_run_stats["enemy_xp_drop"])
 
 static func get_enemy_damage() -> int:
-	return 4
+	match Config.get_difficulty():
+		Config.Difficulty.EASY:
+			return 3
+		Config.Difficulty.NORMAL:
+			return 4
+		Config.Difficulty.HARD:
+			return 5
+	return 4 
 	# return ceil(5 + GlobalStats.current_run_stats["enemy_damage"] * 2.5)
 
 # static func get_dash_distance() -> float:
 	# return 5.0 + GlobalStats.current_run_stats["dash_distance"] * 3.0
 
 static func get_seconds_per_damage() -> float: ## 2.5 seconds per damage is chill no time change ## was 0.4 now 0.3
-	return 2.0 / (1.0 + GlobalStats.current_run_stats["time_tick_level"] * 0.3) ** 1.1
+	var scaling_amount : float = 0.4
+	match Config.get_difficulty():
+		Config.Difficulty.EASY:
+			scaling_amount = 0.3
+		Config.Difficulty.NORMAL:
+			scaling_amount = 0.4
+		Config.Difficulty.HARD:
+			scaling_amount = 0.5
+	return 2.0 / (1.0 + GlobalStats.current_run_stats["time_tick_level"] * scaling_amount) ** 1.1
 
 static func get_enemy_projectile_flat() -> int:
 	return 0
@@ -145,8 +168,8 @@ static func get_boss_freeze_time(preview: bool = false) -> int:
 static func get_num_whales() -> int:
 	return GlobalStats.current_run_stats["num_whales"] + 1
 
-static func get_curse_duration_on_hit() -> float:
-	return GlobalStats.current_run_stats["curse_on_hit"] * 2.0
+static func get_decay_duration_on_hit() -> int:
+	return GlobalStats.current_run_stats["curse_on_hit"]
 
 static func get_extra_boss_health() -> int:
 	return GlobalStats.current_run_stats["extra_boss_health"] * 7
@@ -163,8 +186,8 @@ static func get_boss_attack_size_multiplier() -> float:
 	return 1.0 + GlobalStats.current_run_stats["boss_attack_size"] * 0.5
 
 #gen 2
-static func get_decay_on_damaged() -> float:
-	return GlobalStats.current_run_stats["decay_on_damaged"] * 1.0
+static func get_decay_on_damaged() -> int:
+	return GlobalStats.current_run_stats["decay_on_damaged"]
 
 static func get_bigger_attack_every_n_hits(preview: bool = false) -> int:
 	var stat_level: int = GlobalStats.current_run_stats["bigger_attack_every_n_hits"] + (1 if preview else 0)
@@ -186,7 +209,7 @@ static func get_bomb_size() -> float:
 	return 1.0 + GlobalStats.current_run_stats["bomb_size"] * 0.2
 
 static func get_bomb_tick_time() -> float:
-	return 1.8 * (0.9 ** GlobalStats.current_run_stats["bomb_tick_time"])
+	return 1.8 * (0.8 ** GlobalStats.current_run_stats["bomb_tick_time"])
 
 static func get_super_bomb_chance() -> float:
 	if GlobalStats.current_run_stats["bomb_crit"] == 0:
@@ -212,8 +235,9 @@ static func has_poison_enemies_drop_bombs() -> bool:
 static func get_poisoned_enemies_drop_ebbs() -> int:
 	return GlobalStats.current_run_stats["poisoned_enemies_drop_ebbs"] * 2
 
-static func get_poison_kills_drop_orbs() -> int:
-	return GlobalStats.current_run_stats["poison_kills_drop_orbs"] * 2
+static func get_poison_kills_drop_orbs(preview : bool = false) -> int:
+	var stat_level: int = GlobalStats.current_run_stats["poison_kills_drop_orbs"] + (1 if preview else 0)
+	return stat_level * 2
 
 static func get_poison_tick_multiplier() -> float:
 	var m : float = 1.0 - GlobalStats.current_run_stats["faster_poison"] * 0.2
@@ -286,13 +310,13 @@ static func get_chance_to_spawn_spikey() -> float:
 	return  GlobalStats.current_run_stats["enemy_spawn_spikey"] *  0.25
 
 static func get_chance_to_spawn_wither() -> float:
-	return  GlobalStats.current_run_stats["enemy_spawn_wither"] * 0.1
+	return  GlobalStats.current_run_stats["enemy_spawn_wither"] * 0.2
 
 static func get_chance_to_spawn_poisoned() -> float:
-	return  GlobalStats.current_run_stats["enemy_spawn_poisoned"] * 0.1
+	return  GlobalStats.current_run_stats["enemy_spawn_poisoned"] * 0.2
 
 static func get_chance_to_spawn_marked() -> float:
-	return  GlobalStats.current_run_stats["enemy_spawn_marked"] * 0.1
+	return  GlobalStats.current_run_stats["enemy_spawn_marked"] * 0.2
 
 static func get_chance_to_spawn_shielded() -> float:
 	return  GlobalStats.current_run_stats["enemy_spawn_shielded"] *  0.25
@@ -339,7 +363,7 @@ static func get_ebb_begin_of_room(preview: bool = false) -> int:
 
 static func get_midas_dash_touch_num(preview: bool = false) -> int:
 	var stat_level: int = GlobalStats.current_run_stats["midas_dash_touch"] + (1 if preview else 0)
-	return stat_level
+	return stat_level * 2
 
 static func get_jump_kill_orb_num(preview: bool = false) -> int:
 	var stat_level: int = GlobalStats.current_run_stats["jump_kill_orb"] + (1 if preview else 0)

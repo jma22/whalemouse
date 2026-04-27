@@ -376,16 +376,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0519333, 0, -0.814209)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1269608, 0, -0.96539307)
 
 [node name="Node3D5" type="Node3D" parent="PillarPoints" unique_id=418722889 groups=["pillar_points"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2907715, 0, 0.6508179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6437225, 0, 0.6508179)
 
 [node name="Node3D6" type="Node3D" parent="PillarPoints" unique_id=1606798015 groups=["pillar_points"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4279785, 0, -1.5252075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3993378, 0, -1.0742798)
 
 [node name="Node3D7" type="Node3D" parent="PillarPoints" unique_id=977888163 groups=["pillar_points"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.710556, 0, -1.1232175)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5002747, 0, -1.1232175)
 
 [node name="Node3D8" type="Node3D" parent="PillarPoints" unique_id=916832286 groups=["pillar_points"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2126694, 0, 0.84033203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0002613, 0, 0.84033203)
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

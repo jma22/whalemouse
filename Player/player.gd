@@ -24,14 +24,13 @@ class_name Player extends CharacterBody3D
 
 @onready var dash_component : DashComponent = $DashComponent 
 
-const BASE_MAX_HEALTH : int = 30
 var time_damage_manager : TimeDamageManager
 var hud_ref : HUD
 var map_ref : MapManagerBase
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
 
-var initial_health : int = BASE_MAX_HEALTH
+var initial_health : int = StatCalculator.get_player_max_health()
 
 # Input buffer — remembers the last action pressed within BUFFER_WINDOW seconds
 const BUFFER_WINDOW : float = 0.2
@@ -160,12 +159,13 @@ func on_hit(info: DamageInfo) -> void:
 	damage_taken = max(0, damage_taken - reduced_by)
 	if StatCalculator.has_death_dance():
 		damage_taken = min(damage_taken, 1)
-		gain_status_effect(HasteEffect.make(1.0), self)
-		DebugLog.dbg("Combat", "death_dance → dmg capped to 1, gained Haste(1.0s)")
+		gain_status_effect(HasteEffect.make(2.0), self)
+		DebugLog.dbg("Combat", "death_dance → dmg capped to 1, gained Haste(2.0s)")
 	if map_ref is BossMapManager:
-		if StatCalculator.get_curse_duration_on_hit() > 0:
-			gain_status_effect(HasteEffect.make(StatCalculator.get_curse_duration_on_hit()), self)
-			DebugLog.dbg("Combat", "curse_duration_on_hit → gained Haste(%.1fs)" % StatCalculator.get_curse_duration_on_hit())
+		if StatCalculator.get_decay_duration_on_hit() > 0:
+			for i in range(StatCalculator.get_decay_duration_on_hit()):
+				gain_status_effect(HasteEffect.make(2.0), self)
+			DebugLog.dbg("Combat", "decay_duration_on_hit → gained Haste(%.1fs)" % StatCalculator.get_decay_duration_on_hit())
 	var hp_before : int = health_component.current_health
 	health_component.take_damage(damage_taken)
 	DebugLog.dbg("Combat", "Player took %s dmg | hp: %s→%s%s" % [
@@ -174,7 +174,8 @@ func on_hit(info: DamageInfo) -> void:
 	])
 
 	if StatCalculator.get_decay_on_damaged() > 0:
-		gain_status_effect(HasteEffect.make(StatCalculator.get_decay_on_damaged()), self)
+		for i in range(StatCalculator.get_decay_on_damaged()):
+			gain_status_effect(HasteEffect.make(2.0), self)
 		DebugLog.dbg("Combat", "decay_on_damaged → gained Haste(%.1fs)" % StatCalculator.get_decay_on_damaged())
 
 	# if hitbox.effect_on_hit:
@@ -250,4 +251,6 @@ func lose_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 
 func get_initial_health() -> int:
 	var override : Variant = Config.get_override("starting_health")
-	return override if override != null else BASE_MAX_HEALTH
+	DebugLog.dbg_from(self,"get_initial_health override=%s, max_health=%s" % [override, StatCalculator.get_player_max_health()])
+	return override if override != null else StatCalculator.get_player_max_health()
+

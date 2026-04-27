@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://b3laqrhmbviaw"]
 
 [ext_resource type="Script" uid="uid://cpr3cklqc7fhj" path="res://Enemies/Projectiles/explosion.gd" id="1_3qop0"]
-[ext_resource type="Texture2D" uid="uid://00k2chggmyig" path="res://UI/HUD/BlessingIcons/damage.png" id="1_gs0rj"]
+[ext_resource type="Texture2D" uid="uid://00k2chggmyig" path="res://UI/HUD/RelicIcons/boss_attack_size.png" id="1_gs0rj"]
 [ext_resource type="Texture2D" uid="uid://cwcnartars2to" path="res://UI/HUD/circle.png" id="1_kg1lu"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_3qop0"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="2_dlpa8"]
+[ext_resource type="PackedScene" uid="uid://bdgwc04qsydls" path="res://Collectibles/xp_spawner.tscn" id="2_dx1dy"]
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="6_dlpa8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dx1dy"]
@@ -80,6 +81,7 @@ explosion_sprite = NodePath("Explosion/ExplosionEffect")
 explosion_area = NodePath("Node3D/ExplosionArea")
 explosion_hitbox = NodePath("Node3D/Hitbox")
 enemy_hitbox = NodePath("Node3D/EnemyHitbox")
+xp_spawner_scene = ExtResource("2_dx1dy")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=949658403]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)

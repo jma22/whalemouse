@@ -333,9 +333,10 @@ hitbox = NodePath("Hitbox")
 stream = ExtResource("8_gi7rn")
 volume_db = -10.465
 
-[node name="Hitbox" type="Area3D" parent="." unique_id=976800001]
+[node name="Hitbox" type="Area3D" parent="." unique_id=976800001 node_paths=PackedStringArray("owner_entity")]
 visible = false
 script = ExtResource("3_wg7fs")
+owner_entity = NodePath("..")
 hit_box_type = 1
 metadata/_custom_type_script = "uid://dgoogb57kwni4"
 

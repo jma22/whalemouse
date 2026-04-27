@@ -2,8 +2,8 @@ extends State
 
 class_name HurtState
 @export var animation : AnimationClip
-@export var stun_duration: float = 0.6
-@export var invulnerability_duration: float = 0.3
+@export var stun_duration: float = 0.4
+@export var invulnerability_duration: float = 0.6
 
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps

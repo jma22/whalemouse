@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _apply_overrides() -> void:
 	for key: String in lifetime_stats:
-		lifetime_stats[key] = Config.get_override("gamedata/" + key, lifetime_stats[key])
+		lifetime_stats[key] = Config.get_override("game_data/" + key, lifetime_stats[key])
 	# for name: String in unlocked_upgrades:
 	_evaluate_unlocks()
 	# _save()

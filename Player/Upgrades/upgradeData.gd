@@ -1,7 +1,6 @@
 extends Choice
 class_name UpgradeData
 
-var internal_name: String
 var blessing_type: String
 var base_augment: int = 0
 var max_stacks: int = 0
@@ -26,8 +25,9 @@ func apply() -> void:
 func is_blessing() -> bool:
 	return blessing_type == UpgradePool.BLESSING or blessing_type == UpgradePool.BOSS_BLESSING
 
-func get_icon_path() -> String:
-	return Choice.get_icon_path_for(internal_name)
+# func get_icon_path() -> String:
+# 	DebugLog.dbg_from(self,"Getting icon path for UpgradeData (display_name=%s)" % display_name)
+# 	return Choice.get_icon_path_for(internal_name)
 
 func get_supplement_info() -> String:
 	var info : Array[String] = []

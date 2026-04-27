@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c34yniulp7isx" path="res://MainScenes/UnlockScene/unlock_scene.gd" id="1_0b6e3"]
 [ext_resource type="Texture2D" uid="uid://dfmy2gx5m520l" path="res://MainScenes/UnlockScene/2234_Sem_Titulo_20260425135139.png" id="2_0b6e3"]
-[ext_resource type="Texture2D" uid="uid://be27fg6kqq5mr" path="res://UI/HUD/BlessingIcons/Placeholders/ebb_drop.png" id="3_ghb57"]
+[ext_resource type="Texture2D" uid="uid://be27fg6kqq5mr" path="res://UI/HUD/RelicIcons/Placeholders/boss_xp_drop.png" id="3_ghb57"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="4_al04h"]
 [ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="5_spel1"]
 [ext_resource type="AudioStream" uid="uid://cpy7lxcu2085s" path="res://SFX/transition.wav" id="6_hxcm3"]

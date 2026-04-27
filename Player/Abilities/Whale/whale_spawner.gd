@@ -64,6 +64,7 @@ func cast_whale() -> void:
 		var whale_instance : Whale = whale_scene.instantiate() as Whale
 		add_child(whale_instance)
 		whale_instance.global_transform.origin = spawn_location
+		whale_instance.global_transform.origin.y = 0.0
 		whale_instance.scale = Vector3.ONE * whale_size
 		play_whale(whale_instance)
 

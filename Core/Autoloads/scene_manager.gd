@@ -93,7 +93,7 @@ func add_unlocks(unlocks : Array[String]) -> void:
 
 func can_pause() -> bool:
 	# Prevent pausing on main menu
-	return _current_enum == SceneEnum.GAME or _current_enum == SceneEnum.PAUSE_MENU
+	return _current_enum == SceneEnum.GAME or _current_enum == SceneEnum.PAUSE_MENU or _current_enum == SceneEnum.MAIN_MENU
 
 func next_scene() -> void:
 	## only used after game over scene at the moment

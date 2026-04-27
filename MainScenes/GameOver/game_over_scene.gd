@@ -6,6 +6,8 @@ extends Node3D
 @export var text_labels : Array[RichTextLabel] # for blessing stats
 var label_original_positions : Array[Vector2] = []
 
+@export var game_win_texture : Texture
+@export var game_over_texture : Texture
 @export var button_control : Control
 var screen_height : float = 1080.0
 var tween : Tween = null
@@ -20,6 +22,10 @@ func _ready() -> void:
 
 func setup() -> void:
 	GameData.record_run(GlobalStats.run_stats, GlobalStats.boss_defeated)
+	if GlobalStats.boss_defeated:
+		background.texture = game_win_texture
+	else:
+		background.texture = game_over_texture
 	screen_height = get_viewport().get_visible_rect().size.y
 
 	button_control.visible = false
