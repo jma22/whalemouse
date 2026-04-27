@@ -10,6 +10,7 @@ func start_room (wave : WaveInfo) -> void:
 	set_shrines(wave.blessings)
 	choice_type = (wave as ChoiceWaveInfo).choice_type
 	player.gain_status_effect(FreezeEffect.make(30.0), self)
+	camera.set_combat(false)
 
 
 

@@ -15,6 +15,7 @@ func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 func start_room (wave_info_ : WaveInfo) -> void:
 	super(wave_info_)
 	enemy_spawner.set_wave_spawning(wave_info_, self)
+	camera.set_combat(true)
 	if StatCalculator.get_ebb_begin_of_room() > 0:
 		player.gain_status_effect(SlowEffect.make(StatCalculator.get_ebb_begin_of_room()), self)
 

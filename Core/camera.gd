@@ -5,6 +5,17 @@ extends Camera3D
 @export var boss_distance : float = 2.5
 
 @export var smooth_speed : float = 5.0
+@export var blend_speed: float = 3.0
+
+
+# Battle framing
+var current_blend: float = 0.0          # current
+var current_blend_target: float = 0.0   # where we're heading
+var in_combat: bool = false
+
+@export var explore_blend: float = 0.0   # 0 = pure follow
+@export var combat_blend: float = 0.6    # bias toward arena center
+
 
 @export var lr_margin : float
 @export var b_margin : float
@@ -16,7 +27,7 @@ extends Camera3D
 @export var shake_noise_frequency : float = 50.0
 @export var shake_noise_speed : float = 4.0
 
-var bounds : AABB
+var map : NavigationRegion3D
 # var offset : Vector3 = Vector3(0, 2, 2)
 var distance :float = 1.9
 
@@ -45,14 +56,29 @@ func get_offset() -> Vector3:
 	# print("Offset after rotation: ", offset)
 	return offset
 
-func set_bounds(bounds : AABB) -> void:
-	self.bounds = bounds
+func set_map(floor: NavigationRegion3D) -> void:
+	self.map = floor
+
+func set_combat(active: bool) -> void:
+	in_combat = active
+	current_blend_target = combat_blend if active else explore_blend
 
 func _process(delta: float) -> void:
 	if target == null:
 		return
-	var desired_position : Vector3 = target.global_position + get_offset()
+
+	var t : float = 1.0 - exp(-blend_speed * delta)
+	current_blend = lerp(current_blend, current_blend_target, t)
+
+	var arena_center : Vector3 = map.global_position
+	DebugLog.dbg_from(self, "Arena center: " + str(arena_center))
+	DebugLog.dbg_from(self, "Current blend: " + str(current_blend))
+	DebugLog.dbg_from(self, "Target position: " + str(target.global_position))
+	var follow_point : Vector3 = target.global_position.lerp(arena_center, current_blend)
+
+	var desired_position : Vector3 = follow_point + get_offset()
 	desired_position.y = get_offset().y
+
 	global_position = global_position.lerp(desired_position, smooth_speed * delta)
 	# clamp_camera()
 	_apply_shake(delta)
@@ -72,17 +98,17 @@ func get_camera_world_size(distance_from_camera: float) -> Vector2:
 	
 	return Vector2(width, height)
 
-func clamp_camera() -> void:
-	if bounds == null:
-		return
-	var camera_world_size : Vector2 = get_camera_world_size(global_position.y*1.5)
-	var min_x : float = bounds.position.x + camera_world_size.x / 2 - lr_margin
-	var max_x : float = bounds.position.x + bounds.size.x - camera_world_size.x / 2 + lr_margin
-	var min_z : float = bounds.position.z + camera_world_size.y / 2 - t_margin
-	var max_z : float = bounds.position.z + bounds.size.z - camera_world_size.y / 2 + b_margin
+# func clamp_camera() -> void:
+# 	if bounds == null:
+# 		return
+# 	var camera_world_size : Vector2 = get_camera_world_size(global_position.y*1.5)
+# 	var min_x : float = bounds.position.x + camera_world_size.x / 2 - lr_margin
+# 	var max_x : float = bounds.position.x + bounds.size.x - camera_world_size.x / 2 + lr_margin
+# 	var min_z : float = bounds.position.z + camera_world_size.y / 2 - t_margin
+# 	var max_z : float = bounds.position.z + bounds.size.z - camera_world_size.y / 2 + b_margin
 	
-	global_position.x = clamp(global_position.x, min_x, max_x)
-	global_position.z = clamp(global_position.z, min_z, max_z)
+# 	global_position.x = clamp(global_position.x, min_x, max_x)
+# 	global_position.z = clamp(global_position.z, min_z, max_z)
 
 func camera_shake(strength : float = -1.0, duration : float = -1.0) -> void:
 	var s : float = strength if strength > 0.0 else shake_strength

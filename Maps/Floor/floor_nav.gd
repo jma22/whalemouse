@@ -30,6 +30,8 @@ func _process(delta: float) -> void:
 	material.set_shader_parameter("world_center", Vector2(pos.x, pos.z) + offset)
 	material.set_shader_parameter("shadow_center", Vector2(pos.x, pos.z) + offset/2)
 
+func get_center() -> Vector3:
+	return global_transform.origin
 # In FloorNav
 # func bounce_body(body: CharacterBody3D, knockback: KnockbackComponent, bounce_force: float = 5.0) -> void:
 # 	var min_b := global_transform.origin - size / 2

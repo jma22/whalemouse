@@ -13,6 +13,8 @@ func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 func start_room (wave_info_ : WaveInfo) -> void:
 	super(wave_info_)
 	camera.set_boss_mode()
+	camera.set_combat(true)
+
 	# enemy_spawner.set_wave_spawning(wave_info_)
 	boss = enemy_spawner.spawn_boss(wave_info_.boss_name, boss_spawn.global_transform.origin)
 	
