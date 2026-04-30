@@ -27,6 +27,11 @@ var in_combat: bool = false
 @export var shake_noise_frequency : float = 50.0
 @export var shake_noise_speed : float = 4.0
 
+@export_group("Cinematic")
+@export var cinematic_blend_speed: float = 2.0
+@export var cinematic_wander_amount: float = 0.35  # how far the camera drifts (m)
+@export var cinematic_wander_freq: float = 0.4     # wander tempo
+
 var map : NavigationRegion3D
 # var offset : Vector3 = Vector3(0, 2, 2)
 var distance :float = 1.9
@@ -35,6 +40,13 @@ var distance :float = 1.9
 var _shake_time_total : float = 0.0
 var _shake_noise : FastNoiseLite = FastNoiseLite.new()
 var _shake_elapsed : float = 0.0
+
+# Cinematic state
+var cinematic_target: Node3D = null
+var cinematic_active: bool = false
+var _cinematic_blend: float = 0.0
+var _cinematic_time: float = 0.0
+var _wander_noise: FastNoiseLite = FastNoiseLite.new()
 
 
 func _ready() -> void:
@@ -69,16 +81,31 @@ func _process(delta: float) -> void:
 
 	var t : float = 1.0 - exp(-blend_speed * delta)
 	current_blend = lerp(current_blend, current_blend_target, t)
+	## AI
+	# # --- cinematic blend ---
+	var cine_goal: float = 1.0 if cinematic_active else 0.0
+	var cine_t: float = 1.0 - exp(-cinematic_blend_speed * delta)
+	_cinematic_blend = lerp(_cinematic_blend, cine_goal, cine_t)
+ 
+	# keep wander clock running while blending so motion stays smooth
+	if cinematic_active or _cinematic_blend > 0.001:
+		_cinematic_time += delta
+ 
+	# --- pick what we're following ---
+	var follow_subject: Vector3 = target.global_position
+	if _cinematic_blend > 0.001 and cinematic_target != null and is_instance_valid(cinematic_target):
+		DebugLog.dbg_from(self, "Cinematic active. Blending to boss at position: " + str(cinematic_target.global_position))
+		follow_subject = target.global_position.lerp(cinematic_target.global_position, _cinematic_blend)
 
+	## AI
 	var arena_center : Vector3 = map.global_position
-	DebugLog.dbg_from(self, "Arena center: " + str(arena_center))
-	DebugLog.dbg_from(self, "Current blend: " + str(current_blend))
-	DebugLog.dbg_from(self, "Target position: " + str(target.global_position))
-	var follow_point : Vector3 = target.global_position.lerp(arena_center, current_blend)
+	# var follow_point : Vector3 = target.global_position.lerp(arena_center, current_blend)
+	var follow_point : Vector3 = follow_subject.lerp(arena_center, current_blend)
 
 	var desired_position : Vector3 = follow_point + get_offset()
 	desired_position.y = get_offset().y
 
+	DebugLog.dbg_from(self, "Shake amount:" + str(_compute_wander()))
 	global_position = global_position.lerp(desired_position, smooth_speed * delta)
 	# clamp_camera()
 	_apply_shake(delta)
@@ -132,3 +159,20 @@ func _apply_shake(delta: float) -> void:
 	if _shake_time_left <= 0.0:
 		_shake_elapsed = 0.0
 		_shake_time_total = 0.0
+
+func _compute_wander() -> Vector3:
+	var wt: float = _cinematic_time * cinematic_wander_freq
+	var wx: float = _wander_noise.get_noise_2d(wt + 13.0, 7.0)
+	var wy: float = _wander_noise.get_noise_2d(wt + 41.0, 23.0)
+	var wz: float = _wander_noise.get_noise_2d(wt + 71.0, 53.0)
+	return Vector3(wx, wy * 0.4, wz) * cinematic_wander_amount
+
+func start_cinematic(boss: Node3D) -> void:
+	if boss == null:
+		return
+	cinematic_target = boss
+	cinematic_active = true
+	_cinematic_time = 0.0
+ 
+func end_cinematic() -> void:
+	cinematic_active = false

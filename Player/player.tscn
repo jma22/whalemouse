@@ -71,7 +71,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7emwf"]
 resource_local_to_scene = true
-render_priority = 1
+render_priority = 5
 shader = SubResource("Shader_n471f")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0

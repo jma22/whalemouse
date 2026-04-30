@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bupdu8sr0yn61"]
+
+[ext_resource type="Shader" uid="uid://b070kdxa0tbgj" path="res://Maps/Floor/spotlight.tres" id="1_40egr"]
+
+[resource]
+render_priority = 3
+shader = ExtResource("1_40egr")
+shader_parameter/radius = 0.2000000095
+shader_parameter/pixel_size = 8.0
+shader_parameter/resolution = Vector2(400, 400)
+shader_parameter/dither_offset = Vector2(2, 0)
+shader_parameter/bayer_size = 2
+shader_parameter/interpolate = true
+shader_parameter/invert = false
+shader_parameter/falloff = 2.5
+shader_parameter/spotlight_color = Color(0.8627451, 0.87058824, 0.70980394, 0.21176471)
+shader_parameter/shadow_color = Color(0.23137255, 0.21176471, 0.25490198, 0.5529412)

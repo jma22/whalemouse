@@ -54,7 +54,8 @@ func deactivate() -> void:
 func activate(setup_args: Array = []) -> void:
 	if _current:
 		_container.add_child(_current)
-
+		if _current.has_method("reset"):
+			_current.call("reset")
 		if _current.has_method("setup"):
 			_current.callv("setup", setup_args)
 		_current.visible = true

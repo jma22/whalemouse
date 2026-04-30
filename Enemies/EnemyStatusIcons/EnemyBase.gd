@@ -214,3 +214,7 @@ func lose_status_effect(effect : EnemyStatusEffect, source : Object) -> void:
 
 func get_initial_health() -> int:
 	return initial_health + StatCalculator.get_enemy_health_flat()
+
+
+func set_pause(value: bool) -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT

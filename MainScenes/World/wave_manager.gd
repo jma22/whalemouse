@@ -47,6 +47,7 @@ var current_wave_state : WaveState = WaveState.INTRO_COMBAT
 
 func reset() -> void:
 	var starting_wave : int = Config.get_override("starting_wave", 0)
+	DebugLog.dbg_from(self, "Resetting WaveManager. Starting wave: %d" % starting_wave)
 	current_wave = starting_wave
 	combat_wave_number = 0
 	current_enemy_pool = []

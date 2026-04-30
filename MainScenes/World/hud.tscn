@@ -13,14 +13,19 @@
 [ext_resource type="Texture2D" uid="uid://b66o151nj5dpw" path="res://UI/HUD/BossHPBar/boss_hp_progress.png" id="8_s5ite"]
 [ext_resource type="Texture2D" uid="uid://djb3eccxfxscs" path="res://UI/HUD/BossHPBar/boss_badge.png" id="9_rbl5u"]
 [ext_resource type="PackedScene" uid="uid://8272chi4ewoa" path="res://UI/HUD/boss_info.tscn" id="9_yj8ay"]
+[ext_resource type="Script" uid="uid://kdbntmkrjuxn" path="res://MainScenes/World/letter_box.gd" id="14_s5ite"]
+[ext_resource type="Script" uid="uid://ct04jocmhkjhj" path="res://MainScenes/World/boss_name.gd" id="15_bg1ly"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="15_rfnoa"]
 
-[node name="HUD" type="CanvasLayer" unique_id=1305888938 node_paths=PackedStringArray("hp_display", "blessing_bar", "boss_health", "vignette", "boss_info")]
+[node name="HUD" type="CanvasLayer" unique_id=1305888938 node_paths=PackedStringArray("hp_display", "blessing_bar", "boss_health", "vignette", "boss_info", "letter_box", "boss_name")]
 script = ExtResource("1_hyjo8")
 hp_display = NodePath("MarginContainer/Control/hudbar")
 blessing_bar = NodePath("MarginContainer/Control/RelicBar")
 boss_health = NodePath("BossHealth")
 vignette = NodePath("Vignette")
 boss_info = NodePath("MarginContainer/Control/BossInfoBar")
+letter_box = NodePath("LetterBox")
+boss_name = NodePath("BossName")
 
 [node name="Vignette" type="ColorRect" parent="." unique_id=2066147691]
 material = ExtResource("2_v4ort")
@@ -148,3 +153,43 @@ icon_scene = ExtResource("3_hq5uf")
 
 [node name="hudbar" parent="MarginContainer/Control" unique_id=460654951 instance=ExtResource("4_v4ort")]
 layout_mode = 0
+
+[node name="BossName" type="RichTextLabel" parent="." unique_id=2026638123]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("15_rfnoa")
+theme_override_font_sizes/normal_font_size = 70
+text = "Angler"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("15_bg1ly")
+
+[node name="LetterBox" type="Control" parent="." unique_id=1931177286]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_s5ite")
+
+[node name="TopBar" type="ColorRect" parent="LetterBox" unique_id=893255380]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBar" type="ColorRect" parent="LetterBox" unique_id=895931289]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)

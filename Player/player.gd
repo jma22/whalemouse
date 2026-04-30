@@ -24,7 +24,7 @@ class_name Player extends CharacterBody3D
 
 @onready var dash_component : DashComponent = $DashComponent 
 
-var time_damage_manager : TimeDamageManager
+@export var time_damage_manager : TimeDamageManager
 var hud_ref : HUD
 var map_ref : MapManagerBase
 #by default set the dash direction to prevent no velocity dashes
@@ -254,3 +254,6 @@ func get_initial_health() -> int:
 	DebugLog.dbg_from(self,"get_initial_health override=%s, max_health=%s" % [override, StatCalculator.get_player_max_health()])
 	return override if override != null else StatCalculator.get_player_max_health()
 
+func set_pause(value: bool) -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
+	time_damage_manager.set_pause(value)

@@ -1,9 +1,6 @@
 shader_type spatial;
-render_mode blend_mix, diffuse_lambert, specular_disabled;
+render_mode blend_mix, diffuse_lambert, specular_disabled, depth_draw_opaque;
 
-// The base texture to sample from
-uniform sampler2D base_texture : source_color, repeat_enable;
-uniform vec2 tile_scale = vec2(4.0, 4.0);
 // World-space XZ coordinate for the circle center
 uniform vec2 world_center = vec2(0.0, 0.0);
 // World-space origin (top-left corner) mapped to UV (0,0)
@@ -26,10 +23,10 @@ uniform bool interpolate = true;
 uniform bool invert = false;
 // Controls how quickly the dither pattern density changes
 uniform float falloff: hint_range(0.1, 10.0) = 2.5;
-// Spotlight tint color multiplied onto the texture inside the dither circle
-uniform vec4 spotlight_color: source_color = vec4(1.3, 1.2, 1.0, 1.0);
-// The ambient darkening applied outside the spotlight
-uniform vec4 shadow_color: source_color = vec4(0.6, 0.6, 0.7, 1.0);
+// Spotlight color drawn inside the dither circle
+uniform vec4 spotlight_color: source_color = vec4(1.3, 1.2, 1.0, 0.0);
+// Shadow color drawn outside the spotlight
+uniform vec4 shadow_color: source_color = vec4(0.0, 0.0, 0.1, 0.6);
 
 const int bayer2[4] = {
 	0, 2,
@@ -98,7 +95,6 @@ float get_mask(vec2 uv, vec2 step_size, vec2 offset, vec2 center) {
 }
 
 void fragment() {
-	// Work in world-scaled UV so dither pixels are square in world space
 	vec2 world_uv = UV * world_size;
 	vec2 world_center_uv = (world_center - world_origin);
 
@@ -126,10 +122,9 @@ void fragment() {
 		dither = get_mask(quantized_uv, uv_step, effective_offset, world_center_uv);
 	}
 
-	vec4 tex_color = texture(base_texture, UV * tile_scale);
 	float mask = invert ? (1.0 - dither) : dither;
-	// Lerp between shadow (outside) and spotlight (inside) based on dither mask
-	vec3 tint = mix(shadow_color.rgb, spotlight_color.rgb, mask);
-	ALBEDO = tex_color.rgb * tint;
-	ALPHA = tex_color.a;
+	// Lerp between shadow (outside) and spotlight (inside)
+	vec4 result = mix(shadow_color, spotlight_color, mask);
+	ALBEDO = result.rgb;
+	ALPHA = result.a;
 }

@@ -10,10 +10,11 @@
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
 layers = 2
 material_override = ExtResource("1_4embk")
-cast_shadow = 0
 pixel_size = 0.003
+transparent = false
 double_sided = false
 fixed_size = true
+alpha_cut = 3
 texture = ExtResource("2_3kakv")
 script = ExtResource("3_0yvv1")
 metadata/_custom_type_script = "uid://chgfscc28odqd"

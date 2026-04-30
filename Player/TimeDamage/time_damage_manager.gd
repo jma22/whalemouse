@@ -46,3 +46,6 @@ func get_progress() -> float:
 	if seconds_per_damage == 0:
 		return 0.0
 	return _time_accumulator / seconds_per_damage
+
+func set_pause(value: bool) -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
