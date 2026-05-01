@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, depth_draw_opaque, cull_disabled, blend_mix;
+render_mode depth_draw_opaque, cull_disabled, blend_mix;
 
 uniform sampler2D albedo : source_color, filter_nearest;
 uniform float threshold_y = 0.0;

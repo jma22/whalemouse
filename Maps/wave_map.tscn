@@ -401,10 +401,10 @@ texture = ExtResource("3_53d03")
 [node name="Graves" type="Node3D" parent="." unique_id=213525689]
 
 [node name="Grave4" parent="Graves" unique_id=203879713 instance=ExtResource("13_8v44s")]
-transform = Transform3D(0.98928255, 0, -0.14601393, 0, 1, 0, 0.14601393, 0, 0.98928255, -1.3179246, 0.12322998, -1.9467523)
+transform = Transform3D(0.98928255, 0, -0.14601393, 0, 1, 0, 0.14601393, 0, 0.98928255, -1.279111, 0.011230469, -2.2097242)
 
 [node name="Grave5" parent="Graves" unique_id=804970405 instance=ExtResource("13_8v44s")]
-transform = Transform3D(0.99946064, 0, 0.032841206, 0, 1, 0, -0.032841206, 0, 0.99946064, 0.7489669, 0.12322998, -1.7985667)
+transform = Transform3D(0.99946064, 0, 0.032841206, 0, 1, 0, -0.032841206, 0, 0.99946064, 0.740237, 0.011230469, -2.0642443)
 
 [node name="Grave6" parent="Graves" unique_id=618518213 instance=ExtResource("13_8v44s")]
 transform = Transform3D(0.97853065, 0, 0.20610175, 0, 1, 0, -0.20610175, 0, 0.97853065, 2.1803803, 0.12322998, -1.9812944)
@@ -423,6 +423,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2100227, 0.12322998, -2.03
 
 [node name="Grave7" parent="Graves" unique_id=2044280503 instance=ExtResource("14_ouo2d")]
 transform = Transform3D(0.99962986, 0, 0.027206317, 0, 1, 0, -0.027206317, 0, 0.99962986, 1.4001172, 0.12322998, -1.7936583)
+
+[node name="Grave8" parent="Graves" unique_id=1439052517 instance=ExtResource("14_ouo2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2136943, 0.09637451, -3.2588346)
+
+[node name="Grave9" parent="Graves" unique_id=1287657794 instance=ExtResource("14_ouo2d")]
+transform = Transform3D(0.99962986, 0, 0.027206317, 0, 1, 0, -0.027206317, 0, 0.99962986, 1.5842252, 0.2836914, -3.3659499)
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

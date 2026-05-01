@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cgry6ob5583dk"]
+
+[ext_resource type="Shader" uid="uid://cgvfo2hidbu55" path="res://Maps/Decors/Scripts/foreground.gdshader" id="1_yo86d"]
+[ext_resource type="Texture2D" uid="uid://bdtlmy2egrj5e" path="res://Maps/Decors/Untitled_Artwork (9).png" id="2_cf5fh"]
+
+[resource]
+render_priority = 5
+shader = ExtResource("1_yo86d")
+shader_parameter/texture_albedo = ExtResource("2_cf5fh")
+shader_parameter/radius = 0.7450000353875
+shader_parameter/center_alpha = 0.0
+shader_parameter/edge_alpha = 1.0
+shader_parameter/pixel_size = 7.0
+shader_parameter/resolution = Vector2(1600, 1600)
+shader_parameter/dither_offset = Vector2(2, 0)
+shader_parameter/bayer_size = 2
+shader_parameter/interpolate = true
+shader_parameter/invert = false
+shader_parameter/falloff = 7.5200003539401195
+shader_parameter/noise_speed = 10.0
+shader_parameter/player_screen_uv = Vector2(0.425, 1.31)
+shader_parameter/vertical_stretch = 1.08600004832512

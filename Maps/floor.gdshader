@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, diffuse_lambert, specular_disabled;
+render_mode blend_mix, specular_disabled;
 
 // The base texture to sample from
 uniform sampler2D base_texture : source_color, repeat_enable;

@@ -2,18 +2,19 @@
 
 [ext_resource type="Material" uid="uid://bodll2kvtuixq" path="res://Maps/Decors/bottom_fog_mat.tres" id="1_ge3bd"]
 [ext_resource type="Texture2D" uid="uid://b0e1137q78j2b" path="res://Maps/Decors/Untitled_Artwork (2).png" id="2_2h6km"]
-[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_u7srt"]
+[ext_resource type="Script" uid="uid://dl6qm3d3ngxhn" path="res://Core/background_sprite_manager.gd" id="3_ge3bd"]
 
 [node name="Grave1" type="Node3D" unique_id=410137951]
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=106763812]
 transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, 0, 0)
 material_override = ExtResource("1_ge3bd")
+modulate = Color(0, 0, 0, 1)
 pixel_size = 0.003
-shaded = true
+transparent = false
 double_sided = false
-alpha_cut = 1
+alpha_cut = 2
 render_priority = -5
 texture = ExtResource("2_2h6km")
-script = ExtResource("3_u7srt")
+script = ExtResource("3_ge3bd")
 metadata/_custom_type_script = "uid://chgfscc28odqd"

@@ -3,7 +3,7 @@
 [resource]
 resource_local_to_scene = true
 code = "shader_type spatial;
-render_mode blend_mix, diffuse_lambert, specular_disabled, depth_draw_opaque;
+render_mode blend_mix, diffuse_lambert,  specular_disabled, depth_draw_never;
 
 // Per-instance — different for each floor
 instance uniform vec2 world_center = vec2(0.0, 0.0);
@@ -27,9 +27,7 @@ uniform bool invert = false;
 // Controls how quickly the dither pattern density changes
 uniform float falloff: hint_range(0.1, 10.0) = 2.5;
 // Spotlight color drawn inside the dither circle
-uniform vec4 spotlight_color: source_color = vec4(1.3, 1.2, 1.0, 0.0);
-// Shadow color drawn outside the spotlight
-uniform vec4 shadow_color: source_color = vec4(0.0, 0.0, 0.1, 0.6);
+uniform vec4 spotlight_color: source_color = vec4(1.3, 1.2, 1.0, 1.0);
 
 const int bayer2[4] = {
 	0, 2,
@@ -126,8 +124,6 @@ void fragment() {
 	}
 
 	float mask = invert ? (1.0 - dither) : dither;
-	// Lerp between shadow (outside) and spotlight (inside)
-	vec4 result = mix(shadow_color, spotlight_color, mask);
-	ALBEDO = result.rgb;
-	ALPHA = result.a;
+	ALBEDO = spotlight_color.rgb;
+	ALPHA = mask * spotlight_color.a;
 }"

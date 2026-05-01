@@ -32,5 +32,5 @@ void fragment() {
     t *= strength;
     
     ALBEDO = vignette_color.rgb;
-    ALPHA = vignette_color.a * t;
+    //ALPHA = vignette_color.a * t;
 }

@@ -7,7 +7,7 @@ var player : CharacterBody3D
 # var discrete_time : float = 0.01
 var time_accumulator : float = 0.0
 
-var offset : Vector2 = Vector2(0,0.1)
+var offset : Vector2 = Vector2(0,0)
 var size : Vector3
 var global_margin : float = 0.5
 

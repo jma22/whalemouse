@@ -11,7 +11,7 @@ colors = PackedColorArray(0.6784314, 0.6784314, 0.38039216, 0.48235294, 0.764705
 gradient = SubResource("Gradient_laxhj")
 
 [resource]
-render_priority = 2
+render_priority = 1
 next_pass = ExtResource("1_mskbh")
 shader = ExtResource("1_tvkpe")
 shader_parameter/color_ramp = SubResource("GradientTexture1D_7p34n")

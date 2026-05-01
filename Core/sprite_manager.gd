@@ -11,14 +11,13 @@ var looping : bool = true
 var current_animation : AnimationClip = null
 var is_done : bool = false
 var tween : Tween = null
+@export var not_tilted : bool = false
 
 func _ready() -> void:
-	self.rotation_degrees = Vector3(Constants.TILT_ANGLE, 0, 0)
+	if not not_tilted:
+		self.rotation_degrees = Vector3(Constants.TILT_ANGLE, 0, 0)
 	await get_tree().process_frame
-	if material_override is ShaderMaterial:
-		material_override = material_override.duplicate()  
-		if material_override.shader and _shader_has_uniform(material_override.shader, "albedo"):
-			material_override.set_shader_parameter("albedo", texture)
+	
 
 func _shader_has_uniform(shader: Shader, uniform_name: String) -> bool:
 	for u : Dictionary in shader.get_shader_uniform_list():
@@ -42,7 +41,11 @@ func setup(hitstop_: HitStop) -> void:
 	if material_override:
 		material_override.set_shader_parameter("texture_albedo", texture)
 		# material_override.next_pass.set_shader_parameter("texture_albedo", texture)
-	
+	_configure_material_override()
+
+func _configure_material_override() -> void:
+	pass
+
 
 
 func reset() -> void:

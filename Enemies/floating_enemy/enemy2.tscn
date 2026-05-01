@@ -84,6 +84,7 @@ animation = SubResource("Resource_tlby2")
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
 material_overlay = SubResource("ShaderMaterial_vonq0")
+alpha_scissor_threshold = 0.0
 layer_number = 2
 
 [node name="EnemyStatusDisplay" parent="EnemyCoreComponents" index="9" unique_id=1830548483]

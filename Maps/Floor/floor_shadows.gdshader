@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, unshaded;
+render_mode blend_mix, depth_draw_never, cull_back, unshaded;
 
 uniform sampler2D color_ramp : source_color, filter_linear, repeat_disable;
 
