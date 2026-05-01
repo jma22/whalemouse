@@ -12,6 +12,8 @@
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_xm5ve"]
 [ext_resource type="PackedScene" uid="uid://bb8si1mpdb4l2" path="res://Maps/Decors/bubble_back.tscn" id="11_1qev3"]
 [ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="12_fjbty"]
+[ext_resource type="PackedScene" uid="uid://c4jg4glux5u8v" path="res://Maps/Decors/grave1.tscn" id="13_8v44s"]
+[ext_resource type="PackedScene" uid="uid://bsf6kjws875nu" path="res://Maps/Decors/grave2.tscn" id="14_ouo2d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
 render_priority = -4
@@ -20,7 +22,7 @@ shader_parameter/wave_frequency = 8.446000353685001
 shader_parameter/wave_amplitude = 0.0210000009975
 shader_parameter/scroll_speed = 0.0250000011875
 shader_parameter/blur_radius = 0.218000010355
-shader_parameter/color = Color(0.46845508, 0.32157508, 0.6323506, 1)
+shader_parameter/color = Color(0.05882353, 0, 0.06666667, 1)
 shader_parameter/alpha = 0.898000042655
 shader_parameter/bottom_darken = 0.0950000045125
 
@@ -173,6 +175,7 @@ script = ExtResource("5_ouo2d")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="Seaweeds" type="Node3D" parent="." unique_id=1508705870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.39654922)
 
 [node name="Seaweed4" parent="Seaweeds" unique_id=1171315565 instance=ExtResource("6_f1sl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0899999, 0.41, 1.13)
@@ -207,6 +210,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68, 0.41, 1.43)
 [node name="FloorNav" parent="." unique_id=2014240850 instance=ExtResource("8_ga113")]
 
 [node name="Rocks" type="Node3D" parent="." unique_id=1911806210]
+visible = false
 
 [node name="BigRock2" parent="Rocks" unique_id=642199375 instance=ExtResource("9_qw64w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07, -0.095, -3.575)
@@ -393,6 +397,32 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 visible = false
 pixel_size = 0.005
 texture = ExtResource("3_53d03")
+
+[node name="Graves" type="Node3D" parent="." unique_id=213525689]
+
+[node name="Grave4" parent="Graves" unique_id=203879713 instance=ExtResource("13_8v44s")]
+transform = Transform3D(0.98928255, 0, -0.14601393, 0, 1, 0, 0.14601393, 0, 0.98928255, -1.3179246, 0.12322998, -1.9467523)
+
+[node name="Grave5" parent="Graves" unique_id=804970405 instance=ExtResource("13_8v44s")]
+transform = Transform3D(0.99946064, 0, 0.032841206, 0, 1, 0, -0.032841206, 0, 0.99946064, 0.7489669, 0.12322998, -1.7985667)
+
+[node name="Grave6" parent="Graves" unique_id=618518213 instance=ExtResource("13_8v44s")]
+transform = Transform3D(0.97853065, 0, 0.20610175, 0, 1, 0, -0.20610175, 0, 0.97853065, 2.1803803, 0.12322998, -1.9812944)
+
+[node name="BigRock" parent="Graves" unique_id=719120949 instance=ExtResource("13_8v44s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.244, 0.19372559, -0.15246582)
+
+[node name="Grave1" parent="Graves" unique_id=1925267913 instance=ExtResource("13_8v44s")]
+transform = Transform3D(0.9246325, 0, 0.38086063, 0, 1, 0, -0.38086063, 0, 0.9246325, -3.3056726, 0.093322754, -0.8530803)
+
+[node name="Grave2" parent="Graves" unique_id=791580543 instance=ExtResource("14_ouo2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4719033, 0.093322754, -0.069874644)
+
+[node name="Grave3" parent="Graves" unique_id=685617117 instance=ExtResource("14_ouo2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2100227, 0.12322998, -2.0362108)
+
+[node name="Grave7" parent="Graves" unique_id=2044280503 instance=ExtResource("14_ouo2d")]
+transform = Transform3D(0.99962986, 0, 0.027206317, 0, 1, 0, -0.027206317, 0, 0.99962986, 1.4001172, 0.12322998, -1.7936583)
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

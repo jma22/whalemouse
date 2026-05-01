@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://bp6kq3gv428t1" path="res://MainScenes/World/world_manager.gd" id="1_ioo17"]
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="3_aqk2v"]
+[ext_resource type="Resource" uid="uid://dr053nj2vcj1c" path="res://Core/CameraData/boss.tres" id="3_b6lyg"]
+[ext_resource type="Resource" uid="uid://cw15qi1f2k8v2" path="res://Core/CameraData/default.tres" id="3_lgfs0"]
+[ext_resource type="Resource" uid="uid://dta36t4j0gwyx" path="res://Core/CameraData/combat.tres" id="4_4gkky"]
+[ext_resource type="Resource" uid="uid://dkjq3kkdkd2js" path="res://Core/CameraData/cinematic.tres" id="4_07j78"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_fth4m"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_yjwld"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
@@ -82,10 +86,11 @@ fov = 80.0
 size = 23.388
 script = ExtResource("3_aqk2v")
 target = NodePath("../Player")
-wave_distance = 2.0
-boss_distance = 2.4
-smooth_speed = 10.0
-combat_blend = 0.3
+default_data = ExtResource("3_lgfs0")
+combat_data = ExtResource("4_4gkky")
+boss_data = ExtResource("3_b6lyg")
+cinematic_data = ExtResource("4_07j78")
+current_data = ExtResource("3_lgfs0")
 
 [node name="Player" parent="." unique_id=1422586295 node_paths=PackedStringArray("time_damage_manager") groups=["Player"] instance=ExtResource("2_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)

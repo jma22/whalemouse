@@ -14,6 +14,18 @@ var tween : Tween = null
 
 func _ready() -> void:
 	self.rotation_degrees = Vector3(Constants.TILT_ANGLE, 0, 0)
+	await get_tree().process_frame
+	if material_override is ShaderMaterial:
+		material_override = material_override.duplicate()  
+		if material_override.shader and _shader_has_uniform(material_override.shader, "albedo"):
+			material_override.set_shader_parameter("albedo", texture)
+
+func _shader_has_uniform(shader: Shader, uniform_name: String) -> bool:
+	for u : Dictionary in shader.get_shader_uniform_list():
+		if u.name == uniform_name:
+			return true
+	return false
+
 	
 func setup(hitstop_: HitStop) -> void:
 	hitstop = hitstop_

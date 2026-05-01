@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CinematicCameraData" format=3 uid="uid://dkjq3kkdkd2js"]
+
+[ext_resource type="Script" uid="uid://dqkq4b0aihjnw" path="res://Core/cinematic_camera_data.gd" id="1_cinematic"]
+
+[resource]
+script = ExtResource("1_cinematic")
+distance = 2.1
+fov = 80.0
+wander_amount = 0.35

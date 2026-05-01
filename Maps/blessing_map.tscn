@@ -15,7 +15,8 @@
 [ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="12_617kr"]
 [ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/Textbox/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
-[ext_resource type="PackedScene" uid="uid://c4jg4glux5u8v" path="res://Maps/Decors/grave.tscn" id="16_8icpy"]
+[ext_resource type="PackedScene" uid="uid://c4jg4glux5u8v" path="res://Maps/Decors/grave1.tscn" id="16_8icpy"]
+[ext_resource type="PackedScene" uid="uid://bsf6kjws875nu" path="res://Maps/Decors/grave2.tscn" id="17_dxvuv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
 render_priority = -4
@@ -205,6 +206,7 @@ metadata/_custom_type_script = "uid://chgfscc28odqd"
 [node name="FloorNav" parent="." unique_id=2014240850 instance=ExtResource("3_yyg12")]
 
 [node name="Rocks" type="Node3D" parent="." unique_id=1911806210]
+visible = false
 
 [node name="BigRock2" parent="Rocks" unique_id=642199375 instance=ExtResource("9_327w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07, -0.095, -3.575)
@@ -415,8 +417,29 @@ directional_shadow_pancake_size = 17.7
 
 [node name="Graves" type="Node3D" parent="." unique_id=1438374508]
 
+[node name="Grave4" parent="Graves" unique_id=261003277 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.95857155, 0, -0.28485194, 0, 1, 0, 0.28485194, 0, 0.95857155, -1.0717126, 0, -3.275976)
+
+[node name="Grave5" parent="Graves" unique_id=1573177787 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.97853065, 0, 0.20610175, 0, 1, 0, -0.20610175, 0, 0.97853065, 0.7477567, 0, -2.7352972)
+
+[node name="Grave6" parent="Graves" unique_id=635087631 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.97853065, 0, 0.20610175, 0, 1, 0, -0.20610175, 0, 0.97853065, 2.0614638, 0, -3.011995)
+
 [node name="BigRock" parent="Graves" unique_id=278564596 instance=ExtResource("16_8icpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="Grave1" parent="Graves" unique_id=754617271 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.7615157, 0, 0.6481465, 0, 1, 0, -0.6481465, 0, 0.7615157, -5.166711, 0, -2.4495158)
+
+[node name="Grave2" parent="Graves" unique_id=1899334549 instance=ExtResource("17_dxvuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3888345, 0, -1.3088883)
+
+[node name="Grave3" parent="Graves" unique_id=1402515161 instance=ExtResource("17_dxvuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2100227, 0, -2.936113)
+
+[node name="Grave7" parent="Graves" unique_id=270043885 instance=ExtResource("17_dxvuv")]
+transform = Transform3D(0.9719323, 0, 0.23526086, 0, 1, 0, -0.23526086, 0, 0.9719323, 3.2514246, 0, -2.6935606)
 
 [editable path="Rocks/BigRock5"]
 [editable path="Rocks/BigRock8"]

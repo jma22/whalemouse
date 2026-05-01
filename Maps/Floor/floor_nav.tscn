@@ -8,13 +8,13 @@
 [ext_resource type="Shader" uid="uid://b070kdxa0tbgj" path="res://Maps/Floor/spotlight.tres" id="5_laxhj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
-vertices = PackedVector3Array(-1.75, 0.2, -0.85, -1.75, 0.2, 0.9, 1.75, 0.2, 0.9, 1.75, 0.2, -0.85)
+vertices = PackedVector3Array(-2.75, 0.2, -1, -2.75, 0.2, 1, 2.75, 0.2, 1, 2.75, 0.2, -1)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.1
 agent_radius = 0.1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
-size = Vector2(6, 3.3)
+size = Vector2(6, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_laxhj"]
 render_priority = 0
