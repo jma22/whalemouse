@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://brm5mcgnej347"]
 
 [ext_resource type="Material" uid="uid://bupdu8sr0yn61" path="res://Maps/Floor/spolight_material.tres" id="1_mskbh"]
-[ext_resource type="Shader" path="res://Maps/Floor/floor_shadows.gdshader" id="1_tvkpe"]
+[ext_resource type="Shader" uid="uid://dikulrjb1v415" path="res://Maps/Floor/floor_shadows.gdshader" id="1_tvkpe"]
 
 [sub_resource type="Gradient" id="Gradient_laxhj"]
 offsets = PackedFloat32Array(0, 0.3, 0.4, 1)

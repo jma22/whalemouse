@@ -12,6 +12,9 @@ var current_animation : AnimationClip = null
 var is_done : bool = false
 var tween : Tween = null
 
+func _ready() -> void:
+	self.rotation_degrees = Vector3(Constants.TILT_ANGLE, 0, 0)
+	
 func setup(hitstop_: HitStop) -> void:
 	hitstop = hitstop_
 	## visual instance 3d layer

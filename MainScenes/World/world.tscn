@@ -78,7 +78,7 @@ loading_screen = NodePath("Loading")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1.4, 0.48)
-fov = 85.0
+fov = 80.0
 size = 23.388
 script = ExtResource("3_aqk2v")
 target = NodePath("../Player")
