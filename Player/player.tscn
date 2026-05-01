@@ -189,9 +189,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0635376)
 shape = SubResource("CylinderShape3D_b1ygp")
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0.002998352, 0.07312828, -0.22069669)
+transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0.002998352, 0.07312828, -0.22069669)
 layers = 1
 material_overlay = SubResource("ShaderMaterial_7emwf")
+alpha_antialiasing_edge = 1.0
+render_priority = 5
 texture = ExtResource("2_n471f")
 hframes = 15
 vframes = 2

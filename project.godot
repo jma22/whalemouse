@@ -151,4 +151,6 @@ pause={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0.09, 0.056700002, 0.082785, 1)
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.006400001, 0.04, 0.008079998, 1)

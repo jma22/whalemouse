@@ -8,13 +8,13 @@
 [ext_resource type="Shader" uid="uid://b070kdxa0tbgj" path="res://Maps/Floor/spotlight.tres" id="5_laxhj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
-vertices = PackedVector3Array(-3.75, 0.2, -1.95, -3.75, 0.2, 2.05, 3.75, 0.2, 2.05, 3.75, 0.2, -1.95)
+vertices = PackedVector3Array(-1.75, 0.2, -0.85, -1.75, 0.2, 0.9, 1.75, 0.2, 0.9, 1.75, 0.2, -0.85)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.1
 agent_radius = 0.1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
-size = Vector2(8, 4.4)
+size = Vector2(6, 3.3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_laxhj"]
 render_priority = 0
@@ -47,6 +47,7 @@ floor_material = NodePath("floor")
 spotlight_material = ExtResource("2_mrs72")
 
 [node name="floor" type="MeshInstance3D" parent="." unique_id=343290801]
+layers = 16
 mesh = SubResource("PlaneMesh_aqk2v")
 surface_material_override/0 = SubResource("ShaderMaterial_laxhj")
 

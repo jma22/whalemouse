@@ -15,6 +15,7 @@
 [ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="12_617kr"]
 [ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/Textbox/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
+[ext_resource type="PackedScene" uid="uid://c4jg4glux5u8v" path="res://Maps/Decors/grave.tscn" id="16_8icpy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
 render_priority = -4
@@ -220,8 +221,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, -0.255, -4.15)
 [node name="BigRock5" parent="Rocks" unique_id=1883686024 instance=ExtResource("9_327w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.455, -0.255, -2.315)
 
-[node name="BigRock6" parent="Rocks" unique_id=1908228804 instance=ExtResource("9_327w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.42, -0.255, -2.96)
+[node name="SpriteManager" parent="Rocks/BigRock5" index="0" unique_id=106763812]
+sorting_offset = 1.0
 
 [node name="BigRock8" parent="Rocks" unique_id=1753391859 instance=ExtResource("9_327w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, -0.245, 1.81)
@@ -236,12 +237,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.455, -0.225, -0.55)
 [node name="SpriteManager" parent="Rocks/BigRock7" index="0" unique_id=106763812]
 render_priority = -3
 
-[node name="BigRock9" parent="Rocks" unique_id=1882663486 instance=ExtResource("9_327w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86, -0.225, -0.55)
-
-[node name="SpriteManager" parent="Rocks/BigRock9" index="0" unique_id=106763812]
-render_priority = -3
-
 [node name="Node3D" type="Node3D" parent="." unique_id=159875190]
 transform = Transform3D(18.27, 0, 0, 0, 1.8092866, 0.77994484, 0, -4.970974, 0.28387672, 0, 0.30499998, -4.16)
 
@@ -249,14 +244,16 @@ transform = Transform3D(18.27, 0, 0, 0, 1.8092866, 0.77994484, 0, -4.970974, 0.2
 material_override = SubResource("ShaderMaterial_r6dpp")
 pixel_size = 0.005
 double_sided = false
+alpha_cut = 2
 render_priority = -4
 texture = SubResource("GradientTexture2D_ed26x")
 
 [node name="Smoke2" type="Sprite3D" parent="Node3D" unique_id=1929181083]
-transform = Transform3D(1, 0, 0, 0, 1.48, 0, 0, 0, 1, 0, -0.145, 0.68)
+transform = Transform3D(0.9999946, -0.00032347834, 0.0032885594, 0.0002354761, 1.4799805, -0.00514286, -0.0032873917, 0.007612705, 0.9999814, 0, -0.14484686, 0.6826836)
 material_override = SubResource("ShaderMaterial_gsor4")
 pixel_size = 0.005
 double_sided = false
+alpha_cut = 2
 render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
@@ -265,6 +262,7 @@ transform = Transform3D(1, 0, 0, 0, 1.155, 0, 0, 0, 1, 0, -1.015, 2.16)
 material_override = SubResource("ShaderMaterial_d5558")
 pixel_size = 0.005
 double_sided = false
+alpha_cut = 2
 render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
@@ -415,6 +413,11 @@ directional_shadow_fade_start = 0.274
 directional_shadow_max_distance = 5.5
 directional_shadow_pancake_size = 17.7
 
+[node name="Graves" type="Node3D" parent="." unique_id=1438374508]
+
+[node name="BigRock" parent="Graves" unique_id=278564596 instance=ExtResource("16_8icpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[editable path="Rocks/BigRock5"]
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]
-[editable path="Rocks/BigRock9"]

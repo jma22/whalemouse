@@ -82,8 +82,8 @@ fov = 85.0
 size = 23.388
 script = ExtResource("3_aqk2v")
 target = NodePath("../Player")
-wave_distance = 1.8
-boss_distance = 2.3
+wave_distance = 2.0
+boss_distance = 2.4
 smooth_speed = 10.0
 combat_blend = 0.3
 

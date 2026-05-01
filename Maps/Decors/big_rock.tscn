@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cr3t5b7if200h"]
 
 [ext_resource type="Texture2D" uid="uid://cc6tn8qb0x0lw" path="res://Maps/Decors/Untitled_Artwork-1 (1).png" id="1_33rlh"]
-[ext_resource type="Shader" uid="uid://dmmh6qve8sgkw" path="res://Maps/Decors/bottom_fog.gdshader" id="1_wwobh"]
+[ext_resource type="Shader" path="res://Maps/Decors/bottom_fog.gdshader" id="1_wwobh"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_dx2fc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wwobh"]
@@ -25,7 +25,7 @@ material_override = SubResource("ShaderMaterial_wwobh")
 pixel_size = 0.003
 shaded = true
 double_sided = false
-alpha_cut = 1
+alpha_cut = 2
 render_priority = -5
 texture = ExtResource("1_33rlh")
 script = ExtResource("2_dx2fc")

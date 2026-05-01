@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://brm5mcgnej347"]
 
 [ext_resource type="Material" uid="uid://bupdu8sr0yn61" path="res://Maps/Floor/spolight_material.tres" id="1_mskbh"]
-[ext_resource type="Shader" uid="uid://dikulrjb1v415" path="res://Maps/Floor/floor_shadows.gdshader" id="1_tvkpe"]
+[ext_resource type="Shader" path="res://Maps/Floor/floor_shadows.gdshader" id="1_tvkpe"]
 
 [sub_resource type="Gradient" id="Gradient_laxhj"]
-offsets = PackedFloat32Array(0, 0.3, 0.55, 1)
-colors = PackedColorArray(0.24705882, 0.12156863, 0.19607843, 0.6862745, 0.4, 0.24800001, 0.37213334, 0.101960786, 1, 0.7254902, 0.8745098, 0, 0.8862745, 0.39215687, 0.6392157, 0)
+offsets = PackedFloat32Array(0, 0.3, 0.4, 1)
+colors = PackedColorArray(0.6784314, 0.6784314, 0.38039216, 0.48235294, 0.7647059, 0.7882353, 0.58431375, 0.68235296, 0.09411765, 0.12156863, 0.18039216, 0.59607846, 0.18431373, 0.18431373, 0.32156864, 0.73333335)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7p34n"]
 gradient = SubResource("Gradient_laxhj")
@@ -15,10 +15,10 @@ render_priority = 2
 next_pass = ExtResource("1_mskbh")
 shader = ExtResource("1_tvkpe")
 shader_parameter/color_ramp = SubResource("GradientTexture1D_7p34n")
-shader_parameter/scale = 1.6530000310175
-shader_parameter/warp_strength = 0.4110000195225
-shader_parameter/warp_scale = 5.0210002147475
-shader_parameter/anim_speed = 0.50400002394
-shader_parameter/contrast = 2.4320001122601203
-shader_parameter/brightness = -0.269999989075
-shader_parameter/opacity = 0.2270000107825
+shader_parameter/scale = 2.6590000788025
+shader_parameter/warp_strength = 0.298000014155
+shader_parameter/warp_scale = 4.014000166915
+shader_parameter/anim_speed = 0.13200000627
+shader_parameter/contrast = 0.11700000229762
+shader_parameter/brightness = -0.08799998043000001
+shader_parameter/opacity = 1.0

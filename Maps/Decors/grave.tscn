@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c4jg4glux5u8v"]
+
+[ext_resource type="Texture2D" uid="uid://b0e1137q78j2b" path="res://Maps/Decors/Untitled_Artwork (2).png" id="1_hwf34"]
+[ext_resource type="Shader" path="res://Maps/Decors/bottom_fog.gdshader" id="1_iwo1t"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_iwo1t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwo1t"]
+render_priority = 0
+shader = ExtResource("1_iwo1t")
+shader_parameter/albedo_texture = ExtResource("1_hwf34")
+shader_parameter/fog_color = Color(0.02, 0, 0.08, 1)
+shader_parameter/ground_y = -0.195
+shader_parameter/fog_height = 0.9290000441275
+shader_parameter/fog_strength = 1.0
+shader_parameter/fog_falloff = 1.2070000335825
+shader_parameter/noise_scale = 0.29600001336147996
+shader_parameter/noise_strength = 1.8400000874
+shader_parameter/noise_drift = Vector2(0.1, -0.05)
+
+[node name="BigRock" type="Node3D" unique_id=410137951]
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=106763812]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_iwo1t")
+pixel_size = 0.003
+shaded = true
+double_sided = false
+alpha_cut = 1
+render_priority = -5
+texture = ExtResource("1_hwf34")
+script = ExtResource("2_iwo1t")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
