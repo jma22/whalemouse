@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
 [ext_resource type="PackedScene" uid="uid://c4jg4glux5u8v" path="res://Maps/Decors/grave1.tscn" id="16_8icpy"]
 [ext_resource type="PackedScene" uid="uid://bsf6kjws875nu" path="res://Maps/Decors/grave2.tscn" id="17_dxvuv"]
+[ext_resource type="PackedScene" uid="uid://r8cf2qabpfea" path="res://Collectibles/fragment_spawner.tscn" id="18_7voj8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
 render_priority = -4
@@ -146,10 +147,11 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "gateway", "floor", "player_spawn_point")]
+[node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "gateway", "fragment_spawner", "floor", "player_spawn_point")]
 script = ExtResource("1_20ttm")
 shrines = [NodePath("Shrines/Shrine"), NodePath("Shrines/Shrine2"), NodePath("Shrines/Shrine3"), NodePath("Shrines/Shrine4")]
 gateway = NodePath("Gateway")
+fragment_spawner = NodePath("FragmentSpawner")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
 
@@ -440,6 +442,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2100227, 0, -2.936113)
 
 [node name="Grave7" parent="Graves" unique_id=270043885 instance=ExtResource("17_dxvuv")]
 transform = Transform3D(0.9719323, 0, 0.23526086, 0, 1, 0, -0.23526086, 0, 0.9719323, 3.2514246, 0, -2.6935606)
+
+[node name="FragmentSpawner" parent="." unique_id=756005090 instance=ExtResource("18_7voj8")]
 
 [editable path="Rocks/BigRock5"]
 [editable path="Rocks/BigRock8"]

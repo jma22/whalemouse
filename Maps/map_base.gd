@@ -3,6 +3,7 @@ extends Node3D
 class_name MapManagerBase
 
 @export var gateway : Gateway
+@export var fragment_spawner : FragmentSpawner
 @warning_ignore("shadowed_global_identifier")
 @export var floor : NavigationRegion3D 
 @export var player_spawn_point : Node3D
@@ -48,6 +49,9 @@ func map_cleared() -> bool
 func on_map_cleared() -> void:
 	camera.set_combat(false)
 	gateway.open_gateway()
+	
+	
 
 func leave_room() -> void:
 	room_active = false
+	fragment_spawner.clear_orbs()

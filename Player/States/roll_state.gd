@@ -69,4 +69,4 @@ func set_direction(direction: Vector2) -> void:
 
 func initial_velocity() -> void:
 	entity.velocity.x = roll_direction.x * BASE_DASH_DISTANCE * StatCalculator.get_dash_distance_decrease()
-	entity.velocity.z = roll_direction.y * BASE_DASH_DISTANCE * StatCalculator.get_dash_distance_decrease()
+	entity.velocity.z = roll_direction.y * BASE_DASH_DISTANCE * StatCalculator.get_dash_distance_decrease() * Constants.VERTICAL_PERSRPECTIVE_SCALE

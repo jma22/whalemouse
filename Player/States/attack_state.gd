@@ -29,7 +29,7 @@ func enter() -> void:
 	audio_player.play()
 
 	# convert 2D attack direction to world position for the arc
-	var dir3d := Vector3(attack_direction.x, 0, attack_direction.y)
+	var dir3d := Vector3(attack_direction.x, 0, attack_direction.y * Constants.VERTICAL_PERSRPECTIVE_SCALE).normalized()
 	var target := entity.global_transform.origin + dir3d * horizontal_distance
 
 	if StatCalculator.get_bigger_attack_every_n_hits() > 0:

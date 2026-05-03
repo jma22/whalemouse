@@ -15,6 +15,7 @@ func setup(direction_: Vector3, source_: Node3D, speed_multiplier: float) -> voi
 	super.set_source(source_)
 	hitbox.source = source_
 	self.direction = direction_
+	self.direction.z *= Constants.VERTICAL_PERSRPECTIVE_SCALE
 	self.speed_multiplier = speed_multiplier
 	hitbox.set_active(true)
 	# cleanup timer

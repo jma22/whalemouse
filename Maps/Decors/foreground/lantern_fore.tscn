@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ds72u44y3yxqc"]
+
+[ext_resource type="Texture2D" uid="uid://d2tjt256gyl5h" path="res://Maps/Decors/Untitled_Artwork (14).png" id="1_2g6ov"]
+[ext_resource type="Material" uid="uid://cgry6ob5583dk" path="res://Maps/Decors/foreground/foreground_mat.tres" id="1_21qiv"]
+[ext_resource type="Script" uid="uid://ommkb6742551" path="res://Core/foreground_sprite_manager.gd" id="3_21qiv"]
+
+[node name="Lantern" type="Node3D" unique_id=410137951]
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=1513377533]
+transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, 0, 0)
+material_override = ExtResource("1_21qiv")
+pixel_size = 0.002
+double_sided = false
+alpha_cut = 2
+render_priority = -5
+texture = ExtResource("1_2g6ov")
+script = ExtResource("3_21qiv")
+metadata/_custom_type_script = "uid://ommkb6742551"

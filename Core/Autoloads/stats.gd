@@ -9,7 +9,14 @@ var player :Node3D
 var run_stats : Dictionary = {
 	"enemies_killed": 0,
 	"waves_completed": 0,
-	"total_time_survived": 0.0
+	"total_time_survived": 0.0,
+	"num_small_shards": 0,
+	"num_big_shards" : 0,
+	"num_cursed_shards": 0,
+
+	"curse_shard_drop_num": 0,
+	"small_shard_drop_num": 0,
+	"big_shard_drop_num": 0,
 }
 
 var boss_defeated: bool = false
@@ -157,8 +164,23 @@ func add_kill() -> void:
 func add_wave() -> void:
 	run_stats["waves_completed"] += 1
 
+func add_small_shard() -> void:
+	run_stats["num_small_shards"] += 1
+
+func add_big_shard() -> void:
+	run_stats["num_big_shards"] += 1
+
+func add_cursed_shard() -> void:
+	run_stats["num_cursed_shards"] += 1
+
 func add_time_survived(time: float) -> void:
 	run_stats["total_time_survived"] += time
+
+func get_small_shard_drop_num() -> int:
+	return run_stats["small_shard_drop_num"]
+
+func get_big_shard_drop_num() -> int:
+	return run_stats["big_shard_drop_num"]
 
 func reset_current_run_stats() -> void:
 	wave_augments.clear()
@@ -204,6 +226,9 @@ func _apply_overrides() -> void:
 		if Config.get_override("boss_stats/" + k) != null:
 			for i : int in range(Config.get_override("boss_stats/" + k)):
 				add_boss_stat(k)
+	for k : String in run_stats.keys():
+		if Config.get_override("game_data/" + k) != null:
+			run_stats[k] = Config.get_override("game_data/" + k)
 	Upgrades.ensure_initialized()
 
 	for upgrade_name : String in Config.get_override("chosen_upgrades", []):

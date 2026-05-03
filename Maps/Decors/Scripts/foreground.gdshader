@@ -15,7 +15,7 @@ uniform bool interpolate = true;
 uniform bool invert = false;
 uniform float falloff : hint_range(0.1, 10.0) = 2.5;
 uniform float noise_speed : hint_range(0.0, 10.0) = 1.0;
-uniform vec2 player_screen_uv = vec2(0.5, 0.5);
+global uniform vec2 foreground_player_uv;
 uniform float vertical_stretch : hint_range(0.1, 5.0) = 1.0;
 
 const int bayer2[4] = {
@@ -95,12 +95,12 @@ void fragment() {
 		cos(t * 0.9) + cos(t * 1.7) * 0.5 + cos(t * 2.3) * 0.55
 	) / VIEWPORT_SIZE;
 
-	vec2 center = vec2(player_screen_uv.x * aspect, player_screen_uv.y)
+	vec2 center = vec2(foreground_player_uv.x * aspect, foreground_player_uv.y)
 	            + vec2(wander.x * aspect, wander.y);
 
 	vec2 uv = vec2(
 	    screen_uv.x * aspect,
-	    (screen_uv.y - player_screen_uv.y) / vertical_stretch + player_screen_uv.y
+	    (screen_uv.y - foreground_player_uv.y) / vertical_stretch + foreground_player_uv.y
 	);
 	float uv_step_f = pixel_size / resolution.x;
 	vec2 uv_step = vec2(uv_step_f, uv_step_f);

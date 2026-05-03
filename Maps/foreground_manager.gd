@@ -19,4 +19,5 @@ func _process(_delta: float) -> void:
 
 	var screen_pos: Vector2 = camera.unproject_position(player.global_position)
 
-	foreground_material.set_shader_parameter("player_screen_uv", screen_pos / viewport_size)
+	RenderingServer.global_shader_parameter_set("foreground_player_uv", screen_pos / viewport_size)
+	# foreground_material.set_shader_parameter("player_screen_uv", screen_pos / viewport_size)

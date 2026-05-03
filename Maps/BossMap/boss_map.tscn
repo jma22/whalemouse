@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_qtgbq"]
 [ext_resource type="Script" uid="uid://rkf55fun3rbg" path="res://Maps/BossMap/intro_animation.gd" id="10_x6kko"]
 [ext_resource type="PackedScene" uid="uid://bb8si1mpdb4l2" path="res://Maps/Decors/bubble_back.tscn" id="11_5bul5"]
+[ext_resource type="PackedScene" uid="uid://r8cf2qabpfea" path="res://Collectibles/fragment_spawner.tscn" id="11_f0u3y"]
 [ext_resource type="Script" uid="uid://bshcea0s7twq6" path="res://Maps/enemy_spawner.gd" id="12_vauxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
@@ -139,12 +140,13 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="BossMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "boss_spawn", "intro_animation", "gateway", "floor", "player_spawn_point")]
+[node name="BossMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "boss_spawn", "intro_animation", "gateway", "fragment_spawner", "floor", "player_spawn_point")]
 script = ExtResource("1_pf42a")
 enemy_spawner = NodePath("EnemySpawner")
 boss_spawn = NodePath("BossSpawn")
 intro_animation = NodePath("IntroAnimation")
 gateway = NodePath("Gateway")
+fragment_spawner = NodePath("FragmentSpawner")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
 
@@ -392,6 +394,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0002613, 0, 0.84033203)
 
 [node name="IntroAnimation" type="Node3D" parent="." unique_id=1301307818]
 script = ExtResource("10_x6kko")
+
+[node name="FragmentSpawner" parent="." unique_id=756005090 instance=ExtResource("11_f0u3y")]
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

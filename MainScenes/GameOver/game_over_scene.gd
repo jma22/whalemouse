@@ -67,6 +67,8 @@ func display_stats() -> void:
 			text = "waves"
 		elif stat_name == "enemies_killed":
 			text = "fish"
+		else:
+			continue
 		
 		text_labels[i].text = "[shake rate=4.0 level=4 connected=1]" + str(number) + " " + text + "[/shake]\n"
 		tween.tween_callback(Callable(self, "play_sound").bind(i+1))

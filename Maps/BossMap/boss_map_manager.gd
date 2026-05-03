@@ -29,3 +29,7 @@ func map_cleared() -> bool:
 	if not wave_info:
 		return false
 	return boss and boss.is_dead
+
+func on_map_cleared() -> void:
+	super()
+	fragment_spawner.spawn_boss_fragments(floor)

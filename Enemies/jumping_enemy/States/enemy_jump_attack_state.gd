@@ -75,6 +75,7 @@ func fixed_run(_delta: float) -> void:
 	
 func set_target_position(position: Vector3) -> void:
 	target_position = position
+	target_position.z *= Constants.VERTICAL_PERSRPECTIVE_SCALE
 
 func check_state() -> void:
 	if cooldown_timer >= cooldown_time:

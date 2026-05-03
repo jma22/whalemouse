@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cyl1xch0b1jdn"]
+
+[node name="MouseHub" type="Node3D" unique_id=1733890198]
+
+[node name="Control" type="Control" parent="." unique_id=1666526364]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

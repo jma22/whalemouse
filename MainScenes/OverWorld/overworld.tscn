@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dhctmvoakklsn"]
+
+[node name="Overworld" type="Node3D" unique_id=2047495420]
+
+[node name="Control" type="Control" parent="." unique_id=1630678288]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

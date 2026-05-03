@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://cf4qcfnco8mr1" path="res://Maps/Decors/lantern.tscn" id="15_ouo2d"]
 [ext_resource type="PackedScene" uid="uid://ch2rlafh1gup4" path="res://Maps/Decors/trees.tscn" id="16_f1sl0"]
 [ext_resource type="PackedScene" uid="uid://cni7fbbhih564" path="res://Maps/Decors/trees_front.tscn" id="16_o7irc"]
+[ext_resource type="PackedScene" uid="uid://ds72u44y3yxqc" path="res://Maps/Decors/foreground/lantern_fore.tscn" id="17_1qev3"]
 [ext_resource type="PackedScene" uid="uid://dc50sgu3i0c0n" path="res://Maps/Decors/fence.tscn" id="18_ga113"]
 [ext_resource type="PackedScene" uid="uid://epwve4octy37" path="res://Maps/Decors/side_thing.tscn" id="19_qw64w"]
+[ext_resource type="PackedScene" uid="uid://r8cf2qabpfea" path="res://Collectibles/fragment_spawner.tscn" id="20_xm5ve"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
 render_priority = -4
@@ -148,12 +150,13 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "ranged_spawns", "melee_spawns", "gateway", "floor", "player_spawn_point")]
+[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "ranged_spawns", "melee_spawns", "gateway", "fragment_spawner", "floor", "player_spawn_point")]
 script = ExtResource("1_vb07d")
 enemy_spawner = NodePath("EnemySpawner")
 ranged_spawns = NodePath("EnemySpawner/RangedSpawnPoints")
 melee_spawns = NodePath("EnemySpawner/MeleeSpawnPoints")
 gateway = NodePath("Gateway")
+fragment_spawner = NodePath("FragmentSpawner")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
 
@@ -391,12 +394,6 @@ transform = Transform3D(0.99962986, 0, 0.027206317, 0, 1, 0, -0.027206317, 0, 0.
 
 [node name="Lanterns" type="Node3D" parent="." unique_id=2074527421]
 
-[node name="Grave2" parent="Lanterns" unique_id=748874990 instance=ExtResource("15_ouo2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9224167, 0.8405762, -0.27807617)
-
-[node name="Grave4" parent="Lanterns" unique_id=253707699 instance=ExtResource("15_ouo2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.516945, 0.8405762, -0.27807617)
-
 [node name="Grave3" parent="Lanterns" unique_id=350624417 instance=ExtResource("15_ouo2d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8945847, 0.75061035, -1.7119751)
 
@@ -438,12 +435,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.03, 0.41, 1.07)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68, 0.41, 1.43)
 
 [node name="FrontTrees" type="Node3D" parent="Foreground" unique_id=1823022447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2446289)
 
 [node name="Grave2" parent="Foreground/FrontTrees" unique_id=90183939 instance=ExtResource("16_o7irc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6488638, 0, 1.1960449)
 
 [node name="Grave3" parent="Foreground/FrontTrees" unique_id=2121308560 instance=ExtResource("16_o7irc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.473237, 0, 1.1960449)
+
+[node name="Lanterns" type="Node3D" parent="Foreground" unique_id=18970369]
+
+[node name="Lantern" parent="Foreground/Lanterns" unique_id=221103757 instance=ExtResource("17_1qev3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2727203, 1.0183105, -0.7325592)
+
+[node name="Lantern2" parent="Foreground/Lanterns" unique_id=365354388 instance=ExtResource("17_1qev3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2316742, 1.0183105, -0.7325592)
 
 [node name="Trees" type="Node3D" parent="." unique_id=441790320]
 
@@ -471,6 +477,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5629044, 0.04437256, 0.582
 
 [node name="Grave2" parent="LeftThings" unique_id=56803772 instance=ExtResource("19_qw64w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6973953, 0.04437256, -0.85871124)
+
+[node name="FragmentSpawner" parent="." unique_id=756005090 instance=ExtResource("20_xm5ve")]
 
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]

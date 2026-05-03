@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://r8cf2qabpfea"]
+
+[ext_resource type="Script" uid="uid://dmw3awvvark0l" path="res://Collectibles/fragment_spawner.gd" id="1_oghjn"]
+[ext_resource type="PackedScene" uid="uid://d3n6dtkf4xqjb" path="res://Collectibles/small_fragment/small_fragment.tscn" id="2_fdd8a"]
+[ext_resource type="PackedScene" uid="uid://d3i61j7kk4h5i" path="res://Collectibles/boss_fragment/boss_fragment.tscn" id="3_fdd8a"]
+
+[node name="FragmentSpawner" type="Node3D" unique_id=756005090]
+script = ExtResource("1_oghjn")
+small_fragment = ExtResource("2_fdd8a")
+boss_fragment = ExtResource("3_fdd8a")

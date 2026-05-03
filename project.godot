@@ -152,3 +152,10 @@ pause={
 
 rendering_device/driver.windows="d3d12"
 environment/defaults/default_clear_color=Color(0, 0, 0.007843138, 1)
+
+[shader_globals]
+
+foreground_player_uv={
+"type": "vec2",
+"value": Vector2(0, 0)
+}

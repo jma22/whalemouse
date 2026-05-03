@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://d3n6dtkf4xqjb"]
+
+[ext_resource type="Script" uid="uid://2yur5r4doa2k" path="res://Collectibles/small_fragment/small_fragment.gd" id="1_2occ6"]
+[ext_resource type="Texture2D" uid="uid://4yu1ufghkxh" path="res://Collectibles/small_fragment/small_fragment.png" id="2_velfx"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_x0rxh"]
+[ext_resource type="AudioStream" uid="uid://iduxoxuqogab" path="res://SFX/XP_POP.wav" id="4_odbsy"]
+
+[node name="SmallFragment" type="Node3D" unique_id=393659539 node_paths=PackedStringArray("sprite_manager", "audio_player")]
+script = ExtResource("1_2occ6")
+sprite_manager = NodePath("SpriteManager")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=2098642632]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
+pixel_size = 0.002
+billboard = 1
+double_sided = false
+alpha_cut = 2
+alpha_scissor_threshold = 0.0
+render_priority = 5
+texture = ExtResource("2_velfx")
+script = ExtResource("3_x0rxh")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1305784290]
+stream = ExtResource("4_odbsy")
+volume_db = -10.0
+pitch_scale = 2.37

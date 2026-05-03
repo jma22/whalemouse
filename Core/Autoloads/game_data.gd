@@ -10,6 +10,9 @@ var lifetime_stats: Dictionary = {
 	"games_played": 0,
 	"boss_defeats": 0,
 	"total_time_survived": 0.0,
+	"num_small_shards": 0,
+	"num_big_shards": 0,
+	"num_cursed_shards": 0,
 }
 
 var unlocked_upgrades: Array[String] = []
@@ -39,6 +42,9 @@ func record_run(run_stats: Dictionary, boss_defeated: bool) -> void:
 	lifetime_stats["waves_completed"] += run_stats.get("waves_completed", 0)
 	lifetime_stats["total_time_survived"] += run_stats.get("total_time_survived", 0.0)
 	lifetime_stats["games_played"] += 1
+	lifetime_stats["num_small_shards"] += run_stats.get("num_small_shards", 0)
+	lifetime_stats["num_big_shards"] += run_stats.get("num_big_shards", 0)
+	lifetime_stats["num_cursed_shards"] += run_stats.get("num_cursed_shards", 0)
 	if boss_defeated:
 		lifetime_stats["boss_defeats"] += 1
 	var new_unlocks : Array[String] = _evaluate_unlocks()
