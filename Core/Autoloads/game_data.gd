@@ -16,6 +16,7 @@ var lifetime_stats: Dictionary = {
 }
 
 var unlocked_upgrades: Array[String] = []
+signal on_currency_changed
 
 func _ready() -> void:
 	if Config.get_override("reset_gamedata"):
@@ -49,6 +50,7 @@ func record_run(run_stats: Dictionary, boss_defeated: bool) -> void:
 		lifetime_stats["boss_defeats"] += 1
 	var new_unlocks : Array[String] = _evaluate_unlocks()
 	SceneManager.add_unlocks(new_unlocks)
+	emit_signal("on_currency_changed")
 	_save()
 
 func _evaluate_unlocks() -> Array[String]:
@@ -63,6 +65,12 @@ func _evaluate_unlocks() -> Array[String]:
 func get_stat(name_: String) -> Variant:
 	return lifetime_stats[name_]
 
+func get_currency_amount() -> Dictionary:
+	return {
+		"num_small_shards": lifetime_stats["num_small_shards"],
+		"num_big_shards": lifetime_stats["num_big_shards"],
+		"num_cursed_shards": lifetime_stats["num_cursed_shards"],
+	}
 func _save() -> void:
 	var cfg := ConfigFile.new()
 	for key: String in lifetime_stats:

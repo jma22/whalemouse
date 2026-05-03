@@ -1,9 +1,49 @@
 [gd_scene format=3 uid="uid://cyl1xch0b1jdn"]
 
+[ext_resource type="PackedScene" uid="uid://dih816wfsnvdi" path="res://UI/Hub/currency_info.tscn" id="1_gpdp0"]
+
 [node name="MouseHub" type="Node3D" unique_id=1733890198]
 
-[node name="Control" type="Control" parent="." unique_id=1666526364]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=796877212]
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer" unique_id=2131907368]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Memories" type="TabBar" parent="CanvasLayer/TabContainer" unique_id=1264851563]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Control" type="Control" parent="CanvasLayer/TabContainer/Memories" unique_id=134693476]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WishingWell" type="TabBar" parent="CanvasLayer/TabContainer" unique_id=1153695862]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Relics" type="TabBar" parent="CanvasLayer/TabContainer" unique_id=922860659]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="CurrencyInfoBar" parent="CanvasLayer" unique_id=1681354303 instance=ExtResource("1_gpdp0")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -172.0
+offset_right = 0.0
+grow_horizontal = 0
+
+[node name="BackButton" type="Button" parent="CanvasLayer" unique_id=706055821]
+offset_right = 8.0
+offset_bottom = 8.0
