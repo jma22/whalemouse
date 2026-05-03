@@ -161,6 +161,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Seaweeds" type="Node3D" parent="." unique_id=1508705870]
+visible = false
 
 [node name="Seaweed4" parent="Seaweeds" unique_id=1171315565 instance=ExtResource("6_iy2c3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0899999, 0.41, 1.13)
