@@ -1,16 +1,21 @@
 extends Control
+class_name Sticker
+
 
 @export var texture_button : TextureButton
 @export var cost_label : RichTextLabel
 
-@export var sticker_name : String
+var sticker_name : String
 var unlocked : bool = false
 var memory_data : MemoryData
+var memory_scene : Control
 
-func _ready() -> void:
-	setup()
+# func _ready() -> void:
+# 	setup()
 
-func setup() -> void:
+func setup(sticker_name : String, memory_scene : Control) -> void:
+	self.sticker_name = sticker_name
+	self.memory_scene = memory_scene
 	memory_data = GameConstants.MEMORY_DATA[sticker_name]
 	unlocked = GameData.is_memory_unlocked(sticker_name)
 
@@ -21,8 +26,7 @@ func setup() -> void:
 
 func on_texture_button_pressed() -> void:
 	if unlocked:
-		#show memory details
-		pass
+		self.memory_scene.open_sticker_detail(memory_data)
 	else:
 		#check if player has enough currency to unlock
 		var cost : CostData = memory_data.cost

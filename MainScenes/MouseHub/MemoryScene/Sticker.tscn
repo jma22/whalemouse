@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_m55aj"]
 
 [node name="Sticker" type="Control" unique_id=1689376893 node_paths=PackedStringArray("texture_button", "cost_label")]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 3
 anchor_right = 0.157
 anchor_bottom = 0.23300001

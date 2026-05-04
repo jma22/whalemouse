@@ -1,15 +1,21 @@
 [gd_scene format=3 uid="uid://b65nnx3nona14"]
 
 [ext_resource type="Texture2D" uid="uid://kg5wvfho84bi" path="res://MainScenes/MouseHub/MemoryScene/MainStickers/sticker1.png" id="1_e4ksw"]
+[ext_resource type="Script" uid="uid://b4furq0igg0ql" path="res://MainScenes/MouseHub/MemoryScene/sticker_detail.gd" id="1_qsaap"]
 [ext_resource type="Texture2D" uid="uid://dsanarmjmbf10" path="res://MainScenes/GameOver/win_screen.png" id="2_mqoqk"]
 
-[node name="StickerDetail" type="Control" unique_id=1392714014]
+[node name="StickerDetail" type="Control" unique_id=1392714014 node_paths=PackedStringArray("back_button", "sticker_name_label", "sticker_description_label", "sticker_sprite")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qsaap")
+back_button = NodePath("BackButton")
+sticker_name_label = NodePath("HBoxContainer/Control/VBoxContainer/Control2/Control/RichTextLabel")
+sticker_description_label = NodePath("HBoxContainer/Control/VBoxContainer/Control2/Control2/RichTextLabel")
+sticker_sprite = NodePath("HBoxContainer/Control/VBoxContainer/Control/TextureRect")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1413820403]
 layout_mode = 1

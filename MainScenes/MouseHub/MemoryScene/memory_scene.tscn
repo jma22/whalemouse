@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cin4kyopvby6o"]
 
+[ext_resource type="Script" uid="uid://dan7yc30aaidx" path="res://MainScenes/MouseHub/MemoryScene/memory_scene.gd" id="1_ga66x"]
 [ext_resource type="PackedScene" uid="uid://xwrkldhqhxks" path="res://MainScenes/MouseHub/MemoryScene/Sticker.tscn" id="1_peq8y"]
+[ext_resource type="PackedScene" uid="uid://b65nnx3nona14" path="res://MainScenes/MouseHub/MemoryScene/sticker_detail.tscn" id="2_1pnaw"]
 
-[node name="MemoryScene" type="Control" unique_id=1828627335]
+[node name="MemoryScene" type="Control" unique_id=1828627335 node_paths=PackedStringArray("sticker_detail_scene", "sticker_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +12,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_ga66x")
+sticker_detail_scene = NodePath("StickerDetail")
+sticker_container = NodePath("ScrollContainer/GridContainer")
+sticker_scene = ExtResource("1_peq8y")
 
-[node name="Sticker" parent="." unique_id=1689376893 instance=ExtResource("1_peq8y")]
+[node name="StickerDetail" parent="." unique_id=1392714014 instance=ExtResource("2_1pnaw")]
+visible = false
 layout_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1088262673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer" unique_id=153745426]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
