@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://b65nnx3nona14"]
+
+[ext_resource type="Texture2D" uid="uid://kg5wvfho84bi" path="res://MainScenes/MouseHub/MemoryScene/MainStickers/sticker1.png" id="1_e4ksw"]
+[ext_resource type="Texture2D" uid="uid://dsanarmjmbf10" path="res://MainScenes/GameOver/win_screen.png" id="2_mqoqk"]
+
+[node name="StickerDetail" type="Control" unique_id=1392714014]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1413820403]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=757281852]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control" unique_id=41172298]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/Control/VBoxContainer" unique_id=1672051967]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Control/VBoxContainer/Control" unique_id=563065216]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.75226
+offset_top = -80.0
+offset_right = 101.75226
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e4ksw")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Control2" type="VBoxContainer" parent="HBoxContainer/Control/VBoxContainer" unique_id=246048648]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HBoxContainer/Control/VBoxContainer/Control2" unique_id=1899153307]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Control/VBoxContainer/Control2/Control" unique_id=1953993635]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Piranha"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="HBoxContainer/Control/VBoxContainer/Control2" unique_id=905739825]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Control/VBoxContainer/Control2/Control2" unique_id=171646896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The story is here. "
+
+[node name="Control2" type="Control" parent="HBoxContainer" unique_id=33096396]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UnlockIllustration" type="Control" parent="HBoxContainer/Control2" unique_id=890897663]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Control2/UnlockIllustration" unique_id=2105318157]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 18.0
+offset_right = 314.0
+offset_bottom = 181.0
+texture = ExtResource("2_mqoqk")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/Control2/UnlockIllustration" unique_id=703910155]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackButton" type="Button" parent="." unique_id=616017555]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -42.0
+offset_right = 104.0
+grow_vertical = 0
+text = "Back
+"

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cyl1xch0b1jdn"]
+
+[ext_resource type="PackedScene" uid="uid://dih816wfsnvdi" path="res://UI/Hub/currency_info.tscn" id="1_176lp"]
+[ext_resource type="Script" uid="uid://djidyraqvsu0y" path="res://MainScenes/MouseHub/mouse_hub_scene.gd" id="1_kfi5h"]
+[ext_resource type="PackedScene" uid="uid://cin4kyopvby6o" path="res://MainScenes/MouseHub/MemoryScene/memory_scene.tscn" id="3_a54be"]
+[ext_resource type="PackedScene" uid="uid://drqc0hrgfwup3" path="res://MainScenes/MouseHub/RelicScene/relic_scene.tscn" id="4_2wmd1"]
+[ext_resource type="PackedScene" uid="uid://bjn4cwx7h48kg" path="res://MainScenes/MouseHub/WellScene/run_mod_page.tscn" id="4_dxrut"]
+
+[node name="MouseHub" type="Node3D" unique_id=1733890198 node_paths=PackedStringArray("overworld_button", "tab_container")]
+script = ExtResource("1_kfi5h")
+overworld_button = NodePath("CanvasLayer/BackButton")
+tab_container = NodePath("CanvasLayer/TabContainer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=796877212]
+
+[node name="CurrencyInfoBar" parent="CanvasLayer" unique_id=1681354303 instance=ExtResource("1_176lp")]
+offset_left = -172.0
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer" unique_id=2131907368]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 2
+
+[node name="Memories" type="TabBar" parent="CanvasLayer/TabContainer" unique_id=1264851563]
+visible = false
+layout_mode = 2
+focus_neighbor_right = NodePath("../WishingWell")
+focus_neighbor_bottom = NodePath("../../BackButton")
+metadata/_tab_index = 0
+
+[node name="Stickers" parent="CanvasLayer/TabContainer/Memories" unique_id=1828627335 instance=ExtResource("3_a54be")]
+layout_mode = 1
+
+[node name="WishingWell" type="TabBar" parent="CanvasLayer/TabContainer" unique_id=1153695862]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Memories")
+focus_neighbor_right = NodePath("../Relics")
+focus_neighbor_bottom = NodePath("../../BackButton")
+metadata/_tab_index = 1
+
+[node name="RunModPage" parent="CanvasLayer/TabContainer/WishingWell" unique_id=1116610660 instance=ExtResource("4_dxrut")]
+layout_mode = 1
+
+[node name="Relics" type="TabBar" parent="CanvasLayer/TabContainer" unique_id=922860659]
+layout_mode = 2
+focus_neighbor_left = NodePath("../WishingWell")
+metadata/_tab_index = 2
+
+[node name="RelicPage" parent="CanvasLayer/TabContainer/Relics" unique_id=70897863 instance=ExtResource("4_2wmd1")]
+layout_mode = 1
+
+[node name="BackButton" type="Button" parent="CanvasLayer" unique_id=706055821]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_right = 116.0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../TabContainer/Memories")
+text = "Back
+"

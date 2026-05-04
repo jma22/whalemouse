@@ -8,13 +8,14 @@ class_name CurrencyInfoBar
 
 func _ready() -> void:
 	GameData.on_currency_changed.connect(_on_currency_changed)
+	sync_bar()
 
-func _on_currency_changed(_stat_name: StringName, _new_value: int) -> void:
+func _on_currency_changed() -> void:
+	DebugLog.dbg_from(self, "Currency changed")
 	sync_bar()
 
 func sync_bar() -> void:
-	var currency : Dictionary[String, int] = GameData.get_currency_amount()
-	big_num.text = str(currency["num_big_shards"])
-	small_num.text = str(currency["num_small_shards"])
-	cursed_num.text = str(currency["num_cursed_shards"])
-
+	var currency : Dictionary[StringName, int] = GameData.get_currency_amount()
+	big_num.text = str(currency[GameConstants.BOSS_FRAGMENTS])
+	small_num.text = str(currency[GameConstants.SMALL_FRAGMENTS])
+	cursed_num.text = str(currency[GameConstants.CURSED_FRAGMENTS])

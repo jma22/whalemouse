@@ -49,15 +49,23 @@ func _on_mouse_exited() -> void:
 
 [node name="UnlockScene" type="Node3D" unique_id=1521685688 node_paths=PackedStringArray("background", "audio_player", "relic_name", "relic_description", "relic_supplement", "relic_texture", "button_control")]
 script = ExtResource("1_0b6e3")
-background = NodePath("Control/TextureRect")
+background = NodePath("CanvasLayer/Control/TextureRect")
 audio_player = NodePath("AudioStreamPlayer")
-relic_name = NodePath("Control/Control/RelicName")
-relic_description = NodePath("Control/Control/VBoxContainer/RelicDescription")
-relic_supplement = NodePath("Control/Control/VBoxContainer/RelicSupplement")
-relic_texture = NodePath("Control/RelicImage")
-button_control = NodePath("Control/VBoxContainer/Control")
+relic_name = NodePath("CanvasLayer/Control/Control/RelicName")
+relic_description = NodePath("CanvasLayer/Control/Control/VBoxContainer/RelicDescription")
+relic_supplement = NodePath("CanvasLayer/Control/Control/VBoxContainer/RelicSupplement")
+relic_texture = NodePath("CanvasLayer/Control/RelicImage")
+button_control = NodePath("CanvasLayer/Control/VBoxContainer/Control")
 
-[node name="Control" type="Control" parent="." unique_id=473503477]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1539445550]
+stream = ExtResource("6_hxcm3")
+volume_db = -13.812
+pitch_scale = 0.69
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=952474190]
+layer = 2
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=473503477]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +73,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1822904499]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=1822904499]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.088, 0.08873333, 0.11, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1447394169]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1447394169]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,7 +92,7 @@ grow_vertical = 2
 texture = ExtResource("2_0b6e3")
 expand_mode = 2
 
-[node name="RelicImage" type="TextureRect" parent="Control" unique_id=658440739]
+[node name="RelicImage" type="TextureRect" parent="CanvasLayer/Control" unique_id=658440739]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,7 +108,7 @@ grow_vertical = 2
 scale = Vector2(0.416159, 0.40650046)
 texture = ExtResource("3_ghb57")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1736086154]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=1736086154]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -110,17 +118,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Control2" type="Control" parent="Control/VBoxContainer" unique_id=29338108]
+[node name="Control2" type="Control" parent="CanvasLayer/Control/VBoxContainer" unique_id=29338108]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 12.0
 
-[node name="Control" type="Control" parent="Control/VBoxContainer" unique_id=1268228828]
+[node name="Control" type="Control" parent="CanvasLayer/Control/VBoxContainer" unique_id=1268228828]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Button" type="Button" parent="Control/VBoxContainer/Control" unique_id=1305187883 node_paths=PackedStringArray("text_label")]
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/Control" unique_id=1305187883 node_paths=PackedStringArray("text_label")]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 1
 anchors_preset = 8
@@ -143,7 +151,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_waywm")
 script = SubResource("GDScript_0b6e3")
 text_label = NodePath("RichTextLabel")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/Control/Button" unique_id=89701532]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/VBoxContainer/Control/Button" unique_id=89701532]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -163,11 +171,11 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control3" type="Control" parent="Control/VBoxContainer" unique_id=1979533319]
+[node name="Control3" type="Control" parent="CanvasLayer/Control/VBoxContainer" unique_id=1979533319]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="Control" unique_id=335402028]
+[node name="Control" type="Control" parent="CanvasLayer/Control" unique_id=335402028]
 z_index = 20
 layout_mode = 1
 anchors_preset = 15
@@ -177,7 +185,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RelicName" type="RichTextLabel" parent="Control/Control" unique_id=1655636633]
+[node name="RelicName" type="RichTextLabel" parent="CanvasLayer/Control/Control" unique_id=1655636633]
 z_index = 20
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
@@ -195,7 +203,7 @@ text = "[shake rate=4.0 level=4 connected=1]200 seconds[/shake]"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Control" unique_id=944066545]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Control" unique_id=944066545]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -205,7 +213,7 @@ offset_top = -124.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="RelicDescription" type="RichTextLabel" parent="Control/Control/VBoxContainer" unique_id=831044440]
+[node name="RelicDescription" type="RichTextLabel" parent="CanvasLayer/Control/Control/VBoxContainer" unique_id=831044440]
 z_index = 20
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -218,7 +226,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="RelicSupplement" type="RichTextLabel" parent="Control/Control/VBoxContainer" unique_id=1865800394]
+[node name="RelicSupplement" type="RichTextLabel" parent="CanvasLayer/Control/Control/VBoxContainer" unique_id=1865800394]
 z_index = 20
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -230,8 +238,3 @@ text = "[shake rate=4.0 level=4 connected=1]10 waves[/shake]
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1539445550]
-stream = ExtResource("6_hxcm3")
-volume_db = -13.812
-pitch_scale = 0.69

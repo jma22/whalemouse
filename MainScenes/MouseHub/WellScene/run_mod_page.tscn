@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bjn4cwx7h48kg"]
+
+[node name="RunModPage" type="Control" unique_id=1116610660]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1388384470]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=635106745]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GambaButton" type="Button" parent="HBoxContainer/Control" unique_id=705565424]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -35.5
+offset_right = 87.5
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Gamba"
+
+[node name="Control2" type="Control" parent="HBoxContainer" unique_id=2029629381]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Control2" unique_id=2041879239]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Control2/ScrollContainer" unique_id=577721717]
+layout_mode = 2
+columns = 4

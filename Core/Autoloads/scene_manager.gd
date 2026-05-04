@@ -5,7 +5,10 @@ enum SceneEnum {
 	GAME,
 	PAUSE_MENU,
 	GAME_OVER,
-	UNLOCK
+	UNLOCK,
+	OVERWORLD,
+	MOUSE_HUB,
+	
 }
 
 var all_scenes : Dictionary[SceneEnum, Node3D] = {}
@@ -15,6 +18,8 @@ var _current: Node3D = null
 var _container: Node3D
 var _current_enum: SceneEnum = SceneEnum.MAIN_MENU
 var new_unlocks : Array[String] = []
+
+var overlay_scene_node : Node3D = null
 
 func _dbg(str : String) -> void:
 	DebugLog.dbg("SceneManager", str)
@@ -26,6 +31,8 @@ func setup(container: Node3D) -> void:
 	# register(SceneEnum.PAUSE_MENU, "res://PauseMenu/pause_menu_scene.tscn")
 	register(SceneEnum.GAME_OVER, "res://MainScenes/GameOver/game_over_scene.tscn")
 	register(SceneEnum.UNLOCK, "res://MainScenes/UnlockScene/unlock_scene.tscn")
+	register(SceneEnum.OVERWORLD, "res://MainScenes/OverWorld/overworld_scene.tscn")
+	register(SceneEnum.MOUSE_HUB, "res://MainScenes/MouseHub/mouse_hub_scene.tscn")
 	switch_to(SceneEnum.MAIN_MENU)
 
 func register(scene_enum: SceneEnum, path : String) -> void:
@@ -96,11 +103,33 @@ func can_pause() -> bool:
 	# Prevent pausing on main menu
 	return _current_enum == SceneEnum.GAME or _current_enum == SceneEnum.PAUSE_MENU or _current_enum == SceneEnum.MAIN_MENU
 
+func overlay_scene(scene_enum: SceneEnum, setup_args: Array = []) -> void:
+	_current.visible = false
+	_current.process_mode = PROCESS_MODE_DISABLED
+	
+	_container.remove_child(overlay_scene_node)
+
+
+	if scene_enum not in all_scenes:
+		return
+	var scene : Node3D = all_scenes[scene_enum]
+	overlay_scene_node = scene
+	_container.add_child(scene)
+	if scene.has_method("setup"):
+		scene.callv("setup", setup_args)
+
+
+
+
 func next_scene() -> void:
 	## only used after game over scene at the moment
 	_dbg("Next Scene: have unlocks "  + ",".join(new_unlocks))
 	if new_unlocks:
 		var upgrade_name : String = new_unlocks.pop_front()
-		switch_to(SceneEnum.UNLOCK, [upgrade_name])
+		overlay_scene(SceneEnum.UNLOCK, [upgrade_name])
 	else:
-		switch_to(SceneEnum.MAIN_MENU)
+		if overlay_scene_node:
+			_container.remove_child(overlay_scene_node)
+			overlay_scene_node = null
+			_current.visible = true
+			_current.process_mode = PROCESS_MODE_INHERIT

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dbof71ys71ajw"]
+
+[ext_resource type="Script" uid="uid://kpj7vqik1yq4" path="res://MainScenes/MouseHub/RelicScene/relic_sticker.gd" id="1_wsw7a"]
+[ext_resource type="Texture2D" uid="uid://be27fg6kqq5mr" path="res://UI/HUD/RelicIcons/Placeholders/boss_xp_drop.png" id="2_t7d3e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uixxg"]
+atlas = ExtResource("2_t7d3e")
+region = Rect2(162.55013, 188.31659, 267.05188, 291.6834)
+
+[node name="RelicSticker" type="Control" unique_id=1355926676 node_paths=PackedStringArray("texture")]
+custom_minimum_size = Vector2(120, 150)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 150.0
+focus_mode = 2
+script = ExtResource("1_wsw7a")
+texture = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=466196491]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_uixxg")
+expand_mode = 2
+stretch_mode = 4

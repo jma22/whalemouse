@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 
 func on_clicked() -> void:
 	SceneManager.clear_game()
-	SceneManager.switch_to(SceneManager.SceneEnum.GAME)
+	SceneManager.switch_to(SceneManager.SceneEnum.OVERWORLD)
 	
 
 
