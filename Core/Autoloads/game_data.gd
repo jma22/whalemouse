@@ -52,6 +52,9 @@ func is_memory_unlocked(sticker_name: String) -> bool:
 		return true
 	return sticker_name in unlocked_memories
 
+func is_illustration_unlocked(unlockable: MemoryUnlockable) -> bool:
+	return is_memory_unlocked(unlockable.to_string())
+
 func record_run(run_stats: Dictionary, boss_defeated: bool) -> void:
 	lifetime_stats["enemies_killed"] += run_stats.get("enemies_killed", 0)
 	lifetime_stats["waves_completed"] += run_stats.get("waves_completed", 0)
@@ -101,6 +104,16 @@ func unlock_memory(sticker_name: String) -> bool:
 	unlocked_memories.append(sticker_name)
 	unlocked_upgrades.append(memory_data.gated_upgrade)
 	SceneManager.add_unlocks([memory_data.gated_upgrade])
+	_save()
+	return true
+
+func unlock_unlockable(unlockable: MemoryUnlockable) -> bool:
+	if unlockable == null:
+		push_error("Invalid unlockable")
+		return false
+	unlocked_upgrades.append(unlockable.gated_upgrade)
+	unlocked_memories.append(unlockable.to_string())
+	SceneManager.add_unlocks([unlockable.gated_upgrade])
 	_save()
 	return true
 	

@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://kg5wvfho84bi" path="res://MainScenes/MouseHub/MemoryScene/MainStickers/sticker1.png" id="1_e4ksw"]
 [ext_resource type="Script" uid="uid://b4furq0igg0ql" path="res://MainScenes/MouseHub/MemoryScene/sticker_detail.gd" id="1_qsaap"]
-[ext_resource type="Texture2D" uid="uid://dsanarmjmbf10" path="res://MainScenes/GameOver/win_screen.png" id="2_mqoqk"]
+[ext_resource type="PackedScene" uid="uid://w6w4hmsmsksu" path="res://MainScenes/MouseHub/MemoryScene/unlock_illustration.tscn" id="3_qsaap"]
 
-[node name="StickerDetail" type="Control" unique_id=1392714014 node_paths=PackedStringArray("back_button", "sticker_name_label", "sticker_description_label", "sticker_sprite")]
+[node name="StickerDetail" type="Control" unique_id=1392714014 node_paths=PackedStringArray("back_button", "sticker_name_label", "sticker_description_label", "sticker_sprite", "illustration_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +16,8 @@ back_button = NodePath("BackButton")
 sticker_name_label = NodePath("HBoxContainer/Control/VBoxContainer/Control2/Control/RichTextLabel")
 sticker_description_label = NodePath("HBoxContainer/Control/VBoxContainer/Control2/Control2/RichTextLabel")
 sticker_sprite = NodePath("HBoxContainer/Control/VBoxContainer/Control/TextureRect")
+illustration_scene = ExtResource("3_qsaap")
+illustration_container = NodePath("HBoxContainer/IllustrationCOntainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1413820403]
 layout_mode = 1
@@ -90,31 +92,13 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "The story is here. "
 
-[node name="Control2" type="Control" parent="HBoxContainer" unique_id=33096396]
+[node name="IllustrationCOntainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1503309950]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="UnlockIllustration" type="Control" parent="HBoxContainer/Control2" unique_id=890897663]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Control2/UnlockIllustration" unique_id=2105318157]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 18.0
-offset_right = 314.0
-offset_bottom = 181.0
-texture = ExtResource("2_mqoqk")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer/Control2/UnlockIllustration" unique_id=703910155]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+alignment = 1
 
 [node name="BackButton" type="Button" parent="." unique_id=616017555]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
