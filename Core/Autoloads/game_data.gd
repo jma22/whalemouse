@@ -100,10 +100,13 @@ func unlock_memory(sticker_name: String) -> bool:
 	if memory_data == null:
 		push_error("Invalid sticker name: " + sticker_name)
 		return false
-		# currency was successfully spent, unlock the memory
 	unlocked_memories.append(sticker_name)
-	unlocked_upgrades.append(memory_data.gated_upgrade)
-	SceneManager.add_unlocks([memory_data.gated_upgrade])
+	var newly_unlocked : Array[String] = []
+	for upgrade_name: StringName in memory_data.gated_upgrades:
+		var as_str := String(upgrade_name)
+		unlocked_upgrades.append(as_str)
+		newly_unlocked.append(as_str)
+	SceneManager.add_unlocks(newly_unlocked)
 	_save()
 	return true
 
@@ -111,9 +114,13 @@ func unlock_unlockable(unlockable: MemoryUnlockable) -> bool:
 	if unlockable == null:
 		push_error("Invalid unlockable")
 		return false
-	unlocked_upgrades.append(unlockable.gated_upgrade)
 	unlocked_memories.append(unlockable.to_string())
-	SceneManager.add_unlocks([unlockable.gated_upgrade])
+	var newly_unlocked : Array[String] = []
+	for upgrade_name: StringName in unlockable.gated_upgrades:
+		var as_str := String(upgrade_name)
+		unlocked_upgrades.append(as_str)
+		newly_unlocked.append(as_str)
+	SceneManager.add_unlocks(newly_unlocked)
 	_save()
 	return true
 	
