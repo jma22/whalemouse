@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kg5wvfho84bi"
-path="res://.godot/imported/sticker1.png-011a0eba73f39758f9993f831cf73f79.ctex"
+path="res://.godot/imported/piranha.png-1869bc176dd73c38cfb5c6cc6991fc69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainScenes/MouseHub/MemoryScene/MainStickers/sticker1.png"
-dest_files=["res://.godot/imported/sticker1.png-011a0eba73f39758f9993f831cf73f79.ctex"]
+source_file="res://MainScenes/MouseHub/MemoryScene/MainStickers/piranha.png"
+dest_files=["res://.godot/imported/piranha.png-1869bc176dd73c38cfb5c6cc6991fc69.ctex"]
 
 [params]
 

@@ -30,13 +30,9 @@ static func is_eligible(upgrade: UpgradeData, extra_reqs : Array[StringName]) ->
 		_dbg("Ineligible for %s because we've already chosen it %d times and the max is %d" % [upgrade.internal_name, times, upgrade.max_stacks])
 		return false
 
-	# var has_memory_gate := upgrade.is_blessing() and GameConstants.is_memory_gated(upgrade.internal_name)
-	# var has_callable_gate := upgrade.unlock_condition.is_valid()
-	# if (has_memory_gate or has_callable_gate) and not GameData.is_unlocked(upgrade.internal_name):
-	# 	_dbg("Ineligible for %s because it is locked" % upgrade.internal_name)
-	# 	return false
-
-	if upgrade.unlock_condition.is_valid() and not GameData.is_unlocked(upgrade.internal_name):
+	var has_memory_gate := upgrade.is_blessing() and GameConstants.is_memory_gated(upgrade.internal_name)
+	var has_callable_gate := upgrade.unlock_condition.is_valid()
+	if (has_memory_gate or has_callable_gate) and not GameData.is_unlocked(upgrade.internal_name):
 		_dbg("Ineligible for %s because it is locked" % upgrade.internal_name)
 		return false
 

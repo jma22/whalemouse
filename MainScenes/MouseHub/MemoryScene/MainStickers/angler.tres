@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://varsl6m20n78"]
+
+[ext_resource type="Texture2D" uid="uid://d3rr3t5tstvim" path="res://Enemies/AnglerBoss/2220_Sem_Titulo_20260418214052.png" id="1_wa0wo"]
+
+[resource]
+atlas = ExtResource("1_wa0wo")
+region = Rect2(31.389648, 6.453247, 558.2324, 474.68762)

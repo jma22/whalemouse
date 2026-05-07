@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bf2d0j0baomas"]
+
+[ext_resource type="Texture2D" uid="uid://c14003xwncnq" path="res://Enemies/Barnacle/spritesheet (6).png" id="1_lgcyc"]
+
+[resource]
+atlas = ExtResource("1_lgcyc")
+region = Rect2(792.7547, 188.15921, 318.32318, 290.0277)

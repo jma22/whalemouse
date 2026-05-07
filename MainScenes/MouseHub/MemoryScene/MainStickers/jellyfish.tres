@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://cadmmjy65ta4p"]
+
+[ext_resource type="Texture2D" uid="uid://c6av0ptwg8xgh" path="res://Enemies/aura_enemy/spritesheet (3).png" id="1_khcxx"]
+
+[resource]
+atlas = ExtResource("1_khcxx")
+region = Rect2(2695.136, 122.78088, 363.4209, 338.3573)
