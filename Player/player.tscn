@@ -190,7 +190,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0635376)
 shape = SubResource("CylinderShape3D_b1ygp")
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
-transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0.002998352, 0.08172643, -0.2443199)
+transform = Transform3D(1, 0, 0, 0, 0.4999999, 0.8660253, 0, -0.8660253, 0.4999999, 0.002998352, 0.12595028, -0.22368203)
 layers = 1
 material_overlay = SubResource("ShaderMaterial_7emwf")
 alpha_scissor_threshold = 0.06

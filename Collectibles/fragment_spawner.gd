@@ -12,6 +12,8 @@ var spawned_orbs: Array = []
 # var orb_lifetime: float = 5.0
 # var spawn_timer: float = 0.0
 
+func _ready()	-> void:
+	global_transform.origin.y = 0
 
 # func setup_outwards(num_orbs: int, target_: Node3D, orb_type: OrbType, floor_: FloorNav) -> void:
 # 	for i in range(num_orbs):

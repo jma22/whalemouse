@@ -16,6 +16,8 @@ var tween : Tween = null
 func _ready() -> void:
 	if not not_tilted:
 		self.rotation_degrees = Vector3(Constants.TILT_ANGLE, 0, 0)
+	else:
+		self.position = Vector3(self.position.x, self.position.y - Constants.SPRITE_Y_OFFSET, self.position.z)
 	await get_tree().process_frame
 	
 

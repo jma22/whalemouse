@@ -19,7 +19,6 @@ func setup(player : CharacterBody3D, camera : Camera3D) -> void:
 	## set size of the mesh in shader parameters
 	floor_material.set_instance_shader_parameter("world_size", Vector2(size.x, size.z))
 	floor_material.set_instance_shader_parameter("world_origin", Vector2(global_transform.origin.x, global_transform.origin.z) - Vector2(size.x / 2, size.z / 2))
-	
 
 func _process(delta: float) -> void:
 	# time_accumulator += delta

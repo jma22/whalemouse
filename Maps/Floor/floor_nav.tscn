@@ -39,7 +39,6 @@ shader_parameter/spotlight_color = Color(1.3, 1.2, 1, 1)
 size = Vector2(100, 100)
 
 [node name="FloorNav" type="NavigationRegion3D" unique_id=2014240850 node_paths=PackedStringArray("floor_material")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009457648, -0.05958557, -0.0013885498)
 navigation_mesh = SubResource("NavigationMesh_e0an3")
 script = ExtResource("1_6n7c7")
 floor_material = NodePath("floor")
