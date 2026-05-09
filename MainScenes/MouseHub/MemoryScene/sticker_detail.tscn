@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b65nnx3nona14"]
 
-[ext_resource type="Texture2D" uid="uid://kg5wvfho84bi" path="res://MainScenes/MouseHub/MemoryScene/MainStickers/sticker1.png" id="1_e4ksw"]
+[ext_resource type="Texture2D" uid="uid://kg5wvfho84bi" path="res://MainScenes/MouseHub/MemoryScene/MainStickers/piranha.png" id="1_e4ksw"]
 [ext_resource type="Script" uid="uid://b4furq0igg0ql" path="res://MainScenes/MouseHub/MemoryScene/sticker_detail.gd" id="1_qsaap"]
 [ext_resource type="PackedScene" uid="uid://w6w4hmsmsksu" path="res://MainScenes/MouseHub/MemoryScene/unlock_illustration.tscn" id="3_qsaap"]
 

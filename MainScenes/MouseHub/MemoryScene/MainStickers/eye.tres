@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://db7uv4vcqbrnf"]
+
+[ext_resource type="Texture2D" uid="uid://ddh7bqhf3yxl3" path="res://Enemies/AnglerBoss/AnglerEye/2220_Sem_Titulo_20260419170444.png" id="1_1vim1"]
+
+[resource]
+atlas = ExtResource("1_1vim1")
+region = Rect2(149.20618, 40.630737, 444.3075, 391.14258)
