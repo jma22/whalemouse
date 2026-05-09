@@ -16,11 +16,15 @@ var is_super_bomb : bool = false
 const BASE_BOMB_DAMAGE : int = 2
 const BASE_BOMB_FRIENDLY_FIRE_DAMAGE : int = 5
 
+var drop_animation : AnimationClip = AnimationClip.new()
+var charging_animation : AnimationClip = AnimationClip.new()
+
 func _ready() -> void:
 	bomb_sprite.setup(null)
 	explosion_sprite.setup(null)
 	explosion_area.setup(null)
-	
+	drop_animation.frame_numbers = [3,4,5,6]
+	charging_animation.frame_numbers = [0,1,2]
 
 	explosion_hitbox.damage_type = DamageInfo.DamageType.BOMB
 	enemy_hitbox.damage_type = DamageInfo.DamageType.BOMB
@@ -59,9 +63,15 @@ func setup(source : Node3D) -> void:
 	explosion_area.set_charge_color(0)
 	explosion_sprite.set_flash_level(1)
 
-	var tween := create_tween()
 
 	# charge up (parallel)
+	bomb_sprite.play(drop_animation, false)
+	while not bomb_sprite.check_is_done():
+		await get_tree().process_frame
+	bomb_sprite.play(charging_animation, true)
+	var tween := create_tween()
+
+	DebugLog.dbg_from(self,"Bomb planted, will explode in %.2f seconds" % time_to_explode)
 	tween.tween_property(bomb_sprite, "material_overlay:shader_parameter/charge_level", 1.0, time_to_explode)
 	tween.parallel().tween_property(explosion_area, "material_overlay:shader_parameter/charge_level", 1.0, time_to_explode)
 

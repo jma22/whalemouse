@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b3laqrhmbviaw"]
 
 [ext_resource type="Script" uid="uid://cpr3cklqc7fhj" path="res://Enemies/Projectiles/explosion.gd" id="1_3qop0"]
-[ext_resource type="Texture2D" uid="uid://00k2chggmyig" path="res://UI/HUD/RelicIcons/boss_attack_size.png" id="1_gs0rj"]
 [ext_resource type="Texture2D" uid="uid://cwcnartars2to" path="res://UI/HUD/circle.png" id="1_kg1lu"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_3qop0"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="2_dlpa8"]
 [ext_resource type="PackedScene" uid="uid://bdgwc04qsydls" path="res://Collectibles/xp_spawner.tscn" id="2_dx1dy"]
+[ext_resource type="Texture2D" uid="uid://c2gosut04knwh" path="res://VFX/Bomb/spritesheet.png" id="4_dx1dy"]
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="6_dlpa8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dx1dy"]
@@ -92,8 +92,10 @@ material_overlay = SubResource("ShaderMaterial_dx1dy")
 pixel_size = 0.005
 alpha_cut = 2
 render_priority = 1
-texture = ExtResource("1_gs0rj")
+texture = ExtResource("4_dx1dy")
+hframes = 7
 script = ExtResource("2_3qop0")
+frames_per_second = 10.0
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="ExplosionArea" type="Sprite3D" parent="Node3D" unique_id=1727746364]
@@ -103,6 +105,7 @@ modulate = Color(1, 1, 1, 0.374)
 render_priority = 1
 texture = ExtResource("1_kg1lu")
 script = ExtResource("2_3qop0")
+not_tilted = true
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="EnemyHitbox" type="Area3D" parent="Node3D" unique_id=495866569 node_paths=PackedStringArray("owner_entity")]
@@ -127,6 +130,7 @@ shape = SubResource("CylinderShape3D_dlpa8")
 
 [node name="Explosion" type="Node3D" parent="." unique_id=906729995]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+visible = false
 
 [node name="ExplosionEffect" type="Sprite3D" parent="Explosion" unique_id=774029832]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0.7193868, 0)

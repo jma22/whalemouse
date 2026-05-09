@@ -26,6 +26,9 @@ debug_color = Color(1, 0, 0.1833334, 1)
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=794104681]
 transform = Transform3D(0.3, 0, 0, 0, -1.3113417e-08, 0.3, 0, -0.3, -1.3113417e-08, 0, 0, 0)
+alpha_cut = 2
+alpha_hash_scale = 0.5
+render_priority = 1
 texture = ExtResource("2_txuaj")
 hframes = 3
 script = ExtResource("3_pkh8u")

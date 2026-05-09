@@ -9,6 +9,8 @@ class_name AttackState
 
 var attack_direction: Vector2 = Vector2.ZERO
 var hitbox_frame: int = 4
+var hitbox_duration: float = 0.2
+var hitbox_timer: float = 0.0
 
 var bubbler_scene: PackedScene = load("res://VFX/stomp_bubbler.tscn")
 var crack_scene: PackedScene = load("res://VFX/crack.tscn")
@@ -85,7 +87,7 @@ func fixed_run(delta: float) -> void:
 		crack.global_transform.origin.y = 0.01
 		
 		crack.set_scale(get_attack_size())
-		crack.play()
+		crack.play_crack()
 
 		var impact_effect_instance : Node = impact_effect_scene.instantiate()
 		get_tree().get_root().add_child(impact_effect_instance)
@@ -97,6 +99,13 @@ func fixed_run(delta: float) -> void:
 			entity.camera_ref.camera_shake(0.3,0.35)
 		else:
 			entity.camera_ref.camera_shake(0.1,0.15)
+	
+	if hitbox.is_active:
+		hitbox_timer += delta
+		if hitbox_timer >= hitbox_duration:
+			hitbox.set_active(false)
+			hitbox_timer = 0.0
+
 
 
 	if entity.velocity.y < 0 and abs(entity.position.y) < 0.05:
@@ -105,7 +114,7 @@ func fixed_run(delta: float) -> void:
 
 func exit() -> void:
 	entity.sprite_manager.frames_per_second = 12
-	hitbox.set_active(false)
+	# hitbox.set_active(false)
 
 func set_direction(direction: Vector2) -> void:
 	attack_direction = direction

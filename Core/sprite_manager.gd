@@ -56,6 +56,7 @@ func reset() -> void:
 	modulate = Color(1, 1, 1, 1)
 
 func _process(delta: float) -> void:
+
 	if current_animation == null:
 		return
 	if hitstop and hitstop.is_in_hitstop:
@@ -90,7 +91,7 @@ func play(animation: AnimationClip, loop: bool = true) -> void:
 
 func check_is_done() -> bool:
 	return is_done
-	
+
 func set_flip(is_left: bool) -> void:
 	self.flip_h = is_left
 

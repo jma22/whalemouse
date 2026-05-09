@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_combat")
-distance = 2.1
-fov = 85.0
-arena_blend = 0.5
+distance = 2.0
+fov = 80.0
+arena_blend = 0.35
 smooth_speed = 4.0
 fov_z_boost = 8.0
 fov_z_range = 1.0
