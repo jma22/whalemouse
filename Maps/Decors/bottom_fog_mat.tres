@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bodll2kvtuixq"]
+
+[ext_resource type="Shader" uid="uid://c6cqflnk3k2ra" path="res://Maps/Decors/bottom_fog_with_numbers.gdshader" id="1_cclpc"]
+[ext_resource type="Texture2D" uid="uid://owv4hjh0nm30" path="res://Maps/Decors/Untitled_Artwork (13).png" id="2_cclpc"]
+
+[resource]
+render_priority = -4
+shader = ExtResource("1_cclpc")
+shader_parameter/albedo = ExtResource("2_cclpc")
+shader_parameter/threshold_y = 0.02
+shader_parameter/blend_width = 0.26400001254
+shader_parameter/tint = Color(0.05882353, 0, 0.043137256, 1)
+shader_parameter/noise_amount = 0.1690000080275
+shader_parameter/noise_scale = 1.5

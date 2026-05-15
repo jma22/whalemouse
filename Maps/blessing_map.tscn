@@ -6,13 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://bepelbq3ha1h6" path="res://Maps/Floor/floor_nav.tscn" id="3_yyg12"]
 [ext_resource type="Texture2D" uid="uid://bml51unoyd30v" path="res://Maps/Decors/Untitled_Artwork-2 (1).png" id="4_3w1xr"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_yyg12"]
-[ext_resource type="PackedScene" uid="uid://d4f06nj2iy67x" path="res://Maps/Decors/seaweed.tscn" id="6_abc0r"]
+[ext_resource type="Material" uid="uid://cgry6ob5583dk" path="res://Maps/Decors/foreground/foreground_mat.tres" id="7_7voj8"]
 [ext_resource type="PackedScene" uid="uid://bnoo4a5dj0t3w" path="res://Maps/Decors/shrine.tscn" id="7_68yjn"]
 [ext_resource type="Script" uid="uid://dlkyagtvjrdfu" path="res://UI/Textbox/blessing_description.gd" id="8_68yjn"]
+[ext_resource type="Texture2D" uid="uid://bdtlmy2egrj5e" path="res://Maps/Decors/Untitled_Artwork (9).png" id="8_dxvuv"]
 [ext_resource type="PackedScene" uid="uid://cr3t5b7if200h" path="res://Maps/Decors/big_rock.tscn" id="9_327w5"]
 [ext_resource type="Shader" uid="uid://grle6bw7ch6x" path="res://Maps/Decors/Scripts/smoke.gdshader" id="10_617kr"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="12_617kr"]
 [ext_resource type="Texture2D" uid="uid://6wvv8wawhnhq" path="res://UI/Textbox/CurseBackground.png" id="13_617kr"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="14_2ew54"]
+[ext_resource type="PackedScene" uid="uid://c4jg4glux5u8v" path="res://Maps/Decors/grave1.tscn" id="16_8icpy"]
+[ext_resource type="PackedScene" uid="uid://bsf6kjws875nu" path="res://Maps/Decors/grave2.tscn" id="17_dxvuv"]
+[ext_resource type="PackedScene" uid="uid://r8cf2qabpfea" path="res://Collectibles/fragment_spawner.tscn" id="18_7voj8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6dpp"]
 render_priority = -4
@@ -142,10 +147,11 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "gateway", "floor", "player_spawn_point")]
+[node name="BlessingMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("shrines", "gateway", "fragment_spawner", "floor", "player_spawn_point")]
 script = ExtResource("1_20ttm")
 shrines = [NodePath("Shrines/Shrine"), NodePath("Shrines/Shrine2"), NodePath("Shrines/Shrine3"), NodePath("Shrines/Shrine4")]
 gateway = NodePath("Gateway")
+fragment_spawner = NodePath("FragmentSpawner")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
 
@@ -174,37 +180,34 @@ metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="Seaweeds" type="Node3D" parent="." unique_id=1508705870]
 
-[node name="Seaweed4" parent="Seaweeds" unique_id=1171315565 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0899999, 0.41, 1.13)
+[node name="Node3D" type="Node3D" parent="Seaweeds" unique_id=335111931]
 
-[node name="Seaweed6" parent="Seaweeds" unique_id=1684150740 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.625, 0.43, 1.485)
+[node name="SpriteManager" type="Sprite3D" parent="Seaweeds/Node3D" unique_id=236208335]
+transform = Transform3D(0.4, 0, 0, 0, 0.13680807, 0.37587705, 0, -0.37587705, 0.13680807, -2.015395, 0.22104907, 2.101588)
+layers = 4
+double_sided = false
+alpha_cut = 2
+render_priority = 5
+texture = ExtResource("8_dxvuv")
+script = ExtResource("4_yyg12")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
 
-[node name="Seaweed7" parent="Seaweeds" unique_id=1718051821 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14, 0.41, 1.64)
-
-[node name="Seaweed8" parent="Seaweeds" unique_id=794785395 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.425, 0.41, 2.07)
-
-[node name="Seaweed9" parent="Seaweeds" unique_id=1196146016 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.285, 0.41, 0.825)
-visible = false
-
-[node name="Seaweed5" parent="Seaweeds" unique_id=1734391510 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.495, 0.41, 0.94)
-
-[node name="Seaweed10" parent="Seaweeds" unique_id=746679041 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92, 0.41, 2.07)
-
-[node name="Seaweed11" parent="Seaweeds" unique_id=1580137180 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.03, 0.41, 1.07)
-
-[node name="Seaweed12" parent="Seaweeds" unique_id=1089157414 instance=ExtResource("6_abc0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.68, 0.41, 1.43)
+[node name="SpriteManager2" type="Sprite3D" parent="Seaweeds/Node3D" unique_id=90215393]
+transform = Transform3D(0.4, 0, 0, 0, 0.13680807, 0.37587705, 0, -0.37587705, 0.13680807, 2.0540812, 0.22104907, 2.101588)
+layers = 4
+material_override = ExtResource("7_7voj8")
+transparent = false
+double_sided = false
+alpha_cut = 2
+render_priority = 5
+texture = ExtResource("8_dxvuv")
+script = ExtResource("4_yyg12")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="FloorNav" parent="." unique_id=2014240850 instance=ExtResource("3_yyg12")]
 
 [node name="Rocks" type="Node3D" parent="." unique_id=1911806210]
+visible = false
 
 [node name="BigRock2" parent="Rocks" unique_id=642199375 instance=ExtResource("9_327w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07, -0.095, -3.575)
@@ -221,8 +224,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, -0.255, -4.15)
 [node name="BigRock5" parent="Rocks" unique_id=1883686024 instance=ExtResource("9_327w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.455, -0.255, -2.315)
 
-[node name="BigRock6" parent="Rocks" unique_id=1908228804 instance=ExtResource("9_327w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.42, -0.255, -2.96)
+[node name="SpriteManager" parent="Rocks/BigRock5" index="0" unique_id=106763812]
+sorting_offset = 1.0
 
 [node name="BigRock8" parent="Rocks" unique_id=1753391859 instance=ExtResource("9_327w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, -0.245, 1.81)
@@ -237,12 +240,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.455, -0.225, -0.55)
 [node name="SpriteManager" parent="Rocks/BigRock7" index="0" unique_id=106763812]
 render_priority = -3
 
-[node name="BigRock9" parent="Rocks" unique_id=1882663486 instance=ExtResource("9_327w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86, -0.225, -0.55)
-
-[node name="SpriteManager" parent="Rocks/BigRock9" index="0" unique_id=106763812]
-render_priority = -3
-
 [node name="Node3D" type="Node3D" parent="." unique_id=159875190]
 transform = Transform3D(18.27, 0, 0, 0, 1.8092866, 0.77994484, 0, -4.970974, 0.28387672, 0, 0.30499998, -4.16)
 
@@ -250,14 +247,16 @@ transform = Transform3D(18.27, 0, 0, 0, 1.8092866, 0.77994484, 0, -4.970974, 0.2
 material_override = SubResource("ShaderMaterial_r6dpp")
 pixel_size = 0.005
 double_sided = false
+alpha_cut = 2
 render_priority = -4
 texture = SubResource("GradientTexture2D_ed26x")
 
 [node name="Smoke2" type="Sprite3D" parent="Node3D" unique_id=1929181083]
-transform = Transform3D(1, 0, 0, 0, 1.48, 0, 0, 0, 1, 0, -0.145, 0.68)
+transform = Transform3D(0.9999946, -0.00032347834, 0.0032885594, 0.0002354761, 1.4799805, -0.00514286, -0.0032873917, 0.007612705, 0.9999814, 0, -0.14484686, 0.6826836)
 material_override = SubResource("ShaderMaterial_gsor4")
 pixel_size = 0.005
 double_sided = false
+alpha_cut = 2
 render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
@@ -266,13 +265,15 @@ transform = Transform3D(1, 0, 0, 0, 1.155, 0, 0, 0, 1, 0, -1.015, 2.16)
 material_override = SubResource("ShaderMaterial_d5558")
 pixel_size = 0.005
 double_sided = false
+alpha_cut = 2
 render_priority = -2
 texture = SubResource("GradientTexture2D_ed26x")
 
-[node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("item_name_text", "item_description_text", "container", "texture")]
+[node name="BlessingDescription" type="CanvasLayer" parent="." unique_id=308245694 node_paths=PackedStringArray("item_name_text", "item_description_text", "supplementary_text", "container", "texture")]
 script = ExtResource("8_68yjn")
 item_name_text = NodePath("VBoxContainer/TextureRect/VBoxContainer/Item Name Text")
 item_description_text = NodePath("VBoxContainer/TextureRect/VBoxContainer/Item Description Text")
+supplementary_text = NodePath("VBoxContainer/Control2/DefinitionText")
 container = NodePath("VBoxContainer")
 texture = NodePath("VBoxContainer/TextureRect")
 blessing_color = Color(0.9, 0.8796, 0.594, 1)
@@ -292,6 +293,30 @@ size_flags_vertical = 3
 [node name="Control2" type="Control" parent="BlessingDescription/VBoxContainer" unique_id=928803736]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="DefinitionText" type="RichTextLabel" parent="BlessingDescription/VBoxContainer/Control2" unique_id=1979688434]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_colors/default_color = Color(0.15294118, 0.16862746, 0.011764706, 1)
+theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_fonts/bold_font = ExtResource("12_617kr")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Mark:
+Poison:"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="BlessingDescription/VBoxContainer" unique_id=804952540]
 layout_mode = 2
@@ -319,6 +344,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
 theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_fonts/bold_font = ExtResource("12_617kr")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "g"
@@ -334,6 +360,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme_override_colors/default_color = Color(1, 0.96862745, 0.7490196, 1)
 theme_override_fonts/normal_font = ExtResource("14_2ew54")
+theme_override_fonts/bold_font = ExtResource("12_617kr")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Effect 
@@ -369,6 +396,54 @@ blessing_description = NodePath("../../BlessingDescription")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.737001, 0, -0.18163252)
 blessing_description = NodePath("../../BlessingDescription")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=595393070]
+transform = Transform3D(0.9618464, 0, -0.27358994, 0.086956255, 0.9481463, 0.30570775, 0.2594033, -0.31783426, 0.9119711, -2.407247, 2.5493267, 4.9216347)
+layers = 4
+light_energy = 3.2
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.315
+light_angular_distance = 7.74
+light_specular = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.39
+shadow_blur = 0.047
+shadow_caster_mask = 4293918724
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.068
+directional_shadow_fade_start = 0.274
+directional_shadow_max_distance = 5.5
+directional_shadow_pancake_size = 17.7
+
+[node name="Graves" type="Node3D" parent="." unique_id=1438374508]
+
+[node name="Grave4" parent="Graves" unique_id=261003277 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.95857155, 0, -0.28485194, 0, 1, 0, 0.28485194, 0, 0.95857155, -1.0717126, 0, -3.275976)
+
+[node name="Grave5" parent="Graves" unique_id=1573177787 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.97853065, 0, 0.20610175, 0, 1, 0, -0.20610175, 0, 0.97853065, 0.7477567, 0, -2.7352972)
+
+[node name="Grave6" parent="Graves" unique_id=635087631 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.97853065, 0, 0.20610175, 0, 1, 0, -0.20610175, 0, 0.97853065, 2.0614638, 0, -3.011995)
+
+[node name="BigRock" parent="Graves" unique_id=278564596 instance=ExtResource("16_8icpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="Grave1" parent="Graves" unique_id=754617271 instance=ExtResource("16_8icpy")]
+transform = Transform3D(0.7615157, 0, 0.6481465, 0, 1, 0, -0.6481465, 0, 0.7615157, -5.166711, 0, -2.4495158)
+
+[node name="Grave2" parent="Graves" unique_id=1899334549 instance=ExtResource("17_dxvuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3888345, 0, -1.3088883)
+
+[node name="Grave3" parent="Graves" unique_id=1402515161 instance=ExtResource("17_dxvuv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2100227, 0, -2.936113)
+
+[node name="Grave7" parent="Graves" unique_id=270043885 instance=ExtResource("17_dxvuv")]
+transform = Transform3D(0.9719323, 0, 0.23526086, 0, 1, 0, -0.23526086, 0, 0.9719323, 3.2514246, 0, -2.6935606)
+
+[node name="FragmentSpawner" parent="." unique_id=756005090 instance=ExtResource("18_7voj8")]
+
+[editable path="Rocks/BigRock5"]
 [editable path="Rocks/BigRock8"]
 [editable path="Rocks/BigRock7"]
-[editable path="Rocks/BigRock9"]

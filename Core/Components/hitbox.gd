@@ -10,7 +10,7 @@ extends Area3D
 
 var source : Node3D
 var is_active: bool = false
-var effect_on_hit : StatusEffectBase = null
+# var effect_on_hit : StatusEffectBase = null
 var behavior : HitboxBehavior = null
 
 enum HitBoxType {
@@ -29,11 +29,12 @@ func _ready() -> void:
 func set_damage(damage_amount: int) -> void:
 	damage = damage_amount
 
-func set_effect_on_hit(effect: StatusEffectBase) -> void:
-	effect_on_hit = effect
+# func set_effect_on_hit(effect: StatusEffectBase) -> void:
+# 	effect_on_hit = effect
 
 func set_behavior(b: HitboxBehavior) -> void:
 	behavior = b
+	b.hitbox = self
 
 
 func set_active(active: bool) -> void:
@@ -54,7 +55,7 @@ func build_damage_info(_target: Node3D) -> DamageInfo:
 	var info : DamageInfo = DamageInfo.new()
 	info.hitbox = self
 	info.owner_entity = owner_entity
-	info.source = source if source != null else owner_entity
+	info.source = get_source()
 	info.damage_type = damage_type
 	info.amount = _compute_base_amount(info)
 	return info
@@ -62,14 +63,16 @@ func build_damage_info(_target: Node3D) -> DamageInfo:
 func _compute_base_amount(info: DamageInfo) -> int:
 	if hit_box_type == HitBoxType.HIT_PLAYER:
 		var base : int = StatCalculator.get_enemy_damage()
-		print("calculating source damage multiplier for ", info.source)
-		if info.source is EnemyBase:
-			print("source is EnemyBase with status effect manager ", info.source.status_effect_manager.get_damage_multiplier())
-			base = int(ceil(base * info.source.status_effect_manager.get_damage_multiplier()))
+		DebugLog.dbg("Hitbox", "computing damage for source=%s" % info.get_source())
+		if info.get_source() is EnemyBase:
+			var mult : int = info.get_source().status_effect_manager.get_damage_multiplier()
+			DebugLog.dbg("Hitbox", "source is EnemyBase dmg_multiplier=%s" % mult)
+			base = int(ceil(base * mult))
 		return base
 	return damage
 
-
+func get_source() -> Node3D:
+	return source if source != null else owner_entity
 
 func set_collisions() -> void:
 	match hit_box_type:

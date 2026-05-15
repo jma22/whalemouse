@@ -34,6 +34,7 @@ skip_physics = true
 
 [node name="StateMachine" type="Node3D" parent="." unique_id=529978159]
 script = ExtResource("4_cdyka")
+debug = false
 metadata/_custom_type_script = "uid://blnovigm0t222"
 
 [node name="EnemyIdleState" type="Node3D" parent="StateMachine" unique_id=1068411361]

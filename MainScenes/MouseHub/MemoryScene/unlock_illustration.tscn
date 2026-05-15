@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://w6w4hmsmsksu"]
+
+[ext_resource type="Script" uid="uid://b7e5al4es3p3t" path="res://MainScenes/MouseHub/MemoryScene/unlock_illustration.gd" id="1_fqcv2"]
+[ext_resource type="Texture2D" uid="uid://wwbifu522wq2" path="res://MainScenes/MouseHub/MemoryScene/Illustrations/ill1.png" id="2_t5lkg"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_yfknu"]
+
+[node name="UnlockIllustration" type="Control" unique_id=790790256 node_paths=PackedStringArray("texture_button", "cost_label")]
+custom_minimum_size = Vector2(225, 150)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 241.9598
+offset_bottom = 150.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("1_fqcv2")
+texture_button = NodePath("TextureButton")
+cost_label = NodePath("RichTextLabel")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=164151405]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_t5lkg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=96913143]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_yfknu")
+theme_override_font_sizes/normal_font_size = 50
+text = "100"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

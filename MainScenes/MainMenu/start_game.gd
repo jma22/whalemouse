@@ -14,12 +14,13 @@ func _ready() -> void:
 	focus_exited.connect(_on_hover_end)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept"):
 		on_clicked()
 
 func on_clicked() -> void:
-	SceneManager.switch_to(SceneManager.SceneEnum.GAME)
-	SceneManager.reset_game()
+	SceneManager.clear_game()
+	SceneManager.switch_to(SceneManager.SceneEnum.OVERWORLD)
+	
 
 
 func _on_hover_start() -> void:

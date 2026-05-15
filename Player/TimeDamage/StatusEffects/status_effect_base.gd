@@ -13,6 +13,8 @@ var stacks : int = 1
 var max_stacks : int = 1
 var persists_forever : bool = false
 
+func _dbg(msg: String) -> void:
+	DebugLog.dbg("StatusEffect:" + name, msg)
 
 func tick_effect(delta: float) -> void:
 	time_remaining -= delta
@@ -40,28 +42,51 @@ func get_damage_multiplier() -> int:
 	return 1
 
 func on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
+	_dbg("on_hit_consumed entity=%s" % [DebugLog.entity_name(_entity)])
+	return _on_hit_consumed(_entity, _info)
+
+func _on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
 	return false
 
-func on_owner_killed(_entity: Node3D, _killer: Object) -> void:
+func on_killed_by_effect(_entity: Node3D) -> void:
+	_dbg("on_killed_by_effect entity=%s " % [DebugLog.entity_name(_entity)])
+	_on_killed_by_effect(_entity)
+
+func _on_killed_by_effect(_entity: Node3D) -> void:
+	pass
+
+func on_entity_died(_entity: Node3D) -> void:
+	_dbg("on_entity_died entity=%s" % [DebugLog.entity_name(_entity)])
+	_on_entity_died(_entity)
+
+func _on_entity_died(_entity: Node3D) -> void:
 	pass
 
 func on_applied(_entity: Node3D) -> void:
+	_dbg("on_applied entity=%s" % [DebugLog.entity_name(_entity)])
+	_on_applied(_entity)
+
+func _on_applied(_entity: Node3D) -> void:
 	pass
 
 func on_dot_tick(_entity: Node3D, _delta: float) -> void:
+	_on_dot_tick(_entity, _delta)
+
+func _on_dot_tick(_entity: Node3D, _delta: float) -> void:
 	pass
 
-# Called when time_remaining hits 0. Return true to have the manager remove
-# this effect. Return false to keep it (the effect is expected to reset its
-# own time_remaining in that case).
 func on_expired(_entity: Node3D) -> bool:
+	_dbg("on_expired entity=%s" % [DebugLog.entity_name(_entity)])
+	return _on_expired(_entity)
+
+func _on_expired(_entity: Node3D) -> bool:
 	return true
 
-# Called when gain_status_effect receives this effect and an entry with the
-# same name already exists. `self` is the incoming instance (discarded
-# afterward); mutate `existing` to reflect the merge. Default behavior:
-# duration stacks.
 func stack_with(existing: StatusEffectBase) -> void:
+	_dbg("stack_with existing=%s stacks=%s" % [existing.name, existing.stacks])
+	_stack_with(existing)
+
+func _stack_with(existing: StatusEffectBase) -> void:
 	existing.time_remaining += duration
 	existing.duration += duration
 

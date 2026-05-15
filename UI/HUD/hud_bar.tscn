@@ -8,29 +8,40 @@
 [ext_resource type="Texture2D" uid="uid://b53x71wue75kv" path="res://UI/HUD/whale.png" id="5_an2p0"]
 [ext_resource type="Texture2D" uid="uid://b83qlnwlctpqk" path="res://UI/HUD/Sprites/hp_progress.png" id="5_oebhh"]
 [ext_resource type="PackedScene" uid="uid://dbhih0m50iyig" path="res://UI/HUD/status_effect_icon.tscn" id="6_tbrkv"]
+[ext_resource type="Texture2D" uid="uid://c3xwxgpi8gfcd" path="res://UI/HUD/Sprites/hp_max_health.png" id="7_3j5as"]
 [ext_resource type="Texture2D" uid="uid://cosx5gkvugxlu" path="res://UI/HUD/Sprites/bar_back.png" id="7_j1dtk"]
 [ext_resource type="Texture2D" uid="uid://ba5r35sr4ifo5" path="res://UI/HUD/Sprites/bar_front.png" id="8_3j5as"]
 [ext_resource type="Texture2D" uid="uid://cqp1x1wmaa8ng" path="res://UI/HUD/Sprites/bar_progress.png" id="9_v0fj0"]
 
-[node name="HudBar" type="Control" unique_id=460654951 node_paths=PackedStringArray("hp_label", "life_circle", "whale_circle", "dash_bar", "whale_icon", "status_effect_icons")]
+[node name="HudBar" type="Control" unique_id=460654951 node_paths=PackedStringArray("hp_label", "life_circle", "health_percent", "whale_circle", "dash_bar", "whale_icon", "status_effect_icons")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 862.49994
 offset_bottom = 222.49998
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_5igc2")
-hp_label = NodePath("LifeCircle/RichTextLabel")
-life_circle = NodePath("LifeCircle")
+hp_label = NodePath("LifeCircleControl/RichTextLabel")
+life_circle = NodePath("LifeCircleControl/LifeCircle")
+health_percent = NodePath("LifeCircleControl/LifeCircle/MaxHealth")
 whale_circle = NodePath("bar")
 dash_bar = NodePath("dashbar")
 whale_icon = NodePath("Beluga")
 status_effect_icons = [NodePath("HBoxContainer/TextureProgressBar"), NodePath("HBoxContainer/TextureProgressBar2"), NodePath("HBoxContainer/TextureProgressBar3"), NodePath("HBoxContainer/TextureProgressBar4")]
 popup_number_scene = ExtResource("2_fpd43")
 
-[node name="LifeCircle" type="TextureProgressBar" parent="." unique_id=1128795582]
+[node name="LifeCircleControl" type="Control" parent="." unique_id=1560084814]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LifeCircle" type="TextureProgressBar" parent="LifeCircleControl" unique_id=1128795582]
 layout_mode = 1
-offset_right = 200.0
-offset_bottom = 200.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 value = 36.0
 fill_mode = 5
@@ -40,7 +51,25 @@ texture_over = ExtResource("4_irqao")
 texture_progress = ExtResource("5_oebhh")
 tint_progress = Color(1.5565991, 1.5565991, 1.5565991, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="LifeCircle" unique_id=564389056]
+[node name="MaxHealth" type="TextureProgressBar" parent="LifeCircleControl/LifeCircle" unique_id=1237970822]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -65.0
+offset_right = 65.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("7_3j5as")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LifeCircleControl" unique_id=564389056]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ds2lm5jh002ey"]
+
+[ext_resource type="Script" uid="uid://cusgwa77jvb2g" path="res://Collectibles/time_pickup/time_pickup.gd" id="1_xvhxq"]
+[ext_resource type="Texture2D" uid="uid://37fneuc41d61" path="res://Collectibles/time_pickup/spritesheet_11.png" id="2_xvhxq"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_kwque"]
+[ext_resource type="AudioStream" uid="uid://iduxoxuqogab" path="res://SFX/XP_POP.wav" id="4_hi7nu"]
+
+[node name="TimePickup" type="Node3D" unique_id=393659539 node_paths=PackedStringArray("sprite_manager", "audio_player")]
+script = ExtResource("1_xvhxq")
+sprite_manager = NodePath("SpriteManager")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=2098642632]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
+pixel_size = 0.001
+billboard = 1
+double_sided = false
+alpha_cut = 2
+alpha_scissor_threshold = 0.0
+render_priority = 5
+texture = ExtResource("2_xvhxq")
+hframes = 3
+script = ExtResource("3_kwque")
+metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1305784290]
+stream = ExtResource("4_hi7nu")
+volume_db = -10.0
+pitch_scale = 2.37

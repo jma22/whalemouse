@@ -5,7 +5,7 @@ extends Node
 
 var base_position: Vector3
 var time: float = 0.0
-var arc_axis := Vector3(0, cos(deg_to_rad(30)), -sin(deg_to_rad(30))).normalized()
+var arc_axis := Vector3(0, cos(deg_to_rad(90+Constants.TILT_ANGLE)), -sin(deg_to_rad(90+Constants.TILT_ANGLE))).normalized()
 
 func _ready() -> void:
 	base_position = get_parent().position

@@ -11,7 +11,23 @@ var looping : bool = true
 var current_animation : AnimationClip = null
 var is_done : bool = false
 var tween : Tween = null
+@export var not_tilted : bool = false
 
+func _ready() -> void:
+	if not not_tilted:
+		self.rotation_degrees = Vector3(Constants.TILT_ANGLE, 0, 0)
+	else:
+		self.position = Vector3(self.position.x, self.position.y - Constants.SPRITE_Y_OFFSET, self.position.z)
+	await get_tree().process_frame
+	
+
+func _shader_has_uniform(shader: Shader, uniform_name: String) -> bool:
+	for u : Dictionary in shader.get_shader_uniform_list():
+		if u.name == uniform_name:
+			return true
+	return false
+
+	
 func setup(hitstop_: HitStop) -> void:
 	hitstop = hitstop_
 	## visual instance 3d layer
@@ -27,7 +43,11 @@ func setup(hitstop_: HitStop) -> void:
 	if material_override:
 		material_override.set_shader_parameter("texture_albedo", texture)
 		# material_override.next_pass.set_shader_parameter("texture_albedo", texture)
-	
+	_configure_material_override()
+
+func _configure_material_override() -> void:
+	pass
+
 
 
 func reset() -> void:
@@ -38,6 +58,7 @@ func reset() -> void:
 	modulate = Color(1, 1, 1, 1)
 
 func _process(delta: float) -> void:
+
 	if current_animation == null:
 		return
 	if hitstop and hitstop.is_in_hitstop:
@@ -72,7 +93,7 @@ func play(animation: AnimationClip, loop: bool = true) -> void:
 
 func check_is_done() -> bool:
 	return is_done
-	
+
 func set_flip(is_left: bool) -> void:
 	self.flip_h = is_left
 
@@ -94,9 +115,8 @@ func die() -> Tween:
 	if tween != null and tween.is_valid():
 		await tween.finished
 
-	var death_tween : Tween = get_tree().create_tween()
+	var death_tween : Tween = create_tween()
 	death_tween.tween_callback(Callable(self, "set_flash_level").bind(0))
 	death_tween.tween_callback(Callable(self, "set_charge_color").bind(0))
 	death_tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
-	death_tween.play()
 	return death_tween

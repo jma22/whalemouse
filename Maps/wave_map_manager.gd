@@ -15,6 +15,7 @@ func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 func start_room (wave_info_ : WaveInfo) -> void:
 	super(wave_info_)
 	enemy_spawner.set_wave_spawning(wave_info_, self)
+	camera.set_combat(true)
 	if StatCalculator.get_ebb_begin_of_room() > 0:
 		player.gain_status_effect(SlowEffect.make(StatCalculator.get_ebb_begin_of_room()), self)
 
@@ -37,3 +38,7 @@ func get_spawn_pools() -> Dictionary[String, ShuffledPool] :
 		"any": ShuffledPool.create_shuffled_pool(melee_spawns.get_children() + ranged_spawns.get_children()),
 	}
 	return spawn_pools
+
+func on_map_cleared() -> void:
+	super()
+	fragment_spawner.spawn_wave_fragments(floor)

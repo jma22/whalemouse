@@ -23,14 +23,14 @@ class_name Player extends CharacterBody3D
 @onready var status_effect_manager : StatusEffectManager = core_components.status_effect_manager
 
 @onready var dash_component : DashComponent = $DashComponent 
-var time_damage_manager : TimeDamageManager
+
+@export var time_damage_manager : TimeDamageManager
 var hud_ref : HUD
 var map_ref : MapManagerBase
 #by default set the dash direction to prevent no velocity dashes
 var last_direction : Vector2 = Vector2.LEFT
 
-var initial_health : int = 60
-
+var initial_health : int = StatCalculator.get_player_max_health()
 
 # Input buffer — remembers the last action pressed within BUFFER_WINDOW seconds
 const BUFFER_WINDOW : float = 0.2
@@ -141,24 +141,46 @@ func setup_states() -> void:
 
 func on_hit(info: DamageInfo) -> void:
 	var hitbox : Hitbox = info.hitbox
-	print("Player hit by ", hitbox.name)
+	DebugLog.dbg("Combat", "Player hit by %s [%s]" % [DebugLog.entity_name(hitbox), DamageInfo.DamageType.keys()[info.damage_type]])
 	if invulnerable_component.is_currently_invulnerable():
 		return
 	hitbox.hitbox_on_hit() ##HITSTOP
 	hitstop.start_hitstop(0.1)
+	if hitbox.behavior:
+		hitbox.behavior.modify_outgoing_damage(info, self)
 	status_effect_manager.modify_incoming_damage(info)
 	var damage_taken : int = info.amount
 	if damage_taken == 0:
 		return
 
-	damage_taken = max(0, damage_taken - StatCalculator.get_damage_reduced_by())
+	var reduced_by : int = StatCalculator.get_damage_reduced_by()
+	if reduced_by > 0:
+		DebugLog.dbg("Combat", "damage_reduced_by=%s: %s→%s" % [reduced_by, damage_taken, max(0, damage_taken - reduced_by)])
+	damage_taken = max(0, damage_taken - reduced_by)
+	if StatCalculator.has_death_dance():
+		damage_taken = min(damage_taken, 1)
+		gain_status_effect(HasteEffect.make(2.0), self)
+		DebugLog.dbg("Combat", "death_dance → dmg capped to 1, gained Haste(2.0s)")
 	if map_ref is BossMapManager:
-		if StatCalculator.get_curse_duration_on_hit() > 0:
-			gain_status_effect(HasteEffect.make(StatCalculator.get_curse_duration_on_hit()), self)
+		if StatCalculator.get_decay_duration_on_hit() > 0:
+			for i in range(StatCalculator.get_decay_duration_on_hit()):
+				gain_status_effect(HasteEffect.make(2.0), self)
+			DebugLog.dbg("Combat", "decay_duration_on_hit → gained Haste(%.1fs)" % StatCalculator.get_decay_duration_on_hit())
+	var hp_before : int = health_component.current_health
 	health_component.take_damage(damage_taken)
+	DebugLog.dbg("Combat", "Player took %s dmg | hp: %s→%s%s" % [
+		damage_taken, hp_before, health_component.current_health,
+		" | DEAD" if health_component.is_dead() else ""
+	])
 
-	if hitbox.effect_on_hit:
-		gain_status_effect(hitbox.effect_on_hit, hitbox)
+	if StatCalculator.get_decay_on_damaged() > 0:
+		for i in range(StatCalculator.get_decay_on_damaged()):
+			gain_status_effect(HasteEffect.make(2.0), self)
+		DebugLog.dbg("Combat", "decay_on_damaged → gained Haste(%.1fs)" % StatCalculator.get_decay_on_damaged())
+
+	# if hitbox.effect_on_hit:
+	# 	gain_status_effect(hitbox.effect_on_hit, hitbox)
+	
 	status_effect_manager.notify_hit_consumed(info)
 
 	sprite_manager.damage_flash()
@@ -174,7 +196,7 @@ func on_hit(info: DamageInfo) -> void:
 
 	var knockback_direction : Vector3 = (global_transform.origin - info.owner_entity.global_transform.origin).normalized()
 	if health_component.is_dead():
-		status_effect_manager.notify_owner_killed(info.source)
+		# status_effect_manager.notify_owner_killed(info.get_source())
 		on_die()
 		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
 		return
@@ -205,6 +227,8 @@ func get_floor() -> FloorNav:
 func on_gain_time(amount : int) -> void:
 	# handle gaining time pickup
 	health_component.gain_health(amount)
+	if StatCalculator.get_flow_stacks_per_pickup() > 0:
+		gain_status_effect(FlowEffect.make(StatCalculator.get_flow_stacks_per_pickup()), self)
 
 func heal(amount: int) -> void:
 	health_component.gain_health(amount)
@@ -224,3 +248,12 @@ func gain_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 
 func lose_status_effect(effect : PlayerStatusEffect, source : Object) -> void:
 	status_effect_manager.lose_status_effect(effect, source)
+
+func get_initial_health() -> int:
+	var override : Variant = Config.get_override("starting_health")
+	DebugLog.dbg_from(self,"get_initial_health override=%s, max_health=%s" % [override, StatCalculator.get_player_max_health()])
+	return override if override != null else StatCalculator.get_player_max_health()
+
+func set_pause(value: bool) -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
+	time_damage_manager.set_pause(value)

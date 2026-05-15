@@ -61,7 +61,9 @@ func sample_position_around_entity() -> Vector3:
 
 	var ball_radius : float = 0.3
 	var sample_position : Vector3 = entity.global_transform.origin + offset
+	sample_position.z *= Constants.VERTICAL_PERSRPECTIVE_SCALE
 	var clamped_position : Vector3 = entity.get_floor().clamp_position(sample_position, ball_radius)
+	
 	return clamped_position 
 
 func get_spawn_amount() -> int:

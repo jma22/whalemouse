@@ -2,7 +2,6 @@ shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
 uniform sampler2D texture_albedo : source_color, filter_linear_mipmap;
-uniform sampler2D base_texture : source_color, filter_linear_mipmap;
 
 uniform float radius : hint_range(0.0, 10.0) = 0.4;
 uniform float center_alpha : hint_range(0.0, 1.0) = 1.0;
@@ -16,7 +15,7 @@ uniform bool interpolate = true;
 uniform bool invert = false;
 uniform float falloff : hint_range(0.1, 10.0) = 2.5;
 uniform float noise_speed : hint_range(0.0, 10.0) = 1.0;
-uniform vec2 center_offset = vec2(0.0, 0.0);
+global uniform vec2 foreground_player_uv;
 uniform float vertical_stretch : hint_range(0.1, 5.0) = 1.0;
 
 const int bayer2[4] = {
@@ -96,11 +95,13 @@ void fragment() {
 		cos(t * 0.9) + cos(t * 1.7) * 0.5 + cos(t * 2.3) * 0.55
 	) / VIEWPORT_SIZE;
 
-	// Center of the screen in screen-space UV with offset
-	vec2 center = vec2((0.5 + center_offset.x) * aspect, 0.5 + center_offset.y) + vec2(wander.x * aspect, wander.y);
-	// Current pixel in aspect-corrected screen-space with vertical stretch
-	vec2 uv = vec2(screen_uv.x * aspect, (screen_uv.y - 0.5 - center_offset.y) / vertical_stretch + 0.5 + center_offset.y);
+	vec2 center = vec2(foreground_player_uv.x * aspect, foreground_player_uv.y)
+	            + vec2(wander.x * aspect, wander.y);
 
+	vec2 uv = vec2(
+	    screen_uv.x * aspect,
+	    (screen_uv.y - foreground_player_uv.y) / vertical_stretch + foreground_player_uv.y
+	);
 	float uv_step_f = pixel_size / resolution.x;
 	vec2 uv_step = vec2(uv_step_f, uv_step_f);
 	vec2 raw_offset_uv = round(dither_offset) * uv_step;
@@ -129,7 +130,8 @@ void fragment() {
 	float mask = invert ? (1.0 - dither) : dither;
 	float alpha = mix(edge_alpha, center_alpha, mask);
 
-	vec4 tex = texture(base_texture, UV);
+	vec4 tex = texture(texture_albedo, UV);
 	ALBEDO = tex.rgb;
 	ALPHA = tex.a * alpha;
+	ALPHA_SCISSOR_THRESHOLD = 0.5;
 }

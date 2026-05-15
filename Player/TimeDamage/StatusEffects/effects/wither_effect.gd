@@ -10,7 +10,7 @@ static func make() -> WitherEffect:
 	return effect
 
 
-func on_applied(entity: Node3D) -> void:
+func _on_applied(entity: Node3D) -> void:
 	if entity and "health_component" in entity and entity.health_component:
 		entity.health_component.current_health = 1
 

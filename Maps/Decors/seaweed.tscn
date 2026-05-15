@@ -1,19 +1,20 @@
 [gd_scene format=3 uid="uid://d4f06nj2iy67x"]
 
-[ext_resource type="Material" uid="uid://bx8nbcsdbnm4v" path="res://Maps/Decors/Scripts/foreground_material.tres" id="1_4embk"]
-[ext_resource type="Texture2D" uid="uid://jwhtqnflcat3" path="res://Maps/Decors/Untitled_Artwork-3 (1).png" id="2_3kakv"]
-[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_0yvv1"]
+[ext_resource type="Material" uid="uid://cgry6ob5583dk" path="res://Maps/Decors/foreground/foreground_mat.tres" id="1_f0aom"]
+[ext_resource type="Texture2D" uid="uid://bs1tvug5s6do8" path="res://Maps/Decors/Untitled_Artwork (11).png" id="2_f0aom"]
+[ext_resource type="Script" uid="uid://ommkb6742551" path="res://Core/foreground_sprite_manager.gd" id="3_f0aom"]
 
 [node name="Seaweed4" type="Node3D" unique_id=1171315565]
 
 [node name="SpriteManager" type="Sprite3D" parent="." unique_id=1643491398]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
 layers = 2
-material_override = ExtResource("1_4embk")
-cast_shadow = 0
+material_override = ExtResource("1_f0aom")
 pixel_size = 0.003
+transparent = false
 double_sided = false
 fixed_size = true
-texture = ExtResource("2_3kakv")
-script = ExtResource("3_0yvv1")
+alpha_cut = 3
+texture = ExtResource("2_f0aom")
+script = ExtResource("3_f0aom")
 metadata/_custom_type_script = "uid://chgfscc28odqd"

@@ -36,8 +36,6 @@ var camera : Camera3D
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
 	# initial_state = enemy_ink_attack_state
 	super(player, map)
-	health_component.max_health += StatCalculator.get_extra_boss_health() * 4
-	health_component.current_health = health_component.max_health
 
 	sprite_manager.render_priority = -1
 	sprite_manager.material_overlay.render_priority = -1
@@ -77,10 +75,9 @@ func on_hit(info : DamageInfo) -> void:
 	super(info)
 	boss_health.update_health(health_component.current_health)
 
-func on_eye_died() -> void:
-	var quarter: int = health_component.max_health / 4
-	var next_quarter: int = ((health_component.current_health - 1) / quarter) * quarter
-	var damage_taken: int = health_component.current_health - next_quarter
+func on_eye_died(angler : EnemyBase) -> void:
+	var quarter: int = get_initial_health() / 4
+	var damage_taken: int = quarter - angler.get_initial_health()
 	sprite_manager.damage_flash()
 	# next closest quarter of health 
 	health_component.take_damage(damage_taken)
@@ -90,12 +87,14 @@ func on_eye_died() -> void:
 	camera.camera_shake(2.0, 0.3)
 	
 
-func on_die() -> void:
+func on_die(info: DamageInfo) -> void:
 	if is_dead:
 		return
-	super()
+	super(info)
 	enemy_spawner.kill_all_enemies() 
 
+func get_initial_health() -> int:
+	return initial_health + StatCalculator.get_extra_boss_health() * 4
 # 	super.on_die()
 # 	boss_health.hide()
 # func on_staggered() -> void:

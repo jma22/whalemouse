@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://drqc0hrgfwup3"]
+
+[ext_resource type="Script" uid="uid://dgibkndoegsem" path="res://MainScenes/MouseHub/RelicScene/relic_scene.gd" id="1_ngyft"]
+[ext_resource type="PackedScene" uid="uid://dbof71ys71ajw" path="res://MainScenes/MouseHub/RelicScene/relic_sticker.tscn" id="2_ijp3d"]
+
+[node name="RelicPage" type="Control" unique_id=70897863 node_paths=PackedStringArray("grid_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ngyft")
+grid_container = NodePath("ScrollContainer/GridContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=632661250]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer" unique_id=592523779]
+layout_mode = 2
+columns = 7
+
+[node name="RelicSticker" parent="ScrollContainer/GridContainer" unique_id=1355926676 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker2" parent="ScrollContainer/GridContainer" unique_id=1246452663 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker3" parent="ScrollContainer/GridContainer" unique_id=1635479281 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker4" parent="ScrollContainer/GridContainer" unique_id=132610659 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker5" parent="ScrollContainer/GridContainer" unique_id=145002009 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker6" parent="ScrollContainer/GridContainer" unique_id=289979805 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker7" parent="ScrollContainer/GridContainer" unique_id=308265934 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker8" parent="ScrollContainer/GridContainer" unique_id=579321215 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker9" parent="ScrollContainer/GridContainer" unique_id=1133101962 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker10" parent="ScrollContainer/GridContainer" unique_id=505522462 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker11" parent="ScrollContainer/GridContainer" unique_id=1571760610 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker12" parent="ScrollContainer/GridContainer" unique_id=458828687 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker13" parent="ScrollContainer/GridContainer" unique_id=1864482051 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker14" parent="ScrollContainer/GridContainer" unique_id=1791388376 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker15" parent="ScrollContainer/GridContainer" unique_id=137086400 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker16" parent="ScrollContainer/GridContainer" unique_id=1002163772 instance=ExtResource("2_ijp3d")]
+layout_mode = 2
+
+[node name="RelicSticker17" parent="ScrollContainer/GridContainer" unique_id=2085513129 instance=ExtResource("2_ijp3d")]
+layout_mode = 2

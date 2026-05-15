@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CameraData" format=3 uid="uid://cw15qi1f2k8v2"]
+
+[ext_resource type="Script" uid="uid://c1vflnxqyo6nd" path="res://Core/camera_data.gd" id="1_default"]
+
+[resource]
+script = ExtResource("1_default")
+distance = 2.0
+fov = 80.0
+fov_z_boost = 15.0

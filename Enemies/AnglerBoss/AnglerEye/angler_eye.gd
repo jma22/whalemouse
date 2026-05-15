@@ -23,8 +23,7 @@ func setup(player: CharacterBody3D, map: NavigationRegion3D) -> void:
 	for node : Node3D in get_tree().get_nodes_in_group("eye_checkpoints"):
 		checkpoints.append(node.global_position)
 	super(player, map)
-	health_component.max_health += StatCalculator.get_extra_boss_health()
-	health_component.current_health = health_component.max_health
+	print(StatCalculator.get_boss_xp_drop_per_hit(), " xp per hit")
 	hurt_box.orbs_on_hit = StatCalculator.get_boss_xp_drop_per_hit()
 
 func set_variant(variant : int) -> void:
@@ -96,12 +95,14 @@ func on_hit(info: DamageInfo) -> void:
 	super(info)
 	linked_boss.on_hit(info)
 
-func on_die() -> void:
+func on_die(info: DamageInfo) -> void:
 	if is_dead:
 		return
-	super()
-	linked_boss.on_eye_died()
+	super(info)
+	linked_boss.on_eye_died(self)
 
+func get_initial_health() -> int:
+	return initial_health + StatCalculator.get_extra_boss_health()
 # func on_staggered() -> void:
 # 	hurt_state.set_idle_duration(0.2)
 # 	state_machine.set_state(hurt_state)

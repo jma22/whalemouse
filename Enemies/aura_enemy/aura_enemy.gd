@@ -34,8 +34,8 @@ func on_staggered() -> void:
 	hurt_state.set_idle_duration(0.3)
 	state_machine.set_state(hurt_state)
 
-func on_die() -> void:
-	super()
+func on_die(info: DamageInfo) -> void:
+	super(info)
 	aura.deactivate_aura()
 
 func get_cooldown_time() -> float:

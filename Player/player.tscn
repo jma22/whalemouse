@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://bfemb7cym2htn" path="res://Core/animation_clip.gd" id="13_7emwf"]
 [ext_resource type="Resource" uid="uid://cw13rf4mx4tj6" path="res://Player/AnimationClips/attack.tres" id="14_lfmf2"]
 [ext_resource type="AudioStream" uid="uid://dvufetk8lu5rw" path="res://SFX/dash.wav" id="17_gpjlu"]
-[ext_resource type="Shader" uid="uid://d54w71ckm338" path="res://Core/outline.gdshader" id="18_7emwf"]
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="20_n471f"]
 [ext_resource type="Script" uid="uid://dttq4pd68s4ee" path="res://Player/dash_component.gd" id="21_7emwf"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
@@ -37,19 +36,13 @@ frame_numbers = Array[int]([0, 1, 2])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_b1ygp"]
-height = 1.0
+height = 0.5
 radius = 0.25
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o28un"]
-render_priority = 1
-shader = ExtResource("18_7emwf")
-shader_parameter/width = 10.6050005037375
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Shader" id="Shader_hshwv"]
+[sub_resource type="Shader" id="Shader_n471f"]
 resource_local_to_scene = true
 code = "shader_type spatial;
-render_mode blend_add;
+render_mode blend_add, depth_prepass_alpha;
 
 uniform float charge_level : hint_range(0.0, 1.0) = 0.0;
 uniform float flash_level : hint_range(0.0, 1.0) = 0.0;
@@ -73,13 +66,14 @@ void fragment() {
 	vec3 color = mix(charge_color.rgb, flash_color.rgb, step(charge, flash_level));
 	ALBEDO = color;
 	ALPHA = mask* combined;
+	ALPHA_SCISSOR_THRESHOLD = 0.5;
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpjlu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7emwf"]
 resource_local_to_scene = true
-render_priority = 1
-shader = SubResource("Shader_hshwv")
+render_priority = 7
+shader = SubResource("Shader_n471f")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -171,6 +165,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.076812744)
 visible = false
 owner_entity = NodePath("../../..")
 hit_box_type = 1
+damage = 0
 hitstop = NodePath("../../../CoreComponents/HitStop")
 
 [node name="CollisionShape3D" parent="StateMachine/RollState/Hitbox" index="0" unique_id=1405177479]
@@ -195,13 +190,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0635376)
 shape = SubResource("CylinderShape3D_b1ygp")
 
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.96592575, 0, -0.96592575, 0.25881904, 0.002998352, 0.07312828, -0.22069669)
+transform = Transform3D(1, 0, 0, 0, 0.4999999, 0.8660253, 0, -0.8660253, 0.4999999, 0.002998352, 0.12595028, -0.22368203)
 layers = 1
-material_override = SubResource("ShaderMaterial_o28un")
-material_overlay = SubResource("ShaderMaterial_gpjlu")
+material_overlay = SubResource("ShaderMaterial_7emwf")
+alpha_scissor_threshold = 0.06
+alpha_antialiasing_edge = 1.0
+render_priority = 7
 texture = ExtResource("2_n471f")
 hframes = 15
 vframes = 2
+frame = 6
 frames_per_second = 12.0
 
 [node name="ThornHitbox" type="Area3D" parent="." unique_id=1305077030 node_paths=PackedStringArray("owner_entity")]

@@ -98,7 +98,7 @@ func _on_body_exited(body: Node) -> void:
 		tween = create_tween()
 		tween.set_parallel(true)
 		tween.tween_property(sprite, "scale", Vector3(-0.05,-0.05,-0.05), 0.3).as_relative().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		tween.tween_property(sprite, "modulate:a", 0.6, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(sprite, "modulate:a", 0.9, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.play()
 
 
@@ -108,7 +108,7 @@ func open_gateway() -> void:
 	sprite.visible = true
 	sprite.play(animation_clip)
 	if not player_inside:
-		sprite.modulate.a = 0.6
+		sprite.modulate.a = 0.9
 
 func close_gateway() -> void:
 	area.set_monitorable(false)

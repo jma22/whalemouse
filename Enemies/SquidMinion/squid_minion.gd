@@ -21,7 +21,7 @@ var attack_range : float = 0.1
 
 
 func setup(player : CharacterBody3D, map : NavigationRegion3D) -> void:
-	enemy_idle_state.set_idle_duration(0.5)
+	enemy_idle_state.set_idle_duration(1.5)
 	initial_state = enemy_idle_state
 	super.setup(player, map)
 
@@ -50,4 +50,4 @@ func on_staggered() -> void:
 	state_machine.set_state(hurt_state)
 
 func on_hitbox_hit() -> void:
-	on_die()
+	on_die(DamageInfo.new())

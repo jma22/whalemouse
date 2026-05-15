@@ -11,17 +11,21 @@ var whale_spawner : WhaleSpawner
 func play(whale_spawner_ : WhaleSpawner) -> void:
 	self.whale_spawner = whale_spawner_
 
-	hitbox.set_damage(StatCalculator.get_whale_damage_flat())
-	hitbox.set_behavior(WhaleHitboxBehavior.make())
+	hitbox.set_damage(1)
+	var whale_hitbox_behavior : WhaleHitboxBehavior = WhaleHitboxBehavior.make()
+	hitbox.set_behavior(whale_hitbox_behavior)
 	audio_player.pitch_scale = 1.0
 	audio_player.play()
 	whale_animation_player.play("whale_animation")
+	
 
 
 func camera_shake_callback() -> void:
-	if GlobalStats.current_run_stats["whale_level"] >= 3:
+	if GlobalStats.current_run_stats["whale_size"] >= 3:
 		whale_spawner.camera_shake_callback()
 
+func refund_whale_cooldown(percent : float) -> void:
+	whale_spawner.refund_whale_cooldown(percent)
 # func whale_up() -> void:
 # 	var tween = get_tree().create_tween()
 # 	var original_y = whale_sprite.translation.y

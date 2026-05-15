@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://bp6kq3gv428t1" path="res://MainScenes/World/world_manager.gd" id="1_ioo17"]
 [ext_resource type="PackedScene" uid="uid://dr1nuyec1dwdo" path="res://Player/player.tscn" id="2_tlwt5"]
 [ext_resource type="Script" uid="uid://c5dpiblr3g21y" path="res://Core/camera.gd" id="3_aqk2v"]
+[ext_resource type="Resource" uid="uid://dr053nj2vcj1c" path="res://Core/CameraData/boss.tres" id="3_b6lyg"]
+[ext_resource type="Resource" uid="uid://cw15qi1f2k8v2" path="res://Core/CameraData/default.tres" id="3_lgfs0"]
+[ext_resource type="Resource" uid="uid://dta36t4j0gwyx" path="res://Core/CameraData/combat.tres" id="4_4gkky"]
+[ext_resource type="Resource" uid="uid://dkjq3kkdkd2js" path="res://Core/CameraData/cinematic.tres" id="4_07j78"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_fth4m"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_yjwld"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
@@ -15,8 +19,10 @@
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
 [ext_resource type="Shader" path="res://UI/transition.gdshader" id="16_2u3nc"]
 [ext_resource type="Script" path="res://UI/transition.gd" id="16_udxuc"]
+[ext_resource type="Script" uid="uid://jplr3h3dtcn3" path="res://Maps/foreground_manager.gd" id="20_4gkky"]
+[ext_resource type="Material" uid="uid://cgry6ob5583dk" path="res://Maps/Decors/foreground/foreground_mat.tres" id="21_7yh8k"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjwld"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yh8k"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("4_yjwld")
@@ -26,45 +32,6 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/charge_color = Color(1, 1, 1, 1)
 shader_parameter/mesh_bottom = -1.0
 shader_parameter/mesh_top = 1.0
-
-[sub_resource type="Environment" id="Environment_ikiii"]
-background_mode = 2
-tonemap_mode = 2
-tonemap_exposure = 0.59
-tonemap_agx_white = 2.0
-ssr_fade_in = 0.17838103
-ssr_fade_out = 0.25881618
-ssao_intensity = 7.15
-ssao_power = 0.2080443
-ssao_horizon = 0.0
-ssil_radius = 5.95
-ssil_intensity = 2.65
-glow_enabled = true
-glow_normalized = true
-glow_intensity = 0.4
-glow_bloom = 0.27
-fog_mode = 1
-fog_density = 0.8895
-fog_aerial_perspective = 1.0
-fog_sky_affect = 0.73
-fog_height = -3.5
-fog_height_density = 0.025
-volumetric_fog_density = 0.06
-volumetric_fog_emission_energy = 5.05
-volumetric_fog_anisotropy = -0.9
-volumetric_fog_detail_spread = 6.0
-adjustment_enabled = true
-adjustment_brightness = 0.92
-adjustment_contrast = 1.01
-adjustment_saturation = 0.92
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_cbp6q"]
-dof_blur_far_distance = 3026.74
-dof_blur_far_transition = 3753.99
-dof_blur_amount = 0.05
-
-[sub_resource type="Compositor" id="Compositor_26xuy"]
-compositor_effects = Array[CompositorEffect]([null])
 
 [sub_resource type="Gradient" id="Gradient_2u3nc"]
 
@@ -90,6 +57,11 @@ shader_parameter/shape_treshold = 1.0
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2u3nc"]
 gradient = SubResource("Gradient_hiqwa")
 
+[sub_resource type="Environment" id="Environment_7yh8k"]
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.0
+ambient_light_energy = 1.29
+
 [node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "boss_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner", "loading_screen")]
 script = ExtResource("1_ioo17")
 map_manager = NodePath("Map")
@@ -106,20 +78,24 @@ whale_spawner = NodePath("WhaleSpawner")
 loading_screen = NodePath("Loading")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 1.4, 0.48)
-fov = 85.0
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1.4, 0.48)
+fov = 80.0
 size = 23.388
 script = ExtResource("3_aqk2v")
 target = NodePath("../Player")
-wave_distance = 1.8
-boss_distance = 2.3
-smooth_speed = 10.0
+default_data = ExtResource("3_lgfs0")
+combat_data = ExtResource("4_4gkky")
+boss_data = ExtResource("3_b6lyg")
+cinematic_data = ExtResource("4_07j78")
+current_data = ExtResource("3_lgfs0")
 
-[node name="Player" parent="." unique_id=1422586295 groups=["Player"] instance=ExtResource("2_tlwt5")]
+[node name="Player" parent="." unique_id=1422586295 node_paths=PackedStringArray("time_damage_manager") groups=["Player"] instance=ExtResource("2_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
+time_damage_manager = NodePath("../TimeDamageManager")
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_yjwld")
+material_overlay = SubResource("ShaderMaterial_7yh8k")
+frame = 2
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_fth4m")]
 time_damage_manager = NodePath("../TimeDamageManager")
@@ -148,11 +124,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.708763, 0, 0)
 
 [node name="WaveManager" type="Node3D" parent="." unique_id=212606823]
 script = ExtResource("10_k3n1d")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=625136234]
-environment = SubResource("Environment_ikiii")
-camera_attributes = SubResource("CameraAttributesPractical_cbp6q")
-compositor = SubResource("Compositor_26xuy")
 
 [node name="WaveText" type="CanvasLayer" parent="." unique_id=627079375 node_paths=PackedStringArray("text_label", "container")]
 layer = 2
@@ -204,6 +175,25 @@ transform = Transform3D(0.4984877, 0.53371495, -0.683124, 0, 0.7880108, 0.615661
 light_color = Color(0.57, 0.5858333, 0.76, 1)
 light_energy = 0.9
 light_indirect_energy = 1.828
+light_cull_mask = 4293918720
+shadow_enabled = true
+shadow_bias = 0.734
+shadow_normal_bias = 0.0
+shadow_opacity = 0.85
+shadow_blur = 0.0
+shadow_caster_mask = 4293918721
+directional_shadow_mode = 0
+directional_shadow_split_1 = 0.211
+directional_shadow_fade_start = 0.155
+directional_shadow_max_distance = 4.5
+directional_shadow_pancake_size = 0.0
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1055621862]
+transform = Transform3D(0.49848774, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.8668968, -0.3068997, 0.39281368, 0.088907, 1.4987466, 3.2288532)
+light_color = Color(0.57, 0.5858333, 0.76, 1)
+light_energy = 0.9
+light_indirect_energy = 1.828
+light_cull_mask = 4293918720
 shadow_enabled = true
 shadow_bias = 0.734
 shadow_normal_bias = 0.0
@@ -218,12 +208,13 @@ directional_shadow_pancake_size = 0.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=347799331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.782873, 5.535, -0.731)
+visible = false
 light_color = Color(0.7150342, 0.8854288, 0.95744973, 1)
 light_energy = 2.332
 light_volumetric_fog_energy = 0.366
 light_specular = 0.975
 light_bake_mode = 1
-omni_range = 33.168
+omni_range = 14.161
 omni_attenuation = 0.378
 
 [node name="Transition" type="CanvasLayer" parent="." unique_id=740170691 node_paths=PackedStringArray("texture")]
@@ -246,6 +237,7 @@ layers = 2
 light_color = Color(0.57, 0.5858333, 0.76, 1)
 light_energy = 0.9
 light_indirect_energy = 1.828
+light_cull_mask = 4293918720
 shadow_enabled = true
 shadow_bias = 0.734
 shadow_normal_bias = 0.0
@@ -257,6 +249,15 @@ directional_shadow_split_1 = 0.211
 directional_shadow_fade_start = 0.155
 directional_shadow_max_distance = 4.5
 directional_shadow_pancake_size = 0.0
+
+[node name="ForegroundManager" type="Node3D" parent="." unique_id=420097038 node_paths=PackedStringArray("player", "camera")]
+script = ExtResource("20_4gkky")
+player = NodePath("../Player")
+camera = NodePath("../Camera3D2")
+foreground_material = ExtResource("21_7yh8k")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1748496856]
+environment = SubResource("Environment_7yh8k")
 
 [editable path="Player"]
 [editable path="Player/StateMachine/AttackState/Hitbox"]

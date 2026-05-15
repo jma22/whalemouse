@@ -2,23 +2,23 @@ extends NavigationRegion3D
 class_name FloorNav
 @export var floor_material: MeshInstance3D
 
-var material : ShaderMaterial
+@export var spotlight_material : ShaderMaterial
 var player : CharacterBody3D
 # var discrete_time : float = 0.01
 var time_accumulator : float = 0.0
 
-var offset : Vector2 = Vector2(0,0.2)
+var offset : Vector2 = Vector2(0,0)
 var size : Vector3
 var global_margin : float = 0.5
 
 
 func setup(player : CharacterBody3D, camera : Camera3D) -> void:
-	material = floor_material.get_surface_override_material(0) as ShaderMaterial
+	# material = floor_material.get_surface_override_material(0) as ShaderMaterial
 	self.player = player
 	size = floor_material.mesh.get_aabb().size
 	## set size of the mesh in shader parameters
-	material.set_shader_parameter("world_size", Vector2(size.x, size.z))
-	material.set_shader_parameter("world_origin", Vector2(global_transform.origin.x, global_transform.origin.z) - Vector2(size.x / 2, size.z / 2))
+	floor_material.set_instance_shader_parameter("world_size", Vector2(size.x, size.z))
+	floor_material.set_instance_shader_parameter("world_origin", Vector2(global_transform.origin.x, global_transform.origin.z) - Vector2(size.x / 2, size.z / 2))
 
 func _process(delta: float) -> void:
 	# time_accumulator += delta
@@ -27,9 +27,11 @@ func _process(delta: float) -> void:
 	if not player:
 		return
 	var pos : Vector3 = player.global_position
-	material.set_shader_parameter("world_center", Vector2(pos.x, pos.z) + offset)
-	material.set_shader_parameter("shadow_center", Vector2(pos.x, pos.z) + offset/2)
+	floor_material.set_instance_shader_parameter("world_center", Vector2(pos.x, pos.z) + offset)
+	floor_material.set_instance_shader_parameter("shadow_center", Vector2(pos.x, pos.z) + offset/2)
 
+func get_center() -> Vector3:
+	return global_transform.origin
 # In FloorNav
 # func bounce_body(body: CharacterBody3D, knockback: KnockbackComponent, bounce_force: float = 5.0) -> void:
 # 	var min_b := global_transform.origin - size / 2
@@ -79,6 +81,3 @@ func check_in_bounds(position: Vector3, margin : float = 0) -> bool:
 	var min_b := global_transform.origin - size / 2 + Vector3(margin, 0, margin) + Vector3(global_margin, 0, global_margin)
 	var max_b := global_transform.origin + size / 2 - Vector3(margin, 0, margin) - Vector3(global_margin, 0, global_margin)
 	return position.x >= min_b.x and position.x <= max_b.x and position.z >= min_b.z and position.z <= max_b.z
-
-
-

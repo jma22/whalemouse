@@ -41,10 +41,10 @@ shader_parameter/mesh_top = 1.0
 
 [node name="AnglerPillar" type="CharacterBody3D" unique_id=1422586295 node_paths=PackedStringArray("initial_state", "core_components")]
 script = ExtResource("1_8ysj7")
-initial_health = 5
+initial_health = 3
 initial_state = NodePath("StateMachine/EnemyIdleState")
 xp_drop_amount = 0
-ebb_drop_amount = 3
+ebb_drop_amount = 2
 core_components = NodePath("EnemyCoreComponents")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=683873180]
@@ -78,14 +78,16 @@ metadata/_custom_type_script = "uid://e0mqbimeypka"
 
 [node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169]
 script = ExtResource("11_menin")
-shooting_time = 1.5
+shooting_time = 0.8
 shooting_stun_time = 1.5
-base_num_bullets = 8
+shooting_speed_multiplier = 1.1
+base_num_bullets = 5
 angle_between_bullets_degrees = 0.0
 
 [node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
 script = ExtResource("12_ix7bx")
 charge_time = 1.5
+set_target_time = 0.5
 metadata/_custom_type_script = "uid://y3u7axpv78ck"
 
 [node name="EnemyCoreComponents" parent="." unique_id=1215065551 instance=ExtResource("13_cnbss")]
@@ -106,6 +108,9 @@ material_overlay = SubResource("ShaderMaterial_hwmmi")
 texture = ExtResource("12_hwmmi")
 hframes = 1
 layer_number = 2
+
+[node name="EnemyStatusDisplay" parent="EnemyCoreComponents" index="9" unique_id=1830548483]
+transform = Transform3D(0.9999912, -0.004206231, 0, 0.0014386157, 0.34201714, 0.9396926, -0.003952564, -0.93968433, 0.34202012, -0.0016105771, 0.3232197, -0.7451474)
 
 [editable path="EnemyCoreComponents"]
 [editable path="EnemyCoreComponents/HurtBox"]

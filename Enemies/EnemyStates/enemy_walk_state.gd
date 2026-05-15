@@ -17,7 +17,7 @@ func set_target_position(target: Vector3) -> void:
 func fixed_run(delta: float) -> void:
 	var direction : Vector3 = (target_position - entity.global_transform.origin).normalized()
 	entity.velocity.x = direction.x * speed * entity.get_speed_multiplier()
-	entity.velocity.z = direction.z * speed * entity.get_speed_multiplier()
+	entity.velocity.z = direction.z * speed * entity.get_speed_multiplier() * Constants.VERTICAL_PERSRPECTIVE_SCALE
 	if abs(entity.velocity.x) > 0.1:
 		entity.set_sprite_flip(entity.velocity.x < 0)
 		
@@ -26,6 +26,6 @@ func fixed_run(delta: float) -> void:
 	var noise_value_x : float = noise.get_noise_1d(Time.get_ticks_msec() * 0.1)
 	entity.velocity.x += noise_value_x * 1.5
 	var noise_value_z : float = noise.get_noise_1d(Time.get_ticks_msec()  * 0.1)
-	entity.velocity.z += noise_value_z * 1.5
+	entity.velocity.z += noise_value_z * 1.5 * Constants.VERTICAL_PERSRPECTIVE_SCALE
 	if (entity.global_transform.origin - target_position).length() < 0.05:
 		is_complete = true

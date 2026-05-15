@@ -23,7 +23,7 @@ var floor : FloorNav
 var friction : float = 0.8
 var velocity : Vector3 = Vector3.ZERO
 var gravity : Vector3 = Vector3.DOWN * 4.0
-var ground_y : float = 0.0
+var ground_y : float = -1 * Constants.SPRITE_Y_OFFSET
 
 func _process(delta: float) -> void:
 	check_state()
@@ -38,11 +38,12 @@ func setup(_velocity : Vector3, _target : Node3D, _floor : FloorNav) -> void:
 	self.target = _target
 	self.floor = _floor
 	state = PickupState.Launching
+	self.global_transform.origin += Vector3(0, 0, 0) # spawn slightly above the ground to prevent clipping
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	## bob up and down in sine
-	global_transform.origin.y += sin(Time.get_ticks_msec() / 1000.0 * 2.0) * 0.005
+	global_transform.origin.y += sin(Time.get_ticks_msec() / 1000.0 * 2.0) * 0.005 
 	match state:
 		PickupState.Idle:
 			pass
@@ -54,7 +55,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity += gravity * delta
 			velocity *= friction
-			if velocity.length() < 1.0:
+			if velocity.length() < 0.5:
 				state = PickupState.Idle	
 				velocity = Vector3.ZERO
 		PickupState.PickedUp:

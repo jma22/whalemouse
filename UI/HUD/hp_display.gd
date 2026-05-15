@@ -4,6 +4,7 @@ class_name HPDisplay
 
 @export var hp_label : RichTextLabel
 @export var life_circle : TextureProgressBar
+@export var health_percent : TextureProgressBar
 @export var whale_circle : TextureProgressBar
 @export var dash_bar : TextureProgressBar
 @export var whale_icon : TextureRect
@@ -91,7 +92,8 @@ func gain_hp(amount: int, new_hp: int) -> void:
 
 func refresh_hp(new_hp: int) -> void:
 	hp_label.text = "[wave amp=1.0 freq=0.5]" + str(new_hp) + "[/wave]"
-
+	health_percent.max_value = float(player.health_component.max_health)
+	health_percent.value = float(new_hp)
 
 func set_circle() -> void:
 	if time_damage:

@@ -9,7 +9,7 @@ var player : CharacterBody3D
 var floor : FloorNav
 var enemy_spawner : EnemySpawner
 var camera : Camera3D
-var whale_scene : PackedScene = preload("res://Player/Abilities/Whale/whale.tscn")
+var whale_scene : PackedScene = load("res://Player/Abilities/Whale/whale.tscn")
 
 func setup(player_ : CharacterBody3D, camera_ : Camera3D) -> void:
 	self.player = player_
@@ -30,6 +30,10 @@ func _process(delta: float) -> void:
 		cooldown_timer -= delta
 		if cooldown_timer < 0.0:
 			cooldown_timer = 0.0
+	if StatCalculator.beluga_auto_cast() and can_cast():
+		DebugLog.dbg_from(self,"auto-casting whale because of beluga_auto_cast")
+		# if not (player as Player).status_effect_manager.has_status_effect(StatusEffectNames.FREEZE):
+		cast_whale()
 
 
 func play_whale(whale : Whale) -> void:
@@ -44,26 +48,34 @@ func can_cast() -> bool:
 
 func cast_whale() -> void:
 	cooldown_timer = get_cooldown()
+	if StatCalculator.beluga_freeze_time() > 0.0:
+		(player as Player).gain_status_effect(FreezeEffect.make(StatCalculator.beluga_freeze_time()), self)
+		DebugLog.dbg_from(self,"beluga_freeze → applied Freeze to player (duration=%.1fs)" % StatCalculator.beluga_freeze_time())
 	var enemies : Array[Node3D]
 	if enemy_spawner != null:
 		enemies = enemy_spawner.get_alive_enemies()
 	else:
 		enemies = []
-	print("num_enemies: " + str(enemies.size()))
-	var spawn_locations : Array[Vector3] = get_spawn_location(enemies, StatCalculator.get_num_whales())
+	var num_whales : int = StatCalculator.get_num_whales()
+	var whale_size : float = StatCalculator.get_whale_size()
+	var spawn_locations : Array[Vector3] = get_spawn_location(enemies, num_whales)
+	DebugLog.dbg_from(self,"cast %s whale(s) size=%.1f on %s nearby enemies" % [spawn_locations.size(), whale_size, enemies.size()])
 	for spawn_location in spawn_locations:
 		var whale_instance : Whale = whale_scene.instantiate() as Whale
 		add_child(whale_instance)
 		whale_instance.global_transform.origin = spawn_location
-		whale_instance.scale = Vector3.ONE * StatCalculator.get_whale_size()
+		whale_instance.global_transform.origin.y = 0.0
+		whale_instance.scale = Vector3.ONE * whale_size
 		play_whale(whale_instance)
 
 
 func camera_shake_callback() -> void:
-	if GlobalStats.current_run_stats["whale_level"] >= 3:
+	if GlobalStats.current_run_stats["whale_size"] >= 35:
 		camera.camera_shake(1.0, 0.2)
 		
-
+func refund_whale_cooldown(percentage : float) -> void:
+	cooldown_timer = max(cooldown_timer * 1.0 - percentage * get_cooldown(), 0.0)
+	DebugLog.dbg_from(self,"refund_cooldown by %.1f%% → cooldown_timer: %.1fs" % [percentage*100.0, cooldown_timer])
 
 
 func get_cooldown_progress() -> float:
@@ -100,4 +112,4 @@ func get_spawn_location(enemies : Array[Node3D], topk :int = 1) -> Array[Vector3
 	return ans
 
 func get_cooldown() -> float:
-	return max(base_cooldown * (1.0 - StatCalculator.get_whale_cooldown()), 0.5)
+	return max(base_cooldown * StatCalculator.get_whale_cooldown_reduction() + StatCalculator.beluga_freeze_time() * 1.5, 1.0)

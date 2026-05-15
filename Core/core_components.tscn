@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bf51pi76mtfhi" path="res://Core/Components/bounce_component.gd" id="12_2n2ur"]
 [ext_resource type="Script" uid="uid://b108re1s0l4tc" path="res://Core/shield_component.gd" id="13_c1bs7"]
 [ext_resource type="Texture2D" uid="uid://i6u6twcfsxa0" path="res://VFX/Impact/ring.png" id="14_j225i"]
+[ext_resource type="Script" uid="uid://blrw60uo86j0x" path="res://Enemies/EnemyStatusIcons/enemy_status_display.gd" id="15_4dgnb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j225i"]
 blend_mode = 1
@@ -78,3 +79,10 @@ alpha_cut = 2
 texture = ExtResource("14_j225i")
 script = ExtResource("9_1hqlx")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="EnemyStatusDisplay" type="Node3D" parent="." unique_id=1830548483]
+transform = Transform3D(0.9999912, -0.004206231, 0, 0.0014386157, 0.34201714, 0.9396926, -0.003952564, -0.93968433, 0.34202012, -0.00013552605, 0.1423543, -0.43779185)
+script = ExtResource("15_4dgnb")
+pair_spacing = 0.18
+row_spacing = 0.2
+icon_scale = 1.0

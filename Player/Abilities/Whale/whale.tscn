@@ -333,9 +333,10 @@ hitbox = NodePath("Hitbox")
 stream = ExtResource("8_gi7rn")
 volume_db = -10.465
 
-[node name="Hitbox" type="Area3D" parent="." unique_id=976800001]
+[node name="Hitbox" type="Area3D" parent="." unique_id=976800001 node_paths=PackedStringArray("owner_entity")]
 visible = false
 script = ExtResource("3_wg7fs")
+owner_entity = NodePath("..")
 hit_box_type = 1
 metadata/_custom_type_script = "uid://dgoogb57kwni4"
 
@@ -360,6 +361,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 texture = ExtResource("3_mxwv7")
 hframes = 7
 script = ExtResource("2_pf8in")
+not_tilted = true
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=187653416]
@@ -372,4 +374,5 @@ texture = ExtResource("7_yc1uw")
 hframes = 3
 script = ExtResource("2_pf8in")
 frames_per_second = 10
+not_tilted = true
 metadata/_custom_type_script = "uid://chgfscc28odqd"

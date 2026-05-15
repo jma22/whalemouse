@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cyl1xch0b1jdn"]
+
+[ext_resource type="PackedScene" uid="uid://dih816wfsnvdi" path="res://UI/Hub/currency_info.tscn" id="1_176lp"]
+[ext_resource type="Script" uid="uid://djidyraqvsu0y" path="res://MainScenes/MouseHub/mouse_hub_scene.gd" id="1_kfi5h"]
+[ext_resource type="PackedScene" uid="uid://cin4kyopvby6o" path="res://MainScenes/MouseHub/MemoryScene/memory_scene.tscn" id="3_a54be"]
+[ext_resource type="PackedScene" uid="uid://drqc0hrgfwup3" path="res://MainScenes/MouseHub/RelicScene/relic_scene.tscn" id="4_2wmd1"]
+[ext_resource type="PackedScene" uid="uid://bjn4cwx7h48kg" path="res://MainScenes/MouseHub/WellScene/run_mod_page.tscn" id="4_dxrut"]
+[ext_resource type="Script" uid="uid://u4kryn1qxdh8" path="res://MainScenes/MouseHub/tab_controller.gd" id="6_gfe3l"]
+
+[node name="MouseHub" type="Node3D" unique_id=1733890198 node_paths=PackedStringArray("overworld_button", "tab_container")]
+script = ExtResource("1_kfi5h")
+overworld_button = NodePath("CanvasLayer/BackButton")
+tab_container = NodePath("CanvasLayer/MarginContainer/TabContainer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=796877212]
+
+[node name="CurrencyInfoBar" parent="CanvasLayer" unique_id=1681354303 instance=ExtResource("1_176lp")]
+offset_left = -172.0
+
+[node name="BackButton" type="Button" parent="CanvasLayer" unique_id=706055821]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_right = 116.0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../MarginContainer/TabContainer/Memories")
+text = "Back
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=2125029143]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/MarginContainer" unique_id=2131907368]
+layout_mode = 2
+current_tab = 2
+tabs_visible = false
+
+[node name="Memories" type="TabBar" parent="CanvasLayer/MarginContainer/TabContainer" unique_id=1264851563]
+visible = false
+layout_mode = 2
+focus_neighbor_right = NodePath("../WishingWell")
+focus_neighbor_bottom = NodePath("../../../BackButton")
+metadata/_tab_index = 0
+
+[node name="Stickers" parent="CanvasLayer/MarginContainer/TabContainer/Memories" unique_id=1828627335 instance=ExtResource("3_a54be")]
+layout_mode = 1
+
+[node name="WishingWell" type="TabBar" parent="CanvasLayer/MarginContainer/TabContainer" unique_id=1153695862]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Memories")
+focus_neighbor_right = NodePath("../Relics")
+focus_neighbor_bottom = NodePath("../../../BackButton")
+metadata/_tab_index = 1
+
+[node name="RunModPage" parent="CanvasLayer/MarginContainer/TabContainer/WishingWell" unique_id=1116610660 instance=ExtResource("4_dxrut")]
+layout_mode = 1
+
+[node name="Relics" type="TabBar" parent="CanvasLayer/MarginContainer/TabContainer" unique_id=922860659]
+layout_mode = 2
+focus_neighbor_left = NodePath("../WishingWell")
+metadata/_tab_index = 2
+
+[node name="RelicPage" parent="CanvasLayer/MarginContainer/TabContainer/Relics" unique_id=70897863 instance=ExtResource("4_2wmd1")]
+layout_mode = 1
+
+[node name="TabController" type="VBoxContainer" parent="CanvasLayer" unique_id=940905877 node_paths=PackedStringArray("button_1", "button_2", "button_3", "tab_container")]
+offset_top = 118.0
+offset_right = 80.0
+offset_bottom = 374.0
+script = ExtResource("6_gfe3l")
+button_1 = NodePath("ButtonA")
+button_2 = NodePath("ButtonA3")
+button_3 = NodePath("ButtonA2")
+tab_container = NodePath("../MarginContainer/TabContainer")
+
+[node name="ButtonA" type="Button" parent="CanvasLayer/TabController" unique_id=1292858880]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"
+
+[node name="ButtonA3" type="Button" parent="CanvasLayer/TabController" unique_id=157932261]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"
+
+[node name="ButtonA2" type="Button" parent="CanvasLayer/TabController" unique_id=280743582]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"

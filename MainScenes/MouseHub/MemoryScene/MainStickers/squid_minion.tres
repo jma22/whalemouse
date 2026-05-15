@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bh1pj43alx204"]
+
+[ext_resource type="Texture2D" uid="uid://ba37fdyt37b1k" path="res://Enemies/SquidMinion/spritesheet_10.png" id="1_dtyj5"]
+
+[resource]
+atlas = ExtResource("1_dtyj5")
+region = Rect2(185.04056, 1.5617676, 307.59753, 478.48505)

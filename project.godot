@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Beluga's Blessing"
-config/version="1.0"
+config/version="1.1"
 run/main_scene="uid://dg8owrdf3qc4u"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://csjxsvdl4q0sd"
@@ -22,6 +22,8 @@ SceneManager="*uid://c8eq42u5mh3sy"
 TutorialManager="*uid://71xrymgiysoh"
 GlobalStats="*uid://dmyu4wno1vl2a"
 Config="*uid://bpssjmt3bcd4l"
+GameData="*res://Core/Autoloads/game_data.gd"
+DebugLog="*res://Core/Autoloads/DebugLog.gd"
 
 [debug]
 
@@ -151,4 +153,11 @@ pause={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.09, 0.056700002, 0.082785, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0.007843138, 1)
+
+[shader_globals]
+
+foreground_player_uv={
+"type": "vec2",
+"value": Vector2(0, 0)
+}

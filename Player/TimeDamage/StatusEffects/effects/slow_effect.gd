@@ -1,6 +1,6 @@
 class_name SlowEffect extends PlayerStatusEffect
 
-const TIME_MULTIPLIER : float = 0.33
+const TIME_MULTIPLIER : float = 0.5
 
 static func make(p_duration: float) -> SlowEffect:
 	var effect : SlowEffect = SlowEffect.new()

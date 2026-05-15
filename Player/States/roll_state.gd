@@ -14,6 +14,8 @@ var explosion : PackedScene = load("res://Enemies/Projectiles/explosion.tscn")
 
 @export var roll_hitbox : Hitbox
 
+const BASE_DASH_DISTANCE : float = 9.0
+
 func enter() -> void:
 	# player.sprite_manager.frames_per_second = fps
 	entity.sprite_manager.play(animation)
@@ -24,16 +26,29 @@ func enter() -> void:
 	entity.set_invulnerable(true, invulnerability_time)
 	audio_player.pitch_scale = 1.0 + randf() * 0.4
 	audio_player.play()
+	roll_hitbox.set_behavior(RollHitboxBehavior.make())
 	
+
+	
+	if StatCalculator.has_suicide_dash():
+		entity.damage(1)
+		entity.sprite_manager.damage_flash()
+		DebugLog.dbg_from(self,"suicide_dash → player took 1 dmg")
+
+	if StatCalculator.dash_damages_status() or StatCalculator.has_marking_dash() or StatCalculator.get_midas_dash_touch_num() > 0:
+		roll_hitbox.set_active(true)
+		DebugLog.dbg_from(self,"roll hitbox active (dash_damages_status=%s marking_dash=%s)" % [
+			StatCalculator.dash_damages_status(), StatCalculator.has_marking_dash()
+		])
+
 	if StatCalculator.has_dash_bomb():
 		var bomb_instance : Node3D = explosion.instantiate()
 		entity.get_parent().add_child(bomb_instance)
 		bomb_instance.global_transform.origin = entity.global_transform.origin
 		bomb_instance.setup(entity)
-	if StatCalculator.get_dash_damage() > 0:
-		roll_hitbox.set_damage(StatCalculator.get_dash_damage())
-		roll_hitbox.set_behavior(RollHitboxBehavior.make())
-		roll_hitbox.set_active(true)
+		DebugLog.dbg_from(self,"dash_bomb → spawned explosion at player")
+	# if StatCalculator.get_dash_damage() > 0:
+	# 	roll_hitbox.set_active(true)
 	
 
 # func run(_delta: float) -> void:
@@ -53,5 +68,5 @@ func set_direction(direction: Vector2) -> void:
 	roll_direction = direction
 
 func initial_velocity() -> void:
-	entity.velocity.x = roll_direction.x * StatCalculator.get_dash_distance()
-	entity.velocity.z = roll_direction.y * StatCalculator.get_dash_distance()
+	entity.velocity.x = roll_direction.x * BASE_DASH_DISTANCE * StatCalculator.get_dash_distance_decrease()
+	entity.velocity.z = roll_direction.y * BASE_DASH_DISTANCE * StatCalculator.get_dash_distance_decrease() * Constants.VERTICAL_PERSRPECTIVE_SCALE

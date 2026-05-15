@@ -10,9 +10,9 @@ class_name ArcComponent
 @export var sharpness: float = 1.2
 @export var descent_mult: float = 1.0
 @export var max_x_distance: float = 4.0
-var TILT_DEGREES: float = 30
+var TILT_DEGREES: float = 90 + Constants.TILT_ANGLE
 
-var arc_axis := Vector3(0, cos(deg_to_rad(30)), -sin(deg_to_rad(30))).normalized()
+var arc_axis := Vector3(0, cos(deg_to_rad(TILT_DEGREES)), -sin(deg_to_rad(TILT_DEGREES))).normalized()
 var velocity: Vector3 = Vector3.ZERO
 var elapsed_time: float = 0.0
 var is_finished: bool = false

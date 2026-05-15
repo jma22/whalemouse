@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CameraData" format=3 uid="uid://dta36t4j0gwyx"]
+
+[ext_resource type="Script" uid="uid://c1vflnxqyo6nd" path="res://Core/camera_data.gd" id="1_combat"]
+
+[resource]
+script = ExtResource("1_combat")
+distance = 2.0
+fov = 80.0
+arena_blend = 0.35
+smooth_speed = 4.0
+fov_z_boost = 8.0
+fov_z_range = 1.0
+wander_amount = 0.1
+wander_freq = 1.0

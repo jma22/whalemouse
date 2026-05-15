@@ -81,7 +81,7 @@ func _ready() -> void:
 func _on_stat_changed(stat_name: StringName, new_value: int) -> void:
 	if new_value != 1:
 		return
-	if stat_name == &"whale_level":
+	if stat_name == &"has_beluga":
 		show_tutorial(TutorialEnum.FIRST_BELUGA)
 	elif stat_name == &"dash_distance":
 		show_tutorial(TutorialEnum.FIRST_DASH)
@@ -91,6 +91,8 @@ func setup(tutorial : Tutorial) -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 
 func show_tutorial(tutorial_enum : TutorialEnum) -> void:
+	if not Config.is_enabled("tutorial_enabled", true) or not Config.get_setting("tutorial_enabled", true):
+		return
 	if tutorial_enum not in tutorials or not Config.is_enabled("tutorial_enabled", true):
 		return
 	var tutorial_lines : Array = tutorials.get(tutorial_enum)

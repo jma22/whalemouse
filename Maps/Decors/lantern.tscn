@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cf4qcfnco8mr1"]
+
+[ext_resource type="Texture2D" uid="uid://d2tjt256gyl5h" path="res://Maps/Decors/Untitled_Artwork (14).png" id="2_q8vua"]
+[ext_resource type="Script" uid="uid://dl6qm3d3ngxhn" path="res://Core/background_sprite_manager.gd" id="3_jhc6d"]
+
+[node name="Lantern" type="Node3D" unique_id=410137951]
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=106763812]
+transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, 0, 0)
+pixel_size = 0.002
+double_sided = false
+alpha_cut = 2
+render_priority = -5
+texture = ExtResource("2_q8vua")
+script = ExtResource("3_jhc6d")
+metadata/_custom_type_script = "uid://chgfscc28odqd"

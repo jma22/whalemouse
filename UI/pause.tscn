@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://chrw4q2ud234j" path="res://UI/pause_menu.gd" id="1_aq7p1"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_bwtow"]
 [ext_resource type="Script" uid="uid://bwoesosiy3bpk" path="res://UI/volume_slider.gd" id="3_jl6cd"]
+[ext_resource type="Script" uid="uid://diknl0skmoftd" path="res://UI/unlock_all_button.gd" id="4_ocodi"]
+[ext_resource type="Script" uid="uid://8qjngobbp8nj" path="res://UI/difficulty_button.gd" id="5_85lix"]
 
 [node name="Puase" type="CanvasLayer" unique_id=1256479148 node_paths=PackedStringArray("text_label", "background", "container")]
 process_mode = 3
@@ -47,7 +49,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSlider" type="HSlider" parent="." unique_id=517294668]
+[node name="VolumeSlider" type="HSlider" parent="." unique_id=517294668]
 offset_left = 358.0
 offset_top = 343.0
 offset_right = 613.0
@@ -55,3 +57,46 @@ offset_bottom = 399.0
 max_value = 1.0
 step = 0.01
 script = ExtResource("3_jl6cd")
+
+[node name="UnlockAllButton" type="CheckButton" parent="." unique_id=607526291]
+offset_left = 384.0
+offset_top = 405.0
+offset_right = 585.0
+offset_bottom = 443.0
+theme_override_fonts/font = ExtResource("3_bwtow")
+theme_override_font_sizes/font_size = 20
+text = "Unlock all relics"
+flat = true
+script = ExtResource("4_ocodi")
+field_name = "user_unlock_all"
+
+[node name="SkipTutorial" type="CheckButton" parent="." unique_id=1988349658]
+offset_left = 384.0
+offset_top = 433.0
+offset_right = 585.0
+offset_bottom = 471.0
+theme_override_fonts/font = ExtResource("3_bwtow")
+theme_override_font_sizes/font_size = 20
+text = "Show Tutorial"
+flat = true
+script = ExtResource("4_ocodi")
+field_name = "tutorial_enabled"
+default_value = true
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=1200354152]
+offset_left = 431.0
+offset_top = 467.99997
+offset_right = 522.0
+offset_bottom = 503.99997
+scale = Vector2(1.04, 1.04)
+theme_override_fonts/font = ExtResource("3_bwtow")
+theme_override_font_sizes/font_size = 20
+selected = 1
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+script = ExtResource("5_85lix")

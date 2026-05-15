@@ -3,6 +3,7 @@ extends Node3D
 class_name MapManagerBase
 
 @export var gateway : Gateway
+@export var fragment_spawner : FragmentSpawner
 @warning_ignore("shadowed_global_identifier")
 @export var floor : NavigationRegion3D 
 @export var player_spawn_point : Node3D
@@ -17,7 +18,6 @@ var room_active : bool = false
 func setup(player : CharacterBody3D, camera : Camera3D, hud : HUD) -> void:
 	self.player = player
 	self.camera = camera
-	self.camera.set_bounds(floor.get_bounds())
 	floor.setup(player, camera)
 	gateway.setup(self)
 	room_active = false
@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 func start_room(wave_info_ : WaveInfo) -> void:
 	player.clear_effects()
 	self.camera.set_wave_mode()
+	self.camera.set_map(floor)
+
 	map_cleared_flag = false
 	player.global_transform.origin = player_spawn_point.global_transform.origin
 	gateway.close_gateway()
@@ -45,7 +47,11 @@ func map_cleared() -> bool
 
 
 func on_map_cleared() -> void:
+	camera.set_combat(false)
 	gateway.open_gateway()
+	
+	
 
 func leave_room() -> void:
 	room_active = false
+	fragment_spawner.clear_orbs()

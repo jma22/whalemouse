@@ -19,9 +19,9 @@ func fixed_run(_delta: float) -> void:
 	elif input_vector.x > 0:
 		entity.sprite_manager.set_flip(false)
 	entity.velocity.x = input_vector.x * get_speed()
-	entity.velocity.z = input_vector.y * get_speed()
+	entity.velocity.z = input_vector.y * get_speed() * Constants.VERTICAL_PERSRPECTIVE_SCALE
 
 func get_speed() -> float:
-	if entity.status_effect_manager.has_status_effect():
-		return speed + StatCalculator.speed_during_status() + StatCalculator.get_flat_speed()
-	return speed + StatCalculator.get_flat_speed()
+	# if entity.status_effect_manager.has_status_effect():
+	# 	return speed + StatCalculator.speed_during_status() + StatCalculator.get_flat_speed()
+	return (speed + StatCalculator.get_movement_speed_flat()) * StatCalculator.get_speed_up_multiplier() * StatCalculator.get_slow_down_multiplier() * entity.status_effect_manager.get_speed_multiplier_from_status()

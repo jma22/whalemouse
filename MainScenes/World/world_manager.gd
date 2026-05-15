@@ -70,13 +70,16 @@ func map_entered(first_time: bool) -> void:
 		transition.transition_out()
 		await transition.tween.finished
 	var wave_info : WaveInfo = wave_manager.enter_wave()
-	wave_text.display_wave_info(wave_info)
 	if wave_info.room_type == "combat":
 		# player.global_transform.origin = Vector3.ZERO
+		wave_text.display_wave_info(wave_info)
+
 		map_manager.start_room(wave_info)
 		whale_spawner.enter_map(map_manager)
 		player.enter_map(map_manager)
 	elif wave_info.room_type == "shrine":
+		wave_text.display_wave_info(wave_info)
+
 		# player.global_transform.origin = Vector3(20, 0, 0)
 		shrine_map_manager.start_room(wave_info)
 		player.enter_map(shrine_map_manager)
