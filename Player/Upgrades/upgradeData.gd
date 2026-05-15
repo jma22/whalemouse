@@ -37,4 +37,3 @@ func get_supplement_info() -> String:
 			info.append(description)
 	# remove trailing newline
 	return "\n".join(info).rstrip("\n")
-

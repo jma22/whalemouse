@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://53kk28lc5bjw"
 path.s3tc="res://.godot/imported/spritesheet_6.png-e910dce6bc02cb6872a99c18c1bc8116.s3tc.ctex"
+path.etc2="res://.godot/imported/spritesheet_6.png-e910dce6bc02cb6872a99c18c1bc8116.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Maps/Gateway/spritesheet_6.png"
-dest_files=["res://.godot/imported/spritesheet_6.png-e910dce6bc02cb6872a99c18c1bc8116.s3tc.ctex"]
+dest_files=["res://.godot/imported/spritesheet_6.png-e910dce6bc02cb6872a99c18c1bc8116.s3tc.ctex", "res://.godot/imported/spritesheet_6.png-e910dce6bc02cb6872a99c18c1bc8116.etc2.ctex"]
 
 [params]
 

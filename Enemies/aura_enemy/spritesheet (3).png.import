@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6av0ptwg8xgh"
 path.s3tc="res://.godot/imported/spritesheet (3).png-48c4092926ee5734ed1b27e6dd9cd273.s3tc.ctex"
+path.etc2="res://.godot/imported/spritesheet (3).png-48c4092926ee5734ed1b27e6dd9cd273.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Enemies/aura_enemy/spritesheet (3).png"
-dest_files=["res://.godot/imported/spritesheet (3).png-48c4092926ee5734ed1b27e6dd9cd273.s3tc.ctex"]
+dest_files=["res://.godot/imported/spritesheet (3).png-48c4092926ee5734ed1b27e6dd9cd273.s3tc.ctex", "res://.godot/imported/spritesheet (3).png-48c4092926ee5734ed1b27e6dd9cd273.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1wb60obu5ab6"
 path.s3tc="res://.godot/imported/boss_fragment.png-5f1f178afd8a93d392b2dd4a691772a7.s3tc.ctex"
+path.etc2="res://.godot/imported/boss_fragment.png-5f1f178afd8a93d392b2dd4a691772a7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Collectibles/boss_fragment/boss_fragment.png"
-dest_files=["res://.godot/imported/boss_fragment.png-5f1f178afd8a93d392b2dd4a691772a7.s3tc.ctex"]
+dest_files=["res://.godot/imported/boss_fragment.png-5f1f178afd8a93d392b2dd4a691772a7.s3tc.ctex", "res://.godot/imported/boss_fragment.png-5f1f178afd8a93d392b2dd4a691772a7.etc2.ctex"]
 
 [params]
 

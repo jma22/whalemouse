@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://owv4hjh0nm30"
 path.s3tc="res://.godot/imported/Untitled_Artwork (13).png-960d592802d110b31fef3a2127ddccdb.s3tc.ctex"
+path.etc2="res://.godot/imported/Untitled_Artwork (13).png-960d592802d110b31fef3a2127ddccdb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Maps/Decors/Untitled_Artwork (13).png"
-dest_files=["res://.godot/imported/Untitled_Artwork (13).png-960d592802d110b31fef3a2127ddccdb.s3tc.ctex"]
+dest_files=["res://.godot/imported/Untitled_Artwork (13).png-960d592802d110b31fef3a2127ddccdb.s3tc.ctex", "res://.godot/imported/Untitled_Artwork (13).png-960d592802d110b31fef3a2127ddccdb.etc2.ctex"]
 
 [params]
 

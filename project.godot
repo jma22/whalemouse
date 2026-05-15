@@ -42,6 +42,25 @@ window/vsync/vsync_mode=2
 
 project/assembly_name="whalemouse"
 
+[file_customization]
+
+folder_colors={
+"res://Collectibles/": "yellow",
+"res://Config/": "blue",
+"res://Core/": "orange",
+"res://DataStructs/": "blue",
+"res://Enemies/": "red",
+"res://Fonts/": "purple",
+"res://Logs/": "blue",
+"res://MainScenes/": "orange",
+"res://Maps/": "orange",
+"res://Player/": "yellow",
+"res://SFX/": "purple",
+"res://TestScene/": "orange",
+"res://UI/": "pink",
+"res://VFX/": "pink"
+}
+
 [gui]
 
 common/snap_controls_to_pixels=false
@@ -153,6 +172,7 @@ pause={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0.007843138, 1)
 
 [shader_globals]

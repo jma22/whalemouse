@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cycpn7cd033r8"
 path.s3tc="res://.godot/imported/enemy_spawn_berserk.png-417f122b1f98e8a98aff7217eef52519.s3tc.ctex"
+path.etc2="res://.godot/imported/enemy_spawn_berserk.png-417f122b1f98e8a98aff7217eef52519.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://UI/HUD/RelicIcons/Placeholders/enemy_spawn_berserk.png"
-dest_files=["res://.godot/imported/enemy_spawn_berserk.png-417f122b1f98e8a98aff7217eef52519.s3tc.ctex"]
+dest_files=["res://.godot/imported/enemy_spawn_berserk.png-417f122b1f98e8a98aff7217eef52519.s3tc.ctex", "res://.godot/imported/enemy_spawn_berserk.png-417f122b1f98e8a98aff7217eef52519.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddh7bqhf3yxl3"
 path.s3tc="res://.godot/imported/2220_Sem_Titulo_20260419170444.png-c5bf93376ac67815ae426f70217db3a0.s3tc.ctex"
+path.etc2="res://.godot/imported/2220_Sem_Titulo_20260419170444.png-c5bf93376ac67815ae426f70217db3a0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Enemies/AnglerBoss/AnglerEye/2220_Sem_Titulo_20260419170444.png"
-dest_files=["res://.godot/imported/2220_Sem_Titulo_20260419170444.png-c5bf93376ac67815ae426f70217db3a0.s3tc.ctex"]
+dest_files=["res://.godot/imported/2220_Sem_Titulo_20260419170444.png-c5bf93376ac67815ae426f70217db3a0.s3tc.ctex", "res://.godot/imported/2220_Sem_Titulo_20260419170444.png-c5bf93376ac67815ae426f70217db3a0.etc2.ctex"]
 
 [params]
 
