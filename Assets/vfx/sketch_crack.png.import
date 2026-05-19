@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c15bynjqo6f0u"
-path.s3tc="res://.godot/imported/ground_crack (1).png-df51b5b2a7db2df9c53590de9c65631b.s3tc.ctex"
-path.etc2="res://.godot/imported/ground_crack (1).png-df51b5b2a7db2df9c53590de9c65631b.etc2.ctex"
+uid="uid://b6ur84x1cuxp0"
+path.s3tc="res://.godot/imported/sketch_crack.png-46f6e12024fb33d6f1ce251bf24e2fe4.s3tc.ctex"
+path.etc2="res://.godot/imported/sketch_crack.png-46f6e12024fb33d6f1ce251bf24e2fe4.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://VFX/Impact/ground_crack (1).png"
-dest_files=["res://.godot/imported/ground_crack (1).png-df51b5b2a7db2df9c53590de9c65631b.s3tc.ctex", "res://.godot/imported/ground_crack (1).png-df51b5b2a7db2df9c53590de9c65631b.etc2.ctex"]
+source_file="res://Assets/vfx/sketch_crack.png"
+dest_files=["res://.godot/imported/sketch_crack.png-46f6e12024fb33d6f1ce251bf24e2fe4.s3tc.ctex", "res://.godot/imported/sketch_crack.png-46f6e12024fb33d6f1ce251bf24e2fe4.etc2.ctex"]
 
 [params]
 

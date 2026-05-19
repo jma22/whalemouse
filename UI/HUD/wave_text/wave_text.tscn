@@ -7,10 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cfesxy6a431qe" path="res://Assets/ui/wave_icons/wave_icon_blessing.png" id="3_64n3j"]
 [ext_resource type="Texture2D" uid="uid://ba3l1dfwxx46a" path="res://Assets/ui/wave_icons/wave_icon_boss.png" id="3_b8fwq"]
 
-[node name="WaveText" type="CanvasLayer" unique_id=969008602 node_paths=PackedStringArray("background", "text_label", "wave_icon", "container")]
+[node name="WaveText" type="CanvasLayer" unique_id=969008602 node_paths=PackedStringArray("text_label", "wave_icon", "container")]
 layer = 2
 script = ExtResource("1_xw5e1")
-background = NodePath("")
 text_label = NodePath("VBoxContainer/ColorRect/RichTextLabel")
 wave_icon = NodePath("VBoxContainer/ColorRect/WaveIcon")
 container = NodePath("VBoxContainer")

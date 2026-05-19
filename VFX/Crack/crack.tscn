@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bkqsf1b7k36k3"]
 
-[ext_resource type="Texture2D" uid="uid://c15bynjqo6f0u" path="res://VFX/Impact/ground_crack (1).png" id="1_o7ak8"]
-[ext_resource type="Script" uid="uid://2i2n5exnqx78" path="res://VFX/crack.gd" id="2_oj41n"]
+[ext_resource type="Texture2D" uid="uid://c15bynjqo6f0u" path="res://Assets/vfx/ground_crack.png" id="1_o7ak8"]
+[ext_resource type="Script" uid="uid://2i2n5exnqx78" path="res://VFX/Crack/crack.gd" id="2_oj41n"]
 
 [node name="Crack" type="Sprite3D" unique_id=79773457]
 transform = Transform3D(1.5, 0, 0, 0, 1.3734939, 0.60292166, 0, -0.60292166, 1.3734939, 0, 0, 0)

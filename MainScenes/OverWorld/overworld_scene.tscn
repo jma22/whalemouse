@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhctmvoakklsn"]
 
-[ext_resource type="PackedScene" uid="uid://d3bxdq8cuup43" path="res://MainScenes/MouseHub/hub_world.tscn" id="2_1c8l8"]
+[ext_resource type="PackedScene" uid="uid://d3bxdq8cuup43" path="res://MainScenes/MouseHub/Main/hub_world.tscn" id="2_1c8l8"]
 
 [node name="Overworld" type="Node3D" unique_id=2047495420]
 

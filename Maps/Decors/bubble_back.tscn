@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bb8si1mpdb4l2"]
 
-[ext_resource type="Texture2D" uid="uid://bbp5jb16kkry4" path="res://VFX/spritesheet_13.png" id="1_huh6d"]
+[ext_resource type="Texture2D" uid="uid://bbp5jb16kkry4" path="res://Assets/vfx/bubble_big.png" id="1_huh6d"]
 
 [sub_resource type="Curve" id="Curve_y2f2x"]
 _data = [Vector2(0, 1), 0.0, 0.09001076, 0, 0, Vector2(1, 0.039536715), -3.5456688, 0.0, 0, 0]

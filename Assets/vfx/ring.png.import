@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6ur84x1cuxp0"
-path.s3tc="res://.godot/imported/crack (1).png-fa3600f73c36fd8550648af31031bf45.s3tc.ctex"
-path.etc2="res://.godot/imported/crack (1).png-fa3600f73c36fd8550648af31031bf45.etc2.ctex"
+uid="uid://i6u6twcfsxa0"
+path.s3tc="res://.godot/imported/ring.png-26db8d8216c521237cf29a6736cab339.s3tc.ctex"
+path.etc2="res://.godot/imported/ring.png-26db8d8216c521237cf29a6736cab339.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://VFX/crack (1).png"
-dest_files=["res://.godot/imported/crack (1).png-fa3600f73c36fd8550648af31031bf45.s3tc.ctex", "res://.godot/imported/crack (1).png-fa3600f73c36fd8550648af31031bf45.etc2.ctex"]
+source_file="res://Assets/vfx/ring.png"
+dest_files=["res://.godot/imported/ring.png-26db8d8216c521237cf29a6736cab339.s3tc.ctex", "res://.godot/imported/ring.png-26db8d8216c521237cf29a6736cab339.etc2.ctex"]
 
 [params]
 
