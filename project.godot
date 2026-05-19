@@ -53,7 +53,6 @@ folder_colors={
 "res://Core/": "orange",
 "res://DataStructs/": "blue",
 "res://Enemies/": "red",
-"res://Fonts/": "purple",
 "res://Logs/": "blue",
 "res://MainScenes/": "orange",
 "res://Maps/": "orange",
@@ -61,7 +60,9 @@ folder_colors={
 "res://SFX/": "purple",
 "res://TestScene/": "orange",
 "res://UI/": "pink",
-"res://VFX/": "pink"
+"res://VFX/": "pink",
+"res://resources/": "purple",
+"res://resources/fonts/": "purple"
 }
 
 [gui]

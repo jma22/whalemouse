@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://birlwkgna56fn" path="res://MainScenes/GameOver/game_over_scene.gd" id="1_2gdd6"]
 [ext_resource type="Script" uid="uid://dsd7io4ojj2ch" path="res://MainScenes/GameOver/retry_button.gd" id="1_qpvvx"]
 [ext_resource type="Texture2D" uid="uid://dsanarmjmbf10" path="res://MainScenes/GameOver/win_screen.png" id="2_7dhkh"]
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_qxph1"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="3_qxph1"]
 [ext_resource type="Texture2D" uid="uid://bujyudcxbwii8" path="res://MainScenes/GameOver/2169_Sem_Titulo_20260404180154.png" id="3_su5tw"]
-[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="5_xd6gs"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://resources/fonts/bold.tres" id="5_xd6gs"]
 [ext_resource type="AudioStream" uid="uid://cpy7lxcu2085s" path="res://SFX/transition.wav" id="6_waywm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxph1"]

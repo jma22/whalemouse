@@ -1,6 +1,6 @@
 [gd_resource type="FontVariation" format=3 uid="uid://cewxukp0b26pp"]
 
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="1_57aco"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="1_57aco"]
 
 [resource]
 base_font = ExtResource("1_57aco")

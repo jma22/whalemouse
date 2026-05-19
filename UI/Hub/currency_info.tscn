@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dih816wfsnvdi"]
 
 [ext_resource type="Script" uid="uid://37nawqmmq86p" path="res://UI/Hub/currency_info.gd" id="1_22ocl"]
-[ext_resource type="Texture2D" uid="uid://fmj5m3jcku3b" path="res://Assets/Items/boss_fragment.png" id="2_p7j4g"]
-[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="3_olrgs"]
-[ext_resource type="Texture2D" uid="uid://dxbv3ie64q0ln" path="res://Assets/Items/gold_fragment.png" id="4_olrgs"]
-[ext_resource type="Texture2D" uid="uid://l0uio2qq6gar" path="res://Assets/Items/cursed_fragment.png" id="5_3530c"]
+[ext_resource type="Texture2D" uid="uid://fmj5m3jcku3b" path="res://Assets/items/boss_fragment.png" id="2_p7j4g"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://resources/fonts/bold.tres" id="3_olrgs"]
+[ext_resource type="Texture2D" uid="uid://dxbv3ie64q0ln" path="res://Assets/items/gold_fragment.png" id="4_olrgs"]
+[ext_resource type="Texture2D" uid="uid://l0uio2qq6gar" path="res://Assets/items/cursed_fragment.png" id="5_3530c"]
 
 [node name="CurrencyInfoBar" type="HBoxContainer" unique_id=1681354303 node_paths=PackedStringArray("big_num", "small_num", "cursed_num")]
 custom_minimum_size = Vector2(275, 45)

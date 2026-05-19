@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnrlncixf5vvu"
-path="res://.godot/imported/hub_background.png-e5e8e7b72a9523b44f4a44dbd9e8f5ba.ctex"
+uid="uid://bjjqj83u2drio"
+path="res://.godot/imported/wave_icon_enemy_encounter.png-66da0f237660178f04b6f25293b6e6ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Hub/hub_background.png"
-dest_files=["res://.godot/imported/hub_background.png-e5e8e7b72a9523b44f4a44dbd9e8f5ba.ctex"]
+source_file="res://Assets/ui/wave_icons/wave_icon_enemy_encounter.png"
+dest_files=["res://.godot/imported/wave_icon_enemy_encounter.png-66da0f237660178f04b6f25293b6e6ce.ctex"]
 
 [params]
 

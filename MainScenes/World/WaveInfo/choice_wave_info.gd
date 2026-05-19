@@ -23,6 +23,6 @@ static func create(wave_number: int, blessings: Array[Choice], choice_type: Choi
 	wave_info.wave_number = wave_number
 	wave_info.blessings = blessings
 	wave_info.choice_type = choice_type
-	wave_info.room_type = "shrine"
+	wave_info.room_type = WaveType.Shrine
 	wave_info.name = name
 	return wave_info

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bwsnc0wy0lqck"
-path="res://.godot/imported/Schoolbell-Regular.ttf-a455a555516c0f983d83f165866b4f2a.fontdata"
+path="res://.godot/imported/Schoolbell-Regular.ttf-63e9746a531a14f0688b671f85df38ef.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Schoolbell-Regular.ttf"
-dest_files=["res://.godot/imported/Schoolbell-Regular.ttf-a455a555516c0f983d83f165866b4f2a.fontdata"]
+source_file="res://resources/fonts/Schoolbell-Regular.ttf"
+dest_files=["res://.godot/imported/Schoolbell-Regular.ttf-63e9746a531a14f0688b671f85df38ef.fontdata"]
 
 [params]
 

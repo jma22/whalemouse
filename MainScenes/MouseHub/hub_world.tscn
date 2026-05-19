@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://d3bxdq8cuup43"]
 
 [ext_resource type="PackedScene" uid="uid://dih816wfsnvdi" path="res://UI/Hub/currency_info.tscn" id="1_4d12i"]
-[ext_resource type="Texture2D" uid="uid://cnrlncixf5vvu" path="res://Assets/Hub/hub_background.png" id="1_r28sa"]
+[ext_resource type="Texture2D" uid="uid://cnrlncixf5vvu" path="res://Assets/ui/hub/hub_background.png" id="1_r28sa"]
 [ext_resource type="Script" uid="uid://btqt2o0a4gj7e" path="res://MainScenes/MouseHub/hub_menu.gd" id="2_ak3fd"]
 [ext_resource type="Script" uid="uid://djidyraqvsu0y" path="res://MainScenes/MouseHub/mouse_hub_scene.gd" id="2_sco18"]
-[ext_resource type="Texture2D" uid="uid://s8tpeq1mavfq" path="res://Assets/Hub/hub_layout.png" id="3_gujdv"]
+[ext_resource type="Texture2D" uid="uid://s8tpeq1mavfq" path="res://Assets/ui/hub/hub_layout.png" id="3_gujdv"]
 [ext_resource type="PackedScene" uid="uid://cin4kyopvby6o" path="res://MainScenes/MouseHub/MemoryScene/memory_scene.tscn" id="3_r28sa"]
 [ext_resource type="PackedScene" uid="uid://bjn4cwx7h48kg" path="res://MainScenes/MouseHub/WellScene/run_mod_page.tscn" id="4_ak3fd"]
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="4_yohk2"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="4_yohk2"]
 [ext_resource type="PackedScene" uid="uid://drqc0hrgfwup3" path="res://MainScenes/MouseHub/RelicScene/relic_scene.tscn" id="5_3fr6f"]
 [ext_resource type="Script" uid="uid://u4kryn1qxdh8" path="res://MainScenes/MouseHub/tab_controller.gd" id="6_yohk2"]
-[ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/Misc/single_pixel.png" id="9_3fr6f"]
+[ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/misc/single_pixel.png" id="9_3fr6f"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gujdv"]
 device = -1

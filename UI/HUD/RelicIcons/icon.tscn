@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi038ddkyb4vy" path="res://UI/HUD/RelicIcons/icon.gd" id="1_otv2m"]
 [ext_resource type="Texture2D" uid="uid://00k2chggmyig" path="res://UI/HUD/RelicIcons/boss_attack_size.png" id="2_02y1h"]
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="2_otv2m"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="2_otv2m"]
 
 [node name="Icon" type="Control" unique_id=289336127 node_paths=PackedStringArray("icon_texture", "text")]
 custom_minimum_size = Vector2(40, 40)

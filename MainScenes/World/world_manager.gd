@@ -1,25 +1,28 @@
 extends Node3D
-
 class_name WorldManager
+static var instance : WorldManager
+
+@export_group("Player")
+@export var player : Node3D
+@export var time_damage : TimeDamageManager
+@export var wave_manager : WaveManager
+@export var camera : Camera3D
+@export var whale_spawner : WhaleSpawner
+# @export var player_spawn_point: Node3D
+
+@export_group("Maps")
 @export var map_manager: MapManagerBase
 @export var shrine_map_manager: MapManagerBase
 @export var boss_map_manager: MapManagerBase
 
-@export var player : Node3D
-# @export var player_spawn_point: Node3D
-
+@export_group("UI")
 @export var hud : HUD
-@export var time_damage : TimeDamageManager
-@export var camera : Camera3D
-
 @export var wave_text : WaveText
-@export var wave_manager : WaveManager
-
 @export var transition : CanvasLayer
-@export var whale_spawner : WhaleSpawner
-
-
 @export var loading_screen : CanvasLayer
+
+func _enter_tree() -> void:
+	instance = self
 
 
 # func _ready() -> void:
@@ -69,26 +72,26 @@ func map_entered(first_time: bool) -> void:
 	if not first_time:
 		transition.transition_out()
 		await transition.tween.finished
+		
 	var wave_info : WaveInfo = wave_manager.enter_wave()
-	if wave_info.room_type == "combat":
-		# player.global_transform.origin = Vector3.ZERO
-		wave_text.display_wave_info(wave_info)
-
-		map_manager.start_room(wave_info)
-		whale_spawner.enter_map(map_manager)
-		player.enter_map(map_manager)
-	elif wave_info.room_type == "shrine":
-		wave_text.display_wave_info(wave_info)
-
-		# player.global_transform.origin = Vector3(20, 0, 0)
-		shrine_map_manager.start_room(wave_info)
-		player.enter_map(shrine_map_manager)
-		# whale_spawner.enter_map(shrine_map_manager)
-	elif wave_info.room_type == "boss":
-		# player.global_transform.origin = Vector3(20, 0, 0)
-		boss_map_manager.start_room(wave_info)
-		whale_spawner.enter_map(boss_map_manager)
-		player.enter_map(boss_map_manager)
+	wave_text.display_wave_info(wave_info)
+	
+	match wave_info.room_type:
+		WaveInfo.WaveType.Combat:
+			# player.global_transform.origin = Vector3.ZERO
+			map_manager.start_room(wave_info)
+			whale_spawner.enter_map(map_manager)
+			player.enter_map(map_manager)
+		WaveInfo.WaveType.Shrine:
+			# player.global_transform.origin = Vector3(20, 0, 0)
+			shrine_map_manager.start_room(wave_info)
+			player.enter_map(shrine_map_manager)
+			# whale_spawner.enter_map(shrine_map_manager)
+		WaveInfo.WaveType.Boss:
+			# player.global_transform.origin = Vector3(20, 0, 0)
+			boss_map_manager.start_room(wave_info)
+			whale_spawner.enter_map(boss_map_manager)
+			player.enter_map(boss_map_manager)
 
 
 	transition.transition_in()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bbkkrurtiyfnw" path="res://MainScenes/MouseHub/MemoryScene/sticker.gd" id="1_p5a4q"]
 [ext_resource type="Texture2D" uid="uid://cadmmjy65ta4p" path="res://MainScenes/MouseHub/MemoryScene/MainStickers/jellyfish.tres" id="2_p5a4q"]
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_m55aj"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="3_m55aj"]
 
 [node name="Sticker" type="Control" unique_id=1689376893 node_paths=PackedStringArray("texture_button", "cost_label")]
 custom_minimum_size = Vector2(120, 120)

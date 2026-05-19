@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s8tpeq1mavfq"
-path="res://.godot/imported/hub_layout.png-a928565f934f52a28e04a9f4118e2643.ctex"
+uid="uid://cr4hmb65paddw"
+path="res://.godot/imported/wave_icon_curse.png-e7973548faa3900aa347a7ca17ae3842.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Hub/hub_layout.png"
-dest_files=["res://.godot/imported/hub_layout.png-a928565f934f52a28e04a9f4118e2643.ctex"]
+source_file="res://Assets/ui/wave_icons/wave_icon_curse.png"
+dest_files=["res://.godot/imported/wave_icon_curse.png-e7973548faa3900aa347a7ca17ae3842.ctex"]
 
 [params]
 
