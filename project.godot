@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="Beluga's Blessing"
+config/description="A mouse cursed to always be short on time."
 config/version="1.1"
+config/tags=PackedStringArray("main")
 run/main_scene="uid://dg8owrdf3qc4u"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://csjxsvdl4q0sd"
@@ -45,6 +47,7 @@ project/assembly_name="whalemouse"
 [file_customization]
 
 folder_colors={
+"res://Assets/": "yellow",
 "res://Collectibles/": "yellow",
 "res://Config/": "blue",
 "res://Core/": "orange",

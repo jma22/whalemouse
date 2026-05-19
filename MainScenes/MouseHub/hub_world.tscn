@@ -1,0 +1,337 @@
+[gd_scene format=3 uid="uid://d3bxdq8cuup43"]
+
+[ext_resource type="PackedScene" uid="uid://dih816wfsnvdi" path="res://UI/Hub/currency_info.tscn" id="1_4d12i"]
+[ext_resource type="Texture2D" uid="uid://cnrlncixf5vvu" path="res://Assets/Hub/hub_background.png" id="1_r28sa"]
+[ext_resource type="Script" uid="uid://btqt2o0a4gj7e" path="res://MainScenes/MouseHub/hub_menu.gd" id="2_ak3fd"]
+[ext_resource type="Script" uid="uid://djidyraqvsu0y" path="res://MainScenes/MouseHub/mouse_hub_scene.gd" id="2_sco18"]
+[ext_resource type="Texture2D" uid="uid://s8tpeq1mavfq" path="res://Assets/Hub/hub_layout.png" id="3_gujdv"]
+[ext_resource type="PackedScene" uid="uid://cin4kyopvby6o" path="res://MainScenes/MouseHub/MemoryScene/memory_scene.tscn" id="3_r28sa"]
+[ext_resource type="PackedScene" uid="uid://bjn4cwx7h48kg" path="res://MainScenes/MouseHub/WellScene/run_mod_page.tscn" id="4_ak3fd"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="4_yohk2"]
+[ext_resource type="PackedScene" uid="uid://drqc0hrgfwup3" path="res://MainScenes/MouseHub/RelicScene/relic_scene.tscn" id="5_3fr6f"]
+[ext_resource type="Script" uid="uid://u4kryn1qxdh8" path="res://MainScenes/MouseHub/tab_controller.gd" id="6_yohk2"]
+[ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/Misc/single_pixel.png" id="9_3fr6f"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_gujdv"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_rhj02"]
+events = [SubResource("InputEventKey_gujdv")]
+
+[node name="HubWorld" type="CanvasLayer" unique_id=324062007 node_paths=PackedStringArray("game_button", "difficulty_label", "mouse_hub_button")]
+script = ExtResource("2_ak3fd")
+game_button = NodePath("Buttons/GameButton")
+difficulty_label = NodePath("Buttons/GameButton/DifficultyLabel")
+mouse_hub_button = NodePath("Buttons/RelicsButton")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1505495924]
+self_modulate = Color(0.24, 0.24, 0.24, 0.60784316)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_r28sa")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=943077978]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gujdv")
+expand_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="." unique_id=1638272306]
+custom_minimum_size = Vector2(0, 75)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -97.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 110
+alignment = 1
+
+[node name="RelicsButton" type="Button" parent="Buttons" unique_id=2054916811]
+custom_minimum_size = Vector2(125, 100)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../Top/SettingsButton")
+shortcut = SubResource("Shortcut_rhj02")
+
+[node name="GameStartLabel" type="RichTextLabel" parent="Buttons/RelicsButton" unique_id=234006212]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_yohk2")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]Relics[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameButton" type="Button" parent="Buttons" unique_id=930648920]
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../Top/SettingsButton")
+shortcut = SubResource("Shortcut_rhj02")
+
+[node name="GameStartLabel" type="RichTextLabel" parent="Buttons/GameButton" unique_id=1017694092]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -31.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_yohk2")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]New Adventure[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DifficultyLabel" type="RichTextLabel" parent="Buttons/GameButton" unique_id=1277099039]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 44.0
+offset_bottom = 66.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_yohk2")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]Medium[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="GameButton" type="TextureButton" parent="Buttons/GameButton" unique_id=459883076]
+visible = false
+self_modulate = Color(0.8117647, 0.6745098, 0.44705883, 1)
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 171.0
+offset_right = 197.0
+offset_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+focus_neighbor_right = NodePath("../HubButton")
+shortcut = SubResource("Shortcut_rhj02")
+texture_normal = ExtResource("9_3fr6f")
+stretch_mode = 0
+
+[node name="BookButton" type="Button" parent="Buttons" unique_id=1925884466]
+custom_minimum_size = Vector2(125, 100)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../Top/SettingsButton")
+shortcut = SubResource("Shortcut_rhj02")
+
+[node name="GameStartLabel" type="RichTextLabel" parent="Buttons/BookButton" unique_id=848258530]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_yohk2")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]Beluga's Book[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Top" type="Control" parent="." unique_id=1548632440]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 25.0
+offset_bottom = 75.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="SettingsButton" type="Button" parent="Top" unique_id=154902577]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -25.0
+offset_right = 175.0
+offset_bottom = 25.0
+grow_vertical = 2
+size_flags_vertical = 4
+shortcut = SubResource("Shortcut_rhj02")
+
+[node name="GameStartLabel" type="RichTextLabel" parent="Top/SettingsButton" unique_id=1319865980]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_yohk2")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[shake rate=4.0 level=4 connected=1]Settings[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrencyInfoBar" parent="Top" unique_id=1681354303 instance=ExtResource("1_4d12i")]
+layout_mode = 1
+anchors_preset = 6
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -22.5
+offset_right = -50.0
+offset_bottom = 22.5
+grow_vertical = 2
+
+[node name="Hub" type="Control" parent="." unique_id=216636763]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_sco18")
+
+[node name="CurrencyInfoBar" parent="Hub" unique_id=1707157276 instance=ExtResource("1_4d12i")]
+layout_mode = 1
+offset_left = -172.0
+
+[node name="BackButton" type="Button" parent="Hub" unique_id=706055821]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_right = 116.0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../MarginContainer/TabContainer/Memories")
+text = "Back
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="Hub" unique_id=2125029143]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TabContainer" type="TabContainer" parent="Hub/MarginContainer" unique_id=2131907368]
+layout_mode = 2
+current_tab = 2
+tabs_visible = false
+
+[node name="Memories" type="TabBar" parent="Hub/MarginContainer/TabContainer" unique_id=1264851563]
+visible = false
+layout_mode = 2
+focus_neighbor_right = NodePath("../WishingWell")
+focus_neighbor_bottom = NodePath("../../../BackButton")
+metadata/_tab_index = 0
+
+[node name="Stickers" parent="Hub/MarginContainer/TabContainer/Memories" unique_id=1828627335 instance=ExtResource("3_r28sa")]
+layout_mode = 1
+
+[node name="WishingWell" type="TabBar" parent="Hub/MarginContainer/TabContainer" unique_id=1153695862]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Memories")
+focus_neighbor_right = NodePath("../Relics")
+focus_neighbor_bottom = NodePath("../../../BackButton")
+metadata/_tab_index = 1
+
+[node name="RunModPage" parent="Hub/MarginContainer/TabContainer/WishingWell" unique_id=1116610660 instance=ExtResource("4_ak3fd")]
+layout_mode = 1
+
+[node name="Relics" type="TabBar" parent="Hub/MarginContainer/TabContainer" unique_id=922860659]
+layout_mode = 2
+focus_neighbor_left = NodePath("../WishingWell")
+metadata/_tab_index = 2
+
+[node name="RelicPage" parent="Hub/MarginContainer/TabContainer/Relics" unique_id=70897863 instance=ExtResource("5_3fr6f")]
+layout_mode = 1
+
+[node name="TabController" type="VBoxContainer" parent="Hub" unique_id=940905877 node_paths=PackedStringArray("button_1", "button_2", "button_3", "tab_container")]
+layout_mode = 0
+offset_top = 118.0
+offset_right = 80.0
+offset_bottom = 374.0
+script = ExtResource("6_yohk2")
+button_1 = NodePath("ButtonA")
+button_2 = NodePath("ButtonA3")
+button_3 = NodePath("ButtonA2")
+tab_container = NodePath("../MarginContainer/TabContainer")
+
+[node name="ButtonA" type="Button" parent="Hub/TabController" unique_id=1292858880]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"
+
+[node name="ButtonA3" type="Button" parent="Hub/TabController" unique_id=157932261]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"
+
+[node name="ButtonA2" type="Button" parent="Hub/TabController" unique_id=280743582]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"

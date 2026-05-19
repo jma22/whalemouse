@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 @export var overworld_button : Button
 @export var tab_container : TabContainer

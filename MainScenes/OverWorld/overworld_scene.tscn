@@ -1,35 +1,7 @@
 [gd_scene format=3 uid="uid://dhctmvoakklsn"]
 
-[ext_resource type="Script" uid="uid://btqt2o0a4gj7e" path="res://MainScenes/OverWorld/overworld.gd" id="1_1c8l8"]
-[ext_resource type="PackedScene" uid="uid://dih816wfsnvdi" path="res://UI/Hub/currency_info.tscn" id="2_45hos"]
+[ext_resource type="PackedScene" uid="uid://d3bxdq8cuup43" path="res://MainScenes/MouseHub/hub_world.tscn" id="2_1c8l8"]
 
-[node name="Overworld" type="Node3D" unique_id=2047495420 node_paths=PackedStringArray("game_button", "mouse_hub_button")]
-script = ExtResource("1_1c8l8")
-game_button = NodePath("CanvasLayer/GameButton")
-mouse_hub_button = NodePath("CanvasLayer/HubButton")
+[node name="Overworld" type="Node3D" unique_id=2047495420]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1274784769]
-
-[node name="HubButton" type="Button" parent="CanvasLayer" unique_id=1686927641]
-offset_left = 744.0
-offset_top = 418.0
-offset_right = 914.0
-offset_bottom = 518.0
-focus_neighbor_left = NodePath("../GameButton")
-text = "HUB"
-
-[node name="GameButton" type="Button" parent="CanvasLayer" unique_id=20082037]
-offset_left = 28.0
-offset_top = 418.0
-offset_right = 198.0
-offset_bottom = 518.0
-focus_neighbor_right = NodePath("../HubButton")
-text = "Game"
-
-[node name="CurrencyInfoBar" parent="CanvasLayer" unique_id=1681354303 instance=ExtResource("2_45hos")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -172.0
-offset_right = 0.0
-grow_horizontal = 0
+[node name="HubWorld" parent="." unique_id=324062007 instance=ExtResource("2_1c8l8")]
