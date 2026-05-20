@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://c2bw4f3d8k8uy"]
+
+[ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/misc/single_pixel.png" id="1_dmfxl"]
+[ext_resource type="Script" uid="uid://bdiob4q2chhf6" path="res://MainScenes/MouseHub/Main/book_screen.gd" id="1_xk4m6"]
+
+[node name="BookScreen" type="Control" unique_id=141310892 node_paths=PackedStringArray("page_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xk4m6")
+page_container = NodePath("PageContainer")
+
+[node name="Background" type="TextureRect" parent="." unique_id=482349852]
+self_modulate = Color(0.07, 0.07, 0.07, 0.5882353)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dmfxl")
+
+[node name="Background" type="TextureRect" parent="Background" unique_id=1584538640]
+self_modulate = Color(0.72464263, 0.72464263, 0.72464246, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dmfxl")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=434858475]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 91.46341
+offset_right = 91.46338
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=354406176]
+layout_mode = 2
+current_tab = 0
+tabs_visible = false
+
+[node name="Memories" type="TabBar" parent="MarginContainer/TabContainer" unique_id=78351098]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../Buttons/CloseButton")
+tab_close_display_policy = 2
+metadata/_tab_index = 0
+
+[node name="Stickers" type="Control" parent="MarginContainer/TabContainer/Memories" unique_id=1978583751]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StickerDetail" type="Control" parent="MarginContainer/TabContainer/Memories/Stickers" unique_id=1589047868]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PageContainer" type="Control" parent="." unique_id=1246304161]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabButtons" type="Control" parent="." unique_id=46135725]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChapterButtonCharacters" type="Button" parent="TabButtons" unique_id=843840837]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 61.0
+offset_top = 89.0
+offset_right = 153.0
+offset_bottom = 169.0
+text = "Characters"
+
+[node name="ChapterButtonEnemies" type="Button" parent="TabButtons" unique_id=813742526]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 71.0
+offset_top = 187.0
+offset_right = 151.0
+offset_bottom = 267.0
+text = "Enemies"
+
+[node name="ChapterButtonBlessings" type="Button" parent="TabButtons" unique_id=1148864392]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 826.0
+offset_top = 163.0
+offset_right = 906.0
+offset_bottom = 243.0
+text = "Blessings"
+
+[node name="ChapterButtonCurses" type="Button" parent="TabButtons" unique_id=138823134]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 827.0
+offset_top = 263.0
+offset_right = 907.0
+offset_bottom = 343.0
+text = "Curses"
+
+[node name="ChapterButtonArtworks" type="Button" parent="TabButtons" unique_id=1067461862]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 829.0
+offset_top = 354.0
+offset_right = 909.0
+offset_bottom = 434.0
+text = "Artworks"
+
+[node name="Buttons" type="Control" parent="." unique_id=959566721]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CloseButton" type="Button" parent="Buttons" unique_id=181738934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -22.0
+offset_right = 58.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Close"
+
+[node name="LeftButton" type="Button" parent="Buttons" unique_id=1295651938]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 141.0
+offset_top = -22.0
+offset_right = 257.0
+offset_bottom = 22.0
+grow_vertical = 2
+text = "<-"
+
+[node name="RightButton" type="Button" parent="Buttons" unique_id=1344899072]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -22.0
+offset_right = -160.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "->"
+
+[connection signal="pressed" from="Buttons/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Buttons/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="Buttons/RightButton" to="." method="_on_right_button_pressed"]

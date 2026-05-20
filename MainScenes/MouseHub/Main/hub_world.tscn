@@ -2,15 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://dih816wfsnvdi" path="res://UI/Hub/currency_info.tscn" id="1_4d12i"]
 [ext_resource type="Texture2D" uid="uid://cnrlncixf5vvu" path="res://Assets/ui/hub/hub_background.png" id="1_r28sa"]
-[ext_resource type="Script" uid="uid://btqt2o0a4gj7e" path="res://MainScenes/MouseHub/hub_menu.gd" id="2_ak3fd"]
-[ext_resource type="Script" uid="uid://djidyraqvsu0y" path="res://MainScenes/MouseHub/mouse_hub_scene.gd" id="2_sco18"]
+[ext_resource type="Script" uid="uid://btqt2o0a4gj7e" path="res://MainScenes/MouseHub/Main/hub_menu.gd" id="2_ak3fd"]
 [ext_resource type="Texture2D" uid="uid://s8tpeq1mavfq" path="res://Assets/ui/hub/hub_layout.png" id="3_gujdv"]
-[ext_resource type="PackedScene" uid="uid://cin4kyopvby6o" path="res://MainScenes/MouseHub/MemoryScene/memory_scene.tscn" id="3_r28sa"]
-[ext_resource type="PackedScene" uid="uid://bjn4cwx7h48kg" path="res://MainScenes/MouseHub/WellScene/run_mod_page.tscn" id="4_ak3fd"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="4_yohk2"]
 [ext_resource type="PackedScene" uid="uid://drqc0hrgfwup3" path="res://MainScenes/MouseHub/RelicScene/relic_scene.tscn" id="5_3fr6f"]
-[ext_resource type="Script" uid="uid://u4kryn1qxdh8" path="res://MainScenes/MouseHub/tab_controller.gd" id="6_yohk2"]
 [ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/misc/single_pixel.png" id="9_3fr6f"]
+[ext_resource type="PackedScene" uid="uid://c2bw4f3d8k8uy" path="res://MainScenes/MouseHub/Main/book_screen.tscn" id="9_j51mk"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gujdv"]
 device = -1
@@ -20,14 +17,22 @@ unicode = 32
 [sub_resource type="Shortcut" id="Shortcut_rhj02"]
 events = [SubResource("InputEventKey_gujdv")]
 
-[node name="HubWorld" type="CanvasLayer" unique_id=324062007 node_paths=PackedStringArray("game_button", "difficulty_label", "mouse_hub_button")]
+[node name="HubWorld" type="CanvasLayer" unique_id=324062007 node_paths=PackedStringArray("game_button", "difficulty_label")]
 script = ExtResource("2_ak3fd")
-game_button = NodePath("Buttons/GameButton")
-difficulty_label = NodePath("Buttons/GameButton/DifficultyLabel")
-mouse_hub_button = NodePath("Buttons/RelicsButton")
+game_button = NodePath("Main/Buttons/GameButton")
+difficulty_label = NodePath("Main/Buttons/GameButton/DifficultyLabel")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1505495924]
-self_modulate = Color(0.24, 0.24, 0.24, 0.60784316)
+[node name="Main" type="Control" parent="." unique_id=1386089903]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Main" unique_id=1505495924]
+self_modulate = Color(0.6585577, 0.6229523, 0.8557687, 1)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,7 +41,7 @@ grow_vertical = 2
 texture = ExtResource("1_r28sa")
 expand_mode = 3
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=943077978]
+[node name="TextureRect" type="TextureRect" parent="Main/TextureRect" unique_id=943077978]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -47,27 +52,28 @@ grow_vertical = 2
 texture = ExtResource("3_gujdv")
 expand_mode = 3
 
-[node name="Buttons" type="HBoxContainer" parent="." unique_id=1638272306]
+[node name="Buttons" type="HBoxContainer" parent="Main" unique_id=1638272306]
 custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -97.0
+offset_top = -122.0
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 110
 alignment = 1
 
-[node name="RelicsButton" type="Button" parent="Buttons" unique_id=2054916811]
+[node name="RelicsButton" type="Button" parent="Main/Buttons" unique_id=2054916811]
 custom_minimum_size = Vector2(125, 100)
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../Top/SettingsButton")
 shortcut = SubResource("Shortcut_rhj02")
 
-[node name="GameStartLabel" type="RichTextLabel" parent="Buttons/RelicsButton" unique_id=234006212]
+[node name="GameStartLabel" type="RichTextLabel" parent="Main/Buttons/RelicsButton" unique_id=234006212]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,14 +92,14 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameButton" type="Button" parent="Buttons" unique_id=930648920]
+[node name="GameButton" type="Button" parent="Main/Buttons" unique_id=930648920]
 custom_minimum_size = Vector2(350, 75)
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../Top/SettingsButton")
 shortcut = SubResource("Shortcut_rhj02")
 
-[node name="GameStartLabel" type="RichTextLabel" parent="Buttons/GameButton" unique_id=1017694092]
+[node name="GameStartLabel" type="RichTextLabel" parent="Main/Buttons/GameButton" unique_id=1017694092]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -115,7 +121,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DifficultyLabel" type="RichTextLabel" parent="Buttons/GameButton" unique_id=1277099039]
+[node name="DifficultyLabel" type="RichTextLabel" parent="Main/Buttons/GameButton" unique_id=1277099039]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -133,7 +139,7 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="GameButton" type="TextureButton" parent="Buttons/GameButton" unique_id=459883076]
+[node name="GameButton" type="TextureButton" parent="Main/Buttons/GameButton" unique_id=459883076]
 visible = false
 self_modulate = Color(0.8117647, 0.6745098, 0.44705883, 1)
 custom_minimum_size = Vector2(350, 75)
@@ -155,14 +161,14 @@ shortcut = SubResource("Shortcut_rhj02")
 texture_normal = ExtResource("9_3fr6f")
 stretch_mode = 0
 
-[node name="BookButton" type="Button" parent="Buttons" unique_id=1925884466]
+[node name="BookButton" type="Button" parent="Main/Buttons" unique_id=1925884466]
 custom_minimum_size = Vector2(125, 100)
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../Top/SettingsButton")
 shortcut = SubResource("Shortcut_rhj02")
 
-[node name="GameStartLabel" type="RichTextLabel" parent="Buttons/BookButton" unique_id=848258530]
+[node name="GameStartLabel" type="RichTextLabel" parent="Main/Buttons/BookButton" unique_id=848258530]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,9 +187,9 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Top" type="Control" parent="." unique_id=1548632440]
+[node name="Top" type="Control" parent="Main" unique_id=1548632440]
 custom_minimum_size = Vector2(0, 50)
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 25.0
@@ -191,7 +197,7 @@ offset_bottom = 75.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
-[node name="SettingsButton" type="Button" parent="Top" unique_id=154902577]
+[node name="SettingsButton" type="Button" parent="Main/Top" unique_id=154902577]
 custom_minimum_size = Vector2(125, 50)
 layout_mode = 1
 anchors_preset = 4
@@ -205,7 +211,7 @@ grow_vertical = 2
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_rhj02")
 
-[node name="GameStartLabel" type="RichTextLabel" parent="Top/SettingsButton" unique_id=1319865980]
+[node name="GameStartLabel" type="RichTextLabel" parent="Main/Top/SettingsButton" unique_id=1319865980]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -224,7 +230,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrencyInfoBar" parent="Top" unique_id=1681354303 instance=ExtResource("1_4d12i")]
+[node name="CurrencyInfoBar" parent="Main/Top" unique_id=1681354303 instance=ExtResource("1_4d12i")]
 layout_mode = 1
 anchors_preset = 6
 anchor_top = 0.5
@@ -235,7 +241,7 @@ offset_right = -50.0
 offset_bottom = 22.5
 grow_vertical = 2
 
-[node name="Hub" type="Control" parent="." unique_id=216636763]
+[node name="RelicsScreen" type="Control" parent="." unique_id=216636763]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -243,95 +249,51 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_sco18")
 
-[node name="CurrencyInfoBar" parent="Hub" unique_id=1707157276 instance=ExtResource("1_4d12i")]
-layout_mode = 1
-offset_left = -172.0
-
-[node name="BackButton" type="Button" parent="Hub" unique_id=706055821]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -44.0
-offset_right = 116.0
-grow_vertical = 0
-focus_neighbor_top = NodePath("../MarginContainer/TabContainer/Memories")
-text = "Back
-"
-
-[node name="MarginContainer" type="MarginContainer" parent="Hub" unique_id=2125029143]
+[node name="Background" type="TextureRect" parent="RelicsScreen" unique_id=684496683]
+self_modulate = Color(0.07, 0.07, 0.07, 0.5882353)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 80.0
-offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_3fr6f")
+
+[node name="MarginContainer" type="MarginContainer" parent="RelicsScreen" unique_id=2125029143]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = 42.0
+offset_right = -46.0
+offset_bottom = -77.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
 
-[node name="TabContainer" type="TabContainer" parent="Hub/MarginContainer" unique_id=2131907368]
+[node name="RelicPage" parent="RelicsScreen/MarginContainer" unique_id=70897863 instance=ExtResource("5_3fr6f")]
+custom_minimum_size = Vector2(10.85, 0)
 layout_mode = 2
-current_tab = 2
-tabs_visible = false
+script = null
 
-[node name="Memories" type="TabBar" parent="Hub/MarginContainer/TabContainer" unique_id=1264851563]
+[node name="BackButton" type="Button" parent="RelicsScreen" unique_id=706055821]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -56.0
+offset_right = 140.0
+offset_bottom = -12.0
+grow_vertical = 0
+text = "Back
+"
+
+[node name="BookScreen" parent="." unique_id=141310892 instance=ExtResource("9_j51mk")]
 visible = false
-layout_mode = 2
-focus_neighbor_right = NodePath("../WishingWell")
-focus_neighbor_bottom = NodePath("../../../BackButton")
-metadata/_tab_index = 0
 
-[node name="Stickers" parent="Hub/MarginContainer/TabContainer/Memories" unique_id=1828627335 instance=ExtResource("3_r28sa")]
-layout_mode = 1
-
-[node name="WishingWell" type="TabBar" parent="Hub/MarginContainer/TabContainer" unique_id=1153695862]
-visible = false
-layout_mode = 2
-focus_neighbor_left = NodePath("../Memories")
-focus_neighbor_right = NodePath("../Relics")
-focus_neighbor_bottom = NodePath("../../../BackButton")
-metadata/_tab_index = 1
-
-[node name="RunModPage" parent="Hub/MarginContainer/TabContainer/WishingWell" unique_id=1116610660 instance=ExtResource("4_ak3fd")]
-layout_mode = 1
-
-[node name="Relics" type="TabBar" parent="Hub/MarginContainer/TabContainer" unique_id=922860659]
-layout_mode = 2
-focus_neighbor_left = NodePath("../WishingWell")
-metadata/_tab_index = 2
-
-[node name="RelicPage" parent="Hub/MarginContainer/TabContainer/Relics" unique_id=70897863 instance=ExtResource("5_3fr6f")]
-layout_mode = 1
-
-[node name="TabController" type="VBoxContainer" parent="Hub" unique_id=940905877 node_paths=PackedStringArray("button_1", "button_2", "button_3", "tab_container")]
-layout_mode = 0
-offset_top = 118.0
-offset_right = 80.0
-offset_bottom = 374.0
-script = ExtResource("6_yohk2")
-button_1 = NodePath("ButtonA")
-button_2 = NodePath("ButtonA3")
-button_3 = NodePath("ButtonA2")
-tab_container = NodePath("../MarginContainer/TabContainer")
-
-[node name="ButtonA" type="Button" parent="Hub/TabController" unique_id=1292858880]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-text = "A"
-
-[node name="ButtonA3" type="Button" parent="Hub/TabController" unique_id=157932261]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-text = "A"
-
-[node name="ButtonA2" type="Button" parent="Hub/TabController" unique_id=280743582]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-text = "A"
+[connection signal="pressed" from="Main/Buttons/RelicsButton" to="." method="_on_relics_button_pressed"]
+[connection signal="pressed" from="Main/Buttons/GameButton" to="." method="_on_game_button_pressed"]
+[connection signal="pressed" from="Main/Buttons/BookButton" to="." method="_on_book_button_pressed"]

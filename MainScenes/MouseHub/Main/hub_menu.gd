@@ -3,12 +3,9 @@ extends CanvasLayer
 @export var game_scene := SceneManager.SceneEnum.GAME
 @export var game_button : BaseButton
 @export var difficulty_label: RichTextLabel
-@export var mouse_hub_button : BaseButton
 
 func _ready() -> void:
-	game_button.pressed.connect(on_game_button_pressed)
-	mouse_hub_button.pressed.connect(on_mouse_hub_button_pressed)
-	game_button.grab_focus() #select when game starts
+	game_button.grab_focus()
 	update_difficulty_text()
 	
 func update_difficulty_text() -> void:
@@ -23,10 +20,13 @@ func update_difficulty_text() -> void:
 	
 	difficulty_label.text = text
 
-func on_game_button_pressed() -> void:
+func _on_game_button_pressed() -> void:
 	SceneManager.clear_game()
 	SceneManager.switch_to(game_scene)
 	print("clicked")
 
-func on_mouse_hub_button_pressed() -> void:
-	SceneManager.switch_to(SceneManager.SceneEnum.MOUSE_HUB)
+func _on_relics_button_pressed() -> void:
+	$RelicsScreen.visible = true
+
+func _on_book_button_pressed() -> void:
+	$BookScreen.visible = true
