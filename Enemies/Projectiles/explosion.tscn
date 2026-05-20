@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bdgwc04qsydls" path="res://Collectibles/xp_spawner.tscn" id="2_dx1dy"]
 [ext_resource type="Texture2D" uid="uid://c2gosut04knwh" path="res://VFX/Bomb/spritesheet.png" id="4_dx1dy"]
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="6_dlpa8"]
+[ext_resource type="PackedScene" uid="uid://batkyrpdf5t4r" path="res://Enemies/Projectiles/explosion_effect.tscn" id="8_fcwjv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dx1dy"]
 resource_local_to_scene = true
@@ -63,21 +64,10 @@ shader_parameter/mesh_top = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dlpa8"]
 radius = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlpa8"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("2_dlpa8")
-shader_parameter/charge_level = 0.0
-shader_parameter/flash_level = 0.0
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/charge_color = Color(1, 1, 1, 1)
-shader_parameter/mesh_bottom = -1.0
-shader_parameter/mesh_top = 1.0
-
 [node name="Bomb" type="Node3D" unique_id=1350456821 node_paths=PackedStringArray("bomb_sprite", "explosion_sprite", "explosion_area", "explosion_hitbox", "enemy_hitbox")]
 script = ExtResource("1_3qop0")
 bomb_sprite = NodePath("Node3D/BombSprite")
-explosion_sprite = NodePath("Explosion/ExplosionEffect")
+explosion_sprite = NodePath("")
 explosion_area = NodePath("Node3D/ExplosionArea")
 explosion_hitbox = NodePath("Node3D/Hitbox")
 enemy_hitbox = NodePath("Node3D/EnemyHitbox")
@@ -128,14 +118,4 @@ metadata/_custom_type_script = "uid://dgoogb57kwni4"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Hitbox" unique_id=1362833944]
 shape = SubResource("CylinderShape3D_dlpa8")
 
-[node name="Explosion" type="Node3D" parent="." unique_id=906729995]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-visible = false
-
-[node name="ExplosionEffect" type="Sprite3D" parent="Explosion" unique_id=774029832]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0.7193868, 0)
-material_overlay = SubResource("ShaderMaterial_dlpa8")
-texture = ExtResource("1_kg1lu")
-script = ExtResource("2_3qop0")
-layer_number = 4
-metadata/_custom_type_script = "uid://chgfscc28odqd"
+[node name="Explosion" parent="." unique_id=461420878 instance=ExtResource("8_fcwjv")]
