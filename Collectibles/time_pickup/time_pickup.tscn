@@ -21,6 +21,7 @@ render_priority = 5
 texture = ExtResource("2_xvhxq")
 hframes = 3
 script = ExtResource("3_kwque")
+top_down_shadow = true
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1305784290]

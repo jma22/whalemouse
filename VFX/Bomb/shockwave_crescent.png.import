@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://br2nkyx56vv18"
 path.s3tc="res://.godot/imported/shockwave_crescent.png-6f2b1fa27f2441172f38879d4da10393.s3tc.ctex"
+path.etc2="res://.godot/imported/shockwave_crescent.png-6f2b1fa27f2441172f38879d4da10393.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://VFX/Bomb/shockwave_crescent.png"
-dest_files=["res://.godot/imported/shockwave_crescent.png-6f2b1fa27f2441172f38879d4da10393.s3tc.ctex"]
+dest_files=["res://.godot/imported/shockwave_crescent.png-6f2b1fa27f2441172f38879d4da10393.s3tc.ctex", "res://.godot/imported/shockwave_crescent.png-6f2b1fa27f2441172f38879d4da10393.etc2.ctex"]
 
 [params]
 

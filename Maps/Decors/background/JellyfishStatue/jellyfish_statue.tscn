@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://knua1i2y2afn"]
+
+[ext_resource type="Material" uid="uid://bodll2kvtuixq" path="res://Maps/Decors/bottom_fog_mat.tres" id="1_dfncr"]
+[ext_resource type="Texture2D" uid="uid://brnb7y8rh83t6" path="res://Maps/Decors/background/PiranhaStatue/2259 Sem Título_20260508233715.png" id="2_dfncr"]
+[ext_resource type="Script" uid="uid://dl6qm3d3ngxhn" path="res://Core/background_sprite_manager.gd" id="3_kelv1"]
+
+[node name="PiranhaStatue" type="Node3D" unique_id=410137951]
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=106763812]
+transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, 0, 0)
+material_override = ExtResource("1_dfncr")
+pixel_size = 0.003
+double_sided = false
+alpha_cut = 2
+render_priority = -5
+texture = ExtResource("2_dfncr")
+script = ExtResource("3_kelv1")
+metadata/_custom_type_script = "uid://chgfscc28odqd"

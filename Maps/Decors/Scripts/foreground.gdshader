@@ -133,5 +133,5 @@ void fragment() {
 	vec4 tex = texture(texture_albedo, UV);
 	ALBEDO = tex.rgb;
 	ALPHA = tex.a * alpha;
-	ALPHA_SCISSOR_THRESHOLD = 0.5;
+	//ALPHA_SCISSOR_THRESHOLD = 0.5;
 }

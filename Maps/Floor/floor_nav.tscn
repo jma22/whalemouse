@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://b070kdxa0tbgj" path="res://Maps/Floor/spotlight.tres" id="5_laxhj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
-vertices = PackedVector3Array(-2.75, 0.2, -1, -2.75, 0.2, 1, 2.75, 0.2, 1, 2.75, 0.2, -1)
+vertices = PackedVector3Array(-3.25, 0.2, -1.75, -3.25, 0.2, 1.75, 3.25, 0.2, 1.75, 3.25, 0.2, -1.75)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.1
 agent_radius = 0.1
@@ -20,7 +20,7 @@ albedo_texture = ExtResource("3_dtlwl")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
 material = SubResource("StandardMaterial3D_4pvmh")
-size = Vector2(6, 3)
+size = Vector2(7, 4)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dtlwl"]
 render_priority = -1

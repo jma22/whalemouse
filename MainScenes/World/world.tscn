@@ -96,6 +96,27 @@ time_damage_manager = NodePath("../TimeDamageManager")
 material_overlay = SubResource("ShaderMaterial_4gkky")
 frame = 2
 
+[node name="DashComponent" parent="Player" index="4" unique_id=1348110677]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player" unique_id=1583101408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.925, 1.065, 0)
+visible = false
+layers = 524288
+light_color = Color(0.14509805, 0.16862746, 0.14509805, 1)
+light_energy = 0.18
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.447
+light_cull_mask = 4293918736
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+shadow_blur = 1.651
+shadow_caster_mask = 4293918721
+omni_range = 2.638
+omni_attenuation = -5.14
+
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_fth4m")]
 time_damage_manager = NodePath("../TimeDamageManager")
 whale_spawner = NodePath("../WhaleSpawner")
@@ -144,11 +165,33 @@ script = ExtResource("10_k3n1d")
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412]
 script = ExtResource("12_2o6r5")
 
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=77890478]
+transform = Transform3D(0.5778576, 0.50246453, -0.64312524, 0, 0.7880108, 0.6156615, 0.8161376, -0.3557647, 0.45535803, -3.2, 3.412, 1.741)
+visible = false
+layers = 524288
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+light_cull_mask = 4293918736
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+shadow_transmittance_bias = -3.224
+shadow_blur = 1.511
+shadow_caster_mask = 4293918721
+directional_shadow_mode = 1
+directional_shadow_fade_start = 0.0
+directional_shadow_max_distance = 26.5
+directional_shadow_pancake_size = 44.8
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=586166948]
-transform = Transform3D(0.4984877, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.86689675, -0.3068997, 0.39281368, -2.34, 2.6790254, 2.85)
-light_color = Color(0.57, 0.5858333, 0.76, 1)
-light_energy = 0.9
+transform = Transform3D(0.4984877, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.86689675, -0.3068997, 0.39281368, -2.2142575, 3.0029516, 3.900401)
+visible = false
+light_color = Color(0.43914196, 0.5914716, 0.91461784, 1)
+light_energy = 12.733
 light_indirect_energy = 1.828
+light_negative = true
 light_cull_mask = 4293918720
 shadow_enabled = true
 shadow_bias = 0.734
@@ -164,6 +207,7 @@ directional_shadow_pancake_size = 0.0
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1055621862]
 transform = Transform3D(0.49848774, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.8668968, -0.3068997, 0.39281368, 0.088907, 1.4987466, 3.2288532)
+visible = false
 light_color = Color(0.57, 0.5858333, 0.76, 1)
 light_energy = 0.9
 light_indirect_energy = 1.828
@@ -192,22 +236,23 @@ omni_range = 14.161
 omni_attenuation = 0.378
 
 [node name="jellyfish light" type="DirectionalLight3D" parent="." unique_id=1443013789]
-transform = Transform3D(-0.85264015, -0.3694623, 0.3694623, 0, 0.70710677, 0.70710677, -0.5224986, 0.6029076, -0.6029076, -1.75333, 2.6790254, -0.009863377)
-layers = 2
-light_color = Color(0.57, 0.5858333, 0.76, 1)
-light_energy = 0.9
-light_indirect_energy = 1.828
-light_cull_mask = 4293918720
+transform = Transform3D(1, 0, 0, 0, -0.4524347, 0.89179754, 0, -0.89179754, -0.4524347, 0, 0, 0)
+layers = 524288
+light_color = Color(0.09019608, 0.13333334, 0.13725491, 1)
+light_energy = 1.488
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 50.66
+light_cull_mask = 4293918736
 shadow_enabled = true
-shadow_bias = 0.734
+shadow_bias = 0.0
 shadow_normal_bias = 0.0
-shadow_opacity = 0.85
 shadow_blur = 0.0
 shadow_caster_mask = 4293918722
 directional_shadow_mode = 0
 directional_shadow_split_1 = 0.211
-directional_shadow_fade_start = 0.155
-directional_shadow_max_distance = 4.5
+directional_shadow_fade_start = 0.0
+directional_shadow_max_distance = 6.8
 directional_shadow_pancake_size = 0.0
 
 [node name="ForegroundManager" type="Node3D" parent="." unique_id=420097038 node_paths=PackedStringArray("player", "camera")]

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv2ydyebo8wh3"
-path.s3tc="res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.s3tc.ctex"
-path.etc2="res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.etc2.ctex"
+uid="uid://diya7awlnefgp"
+path.s3tc="res://.godot/imported/2259 Sem Título_20260508224247.png-fb57c36025d14ee6a79aa213fdb34b4c.s3tc.ctex"
+path.etc2="res://.godot/imported/2259 Sem Título_20260508224247.png-fb57c36025d14ee6a79aa213fdb34b4c.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://VFX/Bomb/spark.png"
-dest_files=["res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.s3tc.ctex", "res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.etc2.ctex"]
+source_file="res://Maps/Decors/foreground/Lantern/2259 Sem Título_20260508224247.png"
+dest_files=["res://.godot/imported/2259 Sem Título_20260508224247.png-fb57c36025d14ee6a79aa213fdb34b4c.s3tc.ctex", "res://.godot/imported/2259 Sem Título_20260508224247.png-fb57c36025d14ee6a79aa213fdb34b4c.etc2.ctex"]
 
 [params]
 

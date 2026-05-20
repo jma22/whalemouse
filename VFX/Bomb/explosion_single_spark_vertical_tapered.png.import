@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://l44psvv8ejcq"
 path.s3tc="res://.godot/imported/explosion_single_spark_vertical_tapered.png-f20e9ee5edbf44a6de997c880726855f.s3tc.ctex"
+path.etc2="res://.godot/imported/explosion_single_spark_vertical_tapered.png-f20e9ee5edbf44a6de997c880726855f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://VFX/Bomb/explosion_single_spark_vertical_tapered.png"
-dest_files=["res://.godot/imported/explosion_single_spark_vertical_tapered.png-f20e9ee5edbf44a6de997c880726855f.s3tc.ctex"]
+dest_files=["res://.godot/imported/explosion_single_spark_vertical_tapered.png-f20e9ee5edbf44a6de997c880726855f.s3tc.ctex", "res://.godot/imported/explosion_single_spark_vertical_tapered.png-f20e9ee5edbf44a6de997c880726855f.etc2.ctex"]
 
 [params]
 

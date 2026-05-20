@@ -12,9 +12,9 @@ var hitbox_frame: int = 4
 var hitbox_duration: float = 0.2
 var hitbox_timer: float = 0.0
 
-var bubbler_scene: PackedScene = load("res://VFX/stomp_bubbler.tscn")
-var crack_scene: PackedScene = load("res://VFX/crack.tscn")
-var impact_effect_scene : PackedScene = load("res://VFX/Impact/impact_vfx.tscn")
+@export var bubbler_scene: PackedScene
+@export var crack_scene: PackedScene 
+@export var impact_effect_scene : PackedScene
 
 
 var horizontal_distance : float = 0.7

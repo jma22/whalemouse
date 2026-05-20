@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://1124m1el8myr"
 path.s3tc="res://.godot/imported/explosion_shockwave_handdrawn_v2.png-a8451637e34bf44d10569d4212b5b34d.s3tc.ctex"
+path.etc2="res://.godot/imported/explosion_shockwave_handdrawn_v2.png-a8451637e34bf44d10569d4212b5b34d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://VFX/Bomb/explosion_shockwave_handdrawn_v2.png"
-dest_files=["res://.godot/imported/explosion_shockwave_handdrawn_v2.png-a8451637e34bf44d10569d4212b5b34d.s3tc.ctex"]
+dest_files=["res://.godot/imported/explosion_shockwave_handdrawn_v2.png-a8451637e34bf44d10569d4212b5b34d.s3tc.ctex", "res://.godot/imported/explosion_shockwave_handdrawn_v2.png-a8451637e34bf44d10569d4212b5b34d.etc2.ctex"]
 
 [params]
 

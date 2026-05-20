@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv2ydyebo8wh3"
-path.s3tc="res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.s3tc.ctex"
-path.etc2="res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.etc2.ctex"
+uid="uid://bdckp8di3f5uj"
+path.s3tc="res://.godot/imported/2259_Sem_Titulo_20260508224250.png-7bde7fd730855616eea2c61b8362cc32.s3tc.ctex"
+path.etc2="res://.godot/imported/2259_Sem_Titulo_20260508224250.png-7bde7fd730855616eea2c61b8362cc32.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://VFX/Bomb/spark.png"
-dest_files=["res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.s3tc.ctex", "res://.godot/imported/spark.png-0276e81ec6c8b41c6f5e1882f480d1ca.etc2.ctex"]
+source_file="res://Maps/Decors/background/Fence/2259_Sem_Titulo_20260508224250.png"
+dest_files=["res://.godot/imported/2259_Sem_Titulo_20260508224250.png-7bde7fd730855616eea2c61b8362cc32.s3tc.ctex", "res://.godot/imported/2259_Sem_Titulo_20260508224250.png-7bde7fd730855616eea2c61b8362cc32.etc2.ctex"]
 
 [params]
 
