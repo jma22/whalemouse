@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0b8ged7b866o"]
 
 [ext_resource type="Script" uid="uid://chrw4q2ud234j" path="res://UI/pause_menu.gd" id="1_aq7p1"]
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_bwtow"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="3_bwtow"]
 [ext_resource type="Script" uid="uid://bwoesosiy3bpk" path="res://UI/volume_slider.gd" id="3_jl6cd"]
 [ext_resource type="Script" uid="uid://diknl0skmoftd" path="res://UI/unlock_all_button.gd" id="4_ocodi"]
 [ext_resource type="Script" uid="uid://8qjngobbp8nj" path="res://UI/difficulty_button.gd" id="5_85lix"]

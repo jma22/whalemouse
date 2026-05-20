@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cy2lsh2rvusbw"]
 
 [ext_resource type="Script" uid="uid://bsxav1boxtkag" path="res://UI/HUD/popup_number.gd" id="1_2fude"]
-[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="1_y6a70"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://resources/fonts/bold.tres" id="1_y6a70"]
 
 [node name="PopupNumber" type="RichTextLabel" unique_id=295878076]
 anchors_preset = 8

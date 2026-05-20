@@ -1,75 +1,43 @@
 [gd_scene format=3 uid="uid://dih816wfsnvdi"]
 
 [ext_resource type="Script" uid="uid://37nawqmmq86p" path="res://UI/Hub/currency_info.gd" id="1_22ocl"]
-[ext_resource type="Texture2D" uid="uid://dc1mhqv2l07rt" path="res://UI/HUD/BossRelicIcons/boss_blessing_icon.png" id="2_p7j4g"]
-[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://Fonts/bold.tres" id="3_olrgs"]
-[ext_resource type="Texture2D" uid="uid://dxexdjcl776p8" path="res://UI/HUD/BossRelicIcons/boss_curse_icon.png" id="4_3530c"]
+[ext_resource type="Texture2D" uid="uid://fmj5m3jcku3b" path="res://Assets/items/boss_fragment.png" id="2_p7j4g"]
+[ext_resource type="FontVariation" uid="uid://cewxukp0b26pp" path="res://resources/fonts/bold.tres" id="3_olrgs"]
+[ext_resource type="Texture2D" uid="uid://dxbv3ie64q0ln" path="res://Assets/items/gold_fragment.png" id="4_olrgs"]
+[ext_resource type="Texture2D" uid="uid://l0uio2qq6gar" path="res://Assets/items/cursed_fragment.png" id="5_3530c"]
 
 [node name="CurrencyInfoBar" type="HBoxContainer" unique_id=1681354303 node_paths=PackedStringArray("big_num", "small_num", "cursed_num")]
+custom_minimum_size = Vector2(275, 45)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -259.0
-offset_bottom = 38.0
+offset_left = -277.0
+offset_right = -2.0
+offset_bottom = 39.0
 grow_horizontal = 0
-theme_override_constants/separation = 0
+theme_override_constants/separation = 15
 script = ExtResource("1_22ocl")
-big_num = NodePath("HBoxContainer/Control/RichTextLabel")
-small_num = NodePath("HBoxContainer2/Control/RichTextLabel")
-cursed_num = NodePath("HBoxContainer3/Control/RichTextLabel")
+big_num = NodePath("BossFragments/Control/RichTextLabel")
+small_num = NodePath("SmallFragments/Control/RichTextLabel")
+cursed_num = NodePath("CursedFragments/Control/RichTextLabel")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1104101680]
+[node name="SmallFragments" type="HBoxContainer" parent="." unique_id=534929460]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1214111026]
+[node name="TextureRect" type="TextureRect" parent="SmallFragments" unique_id=37418052]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_p7j4g")
+texture = ExtResource("4_olrgs")
 expand_mode = 5
+stretch_mode = 6
 
-[node name="Control" type="Control" parent="HBoxContainer" unique_id=1884855506]
+[node name="Control" type="Control" parent="SmallFragments" unique_id=481869972]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Control" unique_id=1357881901]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-theme_override_fonts/normal_font = ExtResource("3_olrgs")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "3"
-scroll_active = false
-vertical_alignment = 1
-justification_flags = 161
-
-[node name="buffer" type="Control" parent="." unique_id=239024495]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=534929460]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer2" unique_id=37418052]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("4_3530c")
-expand_mode = 5
-
-[node name="Control" type="Control" parent="HBoxContainer2" unique_id=481869972]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer2/Control" unique_id=2052307795]
+[node name="RichTextLabel" type="RichTextLabel" parent="SmallFragments/Control" unique_id=2052307795]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,27 +54,55 @@ scroll_active = false
 vertical_alignment = 1
 justification_flags = 161
 
-[node name="buffer2" type="Control" parent="." unique_id=1369710486]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="." unique_id=617706145]
+[node name="CursedFragments" type="HBoxContainer" parent="." unique_id=617706145]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer3" unique_id=1797535038]
+[node name="TextureRect" type="TextureRect" parent="CursedFragments" unique_id=1797535038]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("4_3530c")
+texture = ExtResource("5_3530c")
 expand_mode = 5
+stretch_mode = 6
 
-[node name="Control" type="Control" parent="HBoxContainer3" unique_id=1926278732]
+[node name="Control" type="Control" parent="CursedFragments" unique_id=1926278732]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer3/Control" unique_id=101852452]
+[node name="RichTextLabel" type="RichTextLabel" parent="CursedFragments/Control" unique_id=101852452]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("3_olrgs")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "3"
+scroll_active = false
+vertical_alignment = 1
+justification_flags = 161
+
+[node name="BossFragments" type="HBoxContainer" parent="." unique_id=1104101680]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="BossFragments" unique_id=1214111026]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_p7j4g")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Control" type="Control" parent="BossFragments" unique_id=1884855506]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BossFragments/Control" unique_id=1357881901]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

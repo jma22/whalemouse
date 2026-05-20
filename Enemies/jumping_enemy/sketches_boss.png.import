@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhptsobdxu2qa"
 path.s3tc="res://.godot/imported/sketches_boss.png-11b6554ab47bde62692e23c229fcb5c7.s3tc.ctex"
+path.etc2="res://.godot/imported/sketches_boss.png-11b6554ab47bde62692e23c229fcb5c7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Enemies/jumping_enemy/sketches_boss.png"
-dest_files=["res://.godot/imported/sketches_boss.png-11b6554ab47bde62692e23c229fcb5c7.s3tc.ctex"]
+dest_files=["res://.godot/imported/sketches_boss.png-11b6554ab47bde62692e23c229fcb5c7.s3tc.ctex", "res://.godot/imported/sketches_boss.png-11b6554ab47bde62692e23c229fcb5c7.etc2.ctex"]
 
 [params]
 

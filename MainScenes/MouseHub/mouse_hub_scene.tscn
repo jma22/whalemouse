@@ -98,3 +98,52 @@ text = "A"
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 text = "A"
+
+[node name="A" type="Control" parent="." unique_id=1449608629]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrencyInfoBar" parent="A" unique_id=208502172 instance=ExtResource("1_176lp")]
+layout_mode = 1
+offset_left = -172.0
+
+[node name="BackButton" type="Button" parent="A" unique_id=311756597]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_right = 116.0
+grow_vertical = 0
+text = "Back
+"
+
+[node name="TabController" type="VBoxContainer" parent="A" unique_id=1934574652 node_paths=PackedStringArray("button_1", "button_2", "button_3")]
+layout_mode = 0
+offset_top = 118.0
+offset_right = 80.0
+offset_bottom = 374.0
+script = ExtResource("6_gfe3l")
+button_1 = NodePath("ButtonA")
+button_2 = NodePath("ButtonA3")
+button_3 = NodePath("ButtonA2")
+
+[node name="ButtonA" type="Button" parent="A/TabController" unique_id=1774116365]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"
+
+[node name="ButtonA3" type="Button" parent="A/TabController" unique_id=622591373]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"
+
+[node name="ButtonA2" type="Button" parent="A/TabController" unique_id=1997908011]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "A"

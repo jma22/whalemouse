@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cfeafp4us3ntb" path="res://Maps/Shrine/shrine.png" id="2_mdqob"]
 [ext_resource type="Texture2D" uid="uid://bqoibkbnjs7ga" path="res://Maps/Shrine/shrine_curse.png" id="2_n7lra"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_rt4r7"]
-[ext_resource type="Texture2D" uid="uid://bbp5jb16kkry4" path="res://VFX/spritesheet_13.png" id="4_kpoag"]
+[ext_resource type="Texture2D" uid="uid://bbp5jb16kkry4" path="res://Assets/vfx/bubble_big.png" id="4_kpoag"]
 [ext_resource type="Texture2D" uid="uid://00k2chggmyig" path="res://UI/HUD/RelicIcons/boss_attack_size.png" id="4_u1um2"]
 [ext_resource type="AudioStream" uid="uid://dy3cvw4o162wb" path="res://SFX/portal_sound.wav" id="5_ouif6"]
 

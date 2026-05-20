@@ -13,4 +13,3 @@ var enemy_pool : Array[String]
 #     wave_info.room_type = "combat"
 #     wave_info.name = name
 #     return wave_info
-

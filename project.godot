@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="Beluga's Blessing"
+config/description="A mouse cursed to always be short on time."
 config/version="1.1"
+config/tags=PackedStringArray("main")
 run/main_scene="uid://dg8owrdf3qc4u"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://csjxsvdl4q0sd"
@@ -41,6 +43,27 @@ window/vsync/vsync_mode=2
 [dotnet]
 
 project/assembly_name="whalemouse"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "yellow",
+"res://Collectibles/": "yellow",
+"res://Config/": "blue",
+"res://Core/": "orange",
+"res://DataStructs/": "blue",
+"res://Enemies/": "red",
+"res://Logs/": "blue",
+"res://MainScenes/": "orange",
+"res://Maps/": "orange",
+"res://Player/": "yellow",
+"res://SFX/": "purple",
+"res://TestScene/": "orange",
+"res://UI/": "pink",
+"res://VFX/": "pink",
+"res://resources/": "purple",
+"res://resources/fonts/": "purple"
+}
 
 [gui]
 
@@ -153,6 +176,7 @@ pause={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0.007843138, 1)
 
 [shader_globals]

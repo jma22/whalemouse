@@ -9,20 +9,19 @@
 [ext_resource type="Resource" uid="uid://dkjq3kkdkd2js" path="res://Core/CameraData/cinematic.tres" id="4_07j78"]
 [ext_resource type="PackedScene" uid="uid://bcykaspxa7iv6" path="res://MainScenes/World/hud.tscn" id="4_fth4m"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_yjwld"]
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/wave_map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://0yjpdk334va6" path="res://Maps/BossMap/boss_map.tscn" id="9_yjwld"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
-[ext_resource type="Script" path="res://UI/wave_text.gd" id="10_ic0uy"]
 [ext_resource type="Script" uid="uid://dgww6vx235lmc" path="res://MainScenes/World/wave_manager.gd" id="10_k3n1d"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="10_wse8f"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
+[ext_resource type="PackedScene" uid="uid://c4w7nbe2uu7w6" path="res://UI/HUD/wave_text/wave_text.tscn" id="15_4gkky"]
 [ext_resource type="Shader" path="res://UI/transition.gdshader" id="16_2u3nc"]
 [ext_resource type="Script" path="res://UI/transition.gd" id="16_udxuc"]
 [ext_resource type="Script" uid="uid://jplr3h3dtcn3" path="res://Maps/foreground_manager.gd" id="20_4gkky"]
 [ext_resource type="Material" uid="uid://cgry6ob5583dk" path="res://Maps/Decors/foreground/foreground_mat.tres" id="21_7yh8k"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yh8k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gkky"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("4_yjwld")
@@ -62,19 +61,19 @@ background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
 ambient_light_energy = 1.29
 
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("map_manager", "shrine_map_manager", "boss_map_manager", "player", "hud", "time_damage", "camera", "wave_text", "wave_manager", "transition", "whale_spawner", "loading_screen")]
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("player", "time_damage", "wave_manager", "camera", "whale_spawner", "map_manager", "shrine_map_manager", "boss_map_manager", "hud", "wave_text", "transition", "loading_screen")]
 script = ExtResource("1_ioo17")
+player = NodePath("Player")
+time_damage = NodePath("TimeDamageManager")
+wave_manager = NodePath("WaveManager")
+camera = NodePath("Camera3D2")
+whale_spawner = NodePath("WhaleSpawner")
 map_manager = NodePath("Map")
 shrine_map_manager = NodePath("BlessingMap")
 boss_map_manager = NodePath("BossMap")
-player = NodePath("Player")
 hud = NodePath("HUD")
-time_damage = NodePath("TimeDamageManager")
-camera = NodePath("Camera3D2")
 wave_text = NodePath("WaveText")
-wave_manager = NodePath("WaveManager")
 transition = NodePath("Transition")
-whale_spawner = NodePath("WhaleSpawner")
 loading_screen = NodePath("Loading")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
@@ -94,7 +93,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
 time_damage_manager = NodePath("../TimeDamageManager")
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_7yh8k")
+material_overlay = SubResource("ShaderMaterial_4gkky")
 frame = 2
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_fth4m")]
@@ -102,6 +101,7 @@ time_damage_manager = NodePath("../TimeDamageManager")
 whale_spawner = NodePath("../WhaleSpawner")
 
 [node name="Loading" type="CanvasLayer" parent="." unique_id=1658540834]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Loading" unique_id=1390502931]
 anchors_preset = 15
@@ -110,6 +110,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.051522948, 0.010854677, 0.061102837, 1)
+
+[node name="WaveText" parent="." unique_id=969008602 instance=ExtResource("15_4gkky")]
+
+[node name="Transition" type="CanvasLayer" parent="." unique_id=740170691 node_paths=PackedStringArray("texture")]
+visible = false
+script = ExtResource("16_udxuc")
+texture = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="Transition" unique_id=246425061]
+material = SubResource("ShaderMaterial_udxuc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_2u3nc")
 
 [node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
 script = ExtResource("10_wse8f")
@@ -124,48 +140,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.708763, 0, 0)
 
 [node name="WaveManager" type="Node3D" parent="." unique_id=212606823]
 script = ExtResource("10_k3n1d")
-
-[node name="WaveText" type="CanvasLayer" parent="." unique_id=627079375 node_paths=PackedStringArray("text_label", "container")]
-layer = 2
-script = ExtResource("10_ic0uy")
-text_label = NodePath("VBoxContainer/ColorRect/RichTextLabel")
-container = NodePath("VBoxContainer")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="WaveText" unique_id=1455568305]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Control" type="Control" parent="WaveText/VBoxContainer" unique_id=2016103205]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ColorRect" type="ColorRect" parent="WaveText/VBoxContainer" unique_id=2094351474]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-color = Color(0.18, 0.18, 0.18, 0)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="WaveText/VBoxContainer/ColorRect" unique_id=2031658423]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("8_gbfbk")
-theme_override_font_sizes/normal_font_size = 70
-bbcode_enabled = true
-text = "Wave 2"
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control2" type="Control" parent="WaveText/VBoxContainer" unique_id=466485775]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412]
 script = ExtResource("12_2o6r5")
@@ -216,20 +190,6 @@ light_specular = 0.975
 light_bake_mode = 1
 omni_range = 14.161
 omni_attenuation = 0.378
-
-[node name="Transition" type="CanvasLayer" parent="." unique_id=740170691 node_paths=PackedStringArray("texture")]
-visible = false
-script = ExtResource("16_udxuc")
-texture = NodePath("TextureRect")
-
-[node name="TextureRect" type="TextureRect" parent="Transition" unique_id=246425061]
-material = SubResource("ShaderMaterial_udxuc")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_2u3nc")
 
 [node name="jellyfish light" type="DirectionalLight3D" parent="." unique_id=1443013789]
 transform = Transform3D(-0.85264015, -0.3694623, 0.3694623, 0, 0.70710677, 0.70710677, -0.5224986, 0.6029076, -0.6029076, -1.75333, 2.6790254, -0.009863377)

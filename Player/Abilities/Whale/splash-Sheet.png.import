@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv0s472g6opsa"
 path.s3tc="res://.godot/imported/splash-Sheet.png-23c9a0ed6be6e4740d2ddf8d33f72879.s3tc.ctex"
+path.etc2="res://.godot/imported/splash-Sheet.png-23c9a0ed6be6e4740d2ddf8d33f72879.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Player/Abilities/Whale/splash-Sheet.png"
-dest_files=["res://.godot/imported/splash-Sheet.png-23c9a0ed6be6e4740d2ddf8d33f72879.s3tc.ctex"]
+dest_files=["res://.godot/imported/splash-Sheet.png-23c9a0ed6be6e4740d2ddf8d33f72879.s3tc.ctex", "res://.godot/imported/splash-Sheet.png-23c9a0ed6be6e4740d2ddf8d33f72879.etc2.ctex"]
 
 [params]
 

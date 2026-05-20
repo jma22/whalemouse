@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://4yu1ufghkxh"
 path.s3tc="res://.godot/imported/small_fragment.png-0837837240cac00658e7a98804558147.s3tc.ctex"
+path.etc2="res://.godot/imported/small_fragment.png-0837837240cac00658e7a98804558147.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Collectibles/small_fragment/small_fragment.png"
-dest_files=["res://.godot/imported/small_fragment.png-0837837240cac00658e7a98804558147.s3tc.ctex"]
+dest_files=["res://.godot/imported/small_fragment.png-0837837240cac00658e7a98804558147.s3tc.ctex", "res://.godot/imported/small_fragment.png-0837837240cac00658e7a98804558147.etc2.ctex"]
 
 [params]
 

@@ -4,6 +4,7 @@ class_name Choice
 var internal_name: StringName
 var display_name: String
 var description_func: Callable
+var _sprite_path : Resource
 var effects: Array[Callable] = []
 var override_blessing : bool = true
 
@@ -76,6 +77,9 @@ func with_heal(amount: int) -> Choice:
 		func() -> void: GlobalStats.player.heal(amount),
 	]
 	return wrapper
+
+func get_sprite_path() ->  String:
+	return _sprite_path.get_icon_path_for(&"")
 
 func get_icon_path() -> String:
 	DebugLog.dbg_from(self,"Getting icon path for choice (display_name=%s)" % display_name)

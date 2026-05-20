@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://37fneuc41d61"
 path.s3tc="res://.godot/imported/spritesheet_11.png-04e716d53d585e47b1080d257c9a2de8.s3tc.ctex"
+path.etc2="res://.godot/imported/spritesheet_11.png-04e716d53d585e47b1080d257c9a2de8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Collectibles/time_pickup/spritesheet_11.png"
-dest_files=["res://.godot/imported/spritesheet_11.png-04e716d53d585e47b1080d257c9a2de8.s3tc.ctex"]
+dest_files=["res://.godot/imported/spritesheet_11.png-04e716d53d585e47b1080d257c9a2de8.s3tc.ctex", "res://.godot/imported/spritesheet_11.png-04e716d53d585e47b1080d257c9a2de8.etc2.ctex"]
 
 [params]
 

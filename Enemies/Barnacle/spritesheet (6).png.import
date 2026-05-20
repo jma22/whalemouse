@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c14003xwncnq"
 path.s3tc="res://.godot/imported/spritesheet (6).png-7c142f99f3f851ad13a93f6e8bc3f8bf.s3tc.ctex"
+path.etc2="res://.godot/imported/spritesheet (6).png-7c142f99f3f851ad13a93f6e8bc3f8bf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Enemies/Barnacle/spritesheet (6).png"
-dest_files=["res://.godot/imported/spritesheet (6).png-7c142f99f3f851ad13a93f6e8bc3f8bf.s3tc.ctex"]
+dest_files=["res://.godot/imported/spritesheet (6).png-7c142f99f3f851ad13a93f6e8bc3f8bf.s3tc.ctex", "res://.godot/imported/spritesheet (6).png-7c142f99f3f851ad13a93f6e8bc3f8bf.etc2.ctex"]
 
 [params]
 

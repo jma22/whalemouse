@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dxmomb1apwbsm"]
+
+[ext_resource type="Texture2D" uid="uid://dkbtu0n7bv4m8" path="res://Assets/vfx/bubble_small.png" id="1_j6tb8"]
+[ext_resource type="Script" uid="uid://sgnamhhy644m" path="res://VFX/Bubbles/bubbler.gd" id="2_j37c6"]
+[ext_resource type="AudioStream" uid="uid://dqacyoxkiy3te" path="res://SFX/bubble1.wav" id="3_gv710"]
+[ext_resource type="AudioStream" uid="uid://clrcija5o3ycf" path="res://SFX/bubble2.wav" id="4_ujrwq"]
+[ext_resource type="AudioStream" uid="uid://7ry0h0v8mo6o" path="res://SFX/bubble3.wav" id="5_ncqte"]
+
+[sub_resource type="Curve" id="Curve_7emwf"]
+_data = [Vector2(0, 0.7559904), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hshwv"]
+curve = SubResource("Curve_7emwf")
+
+[sub_resource type="Curve" id="Curve_hshwv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gpjlu"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0.0447284), 0.0, 0.0, 0, 0, Vector2(1, 3), 8.723727, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8mwp6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_qemgg"]
+curve_x = SubResource("Curve_hshwv")
+curve_y = SubResource("Curve_gpjlu")
+curve_z = SubResource("Curve_8mwp6")
+
+[sub_resource type="Curve" id="Curve_qemgg"]
+_data = [Vector2(0, 0.51198083), 0.0, 0.0, 0, 0, Vector2(1, 0.96884984), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8viyr"]
+curve = SubResource("Curve_qemgg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7emwf"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -0.9999893
+angle_max = 1.0000107
+inherit_velocity_ratio = 0.3
+direction = Vector3(0, 1, -1.5)
+spread = 20.122
+initial_velocity_min = 0.19999999
+initial_velocity_max = 0.39999998
+directional_velocity_min = -1.6093254e-05
+directional_velocity_max = -1.6093254e-05
+directional_velocity_curve = SubResource("CurveXYZTexture_qemgg")
+velocity_limit_curve = SubResource("CurveTexture_8viyr")
+gravity = Vector3(0, 1, -1.5)
+scale_min = 0.099999994
+scale_max = 0.29999998
+alpha_curve = SubResource("CurveTexture_hshwv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hshwv"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+no_depth_test = true
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_j6tb8")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_gpjlu"]
+material = SubResource("StandardMaterial3D_hshwv")
+
+[node name="Bubbler" type="GPUParticles3D" unique_id=1696721365 node_paths=PackedStringArray("audio_1", "audio_2", "audio_3")]
+emitting = false
+amount_ratio = 0.755
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.89
+randomness = 0.33
+fixed_fps = 45
+process_material = SubResource("ParticleProcessMaterial_7emwf")
+draw_pass_1 = SubResource("QuadMesh_gpjlu")
+script = ExtResource("2_j37c6")
+audio_1 = NodePath("AudioStreamPlayer")
+audio_2 = NodePath("AudioStreamPlayer2")
+audio_3 = NodePath("AudioStreamPlayer3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1305904306]
+stream = ExtResource("3_gv710")
+volume_db = -10.105
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=333579981]
+stream = ExtResource("4_ujrwq")
+volume_db = -10.105
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=41083243]
+stream = ExtResource("5_ncqte")
+volume_db = -10.105

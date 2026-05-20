@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://c4w7nbe2uu7w6"]
+
+[ext_resource type="Script" uid="uid://c1hdmghu4j63o" path="res://UI/wave_text.gd" id="1_xw5e1"]
+[ext_resource type="Texture2D" uid="uid://bjjqj83u2drio" path="res://Assets/ui/wave_icons/wave_icon_enemy_encounter.png" id="2_18fud"]
+[ext_resource type="Texture2D" uid="uid://dbfhgqtibunln" path="res://Assets/ui/wave_icons/wave_icon_default.png" id="2_qwtsy"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="3_18fud"]
+[ext_resource type="Texture2D" uid="uid://cfesxy6a431qe" path="res://Assets/ui/wave_icons/wave_icon_blessing.png" id="3_64n3j"]
+[ext_resource type="Texture2D" uid="uid://ba3l1dfwxx46a" path="res://Assets/ui/wave_icons/wave_icon_boss.png" id="3_b8fwq"]
+
+[node name="WaveText" type="CanvasLayer" unique_id=969008602 node_paths=PackedStringArray("text_label", "wave_icon", "container")]
+layer = 2
+script = ExtResource("1_xw5e1")
+text_label = NodePath("VBoxContainer/ColorRect/RichTextLabel")
+wave_icon = NodePath("VBoxContainer/ColorRect/WaveIcon")
+container = NodePath("VBoxContainer")
+combat_icon = ExtResource("2_18fud")
+shrine_icon = ExtResource("3_64n3j")
+boss_icon = ExtResource("3_b8fwq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1660941022]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=1104399364]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer" unique_id=2139084190]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+color = Color(0.18, 0.18, 0.18, 0)
+
+[node name="WaveIcon" type="TextureRect" parent="VBoxContainer/ColorRect" unique_id=1282235990]
+self_modulate = Color(1.1004806, 1.1004806, 1.1004806, 0.3882353)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qwtsy")
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ColorRect" unique_id=303280123]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_18fud")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Wave 2"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=733899241]
+layout_mode = 2
+size_flags_vertical = 3

@@ -7,8 +7,6 @@ enum SceneEnum {
 	GAME_OVER,
 	UNLOCK,
 	OVERWORLD,
-	MOUSE_HUB,
-	
 }
 
 var all_scenes : Dictionary[SceneEnum, Node3D] = {}
@@ -32,7 +30,6 @@ func setup(container: Node3D) -> void:
 	register(SceneEnum.GAME_OVER, "res://MainScenes/GameOver/game_over_scene.tscn")
 	register(SceneEnum.UNLOCK, "res://MainScenes/UnlockScene/unlock_scene.tscn")
 	register(SceneEnum.OVERWORLD, "res://MainScenes/OverWorld/overworld_scene.tscn")
-	register(SceneEnum.MOUSE_HUB, "res://MainScenes/MouseHub/mouse_hub_scene.tscn")
 	switch_to(SceneEnum.MAIN_MENU)
 
 func register(scene_enum: SceneEnum, path : String) -> void:

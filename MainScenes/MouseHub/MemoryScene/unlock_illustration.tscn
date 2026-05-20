@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7e5al4es3p3t" path="res://MainScenes/MouseHub/MemoryScene/unlock_illustration.gd" id="1_fqcv2"]
 [ext_resource type="Texture2D" uid="uid://wwbifu522wq2" path="res://MainScenes/MouseHub/MemoryScene/Illustrations/ill1.png" id="2_t5lkg"]
-[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://Fonts/Schoolbell-Regular.ttf" id="3_yfknu"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="3_yfknu"]
 
 [node name="UnlockIllustration" type="Control" unique_id=790790256 node_paths=PackedStringArray("texture_button", "cost_label")]
 custom_minimum_size = Vector2(225, 150)

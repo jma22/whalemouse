@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://fqvft8uyr2ia"]
 
-[ext_resource type="Texture2D" uid="uid://i6u6twcfsxa0" path="res://VFX/Impact/ring.png" id="1_odjcy"]
+[ext_resource type="Texture2D" uid="uid://i6u6twcfsxa0" path="res://Assets/vfx/ring.png" id="1_odjcy"]
 [ext_resource type="Script" uid="uid://cjxgwnhqj7blu" path="res://VFX/Impact/impact_vfx.gd" id="2_ry7qd"]
 [ext_resource type="Texture2D" uid="uid://cwcnartars2to" path="res://UI/HUD/circle.png" id="3_dloc0"]
 
