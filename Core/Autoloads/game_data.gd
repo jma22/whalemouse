@@ -10,7 +10,8 @@ var lifetime_stats: Dictionary = {
 	"games_played": 0,
 	"boss_defeats": 0,
 	"total_time_survived": 0.0,
-
+	"blessings_collected": 0,
+	"curses_collected": 0,
 }
 
 var currency_stats: Dictionary[StringName, int] = {

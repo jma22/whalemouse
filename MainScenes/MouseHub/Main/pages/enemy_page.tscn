@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://kg5wvfho84bi" path="res://MainScenes/MouseHub/MemoryScene/MainStickers/piranha.png" id="2_6q4yf"]
 [ext_resource type="Script" uid="uid://cnm4k244hff42" path="res://MainScenes/MouseHub/Main/pages/enemy_page.gd" id="2_b4wkq"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="3_b4wkq"]
+[ext_resource type="Script" uid="uid://cutg8c2y4kert" path="res://UI/text_template.gd" id="5_b4wkq"]
 
 [node name="EnemyPage" unique_id=1812492415 instance=ExtResource("1_17yhx")]
 script = ExtResource("2_b4wkq")
@@ -39,6 +40,8 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("5_b4wkq")
+keys = Array[String](["Enemy"])
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="LeftPage" parent_id_path=PackedInt32Array(1775837861) index="2" unique_id=2024981552]
 layout_mode = 1

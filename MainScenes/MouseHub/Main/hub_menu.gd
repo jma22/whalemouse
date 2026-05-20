@@ -17,7 +17,6 @@ func update_difficulty_text() -> void:
 			text = "Medium"
 		Config.Difficulty.HARD:
 			text = "Hard"
-	
 	difficulty_label.text = text
 
 func _on_game_button_pressed() -> void:
@@ -29,4 +28,7 @@ func _on_relics_button_pressed() -> void:
 	$RelicsScreen.visible = true
 
 func _on_book_button_pressed() -> void:
+	# IDEA:
+	# Maybe later we can make so the book needs to be unlocked first?
+	# Maybe like having to play 3 runs or something?
 	$BookScreen.visible = true

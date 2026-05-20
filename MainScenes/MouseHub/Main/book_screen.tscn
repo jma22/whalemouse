@@ -192,6 +192,11 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "->"
 
+[connection signal="pressed" from="TabButtons/ChapterButtonCharacters" to="." method="_on_chapter_button_characters_pressed"]
+[connection signal="pressed" from="TabButtons/ChapterButtonEnemies" to="." method="_on_chapter_button_enemies_pressed"]
+[connection signal="pressed" from="TabButtons/ChapterButtonBlessings" to="." method="_on_chapter_button_blessings_pressed"]
+[connection signal="pressed" from="TabButtons/ChapterButtonCurses" to="." method="_on_chapter_button_curses_pressed"]
+[connection signal="pressed" from="TabButtons/ChapterButtonArtworks" to="." method="_on_chapter_button_artworks_pressed"]
 [connection signal="pressed" from="Buttons/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Buttons/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="Buttons/RightButton" to="." method="_on_right_button_pressed"]
