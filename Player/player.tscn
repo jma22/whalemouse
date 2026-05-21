@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://dgoogb57kwni4" path="res://Core/Components/hitbox.gd" id="20_n471f"]
 [ext_resource type="PackedScene" uid="uid://b3laqrhmbviaw" path="res://Enemies/Projectiles/explosion.tscn" id="20_qemgg"]
 [ext_resource type="Script" uid="uid://dttq4pd68s4ee" path="res://Player/dash_component.gd" id="21_7emwf"]
+[ext_resource type="Script" uid="uid://chvfsfwdfquxl" path="res://Player/States/dead_state.gd" id="22_8viyr"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://cnjqg8b31hol6" path="res://SFX/attack.wav" id="22_hshwv"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="25_qemgg"]
@@ -40,11 +41,16 @@ script = ExtResource("13_7emwf")
 frame_numbers = Array[int]([0, 1, 2])
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
+[sub_resource type="Resource" id="Resource_8viyr"]
+script = ExtResource("13_7emwf")
+frame_numbers = Array[int]([0, 1, 2])
+metadata/_custom_type_script = "uid://bfemb7cym2htn"
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_b1ygp"]
 height = 0.5
 radius = 0.25
 
-[sub_resource type="Shader" id="Shader_8viyr"]
+[sub_resource type="Shader" id="Shader_sm0op"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_add, depth_prepass_alpha;
@@ -75,10 +81,10 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm0op"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76lrf"]
 resource_local_to_scene = true
 render_priority = 7
-shader = SubResource("Shader_8viyr")
+shader = SubResource("Shader_sm0op")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -185,6 +191,10 @@ shape = SubResource("CylinderShape3D_lfmf2")
 [node name="Sprite3D" parent="StateMachine/RollState/Hitbox" index="1" unique_id=468577178]
 transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0.01, -0.012904897)
 
+[node name="DeadState" type="Node3D" parent="StateMachine" unique_id=1016941681]
+script = ExtResource("22_8viyr")
+animation = SubResource("Resource_8viyr")
+
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("25_qemgg")]
 
 [node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
@@ -202,7 +212,7 @@ shape = SubResource("CylinderShape3D_b1ygp")
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.4999999, 0.8660253, 0, -0.8660253, 0.4999999, 0.002998352, 0.12595028, -0.22368203)
 layers = 1
-material_overlay = SubResource("ShaderMaterial_sm0op")
+material_overlay = SubResource("ShaderMaterial_76lrf")
 alpha_scissor_threshold = 0.06
 alpha_antialiasing_edge = 1.0
 render_priority = 7

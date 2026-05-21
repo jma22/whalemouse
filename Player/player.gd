@@ -9,6 +9,7 @@ class_name Player extends CharacterBody3D
 @onready var idle_state : IdleState = $StateMachine/IdleState
 @onready var hurt_state : HurtState = $StateMachine/HurtState
 @onready var roll_state : RollState = $StateMachine/RollState
+@onready var dead_state : DeadState = $StateMachine/DeadState
 @export var attack_state : AttackState
 @export var thorn_hitbox : Hitbox
 
@@ -31,7 +32,7 @@ var map_ref : MapManagerBase
 var last_direction : Vector2 = Vector2.LEFT
 
 var initial_health : int = StatCalculator.get_player_max_health()
-
+var disable_input : bool = false
 # Input buffer — remembers the last action pressed within BUFFER_WINDOW seconds
 const BUFFER_WINDOW : float = 0.2
 var _buffered_action : StringName = &""
@@ -43,6 +44,7 @@ var camera_ref : Camera3D
 func reset() -> void:
 	core_components.reset()
 	status_effects.clear()
+	disable_input = false
 
 func setup(hud: HUD, camera : Camera3D) -> void:
 	# This is called from the main scene to set up references to other nodes
@@ -62,7 +64,7 @@ func enter_map(map : MapManagerBase) -> void:
 
 func _process(_delta: float) -> void:
 	_tick_input_buffer(_delta)
-	if hitstop.is_in_hitstop:
+	if hitstop.is_in_hitstop or disable_input:
 		return
 	check_state()
 	state_machine.current_state.deep_run(_delta)
@@ -75,6 +77,8 @@ func get_input() -> Vector2:
 	return input_vector
 
 func _tick_input_buffer(delta: float) -> void:
+	if disable_input:
+		return
 	# Record new presses into the buffer
 	if StatCalculator.has_dash() and Input.is_action_just_pressed("dash"):
 		_buffered_action = &"dash"
@@ -215,10 +219,9 @@ func set_invulnerable(value: bool, duration: float = 0.0) -> void:
 	invulnerable_component.set_invulnerable(value, duration)
 
 func on_die() -> void:
-	var tween : Tween = await sprite_manager.die()
-	tween.finished.connect(func() -> void:
-		SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)
-	)
+	state_machine.set_state(dead_state)
+
+	
 func get_floor() -> FloorNav:
 	return map_ref.floor
 
@@ -257,3 +260,5 @@ func get_initial_health() -> int:
 func set_pause(value: bool) -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
 	time_damage_manager.set_pause(value)
+
+	

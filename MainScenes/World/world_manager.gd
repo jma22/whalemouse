@@ -20,6 +20,7 @@ static var instance : WorldManager
 @export var wave_text : WaveText
 @export var transition : CanvasLayer
 @export var loading_screen : CanvasLayer
+@export var death_screen : DeathScreen
 
 func _enter_tree() -> void:
 	instance = self
@@ -39,6 +40,7 @@ func setup() -> void:
 	GlobalStats.setup(player)
 	transition.setup()
 	whale_spawner.setup(player, camera)
+	death_screen.setup()
 	call_deferred("map_entered", true)
 	## call  fade_out_loading() when above call is done 
 	## wait tille camera velocity is 0 then call fadeoutlaoding
@@ -114,3 +116,10 @@ func map_entered(first_time: bool) -> void:
 func next_wave() -> void:
 	wave_manager.exit_wave()
 	map_entered(false)
+
+
+func gameover_animation() -> void:
+	player.sprite_manager.alpha_cut = SpriteBase3D.ALPHA_CUT_DISABLED
+	player.sprite_manager.set_render_priority(127)
+	await death_screen.play()
+	SceneManager.switch_to(SceneManager.SceneEnum.GAME_OVER)

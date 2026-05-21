@@ -11,9 +11,12 @@
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_yjwld"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/wave_map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://0yjpdk334va6" path="res://Maps/BossMap/boss_map.tscn" id="9_yjwld"]
+[ext_resource type="Script" uid="uid://buhg0itpeyl0f" path="res://MainScenes/World/death_screen.gd" id="10_7yh8k"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
 [ext_resource type="Script" uid="uid://dgww6vx235lmc" path="res://MainScenes/World/wave_manager.gd" id="10_k3n1d"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="10_wse8f"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="11_06o2v"]
+[ext_resource type="Shader" uid="uid://ci7ay058jy1s4" path="res://MainScenes/World/death_screen.gdshader" id="11_mr785"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://c4w7nbe2uu7w6" path="res://UI/HUD/wave_text/wave_text.tscn" id="15_4gkky"]
 [ext_resource type="Shader" path="res://UI/transition.gdshader" id="16_2u3nc"]
@@ -21,9 +24,19 @@
 [ext_resource type="Script" uid="uid://jplr3h3dtcn3" path="res://Maps/foreground_manager.gd" id="20_4gkky"]
 [ext_resource type="Material" uid="uid://cgry6ob5583dk" path="res://Maps/Decors/foreground/foreground_mat.tres" id="21_7yh8k"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gkky"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1kpv8"]
+render_priority = 10
+shader = ExtResource("11_mr785")
+shader_parameter/radius = 0.4630000219925
+shader_parameter/softness = 0.33600001596
+shader_parameter/darkness = 0.822000039045
+shader_parameter/overlay_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkxtn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etxs4"]
 resource_local_to_scene = true
-render_priority = 1
+render_priority = 127
 shader = ExtResource("4_yjwld")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
@@ -31,6 +44,14 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/charge_color = Color(1, 1, 1, 1)
 shader_parameter/mesh_bottom = -1.0
 shader_parameter/mesh_top = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06o2v"]
+render_priority = 0
+shader = ExtResource("11_mr785")
+shader_parameter/radius = 1.250000059375
+shader_parameter/softness = 0.58000002755
+shader_parameter/darkness = 1.0
+shader_parameter/overlay_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_2u3nc"]
 
@@ -61,7 +82,7 @@ background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
 ambient_light_energy = 1.29
 
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("player", "time_damage", "wave_manager", "camera", "whale_spawner", "map_manager", "shrine_map_manager", "boss_map_manager", "hud", "wave_text", "transition", "loading_screen")]
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("player", "time_damage", "wave_manager", "camera", "whale_spawner", "map_manager", "shrine_map_manager", "boss_map_manager", "hud", "wave_text", "transition", "loading_screen", "death_screen")]
 script = ExtResource("1_ioo17")
 player = NodePath("Player")
 time_damage = NodePath("TimeDamageManager")
@@ -75,9 +96,10 @@ hud = NodePath("HUD")
 wave_text = NodePath("WaveText")
 transition = NodePath("Transition")
 loading_screen = NodePath("Loading")
+death_screen = NodePath("Camera3D2/DeathScreen")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1.4, 0.48)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 20.814243, 1.4, 0.48)
 fov = 80.0
 size = 23.388
 script = ExtResource("3_aqk2v")
@@ -88,12 +110,19 @@ boss_data = ExtResource("3_b6lyg")
 cinematic_data = ExtResource("4_07j78")
 current_data = ExtResource("3_lgfs0")
 
+[node name="DeathScreen" type="MeshInstance3D" parent="Camera3D2" unique_id=620699892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+material_override = SubResource("ShaderMaterial_1kpv8")
+mesh = SubResource("QuadMesh_kkxtn")
+script = ExtResource("10_7yh8k")
+
 [node name="Player" parent="." unique_id=1422586295 node_paths=PackedStringArray("time_damage_manager") groups=["Player"] instance=ExtResource("2_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
 time_damage_manager = NodePath("../TimeDamageManager")
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_4gkky")
+material_overlay = SubResource("ShaderMaterial_etxs4")
+render_priority = 127
 frame = 2
 
 [node name="DashComponent" parent="Player" index="4" unique_id=1348110677]
@@ -122,9 +151,34 @@ time_damage_manager = NodePath("../TimeDamageManager")
 whale_spawner = NodePath("../WhaleSpawner")
 
 [node name="Loading" type="CanvasLayer" parent="." unique_id=1658540834]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Loading" unique_id=1390502931]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.051522948, 0.010854677, 0.061102837, 1)
+
+[node name="DeathScreen" type="CanvasLayer" parent="." unique_id=1252491478]
+visible = false
+
+[node name="LosingText" type="RichTextLabel" parent="DeathScreen" unique_id=1293506772]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("11_06o2v")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Good night!"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Overlay" type="ColorRect" parent="DeathScreen" unique_id=843707393]
+material = SubResource("ShaderMaterial_06o2v")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

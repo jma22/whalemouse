@@ -130,3 +130,10 @@ func next_scene() -> void:
 			overlay_scene_node = null
 			_current.visible = true
 			_current.process_mode = PROCESS_MODE_INHERIT
+
+
+func gameover_animation() -> void:
+	var game_scene : Node3D = all_scenes[SceneEnum.GAME]
+	var world_manager : WorldManager = game_scene as WorldManager
+	if world_manager:
+		world_manager.gameover_animation()

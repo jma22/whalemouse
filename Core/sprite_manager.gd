@@ -126,3 +126,8 @@ func die() -> Tween:
 	death_tween.tween_callback(Callable(self, "set_charge_color").bind(0))
 	death_tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
 	return death_tween
+
+
+# func set_render_priority(priority: int) -> void:
+# 	render_priority = priority
+# 	material_overlay.render_priority = priority + 1
