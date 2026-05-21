@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://s8tpeq1mavfq" path="res://Assets/ui/hub/hub_layout.png" id="3_gujdv"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="4_yohk2"]
 [ext_resource type="PackedScene" uid="uid://drqc0hrgfwup3" path="res://MainScenes/MouseHub/RelicScene/relic_scene.tscn" id="5_3fr6f"]
-[ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/misc/single_pixel.png" id="9_3fr6f"]
+[ext_resource type="PackedScene" uid="uid://dmvxmv8gjshfv" path="res://MainScenes/MouseHub/Main/social_buttons/link_button.tscn" id="7_j51mk"]
+[ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/Misc/single_pixel.png" id="9_3fr6f"]
 [ext_resource type="PackedScene" uid="uid://c2bw4f3d8k8uy" path="res://MainScenes/MouseHub/Main/book_screen.tscn" id="9_j51mk"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gujdv"]
@@ -16,6 +17,9 @@ unicode = 32
 
 [sub_resource type="Shortcut" id="Shortcut_rhj02"]
 events = [SubResource("InputEventKey_gujdv")]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3w2g3"]
+load_path = "res://.godot/imported/vecteezy_discord-logo-png-discord-icon-transparent-png_18930718.png-b490e5b3762156cf4c3ccf28b98829dd.ctex"
 
 [node name="HubWorld" type="CanvasLayer" unique_id=324062007 node_paths=PackedStringArray("game_button", "difficulty_label")]
 script = ExtResource("2_ak3fd")
@@ -197,16 +201,30 @@ offset_bottom = 75.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
+[node name="DiscordButton" parent="Main/Top" unique_id=1640236257 instance=ExtResource("7_j51mk")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 21.0
+offset_top = -26.0
+offset_right = 88.0
+offset_bottom = 40.0
+grow_vertical = 2
+tooltip_text = "Join Our Discord!"
+icon = SubResource("CompressedTexture2D_3w2g3")
+url = "https://discord.gg/uyHEdVgM5B"
+
 [node name="SettingsButton" type="Button" parent="Main/Top" unique_id=154902577]
 custom_minimum_size = Vector2(125, 50)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = -25.0
-offset_right = 175.0
-offset_bottom = 25.0
+offset_left = 110.0
+offset_top = -18.0
+offset_right = 235.0
+offset_bottom = 32.0
 grow_vertical = 2
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_rhj02")

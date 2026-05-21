@@ -31,36 +31,50 @@ func _enter_tree() -> void:
 # 	setup()
 
 func setup() -> void:
-	shrine_map_manager.setup(player, camera, hud)
-	map_manager.setup(player, camera, hud)
-	boss_map_manager.setup(player, camera, hud)
-	hud.setup(player)
-	time_damage.setup(player)
-	player.setup(hud, camera)
-	GlobalStats.setup(player)
-	transition.setup()
-	whale_spawner.setup(player, camera)
-	death_screen.setup()
-	call_deferred("map_entered", true)
-	## call  fade_out_loading() when above call is done 
-	## wait tille camera velocity is 0 then call fadeoutlaoding
+	var _t := func(label: String, start: int) -> void:
+		print("[setup] %s: %.2f ms" % [label, (Time.get_ticks_usec() - start) / 1000.0])
+	var _t0 := Time.get_ticks_usec()
+
 	await get_tree().process_frame
+	var _ts := Time.get_ticks_usec()
+	_t.call("process_frame", _t0)
+	shrine_map_manager.setup(player, camera, hud); _t.call("shrine_map_manager.setup", _ts); _ts = Time.get_ticks_usec()
+	map_manager.setup(player, camera, hud); _t.call("map_manager.setup", _ts); _ts = Time.get_ticks_usec()
+	boss_map_manager.setup(player, camera, hud); _t.call("boss_map_manager.setup", _ts); _ts = Time.get_ticks_usec()
+	hud.setup(player); _t.call("hud.setup", _ts); _ts = Time.get_ticks_usec()
+	time_damage.setup(player); _t.call("time_damage.setup", _ts); _ts = Time.get_ticks_usec()
+	player.setup(hud, camera); _t.call("player.setup", _ts); _ts = Time.get_ticks_usec()
+	GlobalStats.setup(player); _t.call("GlobalStats.setup", _ts); _ts = Time.get_ticks_usec()
+	transition.setup(); _t.call("transition.setup", _ts); _ts = Time.get_ticks_usec()
+	whale_spawner.setup(player, camera); _t.call("whale_spawner.setup", _ts); _ts = Time.get_ticks_usec()
+	death_screen.setup(); _t.call("death_screen.setup", _ts); _ts = Time.get_ticks_usec()
+	## call  fade_out_loading() when above call is done
+	## wait tille camera velocity is 0 then call fadeoutlaoding
+	# await get_tree().process_frame
 	## compare camera position each frame
-	var previous_position : Vector3 = camera.global_transform.origin
-	while true:
-		await get_tree().process_frame
-		var current_position : Vector3 = camera.global_transform.origin
-		if current_position.distance_to(previous_position) < 0.01:
-			break
-		previous_position = current_position
-	fade_out_loading()
+	# var previous_position : Vector3 = camera.global_transform.origin
+	# while true:
+	# call_deferred("map_entered", true)
+	await map_entered(true); _t.call("map_entered", _ts); _ts = Time.get_ticks_usec()
+
+	await get_tree().process_frame
+		# var current_position : Vector3 = camera.global_transform.origin
+		# if current_position.distance_to(previous_position) < 0.01:
+		# 	break
+		# previous_position = current_position
+
+	await fade_out_loading(); _t.call("fade_out_loading", _ts)
+	print("[setup] TOTAL: %.2f ms" % [(Time.get_ticks_usec() - _t0) / 1000.0])
+
+
 	
 
 func fade_out_loading() -> void:
 	var tween : Tween = create_tween()
 	tween.tween_property(loading_screen.get_child(0), "modulate:a", 0.0, 1.0)
 	tween.tween_callback(Callable(loading_screen, "hide"))
-	tween.play()
+	await tween.finished
+	
 
 
 func reset() -> void:
@@ -71,11 +85,11 @@ func reset() -> void:
 	hud.reset()
 
 func map_entered(first_time: bool) -> void:
+	var wave_info : WaveInfo = wave_manager.enter_wave()
 	if not first_time:
 		transition.transition_out()
 		await transition.tween.finished
 		
-	var wave_info : WaveInfo = wave_manager.enter_wave()
 	wave_text.display_wave_info(wave_info)
 	
 	match wave_info.room_type:

@@ -66,8 +66,9 @@ func _process(_delta: float) -> void:
 	_tick_input_buffer(_delta)
 	if hitstop.is_in_hitstop or disable_input:
 		return
-	check_state()
-	state_machine.current_state.deep_run(_delta)
+	if state_machine.current_state:
+		check_state()
+		state_machine.current_state.deep_run(_delta)
 
 func get_input() -> Vector2:
 	var input_vector : Vector2 = Vector2.ZERO
@@ -131,7 +132,7 @@ func neutral_state() -> void:
 		state_machine.set_state(idle_state)
 
 func _physics_process(delta: float) -> void:
-	if hitstop.is_in_hitstop:
+	if hitstop.is_in_hitstop or not state_machine.current_state:
 		return
 	state_machine.current_state.deep_fixed_run(delta)
 	knockback_component.handle_knockback()
