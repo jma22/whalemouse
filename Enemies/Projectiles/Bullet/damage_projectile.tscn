@@ -3,11 +3,26 @@
 [ext_resource type="Script" uid="uid://drkdyojqrhfs5" path="res://Enemies/Projectiles/Bullet/damage_projectile.gd" id="1_141wg"]
 [ext_resource type="Texture2D" uid="uid://dbq0m7li6ghnd" path="res://Enemies/Projectiles/spritesheet_17.png" id="3_60c7s"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_4o6ks"]
+[ext_resource type="Shader" uid="uid://djns3nno3ii2x" path="res://Enemies/Projectiles/Bullet/projectile_trail.gdshader" id="5_cqcl3"]
+[ext_resource type="Texture2D" uid="uid://fppr33xoqggt" path="res://VFX/Bomb/trail_gradient (1).png" id="6_766me"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="7_r8gj3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2sd3b"]
 height = 1.0
 radius = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_766me"]
+render_priority = 0
+shader = ExtResource("5_cqcl3")
+shader_parameter/trail_texture = ExtResource("6_766me")
+shader_parameter/color_head = Color(0.28670773, 0.1695297, 0.5360801, 1)
+shader_parameter/color_tail = Color(1, 0.2509804, 0.050980393, 0)
+shader_parameter/emission_energy = 1.0000000475
+shader_parameter/scroll_speed = 1.0
+shader_parameter/alpha_scale = 0.63600003021
+
+[sub_resource type="QuadMesh" id="QuadMesh_1kkxk"]
+size = Vector2(0.6, 0.25)
 
 [node name="DamageProjectile" type="Node3D" unique_id=1696160287 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_141wg")
@@ -32,5 +47,10 @@ texture = ExtResource("3_60c7s")
 hframes = 4
 script = ExtResource("4_4o6ks")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1230919828]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.066615105, 0.049974278, 0.018189149)
+material_override = SubResource("ShaderMaterial_766me")
+mesh = SubResource("QuadMesh_1kkxk")
 
 [editable path="InkBall/Hitbox"]

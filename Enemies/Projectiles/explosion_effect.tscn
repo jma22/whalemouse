@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://batkyrpdf5t4r"]
 
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="1_iflum"]
-[ext_resource type="Script" uid="uid://shr413vi6s3k" path="res://Enemies/Projectiles/explosion_effect.gd" id="1_u0sne"]
+[ext_resource type="Script" path="res://Enemies/Projectiles/explosion_effect.gd" id="1_u0sne"]
 [ext_resource type="Texture2D" uid="uid://cwcnartars2to" path="res://UI/HUD/circle.png" id="2_tsigb"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="3_gbdc5"]
 [ext_resource type="Script" uid="uid://cjxgwnhqj7blu" path="res://VFX/Impact/impact_vfx.gd" id="5_u7n1q"]

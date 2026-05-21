@@ -2,7 +2,7 @@ extends ProjectileBase
 class_name BombExplosion
 
 @export var bomb_sprite : SpriteManager
-@export var explosion_sprite : SpriteManager
+@export var explosion_sprite : Node3D
 @export var explosion_area : SpriteManager
 
 @export var explosion_hitbox : Hitbox
@@ -21,7 +21,7 @@ var charging_animation : AnimationClip = AnimationClip.new()
 
 func _ready() -> void:
 	bomb_sprite.setup(null)
-	explosion_sprite.setup(null)
+	# explosion_sprite.setup(null)
 	explosion_area.setup(null)
 	drop_animation.frame_numbers = [3,4,5,6]
 	charging_animation.frame_numbers = [0,1,2]

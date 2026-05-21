@@ -67,7 +67,7 @@ radius = 1.0
 [node name="Bomb" type="Node3D" unique_id=1350456821 node_paths=PackedStringArray("bomb_sprite", "explosion_sprite", "explosion_area", "explosion_hitbox", "enemy_hitbox")]
 script = ExtResource("1_3qop0")
 bomb_sprite = NodePath("Node3D/BombSprite")
-explosion_sprite = NodePath("")
+explosion_sprite = NodePath("Explosion")
 explosion_area = NodePath("Node3D/ExplosionArea")
 explosion_hitbox = NodePath("Node3D/Hitbox")
 enemy_hitbox = NodePath("Node3D/EnemyHitbox")
