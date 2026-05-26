@@ -20,6 +20,7 @@ alpha_cut = 2
 texture = ExtResource("2_oc6dm")
 hframes = 3
 script = ExtResource("3_v04my")
+top_down_shadow = true
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1305784290]

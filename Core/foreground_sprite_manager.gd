@@ -1,6 +1,8 @@
 extends SpriteManager
 
 class_name ForegroundSpriteManager
+var foreground_layer_number : int = 10
+
 
 func _ready() -> void:
 	super()
@@ -9,3 +11,5 @@ func _ready() -> void:
 		material_override = material_override.duplicate()  
 		if material_override.shader and _shader_has_uniform(material_override.shader, "texture_albedo"):
 			material_override.set_shader_parameter("texture_albedo", texture)
+	set_layer_mask_value(foreground_layer_number, true)
+	

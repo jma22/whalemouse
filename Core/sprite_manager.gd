@@ -12,6 +12,7 @@ var current_animation : AnimationClip = null
 var is_done : bool = false
 var tween : Tween = null
 @export var not_tilted : bool = false
+@export var top_down_shadow : bool = false
 
 func _ready() -> void:
 	if not not_tilted:
@@ -45,6 +46,11 @@ func setup(hitstop_: HitStop) -> void:
 		# material_override.next_pass.set_shader_parameter("texture_albedo", texture)
 	_configure_material_override()
 
+func set_shadow_layer() -> void:
+	if top_down_shadow:
+		set_layer_mask_value(Constants.LAYER_TOP_DOWN_SHADOW, true)
+	else:
+		set_layer_mask_value(Constants.DEFAULT_LAYER, true)
 func _configure_material_override() -> void:
 	pass
 
@@ -120,3 +126,8 @@ func die() -> Tween:
 	death_tween.tween_callback(Callable(self, "set_charge_color").bind(0))
 	death_tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2)
 	return death_tween
+
+
+# func set_render_priority(priority: int) -> void:
+# 	render_priority = priority
+# 	material_overlay.render_priority = priority + 1

@@ -246,7 +246,8 @@ func funny_wave() -> ChoiceWaveInfo:
 	}
 	var wave_fn : Callable = name_to_wave_fn.values().pick_random()
 	return wave_fn.call()
-\
+
+
 func sustain_wave() -> ChoiceWaveInfo:
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave

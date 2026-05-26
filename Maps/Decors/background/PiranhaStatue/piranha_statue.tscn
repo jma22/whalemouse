@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://w7kbqms7764e"]
+
+[ext_resource type="Material" uid="uid://bodll2kvtuixq" path="res://Maps/Decors/bottom_fog_mat.tres" id="1_ckies"]
+[ext_resource type="Texture2D" uid="uid://c2gum1mxgolhu" path="res://Maps/Decors/background/JellyfishStatue/2259 Sem Título_20260509000822.png" id="2_n4r64"]
+[ext_resource type="Script" uid="uid://dl6qm3d3ngxhn" path="res://Core/background_sprite_manager.gd" id="3_1j6pi"]
+
+[node name="Grave2" type="Node3D" unique_id=410137951]
+
+[node name="SpriteManager" type="Sprite3D" parent="." unique_id=106763812]
+transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, 0, 0)
+material_override = ExtResource("1_ckies")
+pixel_size = 0.003
+double_sided = false
+alpha_cut = 2
+render_priority = -5
+texture = ExtResource("2_n4r64")
+script = ExtResource("3_1j6pi")
+metadata/_custom_type_script = "uid://chgfscc28odqd"

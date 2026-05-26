@@ -8,8 +8,8 @@ var roll_direction : Vector2 = Vector2.ZERO
 # @export var roll_speed: float = 10.0	
 @export var dampening : float = 0.9
 @export var invulnerability_time : float = 0.2
-var bubbler_scene : PackedScene = load("res://VFX/bubbler.tscn")
-var explosion : PackedScene = load("res://Enemies/Projectiles/explosion.tscn")
+@export var bubbler_scene : PackedScene 
+@export var explosion : PackedScene 
 @export var audio_player : AudioStreamPlayer
 
 @export var roll_hitbox : Hitbox

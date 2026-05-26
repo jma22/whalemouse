@@ -11,9 +11,12 @@
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="4_yjwld"]
 [ext_resource type="PackedScene" uid="uid://dug54if5hlms1" path="res://Maps/wave_map.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://0yjpdk334va6" path="res://Maps/BossMap/boss_map.tscn" id="9_yjwld"]
+[ext_resource type="Script" uid="uid://buhg0itpeyl0f" path="res://MainScenes/World/death_screen.gd" id="10_7yh8k"]
 [ext_resource type="PackedScene" uid="uid://x7f2wmxt06cr" path="res://Maps/blessing_map.tscn" id="10_70uel"]
 [ext_resource type="Script" uid="uid://dgww6vx235lmc" path="res://MainScenes/World/wave_manager.gd" id="10_k3n1d"]
 [ext_resource type="Script" uid="uid://cubt1cwbbdoui" path="res://Player/TimeDamage/time_damage_manager.gd" id="10_wse8f"]
+[ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="11_06o2v"]
+[ext_resource type="Shader" uid="uid://ci7ay058jy1s4" path="res://MainScenes/World/death_screen.gdshader" id="11_mr785"]
 [ext_resource type="Script" uid="uid://c7xfxhg0efhmm" path="res://Player/Abilities/Whale/whale_spawner.gd" id="12_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://c4w7nbe2uu7w6" path="res://UI/HUD/wave_text/wave_text.tscn" id="15_4gkky"]
 [ext_resource type="Shader" path="res://UI/transition.gdshader" id="16_2u3nc"]
@@ -21,9 +24,19 @@
 [ext_resource type="Script" uid="uid://jplr3h3dtcn3" path="res://Maps/foreground_manager.gd" id="20_4gkky"]
 [ext_resource type="Material" uid="uid://cgry6ob5583dk" path="res://Maps/Decors/foreground/foreground_mat.tres" id="21_7yh8k"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gkky"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1kpv8"]
+render_priority = 10
+shader = ExtResource("11_mr785")
+shader_parameter/radius = 0.4630000219925
+shader_parameter/softness = 0.33600001596
+shader_parameter/darkness = 0.822000039045
+shader_parameter/overlay_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkxtn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etxs4"]
 resource_local_to_scene = true
-render_priority = 1
+render_priority = 127
 shader = ExtResource("4_yjwld")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
@@ -31,6 +44,14 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/charge_color = Color(1, 1, 1, 1)
 shader_parameter/mesh_bottom = -1.0
 shader_parameter/mesh_top = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06o2v"]
+render_priority = 0
+shader = ExtResource("11_mr785")
+shader_parameter/radius = 1.250000059375
+shader_parameter/softness = 0.58000002755
+shader_parameter/darkness = 1.0
+shader_parameter/overlay_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_2u3nc"]
 
@@ -61,7 +82,7 @@ background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
 ambient_light_energy = 1.29
 
-[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("player", "time_damage", "wave_manager", "camera", "whale_spawner", "map_manager", "shrine_map_manager", "boss_map_manager", "hud", "wave_text", "transition", "loading_screen")]
+[node name="World" type="Node3D" unique_id=511598235 node_paths=PackedStringArray("player", "time_damage", "wave_manager", "camera", "whale_spawner", "map_manager", "shrine_map_manager", "boss_map_manager", "hud", "wave_text", "transition", "loading_screen", "death_screen")]
 script = ExtResource("1_ioo17")
 player = NodePath("Player")
 time_damage = NodePath("TimeDamageManager")
@@ -75,9 +96,10 @@ hud = NodePath("HUD")
 wave_text = NodePath("WaveText")
 transition = NodePath("Transition")
 loading_screen = NodePath("Loading")
+death_screen = NodePath("Camera3D2/DeathScreen")
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=1358947501 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 1.4, 0.48)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 20.814243, 1.4, 0.48)
 fov = 80.0
 size = 23.388
 script = ExtResource("3_aqk2v")
@@ -88,22 +110,89 @@ boss_data = ExtResource("3_b6lyg")
 cinematic_data = ExtResource("4_07j78")
 current_data = ExtResource("3_lgfs0")
 
+[node name="DeathScreen" type="MeshInstance3D" parent="Camera3D2" unique_id=620699892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+material_override = SubResource("ShaderMaterial_1kpv8")
+mesh = SubResource("QuadMesh_kkxtn")
+script = ExtResource("10_7yh8k")
+
 [node name="Player" parent="." unique_id=1422586295 node_paths=PackedStringArray("time_damage_manager") groups=["Player"] instance=ExtResource("2_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
 time_damage_manager = NodePath("../TimeDamageManager")
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
-material_overlay = SubResource("ShaderMaterial_4gkky")
+material_overlay = SubResource("ShaderMaterial_etxs4")
+render_priority = 127
 frame = 2
+
+[node name="DashComponent" parent="Player" index="4" unique_id=1348110677]
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player" unique_id=1583101408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.925, 1.065, 0)
+visible = false
+layers = 524288
+light_color = Color(0.14509805, 0.16862746, 0.14509805, 1)
+light_energy = 0.18
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.447
+light_cull_mask = 4293918736
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+shadow_blur = 1.651
+shadow_caster_mask = 4293918721
+omni_range = 2.638
+omni_attenuation = -5.14
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager", "whale_spawner") instance=ExtResource("4_fth4m")]
 time_damage_manager = NodePath("../TimeDamageManager")
 whale_spawner = NodePath("../WhaleSpawner")
 
 [node name="Loading" type="CanvasLayer" parent="." unique_id=1658540834]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Loading" unique_id=1390502931]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.051522948, 0.010854677, 0.061102837, 1)
+
+[node name="LosingText" type="RichTextLabel" parent="Loading" unique_id=1261254302]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("11_06o2v")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Loading"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathScreen" type="CanvasLayer" parent="." unique_id=1252491478]
+visible = false
+
+[node name="LosingText" type="RichTextLabel" parent="DeathScreen" unique_id=1293506772]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("11_06o2v")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Good night!"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Overlay" type="ColorRect" parent="DeathScreen" unique_id=843707393]
+material = SubResource("ShaderMaterial_06o2v")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -144,11 +233,33 @@ script = ExtResource("10_k3n1d")
 [node name="WhaleSpawner" type="Node3D" parent="." unique_id=941104412]
 script = ExtResource("12_2o6r5")
 
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=77890478]
+transform = Transform3D(0.5778576, 0.50246453, -0.64312524, 0, 0.7880108, 0.6156615, 0.8161376, -0.3557647, 0.45535803, -3.2, 3.412, 1.741)
+visible = false
+layers = 524288
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+light_cull_mask = 4293918736
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+shadow_transmittance_bias = -3.224
+shadow_blur = 1.511
+shadow_caster_mask = 4293918721
+directional_shadow_mode = 1
+directional_shadow_fade_start = 0.0
+directional_shadow_max_distance = 26.5
+directional_shadow_pancake_size = 44.8
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=586166948]
-transform = Transform3D(0.4984877, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.86689675, -0.3068997, 0.39281368, -2.34, 2.6790254, 2.85)
-light_color = Color(0.57, 0.5858333, 0.76, 1)
-light_energy = 0.9
+transform = Transform3D(0.4984877, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.86689675, -0.3068997, 0.39281368, -2.2142575, 3.0029516, 3.900401)
+visible = false
+light_color = Color(0.43914196, 0.5914716, 0.91461784, 1)
+light_energy = 12.733
 light_indirect_energy = 1.828
+light_negative = true
 light_cull_mask = 4293918720
 shadow_enabled = true
 shadow_bias = 0.734
@@ -164,6 +275,7 @@ directional_shadow_pancake_size = 0.0
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1055621862]
 transform = Transform3D(0.49848774, 0.53371495, -0.683124, 0, 0.7880108, 0.6156615, 0.8668968, -0.3068997, 0.39281368, 0.088907, 1.4987466, 3.2288532)
+visible = false
 light_color = Color(0.57, 0.5858333, 0.76, 1)
 light_energy = 0.9
 light_indirect_energy = 1.828
@@ -192,22 +304,23 @@ omni_range = 14.161
 omni_attenuation = 0.378
 
 [node name="jellyfish light" type="DirectionalLight3D" parent="." unique_id=1443013789]
-transform = Transform3D(-0.85264015, -0.3694623, 0.3694623, 0, 0.70710677, 0.70710677, -0.5224986, 0.6029076, -0.6029076, -1.75333, 2.6790254, -0.009863377)
-layers = 2
-light_color = Color(0.57, 0.5858333, 0.76, 1)
-light_energy = 0.9
-light_indirect_energy = 1.828
-light_cull_mask = 4293918720
+transform = Transform3D(1, 0, 0, 0, -0.4524347, 0.89179754, 0, -0.89179754, -0.4524347, 0, 0, 0)
+layers = 524288
+light_color = Color(0.09019608, 0.13333334, 0.13725491, 1)
+light_energy = 1.488
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 50.66
+light_cull_mask = 4293918736
 shadow_enabled = true
-shadow_bias = 0.734
+shadow_bias = 0.0
 shadow_normal_bias = 0.0
-shadow_opacity = 0.85
 shadow_blur = 0.0
 shadow_caster_mask = 4293918722
 directional_shadow_mode = 0
 directional_shadow_split_1 = 0.211
-directional_shadow_fade_start = 0.155
-directional_shadow_max_distance = 4.5
+directional_shadow_fade_start = 0.0
+directional_shadow_max_distance = 6.8
 directional_shadow_pancake_size = 0.0
 
 [node name="ForegroundManager" type="Node3D" parent="." unique_id=420097038 node_paths=PackedStringArray("player", "camera")]

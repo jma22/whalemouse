@@ -2,7 +2,7 @@ extends ProjectileBase
 class_name BombExplosion
 
 @export var bomb_sprite : SpriteManager
-@export var explosion_sprite : SpriteManager
+@export var explosion_sprite : Node3D
 @export var explosion_area : SpriteManager
 
 @export var explosion_hitbox : Hitbox
@@ -21,7 +21,7 @@ var charging_animation : AnimationClip = AnimationClip.new()
 
 func _ready() -> void:
 	bomb_sprite.setup(null)
-	explosion_sprite.setup(null)
+	# explosion_sprite.setup(null)
 	explosion_area.setup(null)
 	drop_animation.frame_numbers = [3,4,5,6]
 	charging_animation.frame_numbers = [0,1,2]
@@ -47,7 +47,7 @@ func setup(source : Node3D) -> void:
 	enemy_hitbox.source = source
 	is_super_bomb = randf() < StatCalculator.get_super_bomb_chance()
 	if is_super_bomb:
-		explosion_sprite.modulate = Color(1, 0.0, 0.5)
+		# explosion_sprite.modulate = Color(1, 0.0, 0.5)
 		explosion_area.modulate = Color(1, 0.0, 0.5)
 		DebugLog.dbg_from(self,"super_bomb rolled (chance=%.2f) → doubled dmg" % StatCalculator.get_super_bomb_chance())
 	explosion_hitbox.damage = BASE_BOMB_DAMAGE * (2 if is_super_bomb else 1)
@@ -57,11 +57,11 @@ func setup(source : Node3D) -> void:
 	enemy_hitbox.set_behavior(ExplosionHitboxBehavior.make(is_super_bomb))
 	explosion_hitbox.set_behavior(ExplosionHitboxBehavior.make(is_super_bomb))
 	bomb_sprite.visible = true
-	explosion_sprite.visible = false
+	# explosion_sprite.visible = false
 	explosion_area.visible = true
 	bomb_sprite.set_charge_color(0)
 	explosion_area.set_charge_color(0)
-	explosion_sprite.set_flash_level(1)
+	# explosion_sprite.set_flash_level(1)
 
 
 	# charge up (parallel)
@@ -78,7 +78,8 @@ func setup(source : Node3D) -> void:
 	# explode
 	tween.tween_callback(explosion_hitbox.set_active.bind(true))
 	tween.tween_callback(enemy_hitbox.set_active.bind(true))
-	tween.tween_callback(explosion_sprite.show)
+	tween.tween_callback(explosion_sprite.play)
+	# tween.tween_callback(explosion_sprite.show)
 	tween.tween_callback(bomb_sprite.hide)
 	tween.tween_callback(explosion_area.set_flash_level.bind(1))
 	tween.tween_interval(0.1)
@@ -86,7 +87,7 @@ func setup(source : Node3D) -> void:
 	tween.tween_callback(enemy_hitbox.set_active.bind(false))
 
 	# fade out (parallel)
-	tween.tween_property(explosion_sprite, "modulate:a", 0.0, 0.4)
+	# tween.tween_property(explosion_sprite, "modulate:a", 0.0, 0.4)
 	tween.parallel().tween_property(explosion_area, "modulate:a", 0.0, 0.4)
 	tween.tween_callback(maybe_orb_drop)
 	# cleanup

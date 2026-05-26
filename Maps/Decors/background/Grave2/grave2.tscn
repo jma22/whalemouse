@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsf6kjws875nu"]
 
 [ext_resource type="Material" uid="uid://bodll2kvtuixq" path="res://Maps/Decors/bottom_fog_mat.tres" id="1_ot2hc"]
-[ext_resource type="Texture2D" uid="uid://cgsjg1mphbrpt" path="res://Maps/Decors/Untitled_Artwork (10).png" id="3_5ph7s"]
+[ext_resource type="Texture2D" uid="uid://batjxn2ipr3hq" path="res://Maps/Decors/background/Grave2/2259 Sem Título_20260508231036.png" id="2_54rbc"]
 [ext_resource type="Script" uid="uid://dl6qm3d3ngxhn" path="res://Core/background_sprite_manager.gd" id="3_ot2hc"]
 
 [node name="Grave2" type="Node3D" unique_id=410137951]
@@ -13,6 +13,6 @@ pixel_size = 0.003
 double_sided = false
 alpha_cut = 2
 render_priority = -5
-texture = ExtResource("3_5ph7s")
+texture = ExtResource("2_54rbc")
 script = ExtResource("3_ot2hc")
 metadata/_custom_type_script = "uid://chgfscc28odqd"
