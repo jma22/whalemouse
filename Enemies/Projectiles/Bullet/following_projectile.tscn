@@ -1,21 +1,20 @@
-[gd_scene format=3 uid="uid://cbn7e1ge0xaap"]
+[gd_scene format=3 uid="uid://bfvb5h22bgqls"]
 
-[ext_resource type="Script" uid="uid://drkdyojqrhfs5" path="res://Enemies/Projectiles/Bullet/damage_projectile.gd" id="1_141wg"]
-[ext_resource type="Texture2D" uid="uid://glw24nguv12h" path="res://Assets/Misc/circle.png" id="3_1kkxk"]
-[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_4o6ks"]
-[ext_resource type="Shader" uid="uid://djns3nno3ii2x" path="res://Enemies/Projectiles/Bullet/projectile_trail.gdshader" id="5_cqcl3"]
-[ext_resource type="Texture2D" uid="uid://fppr33xoqggt" path="res://VFX/Bomb/trail_gradient (1).png" id="6_766me"]
-[ext_resource type="Texture2D" uid="uid://cwcnartars2to" path="res://UI/HUD/circle.png" id="7_1kkxk"]
-[ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="7_r8gj3"]
+[ext_resource type="Script" uid="uid://ccajrcbxhumxg" path="res://Enemies/Projectiles/Bullet/following_projectile.gd" id="1_hegh1"]
+[ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="2_bg67v"]
+[ext_resource type="Texture2D" uid="uid://glw24nguv12h" path="res://Assets/Misc/circle.png" id="3_7allv"]
+[ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="4_3kgj5"]
+[ext_resource type="Shader" uid="uid://djns3nno3ii2x" path="res://Enemies/Projectiles/Bullet/projectile_trail.gdshader" id="5_y2gtr"]
+[ext_resource type="Texture2D" uid="uid://fppr33xoqggt" path="res://VFX/Bomb/trail_gradient (1).png" id="6_kircg"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2sd3b"]
 height = 1.0
-radius = 0.04
+radius = 0.05
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_766me"]
 render_priority = 0
-shader = ExtResource("5_cqcl3")
-shader_parameter/trail_texture = ExtResource("6_766me")
+shader = ExtResource("5_y2gtr")
+shader_parameter/trail_texture = ExtResource("6_kircg")
 shader_parameter/color_head = Color(0.28670773, 0.1695297, 0.5360801, 1)
 shader_parameter/color_tail = Color(1, 0.2509804, 0.050980393, 0)
 shader_parameter/emission_energy = 1.0000000475
@@ -34,7 +33,7 @@ texture_mode = 1
 curve = SubResource("Curve_1kkxk")
 
 [sub_resource type="Gradient" id="Gradient_1kkxk"]
-colors = PackedColorArray(2.8563159, 0.6051484, 0.65689933, 1, 1, 1, 0.08235294, 1)
+colors = PackedColorArray(0.08839999, 0.26, 0.122719996, 1, 0.47886223, 1, 0.48359072, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qrf7g"]
 gradient = SubResource("Gradient_1kkxk")
@@ -58,7 +57,7 @@ alpha_curve = SubResource("CurveTexture_qrf7g")
 transparency = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.92941177, 0.9490196, 0.9882353, 1)
-albedo_texture = ExtResource("7_1kkxk")
+albedo_texture = ExtResource("3_7allv")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -67,16 +66,16 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_2ykpl"]
 material = SubResource("StandardMaterial3D_krwws")
-size = Vector2(0.4, 0.4)
+size = Vector2(0.15, 0.15)
 
-[node name="DamageProjectile" type="Node3D" unique_id=1696160287 node_paths=PackedStringArray("hitbox", "projectile_sprite")]
-script = ExtResource("1_141wg")
+[node name="FollowingProjectile" type="Node3D" unique_id=1696160287 node_paths=PackedStringArray("hitbox", "projectile_sprite")]
+script = ExtResource("1_hegh1")
 hitbox = NodePath("InkBall/Hitbox")
 projectile_sprite = NodePath("InkBall/SpriteManager")
 
 [node name="InkBall" type="Node3D" parent="." unique_id=442570818]
 
-[node name="Hitbox" parent="InkBall" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("7_r8gj3")]
+[node name="Hitbox" parent="InkBall" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("2_bg67v")]
 visible = false
 owner_entity = NodePath("../..")
 damage_type = 1
@@ -91,11 +90,11 @@ modulate = Color(1, 0.48000002, 0.48000002, 1)
 
 [node name="SpriteManager" type="Sprite3D" parent="InkBall" unique_id=696407533]
 transform = Transform3D(0.3, 0, 0, 0, 0.10260605, 0.2819078, 0, -0.2819078, 0.10260605, 0, 0.042151928, 0)
-modulate = Color(0.58706677, 0.12240001, 0.68, 1)
+modulate = Color(0.34019712, 0.6664371, 0.30406862, 1)
 pixel_size = 0.001
 render_priority = 1
-texture = ExtResource("3_1kkxk")
-script = ExtResource("4_4o6ks")
+texture = ExtResource("3_7allv")
+script = ExtResource("4_3kgj5")
 top_down_shadow = true
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 

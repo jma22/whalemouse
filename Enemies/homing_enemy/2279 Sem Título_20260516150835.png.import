@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://glw24nguv12h"
-path.s3tc="res://.godot/imported/circle.png-f8b13dfd3b89214493426cf28f653afb.s3tc.ctex"
-path.etc2="res://.godot/imported/circle.png-f8b13dfd3b89214493426cf28f653afb.etc2.ctex"
+uid="uid://da8d4cwsdql3l"
+path.s3tc="res://.godot/imported/2279 Sem Título_20260516150835.png-63c396d0a76714e5131e10735541d026.s3tc.ctex"
+path.etc2="res://.godot/imported/2279 Sem Título_20260516150835.png-63c396d0a76714e5131e10735541d026.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Misc/circle.png"
-dest_files=["res://.godot/imported/circle.png-f8b13dfd3b89214493426cf28f653afb.s3tc.ctex", "res://.godot/imported/circle.png-f8b13dfd3b89214493426cf28f653afb.etc2.ctex"]
+source_file="res://Enemies/homing_enemy/2279 Sem Título_20260516150835.png"
+dest_files=["res://.godot/imported/2279 Sem Título_20260516150835.png-63c396d0a76714e5131e10735541d026.s3tc.ctex", "res://.godot/imported/2279 Sem Título_20260516150835.png-63c396d0a76714e5131e10735541d026.etc2.ctex"]
 
 [params]
 

@@ -60,9 +60,10 @@ func activate(setup_args: Array = []) -> void:
 		_container.add_child(_current)
 		if _current.has_method("reset"):
 			_current.call("reset")
+		_current.visible = true
+
 		if _current.has_method("setup"):
 			_current.callv("setup", setup_args)
-		_current.visible = true
 		_current.process_mode = PROCESS_MODE_INHERIT
 		
 

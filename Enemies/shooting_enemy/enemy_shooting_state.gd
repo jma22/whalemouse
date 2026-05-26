@@ -15,7 +15,7 @@ var target_position : Vector3
 # @export var hitbox : Hitbox
 
 # @export var audio_player : AudioStreamPlayer
-var bullet : PackedScene = load("res://Enemies/Projectiles/Bullet/damage_projectile.tscn")
+@export var bullet_scene : PackedScene
 var _original_direction : Vector3
 var _bullets_fired : int = 0
 
@@ -35,10 +35,10 @@ func enter() -> void:
 
 
 func shoot_dir(direction : Vector3) -> void:
-	var bullet_instance : Node = bullet.instantiate()
+	var bullet_instance : Node = bullet_scene.instantiate()
 	entity.get_parent().add_child(bullet_instance)
 	bullet_instance.global_transform.origin = entity.global_transform.origin
-	bullet_instance.setup(direction, entity, shooting_speed_multiplier)
+	bullet_instance.setup(direction, entity, shooting_speed_multiplier, entity.player)
 
 # func exit() -> void:
 # # 	pass

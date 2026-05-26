@@ -6,3 +6,7 @@
 /build/
 *.zip
 logs/
+
+# Claude Code
+.claude/
+CLAUDE.md

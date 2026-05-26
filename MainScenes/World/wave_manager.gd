@@ -451,10 +451,24 @@ func boss_wave() -> BossWaveInfo:
 func combat_wave() -> CombatWaveInfo:
 	var wave_info : CombatWaveInfo = CombatWaveInfo.new()
 	wave_info.wave_number = current_wave
-	wave_info.enemy_budget = (5 + combat_wave_number * 5) * (0 if Config.get_override("no_enemies") else 1)
-	wave_info.enemy_pool = current_enemy_pool
 	wave_info.room_type = WaveInfo.WaveType.Combat
-	wave_info.name = "Wave " + str(combat_wave_number+1)
+	wave_info.name = "Wave " + str(combat_wave_number + 1)
+
+	var forced_pool: String = Config.get_override("force_enemy_pool", "")
+	var forced_budget: int = Config.get_override("force_enemy_budget", 0)
+
+	if forced_pool != "":
+		var pool: Array[String] = []
+		pool.assign(forced_pool.split(","))
+		wave_info.enemy_pool = pool
+	else:
+		wave_info.enemy_pool = current_enemy_pool
+
+	if forced_budget > 0:
+		wave_info.enemy_budget = forced_budget
+	else:
+		wave_info.enemy_budget = (5 + combat_wave_number * 5) * (0 if Config.get_override("no_enemies") else 1)
+
 	return wave_info
 
 

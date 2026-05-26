@@ -7,19 +7,23 @@ var lifetime: float = 5.0
 @export var hitbox : Hitbox
 # var floor : FloorNav
 var speed_multiplier : float = 1.0
+@export var projectile_sprite : SpriteManager
 
 func _ready() -> void:
 	hitbox.damage_type = DamageInfo.DamageType.BULLET
 
-func setup(direction_: Vector3, source_: Node3D, speed_multiplier: float) -> void:
+func setup(direction_: Vector3, source_: Node3D, speed_multiplier_: float, _target: Node3D = null) -> void:
 	super.set_source(source_)
 	hitbox.source = source_
 	self.direction = direction_
 	self.direction.z *= Constants.VERTICAL_PERSRPECTIVE_SCALE
-	self.speed_multiplier = speed_multiplier
+	self.speed_multiplier = speed_multiplier_
 	hitbox.set_active(true)
 	# cleanup timer
 	get_tree().create_timer(lifetime).timeout.connect(queue_free)
+	## flip sprite based on direction
+	# if direction.x < 0:
+		
 	# floor = hitbox.owner_entity.get_floor()
 
 func _physics_process(delta: float) -> void:

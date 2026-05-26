@@ -48,22 +48,27 @@ func setup() -> void:
 	transition.setup(); _t.call("transition.setup", _ts); _ts = Time.get_ticks_usec()
 	whale_spawner.setup(player, camera); _t.call("whale_spawner.setup", _ts); _ts = Time.get_ticks_usec()
 	death_screen.setup(); _t.call("death_screen.setup", _ts); _ts = Time.get_ticks_usec()
+	var wave_info := map_entered_setup(); _t.call("map_entered_setup", _ts); _ts = Time.get_ticks_usec()
 	## call  fade_out_loading() when above call is done
 	## wait tille camera velocity is 0 then call fadeoutlaoding
 	# await get_tree().process_frame
 	## compare camera position each frame
-	# var previous_position : Vector3 = camera.global_transform.origin
-	# while true:
-	# call_deferred("map_entered", true)
-	await map_entered(true); _t.call("map_entered", _ts); _ts = Time.get_ticks_usec()
+	var previous_position : Vector3 = camera.global_transform.origin
+	var camera_settle_start := Time.get_ticks_msec()
+	while true:
+		await get_tree().process_frame
+		var current_position : Vector3 = camera.global_transform.origin
+		if current_position.distance_to(previous_position) < 0.01:
+			break
+		if Time.get_ticks_msec() - camera_settle_start > 3000:
+			DebugLog.dbg_from(self, "camera settle timed out after 3s")
+			break
+		previous_position = current_position
 
-	await get_tree().process_frame
-		# var current_position : Vector3 = camera.global_transform.origin
-		# if current_position.distance_to(previous_position) < 0.01:
-		# 	break
-		# previous_position = current_position
+	_ts = Time.get_ticks_usec()
+	await fade_out_loading(); _t.call("fade_out_loading", _ts); _ts = Time.get_ticks_usec()
+	await map_entered_animate(wave_info, true); _t.call("map_entered_animate", _ts); _ts = Time.get_ticks_usec()
 
-	await fade_out_loading(); _t.call("fade_out_loading", _ts)
 	print("[setup] TOTAL: %.2f ms" % [(Time.get_ticks_usec() - _t0) / 1000.0])
 
 
@@ -71,7 +76,7 @@ func setup() -> void:
 
 func fade_out_loading() -> void:
 	var tween : Tween = create_tween()
-	tween.tween_property(loading_screen.get_child(0), "modulate:a", 0.0, 1.0)
+	tween.tween_property(loading_screen.get_child(0), "modulate:a", 0.0, 0.4)
 	tween.tween_callback(Callable(loading_screen, "hide"))
 	await tween.finished
 	
@@ -84,39 +89,35 @@ func reset() -> void:
 	wave_manager.reset()
 	hud.reset()
 
-func map_entered(first_time: bool) -> void:
-	var wave_info : WaveInfo = wave_manager.enter_wave()
-	if not first_time:
-		transition.transition_out()
-		await transition.tween.finished
-		
-	wave_text.display_wave_info(wave_info)
-	
+func map_entered() -> void:
+	var wave_info := map_entered_setup()
+	await map_entered_animate(wave_info, false)
+
+func map_entered_setup() -> WaveInfo:
+	var wave_info := wave_manager.enter_wave()
 	match wave_info.room_type:
 		WaveInfo.WaveType.Combat:
-			# player.global_transform.origin = Vector3.ZERO
 			map_manager.start_room(wave_info)
 			whale_spawner.enter_map(map_manager)
 			player.enter_map(map_manager)
 		WaveInfo.WaveType.Shrine:
-			# player.global_transform.origin = Vector3(20, 0, 0)
 			shrine_map_manager.start_room(wave_info)
 			player.enter_map(shrine_map_manager)
-			# whale_spawner.enter_map(shrine_map_manager)
 		WaveInfo.WaveType.Boss:
-			# player.global_transform.origin = Vector3(20, 0, 0)
 			boss_map_manager.start_room(wave_info)
 			whale_spawner.enter_map(boss_map_manager)
 			player.enter_map(boss_map_manager)
+	return wave_info
 
-
+func map_entered_animate(wave_info: WaveInfo, first_time: bool) -> void:
+	if not first_time:
+		transition.transition_out()
+		await transition.tween.finished
+	wave_text.display_wave_info(wave_info)
 	transition.transition_in()
 	await transition.tween.finished
-	# await wave_text.tween.finished
 	if wave_manager.current_wave_state == WaveManager.WaveState.INTRO_BLESSING:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.INTRO)
-	# if wave_manager.current_wave == 11:
-		# TutorialManager.show_tutorial(TutorialManager.TutorialEnum.GOODLUCK)
 	if wave_manager.current_wave_state == WaveManager.WaveState.INTRO_COMBAT:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.FIRSTARRIVE)
 	if wave_manager.current_wave_state == WaveManager.WaveState.HARD_CURSE:
@@ -129,7 +130,7 @@ func map_entered(first_time: bool) -> void:
 
 func next_wave() -> void:
 	wave_manager.exit_wave()
-	map_entered(false)
+	map_entered()
 
 
 func gameover_animation() -> void:

@@ -50,7 +50,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 height = 0.5
 radius = 0.25
 
-[sub_resource type="Shader" id="Shader_sm0op"]
+[sub_resource type="Shader" id="Shader_8viyr"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_add, depth_prepass_alpha;
@@ -81,10 +81,10 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_76lrf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm0op"]
 resource_local_to_scene = true
 render_priority = 7
-shader = SubResource("Shader_sm0op")
+shader = SubResource("Shader_8viyr")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -212,7 +212,7 @@ shape = SubResource("CylinderShape3D_b1ygp")
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.4999999, 0.8660253, 0, -0.8660253, 0.4999999, 0.002998352, 0.12595028, -0.22368203)
 layers = 1
-material_overlay = SubResource("ShaderMaterial_76lrf")
+material_overlay = SubResource("ShaderMaterial_sm0op")
 alpha_scissor_threshold = 0.06
 alpha_antialiasing_edge = 1.0
 render_priority = 7

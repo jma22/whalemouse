@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://s8tpeq1mavfq" path="res://Assets/ui/hub/hub_layout.png" id="3_gujdv"]
 [ext_resource type="FontFile" uid="uid://bwsnc0wy0lqck" path="res://resources/fonts/Schoolbell-Regular.ttf" id="4_yohk2"]
 [ext_resource type="PackedScene" uid="uid://drqc0hrgfwup3" path="res://MainScenes/MouseHub/RelicScene/relic_scene.tscn" id="5_3fr6f"]
+[ext_resource type="Texture2D" uid="uid://drlhhwf2sp75u" path="res://MainScenes/MouseHub/Main/social_buttons/discord.tres" id="7_cgku6"]
 [ext_resource type="PackedScene" uid="uid://dmvxmv8gjshfv" path="res://MainScenes/MouseHub/Main/social_buttons/link_button.tscn" id="7_j51mk"]
 [ext_resource type="Texture2D" uid="uid://b0p5rmy87dnmb" path="res://Assets/Misc/single_pixel.png" id="9_3fr6f"]
 [ext_resource type="PackedScene" uid="uid://c2bw4f3d8k8uy" path="res://MainScenes/MouseHub/Main/book_screen.tscn" id="9_j51mk"]
@@ -17,9 +18,6 @@ unicode = 32
 
 [sub_resource type="Shortcut" id="Shortcut_rhj02"]
 events = [SubResource("InputEventKey_gujdv")]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3w2g3"]
-load_path = "res://.godot/imported/vecteezy_discord-logo-png-discord-icon-transparent-png_18930718.png-b490e5b3762156cf4c3ccf28b98829dd.ctex"
 
 [node name="HubWorld" type="CanvasLayer" unique_id=324062007 node_paths=PackedStringArray("game_button", "difficulty_label")]
 script = ExtResource("2_ak3fd")
@@ -212,7 +210,7 @@ offset_right = 88.0
 offset_bottom = 40.0
 grow_vertical = 2
 tooltip_text = "Join Our Discord!"
-icon = SubResource("CompressedTexture2D_3w2g3")
+icon = ExtResource("7_cgku6")
 url = "https://discord.gg/uyHEdVgM5B"
 
 [node name="SettingsButton" type="Button" parent="Main/Top" unique_id=154902577]

@@ -70,6 +70,14 @@ const enemy_data = {
 		"spawn_type": "ranged",
 		"name": "Tosser",
 	},
+	"HomingEnemy": {
+		"scene": preload("res://Enemies/homing_enemy/homing_enemy.tscn"),
+		"cost": 5,
+		"max_per_wave": 2,
+		"min_depth": 3,
+		"spawn_type": "ranged",
+		"name": "Homing",
+	},
 	"AnglerEye": {
 		"scene": preload("res://Enemies/AnglerBoss/AnglerEye/angler_eye.tscn"),
 		"cost": 99,
