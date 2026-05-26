@@ -64,10 +64,10 @@ shader_parameter/mesh_top = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dlpa8"]
 radius = 1.0
 
-[node name="Bomb" type="Node3D" unique_id=1350456821 node_paths=PackedStringArray("bomb_sprite", "explosion_sprite", "explosion_area", "explosion_hitbox", "enemy_hitbox")]
+[node name="Bomb" type="Node3D" unique_id=1350456821 node_paths=PackedStringArray("bomb_sprite", "explosion_fx", "explosion_area", "explosion_hitbox", "enemy_hitbox")]
 script = ExtResource("1_3qop0")
 bomb_sprite = NodePath("Node3D/BombSprite")
-explosion_sprite = NodePath("Explosion")
+explosion_fx = NodePath("ExplosionFX")
 explosion_area = NodePath("Node3D/ExplosionArea")
 explosion_hitbox = NodePath("Node3D/Hitbox")
 enemy_hitbox = NodePath("Node3D/EnemyHitbox")
@@ -77,7 +77,7 @@ xp_spawner_scene = ExtResource("2_dx1dy")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="BombSprite" type="Sprite3D" parent="Node3D" unique_id=1956345105]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0.5663419, -0.5873897)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.34202012, 0.93969256, 0, -0.93969256, 0.34202012, 0, 0.41878745, -0.58738965)
 material_overlay = SubResource("ShaderMaterial_dx1dy")
 pixel_size = 0.005
 alpha_cut = 2
@@ -89,7 +89,7 @@ frames_per_second = 10.0
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="ExplosionArea" type="Sprite3D" parent="Node3D" unique_id=1727746364]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(0.9999998, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 0, 0, -0.20901449)
 material_overlay = SubResource("ShaderMaterial_3il2m")
 modulate = Color(1, 1, 1, 0.374)
 render_priority = 1
@@ -118,4 +118,6 @@ metadata/_custom_type_script = "uid://dgoogb57kwni4"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Hitbox" unique_id=1362833944]
 shape = SubResource("CylinderShape3D_dlpa8")
 
-[node name="Explosion" parent="." unique_id=461420878 instance=ExtResource("8_fcwjv")]
+[node name="ExplosionFX" parent="." unique_id=461420878 instance=ExtResource("8_fcwjv")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+particle_scale = 3.0

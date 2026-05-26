@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c0kuxp5ftpu4b" path="res://Enemies/shooting_enemy/enemy_shooting_state.gd" id="11_agh0u"]
 [ext_resource type="PackedScene" uid="uid://bfvb5h22bgqls" path="res://Enemies/Projectiles/Bullet/following_projectile.tscn" id="12_3o7jx"]
 [ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="12_a6clw"]
+[ext_resource type="Script" uid="uid://kf4os00ijdmd" path="res://Core/Components/projectile_shooter.gd" id="12_yw1yw"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="13_oqwf5"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="14_f4etj"]
 [ext_resource type="Texture2D" uid="uid://da8d4cwsdql3l" path="res://Enemies/homing_enemy/2279 Sem Título_20260516150835.png" id="15_w66ud"]
@@ -33,7 +34,7 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftl2j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7qrn"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("14_f4etj")
@@ -92,13 +93,14 @@ attack_state = NodePath("EnemyShootingState")
 cooldown_state = NodePath("../EnemyIdleState")
 metadata/_custom_type_script = "uid://e0mqbimeypka"
 
-[node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169]
+[node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169 node_paths=PackedStringArray("projectile_shooter")]
 script = ExtResource("11_agh0u")
-shooting_time = 0.0
-shooting_speed_multiplier = 0.9
+projectile_shooter = NodePath("ProjectileShooter")
+
+[node name="ProjectileShooter" type="Node3D" parent="StateMachine/EnemyAttackParentState/EnemyShootingState" unique_id=326295165]
+script = ExtResource("12_yw1yw")
+projectile_scene = ExtResource("12_3o7jx")
 base_num_bullets = 1
-angle_between_bullets_degrees = 15.0
-bullet_scene = ExtResource("12_3o7jx")
 
 [node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
 script = ExtResource("12_a6clw")
@@ -112,10 +114,13 @@ knockback_mult = 2.0
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, 0.08916238, -0.23256248)
-material_overlay = SubResource("ShaderMaterial_ftl2j")
+material_overlay = SubResource("ShaderMaterial_i7qrn")
 texture = ExtResource("15_w66ud")
 hframes = 1
 layer_number = 2
+
+[node name="ShieldSprite" parent="EnemyCoreComponents/ShieldComponent" parent_id_path=PackedInt32Array(1215065551, 25984567) index="0" unique_id=72354988]
+texture = null
 
 [node name="EnemyStatusDisplay" parent="EnemyCoreComponents" index="9" unique_id=1830548483]
 transform = Transform3D(0.9999912, -0.004206231, 0, 0.0014386157, 0.34201714, 0.9396926, -0.003952564, -0.93968433, 0.34202012, -0.00020352105, 0.17616509, -0.44268832)

@@ -4,18 +4,22 @@
 [ext_resource type="Script" uid="uid://hpr1ljl6r1qy" path="res://Enemies/Projectiles/InkBall/ink_ball.gd" id="1_ywkbn"]
 [ext_resource type="Script" uid="uid://chgfscc28odqd" path="res://Core/sprite_manager.gd" id="2_5u0h0"]
 [ext_resource type="Texture2D" uid="uid://dbq0m7li6ghnd" path="res://Enemies/Projectiles/spritesheet_17.png" id="3_ray6h"]
+[ext_resource type="PackedScene" uid="uid://cbn7e1ge0xaap" path="res://Enemies/Projectiles/Bullet/damage_projectile.tscn" id="3_ywaoe"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="4_2sd3b"]
 [ext_resource type="Texture2D" uid="uid://c8tucba4rdxb1" path="res://Player/Abilities/Whale/Whale (1).png" id="4_5rn6a"]
 [ext_resource type="PackedScene" uid="uid://c7lfuhjagfqay" path="res://Core/Components/hitbox.tscn" id="6_2sd3b"]
+[ext_resource type="PackedScene" uid="uid://batkyrpdf5t4r" path="res://Enemies/Projectiles/explosion_effect.tscn" id="9_py44u"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2sd3b"]
 height = 1.0
+radius = 0.31591797
 
-[node name="Node3D" type="Node3D" unique_id=1520190988 node_paths=PackedStringArray("ink_ball", "indicator", "hitbox")]
+[node name="Node3D" type="Node3D" unique_id=1520190988 node_paths=PackedStringArray("ink_ball", "indicator", "hitbox", "explosion_fx")]
 script = ExtResource("1_ywkbn")
 ink_ball = NodePath("InkBall")
 indicator = NodePath("Indicator")
 hitbox = NodePath("Indicator/Hitbox")
+explosion_fx = NodePath("Indicator/Explosion_FX")
 
 [node name="InkBall" type="Node3D" parent="." unique_id=442570818]
 
@@ -24,8 +28,11 @@ script = ExtResource("1_plwrt")
 root = NodePath("../..")
 arc_component = NodePath("../ArcComponent")
 
+[node name="DamageProjectile" parent="InkBall" unique_id=1696160287 instance=ExtResource("3_ywaoe")]
+
 [node name="SpriteManager" type="Sprite3D" parent="InkBall" unique_id=696407533]
-transform = Transform3D(3, 0, 0, 0, 1.0260605, 2.819078, 0, -2.819078, 1.0260605, 0, 0.0003566742, -0.0019249916)
+transform = Transform3D(3, 0, 0, 0, 1.0260606, 2.819078, 0, -2.819078, 1.0260606, 0, 0.0003566742, -0.0019249916)
+visible = false
 pixel_size = 0.001
 render_priority = 1
 texture = ExtResource("3_ray6h")
@@ -38,19 +45,25 @@ script = ExtResource("4_2sd3b")
 
 [node name="Indicator" type="Node3D" parent="." unique_id=1202412485]
 
-[node name="SpriteManager" type="Sprite3D" parent="Indicator" unique_id=1471458098]
-transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0)
+[node name="IndicatorSprite" type="Sprite3D" parent="Indicator" unique_id=1471458098]
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, -2.5, 0, 2.5, -1.09278474e-07, 0, 0, 0)
 modulate = Color(1, 0.32, 0.32, 1)
 pixel_size = 0.001
 texture = ExtResource("4_5rn6a")
 hframes = 7
 script = ExtResource("2_5u0h0")
+not_tilted = true
 metadata/_custom_type_script = "uid://chgfscc28odqd"
 
 [node name="Hitbox" parent="Indicator" unique_id=754444443 node_paths=PackedStringArray("owner_entity") instance=ExtResource("6_2sd3b")]
+visible = false
 owner_entity = NodePath("../..")
 
 [node name="CollisionShape3D" parent="Indicator/Hitbox" index="0" unique_id=1405177479]
 shape = SubResource("CylinderShape3D_2sd3b")
+
+[node name="Explosion_FX" parent="Indicator" unique_id=461420878 instance=ExtResource("9_py44u")]
+is_mini_explosion = true
+particle_scale = 1.5
 
 [editable path="Indicator/Hitbox"]

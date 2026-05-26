@@ -459,7 +459,8 @@ func combat_wave() -> CombatWaveInfo:
 
 	if forced_pool != "":
 		var pool: Array[String] = []
-		pool.assign(forced_pool.split(","))
+		for entry in forced_pool.split(","):
+			pool.append(entry.strip_edges())
 		wave_info.enemy_pool = pool
 	else:
 		wave_info.enemy_pool = current_enemy_pool

@@ -2,7 +2,7 @@ extends ProjectileBase
 class_name BombExplosion
 
 @export var bomb_sprite : SpriteManager
-@export var explosion_sprite : Node3D
+@export var explosion_fx : ExplosionEffect
 @export var explosion_area : SpriteManager
 
 @export var explosion_hitbox : Hitbox
@@ -73,15 +73,15 @@ func setup(source : Node3D) -> void:
 
 	DebugLog.dbg_from(self,"Bomb planted, will explode in %.2f seconds" % time_to_explode)
 	tween.tween_property(bomb_sprite, "material_overlay:shader_parameter/charge_level", 1.0, time_to_explode)
-	tween.parallel().tween_property(explosion_area, "material_overlay:shader_parameter/charge_level", 1.0, time_to_explode)
+	# tween.parallel().tween_property(explosion_area, "material_overlay:shader_parameter/charge_level", 1.0, time_to_explode)
 
 	# explode
 	tween.tween_callback(explosion_hitbox.set_active.bind(true))
 	tween.tween_callback(enemy_hitbox.set_active.bind(true))
-	tween.tween_callback(explosion_sprite.play)
+	tween.tween_callback(explosion_fx.play)
 	# tween.tween_callback(explosion_sprite.show)
 	tween.tween_callback(bomb_sprite.hide)
-	tween.tween_callback(explosion_area.set_flash_level.bind(1))
+	# tween.tween_callback(explosion_area.set_flash_level.bind(1))
 	tween.tween_interval(0.1)
 	tween.tween_callback(explosion_hitbox.set_active.bind(false))
 	tween.tween_callback(enemy_hitbox.set_active.bind(false))

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="10_yf58v"]
 [ext_resource type="Script" uid="uid://y3u7axpv78ck" path="res://Enemies/EnemyStates/enemy_charge_state_base.gd" id="12_ne1wh"]
 [ext_resource type="PackedScene" uid="uid://cbn7e1ge0xaap" path="res://Enemies/Projectiles/Bullet/damage_projectile.tscn" id="12_p2l60"]
+[ext_resource type="Script" path="res://Core/Components/projectile_shooter.gd" id="15_psh00"]
 [ext_resource type="Shader" uid="uid://glbybx1m8ka2" path="res://Enemies/Shaders/enemy_overlay.gdshader" id="14_4hmcw"]
 [ext_resource type="Texture2D" uid="uid://dx6ijhgg0v4e2" path="res://Enemies/shooting_enemy/2208_Sem_Titulo_20260414171619.png" id="14_ne1wh"]
 
@@ -93,12 +94,16 @@ attack_state = NodePath("EnemyShootingState")
 cooldown_state = NodePath("../EnemyIdleState")
 metadata/_custom_type_script = "uid://e0mqbimeypka"
 
-[node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169]
+[node name="EnemyShootingState" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=1119467169 node_paths=PackedStringArray("projectile_shooter")]
 script = ExtResource("10_w7tql")
+projectile_shooter = NodePath("ProjectileShooter")
+
+[node name="ProjectileShooter" type="Node3D" parent="StateMachine/EnemyAttackParentState/EnemyShootingState"]
+script = ExtResource("15_psh00")
+projectile_scene = ExtResource("12_p2l60")
+speed_multiplier = 0.9
 shooting_time = 0.0
-shooting_speed_multiplier = 0.9
 angle_between_bullets_degrees = 15.0
-bullet_scene = ExtResource("12_p2l60")
 
 [node name="EnemyChargeStateBase" type="Node3D" parent="StateMachine/EnemyAttackParentState" unique_id=227643490]
 script = ExtResource("12_ne1wh")
