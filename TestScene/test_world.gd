@@ -5,7 +5,7 @@ extends Node3D
 @onready var hud : HUD = $HUD
 @onready var map : MapManagerBase = $Map
 @onready var camera : Camera3D = $Camera3D
-@onready var whale_spawner : WhaleSpawner = $WhaleSpawner
+# @onready var whale_spawner : WhaleSpawner = $WhaleSpawner
 
 # @export var enemy : EnemyBase
 

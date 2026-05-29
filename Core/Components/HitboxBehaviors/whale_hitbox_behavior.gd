@@ -51,8 +51,8 @@ func on_kill(_info: DamageInfo, _target: Node3D) -> void:
 	
 	if StatCalculator.on_beluga_kill_cd_refund_percent() > 0:
 		_dbg("on_beluga_kill_cd_refund_percent → attempting to refund whale cooldown for %s" % DebugLog.entity_name(hitbox.get_source()))
-		if hitbox.get_source() and hitbox.get_source().has_method("refund_whale_cooldown"):
-			hitbox.get_source().refund_whale_cooldown(StatCalculator.on_beluga_kill_cd_refund_percent())
+		if hitbox.get_source():
+			AbilityCaster.instance.refund_ability_cooldown(StatCalculator.on_beluga_kill_cd_refund_percent())
 			_dbg("on_beluga_kill_cd_refund_percent → refunded %s%% whale cooldown for %s" % [
 				StatCalculator.on_beluga_kill_cd_refund_percent() * 100, DebugLog.entity_name(hitbox.get_source())
 			])

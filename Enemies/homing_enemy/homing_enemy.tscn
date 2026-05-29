@@ -34,7 +34,7 @@ frame_numbers = Array[int]([0, 1, 2])
 name = "hurt"
 metadata/_custom_type_script = "uid://bfemb7cym2htn"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7qrn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yw1yw"]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("14_f4etj")
@@ -97,7 +97,7 @@ metadata/_custom_type_script = "uid://e0mqbimeypka"
 script = ExtResource("11_agh0u")
 projectile_shooter = NodePath("ProjectileShooter")
 
-[node name="ProjectileShooter" type="Node3D" parent="StateMachine/EnemyAttackParentState/EnemyShootingState" unique_id=326295165]
+[node name="ProjectileShooter" type="Node3D" parent="StateMachine/EnemyAttackParentState/EnemyShootingState" unique_id=678265839]
 script = ExtResource("12_yw1yw")
 projectile_scene = ExtResource("12_3o7jx")
 base_num_bullets = 1
@@ -114,7 +114,7 @@ knockback_mult = 2.0
 
 [node name="SpriteManager" parent="EnemyCoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.34202012, 0.9396925, 0, -0.9396925, 0.34202012, 0, 0.08916238, -0.23256248)
-material_overlay = SubResource("ShaderMaterial_i7qrn")
+material_overlay = SubResource("ShaderMaterial_yw1yw")
 texture = ExtResource("15_w66ud")
 hframes = 1
 layer_number = 2

@@ -10,6 +10,7 @@ class_name Player extends CharacterBody3D
 @onready var hurt_state : HurtState = $StateMachine/HurtState
 @onready var roll_state : RollState = $StateMachine/RollState
 @onready var dead_state : DeadState = $StateMachine/DeadState
+@onready var grapple_state : GrappleState = $StateMachine/GrappleState
 @export var attack_state : AttackState
 @export var thorn_hitbox : Hitbox
 
@@ -261,5 +262,9 @@ func get_initial_health() -> int:
 func set_pause(value: bool) -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
 	time_damage_manager.set_pause(value)
+
+func get_projectile_flat() -> int:
+	# return StatCalculator.get_projectile_flat()
+	return 0
 
 	

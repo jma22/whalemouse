@@ -6,9 +6,9 @@ class_name Whale
 @export var audio_player : AudioStreamPlayer
 @export var hitbox : Hitbox
 
-var whale_spawner : WhaleSpawner
+var whale_spawner : WhaleAbility
 
-func play(whale_spawner_ : WhaleSpawner) -> void:
+func play(whale_spawner_ : WhaleAbility) -> void:
 	self.whale_spawner = whale_spawner_
 
 	hitbox.set_damage(1)
@@ -24,8 +24,8 @@ func camera_shake_callback() -> void:
 	if GlobalStats.current_run_stats["whale_size"] >= 3:
 		whale_spawner.camera_shake_callback()
 
-func refund_whale_cooldown(percent : float) -> void:
-	whale_spawner.refund_whale_cooldown(percent)
+
+
 # func whale_up() -> void:
 # 	var tween = get_tree().create_tween()
 # 	var original_y = whale_sprite.translation.y

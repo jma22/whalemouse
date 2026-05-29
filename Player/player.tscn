@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://chvfsfwdfquxl" path="res://Player/States/dead_state.gd" id="22_8viyr"]
 [ext_resource type="Script" uid="uid://ccb88yqq2eri3" path="res://Core/ArcComponent.gd" id="22_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://cnjqg8b31hol6" path="res://SFX/attack.wav" id="22_hshwv"]
+[ext_resource type="Script" uid="uid://dr0ses7obfulx" path="res://Player/Abilities/Grappling/grapple_state.gd.gd" id="23_sm0op"]
 [ext_resource type="PackedScene" uid="uid://dwnxgyytrsd53" path="res://Core/core_components.tscn" id="25_qemgg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
@@ -50,7 +51,7 @@ metadata/_custom_type_script = "uid://bfemb7cym2htn"
 height = 0.5
 radius = 0.25
 
-[sub_resource type="Shader" id="Shader_8viyr"]
+[sub_resource type="Shader" id="Shader_76lrf"]
 resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_add, depth_prepass_alpha;
@@ -81,10 +82,10 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm0op"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efx54"]
 resource_local_to_scene = true
 render_priority = 7
-shader = SubResource("Shader_8viyr")
+shader = SubResource("Shader_76lrf")
 shader_parameter/charge_level = 0.0
 shader_parameter/flash_level = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -195,6 +196,14 @@ transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0,
 script = ExtResource("22_8viyr")
 animation = SubResource("Resource_8viyr")
 
+[node name="GrappleState" type="Node3D" parent="StateMachine" unique_id=34394627]
+script = ExtResource("23_sm0op")
+animation = ExtResource("12_u1c27")
+fps = null
+dampening = null
+invulnerability_time = null
+bubbler_scene = ExtResource("19_8mwp6")
+
 [node name="CoreComponents" parent="." unique_id=1215065551 instance=ExtResource("25_qemgg")]
 
 [node name="KnockbackComponent" parent="CoreComponents" index="0" unique_id=1664003806]
@@ -212,7 +221,7 @@ shape = SubResource("CylinderShape3D_b1ygp")
 [node name="SpriteManager" parent="CoreComponents" index="4" unique_id=789758305]
 transform = Transform3D(1, 0, 0, 0, 0.4999999, 0.8660253, 0, -0.8660253, 0.4999999, 0.002998352, 0.12595028, -0.22368203)
 layers = 1
-material_overlay = SubResource("ShaderMaterial_sm0op")
+material_overlay = SubResource("ShaderMaterial_efx54")
 alpha_scissor_threshold = 0.06
 alpha_antialiasing_edge = 1.0
 render_priority = 7

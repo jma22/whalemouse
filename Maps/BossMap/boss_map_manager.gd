@@ -1,7 +1,6 @@
 extends MapManagerBase
 class_name BossMapManager
 
-@export var enemy_spawner : EnemySpawner
 @export var boss_spawn : Node3D
 @export var intro_animation : IntroAnimation
 

@@ -102,7 +102,7 @@ func _state_to_wave_info(state : WaveState) -> WaveInfo:
 		WaveState.INTRO_COMBAT:
 			return intro_combat_wave()
 		WaveState.INTRO_BLESSING:
-			return intro_blessing()
+			return ability_blessing()
 		WaveState.QUEUED_WAVE:
 			return queued_wave_infos[0]
 		WaveState.BOSS_CHOICE:
@@ -125,16 +125,16 @@ func _state_to_wave_info(state : WaveState) -> WaveInfo:
 
 
 
-func intro_blessing() -> ChoiceWaveInfo:
-	if StatCalculator.has_dash() and StatCalculator.has_beluga():
+func ability_blessing() -> ChoiceWaveInfo:
+	if AbilityCaster.instance.has_ability():
 		return any_blessing_wave()
 	var wave_info : ChoiceWaveInfo = ChoiceWaveInfo.new()
 	wave_info.wave_number = current_wave
 	var upgrades : Array[UpgradeData] = []
-	if not StatCalculator.has_dash():
-		upgrades.append(UpgradeRegistry.get_by_name("has_dash"))
-	if not StatCalculator.has_beluga():
-		upgrades.append(UpgradeRegistry.get_by_name("has_beluga"))
+
+	# upgrades.append(UpgradeRegistry.get_by_name("beluga_ability"))
+	upgrades.append(UpgradeRegistry.get_by_name("grappling_ability"))
+	upgrades.append(UpgradeRegistry.get_by_name("homing_ability"))
 	wave_info.blessings.assign(upgrades)
 	wave_info.choice_type = ChoiceWaveInfo.ChoiceType.CHOOSE_ONE
 	wave_info.room_type = WaveInfo.WaveType.Shrine
@@ -241,7 +241,7 @@ func funny_wave() -> ChoiceWaveInfo:
 
 		"bless_or_heal": bless_or_heal_wave,  
 		# "curse_or_damage": curse_or_damage_wave,
-		"intro": intro_blessing,
+		"intro": ability_blessing,
 		"fifty_fifty": fifty_fifty_wave,
 	}
 	var wave_fn : Callable = name_to_wave_fn.values().pick_random()
@@ -475,6 +475,8 @@ func combat_wave() -> CombatWaveInfo:
 
 
 func intro_combat_wave() -> CombatWaveInfo:
+	if Config.get_override("force_enemy_pool", "") != "":
+		return combat_wave()
 	var new_enemy : String = EnemySpawner.sample_unlockable_enemy(current_wave, current_enemy_pool)
 	if new_enemy == "":
 		return combat_wave()

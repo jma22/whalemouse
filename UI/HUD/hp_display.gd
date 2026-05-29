@@ -12,7 +12,6 @@ class_name HPDisplay
 @export var status_effect_icons : Array[StatusEffectIcon]
 
 var time_damage : TimeDamageManager
-var whale_spawner : WhaleSpawner
 var player : Player
 
 @export var popup_number_scene : PackedScene
@@ -23,9 +22,8 @@ var played_whale_tween : bool = false
 var played_dash_tween : bool = false
 var dash_component : DashComponent
 
-func setup(player_ : Node3D, time_damage_: TimeDamageManager, whale_spawner_: WhaleSpawner) -> void:
+func setup(player_ : Node3D, time_damage_: TimeDamageManager) -> void:
 	time_damage = time_damage_
-	whale_spawner = whale_spawner_
 	player = player_ as Player
 	refresh_hp(player.health_component.current_health)
 	dash_component = player.dash_component
@@ -101,31 +99,30 @@ func set_circle() -> void:
 	
 
 func set_whale_circle() -> void:
-	if whale_spawner:
-		if not StatCalculator.has_beluga():
-			whale_circle.visible = false
-			whale_icon.visible = false
-			return
-		whale_circle.visible = true
-		whale_icon.visible = true
-		var progress : float = whale_spawner.get_cooldown_progress()
-		whale_circle.value = progress * whale_circle.max_value
-		# make sprite grayscale
-		if progress == 1.0:
-			whale_icon.modulate = Color(1, 1, 1, 1)
-			whale_circle.tint_progress = Color(1.5,1.5,1.5,1)
-			if not played_whale_tween:
-				whale_tween = create_tween()
-				whale_tween.tween_property(whale_circle, "scale", Vector2(0.04, 0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-				whale_tween.tween_property(whale_icon, "scale", Vector2(0.04, 0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-				whale_tween.chain()
-				whale_tween.tween_property(whale_circle, "scale", Vector2(-0.04,-0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-				whale_tween.tween_property(whale_icon, "scale", Vector2(-0.04,-0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-				played_whale_tween = true
-		else:
-			whale_icon.modulate = Color(1, 1, 1, 0.1)
-			whale_circle.tint_progress = Color(1.0,1.0,1.0,1)
-			played_whale_tween = false
+	if not AbilityCaster.instance.has_ability():
+		whale_circle.visible = false
+		whale_icon.visible = false
+		return
+	whale_circle.visible = true
+	whale_icon.visible = true
+	var progress : float = AbilityCaster.instance.get_cooldown_progress()
+	whale_circle.value = progress * whale_circle.max_value
+	# make sprite grayscale
+	if progress == 1.0:
+		whale_icon.modulate = Color(1, 1, 1, 1)
+		whale_circle.tint_progress = Color(1.5,1.5,1.5,1)
+		if not played_whale_tween:
+			whale_tween = create_tween()
+			whale_tween.tween_property(whale_circle, "scale", Vector2(0.04, 0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+			whale_tween.tween_property(whale_icon, "scale", Vector2(0.04, 0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+			whale_tween.chain()
+			whale_tween.tween_property(whale_circle, "scale", Vector2(-0.04,-0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+			whale_tween.tween_property(whale_icon, "scale", Vector2(-0.04,-0.04), 0.2).as_relative().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+			played_whale_tween = true
+	else:
+		whale_icon.modulate = Color(1, 1, 1, 0.1)
+		whale_circle.tint_progress = Color(1.0,1.0,1.0,1)
+		played_whale_tween = false
 	
 func set_dash_bar() -> void:
 	if dash_component:

@@ -47,7 +47,7 @@ script = ExtResource("4_2sd3b")
 
 [node name="IndicatorSprite" type="Sprite3D" parent="Indicator" unique_id=1471458098]
 transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, -2.5, 0, 2.5, -1.09278474e-07, 0, 0, 0)
-modulate = Color(1, 0.32, 0.32, 1)
+modulate = Color(1, 0.32, 0.32, 0.29411766)
 pixel_size = 0.001
 texture = ExtResource("4_5rn6a")
 hframes = 7

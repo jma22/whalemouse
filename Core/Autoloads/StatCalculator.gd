@@ -140,11 +140,9 @@ static func get_whale_size() -> float:
 static func get_attack_speed_multiplier() -> float:
 	return 1.0 + GlobalStats.current_run_stats["player_attack_speed"] * 0.3
 
-static func has_beluga() -> bool:
-	return GlobalStats.current_run_stats["has_beluga"] > 0
-
 static func has_dash() -> bool:
-	return GlobalStats.current_run_stats["has_dash"] > 0
+	return true
+	# return GlobalStats.current_run_stats["has_dash"] > 0
 
 static func is_positive_stat(stat_name: String) -> bool:
 	if stat_name in ["xp_suck", "enemy_xp_drop", "whale_size", "dash_distance", "player_attack_speed"]:

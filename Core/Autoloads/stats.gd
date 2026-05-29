@@ -2,6 +2,7 @@ extends Node
 
 signal stat_changed(stat_name: StringName, new_value: int)
 signal boss_stat_changed(stat_name: StringName, new_value: int)
+signal ability_equipped(ability_name: StringName)
 signal wave_augments_changed
 
 var player :Node3D
@@ -126,8 +127,9 @@ var current_run_stats : Dictionary = {
 	"jump_kill_orb": 0,
 	
 	"player_max_health": 0,
-	"has_beluga": 0,
-	"has_dash": 0
+	# "has_beluga": 0,
+	# "has_dash": 0
+	"ability_name": "",
 }
 
 var boss_stats : Dictionary = {
@@ -229,6 +231,10 @@ func _apply_overrides() -> void:
 	for k : String in run_stats.keys():
 		if Config.get_override("game_data/" + k) != null:
 			run_stats[k] = Config.get_override("game_data/" + k)
+	
+	# if Config.get_override("force_ability"):
+	# 	equip_ability(Config.get_override("force_ability"))
+	
 	Upgrades.ensure_initialized()
 
 	for upgrade_name : String in Config.get_override("chosen_upgrades", []):
@@ -238,7 +244,6 @@ func _apply_overrides() -> void:
 			continue
 		upgrade.apply()
 
-	
 
 func add_to_stat(stat_name: String) -> void:
 	if current_run_stats.has(stat_name):
@@ -249,6 +254,10 @@ func add_to_stat(stat_name: String) -> void:
 		stat_changed.emit(stat_name, current_run_stats[stat_name])
 	else:
 		print("Stat ", stat_name, " does not exist in current_run_stats.")
+
+func equip_ability(ability_name: String) -> void:
+	current_run_stats["ability_name"] = ability_name
+	ability_equipped.emit(ability_name)
 
 func add_boss_stat(stat_name: String) -> void:
 	if boss_stats.has(stat_name):

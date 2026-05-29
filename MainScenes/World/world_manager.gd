@@ -7,7 +7,7 @@ static var instance : WorldManager
 @export var time_damage : TimeDamageManager
 @export var wave_manager : WaveManager
 @export var camera : Camera3D
-@export var whale_spawner : WhaleSpawner
+@export var ability_caster : AbilityCaster
 # @export var player_spawn_point: Node3D
 
 @export_group("Maps")
@@ -46,7 +46,7 @@ func setup() -> void:
 	player.setup(hud, camera); _t.call("player.setup", _ts); _ts = Time.get_ticks_usec()
 	GlobalStats.setup(player); _t.call("GlobalStats.setup", _ts); _ts = Time.get_ticks_usec()
 	transition.setup(); _t.call("transition.setup", _ts); _ts = Time.get_ticks_usec()
-	whale_spawner.setup(player, camera); _t.call("whale_spawner.setup", _ts); _ts = Time.get_ticks_usec()
+	ability_caster.setup(player, camera); _t.call("ability_caster.setup", _ts); _ts = Time.get_ticks_usec()
 	death_screen.setup(); _t.call("death_screen.setup", _ts); _ts = Time.get_ticks_usec()
 	var wave_info := map_entered_setup(); _t.call("map_entered_setup", _ts); _ts = Time.get_ticks_usec()
 	## call  fade_out_loading() when above call is done
@@ -98,14 +98,15 @@ func map_entered_setup() -> WaveInfo:
 	match wave_info.room_type:
 		WaveInfo.WaveType.Combat:
 			map_manager.start_room(wave_info)
-			whale_spawner.enter_map(map_manager)
+			ability_caster.enter_map(map_manager)
 			player.enter_map(map_manager)
 		WaveInfo.WaveType.Shrine:
 			shrine_map_manager.start_room(wave_info)
 			player.enter_map(shrine_map_manager)
+			ability_caster.enter_map(shrine_map_manager)
 		WaveInfo.WaveType.Boss:
 			boss_map_manager.start_room(wave_info)
-			whale_spawner.enter_map(boss_map_manager)
+			ability_caster.enter_map(boss_map_manager)
 			player.enter_map(boss_map_manager)
 	return wave_info
 

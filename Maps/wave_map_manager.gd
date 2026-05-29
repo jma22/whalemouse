@@ -1,7 +1,6 @@
 extends MapManagerBase
 class_name WaveMapManager
 
-@export var enemy_spawner : EnemySpawner
 
 @export var ranged_spawns : Node3D
 @export var melee_spawns : Node3D

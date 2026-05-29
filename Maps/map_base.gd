@@ -7,6 +7,8 @@ class_name MapManagerBase
 @warning_ignore("shadowed_global_identifier")
 @export var floor : NavigationRegion3D 
 @export var player_spawn_point : Node3D
+@export var enemy_spawner : EnemySpawner
+
 
 var player : CharacterBody3D
 var map_cleared_flag : bool = false

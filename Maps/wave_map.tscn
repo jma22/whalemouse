@@ -150,15 +150,15 @@ shader_parameter/color = Color(0.09803922, 0.019607844, 0.14901961, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/bottom_darken = 0.5710000271225
 
-[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("enemy_spawner", "ranged_spawns", "melee_spawns", "gateway", "fragment_spawner", "floor", "player_spawn_point")]
+[node name="WaveMap" type="Node3D" unique_id=1662652710 node_paths=PackedStringArray("ranged_spawns", "melee_spawns", "gateway", "fragment_spawner", "floor", "player_spawn_point", "enemy_spawner")]
 script = ExtResource("1_vb07d")
-enemy_spawner = NodePath("EnemySpawner")
 ranged_spawns = NodePath("EnemySpawner/RangedSpawnPoints")
 melee_spawns = NodePath("EnemySpawner/MeleeSpawnPoints")
 gateway = NodePath("Gateway")
 fragment_spawner = NodePath("FragmentSpawner")
 floor = NodePath("FloorNav")
 player_spawn_point = NodePath("PlayerSpawn")
+enemy_spawner = NodePath("EnemySpawner")
 
 [node name="Walls" type="GridMap" parent="." unique_id=720446888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.935524, 0.09875488, -2.6143875)

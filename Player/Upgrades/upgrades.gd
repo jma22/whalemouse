@@ -560,19 +560,33 @@ static func _static_init() -> void:
 
 
 	## givens
-	UpgradeBuilder.new("has_beluga", "Beluga") \
+	UpgradeBuilder.new("beluga_ability", "Beluga") \
 		.pool(UpgradePool.BLESSING) \
 		.description_fn(func() -> String: return "Summon Beluga to fight by your side!") \
-		.effect(_stat(&"has_beluga")) \
+		.effect(_equip_ability("beluga_ability")) \
 		.tags([UpgradeTag.BELUGA_SOURCE, UpgradeTag.ONETIME]) \
 		.register()
-	
-	UpgradeBuilder.new("has_dash", "Dash") \
+
+	UpgradeBuilder.new("homing_ability", "Homing Attack") \
 		.pool(UpgradePool.BLESSING) \
-		.description_fn(func() -> String: return "Gain the ability to dash!") \
-		.effect(_stat(&"has_dash")) \
-		.tags([UpgradeTag.DASH_SOURCE, UpgradeTag.ONETIME]) \
+		.description_fn(func() -> String: return "Your attacks home in on enemies!") \
+		.effect(_equip_ability("homing_ability")) \
+		.tags([ UpgradeTag.ONETIME]) \
 		.register()
+
+	UpgradeBuilder.new("grappling_ability", "Grappling Hook") \
+		.pool(UpgradePool.BLESSING) \
+		.description_fn(func() -> String: return "Gain a grappling hook to quickly move around!") \
+		.effect(_equip_ability("grappling_ability")) \
+		.tags([ UpgradeTag.ONETIME]) \
+		.register()
+	
+	# UpgradeBuilder.new("has_dash", "Dash") \
+	# 	.pool(UpgradePool.BLESSING) \
+	# 	.description_fn(func() -> String: return "Gain the ability to dash!") \
+	# 	.effect(_stat(&"has_dash")) \
+	# 	.tags([UpgradeTag.DASH_SOURCE, UpgradeTag.ONETIME]) \
+	# 	.register()
 
 	UpgradeBuilder.new("player_max_health", "Tough Skin") \
 		.pool(UpgradePool.BLESSING) \
@@ -716,6 +730,9 @@ static func _stat(s: StringName) -> Callable:
 static func _boss_stat(s: StringName) -> Callable:
 	return func() -> void: GlobalStats.add_to_stat(s)
 
+static func _equip_ability(ability_name: StringName) -> Callable:
+	return func() -> void: GlobalStats.equip_ability(ability_name)
+
 static func get_upgrade(internal_name: String) -> UpgradeData:
 	return UpgradeRegistry.get_by_name(internal_name)
 
@@ -784,10 +801,8 @@ static func _hop_skip_jump_desc() -> String:
 # 		return "Enemies have a chance to drop even more time orbs!"
 
 static func _whale_desc() -> String:
-	if not StatCalculator.has_beluga():
-		return "Call Beluga to attack enemies!"
-	else:
-		return "Beluga grows bigger!"
+	return "Call Beluga to attack enemies!"
+	
 
 static func _whale_cooldown_desc() -> String:
 	if GlobalStats.current_run_stats["whale_cooldown"] == 0:

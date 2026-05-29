@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://4kfh4h42ndwa"]
+
+[ext_resource type="Script" uid="uid://kf4os00ijdmd" path="res://Core/Components/projectile_shooter.gd" id="1_mb37t"]
+[ext_resource type="PackedScene" uid="uid://c1htnllxtaw2e" path="res://Player/Abilities/HomingMissiles/homing_missile.tscn" id="2_6mgor"]
+
+[node name="HomingAbilityShooter" type="Node3D" unique_id=678265839]
+script = ExtResource("1_mb37t")
+projectile_scene = ExtResource("2_6mgor")
+speed_multiplier = 1.2
+shooting_time = 0.1
+angle_between_bullets_degrees = 80.0

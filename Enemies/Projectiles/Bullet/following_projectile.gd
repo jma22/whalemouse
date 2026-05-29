@@ -1,9 +1,9 @@
 # bullet.gd
 extends ProjectileBase
 
-const BASE_SPEED: float = 1.2
-const HOMING_TIME: float = 3.0
-const TURN_STRENGTH: float = 6.0   # higher = snappier turning
+@export var BASE_SPEED: float = 1.2
+@export var HOMING_TIME: float = 3.0
+@export var TURN_STRENGTH: float = 6.0   # higher = snappier turning
 
 var direction: Vector3 = Vector3.ZERO
 var lifetime: float = 5.0
