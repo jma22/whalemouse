@@ -7,7 +7,8 @@ var duration : float = 0.0
 
 var is_conditional : bool = false
 var is_enemy_effect : bool = false
-var source : Object = null
+var source_entity : Object = null
+# var effected_entity : Node3D 
 
 var stacks : int = 1
 var max_stacks : int = 1
@@ -23,8 +24,8 @@ func get_affects_enemy() -> bool:
 	return is_enemy_effect
 
 
-func modify_incoming_damage(_info: DamageInfo) -> void:
-	pass
+func modify_incoming_damage(_info: DamageInfo) -> DamageInfo:
+	return _info
 
 func modify_time_delta(delta: float) -> float:
 	return delta

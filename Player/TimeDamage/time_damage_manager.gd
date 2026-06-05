@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name TimeDamageManager
 
 
@@ -37,9 +37,10 @@ func _process(delta: float) -> void:
 		if player.health_component and player.health_component.is_dead():
 			player.on_die()	
 
-func do_damage(damage: int = 1) -> void:
+func do_damage() -> void:
 	if player.health_component:
-		player.health_component.take_damage(damage)
+
+		player.health_component.take_damage(get_damage_info())
 
 func get_progress() -> float:
 	var seconds_per_damage : float = StatCalculator.get_seconds_per_damage()
@@ -49,3 +50,8 @@ func get_progress() -> float:
 
 func set_pause(value: bool) -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED if value else Node.PROCESS_MODE_INHERIT
+
+func get_damage_info() -> DamageInfo:
+	var info : DamageInfo =  DamageInfo.create(self, DamageInfo.DamageType.TIME_TICK)
+	info.base_damage(1)
+	return info

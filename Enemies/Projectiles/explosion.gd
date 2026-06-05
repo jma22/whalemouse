@@ -1,4 +1,4 @@
-extends ProjectileBase
+extends Node3D
 class_name BombExplosion
 
 @export var bomb_sprite : SpriteManager
@@ -41,10 +41,9 @@ func _ready() -> void:
 
 
 
-func setup(source : Node3D) -> void:
-	super.set_source(source)
-	explosion_hitbox.source = source
-	enemy_hitbox.source = source
+func setup(owner_ : Node3D) -> void:
+	explosion_hitbox.set_owner_entity(owner_)
+	enemy_hitbox.set_owner_entity(owner_)
 	is_super_bomb = randf() < StatCalculator.get_super_bomb_chance()
 	if is_super_bomb:
 		# explosion_sprite.modulate = Color(1, 0.0, 0.5)

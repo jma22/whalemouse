@@ -1,6 +1,8 @@
 class_name Hitbox
 extends Area3D
 
+signal hit_registered
+
 @export var owner_entity: Node3D
 @export var hit_box_type: HitBoxType = HitBoxType.HIT_PLAYER
 @export var damage_type : DamageInfo.DamageType = DamageInfo.DamageType.MELEE
@@ -8,7 +10,7 @@ extends Area3D
 @export var damage: int = 1
 @export var hitstop : HitStop
 
-var source : Node3D
+# var source : Node3D
 var is_active: bool = false
 # var effect_on_hit : StatusEffectBase = null
 var behavior : HitboxBehavior = null
@@ -29,6 +31,9 @@ func _ready() -> void:
 func set_damage(damage_amount: int) -> void:
 	damage = damage_amount
 
+func set_owner_entity(_owner : Node3D) -> void:
+	self.owner_entity = _owner
+
 # func set_effect_on_hit(effect: StatusEffectBase) -> void:
 # 	effect_on_hit = effect
 
@@ -45,6 +50,8 @@ func set_active(active: bool) -> void:
 	is_active = active
 
 func hitbox_on_hit() -> void:
+	## TODO: signal right now just for projectiles. eventually everything.
+	hit_registered.emit()
 	if owner_entity and owner_entity.has_method("on_hitbox_hit"):
 		owner_entity.on_hitbox_hit()
 
@@ -52,27 +59,31 @@ func hitbox_on_hit() -> void:
 		hitstop.start_hitstop(0.1)
 
 func build_damage_info(_target: Node3D) -> DamageInfo:
-	var info : DamageInfo = DamageInfo.new()
-	info.hitbox = self
-	info.owner_entity = owner_entity
-	info.source = get_source()
-	info.damage_type = damage_type
-	info.amount = _compute_base_amount(info)
+	var info : DamageInfo = DamageInfo.create(self, damage_type)
+	info.set_owner(owner_entity)
+	# info.hitbox = self
+	# info.owner_entity = owner_entity
+	# info.source = get_source()
+	# info.damage_type = damage_type
+	info.base_damage(_compute_base_amount(info))
 	return info
 
 func _compute_base_amount(info: DamageInfo) -> int:
 	if hit_box_type == HitBoxType.HIT_PLAYER:
 		var base : int = StatCalculator.get_enemy_damage()
-		DebugLog.dbg("Hitbox", "computing damage for source=%s" % info.get_source())
-		if info.get_source() is EnemyBase:
-			var mult : int = info.get_source().status_effect_manager.get_damage_multiplier()
-			DebugLog.dbg("Hitbox", "source is EnemyBase dmg_multiplier=%s" % mult)
+		DebugLog.dbg("Hitbox", "computing damage for source=%s" % info.owner_entity)
+		if info.owner_entity is EnemyBase:
+			var mult : int = info.owner_entity.status_effect_manager.get_damage_multiplier()
+			DebugLog.dbg("Hitbox", "owner is EnemyBase dmg_multiplier=%s" % mult)
 			base = int(ceil(base * mult))
 		return base
 	return damage
 
-func get_source() -> Node3D:
-	return source if source != null else owner_entity
+# func get_source() -> Node3D:
+# 	return source if source != null else owner_entity
+
+func get_owner_entity() -> Node3D:
+	return owner_entity
 
 func set_collisions() -> void:
 	match hit_box_type:

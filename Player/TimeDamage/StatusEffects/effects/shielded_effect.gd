@@ -20,10 +20,10 @@ func _on_applied(entity_: Node3D) -> void:
 		entity.shield_component.activate_shield()
 
 
-func modify_incoming_damage(info: DamageInfo) -> void:
+func modify_incoming_damage(info: DamageInfo) -> DamageInfo:
 	_dbg("ShieldedEffect modifying incoming damage: currently charged=%s" % _charged)
 	if not _charged:
-		return
+		return info
 	_charged = false
 	if entity and "shield_component" in entity and entity.shield_component:
 		entity.shield_component.lose_shield()
@@ -32,4 +32,5 @@ func modify_incoming_damage(info: DamageInfo) -> void:
 	persists_forever = false
 	time_remaining = 0.0
 	_dbg("shield absorbed hit → damage zeroed (%s → 0)" % info.amount)
-	info.amount = 0
+	info.set_was_shielded()
+	return info

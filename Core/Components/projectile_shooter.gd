@@ -7,7 +7,7 @@ class_name ProjectileShooter
 @export var base_num_bullets : int = 3
 @export var angle_between_bullets_degrees : float = 4.0
 
-var entity : CharacterBody3D
+var entity : Node3D
 var _burst_direction : Vector3 = Vector3.ZERO
 var _burst_target : Node3D = null
 var _bullets_fired : int = 0
@@ -16,7 +16,7 @@ var _burst_active : bool = false
 var _active_projectiles : Array[Node] = []
 
 
-func setup(entity_: CharacterBody3D) -> void:
+func setup(entity_: Node3D) -> void:
 	entity = entity_
 
 

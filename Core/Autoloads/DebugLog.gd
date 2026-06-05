@@ -8,7 +8,7 @@ func entity_name(node: Object) -> String:
 		return "null"
 	if node is Hitbox:
 		var h : Hitbox = node as Hitbox
-		var h_owner : Object = h.get_source()
+		var h_owner : Object = h.get_owner_entity()
 		return "hitbox[%s]" % entity_name(h_owner)
 	if node is Node:
 		var n : Node = node as Node

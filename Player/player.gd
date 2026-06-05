@@ -146,8 +146,9 @@ func setup_states() -> void:
 			state.set_entity(self)
 
 func on_hit(info: DamageInfo) -> void:
-	var hitbox : Hitbox = info.hitbox
-	DebugLog.dbg("Combat", "Player hit by %s [%s]" % [DebugLog.entity_name(hitbox), DamageInfo.DamageType.keys()[info.damage_type]])
+	DebugLog.dbg("Combat", "Player hit by %s [%s]" % [DebugLog.entity_name(info.source), DamageInfo.DamageType.keys()[info.damage_type]])
+	assert (info.source is Hitbox)
+	var hitbox : Hitbox = info.source
 	if invulnerable_component.is_currently_invulnerable():
 		return
 	hitbox.hitbox_on_hit() ##HITSTOP
@@ -155,7 +156,7 @@ func on_hit(info: DamageInfo) -> void:
 	if hitbox.behavior:
 		hitbox.behavior.modify_outgoing_damage(info, self)
 	status_effect_manager.modify_incoming_damage(info)
-	var damage_taken : int = info.amount
+	var damage_taken : int = info.get_damage_amount()
 	if damage_taken == 0:
 		return
 
@@ -172,21 +173,21 @@ func on_hit(info: DamageInfo) -> void:
 			for i in range(StatCalculator.get_decay_duration_on_hit()):
 				gain_status_effect(HasteEffect.make(2.0), self)
 			DebugLog.dbg("Combat", "decay_duration_on_hit → gained Haste(%.1fs)" % StatCalculator.get_decay_duration_on_hit())
-	var hp_before : int = health_component.current_health
-	health_component.take_damage(damage_taken)
-	DebugLog.dbg("Combat", "Player took %s dmg | hp: %s→%s%s" % [
-		damage_taken, hp_before, health_component.current_health,
-		" | DEAD" if health_component.is_dead() else ""
-	])
+	# var hp_before : int = health_component.current_health
+	# health_component.take_damage(info)
+	# DebugLog.dbg("Combat", "Player took %s dmg | hp: %s→%s%s" % [
+	# 	damage_taken, hp_before, health_component.current_health,
+	# 	" | DEAD" if health_component.is_dead() else ""
+	# ])
 
-	if StatCalculator.get_decay_on_damaged() > 0:
-		for i in range(StatCalculator.get_decay_on_damaged()):
-			gain_status_effect(HasteEffect.make(2.0), self)
-		DebugLog.dbg("Combat", "decay_on_damaged → gained Haste(%.1fs)" % StatCalculator.get_decay_on_damaged())
+	# if StatCalculator.get_decay_on_damaged() > 0:
+	# 	for i in range(StatCalculator.get_decay_on_damaged()):
+	# 		gain_status_effect(HasteEffect.make(2.0), self)
+	# 	DebugLog.dbg("Combat", "decay_on_damaged → gained Haste(%.1fs)" % StatCalculator.get_decay_on_damaged())
 
 	# if hitbox.effect_on_hit:
 	# 	gain_status_effect(hitbox.effect_on_hit, hitbox)
-	
+	damage(info)
 	status_effect_manager.notify_hit_consumed(info)
 
 	sprite_manager.damage_flash()
@@ -203,7 +204,7 @@ func on_hit(info: DamageInfo) -> void:
 	var knockback_direction : Vector3 = (global_transform.origin - info.owner_entity.global_transform.origin).normalized()
 	if health_component.is_dead():
 		# status_effect_manager.notify_owner_killed(info.get_source())
-		on_die()
+		# on_die(info)
 		knockback_component.receive_knockback(knockback_direction, 0.4*damage_taken)
 		return
 	else:
@@ -220,7 +221,7 @@ func on_hit(info: DamageInfo) -> void:
 func set_invulnerable(value: bool, duration: float = 0.0) -> void:
 	invulnerable_component.set_invulnerable(value, duration)
 
-func on_die() -> void:
+func on_die(info: DamageInfo) -> void:
 	state_machine.set_state(dead_state)
 
 	
@@ -238,10 +239,10 @@ func on_gain_time(amount : int) -> void:
 func heal(amount: int) -> void:
 	health_component.gain_health(amount)
 
-func damage(amount: int) -> void:
-	health_component.take_damage(amount)
+func damage(damage_info : DamageInfo) -> void:
+	health_component.take_damage(damage_info)
 	if health_component.is_dead():
-		on_die()
+		on_die(damage_info)
 
 func clear_effects() -> void:
 	status_effect_manager.clear_effects()

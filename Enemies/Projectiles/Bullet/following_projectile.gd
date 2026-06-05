@@ -1,5 +1,5 @@
 # bullet.gd
-extends ProjectileBase
+extends Node3D
 
 @export var BASE_SPEED: float = 1.2
 @export var HOMING_TIME: float = 3.0
@@ -17,9 +17,9 @@ var homing_elapsed: float = 0.0
 func _ready() -> void:
 	hitbox.damage_type = DamageInfo.DamageType.BULLET
 
-func setup(direction_: Vector3, source_: Node3D, speed_multiplier_: float, target_: Node3D) -> void:
-	super.set_source(source_)
-	hitbox.source = source_
+func setup(direction_: Vector3, owner_: Node3D, speed_multiplier_: float, target_: Node3D) -> void:
+	hitbox.set_owner_entity(owner_)
+	hitbox.hit_registered.connect(on_hitbox_hit)
 	self.direction = direction_
 	self.direction.z *= Constants.VERTICAL_PERSRPECTIVE_SCALE
 	self.direction = self.direction.normalized()
@@ -42,6 +42,7 @@ func _update_homing(delta: float) -> void:
 	to_target.z *= Constants.VERTICAL_PERSRPECTIVE_SCALE
 	direction = direction.lerp(to_target.normalized(), TURN_STRENGTH * delta).normalized()
 
+## problem here now that owner is actual owner
 func on_hitbox_hit() -> void:
 	queue_free()
 

@@ -25,15 +25,17 @@ func _stack_with(existing: StatusEffectBase) -> void:
 	existing.time_remaining = min(time_remaining, existing.time_remaining)
 
 func _on_expired(entity: Node3D) -> bool:
-	var expiry_damage : int = StatCalculator.get_poison_expiry_damage()
+	var damage_info : DamageInfo = get_damage_info()
 	if entity and "health_component" in entity:
-		entity.health_component.take_damage(expiry_damage)
-		_dbg("expiry dealt %s dmg to %s (stacks remaining=%s)" % [expiry_damage, DebugLog.entity_name(entity), stacks - 1])
+		entity.damage(damage_info)
+		##TODO: This should be moved to entity logic
+		_dbg("expiry dealt %s dmg to %s (stacks remaining=%s)" % [damage_info.get_damage_amount(), DebugLog.entity_name(entity), stacks - 1])
 		if "sprite_manager" in entity and entity.sprite_manager:
 			entity.sprite_manager.damage_flash()
 		if "hurt_box" in entity and entity.hurt_box and entity.hurt_box.hit_sound:
 			entity.hurt_box.hit_sound.pitch_scale = 0.75 + randf() * 0.5
 			entity.hurt_box.hit_sound.play()
+		## TO here
 	stacks -= 1
 	if stacks > 0:
 		time_remaining = duration
@@ -69,3 +71,11 @@ func _spawn_orbs(entity: Node3D, count: int, orb_type: CollectibleSpawner.OrbTyp
 func get_color_overlay() -> Color:
 	var t : float = float(stacks - 1) / float(max(max_stacks - 1, 1))
 	return COLOR_MIN.lerp(COLOR_MAX, clamp(t, 0.0, 1.0))
+
+func get_damage_info() -> DamageInfo:
+	var expiry_damage : int = StatCalculator.get_poison_expiry_damage()
+	var info : DamageInfo =  DamageInfo.create(self, DamageInfo.DamageType.POISON)
+	info.base_damage(expiry_damage)
+	info.set_owner(source_entity) ## source here should be owner
+	return info
+	

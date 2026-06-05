@@ -27,7 +27,8 @@ func reset() -> void:
 		hp_display.refresh_hp(current_health)
 
 
-func take_damage(damage: int) -> void:
+func take_damage(damage_info : DamageInfo) -> void:
+	var damage : int = damage_info.get_damage_amount()
 	current_health -= damage
 	if StatCalculator.get_dying_ebb() >= current_health and entity is Player:
 		DebugLog.dbg_from(self,"dying_ebb threshold reached (threshold=%s hp=%s) → gained Slow" % [StatCalculator.get_dying_ebb(), current_health])

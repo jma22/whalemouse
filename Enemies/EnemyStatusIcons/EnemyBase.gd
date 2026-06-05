@@ -92,7 +92,9 @@ func on_hit(info: DamageInfo) -> void:
 	if is_dead or invulnerable_component.is_currently_invulnerable():
 		return
 	sprite_manager.damage_flash()
-	var hitbox : Hitbox = info.hitbox
+	DebugLog.dbg("Combat", "Enemy %s hit by %s [%s]" % [DebugLog.entity_name(self), DebugLog.entity_name(info.source), DamageInfo.DamageType.keys()[info.damage_type]])
+	assert (info.source is Hitbox)
+	var hitbox : Hitbox = info.source
 
 	if hitbox.behavior:
 		hitbox.behavior.modify_outgoing_damage(info, self)
@@ -114,7 +116,7 @@ func on_hit(info: DamageInfo) -> void:
 
 	
 	var hp_before : int = health_component.current_health
-	health_component.take_damage(damage_taken)
+	health_component.take_damage(info)
 	var kill_prefix : String = "KILL " if health_component.is_dead() else ""
 	var behavior_name : String = hitbox.behavior.name if hitbox.behavior else "?"
 	DebugLog.dbg("Combat", "%s%s → %s | %s dmg [%s] | hp: %s→%s" % [
@@ -149,8 +151,11 @@ func on_die(info: DamageInfo) -> void:
 	if is_dead:
 		return
 	
-	if info and info.hitbox and info.hitbox.behavior:
-		info.hitbox.behavior.on_kill(info, self)
+	if info and info.source:
+		if info.source is Hitbox and info.source.behavior:
+			info.source.behavior.on_kill(info, self)
+		if info.source is StatusEffectBase:
+			info.source.on_killed_by_effect(self)
 	is_dead = true
 	status_effect_manager.notify_entity_died()
 	var tween : Tween = await sprite_manager.die()

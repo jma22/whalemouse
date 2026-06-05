@@ -1,5 +1,5 @@
 # bullet.gd
-extends ProjectileBase
+extends Node3D
 
 const BASE_SPEED: float = 1.5
 var direction: Vector3 = Vector3.ZERO
@@ -12,9 +12,9 @@ var speed_multiplier : float = 1.0
 func _ready() -> void:
 	hitbox.damage_type = DamageInfo.DamageType.BULLET
 
-func setup(direction_: Vector3, source_: Node3D, speed_multiplier_: float, _target: Node3D = null) -> void:
-	super.set_source(source_)
-	hitbox.source = source_
+func setup(direction_: Vector3, owner_: Node3D, speed_multiplier_: float, _target: Node3D = null) -> void:
+	hitbox.set_owner_entity(owner_)
+	hitbox.hit_registered.connect(on_hitbox_hit)
 	self.direction = direction_
 	self.direction.z *= Constants.VERTICAL_PERSRPECTIVE_SCALE
 	self.speed_multiplier = speed_multiplier_

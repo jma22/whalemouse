@@ -27,14 +27,14 @@ func _stack_with(existing: StatusEffectBase) -> void:
 	else:
 		existing.stacks = min(existing.stacks + 1, MAX_STACKS)
 
-func modify_incoming_damage(info: DamageInfo) -> void:
+func modify_incoming_damage(info: DamageInfo) -> DamageInfo:
 	if info.amount <= 0:
-		return
+		return info
 	var bonus : int = DAMAGE_BONUS * stacks
 	if bonus > 0:
-		info.amount += bonus
-		info.was_marked = true
+		info.add_mark_damage(bonus)
 		_dbg("mark bonus: +%s dmg (stacks=%s)" % [bonus, stacks])
+	return info
 
 func _on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
 	if _info.amount <= 0:
@@ -46,9 +46,9 @@ func _on_hit_consumed(_entity: Node3D, _info: DamageInfo) -> bool:
 
 
 func _on_applied(_entity: Node3D) -> void:
-	if _should_auto_consume:
-		_do_auto_consume(_entity)
-		return
+	# if _should_auto_consume:
+	# 	_do_auto_consume(_entity)
+	# 	return
 
 	var needed : int = StatCalculator.marks_needed_to_make_bomb()
 	if needed > 0 and _get_entity_mark_stacks(_entity) == needed:
@@ -56,7 +56,7 @@ func _on_applied(_entity: Node3D) -> void:
 		_entity.get_parent().add_child(explosion_instance)
 		explosion_instance.global_transform.origin = _entity.global_transform.origin
 		explosion_instance.global_transform.origin.y = 0.0
-		explosion_instance.setup(source)
+		explosion_instance.setup(source_entity)
 		_dbg("marks_needed_to_make_bomb=%s reached → spawned explosion at %s" % [needed, DebugLog.entity_name(_entity)])
 
 
@@ -68,30 +68,30 @@ func _get_entity_mark_stacks(_entity: Node3D) -> int:
 	return stacks
 
 
-func _do_auto_consume(_entity: Node3D) -> void:
-	if not _entity or "status_effect_manager" not in _entity:
-		return
-	for effect : StatusEffectBase in _entity.status_effect_manager.timed_effects:
-		if effect.name == StatusEffectNames.MARK:
-			var consumed_stacks : int = effect.stacks
-			_entity.status_effect_manager.timed_effects.erase(effect)
-			_entity.status_effect_manager.refresh_color_overlay()
-			if "health_component" in _entity:
-				_entity.health_component.take_damage(consumed_stacks)
-				if "sprite_manager" in _entity and _entity.sprite_manager:
-					_entity.sprite_manager.damage_flash()
-				if _entity.health_component.is_dead():
-					var info : DamageInfo = DamageInfo.new()
-					info.amount = consumed_stacks
-					info.damage_type = DamageInfo.DamageType.DASH ## buggy
-					info.source = source
-					info.was_marked = true
-					_entity.on_die(info)
-			_dbg("auto-consumed %s mark stacks → %s dmg direct on %s" % [consumed_stacks, consumed_stacks, DebugLog.entity_name(_entity)])
-			if StatCalculator.mark_to_orb():
-				_dbg("mark_to_orb → spawning %s orbs at %s" % [consumed_stacks, DebugLog.entity_name(_entity)])
-				_spawn_orbs(_entity, consumed_stacks)
-			break
+# func _do_auto_consume(_entity: Node3D) -> void:
+# 	if not _entity or "status_effect_manager" not in _entity:
+# 		return
+# 	for effect : StatusEffectBase in _entity.status_effect_manager.timed_effects:
+# 		if effect.name == StatusEffectNames.MARK:
+# 			var consumed_stacks : int = effect.stacks
+# 			_entity.status_effect_manager.timed_effects.erase(effect)
+# 			_entity.status_effect_manager.refresh_color_overlay()
+# 			if "health_component" in _entity:
+# 				_entity.health_component.take_damage(consumed_stacks)
+# 				if "sprite_manager" in _entity and _entity.sprite_manager:
+# 					_entity.sprite_manager.damage_flash()
+# 				if _entity.health_component.is_dead():
+# 					var info : DamageInfo = DamageInfo.new()
+# 					info.amount = consumed_stacks
+# 					info.damage_type = DamageInfo.DamageType.DASH ## buggy
+# 					info.source = source
+# 					info.was_marked = true
+# 					_entity.on_die(info)
+# 			_dbg("auto-consumed %s mark stacks → %s dmg direct on %s" % [consumed_stacks, consumed_stacks, DebugLog.entity_name(_entity)])
+# 			if StatCalculator.mark_to_orb():
+# 				_dbg("mark_to_orb → spawning %s orbs at %s" % [consumed_stacks, DebugLog.entity_name(_entity)])
+# 				_spawn_orbs(_entity, consumed_stacks)
+# 			break
 
 
 func _spawn_orbs(_entity: Node3D, count: int) -> void:

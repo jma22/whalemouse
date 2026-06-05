@@ -15,7 +15,7 @@ func _on_kill(info: DamageInfo, _target: Node3D) -> void:
 		var bomb_instance : Node3D = explosion.instantiate()
 		_target.get_parent().add_child(bomb_instance)
 		bomb_instance.global_transform.origin = _target.global_transform.origin
-		bomb_instance.setup(info.get_source())
+		bomb_instance.setup(info.get_owner_entity())
 		_dbg("bomb_chain_reaction → spawned explosion at %s" % DebugLog.entity_name(_target))
 
 func _on_hit_landed(_info: DamageInfo, _target: Node3D) -> void:
@@ -25,7 +25,7 @@ func _on_hit_landed(_info: DamageInfo, _target: Node3D) -> void:
 			_target.gain_status_effect(poison_effect, null)
 			_dbg("poison_bombs → applied Poison to %s" % DebugLog.entity_name(_target))
 
-func _modify_outgoing_damage(_info: DamageInfo, _target: Node3D) -> void:
-	if is_super_explosion:
-		_info.amount *= 2
-		_dbg("super_explosion → doubled damage to %s" % _info.amount)
+# func _modify_outgoing_damage(_info: DamageInfo, _target: Node3D) -> void:
+# 	if is_super_explosion:
+# 		_info.amount *= 2
+# 		_dbg("super_explosion → doubled damage to %s" % _info.amount)

@@ -76,11 +76,15 @@ func on_hit(info : DamageInfo) -> void:
 	boss_health.update_health(health_component.current_health)
 
 func on_eye_died(angler : EnemyBase) -> void:
+	var damage_info : DamageInfo = DamageInfo.create(angler, DamageInfo.DamageType.BOSS_PHASE)
+	damage_info.set_owner(angler)
 	var quarter: int = get_initial_health() / 4
 	var damage_taken: int = quarter - angler.get_initial_health()
+	damage_info.base_damage(damage_taken)
+
 	sprite_manager.damage_flash()
 	# next closest quarter of health 
-	health_component.take_damage(damage_taken)
+	health_component.take_damage(damage_info)
 	hurt_box.on_valid_damaging_hit()
 	state_machine.current_state.on_eye_died()
 	boss_health.flash_health_bar()

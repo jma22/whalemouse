@@ -8,7 +8,7 @@ static func make() -> AttackHitboxBehavior:
 
 func _on_hit_landed(_info: DamageInfo, _target: Node3D) -> void:
 	if StatCalculator.has_poison_ebb_attack():
-		var source : Node3D = hitbox.get_source()
+		var source : Node3D = hitbox.get_owner_entity()
 		if source and "status_effect_manager" in source:
 			if source.status_effect_manager.has_status_effect(StatusEffectNames.SLOW):
 				_dbg("PoisonEbbAttack: source has Slow → applying Poison to target %s" % DebugLog.entity_name(_target))	

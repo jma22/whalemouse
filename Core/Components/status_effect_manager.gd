@@ -28,24 +28,24 @@ func _process(delta: float) -> void:
 	if any_expired:
 		refresh_color_overlay()
 
-	if is_enemy and entity:
-		var enemy : EnemyBase = entity as EnemyBase
-		if enemy and not enemy.is_dead and enemy.health_component.is_dead() and last_damaging_effect:
-			DebugLog.dbg_from(self,"entity died via effect: %s" % last_damaging_effect.name)
-			last_damaging_effect.on_killed_by_effect(enemy)
-			var info : DamageInfo = DamageInfo.new()
-			info.amount = enemy.health_component.current_health
-			info.damage_type = DamageInfo.DamageType.POISON ## buggy
-			info.source = last_damaging_effect.source
-			info.was_marked = false
-			enemy.on_die(info)
+	# if is_enemy and entity:
+	# 	var enemy : EnemyBase = entity as EnemyBase
+	# 	if enemy and not enemy.is_dead and enemy.health_component.is_dead() and last_damaging_effect:
+	# 		DebugLog.dbg_from(self,"entity died via effect: %s" % last_damaging_effect.name)
+	# 		last_damaging_effect.on_killed_by_effect(enemy)
+	# 		var info : DamageInfo = DamageInfo.new()
+	# 		info.amount = enemy.health_component.current_health
+	# 		info.damage_type = DamageInfo.DamageType.POISON ## buggy
+	# 		info.source = last_damaging_effect.source
+	# 		info.was_marked = false
+	# 		enemy.on_die(info)
 
 func gain_status_effect(effect : StatusEffectBase, source_entity : Object) -> void:
 	DebugLog.dbg_from(self,"gained %s from %s" % [effect.name, DebugLog.entity_name(source_entity)])
 	## only conditionals need entity
 	if effect.is_conditional:
 		assert(source_entity != null)
-	effect.source = source_entity
+	effect.source_entity = source_entity
 	if effect.name == StatusEffectNames.HASTE:
 		TutorialManager.show_tutorial(TutorialManager.TutorialEnum.BLEED)
 	if effect.is_conditional:

@@ -33,13 +33,13 @@ func _on_hit_landed(_info: DamageInfo, _target: Node3D) -> void:
 		else:
 			_dbg("midas_dash_touch → target %s is not EnemyBase, cannot spawn orb" % DebugLog.entity_name(_target))
 
-func _modify_outgoing_damage(_info: DamageInfo, _target: Node3D) -> void:
-	if StatCalculator.dash_damages_status():
-		if _target is EnemyBase and _target.status_effect_manager.has_status_effect():
-			_info.amount = 1
-			_dbg("dash_damages_status: %s has effects → dmg→1" % DebugLog.entity_name(_target))
-		else:
-			_info.amount = 0
-			_dbg("dash_damages_status: %s has no effects → dmg→0" % DebugLog.entity_name(_target))
+# func _modify_outgoing_damage(_info: DamageInfo, _target: Node3D) -> void:
+# 	if StatCalculator.dash_damages_status():
+# 		if _target is EnemyBase and _target.status_effect_manager.has_status_effect():
+# 			_info.amount = 1
+# 			_dbg("dash_damages_status: %s has effects → dmg→1" % DebugLog.entity_name(_target))
+# 		else:
+# 			_info.amount = 0
+# 			_dbg("dash_damages_status: %s has no effects → dmg→0" % DebugLog.entity_name(_target))
 
-	_dbg("RollHitboxBehavior modifying damage to %s" % _info.amount)
+# 	_dbg("RollHitboxBehavior modifying damage to %s" % _info.amount)

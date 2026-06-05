@@ -11,8 +11,8 @@ static func make() -> BulkyEffect:
 	return effect
 
 
-func modify_incoming_damage(info: DamageInfo) -> void:
-	info.amount = int(ceil(info.amount * DAMAGE_MULTIPLIER))
+# func modify_incoming_damage(info: DamageInfo) -> void:
+# 	info.amount = int(ceil(info.amount * DAMAGE_MULTIPLIER))
 
 func get_color_overlay() -> Color:
 	return COLOR

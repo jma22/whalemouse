@@ -118,7 +118,7 @@ script = ExtResource("10_7yh8k")
 
 [node name="Player" parent="." unique_id=1422586295 node_paths=PackedStringArray("time_damage_manager") groups=["Player"] instance=ExtResource("2_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.872696, 0, 0)
-time_damage_manager = NodePath("../TimeDamageManager")
+time_damage_manager = NodePath("")
 
 [node name="SpriteManager" parent="Player/CoreComponents" parent_id_path=PackedInt32Array(1422586295, 1215065551) index="4" unique_id=789758305]
 material_overlay = SubResource("ShaderMaterial_etxs4")
@@ -150,7 +150,7 @@ omni_range = 2.638
 omni_attenuation = -5.14
 
 [node name="HUD" parent="." unique_id=1305888938 node_paths=PackedStringArray("time_damage_manager") instance=ExtResource("4_fth4m")]
-time_damage_manager = NodePath("../TimeDamageManager")
+time_damage_manager = NodePath("")
 
 [node name="Loading" type="CanvasLayer" parent="." unique_id=1658540834]
 
@@ -218,7 +218,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_2u3nc")
 
-[node name="TimeDamageManager" type="Node" parent="." unique_id=1358208601]
+[node name="TimeDamageManager" type="Node3D" parent="." unique_id=1531556251]
 script = ExtResource("10_wse8f")
 
 [node name="Map" parent="." unique_id=1662652710 instance=ExtResource("9_ioo17")]

@@ -1,4 +1,4 @@
-extends ProjectileBase
+extends Node3D
 
 @export var ink_ball : Node3D
 @export var indicator : Node3D
@@ -17,9 +17,8 @@ func _ready() -> void:
 	hitbox.set_active(false)
 	# setup(Vector3.ZERO)
 
-func setup(target_position : Vector3, source_: Node3D) -> void:
-	super.set_source(source_)
-	hitbox.source = source_
+func setup(target_position : Vector3, owner_: Node3D) -> void:
+	hitbox.set_owner_entity(owner_)
 	# look_at(target_position, Vector3.UP)
 	# indicator.look_at(target_entity.global_transform.origin, Vector3.UP)
 	indicator.global_transform.origin = target_position
@@ -41,7 +40,7 @@ func on_contact_floor() -> void:
 	has_contacted_floor = true
 	indicator.get_node("IndicatorSprite").visible = false
 
-	ink_ball.visible = false
+	ink_ball.visible = false	
 	hitbox.set_active(true)
 	explosion_fx.play()
 	await explosion_fx.wait_for_animation_done()
